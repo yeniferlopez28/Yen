@@ -9,3 +9,8 @@ Abrir `index.html` en el navegador, o:
 ```sh
 python3 -m http.server 8000
 ```
+
+## Presentación FIBO 2.0
+
+`presentacion.html`: presentación deslizable de la estrategia integral (68 diapositivas en 6 bloques,
+contenido del artefacto «Con FIBO te encuentras»). Flechas / teclado / swipe; «Índice» abre el mapa completo.
