@@ -258,6 +258,34 @@ body { background: var(--black); color: var(--cream); font-family: var(--sans); 
 .poster svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,.55)); animation: sway 6s ease-in-out infinite; }
 @keyframes sway { 50% { transform: rotate(-3deg) translateY(-8px); } }
 
+/* moodboard: tiles fly out of a central stack into a collage around the mark */
+.mood { position: relative; width: 100%; aspect-ratio: 16 / 11; max-height: 64vh; justify-self: center; }
+.mood__grid { position: absolute; left: -4%; right: -4%; top: 38%; height: 24%;
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--fg) 22%, transparent) 0 1px, transparent 1px 7%),
+              linear-gradient(color-mix(in srgb, var(--fg) 22%, transparent) 0 0) top / 100% 1px no-repeat,
+              linear-gradient(color-mix(in srgb, var(--fg) 22%, transparent) 0 0) bottom / 100% 1px no-repeat; }
+.mood__center { position: absolute; inset: 38% 0 auto; height: 24%; display: grid; place-items: center; align-content: center; gap: 6px; z-index: 1; }
+.mood__logo { height: clamp(34px, 5vw, 70px); color: var(--fg); }
+.mood__word { font: 400 clamp(22px, 2.8vw, 46px)/1 var(--display); text-transform: uppercase; }
+.mood__sub { font: 700 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .14em; opacity: .7; }
+.mt { position: absolute; z-index: 2; left: var(--x); top: var(--y); width: var(--w); height: var(--h);
+  transform: rotate(0deg); transition: left 1s cubic-bezier(.2,.8,.2,1), top 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1), opacity .4s;
+  transition-delay: calc(var(--i) * 70ms + 250ms); }
+.slide:not(.in) .mt { left: calc(50% - var(--w) / 2 + (var(--i) - 3.5) * 1.2%); top: calc(50% - var(--h) / 2 + (var(--i) - 3.5) * 1.4%); transform: rotate(var(--r)) scale(.55); opacity: 0; transition-delay: 0s; }
+.slide:not(.in) .mt:nth-child(-n+6) { opacity: 1; }
+.mt__in { position: absolute; inset: 0; overflow: hidden; display: grid; align-content: space-between; padding: 8%; box-shadow: 0 14px 30px rgba(0,0,0,.28);
+  animation: drift 7s ease-in-out infinite; animation-delay: calc(var(--i) * -0.9s); transition: transform .35s; }
+.mt__in { outline: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); }
+.mt:hover { z-index: 5; }
+.mt:hover .mt__in { transform: scale(1.08) rotate(-1deg); }
+@keyframes drift { 50% { translate: calc((var(--i) - 3.5) * 1.5px) -7px; } }
+.mt--img .mt__in { padding: 6%; place-items: center; align-content: center; }
+.mt--img img { width: 112%; max-width: none; transform: rotate(-6deg); filter: drop-shadow(4px 5px 0 rgba(0,0,0,.4)); }
+.mt b { font: 400 clamp(12px, 1.25vw, 20px)/1 var(--display); text-transform: uppercase; }
+.mt small { font: 700 9px/1 var(--mono); opacity: .8; }
+.mt--card img { width: 120%; max-width: none; justify-self: center; transform: rotate(-8deg); }
+@media (max-width: 820px) { .mood { aspect-ratio: 1 / 1.05; max-height: none; } }
+
 /* ---------- section covers & cover ---------- */
 .cover, .sec { grid-template-rows: 1fr; }
 .pix { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(var(--cols), 1fr); grid-auto-rows: var(--cell); pointer-events: none; }
@@ -564,7 +592,15 @@ const S = [
   { b: 4, n: 41, title: "Identidad visual y sistema gráfico", st: "parcial",
     msg: "Hay base aprobada; recomendamos ajustar el empaque y crear un sistema de comunicación, no rediseñar todo.",
     pts: ["<b>Logotipo y versiones:</b> conservar el wordmark horizontal; el sello vertical FIBO BAR, corregir o retirar.", "<b>Paleta y tipografías:</b> cinco colores de marca + un color por sabor; Anton + Archivo.", "<b>Recursos gráficos:</b> posts con textura de imprenta, numerados como serie.", "<b>Fotografía e ilustración:</b> no existe fotografía cotidiana propia (crítico).", "<b>Packaging y aplicaciones:</b> ajustar el empaque; falta material de punto de venta. Matriz de 26 activos lista."],
-    v: { type: "swatch", items: [["#D6161D", "Rojo", "#F2EFE8"], ["#0C0B0A", "Negro", "#F2EFE8"], ["#F2EFE8", "Crema", "#0C0B0A"], ["#3A5CFF", "Azul", "#F2EFE8"], ["#C9F23A", "Lima", "#0C0B0A"]], logo: true },
+    v: { type: "mood", center: "logo", sub: "Identidad · 5 colores · Anton + Archivo", tiles: [
+      [3, 6, 30, 18, -8, "img", "assets/fibo-cookies.webp", "#D6B787"],
+      [36, 2, 17, 26, 6, "color", "#D6161D", "#F2EFE8", "Rojo", "#D6161D"],
+      [57, 8, 24, 17, -4, "img", "assets/fibo-chocolate.webp", "#F2D31B"],
+      [83, 4, 15, 30, 9, "color", "#3A5CFF", "#F2EFE8", "Azul", "#3A5CFF"],
+      [2, 66, 18, 28, 7, "color", "#C9F23A", "#0C0B0A", "Lima", "#C9F23A"],
+      [22, 70, 31, 19, -6, "img", "assets/fibo-frutos.webp", "#D6161D"],
+      [56, 64, 26, 22, 5, "img", "assets/fibo-brownie.webp", "#4E2275"],
+      [84, 62, 14, 32, -9, "color", "#0C0B0A", "#F2EFE8", "Negro", "#0C0B0A"]] },
     warn: "⚠ No se encontraron los vectoriales ni los archivos de producción del empaque." },
   { b: 4, n: 42, title: "Mensajes clave", st: "parcial",
     msg: "Un mensaje de marca y mensajes por función.",
@@ -591,7 +627,15 @@ const S = [
   { b: 5, n: 47, title: "Sistema creativo de contenidos", st: "parcial",
     msg: "Series reconocibles que nacen de «Con FIBO te encuentras».",
     pts: ["<b>Guías visuales:</b> posts con textura de imprenta, numerados como serie.", "<b>Códigos:</b> cinematográfica, humana, curiosa y cultural, inesperada; la barra aparece natural.", "<b>Falta:</b> formato, frecuencia y guía de producción por serie."],
-    v: { type: "chips", items: ["Degustaciones", "ASMR de producto", "Momentos cotidianos", "Dinámicas de 4 sabores", "Comunidad", "Ideas recurrentes"], big: true } },
+    v: { type: "mood", center: "text", centerText: "Con FIBO te encuentras", sub: "Series de contenido", tiles: [
+      [2, 4, 26, 24, -7, "card", "#C9F23A", "#0C0B0A", "01 · Degustaciones", "assets/fibo-cookies.webp"],
+      [32, 2, 22, 26, 5, "card", "#0C0B0A", "#F2EFE8", "02 · ASMR de producto", "assets/fibo-brownie.webp"],
+      [58, 6, 22, 22, -4, "card", "#3A5CFF", "#F2EFE8", "03 · Momentos cotidianos", ""],
+      [82, 3, 16, 30, 8, "img", "assets/fibo-chocolate.webp", "#F2D31B"],
+      [3, 66, 24, 28, 6, "card", "#D6161D", "#F2EFE8", "04 · Dinámicas de 4 sabores", "assets/fibo-frutos.webp"],
+      [31, 70, 22, 22, -5, "card", "#F2EFE8", "#0C0B0A", "05 · Comunidad", ""],
+      [57, 66, 24, 26, 7, "card", "#C9F23A", "#0C0B0A", "06 · Ideas recurrentes", "assets/fibo-chocolate.webp"],
+      [84, 64, 14, 28, -8, "color", "#0C0B0A", "#C9F23A", "Textura de imprenta", "#0C0B0A"]] } },
   { b: 5, n: 48, title: "Calendario editorial", st: "parcial",
     msg: "Tres publicaciones por semana desde el 24 de octubre.",
     pts: ["<b>Frecuencia:</b> 3 por semana (martes, jueves y sábado).", "<b>Plataformas:</b> Instagram y Facebook.", "<b>Cada pieza:</b> formato, objetivo, CTA y KPI.", "<b>Falta:</b> responsables y registro de lo ya publicado."],
@@ -754,6 +798,15 @@ function viz(v) {
           <text x="100" y="628" font-family="Georgia, serif" font-style="italic" font-size="21" fill="#0C0B0A" textLength="400" lengthAdjust="spacingAndGlyphs">${v.note}</text>
         </g></svg></div>`;
     }
+    case "mood":
+      return `<div class="mood a" ${d(0)}><div class="mood__grid"></div>
+        <div class="mood__center">${v.center === "logo" ? `<span class="logo mood__logo"></span>` : `<span class="mood__word">${v.centerText}</span>`}<span class="mood__sub">${v.sub}</span></div>
+        ${v.tiles.map(([x, y, w, h, r, k, a, b2, c2, e2], i) => {
+          const inner = k === "img" ? `<span class="mt__in" style="background:${b2}"><img src="${a}" alt=""></span>`
+            : k === "color" ? `<span class="mt__in" style="background:${a};color:${b2}"><b>${c2}</b><small>${e2.startsWith("#") ? e2 : ""}</small></span>`
+            : `<span class="mt__in" style="background:${a};color:${b2}"><b>${c2}</b>${e2 ? `<img src="${e2}" alt="">` : `<i class="logo" style="height:18px"></i>`}</span>`;
+          return `<span class="mt mt--${k}" style="--x:${x}%;--y:${y}%;--w:${w}%;--h:${h}%;--r:${r}deg;--i:${i}">${inner}</span>`;
+        }).join("")}</div>`;
     case "two":
       return `<div class="cards" style="--c:2">${[v.a, v.b2].map(([h, xs], j) => `<div class="card a" ${d(j)} style="${j === 0 ? "background:var(--fg);color:var(--bg)" : ""}"><span class="card__t" style="font-size:clamp(24px,2.6vw,42px)">${h}</span>${xs.map((x) => `<span class="card__x" style="font-weight:700">■ ${x}</span>`).join("")}</div>`).join("")}</div>`;
   }
