@@ -88,6 +88,8 @@ body { background: var(--black); color: var(--cream); font-family: var(--sans); 
 .pts li { font-size: clamp(13px, 1.02vw, 16px); line-height: 1.35; padding-left: 18px; position: relative; }
 .pts li::before { content: ""; position: absolute; left: 0; top: .45em; width: 8px; height: 8px; background: var(--ac); }
 .pts b { font-weight: 700; }
+.pts--dense { gap: 7px; }
+.pts--dense li { font-size: clamp(12px, .9vw, 14.5px); line-height: 1.3; }
 .warn { font: 400 11px/1.4 var(--mono); opacity: .75; max-width: 52ch; }
 .viz { min-width: 0; display: grid; align-content: center; gap: 14px; }
 .src { font: 400 10px/1.4 var(--mono); opacity: .6; }
@@ -244,7 +246,7 @@ body { background: var(--black); color: var(--cream); font-family: var(--sans); 
 .sc b { font: 400 clamp(15px, 1.3vw, 21px)/1 var(--display); text-transform: uppercase; }
 .verdict { font: 700 11px/1 var(--mono); text-transform: uppercase; padding: 6px 8px; text-align: center; }
 .v-g { background: var(--lime); color: var(--black); }
-.v-m { background: var(--cream); color: var(--black); }
+.v-m { background: var(--cream); color: var(--black); box-shadow: inset 0 0 0 1.5px var(--black); }
 .v-p { background: var(--red); color: var(--cream); }
 .v-x { border: 1.5px dashed currentColor; }
 
@@ -282,6 +284,7 @@ body { background: var(--black); color: var(--cream); font-family: var(--sans); 
 .idx { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; }
 .idx button { text-align: left; border: 0; cursor: pointer; padding: clamp(14px, 1.8vw, 24px); display: grid; gap: 10px; min-height: clamp(130px, 22vh, 210px); align-content: space-between; font-family: var(--sans); transition: transform .2s; }
 .idx button:hover, .idx button:focus-visible { transform: translateY(-4px); outline: 3px solid var(--black); }
+.idx button.t1 { outline: 2px solid var(--black); outline-offset: -2px; }
 .idx b { font: 400 clamp(36px, 4vw, 64px)/.9 var(--display); }
 .idx strong { font: 400 clamp(18px, 1.7vw, 28px)/1 var(--display); text-transform: uppercase; }
 .idx span { font: 700 11px/1.3 var(--mono); }
@@ -382,44 +385,42 @@ const S = [
   { b: 1, n: 2, type: "index", title: "Índice general" },
   { b: 1, n: 3, title: "Resumen ejecutivo", st: "parcial",
     msg: "Vendemos más, pero ganamos menos y la barra no siempre está donde la buscan.",
-    pts: ["<b>Oportunidad:</b> el mejor valor por proteína del mercado ($2.16 por g) en una categoría que crece 4.64% al año.",
-          "<b>Problema:</b> le falta lugar en el punto de venta, margen y una marca activa.",
-          "<b>Propuesta:</b> cinco palancas. Primero probar, después invertir."],
+    pts: ["<b>Dónde está hoy:</b> crece en ventas, con margen a la baja y 60% del volumen en dos clientes.", "<b>Oportunidad:</b> mejor valor por proteína del mercado ($2.16 por g) en una categoría que crece 4.64% al año.", "<b>Problema:</b> le falta lugar en el punto de venta, margen y una marca activa.", "<b>Qué proponemos:</b> cinco palancas (distribución, trade, contenido, experiencias y e-commerce); primero probar, después invertir.", "<b>Resultado buscado:</b> vender más de forma rentable; metas al fijar la línea base."],
     v: { type: "kpis", items: [["+12.1%", "Ventas ene–ago 2026", "$5.27 M → $5.91 M"], ["−5.3 pts", "Margen bruto", "42.5% → 37.2%"], ["68%", "PDV visitados con barra", "36 de 53"], ["137", "Tiendas A/B sin FIBO", "Más Natural Más Sano"]] },
     src: "Venta bruta de facturación interna; margen preliminar con costo por validar." },
   { b: 1, n: 4, title: "Antecedentes de FIBO", st: "parcial",
     msg: "Ocho años en el mercado; los últimos dos, sin estrategia: «se produce cuando nos piden».",
-    pts: ["<b>Qué cambió:</b> de «suplemento de gym» a la vida cotidiana.", "<b>Qué se retiró:</b> «¡Más que energía!», Veggie Go, Capuchino, Crema de cacahuate y barras de atleta.", "<b>$34.0 M</b> de venta bruta entre abr 2019 y sep 2026."],
+    pts: ["<b>Origen:</b> marca propia de El Molino, fabricada en Zapopan desde su planta de 2015.", "<b>Por qué surge FIBO 2.0:</b> dos años (2024–2026) sin estrategia de ventas ni de marketing.", "<b>Cambios realizados:</b> empaques G1 y G2; se retiraron «¡Más que energía!», Veggie Go, Capuchino y Crema de cacahuate.", "<b>Situación anterior:</b> poca actividad, ≈3,000 seguidores menos y comunicación solo fitness.", "<b>Decisión:</b> pasar de «suplemento de gym» a la vida cotidiana (16 oct) con 4 sabores."],
     v: { type: "timeline", items: [["2015", "El Molino crea su planta de barras"], ["2017–18", "Redes y lanzamiento de FIBO BAR"], ["2021–23", "Empaque G1, atletas, Veggie Go, Nutrisa"], ["2024", "Empaque G2 con wordmark horizontal"], ["2026", "Relanzamiento: 4 sabores y «Con FIBO te encuentras»"]] },
     warn: "⚠ Por conciliar: ¿lanzamiento en 2017 o 2018?" },
   { b: 1, n: 5, title: "¿Por qué FIBO necesita evolucionar?", st: "base",
     msg: "FIBO no tiene un problema de producto ni de nombre: nadie la gestiona.",
-    pts: ["<b>Activos dispersos:</b> dos logos, cuatro nombres y tres líneas visuales.", "<b>La dirección ya existe,</b> pero no llega al empaque, al anaquel ni a redes.", "<b>Conectar todo:</b> producto, comunicación y distribución en la misma dirección."],
+    pts: ["<b>Problemas:</b> dos logos, cuatro nombres, tres líneas visuales y cinco precios al público.", "<b>Barreras de crecimiento:</b> exhibición sin material propio, sabores incompletos y etiquetas cruzadas.", "<b>Profesionalización:</b> pasar de esfuerzos aislados a una estrategia con objetivos, responsables y medición.", "<b>Diferenciación:</b> una marca definida que no se limite al fitness.", "<b>Conectar:</b> la dirección existe, pero no llega al empaque, al anaquel ni a redes."],
     v: { type: "kpis", items: [["58.7%", "Del valor 2026 en 2 clientes", ""], ["0 / 27", "Fotos de anaquel con material FIBO", ""], ["35 / 45", "7-Eleven ZMG que la manejan", ""], ["5", "Precios al público distintos", "$43 a $61.78"]] },
     src: "Auditoría de marca FIBO: ERP Alpha, Notion y 27 fotos de anaquel (15 oct 2026)." },
   { b: 1, n: 6, title: "Objetivos del proyecto FIBO 2.0", st: "parcial",
     msg: "Relanzar FIBO para ganar reconocimiento, demanda y nuevos canales.",
-    pts: ["<b>Resultado esperado:</b> una marca definida, con canales constantes y un sistema de medición.", "<b>Regla:</b> ningún objetivo sin indicador, fuente, periodo y responsable."],
+    pts: ["<b>Objetivo general:</b> relanzar FIBO para ganar reconocimiento, demanda y nuevos canales.", "<b>Resultado esperado:</b> marca definida, canales constantes y un sistema de medición.", "<b>Regla:</b> ningún objetivo sin indicador, fuente, periodo y responsable."],
     v: { type: "cards", cols: 2, items: [["Comerciales", "Ventas, distribución y rotación."], ["Marketing", "Conocimiento, consideración y conversión."], ["Digitales", "Comunidad, tráfico y ventas atribuibles."], ["Operativos", "Información confiable, seguimiento y medición."]] },
     warn: "Pendiente: metas numéricas cuando exista la línea base." },
   { b: 1, n: 7, title: "Alcance, metodología y fuentes", st: "parcial",
     msg: "Qué analizamos, con qué datos y qué falta validar.",
-    pts: ["<b>Periodo:</b> histórico abr 2019 – sep 2026; comparación ene–ago 2026 vs 2025.", "<b>Limitaciones:</b> falta venta neta, costo validado y encuesta."],
+    pts: ["<b>Periodo:</b> histórico abr 2019 – sep 2026; comparación ene–ago 2026 vs 2025.", "<b>Internas:</b> ventas, costos, clientes y puntos de venta.", "<b>Externas:</b> competidores, estudios, redes y marketplaces.", "<b>Campo:</b> tiendas, precios, fotografías y disponibilidad.", "<b>Limitaciones:</b> falta venta neta, costo validado y resultados de la encuesta."],
     v: { type: "table", head: ["Tipo", "Fuente", "Estado"], rows: [["Interna", "Facturación Alpha 2019–2026", "✓ Venta bruta"], ["Interna", "Costos por sabor", "Por validar"], ["Externa", "Benchmark de 28 referencias + IMARC", "✓ Ago–oct 2026"], ["Campo", "53 PDV, fotos y precios", "✓ 13–14 oct"], ["Consumidor", "Encuesta", "En desarrollo"]] } },
 
   // ---------------- BLOQUE 2 ----------------
   { b: 2, n: 8, title: "¿Qué es FIBO?", st: "parcial",
     msg: "Barra de proteína hecha en Zapopan por El Molino: marca propia de un fabricante que también maquila.",
-    pts: ["<b>Lo que nos distingue:</b> fabricamos; controlamos receta, calidad y costo.", "<b>Dónde participa:</b> 7-Eleven, Nutrisa, 12 distribuidores, vending, Amazon y fibo.mx.", "<b>Cadenas objetivo:</b> Farmacias Guadalajara, Upper, OXXO, Costco y GNC."],
+    pts: ["<b>Definición:</b> barra de proteína hecha en Jalisco, pensada para acompañar el día, no solo el entrenamiento.", "<b>Categoría:</b> barra proteica (15–22 g), no barra de cereal.", "<b>Necesidad que resuelve:</b> saciedad y colación práctica entre actividades.", "<b>Canales:</b> 7-Eleven, Nutrisa, 12 distribuidores, vending, Amazon y fibo.mx.", "<b>Mercados:</b> GDL, Zapopan, Monterrey, CDMX, Manzanillo, Pachuca y Michoacán."],
     v: { type: "kpis", items: [["22 g", "Proteína en 65 g", ""], ["4", "Sabores vigentes", ""], ["28", "Clientes activos", "de 106 en el historial"], ["7 M", "Barras de capacidad", "línea propia"]] } },
   { b: 2, n: 9, title: "El producto", st: "parcial",
     msg: "65 g, 22 g de proteína y 10 g de fibra; los claims se usan solo si los respalda la tabla.",
-    pts: ["<b>Se puede decir:</b> «22 g de proteína», «Hecha en Jalisco», «Antes o después».", "<b>Corregir «Whey»:</b> es mezcla de soya y suero de leche.", "<b>No usar:</b> «Sin azúcar añadida», «sin glucosa», «la marca #1»."],
+    pts: ["<b>Peso y presentación:</b> 65 g por barra; display de 6 y caja master de 144. Dimensiones por documentar.", "<b>Ingredientes:</b> proteína de soya + suero de leche; 10 g de fibra.", "<b>Verificado:</b> 22 g de proteína en Brownie y Chocolate (tabla y especificación 2025).", "<b>Se puede comunicar:</b> «22 g de proteína», «Hecha en Jalisco», «Antes o después».", "<b>No usar:</b> «Whey» (es mezcla), «sin azúcar añadida», «sin glucosa», «la marca #1»."],
     v: { type: "table", head: ["Por barra", "Brownie", "Chocolate"], rows: [["Energía", "250 kcal", "230 kcal"], ["Proteína", "22 g", "22 g"], ["Azúcares (añadidos)", "9 g (4 g)", "10 g (4 g)"], ["Fibra", "10 g", "10 g"], ["Proteína de", "Soya + suero", "Soya + suero"]], img: "assets/fibo-brownie.webp" },
     warn: "⚠ Por resolver: código de barras repetido en 3 sabores y posible sello de sodio. Faltan tablas de Frutos Rojos y Cookies & Cream." },
   { b: 2, n: 10, title: "Portafolio completo", st: "parcial",
     msg: "Cuatro sabores de 65 g, un color por sabor y costos casi iguales.",
-    pts: ["<b>Presentaciones:</b> display de 6 y caja master de 144.", "<b>Disponibilidad:</b> ninguna cadena tiene los 4 sabores; Cookies & Cream no está en Nutrisa ni en Amazon.", "<b>Error de alta:</b> Nutrisa registró el producto como «FOBO BAR»."],
+    pts: ["<b>Peso y proteína:</b> 65 g y 22 g en los cuatro sabores.", "<b>Precio por canal (igual en los 4):</b> distribuidor $27.03 · mayoreo $30.15 · tienda directa $32.50 · fibo.mx $43.", "<b>Inventario en Nutrisa:</b> Chocolate 677 · Brownie 640 · Frutos Rojos 637 · Cookies & Cream no surtido.", "<b>Disponibilidad:</b> ninguna cadena tiene los 4 sabores; Nutrisa lo registró como «FOBO BAR»."],
     v: { type: "flavs", items: [
       ["assets/fibo-cookies.webp", "Cookies & Cream", "#D6B787", "#0C0B0A", ["B-026", "32% de la mezcla", "Costo $14.47", "Margen 39.3%"]],
       ["assets/fibo-chocolate.webp", "Chocolate", "#F2D31B", "#0C0B0A", ["B-022", "30% de la mezcla", "Costo $14.00", "Margen 41.2%"]],
@@ -428,28 +429,28 @@ const S = [
     src: "Margen bruto al precio promedio a clientes ($23.82). Costos por validar con Producción." },
   { b: 2, n: 11, title: "Análisis de los cuatro sabores", st: "parcial",
     msg: "Cookies & Cream y Chocolate suben; Brownie y Frutos Rojos bajan.",
-    pts: ["<b>Lo que hay detrás:</b> Mas Bodega solo compra Cookies & Cream y Chocolate, y triplicó su compra.", "<b>En tiendas directas</b> Brownie es el más vendido (32% de displays).", "<b>Conclusión:</b> el movimiento es de un cliente, no del consumidor."],
+    pts: ["<b>Unidades:</b> 257,718 barras surtidas ene–ago (+9.8%).", "<b>Margen por sabor:</b> Chocolate 41.2% · Cookies & Cream 39.3% · Brownie 38.8% · Frutos Rojos 38.5%.", "<b>Por canal:</b> en tiendas directas Brownie es el más vendido (32% de displays).", "<b>Lo que hay detrás:</b> Mas Bodega solo compra Cookies & Cream y Chocolate y triplicó su compra; sin ese cliente la cartera cae 16.7%.", "<b>Ingresos y recompra por sabor:</b> por conciliar periodos y medir."],
     v: { type: "diverge", label: "Unidades ene–ago 2026 vs 2025", items: [["Cookies & Cream", 35], ["Chocolate", 27], ["Brownie", -7.6], ["Frutos Rojos", -19]], max: 40 },
     src: "257,718 barras surtidas (+9.8%). Fuente: Análisis de barras 2025 vs 2026." },
   { b: 2, n: 12, title: "Propuesta de valor actual", st: "parcial",
     msg: "Hoy prometemos «22 g de proteína, práctica y lista para cualquier momento».",
-    pts: ["<b>Diferenciales:</b> mejor precio por gramo, barra más grande y 10 g de fibra.", "<b>Razones para elegirla:</b> valor, tamaño y sabor de postre.", "<b>Falta:</b> un beneficio emocional y validar qué atributo pesa."],
+    pts: ["<b>Qué ofrece:</b> proteína y fibra en una barra grande y práctica.", "<b>Necesidad:</b> saciedad y colación entre actividades.", "<b>Diferenciales:</b> mejor precio por gramo, barra más grande, 10 g de fibra.", "<b>Razones para elegirla:</b> valor, tamaño y sabor de postre.", "<b>Qué la distingue:</b> la fabricamos nosotros. Falta un beneficio emocional."],
     v: { type: "bars", label: "Costo por gramo de proteína (menos es mejor)", items: [["FIBO", 2.16, "$2.16", 1], ["Zebra REALBAR", 2.57, "$2.57"], ["think!", 3.5, "$3.50"], ["Quest Cookie", 3.9, "$3.90"]], max: 4 } },
   { b: 2, n: 13, title: "Modelo de negocio", st: "parcial",
     msg: "De cada barra de $50, El Molino recibe en promedio $23.82.",
-    pts: ["<b>Cómo genera ingresos:</b> venta a distribuidores, mayoristas, tiendas y en línea.", "<b>Quién compra:</b> clientes comerciales; el consumidor compra en tienda o en línea.", "<b>Falta:</b> condiciones y márgenes de cada participante."],
+    pts: ["<b>Cómo genera ingresos:</b> venta a distribuidores, mayoristas, tiendas y en línea.", "<b>Qué vende y a quién:</b> barras de 65 g en display de 6 y caja de 144 a clientes comerciales.", "<b>Quién compra vs. quién consume:</b> compra el cliente comercial; el consumidor compra en tienda o en línea.", "<b>Canales con ingreso:</b> mayoreo, distribuidores, tiendas directas y Amazon.", "<b>Relación:</b> marca → distribuidor → punto de venta → consumidor; faltan condiciones y márgenes por participante."],
     v: { type: "stack", label: "Cómo se reparte el precio sugerido de $50", items: [["Costo de producción", 14.39, "$14.39"], ["Margen bruto El Molino", 9.43, "$9.43"], ["Distribución y punto de venta", 26.18, "$26.18"]] } },
   { b: 2, n: 14, title: "Cadena comercial y distribución", st: "parcial",
     msg: "Sabemos quién factura; falta saber quién mantiene el inventario en cada tramo.",
-    pts: ["<b>Plazas:</b> GDL, Zapopan, Monterrey, CDMX, Manzanillo, Pachuca y Michoacán.", "<b>Condiciones:</b> lista 2026 vigente desde el 1 de octubre.", "<b>Riesgo:</b> se pierde la trazabilidad entre distribuidor y tienda."],
+    pts: ["<b>Quién factura:</b> El Molino, a clientes y distribuidores.", "<b>Quién mantiene el inventario:</b> por mapear tramo por tramo.", "<b>Condiciones comerciales:</b> lista 2026 vigente desde el 1 de octubre.", "<b>Riesgo:</b> se pierde la trazabilidad entre distribuidor y tienda."],
     v: { type: "flow", items: [["Proveedores", "Insumos y empaque"], ["El Molino", "Produce, almacena y factura"], ["Distribuidores", "Mayoristas y clientes"], ["Puntos de venta", "7-Eleven, Nutrisa, naturistas"], ["Consumidor", "Compra final"]] } },
   { b: 2, n: 15, title: "Canales de venta actuales", st: "parcial",
     msg: "Hay distribución real, pero los canales en línea están sin control.",
-    pts: ["<b>Amazon:</b> $209k en 434 pedidos (may 2025 – sep 2026); hoy en $0.", "<b>Mercado Libre:</b> más de 10 listados y nadie tiene acceso.", "<b>Nutrisa:</b> 2,442 piezas en el CEDIS y 105 tiendas en cero."],
+    pts: ["<b>Mayoristas y clientes:</b> Edgar García (~150 gimnasios), Más Bodega, Saludanat, Más Natural Más Sano.", "<b>Amazon:</b> $209k en 434 pedidos (may 2025 – sep 2026); hoy en $0. La venta la gana Fitstore.", "<b>Mercado Libre:</b> más de 10 listados y nadie tiene acceso.", "<b>Sitio propio:</b> fibo.mx «activa» o «agotada → landing hacia Amazon», por conciliar."],
     v: { type: "bars", label: "Cobertura por canal", items: [["7-Eleven ZMG", 78, "35 / 45", 1], ["Nutrisa", 54, "133 / 246"], ["Más Natural Más Sano A/B", 33, "69 / 206"], ["Farmacias del Ahorro", 0, "0 / 3"]], max: 100 } },
   { b: 2, n: 16, title: "Diagnóstico comercial histórico", st: "parcial",
     msg: "$34 millones facturados desde 2019; 2026 va arriba, pero depende de la base.",
-    pts: ["<b>Piezas:</b> 234,780 → 257,718 (+9.8%), 4 sabores activos.", "<b>Estacionalidad:</b> julio fue el peor mes en margen (45.6% → 29.9%).", "<b>Falta:</b> venta neta y ventas de 2024 por cliente."],
+    pts: ["<b>Facturación histórica:</b> $34.0 M (abr 2019 – sep 2026), 1,289 líneas en Alpha.", "<b>Volumen:</b> 234,780 → 257,718 piezas (+9.8%).", "<b>Por sabor y cliente:</b> sube Cookies & Cream y Chocolate; 58.7% del valor en 2 clientes.", "<b>Estacionalidad:</b> julio fue el peor mes en margen (45.6% → 29.9%).", "<b>Qué importe es:</b> venta bruta facturada; falta venta neta, cobrada y 2024 por cliente."],
     v: { type: "cols", label: "Ventas ene–ago (venta bruta)", items: [["2025", 5.27, "$5.27 M"], ["2026", 5.91, "$5.91 M", 1]], max: 6.5 },
     warn: "⚠ Por conciliar: crecimiento +12.1% (Alpha) o +4.3% (Análisis de Barras), según IEPS, SKU y periodo." },
   { b: 2, n: 17, title: "Situación actual: hallazgos", st: "parcial",
@@ -460,60 +461,60 @@ const S = [
   // ---------------- BLOQUE 3 ----------------
   { b: 3, n: 18, title: "Definición de la categoría", st: "parcial",
     msg: "Con 22 g, FIBO compite como barra proteica, no como barra de cereal.",
-    pts: ["<b>Hueco de FIBO:</b> 20 g o más, precio medio y canal masivo.", "<b>Sustitutos:</b> yogur, lácteos y snacks que compiten por el mismo momento."],
+    pts: ["<b>Barra proteica:</b> 15–22 g; saciedad, después de entrenar, colación.", "<b>Diferencias:</b> cereal «protein» 5–10 g y precio bajo; energética < 10 g para el deporte; snack funcional variable.", "<b>Segmentos:</b> por proteína, ingredientes y precio.", "<b>Sustitutos:</b> yogur, lácteos y snacks que compiten por el mismo momento.", "<b>Hueco de FIBO:</b> 20 g o más, precio medio y canal masivo."],
     v: { type: "bars", label: "Proteína por tipo de barra", items: [["Barra proteica · FIBO", 22, "15–22 g", 1], ["Cereal / granola «protein»", 10, "5–10 g"], ["Barra energética", 9, "< 10 g"], ["Snack funcional", 6, "Variable"]], max: 24 } },
   { b: 3, n: 19, title: "Tamaño y evolución del mercado", st: "parcial",
     msg: "Una categoría pequeña que crece; la proteína se vuelve masiva.",
-    pts: ["<b>Entran</b> Bimbo, Lala y Oikos.", "<b>Lectura:</b> que crezca la categoría no hace rentable a cada marca."],
+    pts: ["<b>Tamaño:</b> US$59.8 M en 2025 (estimación IMARC).", "<b>Proyección:</b> US$89.9 M en 2034, +4.64% anual.", "<b>Impulsa:</b> la proteína entra a lácteos, panes y bebidas; llegan Bimbo, Lala y Oikos.", "<b>Limita:</b> presión de precio y marcas propias.", "<b>Lectura:</b> que crezca la categoría no hace rentable a cada marca."],
     v: { type: "cols", label: "Barras de proteína en México · IMARC", items: [["2025", 59.8, "US$59.8 M"], ["2034", 89.9, "US$89.9 M", 1]], max: 100, kpi: ["+4.64%", "crecimiento anual compuesto 2026–2034"] },
     warn: "⚠ Por conciliar: Euromonitor estima +8.5% al año en nutrición deportiva. Son estimaciones, no ventas auditadas." },
   { b: 3, n: 20, title: "Tendencias del mercado", st: "parcial",
     msg: "La proteína dejó de ser cosa del gimnasio.",
-    pts: ["<b>Diferenciación:</b> «alto en proteína» ya es lo esperado.", "<b>Para FIBO:</b> sumar sabor, precio, disponibilidad y una razón para comerla."],
+    pts: ["<b>Global vs. México:</b> cada tendencia lleva su evidencia; dos siguen por validar.", "<b>Diferenciación:</b> «alto en proteína» ya es lo esperado.", "<b>Para FIBO:</b> sumar sabor, precio, disponibilidad y una razón para comerla."],
     v: { type: "cards", cols: 3, items: [["Proteína funcional", "Evidencia en México · IMARC", "MX"], ["Snacks para llevar", "Conveniencia en el canal", "MX"], ["Sabor de postre", "Textura y antojo", "Global"], ["Packs y precio por canal", "Visto en marketplaces", "MX"], ["Menos azúcar", "Ingredientes claros", "Por validar"], ["Bienestar cotidiano", "Vida diaria, no solo deporte", "Por validar"]] } },
   { b: 3, n: 21, title: "Segmentación del consumidor", st: "parcial",
     msg: "No todos compran una barra por la misma razón.",
-    pts: ["<b>Base actual:</b> ocho perfiles de consumo; una persona puede ser varios.", "<b>Falta:</b> validar los segmentos con la encuesta."],
+    pts: ["<b>Base actual:</b> ocho perfiles de consumo; una persona puede ser varios.", "<b>Variables:</b> comportamiento, motivación, ocasión, gasto y canal.", "<b>Falta:</b> validar los segmentos con la encuesta."],
     v: { type: "cards", cols: 3, items: [["Activos y deportistas", "Después de entrenar"], ["Estudiantes y jóvenes profesionistas", "Entre clases y trabajo"], ["Colación práctica", "Entre comidas, con prisa"], ["Interesados en nutrición", "Leen la etiqueta"], ["Sabor y conveniencia", "Antojo con algo extra"]] } },
   { b: 3, n: 22, title: "Perfil del consumidor prioritario", st: "pend",
     msg: "El público aparece en cinco versiones; hay que elegir uno con datos.",
-    pts: ["<b>Lo que sí sabemos:</b> el sabor líder cambia por canal.", "<b>Por decidir:</b> ¿una sola campaña B2C o también una B2B?", "<b>Regla:</b> investigación, no intuición del equipo."],
+    pts: ["<b>Edad y contexto:</b> 18–30 o 18–35 años, con días activos y rutinas diversas.", "<b>Hábitos y momentos:</b> entre clases, en el trabajo, en traslados y después de entrenar.", "<b>Poder adquisitivo:</b> precio aceptable de $35–40 (hipótesis).", "<b>Dónde compra:</b> abarrotes y gimnasios venden más en Más Natural Más Sano.", "<b>Marcas que conoce y criterios:</b> por medir con la encuesta. Regla: investigación, no intuición."],
     v: { type: "table", head: ["Fuente", "Público propuesto"], rows: [["Brand Book", "18–30 años, días activos y rutinas diversas"], ["Campaña", "18–35 años, activo y dinámico (ZMG)"], ["Decks de agosto", "5 arquetipos de 19–32 en GDL"], ["Buyer personas", "8 perfiles «le late»"], ["OnePager de noviembre", "Marcas wellness (B2B)"]] } },
   { b: 3, n: 23, title: "Necesidades, motivaciones y barreras", st: "parcial",
     msg: "Las reseñas ya dan pistas; la encuesta tiene que confirmarlas.",
-    pts: ["<b>Insight a validar:</b> «Quiero cuidarme, pero mi día no está diseñado para eso».", "<b>En tienda:</b> el personal de 7-Eleven dice que rota poco, salvo en la Americana."],
+    pts: ["<b>Por qué compra:</b> conveniencia y proteína (hipótesis).", "<b>Qué le hace elegir:</b> valor, tamaño y sabor (por validar).", "<b>Qué impide probar:</b> precio, no conocerla, no encontrarla.", "<b>Sabor, proteína, ingredientes y tamaño:</b> textura «crunch» vs. «reseca»; probar a ciegas.", "<b>Dudas:</b> sabor artificial y claims de proteína y azúcar."],
     v: { type: "kpis", items: [["4.1 ★", "Amazon · 29 reseñas", "Queja más repetida: «reseca»"], ["$35–40", "Precio aceptable", "Hipótesis"], ["3", "Barreras para probar", "Precio, no conocerla, no encontrarla"]] } },
   { b: 3, n: 24, title: "Ocasiones de consumo", st: "base",
     msg: "Territorio libre: «la barra que te llena en el día a día».",
-    pts: ["<b>Por qué importa:</b> las ocasiones no deportivas no las ocupa nadie con fuerza.", "<b>Conexión:</b> alimentan «Con FIBO te encuentras»."],
+    pts: ["<b>Por qué importa:</b> las ocasiones no deportivas no las ocupa nadie con fuerza.", "<b>Conexión:</b> se vuelven territorios creativos de «Con FIBO te encuentras».", "<b>Falta:</b> priorizar por relevancia, credibilidad y potencial comercial."],
     v: { type: "chips", items: ["Entre clases", "Jornada laboral", "Después de entrenar", "En traslados", "Entre comidas", "Viajes y planes"], big: true } },
   { b: 3, n: 25, title: "Proceso de compra", st: "parcial",
     msg: "La prueba siempre va ligada a saber dónde comprar.",
-    pts: ["<b>Cuello de botella:</b> disponibilidad y exhibición en tienda.", "<b>Falta:</b> qué hace que alguien la descubra y dónde termina comprando."],
+    pts: ["<b>Cuello de botella:</b> disponibilidad y exhibición en tienda.", "<b>Recompra y recomendación:</b> por medir.", "<b>Falta:</b> qué hace que alguien la descubra y dónde termina comprando."],
     v: { type: "flow", items: [["Descubre", "Por documentar"], ["Compara", "Precio y beneficios"], ["Encuentra", "68% de PDV con barra"], ["Compra", "Impulso en tienda"], ["Prueba", "Sabor"], ["Recompra", "Por medir"]] } },
   { b: 3, n: 26, title: "Investigación primaria", st: "parcial",
     msg: "El trabajo de campo ya está hecho; falta escuchar al consumidor.",
-    pts: ["<b>Siguiente:</b> 8–12 entrevistas en anaquel y cata a ciegas contra Wild y 7-Select.", "<b>Cuidado:</b> una muestra de conveniencia no representa a México."],
+    pts: ["<b>Qué mide la encuesta:</b> reconocimiento, intención de prueba, sabor preferido, precio, razones y empaque.", "<b>Muestra y perfil:</b> por reportar al cierre (7–20 oct).", "<b>Siguiente:</b> 8–12 entrevistas en anaquel y cata a ciegas contra Wild y 7-Select.", "<b>Cuidado:</b> una muestra de conveniencia no representa a México."],
     v: { type: "kpis", items: [["53", "PDV visitados", "7 zonas · 13–14 oct"], ["27", "Fotos de anaquel", "15 oct"], ["8", "Barras compradas y probadas", ""], ["—", "Encuesta 7–20 oct", "Sin resultados aún"]] } },
   { b: 3, n: 27, title: "Panorama competitivo", st: "parcial",
     msg: "En anaquel gana quien tiene color, personalidad y material de punto de venta.",
-    pts: ["<b>Directo:</b> Wild Protein, indie mexicano con color y personalidad.", "<b>Diagnóstico:</b> a $50, FIBO está arriba del líder visible sin nada que explique la diferencia."],
+    pts: ["<b>Premium:</b> Quest y Barebells (importados, $70–95).", "<b>Accesibles:</b> 7-Select, Zebra REALBAR, Bimbo Proteína+ y marcas propias.", "<b>Directa:</b> Wild Protein, indie mexicano con color y personalidad.", "<b>Sustitutos:</b> yogur, lácteos y snacks del mismo momento.", "<b>Diagnóstico:</b> a $50, FIBO está arriba del líder visible sin nada que explique la diferencia."],
     v: { type: "table", head: ["Marca", "Proteína", "Precio ZMG", "En anaquel"], hi: 0, rows: [["FIBO", "22 g", "$50", "Sin material"], ["Wild Protein", "14–21 g", "$35–37 · Pro $55", "Domina; talkers 2×$56"], ["7-Select", "10–20 g", "$24–25 / $60", "Más frentes"], ["Habits", "—", "$59", "Doble exhibición"], ["Zebra REALBAR", "14 g", "$34–38", "0 sellos"], ["Quest / Barebells", "20 g+", "$70–95", "Premium importado"]] } },
   { b: 3, n: 28, title: "Benchmark de productos y precios", st: "base",
     msg: "FIBO es de las más baratas por gramo de proteína del anaquel.",
-    pts: ["<b>Ojo:</b> el valor por gramo no se ve en el anaquel; hay que comunicarlo.", "<b>Tabla completa:</b> 28 referencias, precios de ago–oct 2026."],
+    pts: ["<b>Tabla completa:</b> 28 referencias con marca, proteína, peso, precio individual y por paquete, precio por 10 g, canal y fecha.", "<b>Posición:</b> FIBO queda 9 de 28 por costo de 10 g de proteína.", "<b>Fecha:</b> precios de agosto–octubre 2026.", "<b>Ojo:</b> el valor por gramo no se ve en el anaquel; hay que comunicarlo."],
     v: { type: "bars", label: "Precio por gramo de proteína", items: [["FIBO", 2.16, "$2.16", 1], ["Zebra REALBAR", 2.57, "$2.57"], ["Wild Protein Pro", 3.01, "$3.01"], ["Quest", 3.29, "$3.29"], ["think!", 3.5, "$3.50"], ["Power Crunch", 3.65, "$3.65"], ["David", 4.64, "$4.64"], ["Muscle Treats", 5.5, "$5.50"]], max: 5.6 } },
   { b: 3, n: 29, title: "Benchmark de posicionamiento", st: "parcial",
     msg: "Decir solo «22 g de proteína» ya no diferencia.",
-    pts: ["<b>Por marca:</b> público, promesa, personalidad, estilo y tono.", "<b>Falta:</b> una matriz homogénea para encontrar el espacio de FIBO."],
+    pts: ["<b>Por marca:</b> público, promesa, beneficios, personalidad, estilo visual y tono.", "<b>Evidencias:</b> qué respalda sus mensajes.", "<b>Falta:</b> una matriz homogénea para encontrar el espacio de FIBO."],
     v: { type: "table", head: ["Marca", "Lo que hace bien"], rows: [["Wild Protein", "Lenguaje irreverente y packs"], ["Barebells", "Sabor, empaque y foto"], ["Quest", "Mensajes nutricionales"], ["Zebra REALBAR", "Etiqueta limpia"], ["Barrinolas", "Precio y packs en Mercado Libre"]] } },
   { b: 3, n: 30, title: "Benchmark de marketing y promociones", st: "parcial",
     msg: "Lo que funcionó: la prueba siempre va ligada a dónde comprar.",
-    pts: ["<b>Ejemplo:</b> TRUBAR, anuncios + sampling en Walmart.", "<b>En tienda:</b> MrBeast, Habits y Wild con exhibición propia.", "<b>5 casos</b> documentados y <b>10 tácticas</b> a replicar (5 digitales, 5 presenciales)."],
+    pts: ["<b>Casos:</b> 5 documentados con fuente; 10 tácticas a replicar (5 digitales, 5 presenciales).", "<b>Ejemplo:</b> TRUBAR, anuncios + sampling en Walmart.", "<b>En tienda:</b> MrBeast, Habits y Wild con exhibición propia.", "<b>Regla:</b> cada caso con marca, mecánica, canal, fecha, fuente y resultado."],
     v: { type: "chips", items: ["Promos de precio", "Packs y volumen", "Campañas digitales", "Creadores", "UGC", "Sampling", "Activaciones", "Exhibición en retail", "Publicidad en marketplaces"] } },
   { b: 3, n: 31, title: "Síntesis de mercado y oportunidades", st: "pend",
     msg: "Lo que sabemos, lo que creemos y lo que hay que comprobar.",
-    pts: ["<b>Necesidad desatendida:</b> una barra que llena para el día a día.", "<b>Amenazas:</b> Wild, Bimbo y marcas propias."],
+    pts: ["<b>Necesidad desatendida:</b> una barra que llena para el día a día.", "<b>Espacio de diferenciación:</b> «más proteína por tu dinero» y ocasiones no deportivas.", "<b>Segmentos prioritarios:</b> por elegir con la encuesta.", "<b>Por canal:</b> farmacias, gimnasios y multipack en línea.", "<b>Amenazas:</b> Wild, Bimbo y marcas propias."],
     v: { type: "table", head: ["Sabemos", "Creemos", "Comprobar"], rows: [["Mejor valor por gramo ($2.16)", "«Más proteína por tu dinero» es un mensaje libre", "Que el consumidor lo valore"], ["68% de PDV con barra; 0/3 Farmacias", "La exhibición propia sube la rotación", "Piloto de exhibidor"], ["El multipack baja el precio en línea", "Packs por canal", "Margen por pack"], ["Guadalajara es el origen", "La cultura local conecta", "Respuesta a contenido local"]] } },
 
   // ---------------- BLOQUE 4 ----------------
@@ -534,7 +535,7 @@ const S = [
     v: { type: "flow", items: [["Percepción", "De barra de gym a opción diaria"], ["Recuerdo", "Un atributo distintivo"], ["Acción", "Buscarla, probarla y volver"], ["Distribución", "Estar y rotar"]] } },
   { b: 4, n: 36, title: "Público objetivo", st: "parcial",
     msg: "Una audiencia principal y tres secundarias que se cruzan.",
-    pts: ["<b>Cómo elegir:</b> tamaño, necesidad, frecuencia, disposición a pagar y encaje con la distribución.", "<b>Decisión:</b> va en la lista para Alejandro."],
+    pts: ["<b>Necesidad de cada una:</b> A credibilidad funcional · B conveniencia · C expresión personal.", "<b>Canales de contacto:</b> Instagram y Facebook, punto de venta, gimnasios y universidades.", "<b>Ocasiones:</b> después de entrenar (A), entre comidas y traslados (B), planes y viajes (C).", "<b>Cómo elegir:</b> tamaño, necesidad, frecuencia, disposición a pagar y encaje con la distribución."],
     v: { type: "nlist", items: [["Principal", "Personas jóvenes con días activos y rutinas diversas: llevar FIBO más allá del gimnasio.", "★"], ["A · Físicamente activas", "Credibilidad funcional.", ""], ["B · Buscan snacks prácticos", "Más ocasiones y compra por conveniencia.", ""], ["C · Exploradores", "Expresan «Con FIBO te encuentras».", ""]] },
     warn: "⚠ Por conciliar: edad 18–30 (Brand Book) o 18–35 (campaña)." },
   { b: 4, n: 37, title: "Posicionamiento deseado", st: "parcial",
@@ -543,7 +544,7 @@ const S = [
     v: { type: "table", head: ["Campo", "Propuesta"], rows: [["Categoría", "Barras proteicas para el consumo cotidiano"], ["Público", "Rutinas activas que buscan proteína práctica"], ["Beneficio", "Proteína práctica, validada en ficha"], ["Diferenciador", "Función + descubrimientos cotidianos"], ["Razón para creer", "Composición, sabor, precio y disponibilidad"], ["Percepción buscada", "La barra que te acompaña donde estés"]] } },
   { b: 4, n: 38, title: "Propuesta de valor y diferenciación", st: "parcial",
     msg: "Razones concretas para comprarla y una razón emocional para recordarla.",
-    pts: ["<b>Atributos:</b> 22 g, 10 g de fibra, 65 g, $2.16 por g.", "<b>Beneficio emocional:</b> descubrir y encontrarte en lo cotidiano.", "<b>Cuidado:</b> todavía no hay un diferenciador exclusivo."],
+    pts: ["<b>Atributos objetivos:</b> 22 g, 10 g de fibra, 65 g, $2.16 por g.", "<b>Beneficio emocional:</b> descubrir y encontrarte en lo cotidiano.", "<b>Contra Zebra:</b> más proteína; Zebra gana en etiqueta.", "<b>Contra Quest:</b> $2.16 vs. $3.90 por g.", "<b>Cuidado:</b> todavía no hay un diferenciador exclusivo."],
     v: { type: "bars", label: "Proteína por barra frente a alternativas", items: [["FIBO", 22, "22 g", 1], ["Zebra REALBAR", 14, "14 g"], ["Bimbo Proteína+", 10, "10 g"]], max: 24 } },
   { b: 4, n: 39, title: "Personalidad de marca", st: "parcial",
     msg: "Humana, curiosa y cercana; nunca publicidad genérica de suplementos.",
@@ -552,11 +553,12 @@ const S = [
   { b: 4, n: 40, title: "Concepto rector", st: "base",
     quote: "Con FIBO <em>te encuentras.</em>",
     msg: "No te dice quién ser: te invita a descubrir qué te mueve.",
+    pts: ["<b>Rutas exploradas:</b> «FIBO te encuentra donde estás», «FIBO va con lo que te late» y «FIBO en los momentos cotidianos».", "<b>Elegida:</b> «Con FIBO te encuentras».", "<b>Cómo evaluarlas:</b> diferenciación, relevancia, coherencia con el producto, posibilidades creativas y facilidad de ejecución.", "<b>Probar:</b> el concepto contra un mensaje solo funcional."],
     v: { type: "cards", cols: 4, items: [["Nuevos gustos", "Producto, sabor y descubrimiento sensorial."], ["Algo inesperado", "Curiosidad, cultura y vida cotidiana."], ["Otras personas", "Comunidad y experiencias compartidas."], ["Contigo", "Preferencias e identidad."]] },
     warn: "⚠ Por resolver: tres redacciones en circulación, sin acta de aprobación ni búsqueda en el IMPI." },
   { b: 4, n: 41, title: "Identidad visual y sistema gráfico", st: "parcial",
     msg: "Hay base aprobada; recomendamos ajustar el empaque y crear un sistema de comunicación, no rediseñar todo.",
-    pts: ["<b>Conservar:</b> wordmark horizontal FIBO y un color por sabor.", "<b>Crítico:</b> no existe fotografía cotidiana propia ni material de punto de venta.", "<b>Tipografía:</b> Anton + Archivo, aprobadas en el Brand Book."],
+    pts: ["<b>Logotipo y versiones:</b> conservar el wordmark horizontal; el sello vertical FIBO BAR, corregir o retirar.", "<b>Paleta y tipografías:</b> cinco colores de marca + un color por sabor; Anton + Archivo.", "<b>Recursos gráficos:</b> posts con textura de imprenta, numerados como serie.", "<b>Fotografía e ilustración:</b> no existe fotografía cotidiana propia (crítico).", "<b>Packaging y aplicaciones:</b> ajustar el empaque; falta material de punto de venta. Matriz de 26 activos lista."],
     v: { type: "swatch", items: [["#D6161D", "Rojo", "#F2EFE8"], ["#0C0B0A", "Negro", "#F2EFE8"], ["#F2EFE8", "Crema", "#0C0B0A"], ["#3A5CFF", "Azul", "#F2EFE8"], ["#C9F23A", "Lima", "#0C0B0A"]], logo: true },
     warn: "⚠ No se encontraron los vectoriales ni los archivos de producción del empaque." },
   { b: 4, n: 42, title: "Mensajes clave", st: "parcial",
@@ -565,7 +567,7 @@ const S = [
     v: { type: "table", head: ["Función", "Mensaje hoy"], rows: [["Marca", "Con FIBO te encuentras"], ["Producto", "22 g de proteína en 65 g"], ["Beneficio verificable", "Por validar con Calidad"], ["Por ocasión", "Por redactar"], ["Por canal", "Por definir"], ["Llamado a la acción", "«¿Se te antojó?» · «Ármate un bundle»"]], hi: 0 } },
   { b: 4, n: 43, title: "Plataforma de marca", st: "parcial",
     msg: "El Brand Book v2 ya reúne la plataforma; falta aprobarla.",
-    pts: ["<b>Aprobado:</b> logo, color, tipografía y empaque.", "<b>Falta:</b> manifiesto oficial y aprobación de Dirección."],
+    pts: ["<b>Posicionamiento:</b> la barra proteica que te acompaña donde estés.", "<b>Promesa:</b> proteína que llena, a buen precio.", "<b>Personalidad y concepto:</b> 7 rasgos propuestos · «Con FIBO te encuentras».", "<b>Mensajes y voz:</b> filtro editorial de 9 preguntas.", "<b>Lineamientos y aplicaciones:</b> logo, color, tipografía y empaque aprobados; falta manifiesto y aprobación de Dirección."],
     v: { type: "cards", cols: 2, items: [["Propósito", "Que comer bien se disfrute, no se cumpla."], ["Misión", "Barras ricas, honestas y accesibles."], ["Visión", "La barra mexicana que se elige por gusto."], ["Valores", "Sabor, claridad, para cualquiera, hecho aquí, curiosidad."]] } },
 
   // ---------------- BLOQUE 5 ----------------
@@ -579,19 +581,19 @@ const S = [
     v: { type: "cards", cols: 4, items: [["Redes", "Descubrir y comunidad"], ["Pauta", "Amplificar lo que funciona"], ["Creadores", "Prueba creíble"], ["Punto de venta", "Estar y verse"], ["Activaciones", "Probar"], ["Marketplaces", "Comprar cuando decide"], ["Sitio web", "Venta directa"], ["CRM", "Recompra y clientes"]] } },
   { b: 5, n: 46, title: "Estrategia de contenido digital", st: "parcial",
     msg: "Cinco pilares; la mezcla se ajusta con resultados.",
-    pts: ["<b>Lifestyle:</b> sacar a FIBO del discurso solo fitness.", "<b>UGC:</b> personas reales, no modelos.", "<b>Regla:</b> la mezcla se prueba; no es fija."],
+    pts: ["<b>Formatos:</b> posts, video corto y UGC.", "<b>Lifestyle:</b> sacar a FIBO del discurso solo fitness.", "<b>UGC:</b> personas reales, no modelos.", "<b>Regla:</b> la mezcla se prueba; no es fija."],
     v: { type: "stack", label: "Mezcla propuesta del mes", items: [["Producto", 30, "30%"], ["Lifestyle", 25, "25%"], ["UGC", 20, "20%"], ["Educación", 15, "15%"], ["Conversión", 10, "10%"]] } },
   { b: 5, n: 47, title: "Sistema creativo de contenidos", st: "parcial",
     msg: "Series reconocibles que nacen de «Con FIBO te encuentras».",
-    pts: ["<b>Propuesta visual:</b> posts con textura de imprenta, numerados como serie.", "<b>Códigos:</b> cinematográfica, humana, curiosa y cultural, inesperada; la barra aparece natural."],
+    pts: ["<b>Guías visuales:</b> posts con textura de imprenta, numerados como serie.", "<b>Códigos:</b> cinematográfica, humana, curiosa y cultural, inesperada; la barra aparece natural.", "<b>Falta:</b> formato, frecuencia y guía de producción por serie."],
     v: { type: "chips", items: ["Degustaciones", "ASMR de producto", "Momentos cotidianos", "Dinámicas de 4 sabores", "Comunidad", "Ideas recurrentes"], big: true } },
   { b: 5, n: 48, title: "Calendario editorial", st: "parcial",
     msg: "Tres publicaciones por semana desde el 24 de octubre.",
-    pts: ["<b>Frecuencia:</b> martes, jueves y sábado en Instagram y Facebook.", "<b>Cada pieza:</b> objetivo, CTA y KPI."],
+    pts: ["<b>Frecuencia:</b> 3 por semana (martes, jueves y sábado).", "<b>Plataformas:</b> Instagram y Facebook.", "<b>Cada pieza:</b> formato, objetivo, CTA y KPI.", "<b>Falta:</b> responsables y registro de lo ya publicado."],
     v: { type: "gantt", items: [["Lanzamiento", "24 oct – 7 nov"], ["Descubrimiento", "10 – 21 nov"], ["Prueba", "24 nov – 12 dic"], ["Conversión", "15 – 31 dic"], ["Ajuste", "Enero 2027"]] } },
   { b: 5, n: 49, title: "Influencers, microcreadores y UGC", st: "parcial",
     msg: "Personas reales probando FIBO a su manera.",
-    pts: ["<b>Brief:</b> cada creador cuenta un momento FIBO propio.", "<b>Colaboración:</b> intercambio o pago, con derechos de uso.", "<b>Medición:</b> código o enlace rastreable."],
+    pts: ["<b>Perfiles ideales:</b> microcreadores y UGC con afinidad a rutinas activas.", "<b>Criterios:</b> afinidad con la marca y comunidad real, no solo alcance.", "<b>Colaboración:</b> intercambio o pago, con derechos de uso del contenido.", "<b>Brief:</b> cada creador cuenta un momento FIBO propio.", "<b>Medición:</b> un código o enlace rastreable por creador."],
     v: { type: "kpis", items: [["100–150", "Barras para creadores", ""], ["$1,439–2,159", "Costo interno aprox.", ""], ["1", "Código por creador", "para medir ventas"]] } },
   { b: 5, n: 50, title: "Publicidad digital", st: "parcial",
     msg: "Primero auditar lo que se hizo; después probar con hipótesis.",
@@ -599,12 +601,12 @@ const S = [
     v: { type: "flow", items: [["Reconocimiento", "Alcance local"], ["Tráfico", "Perfil y fibo.mx"], ["Conversión", "Amazon y Mercado Libre"], ["Retargeting", "Con audiencia suficiente"]] } },
   { b: 5, n: 51, title: "Estrategia de promociones", st: "parcial",
     msg: "Tres ofertas para probar; ninguna sin calcular margen.",
-    pts: ["<b>Descubrimiento:</b> pack con los cuatro sabores.", "<b>Volumen:</b> descuento en caja.", "<b>Recompra:</b> beneficio en la segunda compra."],
+    pts: ["<b>Packs surtidos:</b> pack con los cuatro sabores (descubrimiento).", "<b>Volumen:</b> descuento en caja.", "<b>Recompra:</b> beneficio en la segunda compra.", "<b>Cupones de creadores:</b> un código por creador.", "<b>Introducción, primera compra y PDV:</b> por evaluar. Cada mecánica con hipótesis, vigencia y rentabilidad."],
     v: { type: "bars", label: "Margen bruto por canal, sin descuento", items: [["Precio promedio a clientes", 39.6, "39.6%"], ["Distribuidor · $27.03", 46.8, "46.8%"], ["Mayoreo · $30.15", 52.3, "52.3%"], ["Tienda directa · $32.50", 55.7, "55.7%"], ["fibo.mx · $43", 66.5, "66.5%", 1]], max: 70 },
     src: "Costo $14.39; no incluye comisiones, impuestos ni envío." },
   { b: 5, n: 52, title: "Sampling y degustación", st: "parcial",
     msg: "Que la gente pruebe, con una forma de comprar.",
-    pts: ["<b>A quién:</b> público prioritario cerca de PDV con barra.", "<b>Experiencia:</b> kit con producto e información de compra.", "<b>Pendiente:</b> confirmar si se ejecutó el 3 de octubre y con qué resultados."],
+    pts: ["<b>Dónde y a quién:</b> público prioritario cerca de PDV con barra.", "<b>Experiencia:</b> kit con producto e información de compra.", "<b>Registro:</b> encuesta y reacción en el momento.", "<b>De la muestra a la compra:</b> decir dónde está la barra más cercana.", "<b>Recompra:</b> por medir. Pendiente: confirmar si se ejecutó el 3 de octubre."],
     v: { type: "kpis", items: [["300–500", "Barras", ""], ["$4,317–7,195", "Costo interno", ""], ["5", "Tipos de lugar", "Universidades, gimnasios, pilates, running, eventos"]] } },
   { b: 5, n: 53, title: "Activaciones presenciales", st: "parcial",
     msg: "Estar donde la gente ya está, sin pagar siempre el evento.",
@@ -612,25 +614,25 @@ const S = [
     v: { type: "cards", cols: 3, items: [["Aportar", "Producto, kits y premios."], ["Aliarnos", "Snack partner, stand, evento conjunto."], ["Crear", "Clases, runs y experiencias propias."]] } },
   { b: 5, n: 54, title: "Retail y punto de venta", st: "parcial",
     msg: "La barra es compra por impulso: si no se ve, no se vende.",
-    pts: ["<b>Funciona:</b> en los ganchos de 7-Eleven FIBO se ve muy bien.", "<b>Falla:</b> canastas revueltas, sabores incompletos y etiquetas cruzadas.", "<b>Piloto:</b> talker y gancho en 5–10 tiendas, midiendo rotación. Pruebas: 25 y 28 oct."],
+    pts: ["<b>Visibilidad y ubicación:</b> en los ganchos de 7-Eleven FIBO se ve muy bien; falla en canastas revueltas.", "<b>Exhibidores y POP:</b> no hay material propio; Wild, Wild Soul y Habits sí tienen talkers y racks.", "<b>Degustaciones y acuerdos:</b> ligados al sampling y a cada cadena.", "<b>Disponibilidad y rotación:</b> sabores incompletos y etiquetas cruzadas.", "<b>Piloto:</b> talker y gancho en 5–10 tiendas; pruebas 25 y 28 oct."],
     v: { type: "donut", p: 78, v: "78%", l: "7-Eleven ZMG la manejan", s: "35 de 45 · ninguna con material de FIBO" } },
   { b: 5, n: 55, title: "Marketplaces y e-commerce", st: "parcial",
     msg: "Amazon llegó a 83 pedidos al mes y hoy está en cero.",
-    pts: ["<b>Control:</b> la venta la gana Fitstore (cliente) y Savesta revende; precio $61.78, 24% arriba del sugerido.", "<b>Acciones:</b> Brand Registry, precio mínimo y contenido A+ con renders nuevos.", "<b>Mercado Libre:</b> sin acceso; solo rentable en packs de más de $299."],
+    pts: ["<b>Fichas, fotos y videos:</b> contenido A+ con renders nuevos.", "<b>Títulos, atributos y palabras clave:</b> por optimizar con Brand Registry.", "<b>Packs y precios:</b> precio mínimo; hoy $61.78, 24% arriba del sugerido. ML solo rentable en packs de más de $299.", "<b>Control:</b> la venta la gana Fitstore (cliente) y Savesta revende.", "<b>Publicidad y conversión:</b> 7 de 72 en Amazon; ML sin acceso."],
     v: { type: "bars", label: "Último envío a Amazon · displays vendidos de 24", items: [["Chocolate", 5, "5 / 24", 1], ["Brownie", 2, "2 / 24"], ["Frutos Rojos", 0, "0 / 24"], ["Cookies & Cream", 0, "No se envió"]], max: 24, kpi: ["$209k", "434 pedidos · may 2025 – sep 2026 · ~$120k netos"] } },
   { b: 5, n: 56, title: "Estrategia comercial y canales", st: "parcial",
     msg: "Hay crecimiento disponible sin abrir canales nuevos.",
-    pts: ["<b>Prospección:</b> PBC, Súper Naturista, GNC, Sports World y vending.", "<b>Distribuidores:</b> piden ver la marca «activa en digital».", "<b>Falta:</b> kit comercial; hoy circula la lista de precios de 2023."],
+    pts: ["<b>Prospección:</b> PBC, Súper Naturista, GNC, Sports World y vending.", "<b>Clientes actuales:</b> 105 tiendas Nutrisa en cero con 2,442 piezas en CEDIS.", "<b>Reactivación:</b> 5 clientes inactivos que sumaban $201,602.", "<b>Distribuidores:</b> piden ver la marca «activa en digital».", "<b>Presentación y argumentos:</b> falta kit comercial; hoy circula la lista de 2023."],
     v: { type: "kpis", items: [["432", "PDV de Más Natural Más Sano sin FIBO", "127 son A o B"], ["105", "Tiendas Nutrisa en cero", "2,442 piezas en CEDIS"], ["$201,602", "Clientes inactivos por reactivar", ""], ["5+", "Contactos sin responder", "Sanborns, Bimbo Ventures, Benavides…"]] } },
   { b: 5, n: 57, title: "Experiencia de cliente y recompra", st: "pend",
     msg: "Cerrar el ciclo: escuchar, recuperar y medir.",
-    pts: ["<b>Seguimiento</b> después de cada compra.", "<b>Encuestas y reseñas:</b> sistema por diseñar.", "<b>Recuperar</b> a los 5 clientes inactivos."],
+    pts: ["<b>Seguimiento:</b> después de cada compra.", "<b>Encuestas y reseñas:</b> sistema por diseñar.", "<b>Incentivos de recompra:</b> beneficio en la segunda compra.", "<b>Recuperar clientes:</b> los 5 inactivos.", "<b>Comentarios y recomendación:</b> gestionarlos; programa de recomendación solo si es viable."],
     v: { type: "donut", p: 17, v: "18", l: "De 105 clientes tienen correo", s: "87 sin correo registrado" } },
 
   // ---------------- BLOQUE 6 ----------------
   { b: 6, n: 58, title: "Priorización de iniciativas", st: "parcial",
     msg: "Cada peso pasa cinco filtros; primero lo inmediato y medible.",
-    pts: ["<b>Criterios:</b> impacto, costo, tiempo, dificultad, producto disponible y medición.", "<b>Regla:</b> la inversión sigue a los resultados, no al calendario."],
+    pts: ["<b>Criterios:</b> impacto, costo, tiempo, dificultad, producto disponible y facilidad de medición.", "<b>Regla:</b> la inversión sigue a los resultados, no al calendario."],
     v: { type: "two", a: ["Ahora", ["Enviar Cookies & Cream a Amazon", "Reactivar 5 clientes", "Medir rotación en 40 tiendas", "Exhibidor piloto"]], b2: ["Requiere más investigación", ["Nuevo branding", "Entrada a OXXO", "Packs mixtos", "Reformulación"]] } },
   { b: 6, n: 59, title: "Plan de implementación por fases", st: "parcial",
     msg: "Cinco fases, de ordenar a escalar.",
@@ -638,19 +640,19 @@ const S = [
     v: { type: "gantt", items: [["Ordenar", "Fase 1 · información y validación"], ["Preparar", "Fase 2 · activos y canales"], ["Lanzar", "Fase 3 · pilotos"], ["Evaluar", "Fase 4 · resultados"], ["Escalar", "Fase 5 · optimizar"]] } },
   { b: 6, n: 60, title: "Cronograma maestro", st: "parcial",
     msg: "Fechas reales, con responsables y estatus.",
-    pts: ["<b>Estatus:</b> 127 tareas en el tablero, ninguna marcada como hecha.", "<b>Riesgo:</b> cinco entregables el 27 de octubre.", "<b>Relanzamiento:</b> sin fecha pública."],
+    pts: ["<b>Entregables:</b> 5 vencen el 27 de octubre (riesgo).", "<b>Dependencias:</b> archivos, especificación y precios antes de lanzar.", "<b>Estatus real:</b> 127 tareas en el tablero, ninguna marcada como hecha.", "<b>Relanzamiento:</b> sin fecha pública."],
     v: { type: "timeline", items: [["16–27 oct", "Cerrar vacíos: archivos, especificación, precios, encuesta"], ["24 oct", "Arranca la parrilla"], ["25 y 28 oct", "Pruebas en 7-Eleven"], ["30 oct", "Plataforma de marca"], ["5 nov", "Validación final"], ["20 nov", "Primer Monthly Report"]] } },
   { b: 6, n: 61, title: "Responsables y recursos", st: "parcial",
     msg: "Responsables sugeridos por la auditoría; falta confirmarlos.",
-    pts: ["<b>Dependencias:</b> Marketing, Ventas, Calidad, Finanzas, Legal y distribuidores.", "<b>Falta:</b> responsables de redes, e-commerce y bandejas de correo."],
-    v: { type: "table", head: ["Frente", "Responsable"], rows: [["Archivos de marca y empaque", "Yenifer · Álvaro"], ["Especificación, EAN y sellos", "Calidad (Rocío) · Álvaro"], ["Lista de precios única", "Álvaro · Ventas"], ["Costos", "Cutberto"], ["Concepto e IMPI", "Álvaro · Legal"], ["Encuesta", "Yenifer · Ciara"], ["Aprobaciones", "Alejandro"]] } },
+    pts: ["<b>Dependencias:</b> Marketing, Ventas, Calidad, Finanzas, Legal y distribuidores.", "<b>Falta:</b> confirmar responsables de redes, e-commerce y bandejas de correo."],
+    v: { type: "table", head: ["Rol", "Responsable", "Frente"], rows: [["Estrategia", "Yenifer", "Plan FIBO 2.0 y encuesta (con Ciara)"], ["Diseño y producción", "Yenifer · Álvaro", "Archivos de marca y empaque"], ["Redes sociales", "Por confirmar", "Parrilla y comunidad"], ["E-commerce", "Por confirmar", "Amazon y Mercado Libre"], ["Ventas", "Álvaro · Ventas", "Lista de precios única"], ["Calidad", "Rocío · Álvaro", "Especificación, EAN y sellos"], ["Finanzas", "Cutberto", "Costos"], ["Legal", "Álvaro · Legal", "Concepto e IMPI"], ["Aprobaciones", "Alejandro", "Decisiones de Dirección"]] } },
   { b: 6, n: 62, title: "Presupuesto de marketing", st: "parcial",
     msg: "Tres escenarios de dinero, más producto para probar.",
-    pts: ["<b>Externo:</b> pauta, Amazon y Mercado Libre, trade, UGC pagado y activaciones.", "<b>Interno:</b> 700–1,200 barras ($10,074–17,269 de costo) para sampling, creadores, eventos y alianzas.", "<b>Falta:</b> cotizaciones, contingencias y lo ya ejercido."],
+    pts: ["<b>Externo:</b> pauta digital, Amazon y Mercado Libre, trade y material POP, UGC pagado y activaciones.", "<b>Interno:</b> 700–1,200 barras ($10,074–17,269) para muestras, creadores, eventos y alianzas.", "<b>Producción de contenido y herramientas:</b> por cotizar.", "<b>Contingencias:</b> por definir, junto con lo ya ejercido."],
     v: { type: "cols", label: "Presupuesto externo (MXN)", items: [["Conservador", 12500, "$12,500"], ["Recomendado", 19000, "$19,000", 1], ["Máximo", 22596, "$22,596"]], max: 25000 } },
   { b: 6, n: 63, title: "Viabilidad económica de promociones", st: "pend",
     msg: "Cuánto margen queda con cada descuento.",
-    pts: ["<b>Por mecánica:</b> precio, costo, descuento, margen y costos adicionales.", "<b>Regla:</b> ninguna promoción se recomienda sin cifras confiables."],
+    pts: ["<b>Por mecánica:</b> precio, costo ($14.39), descuento, margen y costos adicionales.", "<b>Volumen necesario:</b> el que cubra la inversión de cada promoción.", "<b>Impacto en otros canales:</b> cuidar que no rompa el precio de distribuidores.", "<b>Regla:</b> ninguna promoción se recomienda sin cifras confiables."],
     v: { type: "cols", label: "Margen bruto al precio promedio a clientes ($23.82)", items: [["Sin descuento", 39.6, "39.6%", 1], ["−10%", 32.9, "32.9%"], ["−20%", 24.5, "24.5%"]], max: 45 },
     src: "Costo $14.39 por validar; sin comisiones ni envío." },
   { b: 6, n: 64, title: "KPIs y cuadro de mando", st: "parcial",
@@ -659,7 +661,7 @@ const S = [
     v: { type: "table", head: ["Objetivo", "Indicadores", "Hoy"], rows: [["Reconocimiento", "Alcance, búsquedas de marca", "Sin línea base"], ["Contenido", "Retención, interacción", "Sin línea base"], ["Tráfico", "Clics, sesiones, CTR", "Sin línea base"], ["Conversión", "Pedidos, CPA", "7/72 en Amazon"], ["Retail", "Disponibilidad, rotación", "68% · 54% Nutrisa"], ["Sampling", "Muestras, prueba", "Por medir"], ["Recompra", "Clientes recurrentes", "Por medir"], ["Rentabilidad", "Margen, CAC", "37.2%"]] } },
   { b: 6, n: 65, title: "Medición y atribución", st: "pend",
     msg: "Cómo sabremos qué acción generó qué venta.",
-    pts: ["<b>Regla:</b> alcance e impresiones no equivalen a ventas.", "<b>Falta:</b> regla de atribución y limitaciones de los datos."],
+    pts: ["<b>Ventas:</b> Alpha y Seller Central.", "<b>Correlación vs. causalidad:</b> grupos de comparación entre tiendas.", "<b>Regla:</b> alcance e impresiones no equivalen a ventas."],
     v: { type: "cards", cols: 3, items: [["Ventas", "Alpha y Seller Central"], ["Creadores", "Código por creador"], ["Campañas", "Enlaces rastreables"], ["Tiendas", "Activadas vs. no activadas"], ["Causalidad", "Grupos de comparación"], ["Herramientas", "Accesos por cerrar"]] } },
   { b: 6, n: 66, title: "Plan de experimentos", st: "parcial",
     msg: "Pruebas pequeñas, cada una con algo concreto que medir.",
@@ -667,13 +669,12 @@ const S = [
     v: { type: "table", head: ["Prueba", "Cuándo", "Qué decide"], rows: [["Ubicación en 7-Eleven", "25 oct", "Dónde va el exhibidor"], ["Display de Frutos Rojos", "28 oct", "Si ayuda al sabor que cae"], ["Código por creador", "17 oct", "Con quién seguir"], ["Rotación base", "Por programar", "Línea base en 40 tiendas"], ["Envío a Amazon", "Siguiente", "Surtido con Cookies & Cream"]] } },
   { b: 6, n: 67, title: "Riesgos y dependencias", st: "parcial",
     msg: "Lo que puede tirar el plan y cómo lo cuidamos.",
-    pts: ["<b>Inventario:</b> Cookies & Cream fuera de Nutrisa y Amazon.", "<b>Accesos:</b> Facebook y Mercado Libre sin acceso."],
-    v: { type: "score", items: [["Futuro del negocio", "p", "Crítico", "Por decidir"], ["Lanzar sin producto", "m", "Alto", "Ni en anaquel ni en línea"], ["Código de barras y sellos", "m", "Alto", "Repetido en 3 sabores"], ["Claims sin validar", "m", "Alto", "En circulación"], ["Dos clientes", "m", "Alto", "58.7% del valor"], ["Costo y venta neta", "m", "Alto", "Sin respaldo"], ["Seguridad digital", "m", "Alto", "Links públicos"], ["Nombre con homónimos", "x", "Medio", "En búsqueda"]] } },
+    pts: ["<b>Cómo lo cuidamos:</b> validar antes de invertir, cerrar accesos y repartir el riesgo entre más clientes."],
+    v: { type: "score", items: [["Costos sin validar", "m", "Alto", "Costo por sabor y venta neta sin respaldo"], ["Inventario", "m", "Alto", "Cookies & Cream fuera de Nutrisa y Amazon; riesgo de lanzar sin producto"], ["Accesos a plataformas", "m", "Alto", "Facebook y Mercado Libre sin acceso; links públicos"], ["Aprobaciones comerciales", "p", "Crítico", "Futuro del negocio por decidir; claims sin validar"], ["Datos incompletos", "m", "Alto", "Código de barras repetido en 3 sabores y sellos"], ["Presupuesto", "x", "Por evaluar", "$12,500–22,596 sin cotizaciones ni contingencias"], ["Distribuidores y PDV", "m", "Alto", "Dos clientes concentran 58.7% del valor"]] } },
   { b: 6, n: 68, title: "Conclusiones y decisiones", st: "pend",
     msg: "Buen producto y precio por gramo; la marca no se gestiona. La distribución ya existe y no se aprovecha.",
-    pts: ["<b>Iniciativas:</b> material en tienda, reparto, Amazon y contenido.", "<b>Presupuesto:</b> $12,500–22,596 + 700–1,200 barras."],
+    pts: ["<b>Hallazgo:</b> buen producto y precio por gramo; la marca no se gestiona.", "<b>Oportunidad:</b> la distribución ya existe y no se aprovecha.", "<b>Iniciativas:</b> material en tienda, reparto, Amazon y contenido.", "<b>Presupuesto y recursos:</b> $12,500–22,596 + 700–1,200 barras.", "<b>Siguiente paso:</b> revisar estas decisiones y cerrar validaciones antes de escalar."],
     v: { type: "nlist", label: "Decisiones para Alejandro", items: [["Negocio", "Futuro de FIBO: cuánto invertir y en qué plazo.", ""], ["Concepto", "Redacción oficial y búsqueda en el IMPI.", ""], ["Público y portafolio", "Público principal B2C y los 4 sabores oficiales.", ""], ["Precio", "Una lista única por canal y un precio al público.", ""], ["Empaque", "Ajuste o rediseño; presupuesto y fecha de relanzamiento.", ""]] } },
-  { b: 6, n: 69, type: "end" },
 ];
 
 /* =====================================================================
@@ -748,26 +749,14 @@ function slideHTML(s, i) {
         <span class="cover__big a" ${d(1)} role="img" aria-label="FIBO"></span>
         <h1 class="a" ${d(2)}>Con FIBO <span>te encuentras.</span></h1>
         <p class="cover__sub a" ${d(3)}>Estrategia integral de marca, marketing y crecimiento comercial.</p>
-        <p class="cover__meta a" ${d(4)}>Fecha de presentación y responsables por confirmar · 68 diapositivas en 6 bloques</p>
+        <p class="cover__meta a" ${d(4)}>Fecha de presentación y responsables por confirmar · 68 diapositivas en 6 bloques · desliza o usa las flechas</p>
         <button class="cover__start a" ${d(5)} type="button" data-go="1">Empezar <svg viewBox="0 0 9 9"><use href="#arrowR"/></svg></button>
       </div><div class="cover__bars a" ${d(3)}>${BAR_IMGS.map((src) => `<img src="${src}" alt="">`).join("")}</div></div></section>`;
   }
-  if (s.type === "sec") {
-    return `<section class="${cls} sec" data-i="${i}" aria-label="Bloque ${blk.id}: ${blk.name}"><div class="pix" data-pix="0.22"></div>
-      <div class="sec__in"><span class="sec__meta a" ${d(0)}>Bloque ${blk.id} de 6 · diapositivas ${s.range}</span>
-      <span class="sec__num a" ${d(1)}>0${blk.id}</span><span class="sec__name a" ${d(2)}>${blk.name}</span>
-      <p class="sec__q a" ${d(3)}>${blk.q}</p><div class="sec__list a" ${d(4)}>${s.list.map((x) => `<span>${x}</span>`).join("")}</div></div></section>`;
-  }
   if (s.type === "index") {
     return `<section class="${cls}" data-i="${i}" aria-label="Índice"><div class="head a" ${d(0)}><span class="n">02</span><span>Índice general</span></div>
-      <div class="body body--wide"><div class="copy"><h2 class="title a" ${d(1)}>Seis bloques, de entender a decidir.</h2><p class="msg a" ${d(2)}>Qué es FIBO → dónde está → qué pasa en el mercado → cómo debe posicionarse → cómo va a vender → cómo mediremos.</p></div>
-      <div class="idx">${BLOCKS.map((b, j) => `<button class="a ${b.t}" ${d(j + 3)} type="button" data-block="${b.id}" style="background:var(--bg);color:var(--fg)"><b>0${b.id}</b><strong>${b.name}</strong><span>${b.q}</span></button>`).join("")}</div></div></section>`;
-  }
-  if (s.type === "end") {
-    return `<section class="${cls} sec" data-i="${i}" aria-label="Cierre" style="--bg:var(--lime);--fg:var(--black);--ac:var(--red);--ac2:var(--blue)"><div class="pix" data-pix="0.2"></div>
-      <div class="sec__in"><span class="cover__big a" ${d(0)} role="img" aria-label="FIBO"></span><span class="sec__name a" ${d(1)}>Con FIBO te encuentras.</span>
-      <p class="sec__q a" ${d(2)}>Siguiente paso: revisar con la dirección las decisiones solicitadas y cerrar las validaciones pendientes antes de escalar la inversión.</p>
-      <div class="sec__list a" ${d(3)}><span style="cursor:pointer" data-go="2">Volver al índice</span><a href="sitio.html" style="background:var(--black);color:var(--lime);border:1.5px solid var(--black);padding:6px 9px;font:700 11px/1 var(--mono);text-decoration:none">Ver el sitio de FIBO →</a></div></div></section>`;
+      <div class="body body--wide"><div class="copy"><h2 class="title a" ${d(1)}>Seis bloques, de entender a decidir.</h2><p class="msg a" ${d(2)}>Qué es FIBO → dónde está → qué pasa en el mercado → cómo debe posicionarse → cómo va a vender → cómo mediremos.</p><div class="chips a" ${d(3)}>${["Contexto y diagnóstico","Producto y negocio","Mercado y consumidor","Competencia","Estrategia de marca","Marketing y ventas","Implementación y resultados"].map((x) => `<span>${x}</span>`).join("")}<a href="sitio.html" style="border:1.5px solid currentColor;padding:8px 12px;font:700 12px/1 var(--mono);text-transform:uppercase;color:inherit">Ver el sitio →</a></div></div>
+      <div class="idx">${BLOCKS.map((b, j) => `<button class="a ${b.t}" ${d(j + 4)} style="background:var(--bg);color:var(--fg)" type="button" data-block="${b.id}"><b>0${b.id}</b><strong>${b.name}</strong><span>${b.q}</span><span style="opacity:.7">Diapositivas ${S.filter((x) => x.b === b.id && !x.type).map((x) => x.n).filter((n, k, a) => k === 0 || k === a.length - 1).join("–")}</span></button>`).join("")}</div></div></section>`;
   }
   const [stLabel, stCls] = STATUS[s.st] || ["", ""];
   const wide = s.quote && !s.pts;
@@ -777,7 +766,7 @@ function slideHTML(s, i) {
       <div class="copy">
         ${s.quote ? `<p class="quote a" ${d(1)}>${s.quote}</p>` : `<h2 class="title a" ${d(1)}>${s.msg.replace(/«/g, "“").replace(/»/g, "”")}</h2>`}
         ${s.quote && s.msg ? `<p class="msg a" ${d(2)}>${s.msg}</p>` : ""}
-        ${s.pts ? `<ul class="pts">${s.pts.map((p, j) => `<li class="a" ${d(j + 2)}>${p}</li>`).join("")}</ul>` : ""}
+        ${s.pts ? `<ul class="pts ${s.pts.length > 3 ? "pts--dense" : ""}">${s.pts.map((p, j) => `<li class="a" ${d(j + 2)}>${p}</li>`).join("")}</ul>` : ""}
         ${s.warn ? `<p class="warn a" ${d(5)}>${s.warn}</p>` : ""}
         ${s.src ? `<p class="src a" ${d(6)}>${s.src}</p>` : ""}
       </div>
@@ -785,17 +774,8 @@ function slideHTML(s, i) {
     </div></section>`;
 }
 
-/* Insert a section cover before each block's first content slide. */
-const DECK = [];
-BLOCKS.forEach((b) => {
-  const items = S.filter((s) => s.b === b.id && !s.type);
-  if (b.id === 1) DECK.push(S[0], S[1]);
-  if (items.length) {
-    DECK.push({ b: b.id, type: "sec", range: `${items[0].n}–${items[items.length - 1].n}`, list: items.map((s) => `${s.n} · ${s.title}`) });
-    DECK.push(...items);
-  }
-});
-DECK.push(S[S.length - 1]);
+/* Exactly the 68 slides of the master structure; the block shows in the header and the progress bar. */
+const DECK = S.filter((s) => s.type !== "end");
 
 const track = document.getElementById("track");
 // merge duplicate style attributes produced by the templates above
@@ -889,7 +869,7 @@ addEventListener("keydown", (e) => {
 document.addEventListener("click", (e) => {
   const t = e.target.closest("[data-go],[data-block]");
   if (!t) return;
-  if (t.dataset.block) { const b = +t.dataset.block; go(DECK.findIndex((s) => s.b === b && s.type === "sec")); }
+  if (t.dataset.block) { const b = +t.dataset.block; go(DECK.findIndex((s) => s.b === b && !s.type)); }
   else go(+t.dataset.go);
   closeIdx();
 });
