@@ -46,7 +46,7 @@
 
     // Cells that overlap the text stay empty so copy is always legible.
     const hr = hero.getBoundingClientRect();
-    const blockers = [...hero.querySelectorAll(".hero__copy, .hero__title span, .hero__cta, .label")]
+    const blockers = [...hero.querySelectorAll(".hero__copy, .hero__title span, .hero__cta, .label, .hero__packs")]
       .map((el) => el.getBoundingClientRect())
       .map((r) => ({ l: r.left - hr.left - 8, t: r.top - hr.top - 8, r: r.right - hr.left + 8, b: r.bottom - hr.top + 8 }));
 
@@ -61,6 +61,9 @@
         if (!blocked) {
           allowed.push(i);
           if (Math.random() < 0.28) i.classList.add("on");
+          // most blocks are black; some carry the brand red and blue
+          const r = Math.random();
+          if (r < 0.14) i.classList.add("red"); else if (r < 0.26) i.classList.add("blue");
         }
       }
     }
@@ -83,9 +86,11 @@
   });
 
   /* ============ DOT-MATRIX WORDMARKS ============ */
-  function dotMatrix(canvas, { color = "#0a0a0a", weight = 700 } = {}) {
+  function dotMatrix(canvas, { color = "#0a0a0a", weight = 700, font = "Space Grotesk" } = {}) {
     const ctx = canvas.getContext("2d");
     const text = canvas.dataset.text;
+    // optional: sample a logo image instead of setting text
+    const logo = canvas.dataset.img ? new Image() : null;
     let dots = [], step = 8, start = 0, revealed = false, mouse = { x: -1e4, y: -1e4 };
 
     function layout() {
@@ -95,15 +100,22 @@
 
       const off = document.createElement("canvas");
       off.width = w; off.height = h;
-      const o = off.getContext("2d");
-      let size = h * 1.25;
-      o.font = `${weight} ${size}px "Space Grotesk"`;
-      const tw = o.measureText(text).width;
-      size = Math.min(size, size * (w / tw));
-      o.font = `${weight} ${size}px "Space Grotesk"`;
-      o.textBaseline = "middle";
-      o.letterSpacing = "-0.04em";
-      o.fillText(text, (w - o.measureText(text).width) / 2, h * 0.52);
+      const o = off.getContext("2d", { willReadFrequently: true });
+      if (logo) {
+        if (!logo.complete || !logo.naturalWidth) return;
+        const k = Math.min(w / logo.naturalWidth, h / logo.naturalHeight) * 0.96;
+        const lw = logo.naturalWidth * k, lh = logo.naturalHeight * k;
+        o.drawImage(logo, (w - lw) / 2, (h - lh) / 2, lw, lh);
+      } else {
+        let size = h * 1.25;
+        o.font = `${weight} ${size}px "${font}"`;
+        const tw = o.measureText(text).width;
+        size = Math.min(size, size * (w / tw));
+        o.font = `${weight} ${size}px "${font}"`;
+        o.textBaseline = "middle";
+        o.letterSpacing = "-0.04em";
+        o.fillText(text, (w - o.measureText(text).width) / 2, h * 0.52);
+      }
 
       const data = o.getImageData(0, 0, w, h).data;
       dots = [];
@@ -134,13 +146,14 @@
 
     addEventListener("pointermove", (e) => { mouse = { x: e.clientX, y: e.clientY }; });
     addEventListener("resize", layout);
+    if (logo) { logo.onload = layout; logo.src = canvas.dataset.img; }
     layout();
     onView(canvas, () => { revealed = true; start = performance.now(); }, 0.2);
     requestAnimationFrame(draw);
   }
 
   /* ============ SCORE GRID ============ */
-  const COLORS = ["#2c2f31", "#e85fd8", "#ffb800", "#e04b23"];
+  const COLORS = ["#0C0B0A", "#3A5CFF", "#C9F23A", "#D6161D"];
   function scoreGrid() {
     const g = document.getElementById("scoreGrid");
     const COLS = 16, ROWS = 15;
@@ -177,7 +190,8 @@
     const chars = [...el.querySelectorAll(".ch")].sort(() => Math.random() - 0.5);
     onView(el, () => {
       chars.forEach((c, i) => setTimeout(() => c.classList.add("in"), reduced ? 0 : i * 45));
-      countUp(document.getElementById("scoreNum"), 82, 1800);
+      const num = document.getElementById("scoreNum");
+      countUp(num, +num.dataset.to, 1800);
     });
   }
 
@@ -250,8 +264,8 @@
     let rt;
     addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(buildHero, 200); });
 
-    dotMatrix(document.getElementById("dotWord"));
-    dotMatrix(document.getElementById("dotFoot"));
+    dotMatrix(document.getElementById("dotWord"), { color: "#F2EFE8" });
+    dotMatrix(document.getElementById("dotFoot"), { color: "#F2EFE8", weight: 400, font: "Anton" });
     scoreGrid();
     scoreTitle();
     spiral();

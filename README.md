@@ -1,6 +1,6 @@
 # FIBO — sitio web
 
-Sitio estático (HTML + CSS + JS, sin dependencias) con estética pixel / brutalista:
+Landing de FIBO (barra de 22 g de proteína, hecha por El Molino). Sitio estático (HTML + CSS + JS, sin dependencias) con estética pixel / brutalista:
 verde lima + negro, bloques de píxel animados, wordmarks en matriz de puntos,
 filas de colores, tarjeta de score tipo grid y espiral áurea con efecto bloom.
 
