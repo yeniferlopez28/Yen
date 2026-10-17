@@ -7,7 +7,7 @@
   <meta name="description" content="FIBO: barra de proteína con 22 g de proteína para deporte y estilo de vida saludable. Hecha por El Molino.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -40,16 +40,24 @@
         <h2 class="br label">Sobre FIBO</h2>
         <div class="hero__cols">
           <p>FIBO es una barra alta en proteína pensada para quien entrena, se mueve y no tiene tiempo que perder.</p>
-          <p>22 gramos de proteína en cada barra, lista para llevar al gym, a la oficina o al camino.</p>
+          <p>22 gramos de proteína en cada barra de 65 g. Cuatro sabores. Hecha en Jalisco.</p>
         </div>
       </div>
 
       <h1 class="hero__title">
-        <span>22 g de</span>
-        <span>proteína.</span>
-        <span class="muted">Cero</span>
-        <span class="muted">excusas.</span>
+        <span>Con FIBO</span>
+        <span class="muted">te encuentras.</span>
       </h1>
+
+      <figure class="hero__product" id="heroProduct">
+        <canvas id="productCanvas" data-src="assets/fibo-barras.webp" aria-label="Las cuatro barras FIBO: cookies &amp; cream, chocolate, frutos rojos y brownie"></canvas>
+        <span class="sticker sticker--round" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><defs><path id="circ" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs>
+            <text textLength="236" lengthAdjust="spacingAndGlyphs"><textPath href="#circ" textLength="236">HECHA EN JALISCO ✳ HECHA EN JALISCO ✳</textPath></text></svg>
+          <b>✳</b>
+        </span>
+        <span class="sticker sticker--tag" aria-hidden="true">22g<small>PROTEIN</small></span>
+      </figure>
 
       <a href="#momentos" class="br hero__cta">Conoce la barra</a>
     </section>
@@ -57,8 +65,8 @@
     <!-- ====== MARQUEE ====== -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span>22 G PROTEÍNA</span><span>✳</span><span>DEPORTE</span><span>✳</span><span>VIDA ACTIVA</span><span>✳</span><span>LISTA PARA LLEVAR</span><span>✳</span><span>HECHA POR EL MOLINO</span><span>✳</span>
-        <span>22 G PROTEÍNA</span><span>✳</span><span>DEPORTE</span><span>✳</span><span>VIDA ACTIVA</span><span>✳</span><span>LISTA PARA LLEVAR</span><span>✳</span><span>HECHA POR EL MOLINO</span><span>✳</span>
+        <span>22 G PROTEÍNA</span><span>✳</span><span>DEPORTE</span><span>✳</span><span>VIDA ACTIVA</span><span>✳</span><span>LISTA PARA LLEVAR</span><span>✳</span><span>HECHA EN JALISCO</span><span>✳</span><span>CON FIBO TE ENCUENTRAS</span><span>✳</span>
+        <span>22 G PROTEÍNA</span><span>✳</span><span>DEPORTE</span><span>✳</span><span>VIDA ACTIVA</span><span>✳</span><span>LISTA PARA LLEVAR</span><span>✳</span><span>HECHA EN JALISCO</span><span>✳</span><span>CON FIBO TE ENCUENTRAS</span><span>✳</span>
       </div>
     </div>
 
@@ -153,7 +161,8 @@
         <ul class="checks mono">
           <li>22 g de proteína por barra.</li>
           <li>Pensada para deporte y vida activa.</li>
-          <li>Lista para llevar a donde vayas.</li>
+          <li>Con proteína de suero de leche (whey).</li>
+          <li>Cuatro sabores, 65 g, lista para llevar.</li>
           <li>Hecha por El Molino, +25 años en la industria alimenticia.</li>
         </ul>
       </article>
@@ -164,30 +173,35 @@
     </section>
 
     <!-- ====== FLAVORS ====== -->
-    <!-- TODO: reemplazar nombres y descripciones con los sabores reales de FIBO -->
     <section class="flavors" id="sabores">
       <header class="section-head section-head--dark">
-        <h2>Sabores</h2>
-        <p class="mono">Elige el tuyo.<br>// nombres por confirmar</p>
+        <h2>FIBO 2.0<br><em>Cuatro sabores</em></h2>
+        <p class="mono">Elige el tuyo //<br>pasa el cursor por cada barra</p>
       </header>
       <div class="flavors__grid">
-        <article class="flavor" style="--c: var(--pink)">
-          <span class="flavor__n mono">01</span>
-          <div class="pxbar"><span>FIBO</span><small>22G</small></div>
-          <h3>Sabor 01</h3>
-          <p class="mono">Descripción del sabor.</p>
+        <article class="flavor" style="--c: #e9b56c; --t: #111">
+          <span class="flavor__n mono">01 / 04</span>
+          <div class="pxbar"><span>FIBO</span><small>22g PROTEIN</small></div>
+          <h3>Cookies &amp; Cream</h3>
+          <p class="mono">Sabor cookies &amp; cream.<br>22 g de proteína · 65 g</p>
         </article>
-        <article class="flavor" style="--c: var(--yellow)">
-          <span class="flavor__n mono">02</span>
-          <div class="pxbar"><span>FIBO</span><small>22G</small></div>
-          <h3>Sabor 02</h3>
-          <p class="mono">Descripción del sabor.</p>
+        <article class="flavor" style="--c: #c9e43a; --t: #111">
+          <span class="flavor__n mono">02 / 04</span>
+          <div class="pxbar"><span>FIBO</span><small>22g PROTEIN</small></div>
+          <h3>Chocolate</h3>
+          <p class="mono">Sabor chocolate.<br>22 g de proteína · 65 g</p>
         </article>
-        <article class="flavor" style="--c: var(--orange)">
-          <span class="flavor__n mono">03</span>
-          <div class="pxbar"><span>FIBO</span><small>22G</small></div>
-          <h3>Sabor 03</h3>
-          <p class="mono">Descripción del sabor.</p>
+        <article class="flavor" style="--c: #f20d47; --t: #fff">
+          <span class="flavor__n mono">03 / 04</span>
+          <div class="pxbar"><span>FIBO</span><small>22g PROTEIN</small></div>
+          <h3>Frutos rojos</h3>
+          <p class="mono">Sabor frutos rojos.<br>22 g de proteína · 65 g</p>
+        </article>
+        <article class="flavor" style="--c: #4a2a6e; --t: #fff">
+          <span class="flavor__n mono">04 / 04</span>
+          <div class="pxbar"><span>FIBO</span><small>22g PROTEIN</small></div>
+          <h3>Brownie</h3>
+          <p class="mono">Con chocolate oscuro, sin azúcar de caña.<br>22 g de proteína · 65 g</p>
         </article>
       </div>
     </section>
@@ -288,6 +302,7 @@
 
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <script src="main.js"></script>
+  <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
 </body>

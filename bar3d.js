@@ -8,6 +8,7 @@
   const off = document.createElement("canvas");
   const o = off.getContext("2d", { willReadFrequently: true });
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const WRAPPERS = ["#a8ff1a", "#f2b867", "#ff2d5f", "#a874ff"];
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   /* ---------- geometry: wrapper "pillow" with crimped seals at both ends ---------- */
@@ -115,7 +116,9 @@
     const data = o.getImageData(0, 0, W, H).data;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = "#a8ff1a";
+    // each full turn shows the next flavour's wrapper colour
+    const turn = Math.floor((rotY + Math.PI) / (Math.PI * 2));
+    ctx.fillStyle = WRAPPERS[((turn % WRAPPERS.length) + WRAPPERS.length) % WRAPPERS.length];
     const STEP = Math.max(6, Math.round(W / 95));
     for (let x = 0; x < W; x += STEP) {
       const sx = Math.min(W - 1, x + (STEP >> 1));

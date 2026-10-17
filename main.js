@@ -46,7 +46,7 @@
 
     // Cells that overlap the text stay empty so copy is always legible.
     const hr = hero.getBoundingClientRect();
-    const blockers = [...hero.querySelectorAll(".hero__copy, .hero__title span, .hero__cta, .label")]
+    const blockers = [...hero.querySelectorAll(".hero__copy, .hero__title span, .hero__cta, .label, .hero__product")]
       .map((el) => el.getBoundingClientRect())
       .map((r) => ({ l: r.left - hr.left - 8, t: r.top - hr.top - 8, r: r.right - hr.left + 8, b: r.bottom - hr.top + 8 }));
 
