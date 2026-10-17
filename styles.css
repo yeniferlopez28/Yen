@@ -425,3 +425,6 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 @media (max-width: 1100px) { .flavors__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .flavors__grid { grid-template-columns: 1fr; } .flavor { min-height: 300px; } }
 .flavor { grid-template-rows: auto 1fr auto 4.6em; }
+
+/* ============ FLAVOR SCANNER ============ */
+.scan { display: block; width: 100%; aspect-ratio: 3 / 2; align-self: center; image-rendering: pixelated; }
