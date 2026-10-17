@@ -65,22 +65,29 @@
       <a href="#presenta" class="br hero__cta">Conoce la barra</a>
     </section>
 
-    <!-- ====== FLAVOR SHOW (one flavour per screen, bar spins between them) ====== -->
-    <section class="show" id="presenta" style="--bg: #D6B787; --fg: #0C0B0A">
+    <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
+    <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
+      <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
-      <div class="show__float" id="showFloat" aria-hidden="true"></div>
 
-      <header class="show__top">
-        <span class="br">La barra</span>
-        <span class="mono show__count"><b id="showN">01</b> / 04</span>
+      <header class="show__top mono">
+        <span>La barra · 0<b id="showN">1</b> / 04</span>
+        <span>FIBO · Edición 2026</span>
       </header>
 
-      <div class="show__stage">
-        <h2 class="show__word" id="showWord" aria-live="polite">Cookies</h2>
-        <div class="show__bar" id="showBar">
-          <img id="showImg" src="assets/fibo-cookies.webp" alt="Barra FIBO sabor Cookies &amp; Cream">
+      <p class="show__side show__side--l">Barra alta</p>
+      <figure class="show__poster" id="showPoster">
+        <span class="show__corner mono">FIBO<br><small>Con FIBO te encuentras</small></span>
+        <span class="show__corner show__corner--r mono" id="showEd">Sabor 01</span>
+        <div class="show__bar"><img id="showImg" src="assets/fibo-cookies.webp" alt="Barra FIBO sabor Cookies &amp; Cream"></div>
+        <div class="show__counter">
+          <span class="show__clabel mono">Proteína por barra</span>
+          <b><span id="showCount">22</span>&nbsp;G</b>
         </div>
-      </div>
+        <span class="show__corner show__corner--bl mono">65 G</span>
+        <span class="show__corner show__corner--br mono">Hecha en Jalisco</span>
+      </figure>
+      <p class="show__side show__side--r">En proteína</p>
 
       <div class="show__info">
         <p class="show__name" id="showName">Cookies &amp; Cream</p>
