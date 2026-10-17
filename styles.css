@@ -340,3 +340,16 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .bar3d__canvas { filter: blur(.6px); cursor: grab; touch-action: pan-y; }
 .bar3d__canvas:active { cursor: grabbing; }
 .bar3d .spiral__fx, .bar3d .spiral__sub { position: relative; }
+
+/* ============ SWARM ============ */
+.swarm { position: relative; background: #111; height: clamp(520px, 80vh, 820px); overflow: hidden; }
+.swarm__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.swarm__copy {
+  position: absolute; left: var(--pad); bottom: clamp(24px, 5vw, 56px);
+  display: grid; gap: 12px; pointer-events: none;
+}
+.swarm__copy h2 {
+  font-size: clamp(44px, 8vw, 120px); line-height: .9; letter-spacing: -.045em; font-weight: 700;
+  color: var(--neon); text-shadow: 0 0 24px #111, 0 0 8px #111;
+}
+.swarm__copy p { color: #bbb; font-size: 12px; }
