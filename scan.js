@@ -3,12 +3,13 @@
 (() => {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const BG = "#1f1f1f", FG = "#ececec";
   const PX = 2; // css px per cell
 
   function scanner(canvas, delay) {
     const ctx = canvas.getContext("2d");
     const img = new Image();
+    // each card scans in its flavour's colour
+    const FG = canvas.dataset.fg || "#ececec", BG = canvas.dataset.bg || "#1f1f1f";
     let W, H, cols, rows, bar = null, visible = false;
 
     // Build the two 1-bit layers from the photo: outline + label edges (outside), and an x-ray of the bar (inside).
