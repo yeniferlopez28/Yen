@@ -232,7 +232,7 @@ a.br:hover::after  { transform: translateX(6px); }
 
 /* ============ CONTACT ============ */
 .contact { background: #000; color: #fff; padding: clamp(80px, 10vw, 140px) var(--pad); display: grid; justify-content: center; }
-.contact__mark { width: 96px; fill: var(--neon); margin-bottom: 48px; }
+
 .form { width: min(620px, 92vw); display: grid; gap: 12px; }
 .form label { font-size: 13px; margin-top: 18px; }
 .form input, .form select {
@@ -280,3 +280,39 @@ a.br:hover::after  { transform: translateX(6px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ============ FLAVORS ============ */
+.flavors { background: var(--black); color: #fff; padding: clamp(60px, 9vw, 120px) var(--pad); }
+.section-head--dark p { color: var(--neon); }
+.flavors__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.flavor {
+  --c: var(--pink);
+  background: var(--c); color: var(--black);
+  padding: 24px; min-height: 420px;
+  display: grid; grid-template-rows: auto 1fr auto auto; gap: 12px;
+}
+.flavor h3 { font-size: clamp(28px, 3vw, 42px); letter-spacing: -.03em; font-weight: 500; }
+.flavor p { font-size: 12px; }
+.flavor__n { font-size: 12px; }
+.pxbar {
+  align-self: center; justify-self: center;
+  width: 78%; aspect-ratio: 3.2;
+  background: var(--black); color: var(--c);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 8%;
+  /* stepped "pixel" corners */
+  clip-path: polygon(0 12%, 3% 12%, 3% 0, 97% 0, 97% 12%, 100% 12%, 100% 88%, 97% 88%, 97% 100%, 3% 100%, 3% 88%, 0 88%);
+  transform: rotate(-8deg);
+  transition: transform .5s cubic-bezier(.7,0,.2,1);
+}
+.pxbar span { font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: .02em; }
+.pxbar small { font-family: var(--mono); font-size: 12px; }
+.flavor:hover .pxbar { transform: rotate(4deg) scale(1.06); }
+@media (max-width: 860px) { .flavors__grid { grid-template-columns: 1fr; } .flavor { min-height: 340px; } }
+
+/* contact header */
+.contact__mark { width: 72px; fill: var(--neon); margin-bottom: 24px; shape-rendering: crispEdges; }
+.contact__title { font-size: clamp(40px, 7vw, 84px); letter-spacing: -.04em; font-weight: 700; color: var(--neon); line-height: 1; }
+a.card { color: inherit; }
+a.card--orange:hover .px-arrow { transform: translateX(10px); }
+.card--orange .px-arrow { transition: transform .3s; }

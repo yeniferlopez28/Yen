@@ -177,7 +177,8 @@
     const chars = [...el.querySelectorAll(".ch")].sort(() => Math.random() - 0.5);
     onView(el, () => {
       chars.forEach((c, i) => setTimeout(() => c.classList.add("in"), reduced ? 0 : i * 45));
-      countUp(document.getElementById("scoreNum"), 82, 1800);
+      const num = document.getElementById("scoreNum");
+      countUp(num, +num.dataset.to, 1800);
     });
   }
 
