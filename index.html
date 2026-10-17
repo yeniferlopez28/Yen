@@ -20,8 +20,7 @@
     <nav class="nav__links">
       <a href="#barra" class="br">La barra</a>
       <a href="#momentos" class="br">Momentos</a>
-      <a href="#sabores" class="br">Sabores</a>
-      <a href="#contacto" class="br br--solid">Quiero FIBO</a>
+      <a href="#sabores" class="br br--solid">Sabores</a>
     </nav>
   </header>
 
@@ -170,8 +169,8 @@
           <li>Hecha por El Molino, +25 años en la industria alimenticia.</li>
         </ul>
       </article>
-      <a class="card card--orange" href="#contacto">
-        <h3>¿Dónde la consigo?</h3>
+      <a class="card card--orange" href="#sabores">
+        <h3>Conoce los cuatro sabores</h3>
         <svg class="px-arrow px-arrow--xl" viewBox="0 0 9 9" aria-hidden="true"><use href="#arrow"/></svg>
       </a>
     </section>
@@ -246,36 +245,6 @@
       <p class="spiral__sub">Como la secuencia de Fibonacci: 1, 1, 2, 3, 5, 8… cada paso se construye sobre el que diste antes.</p>
     </section>
 
-    <!-- ====== CONTACT (terminal form) ====== -->
-    <section class="contact" id="contacto">
-      <span class="logo contact__mark" aria-hidden="true"></span>
-      <h2 class="contact__title">Quiero FIBO</h2>
-      <form class="form" onsubmit="event.preventDefault(); this.classList.add('sent');">
-        <label class="mono" for="f-name">nombre //</label>
-        <input id="f-name" type="text" placeholder="tu nombre" autocomplete="name">
-
-        <label class="mono" for="f-type">me interesa</label>
-        <div class="form__row">
-          <div class="select">
-            <select id="f-type">
-              <option>COMPRAR</option>
-              <option>DISTRIBUIR</option>
-              <option>MAYOREO</option>
-              <option>OTRO</option>
-            </select>
-            <svg viewBox="0 0 9 5" aria-hidden="true"><path d="M0 0h1v1H0zM1 1h1v1H1zM2 2h1v1H2zM3 3h1v1H3zM4 4h1v1H4zM5 3h1v1H5zM6 2h1v1H6zM7 1h1v1H7zM8 0h1v1H8z"/></svg>
-          </div>
-          <input type="email" placeholder="EMAIL" autocomplete="email" aria-label="Email">
-        </div>
-
-        <button class="enter" type="submit">
-          <span>ENVIAR</span>
-          <svg class="px-arrow" viewBox="0 0 9 9" aria-hidden="true"><use href="#arrow"/></svg>
-        </button>
-        <p class="form__legal mono">Al enviar aceptas nuestros <a href="#">términos de uso</a> y reconoces nuestra <a href="#">política de privacidad</a>. //</p>
-        <p class="form__ok mono">&gt; mensaje recibido. te escribimos pronto_</p>
-      </form>
-    </section>
   </main>
 
   <!-- ====== FOOTER ====== -->
@@ -284,7 +253,6 @@
     <div class="footer__links">
       <a href="#top" class="br">Inicio</a>
       <a href="#sabores" class="br">Sabores</a>
-      <a href="#contacto" class="br">Contacto</a>
       <span class="mono small">FIBO · Hecha por El Molino Aditivos Alimenticios · © 2026</span>
     </div>
   </footer>
