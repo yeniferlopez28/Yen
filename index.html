@@ -15,12 +15,7 @@
   <!-- ====== NAV ====== -->
   <header class="nav">
     <a href="#top" class="nav__logo" aria-label="FIBO inicio">
-      <svg viewBox="0 0 5 5" class="px-logo" aria-hidden="true">
-        <rect x="0" y="0" width="3" height="1"/><rect x="0" y="1" width="1" height="1"/>
-        <rect x="0" y="2" width="2" height="1"/><rect x="0" y="3" width="1" height="2"/>
-        <rect x="4" y="4" width="1" height="1"/>
-      </svg>
-      <span>FIBO</span>
+      <span class="logo logo--nav" aria-hidden="true"></span>
     </a>
     <nav class="nav__links">
       <a href="#barra" class="br">La barra</a>
@@ -104,7 +99,7 @@
         <span class="mono">22 g →</span>
         <span class="mono">Barra de proteína // Deporte // Estilo de vida</span>
       </div>
-      <canvas id="dotWord" class="wordmark__canvas" data-text="fibo" aria-label="FIBO"></canvas>
+      <canvas id="dotWord" class="wordmark__canvas" data-img="assets/fibo-logo.png" aria-label="FIBO"></canvas>
       <div class="wordmark__bottom mono">
         <span>22 g de proteína</span>
         <span>Para entrenar</span>
@@ -121,31 +116,31 @@
       </header>
 
       <ol class="rows">
-        <li class="row" style="--c: var(--orange)">
+        <li class="row" style="--c: var(--red); --t: var(--cream)">
           <span class="row__n">1.</span>
           <span class="row__t">Antes de entrenar</span>
           <span class="row__d mono">Llega al gym con algo en el estómago.</span>
           <svg class="px-arrow" viewBox="0 0 9 9" aria-hidden="true"><use href="#arrow"/></svg>
         </li>
-        <li class="row" style="--c: var(--pink)">
+        <li class="row" style="--c: var(--blue); --t: var(--cream)">
           <span class="row__n">2.</span>
           <span class="row__t">Después de entrenar</span>
           <span class="row__d mono">22 g de proteína a la mano, sin shaker.</span>
           <svg class="px-arrow" viewBox="0 0 9 9" aria-hidden="true"><use href="#arrow"/></svg>
         </li>
-        <li class="row" style="--c: var(--blue)">
+        <li class="row" style="--c: var(--lime); --t: var(--black)">
           <span class="row__n">3.</span>
           <span class="row__t">En la oficina</span>
           <span class="row__d mono">Para esa junta que se alargó.</span>
           <svg class="px-arrow" viewBox="0 0 9 9" aria-hidden="true"><use href="#arrow"/></svg>
         </li>
-        <li class="row" style="--c: var(--cyan)">
+        <li class="row" style="--c: var(--black); --t: var(--cream)">
           <span class="row__n">4.</span>
           <span class="row__t">En el camino</span>
           <span class="row__d mono">Cabe en la mochila, la bolsa o la guantera.</span>
           <svg class="px-arrow" viewBox="0 0 9 9" aria-hidden="true"><use href="#arrow"/></svg>
         </li>
-        <li class="row" style="--c: var(--yellow)">
+        <li class="row" style="--c: var(--cream); --t: var(--black)">
           <span class="row__n">5.</span>
           <span class="row__t">Cuando llega el antojo</span>
           <span class="row__d mono">Algo rico que también suma.</span>
@@ -253,11 +248,7 @@
 
     <!-- ====== CONTACT (terminal form) ====== -->
     <section class="contact" id="contacto">
-      <svg viewBox="0 0 5 5" class="contact__mark" aria-hidden="true">
-        <rect x="0" y="0" width="3" height="1"/><rect x="0" y="1" width="1" height="1"/>
-        <rect x="0" y="2" width="2" height="1"/><rect x="0" y="3" width="1" height="2"/>
-        <rect x="4" y="4" width="1" height="1"/>
-      </svg>
+      <span class="logo contact__mark" aria-hidden="true"></span>
       <h2 class="contact__title">Quiero FIBO</h2>
       <form class="form" onsubmit="event.preventDefault(); this.classList.add('sent');">
         <label class="mono" for="f-name">nombre //</label>
@@ -289,7 +280,7 @@
 
   <!-- ====== FOOTER ====== -->
   <footer class="footer">
-    <canvas id="dotFoot" class="footer__canvas" data-text="22g" aria-label="22 gramos"></canvas>
+    <canvas id="dotFoot" class="footer__canvas" data-text="22G" aria-label="22 gramos"></canvas>
     <div class="footer__links">
       <a href="#top" class="br">Inicio</a>
       <a href="#sabores" class="br">Sabores</a>

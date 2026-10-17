@@ -10,7 +10,7 @@
   const R = 15;                 // collision radius
   let W = 0, H = 0, bars = [];
   const mouse = { x: -1e4, y: -1e4 };
-  const FLAVORS = ["#e9b56c", "#c9e43a", "#f20d47", "#9a6ad6", "#c4ff0e"];
+  const FLAVORS = ["#C9F23A", "#C9F23A", "#D6161D", "#0C0B0A"];
   const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
 
   // River centerline: top-left to bottom-right with a gentle meander.
@@ -27,7 +27,7 @@
     b.tilt = (Math.random() - 0.5) * 1.4;
     b.a = Math.atan(slope(b.x)) + b.tilt;
     // most bars are white outlines; some take the colour of a real FIBO wrapper
-    b.color = Math.random() < 0.22 ? FLAVORS[(Math.random() * FLAVORS.length) | 0] : "#e9e9e4";
+    b.color = Math.random() < 0.22 ? FLAVORS[(Math.random() * FLAVORS.length) | 0] : "#F2EFE8";
     return b;
   }
 

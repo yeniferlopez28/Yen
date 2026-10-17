@@ -8,7 +8,7 @@
   const off = document.createElement("canvas");
   const o = off.getContext("2d", { willReadFrequently: true });
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const WRAPPERS = ["#a8ff1a", "#f2b867", "#ff2d5f", "#a874ff"];
+  const WRAPPERS = ["#C9F23A", "#F2EFE8", "#D6161D", "#3A5CFF"];
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   /* ---------- geometry: wrapper "pillow" with crimped seals at both ends ---------- */

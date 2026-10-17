@@ -1,16 +1,16 @@
 :root {
-  --lime: #9be000;
-  --neon: #c4ff0e;
-  --black: #0a0a0a;
-  --ink: #232425;
-  --paper: #e4e4de;
-  --orange: #ff5a12;
-  --pink: #e85fd8;
-  --blue: #2a3cff;
-  --cyan: #3ec6f5;
-  --yellow: #ffb800;
-  --green: #0f8a3c;
-  --red: #e04b23;
+  /* FIBO brand palette */
+  --red: #D6161D;
+  --black: #0C0B0A;
+  --cream: #F2EFE8;
+  --blue: #3A5CFF;
+  --lime: #C9F23A;
+
+  --neon: var(--lime);
+  --ink: var(--black);
+  --paper: var(--cream);
+  --orange: var(--red);
+  --green: var(--blue);
 
   --sans: "Space Grotesk", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
@@ -428,3 +428,46 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 
 /* ============ FLAVOR SCANNER ============ */
 .scan { display: block; width: 100%; aspect-ratio: 3 / 2; align-self: center; image-rendering: pixelated; }
+
+
+/* ============ BRAND PALETTE: red · black · cream · blue · lime ============ */
+.logo {
+  display: inline-block; aspect-ratio: 1200 / 562;
+  background: currentColor;
+  -webkit-mask: url("assets/fibo-logo.png") center / contain no-repeat;
+          mask: url("assets/fibo-logo.png") center / contain no-repeat;
+}
+.logo--nav { height: 24px; }
+.contact__mark { width: 150px; height: auto; color: var(--lime); }
+
+.hero__grid i.red { background: var(--red); }
+.hero__grid i.blue { background: var(--blue); }
+
+.marquee { background: var(--red); color: var(--cream); border-block: 0; }
+.marquee__track span { border-right-color: rgba(242, 239, 232, .28); }
+
+.wordmark { background: var(--red); color: var(--cream); }
+
+.services, .bento { background: var(--cream); }
+.row { color: var(--t, var(--black)); }
+.row[style*="--cream"] { outline: 2px solid var(--black); outline-offset: -2px; }
+
+.card--dark { background: var(--black); color: var(--cream); }
+.card--green { background: var(--blue); color: var(--cream); }
+.card--light { background: #fff; border: 2px solid var(--black); }
+.card--orange { background: var(--red); color: var(--cream); }
+
+.score { background: var(--blue); }
+.window, .window__bar { border-color: rgba(242, 239, 232, .6); }
+.window__bar i { border-color: var(--cream); }
+.score__left { background: var(--cream); }
+.score__grid, .score__grid i { border-color: var(--black); }
+.score__grid { background: var(--black); }
+
+.swarm { background: var(--blue); }
+.swarm__copy h2 { color: var(--lime); text-shadow: 0 0 24px var(--blue), 0 0 8px var(--blue); }
+.swarm__copy p { color: var(--cream); }
+
+.form__legal, .form__ok { color: var(--lime); }
+
+.footer { background: var(--red); color: var(--cream); }
