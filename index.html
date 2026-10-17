@@ -62,7 +62,46 @@
         </figure>
       </div>
 
-      <a href="#momentos" class="br hero__cta">Conoce la barra</a>
+      <a href="#presenta" class="br hero__cta">Conoce la barra</a>
+    </section>
+
+    <!-- ====== FLAVOR SHOW (one flavour per screen, bar spins between them) ====== -->
+    <section class="show" id="presenta" style="--bg: #D6B787; --fg: #0C0B0A">
+      <div class="show__pix" id="showPix" aria-hidden="true"></div>
+      <div class="show__float" id="showFloat" aria-hidden="true"></div>
+
+      <header class="show__top">
+        <span class="br">La barra</span>
+        <span class="mono show__count"><b id="showN">01</b> / 04</span>
+      </header>
+
+      <div class="show__stage">
+        <h2 class="show__word" id="showWord" aria-live="polite">Cookies</h2>
+        <div class="show__bar" id="showBar">
+          <img id="showImg" src="assets/fibo-cookies.webp" alt="Barra FIBO sabor Cookies &amp; Cream">
+        </div>
+      </div>
+
+      <div class="show__info">
+        <p class="show__name" id="showName">Cookies &amp; Cream</p>
+        <ul class="show__specs mono">
+          <li>Barra alta en proteína</li>
+          <li><b>65 g</b></li>
+          <li><b>22 g</b> de proteína</li>
+          <li>Hecha en Jalisco</li>
+        </ul>
+      </div>
+
+      <nav class="show__nav" aria-label="Sabores">
+        <button class="show__arrow" id="showPrev" type="button" aria-label="Sabor anterior"><svg class="px-arrow" viewBox="0 0 9 9" style="transform:scaleX(-1)"><use href="#arrow"/></svg></button>
+        <div class="show__tabs mono" id="showTabs">
+          <button type="button" data-i="0" class="on">Cookies &amp; Cream</button>
+          <button type="button" data-i="1">Chocolate</button>
+          <button type="button" data-i="2">Frutos rojos</button>
+          <button type="button" data-i="3">Brownie</button>
+        </div>
+        <button class="show__arrow" id="showNext" type="button" aria-label="Sabor siguiente"><svg class="px-arrow" viewBox="0 0 9 9"><use href="#arrow"/></svg></button>
+      </nav>
     </section>
 
     <!-- ====== MARQUEE ====== -->
@@ -270,6 +309,7 @@
 
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <script src="main.js"></script>
+  <script src="flavorshow.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
