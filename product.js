@@ -32,6 +32,7 @@
         block = Math.max(1, Math.pow(2, Math.round(6 * (1 - k))));
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
       ctx.imageSmoothingEnabled = block === 1;
       ctx.drawImage(block > 1 ? mosaic(block) : img, 0, 0, W, H);
 
@@ -42,6 +43,7 @@
         ctx.rect(Math.round((mouse.x - s) / g) * g, Math.round((mouse.y - s) / g) * g, s * 2, s * 2);
         ctx.clip();
         ctx.imageSmoothingEnabled = false;
+        ctx.clearRect(0, 0, W, H);
         ctx.drawImage(mosaic(g), 0, 0, W, H);
         ctx.restore();
       }
@@ -70,6 +72,7 @@
     });
 
     img.onload = () => {
+      canvas.style.aspectRatio = img.width + " / " + img.height;
       size();
       addEventListener("resize", () => { size(); kick(); });
       kick();

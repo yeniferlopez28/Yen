@@ -368,8 +368,8 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .hero__packs {
   position: absolute; z-index: 3;
   right: var(--pad); top: 50%; translate: 0 -46%;
-  width: min(40vw, 560px);
-  display: grid; gap: clamp(14px, 1.6vw, 22px);
+  width: min(36vw, 500px);
+  display: grid; gap: clamp(8px, 1vw, 14px);
 }
 .pack {
   margin: 0; display: grid; gap: 8px;
@@ -382,9 +382,9 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 }
 .pack:nth-child(even) { justify-self: end; --r: 2deg; }
 .pack canvas {
-  display: block; width: 100%; aspect-ratio: 1000 / 230;
-  box-shadow: 10px 10px 0 var(--black);
-  outline: 3px solid var(--black);
+  display: block; width: 100%; aspect-ratio: 3 / 1;
+  filter: drop-shadow(10px 10px 0 var(--black));
+  transition: filter .3s;
 }
 .pack figcaption {
   display: flex; gap: 10px; align-items: center;
@@ -392,7 +392,7 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 }
 .pack figcaption span { background: var(--black); color: var(--c); padding: 2px 6px; }
 .pack:hover { --r: 0deg; z-index: 2; }
-.pack:hover canvas { box-shadow: 14px 14px 0 var(--c), 14px 14px 0 3px var(--black); }
+.pack:hover canvas { filter: drop-shadow(14px 14px 0 var(--c)) drop-shadow(3px 3px 0 var(--black)); }
 @keyframes bob { 50% { translate: 0 -8px; } }
 @media (max-width: 720px) {
   .hero { grid-template-rows: auto auto auto auto; }
