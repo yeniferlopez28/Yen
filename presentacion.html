@@ -253,6 +253,11 @@ body { background: var(--black); color: var(--cream); font-family: var(--sans); 
 .photo { width: 100%; max-width: 640px; justify-self: center; filter: drop-shadow(12px 12px 0 rgba(0,0,0,.55)); animation: bob 5s ease-in-out infinite; }
 @keyframes bob { 50% { translate: 0 -10px; } }
 
+.dotwall { width: 100%; max-width: 640px; aspect-ratio: 1 / 1; justify-self: center; cursor: crosshair; }
+.poster { justify-self: center; width: min(100%, 460px); }
+.poster svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,.55)); animation: sway 6s ease-in-out infinite; }
+@keyframes sway { 50% { transform: rotate(-3deg) translateY(-8px); } }
+
 /* ---------- section covers & cover ---------- */
 .cover, .sec { grid-template-rows: 1fr; }
 .pix { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(var(--cols), 1fr); grid-auto-rows: var(--cell); pointer-events: none; }
@@ -487,7 +492,7 @@ const S = [
   { b: 3, n: 24, title: "Ocasiones de consumo", st: "base",
     msg: "Territorio libre: «la barra que te llena en el día a día».",
     pts: ["<b>Por qué importa:</b> las ocasiones no deportivas no las ocupa nadie con fuerza.", "<b>Conexión:</b> se vuelven territorios creativos de «Con FIBO te encuentras».", "<b>Falta:</b> priorizar por relevancia, credibilidad y potencial comercial."],
-    v: { type: "chips", items: ["Entre clases", "Jornada laboral", "Después de entrenar", "En traslados", "Entre comidas", "Viajes y planes"], big: true } },
+    v: { type: "dots", lines: ["Entre clases", "En el trabajo", "Después de entrenar", "En traslados", "Entre comidas", "De viaje"] } },
   { b: 3, n: 25, title: "Proceso de compra", st: "parcial",
     msg: "La prueba siempre va ligada a saber dónde comprar.",
     pts: ["<b>Cuello de botella:</b> disponibilidad y exhibición en tienda.", "<b>Recompra y recomendación:</b> por medir.", "<b>Falta:</b> qué hace que alguien la descubra y dónde termina comprando."],
@@ -526,8 +531,9 @@ const S = [
     msg: "Antes de invertir en marca: validar proteína, reponer stock y definir un precio por canal.",
     v: { type: "foda", f: ["Mejor valor por proteína", "Distribución en 7-Eleven", "Fabricación propia", "$34 M facturados"], d: ["Proteína sin validar", "Marca dormida", "PDV mal ejecutado", "Precios desordenados"], o: ["Ocasiones no deportivas", "«Más proteína por tu dinero»", "Farmacias y gimnasios", "OXXO con caso de rotación"], a: ["Wild Protein con capital", "Bimbo y marcas propias", "NOM-051", "Revendedores", "Concentración de clientes"] } },
   { b: 4, n: 34, title: "Problema estratégico central", st: "parcial",
-    quote: "La marca no se gestiona: lo que ve el consumidor <em>no refleja la nueva dirección.</em>",
-    v: { type: "cards", cols: 4, items: [["Conocimiento", "IG inactiva; FIBO no aparece en comparativos."], ["Diferenciación", "«22 g» ya no diferencia; código de gym."], ["Disponibilidad", "35 de 45 7-Eleven; 0 material propio."], ["Rentabilidad", "Margen 42.5% → 37.2%."]] },
+    msg: "La marca no se gestiona: lo que ve el consumidor no refleja la nueva dirección.",
+    pts: ["<b>Conocimiento:</b> IG inactiva; FIBO no aparece en comparativos.", "<b>Diferenciación:</b> «22 g» ya no diferencia; código de gym.", "<b>Disponibilidad:</b> 35 de 45 7-Eleven; 0 material propio.", "<b>Rentabilidad:</b> margen 42.5% → 37.2%."],
+    v: { type: "poster", lines: ["La marca", "no se", "gestiona"], note: "Lo que ve el consumidor no refleja la dirección." },
     warn: "Hipótesis: todavía no se sabe cuál causa pesa más. Regla: no asumir que el branding lo resuelve solo." },
   { b: 4, n: 35, title: "Objetivos estratégicos de marca", st: "parcial",
     msg: "Del recuerdo a la recompra, sin porcentajes inventados.",
@@ -551,10 +557,9 @@ const S = [
     v: { type: "persona", traits: ["Curiosa", "Cercana", "Inesperada", "Cultural", "Sensorial"], say: ["«No sabías que te gustaba. Hasta que lo probaste.»", "«Entre una cosa y otra, también hay tiempo para ti.»", "«¿Se te antojó?»"], avoid: ["Culpa alimentaria o exigir cambiar el cuerpo", "Perseguir cada tendencia", "Prometer lo que la barra no demuestra"] },
     pts: ["<b>Vocabulario:</b> descubrir, encontrar, probar, coincidir, momentos."] },
   { b: 4, n: 40, title: "Concepto rector", st: "base",
-    quote: "Con FIBO <em>te encuentras.</em>",
     msg: "No te dice quién ser: te invita a descubrir qué te mueve.",
-    pts: ["<b>Rutas exploradas:</b> «FIBO te encuentra donde estás», «FIBO va con lo que te late» y «FIBO en los momentos cotidianos».", "<b>Elegida:</b> «Con FIBO te encuentras».", "<b>Cómo evaluarlas:</b> diferenciación, relevancia, coherencia con el producto, posibilidades creativas y facilidad de ejecución.", "<b>Probar:</b> el concepto contra un mensaje solo funcional."],
-    v: { type: "cards", cols: 4, items: [["Nuevos gustos", "Producto, sabor y descubrimiento sensorial."], ["Algo inesperado", "Curiosidad, cultura y vida cotidiana."], ["Otras personas", "Comunidad y experiencias compartidas."], ["Contigo", "Preferencias e identidad."]] },
+    pts: ["<b>Rutas exploradas:</b> «FIBO te encuentra donde estás», «FIBO va con lo que te late» y «FIBO en los momentos cotidianos».", "<b>Elegida:</b> «Con FIBO te encuentras».", "<b>Cómo evaluarlas:</b> diferenciación, relevancia, coherencia con el producto, posibilidades creativas y facilidad de ejecución.", "<b>Territorios:</b> nuevos gustos, algo inesperado, otras personas y contigo.", "<b>Probar:</b> el concepto contra un mensaje solo funcional."],
+    v: { type: "dots", lines: ["Con", "FIBO", "te encuen", "tras"] },
     warn: "⚠ Por resolver: tres redacciones en circulación, sin acta de aprobación ni búsqueda en el IMPI." },
   { b: 4, n: 41, title: "Identidad visual y sistema gráfico", st: "parcial",
     msg: "Hay base aprobada; recomendamos ajustar el empaque y crear un sistema de comunicación, no rediseñar todo.",
@@ -730,6 +735,25 @@ function viz(v) {
       return `<div class="flavs">${v.items.map(([img, n, c, t, ds], i) => `<div class="fl a" ${d(i)} style="--c:${c};--t:${t}"><img src="${img}" alt="Barra FIBO ${n}"><span class="fl__n">${n}</span><span class="fl__d">${ds.map((x) => `<span>${x}</span>`).join("")}</span></div>`).join("")}</div>`;
     case "persona":
       return `<div class="chips">${v.traits.map((x, i) => `<span class="a" ${d(i)} style="font-size:clamp(14px,1.4vw,22px);padding:14px 18px">${x}</span>`).join("")}</div><div class="cards" style="--c:2;margin-top:6px"><div class="card a" ${d(5)}><span class="card__k">FIBO diría</span>${v.say.map((x) => `<span class="card__x" style="font-weight:700">${x}</span>`).join("")}</div><div class="card a" ${d(6)}><span class="card__k">FIBO evitaría</span>${v.avoid.map((x) => `<span class="card__x">✕ ${x}</span>`).join("")}</div></div>`;
+    case "dots":
+      return `<canvas class="dotwall a" ${d(1)} data-lines='${JSON.stringify(v.lines)}' role="img" aria-label="${v.lines.join(" · ")}"></canvas>`;
+    case "poster": {
+      const id = "cr" + Math.random().toString(36).slice(2, 7);
+      return `<div class="poster a" ${d(1)}><svg viewBox="0 0 600 700" role="img" aria-label="${v.lines.join(" ")}">
+        <defs><filter id="${id}" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="3" seed="7" result="n"/>
+          <feDisplacementMap class="crumple" in="SourceGraphic" in2="n" scale="38" xChannelSelector="R" yChannelSelector="G" result="d"/>
+          <feTurbulence type="turbulence" baseFrequency="0.018" numOctaves="4" seed="3" result="t"/>
+          <feDiffuseLighting in="t" surfaceScale="5" diffuseConstant="1.25" lighting-color="#ffffff" result="l"><feDistantLight azimuth="235" elevation="38"/></feDiffuseLighting>
+          <feComposite in="l" in2="d" operator="in" result="lit"/>
+          <feBlend in="d" in2="lit" mode="multiply"/>
+        </filter></defs>
+        <g filter="url(#${id})">
+          <polygon points="70,60 520,40 560,330 540,660 90,670 40,380" fill="#C9F23A"/>
+          ${v.lines.map((l, i) => `<text x="95" y="${200 + i * 140}" font-family="Anton, Impact, sans-serif" font-size="150" fill="#0C0B0A" textLength="${i === 1 ? 260 : 420}" lengthAdjust="spacingAndGlyphs">${l.toUpperCase()}</text>`).join("")}
+          <text x="100" y="628" font-family="Georgia, serif" font-style="italic" font-size="21" fill="#0C0B0A" textLength="400" lengthAdjust="spacingAndGlyphs">${v.note}</text>
+        </g></svg></div>`;
+    }
     case "two":
       return `<div class="cards" style="--c:2">${[v.a, v.b2].map(([h, xs], j) => `<div class="card a" ${d(j)} style="${j === 0 ? "background:var(--fg);color:var(--bg)" : ""}"><span class="card__t" style="font-size:clamp(24px,2.6vw,42px)">${h}</span>${xs.map((x) => `<span class="card__x" style="font-weight:700">■ ${x}</span>`).join("")}</div>`).join("")}</div>`;
   }
@@ -805,6 +829,65 @@ function countUp(el) {
   requestAnimationFrame(step);
 }
 
+/* ---------- dot-matrix word wall: hollow dots; one line lights up at a time ---------- */
+function dotwall(c) {
+  if (c._dw) return c._dw;
+  const ctx = c.getContext("2d"), lines = JSON.parse(c.dataset.lines);
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  let cells = [], W = 0, H = 0, step = 0, active = 0, hover = -1, timer = 0, raf = 0;
+  function layout() {
+    W = c.clientWidth; H = c.clientHeight; if (!W) return;
+    c.width = W * dpr; c.height = H * dpr;
+    step = Math.max(7, Math.round(W / 46));
+    const off = document.createElement("canvas"); off.width = W; off.height = H;
+    const o = off.getContext("2d", { willReadFrequently: true });
+    const lh = H / lines.length;
+    const masks = lines.map((t, i) => {
+      o.clearRect(0, 0, W, H);
+      let fs = lh * 1.25; o.font = `400 ${fs}px Anton`;
+      fs = Math.min(fs, fs * W * 0.98 / o.measureText(t.toUpperCase()).width); o.font = `400 ${fs}px Anton`;
+      o.textBaseline = "alphabetic"; o.fillStyle = "#000";
+      o.fillText(t.toUpperCase(), 0, lh * (i + 1) - lh * 0.06 + (fs - lh) * 0.1);
+      return o.getImageData(0, 0, W, H).data;
+    });
+    cells = [];
+    for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) {
+      const k = ((y | 0) * W + (x | 0)) * 4 + 3;
+      const hit = masks.findIndex((m) => m[k] > 110);
+      if (hit >= 0) cells.push([x, y, hit]);
+    }
+    draw();
+  }
+  function draw() {
+    const cs = getComputedStyle(c), fg = cs.getPropertyValue("--fg").trim(), ac = cs.getPropertyValue("--ac").trim();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    const r = step * 0.36, on = hover >= 0 ? hover : active;
+    ctx.lineWidth = Math.max(1, step * 0.1);
+    for (const [x, y, li] of cells) {
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+      if (li === on) { ctx.fillStyle = ac; ctx.fill(); }
+      else { ctx.globalAlpha = .38; ctx.strokeStyle = fg; ctx.stroke(); ctx.globalAlpha = 1; }
+    }
+  }
+  c.addEventListener("pointermove", (e) => {
+    const b = c.getBoundingClientRect(), li = Math.min(lines.length - 1, Math.floor((e.clientY - b.top) / b.height * lines.length));
+    if (li !== hover) { hover = li; draw(); }
+  });
+  c.addEventListener("pointerleave", () => { hover = -1; draw(); });
+  return c._dw = {
+    start() { layout(); clearInterval(timer); if (!reduced) timer = setInterval(() => { active = (active + 1) % lines.length; draw(); }, 1100); },
+    stop() { clearInterval(timer); },
+  };
+}
+function uncrumple(slide) {
+  slide.querySelectorAll(".crumple").forEach((fe) => {
+    if (reduced) return;
+    const t0 = performance.now();
+    const step = (t) => { const k = Math.min(1, (t - t0) / 1400); fe.setAttribute("scale", (140 - 102 * (1 - Math.pow(1 - k, 3))).toFixed(1)); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+}
+
 /* ---------- pixel block backgrounds on covers ---------- */
 const pixTimers = new Map();
 function pixel(slide, on) {
@@ -838,7 +921,7 @@ function go(i, instant) {
   i = Math.max(0, Math.min(N - 1, i));
   if (i === cur) return;
   const prev = slides[cur];
-  if (prev) { prev.classList.remove("in"); pixel(prev, false); }
+  if (prev) { prev.classList.remove("in"); pixel(prev, false); prev.querySelectorAll(".dotwall").forEach((c) => dotwall(c).stop()); }
   cur = i;
   track.style.transition = instant ? "none" : "";
   track.style.transform = `translateX(${-i * 100}vw)`;
@@ -849,6 +932,8 @@ function go(i, instant) {
     s.querySelectorAll("[data-count]").forEach((el) => setTimeout(() => countUp(el), 250));
   }));
   pixel(s, true);
+  setTimeout(() => s.querySelectorAll(".dotwall").forEach((c) => dotwall(c).start()), 60);
+  uncrumple(s);
   const cs = getComputedStyle(s);
   document.documentElement.style.setProperty("--chrome", cs.getPropertyValue("--fg"));
   document.documentElement.style.setProperty("--chrome-bg", cs.getPropertyValue("--bg"));
