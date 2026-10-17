@@ -374,7 +374,7 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   cursor: crosshair;
 }
 .hero__product canvas {
-  display: block; width: 100%; aspect-ratio: 1103 / 1086;
+  display: block; width: 100%; aspect-ratio: 1033 / 938;
   filter: drop-shadow(12px 14px 0 #0a0a0a);
   animation: bob 5s ease-in-out infinite;
 }
