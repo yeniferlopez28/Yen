@@ -1022,3 +1022,14 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   .clk__det { grid-template-columns: 1fr; }
   .clk__x { justify-self: end; grid-row: 1; }
 }
+.clk__lec { font-size: 14px; line-height: 1.4; }
+.clk__block--wide { grid-column: 1 / -1; }
+.clk__tag { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--red); }
+.clk__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 6px; }
+.clk__steps > div { background: #F7F4F2; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.clk__steps b { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--red); }
+.clk__steps p { font-size: 14px; line-height: 1.45; }
+.clk__steps .clk__concl { background: var(--red); color: var(--cream); }
+.clk__steps .clk__concl b { color: var(--lime); }
+@media (max-width: 960px) { .clk__steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .clk__steps { grid-template-columns: 1fr; } }
