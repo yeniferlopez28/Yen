@@ -2175,6 +2175,65 @@
       </div>
     </section>
 
+    <section class="cp" id="competencia">
+      <header class="cp__head">
+        <p class="mono cp__k">Panorama competitivo</p>
+        <h2>FIBO compite en dos frentes.</h2>
+        <div class="cp__fronts">
+          <p><b>01 · Directo</b>Otras barras de proteína en el mismo anaquel.</p>
+          <p><b>02 · Por el momento</b>Todo lo que podría comer en lugar de una barra: yogur alto en proteína, pan dulce, una galleta. <em>Mucho más grande y, en conveniencia, probablemente más difícil.</em></p>
+        </div>
+      </header>
+
+      <div class="cp__dock" id="cpDock">
+        <p class="mono cp__k">Dentro y fuera de las barras · toca cada grupo</p>
+        <div class="cp__icons">
+          <button type="button" class="on" data-g="0"><span class="cp__fan"><img src="assets/cat-quest.webp" alt=""><img src="assets/cat-barebells.webp" alt=""><img src="assets/cat-quest-crispy.webp" alt=""></span><i style="--c:#0C0B0A">P</i><small>Premium</small></button>
+          <button type="button" data-g="1"><span class="cp__fan"><img src="assets/cat-bimbo.webp" alt=""><img src="assets/cat-wild-box.webp" alt=""><img src="assets/cat-barrinolas-display.webp" alt=""></span><i style="--c:#3A5CFF">A</i><small>Accesibles</small></button>
+          <button type="button" data-g="2"><span class="cp__fan"><img src="assets/cat-chobani.webp" alt=""></span><i style="--c:#D6161D">D</i><small>Deportivas</small></button>
+          <button type="button" data-g="3"><span class="cp__fan"><img src="assets/cat-realbar.webp" alt=""><img src="assets/cat-barrinolas.webp" alt=""></span><i style="--c:#C9F23A">F</i><small>Funcionales</small></button>
+          <button type="button" data-g="4"><span class="cp__fan"><img src="assets/cat-yopro.webp" alt=""><img src="assets/cat-pan.webp" alt=""><img src="assets/cat-surtido.webp" alt=""></span><i style="--c:#F2EFE8">S</i><small>Sustitutos</small></button>
+        </div>
+        <div class="cp__card" id="cpCard" aria-live="polite"><h3></h3><p class="cp__meta mono"></p><p class="cp__desc"></p><p class="cp__vs mono"></p></div>
+      </div>
+
+      <div class="cp__map" id="cpMap">
+        <div class="cp__dots" aria-hidden="true"></div>
+        <span class="cp__ax cp__ax--y mono">↑ Proteína por pieza</span><span class="cp__ax cp__ax--x mono">Precio →</span>
+        <span class="cp__zone mono" style="left: 37%; top: 8%">Alta proteína · precio medio</span>
+        <div class="cp__pins" id="cpPins"></div>
+        <div class="cp__info" id="cpInfo" aria-live="polite"><h3></h3><p></p><span class="mono"></span></div>
+        <p class="cp__note mono">Posiciones aproximadas con los rangos del análisis. Toca cada círculo.</p>
+      </div>
+
+      <div class="cp__levels" id="cpLevels">
+        <div class="cp__rings" aria-hidden="true"><i class="r4"><span>4</span></i><i class="r3"><span>3</span></i><i class="r2"><span>2</span></i><i class="r1"><span>1</span></i><b>FIBO</b></div>
+        <ol>
+          <li><span class="mono">1 · Competencia directa</span><b>Barras de 15 g o más</b><small>Wild Protein, Quest, Barebells · pesa en gimnasios y en línea</small></li>
+          <li><span class="mono">2 · Categoría cercana</span><b>Barras de 10 g</b><small>7-Select, Bimbo, Barrinolas · pesa mucho en conveniencia: se decide por precio</small></li>
+          <li><span class="mono">3 · Mismo momento</span><b>Yogur y bebidas de proteína</b><small>Oikos Pro: 18 g en 300 ml · Danone +236% en un año</small></li>
+          <li><span class="mono">4 · Mismo antojo</span><b>Pan dulce, galletas y botanas</b><small>El más grande en volumen</small></li>
+        </ol>
+      </div>
+
+      <div class="cp__threats">
+        <p class="mono cp__k">Las cuatro amenazas principales</p>
+        <div class="cp__tg">
+          <article><span class="mono">01</span><h4>7-Select</h4><p>El cliente más grande de FIBO vende su propia barra en el mismo anaquel, <b>a la mitad del precio</b>.</p></article>
+          <article><span class="mono">02</span><h4>Bimbo Proteína+</h4><p>Distribución en todo el país y <b>una marca que todos conocen</b>. Lanzada en abril de 2026.</p></article>
+          <article><span class="mono">03</span><h4>Wild Protein</h4><p>Chilena, recibió <b>25 millones de dólares</b> para crecer en México. La más visible en conveniencia, con material propio y «sin sellos».</p></article>
+          <article><span class="mono">04</span><h4>Sustitutos de proteína</h4><p>Acostumbran al consumidor a buscar proteína <b>fuera de las barras</b>.</p></article>
+        </div>
+      </div>
+
+      <div class="cp__end">
+        <p class="mono cp__k">En resumen</p>
+        <p class="cp__no mono"><s>Ganar por precio</s><s>Ganar por etiqueta limpia</s></p>
+        <h3>Por un poco más, <mark>se lleva el doble de proteína.</mark></h3>
+        <p class="cp__sub">Mucha más proteína que las accesibles, a menor precio que las importadas, en una barra que llena. La condición: que se entienda en un segundo frente al anaquel.</p>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -2451,6 +2510,7 @@
   <script src="occasions.js"></script>
   <script src="purchase.js"></script>
   <script src="research.js"></script>
+  <script src="competition.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
