@@ -1865,24 +1865,24 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 
 
 /* ============ TENDENCIAS (case-file binder) ============ */
-.fx { --serif: "Instrument Serif", Georgia, serif; background: #1B1B1B; color: #EDEDED; padding: 0 var(--pad) clamp(70px, 9vw, 120px); }
+.fx { --serif: var(--sans); background: #1B1B1B; color: #EDEDED; padding: 0 var(--pad) clamp(70px, 9vw, 120px); }
 .fx__crumb { display: flex; gap: 10px; font-size: 13px; color: #8A8A8A; padding: 90px 0 14px; border-bottom: 1px solid #2E2E2E; margin: 0 calc(-1 * var(--pad)); padding-left: var(--pad); }
 .fx__crumb span + span::before { content: "/"; margin-right: 10px; color: #555; }
 .fx__head { display: grid; grid-template-columns: 1fr minmax(0, 30ch); gap: 30px; align-items: start; padding: 24px 0 20px; }
-.fx__head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(64px, 11vw, 150px); line-height: .9; letter-spacing: -.02em; }
+.fx__head h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(56px, 9vw, 130px); line-height: .9; letter-spacing: -.045em; }
 .fx__head p { font-size: 12px; line-height: 1.5; color: #CFCFCF; padding-top: 14px; }
 .fx__binder { position: relative; display: grid; grid-template-columns: 1fr 1fr; background: var(--blue); padding: 10px 46px 10px 10px; gap: 6px; min-height: 760px; }
 .fx__left { position: relative; }
 .fx__card { position: relative; padding: clamp(24px, 3vw, 38px); color: #2A1A1D; min-height: 330px; transition: background .5s; }
 .fx__stamp { position: absolute; right: 14px; top: 14px; font-size: 11px; color: #2440C8; border: 1.5px solid #2440C8; padding: 5px 9px; }
-.fx__card h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(34px, 3.6vw, 52px); line-height: 1; margin: 34px 0 26px; max-width: 12ch; color: var(--black); }
-.fx__cols { columns: 2; column-gap: 22px; font-family: var(--serif); font-size: 15px; line-height: 1.4; color: #2A2A2A; }
+.fx__card h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.03em; font-size: clamp(34px, 3.6vw, 52px); line-height: 1; margin: 34px 0 26px; max-width: 12ch; color: var(--black); }
+.fx__cols { columns: 2; column-gap: 22px; font-family: var(--serif); font-size: 14px; line-height: 1.5; color: #2A2A2A; }
 .fx__cols p { margin-bottom: 10px; break-inside: avoid; }
 .fx__foot { display: flex; justify-content: space-between; font-size: 10px; margin-top: 30px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,.3); }
 .fx__ticket { position: absolute; left: 22%; bottom: 30px; width: min(240px, 60%); background: #F4DE6E; color: var(--black); padding: 18px 18px 22px; transform: rotate(var(--rot, -6deg)); transition: transform .6s cubic-bezier(.3,1.4,.5,1);
   clip-path: polygon(0 4%, 6% 0, 14% 3%, 22% 0, 30% 4%, 40% 1%, 50% 4%, 60% 0, 70% 3%, 80% 0, 90% 4%, 100% 1%, 100% 97%, 92% 100%, 82% 96%, 72% 100%, 62% 97%, 50% 100%, 40% 96%, 30% 100%, 20% 97%, 10% 100%, 0 96%); box-shadow: 0 10px 20px rgba(0,0,0,.25); }
 .fx__tk-h { font-family: var(--mono); font-weight: 700; font-size: 20px; letter-spacing: .02em; border-bottom: 1px dashed rgba(0,0,0,.4); padding-bottom: 8px; }
-.fx__tk-v { font-family: var(--serif); font-size: 56px; line-height: 1; margin: 12px 0 6px; }
+.fx__tk-v { font-family: var(--serif); font-weight: 500; letter-spacing: -.04em; font-size: 52px; line-height: 1; margin: 12px 0 6px; }
 .fx__tk-l { font-size: 11px; line-height: 1.4; }
 .fx__tk-s { font-size: 9px; margin-top: 12px; color: #5A5020; }
 .fx__clip { position: absolute; right: -14px; top: 40%; width: 18px; height: 54px; border: 2px solid #4A4A4A; border-radius: 10px; transform: rotate(20deg); }
@@ -1892,11 +1892,11 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .fx__margin { font-size: 10px; line-height: 1.5; padding: 70px 14px 0 38px; }
 .fx__page { position: relative; padding: clamp(30px, 3vw, 44px) clamp(20px, 3vw, 40px) 70px 0; }
 .fx__page .fx__stamp { right: 14px; top: 14px; }
-.fx__page h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(36px, 4vw, 60px); line-height: 1; margin: 34px 0 24px; }
+.fx__page h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.03em; font-size: clamp(36px, 4vw, 60px); line-height: 1; margin: 34px 0 24px; }
 .fx__page h3[data-r="risk"] { color: var(--red); } .fx__page h3[data-r="warn"] { color: var(--blue); }
-.fx__page p { font-family: var(--serif); font-size: clamp(16px, 1.35vw, 19px); line-height: 1.4; margin-bottom: 16px; max-width: 34ch; }
+.fx__page p { font-family: var(--serif); font-size: clamp(15px, 1.25vw, 18px); line-height: 1.5; margin-bottom: 16px; max-width: 34ch; }
 .fx__seal { position: absolute; left: 0; bottom: 22px; display: grid; place-items: center; width: 74px; height: 74px; border: 1.5px solid #2440C8; border-radius: 50%; color: #2440C8; transform: rotate(-14deg); }
-.fx__seal b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 22px; line-height: 1; }
+.fx__seal b { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1; }
 .fx__seal i { font-style: normal; font-size: 7px; text-transform: uppercase; }
 .fx__tabs { position: absolute; right: 0; top: 16px; bottom: 16px; width: 46px; display: flex; flex-direction: column; gap: 4px; }
 .fx__tab { all: unset; cursor: pointer; flex: 1; background: var(--c); border-radius: 0 12px 12px 0; display: grid; place-items: center; transition: width .3s, transform .3s; transform: translateX(-6px); }
