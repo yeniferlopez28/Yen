@@ -1484,3 +1484,82 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   .cn__farg { grid-template-columns: 1fr; }
 }
 .cn > *, .cn__body > *, .cn__oppg > *, .cn__ecg > * { min-width: 0; }
+
+/* ============ DIAGNÓSTICO (soft spheres + grid report) ============ */
+.dg { background: #1A1918; padding: clamp(60px, 9vw, 120px) var(--pad); display: grid; gap: clamp(16px, 2vw, 26px); }
+.dg__sheet { position: relative; background: #F4F0E8; color: var(--black); border-radius: 6px; display: grid; grid-template-columns: minmax(260px, 1fr) minmax(320px, 1.35fr); align-items: center; gap: 30px; padding: clamp(60px, 7vw, 90px) clamp(24px, 5vw, 70px) clamp(50px, 6vw, 80px); overflow: hidden; }
+.dg__sheet::after { content: ""; position: absolute; inset: 0; filter: url(#dgGrain); background: #000; opacity: .08; mix-blend-mode: multiply; pointer-events: none; }
+.dg__bar { position: absolute; left: 24px; right: 24px; top: 20px; display: flex; justify-content: space-between; font-size: 11px; text-transform: uppercase; letter-spacing: .03em; }
+.dg__bar span:first-child { font-family: var(--sans); font-weight: 700; text-transform: none; font-size: 14px; letter-spacing: -.01em; }
+.dg__mark { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--black); border-radius: 50%; font-size: 14px; margin-bottom: 18px; }
+.dg h2 { font-weight: 400; font-size: clamp(32px, 4.2vw, 60px); line-height: .98; letter-spacing: -.035em; max-width: 11ch; }
+.dg h2 b { font-weight: 600; display: block; }
+.dg__lead { margin-top: 24px; max-width: 40ch; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.5; color: #45423D; }
+.dg__lead b { color: var(--black); font-weight: 600; }
+.dg__foot { position: absolute; left: 24px; bottom: 18px; font-size: 10px; color: #6B6862; }
+
+.dg__orbit { position: relative; aspect-ratio: 600 / 460; width: 100%; }
+.dg__rings { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.dg__rings circle, .dg__rings line { fill: none; stroke: #6B6862; stroke-width: 1; stroke-dasharray: 1.5 3; }
+.dg__rings circle { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.85); transition: opacity 1.2s, transform 1.4s cubic-bezier(.2,.8,.2,1); }
+.dg__rings line { stroke-dasharray: 2 3; stroke-dashoffset: 200; opacity: 0; transition: opacity .6s 1s; }
+.in .dg__rings circle { opacity: .8; transform: none; } .in .dg__rings line { opacity: .8; }
+.dg__ball { position: absolute; left: var(--x); top: var(--y); width: var(--s); aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%) scale(0); filter: blur(1.5px);
+  transition: transform 1.4s cubic-bezier(.3,1.3,.5,1); }
+.in .dg__ball { transform: translate(-50%, -50%) scale(var(--g, 1)); animation: dgFloat 6s ease-in-out 1.4s infinite; }
+.in .dg__ball:nth-of-type(2) { transition-delay: .2s; animation-delay: 2s; } .in .dg__ball:nth-of-type(3) { transition-delay: .4s; animation-delay: 2.6s; }
+@keyframes dgFloat { 50% { transform: translate(-50%, -54%) scale(var(--g, 1)); } }
+.dg__ball--g { background: radial-gradient(circle at 50% 45%, #F2F0EC 0 8%, #A9A6A0 38%, #4A4743 78%, rgba(74,71,67,0) 100%); }
+.dg__ball--r { background: radial-gradient(circle at 50% 45%, #FFE4D6 0 6%, #FF5A3C 34%, #D6161D 76%, rgba(214,22,29,0) 100%); }
+.dg__ball--soft { filter: blur(5px); }
+.dg__lab { position: absolute; line-height: 1; z-index: 2; }
+.dg__lab b { font-family: var(--sans); font-weight: 400; font-size: clamp(30px, 3.6vw, 50px); letter-spacing: -.03em; }
+.dg__lab sup { font-size: 14px; vertical-align: top; margin-left: 2px; }
+.dg__lab small { display: block; font-size: 11px; line-height: 1.3; margin-top: 6px; color: #45423D; }
+.dg__orbit--cmp .dg__lab b { color: var(--black); }
+.dg__mg { position: absolute; left: 50%; bottom: -2%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; font-size: 11px; text-transform: uppercase; white-space: nowrap; }
+.dg__mg b { font-family: var(--sans); font-size: clamp(20px, 2vw, 28px); font-weight: 400; letter-spacing: -.02em; text-transform: none; }
+.dg__mg b.dn { color: var(--red); }
+.dg__mg i { width: 50px; height: 1px; background: var(--black); position: relative; }
+.dg__mg i::after { content: ""; position: absolute; right: -1px; top: -4px; border: 4px solid transparent; border-left-color: var(--black); }
+
+.dg__grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 0; background: #E9E9E6; border-radius: 6px; overflow: hidden; }
+.dg__ind { padding: clamp(30px, 5vw, 70px); color: var(--black); }
+.dg__rule { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; display: flex; align-items: center; gap: 14px; }
+.dg__rule::before { content: ""; width: 60px; height: 1px; background: var(--black); }
+.dg__ind h2 { margin: 26px 0 40px; max-width: 16ch; font-size: clamp(30px, 3.6vw, 52px); }
+.dg__waf { display: grid; grid-template-columns: minmax(200px, 330px) 1fr; gap: clamp(20px, 3vw, 40px); align-items: center; }
+.dg__cells { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+.dg__cells i { aspect-ratio: 1; background: #BDBDBA; transform: scale(.4); opacity: 0; transition: transform .4s, opacity .4s, background .4s; }
+.in .dg__cells i { transform: none; opacity: 1; }
+.dg__cells i.l { background: #BDBDBA; } .in .dg__cells i.l { background: var(--lime); }
+.dg__keys { list-style: none; display: grid; gap: 22px; }
+.dg__keys li { font-size: 15px; line-height: 1.4; color: #3A3835; }
+.dg__keys b { color: var(--black); font-weight: 600; }
+.hl { display: table; font-family: var(--sans); font-size: clamp(26px, 2.6vw, 36px); letter-spacing: -.03em; line-height: 1; padding: 2px 4px; margin-bottom: 6px; color: var(--black); }
+.hl b { font-weight: 400; }
+.hl--l { background: var(--lime); } .hl--g { background: #BDBDBA; } .hl--k { background: var(--black); color: var(--cream); }
+.dg__amz { margin-top: 36px; padding-top: 18px; border-top: 1px solid #C9C9C5; font-size: 12px; line-height: 1.6; color: #3A3835; }
+.dg__amz b { color: var(--red); font-weight: 500; }
+.dg__route { position: relative; background: #fff; color: var(--black); padding: clamp(30px, 4vw, 60px) clamp(24px, 3vw, 50px); }
+.dg__corner { position: absolute; right: 0; top: 0; background: var(--lime); padding: 14px 16px; font-size: 12px; font-weight: 700; }
+.dg__route h3 { font-weight: 400; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -.02em; margin: 30px 0 46px; max-width: 14ch; }
+.dg__route ol { list-style: none; display: grid; gap: 40px; }
+.dg__route li { display: grid; grid-template-columns: 34px 1fr; gap: 16px; position: relative; }
+.dg__route li > b { font-family: var(--sans); font-weight: 500; font-size: 20px; }
+.dg__route li:not(:last-child)::after { content: ""; position: absolute; left: 12px; top: 34px; bottom: -32px; border-left: 1px dotted #6B6862; }
+.dg__route p { font-size: 15px; line-height: 1.45; color: #3A3835; }
+.dg__route p b { color: var(--black); font-weight: 600; }
+.dg__end { color: var(--cream); font-size: clamp(22px, 3vw, 40px); line-height: 1.2; letter-spacing: -.02em; max-width: 30ch; margin-top: clamp(40px, 6vw, 80px); }
+.dg__end em { font-style: normal; color: var(--lime); }
+
+@media (max-width: 900px) {
+  .dg__sheet, .dg__grid { grid-template-columns: 1fr; }
+  .dg__waf { grid-template-columns: 1fr; }
+  .dg__cells { max-width: 260px; }
+  .dg__orbit { margin-top: 30px; }
+}
+@media (max-width: 560px) {
+  .dg__lab small { font-size: 10px; }
+  .dg__lab b { font-size: 26px; }
+}
