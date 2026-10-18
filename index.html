@@ -1915,6 +1915,178 @@
       </div>
     </section>
 
+    <section class="pc" id="compra">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="pc-person" viewBox="0 0 40 90"><circle cx="20" cy="11" r="9" fill="#F2C9A8"/><path d="M11 9a9 9 0 0 1 18 0c-3-3-12-3-18 0z" fill="#0C0B0A"/><rect x="9" y="22" width="22" height="32" rx="8" fill="#3A5CFF"/><rect x="11" y="52" width="8" height="30" rx="4" fill="#0C0B0A" class="lg1"/><rect x="21" y="52" width="8" height="30" rx="4" fill="#0C0B0A" class="lg2"/><rect x="26" y="26" width="7" height="22" rx="3.5" fill="#F2C9A8" class="arm"/></symbol>
+        <symbol id="pi-phone" viewBox="0 0 48 48"><rect x="14" y="4" width="20" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 9h6M24 38v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 16h12M18 21h8M18 26h12" stroke="currentColor" stroke-width="1.5" opacity=".6"/></symbol>
+        <symbol id="pi-compare" viewBox="0 0 48 48"><rect x="4" y="16" width="12" height="26" fill="none" stroke="currentColor" stroke-width="2"/><rect x="18" y="8" width="12" height="34" fill="none" stroke="currentColor" stroke-width="2"/><rect x="32" y="22" width="12" height="20" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 44h44" stroke="currentColor" stroke-width="2"/></symbol>
+        <symbol id="pi-scale" viewBox="0 0 48 48"><path d="M24 6v36M12 42h24M8 14h32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 14 2 28h12zM40 14l-6 14h12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+        <symbol id="pi-store" viewBox="0 0 48 48"><path d="M4 18h40v26H4zM2 10h44l-2 8H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18 44V30h12v14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 13h36" stroke="currentColor" stroke-width="1.5" opacity=".6"/></symbol>
+        <symbol id="pi-cart" viewBox="0 0 48 48"><path d="M3 8h7l5 24h24l5-16H13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="18" cy="40" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="36" cy="40" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+        <symbol id="pi-bite" viewBox="0 0 48 48"><path d="M4 16h28a5 5 0 0 0 6 5 5 5 0 0 0 6 4v9H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 25h14" stroke="currentColor" stroke-width="1.5" opacity=".6"/></symbol>
+        <symbol id="pi-loop" viewBox="0 0 48 48"><path d="M38 18A15 15 0 1 0 39 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M40 8v10H30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m24 18 2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z" fill="currentColor"/></symbol>
+      </svg>
+
+      <header class="pc__head">
+        <h2>La compra es de impulso. <span>Se decide en segundos, frente al anaquel.</span></h2>
+        <p class="mono pc__k">Proceso de compra · 7 etapas · en cada una FIBO puede ganar o perder al consumidor</p>
+      </header>
+
+      <div class="pc__pipe" id="pcPipe">
+        <ol class="pc__labels mono">
+          <li>Descubre</li><li>Compara</li><li>Evalúa</li><li>Encuentra</li><li>Compra</li><li>Prueba</li><li>Vuelve</li>
+        </ol>
+        <div class="pc__track">
+          <i class="pc__box" aria-hidden="true"></i>
+          <button type="button" data-s="1"><svg><use href="#pi-phone"/></svg></button>
+          <button type="button" data-s="2"><svg><use href="#pi-compare"/></svg></button>
+          <button type="button" data-s="3"><svg><use href="#pi-scale"/></svg></button>
+          <button type="button" data-s="4"><svg><use href="#pi-store"/></svg></button>
+          <button type="button" data-s="5"><svg><use href="#pi-cart"/></svg></button>
+          <button type="button" data-s="6"><svg><use href="#pi-bite"/></svg></button>
+          <button type="button" data-s="7"><svg><use href="#pi-loop"/></svg></button>
+          <svg class="pc__walker" viewBox="0 0 40 90" aria-hidden="true"><use href="#pc-person"/></svg>
+        </div>
+      </div>
+
+      <!-- 01 -->
+      <article class="pc__st" id="pc1">
+        <div class="pc__txt">
+          <p class="mono pc__n">01 · Descubrimiento</p>
+          <h3>Se entera por redes, por impulso o por recomendación.</h3>
+          <ul class="pc__pts"><li>Las redes sociales son su principal fuente de información, sobre todo de <b>18 a 24 años</b> (AMVO).</li><li>En la tienda, descubre productos por impulso, <b>mientras paga otra cosa</b>.</li><li>Influye la recomendación de un amigo, un entrenador o un creador de contenido.</li></ul>
+          <p class="pc__fibo pc__fibo--bad"><b>FIBO hoy · débil</b>11 meses sin publicar. 0 de 27 fotos de anaquel con material de la marca. En algunas tiendas el personal no conoce la barra.</p>
+        </div>
+        <div class="pc__scene pc__scene--feed">
+          <div class="pc__phone"><div class="pc__feed" id="pcFeed"><span></span><span></span><span class="fibo">FIBO · último post hace 11 meses</span><span></span><span></span><span></span></div></div>
+          <img class="pc__soc s1" src="assets/pc-tiktok.webp" alt="TikTok"><img class="pc__soc s2" src="assets/pc-ig.webp" alt="Instagram"><img class="pc__soc s3" src="assets/pc-fb.webp" alt="Facebook"><img class="pc__soc s4" src="assets/pc-wa.webp" alt="WhatsApp">
+          <svg class="pc__guy pc__guy--phone" viewBox="0 0 40 90" aria-hidden="true"><use href="#pc-person"/></svg>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="pc__st pc__st--light" id="pc2">
+        <div class="pc__txt">
+          <p class="mono pc__n">02 · Comparación</p>
+          <h3>Compara con lo que tiene enfrente.</h3>
+          <ul class="pc__pts"><li>No solo otras barras: también <b>pan dulce, galletas y botanas</b>.</li><li>En 7-Eleven, FIBO convive con 7-Select a $25, Wild Protein a $35 y barras masivas de 10 g de proteína.</li></ul>
+          <p class="pc__fibo pc__fibo--bad"><b>El riesgo</b>Si no queda claro en un segundo por qué cuesta más, la comparación se pierde.</p>
+        </div>
+        <div class="pc__shelf" id="pcShelf">
+          <div class="pc__spot" aria-hidden="true"></div>
+          <div class="pc__row">
+            <figure><img src="assets/cat-pan.webp" alt="Pan dulce"><figcaption>Pan dulce</figcaption></figure>
+            <figure><img src="assets/cat-surtido.webp" alt="Galletas"><figcaption>Galletas</figcaption></figure>
+            <figure><img src="assets/cat-barrinolas.webp" alt="Barra de avena"><figcaption>Botana / avena</figcaption></figure>
+          </div>
+          <div class="pc__rail"><span>$19</span><span>$28</span><span>$12</span></div>
+          <div class="pc__row">
+            <figure class="sel"><b>7-SELECT</b><small>10 g proteína</small><figcaption>7-Select</figcaption></figure>
+            <figure><img src="assets/cat-wild-box.webp" alt="Wild Protein"><figcaption>Wild Protein</figcaption></figure>
+            <figure class="fibo"><img src="assets/fibo-cookies.webp" alt="FIBO"><figcaption>FIBO · 22 g</figcaption><i class="pc__q">¿por qué cuesta más?</i></figure>
+          </div>
+          <div class="pc__rail"><span>$25</span><span>$35</span><span class="hi">$50+</span></div>
+          <svg class="pc__guy pc__guy--shop" viewBox="0 0 40 90" aria-hidden="true"><use href="#pc-person"/></svg>
+          <p class="mono pc__note">Ilustrativo. Precios de 7-Select, Wild Protein y FIBO del recorrido; los de pan, galletas y avena son referencia.</p>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="pc__st" id="pc3">
+        <div class="pc__txt">
+          <p class="mono pc__n">03 · Evaluación de precio y beneficios</p>
+          <h3>El sabor y el precio pesan más que todo.</h3>
+          <ul class="pc__pts"><li>Los sellos de advertencia influyen en la mayoría de los jóvenes.</li><li>FIBO tiene más del <b>doble de proteína</b> que las barras de $25, y un mejor precio por gramo que las importadas.</li></ul>
+          <p class="pc__fibo pc__fibo--bad"><b>FIBO hoy</b>No lo comunica en el punto de venta, y se vende en cinco precios distintos según el canal.</p>
+        </div>
+        <div class="pc__scene pc__scene--scale" id="pcScale">
+          <div class="pc__beam"><div class="pc__pan l"><b>22 g</b><span>FIBO</span></div><div class="pc__pan r"><b>10 g</b><span>barra de $25</span></div></div>
+          <div class="pc__post"></div>
+          <div class="pc__prices mono"><span>$43</span><span>$45</span><span>$50</span><span>$55</span><span>$62</span><em>5 precios para la misma barra</em></div>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="pc__st" id="pc4">
+        <div class="pc__txt">
+          <p class="mono pc__n">04 · Disponibilidad</p>
+          <h3>Si no está, no la busca: compra otra cosa.</h3>
+          <div class="pc__stats"><p><b>32%</b>de los puntos visitados no tenía FIBO</p><p><b>100+</b>sucursales de Nutrisa en cero</p><p><b>0</b>cadenas con los cuatro sabores</p><p><b>✕</b>no está en OXXO</p></div>
+        </div>
+        <div class="pc__scene pc__scene--store">
+          <img src="assets/pc-store.webp" alt="Tienda 7-Eleven ilustrada">
+          <span class="pc__sign mono">AGOTADO</span>
+          <svg class="pc__guy pc__guy--walk" viewBox="0 0 40 90" aria-hidden="true"><use href="#pc-person"/></svg>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="pc__st" id="pc5">
+        <div class="pc__txt">
+          <p class="mono pc__n">05 · Compra</p>
+          <h3>Ocurre en segundos, junto a la caja.</h3>
+          <ul class="pc__pts"><li>En 7-Eleven se vende en promedio a <b>$51</b> y, según el personal, rota poco, salvo en tiendas como la de la Americana.</li><li>En línea se compra por paquete, pero casi no se vende.</li></ul>
+          <div class="pc__online mono"><span><b>Amazon</b>0 pedidos</span><span><b>fibo.mx</b>agotada</span><span><b>Mercado Libre</b>sin acceso</span></div>
+        </div>
+        <div class="pc__scene pc__scene--till">
+          <div class="pc__ticket mono" id="pcTicket">
+            <p class="h">7-ELEVEN · CAJA 2</p>
+            <p><span>Café</span><span>$32.00</span></p>
+            <p class="f"><span>FIBO 65 g</span><span>$51.00</span></p>
+            <p class="t"><span>Tiempo de decisión</span><span>3 s</span></p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="pc__st pc__st--green" id="pc6">
+        <div class="pc__txt">
+          <p class="mono pc__n">06 · Evaluación del sabor · el momento decisivo</p>
+          <h3>La primera mordida decide si habrá una segunda compra.</h3>
+          <p class="pc__lead">La textura pesa tanto como el sabor.</p>
+        </div>
+        <div class="pc__scene pc__scene--bite" id="pcBite">
+          <img class="pc__bar" src="assets/fibo-chocolate.webp" alt="Barra FIBO">
+          <p class="pc__call c1"><span>Sabores de postre</span><i></i></p>
+          <p class="pc__call c2"><span>Llena</span><i></i></p>
+          <p class="pc__call c3 bad"><span>«Reseca» · la queja más repetida</span><i></i></p>
+          <p class="mono pc__note">Podría empeorar mientras más tiempo pase la barra en el anaquel.</p>
+        </div>
+      </article>
+
+      <!-- 07 -->
+      <article class="pc__st" id="pc7">
+        <div class="pc__txt">
+          <p class="mono pc__n">07 · Recompra y recomendación</p>
+          <h3>Si gustó y la encuentra, vuelve.</h3>
+          <ul class="pc__pts"><li>Si la compró en línea, lo cuenta en una reseña.</li></ul>
+          <p class="pc__fibo pc__fibo--bad"><b>FIBO hoy</b>No mide la recompra, no tiene sistema de reseñas ni de seguimiento, y <strong>87 de 105</strong> clientes no tienen correo registrado.</p>
+        </div>
+        <div class="pc__scene pc__scene--loop">
+          <div class="pc__orbit"><div class="pc__spin"><svg class="pc__guy" viewBox="0 0 40 90" aria-hidden="true"><use href="#pc-person"/></svg></div></div>
+          <div class="pc__stars" aria-hidden="true">★★★★★<span>?</span></div>
+          <div class="pc__mail" id="pcMail" aria-label="87 de 105 clientes sin correo"></div>
+        </div>
+      </article>
+
+      <div class="pc__leak" id="pcLeak">
+        <h3>El recorrido tiene fugas desde el inicio.</h3>
+        <div class="pc__funnel">
+          <p style="--w: 100%"><span>Pocos la conocen</span><i></i></p>
+          <p style="--w: 82%"><span>No siempre está en la tienda</span><i></i></p>
+          <p style="--w: 64%"><span>No se entiende por qué cuesta más</span><i></i></p>
+          <p style="--w: 46%"><span>La textura puede decepcionar</span><i></i></p>
+        </div>
+        <p class="pc__concl">Una campaña puede generar interés, pero si la barra no está, no se ve o no convence, <mark>ese interés se pierde.</mark></p>
+        <ol class="pc__order mono">
+          <li><b>01</b>Estar y verse en el anaquel</li>
+          <li><b>02</b>Asegurar que guste</li>
+          <li><b>03</b>Después, invertir en que la gente la busque</li>
+        </ol>
+        <p class="mono pc__note">El largo de cada fuga es ilustrativo: muestra el orden del recorrido, no un porcentaje medido.</p>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -2189,6 +2361,7 @@
   <script src="consumer.js"></script>
   <script src="needs.js"></script>
   <script src="occasions.js"></script>
+  <script src="purchase.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
