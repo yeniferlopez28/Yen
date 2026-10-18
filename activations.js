@@ -16,7 +16,7 @@
     T.map((t) => `<button type="button" data-k="${t.k}"><b style="--c:${t.c}"></b>${t.n} <i>${P.filter((p) => p.t === t.k).length}</i></button>`).join("");
   wall.innerHTML = P.map((p, i) => `
     <article class="ac__post${p.img ? "" : " noimg"}" data-t="${p.t}" style="--c:${(T.find((t) => t.k === p.t) || {}).c || "#0C0B0A"};--i:${i % 6}">
-      ${p.img ? `<figure><img src="assets/${p.img}" alt="${esc(p.b)}" loading="lazy"><span class="mono">${esc(tName(p.t))}</span></figure>` : `<div class="ph"><b>${esc(p.b)}</b><span class="mono">${esc(tName(p.t))}</span></div>`}
+      ${p.img ? `<figure><img src="assets/${p.img}" alt="${esc(p.b)}" loading="lazy"><span class="mono">${esc(tName(p.t))}</span></figure>` : `<div class="ph"><b>${esc(p.big || p.b)}</b><small class="mono">${esc(p.b)}</small><span class="mono">${esc(tName(p.t))}</span></div>`}
       <div class="bd">
         <header><i>${esc(p.b.slice(0, 1))}</i><span><b>${esc(p.b)}</b><small class="mono">${esc([p.pais, p.f].filter(Boolean).join(" · "))}</small></span></header>
         <h5>${esc(p.ti)}</h5>
