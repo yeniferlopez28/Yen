@@ -891,6 +891,75 @@
       <p class="mn__end"><b>Conclusión:</b> el reto de FIBO no es únicamente vender más, sino construir un modelo comercial más rentable, diversificado y capaz de sostener su crecimiento.</p>
     </section>
 
+    <section class="cd" id="cadena">
+      <div class="cd__chain">
+        <p class="mono cd__kick">La cadena comercial de FIBO</p>
+        <h2>¿Cómo llega FIBO al consumidor?</h2>
+        <div class="cd__stage">
+          <svg class="cd__svg" id="cdSvg" viewBox="0 0 1000 260" preserveAspectRatio="none" aria-hidden="true">
+            <path class="cd__area" id="cdArea" d=""/>
+            <path class="cd__edge" id="cdEdge" d=""/>
+            <circle class="cd__tip" id="cdTip" r="5" cx="0" cy="0"/>
+            <g id="cdBar"></g>
+          </svg>
+          <div class="cd__labels mono" id="cdLabels"></div>
+        </div>
+        <div class="cd__cap" aria-live="polite">
+          <p class="mono cd__n" id="cdN">01 · Origen</p>
+          <h3 id="cdT">El Molino</h3>
+          <p class="cd__d" id="cdD"></p>
+        </div>
+        <p class="mono cd__foot">*En Nutrisa, falta confirmar quién realiza el abastecimiento directo a las tiendas.</p>
+      </div>
+
+      <div class="cd__gap">
+        <p class="mono cd__kick">Después de la compra</p>
+        <h2>¿Dónde pierde visibilidad FIBO?</h2>
+        <div class="cd__tabs mono" id="cdTabs">
+          <button type="button" data-g="0"><span>01</span>Venta final</button>
+          <button type="button" data-g="1"><span>02</span>Inventario</button>
+          <button type="button" data-g="2"><span>03</span>Ejecución</button>
+        </div>
+        <svg class="cd__scene" viewBox="0 0 1000 420" aria-hidden="true">
+          <g class="cd__g" data-g="0">
+            <circle class="cd__ring" cx="290" cy="190" r="130"/>
+            <circle class="cd__pie" cx="290" cy="190" r="65" pathLength="100"/>
+            <circle class="cd__dot" cx="290" cy="190" r="7"/>
+            <circle class="cd__ring cd__ring--dash" cx="710" cy="190" r="130"/>
+            <text class="cd__q" x="710" y="222">?</text>
+          </g>
+          <g class="cd__g" data-g="1">
+            <path class="cd__block" d="M150 330 V170 L200 120 H330 V210 H390 V330 Z"/>
+            <rect class="cd__fill" x="300" y="150" width="90" height="180"/>
+            <text class="cd__big" x="270" y="105" id="cdPz">0</text>
+            <g id="cdStores"></g>
+            <line class="cd__floor" x1="110" y1="330" x2="930" y2="330"/>
+          </g>
+          <g class="cd__g" data-g="2">
+            <circle class="cd__ring" cx="500" cy="170" r="120"/>
+            <circle class="cd__dot" cx="500" cy="170" r="7"/>
+            <line class="cd__hand" x1="500" y1="170" x2="500" y2="50"/>
+            <text class="cd__big" x="500" y="40" text-anchor="middle">0</text>
+            <g class="cd__pend">
+              <rect x="268" y="345" width="140" height="34" rx="17"/><text x="338" y="367">Reposición</text>
+              <rect x="430" y="345" width="140" height="34" rx="17"/><text x="500" y="367">Exhibición</text>
+              <rect x="592" y="345" width="140" height="34" rx="17"/><text x="662" y="367">Seguimiento</text>
+            </g>
+          </g>
+        </svg>
+        <div class="cd__legend mono" id="cdLegend">
+          <p data-g="0"><span><i class="cd__k cd__k--fill"></i>Lo que factura El Molino</span><span><i class="cd__k cd__k--dash"></i>Lo que se vende en cada tienda</span></p>
+          <p data-g="1"><span><i class="cd__k cd__k--red"></i>2,442 piezas en el centro de distribución de Nutrisa</span><span><i class="cd__k cd__k--line"></i>105 tiendas en cero</span><span><i class="cd__k cd__k--red"></i>3 tiendas 7-Eleven visitadas, agotada</span></p>
+          <p data-g="2"><span><i class="cd__k cd__k--red"></i>0 materiales FIBO en los puntos visitados</span><span><i class="cd__k cd__k--dash"></i>Acuerdos pendientes</span></p>
+        </div>
+        <div class="cd__gcap" aria-live="polite">
+          <h3 id="cdGT"></h3>
+          <p id="cdGD"></p>
+        </div>
+        <p class="cd__end">FIBO ya tiene distintas vías para llegar al mercado; el reto es <em>conectar esas vías con la disponibilidad y la venta real al consumidor.</em></p>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -1153,6 +1222,7 @@
   <script src="essential.js"></script>
   <script src="value.js"></script>
   <script src="model.js"></script>
+  <script src="chain.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>

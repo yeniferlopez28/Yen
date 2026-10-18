@@ -1247,3 +1247,80 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   .mn__prio ol { grid-template-columns: 1fr; }
   .mn__prio li { min-height: 0; gap: 14px; }
 }
+
+/* ============ CADENA COMERCIAL (animated explainer) ============ */
+.cd { background: var(--cream); color: var(--black); }
+.cd__chain, .cd__gap { padding: clamp(80px, 11vw, 140px) var(--pad); }
+.cd__kick { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--red); }
+.cd h2 { font-weight: 500; font-size: clamp(34px, 5.4vw, 76px); line-height: 1; letter-spacing: -.03em; max-width: 14ch; margin-top: 16px; }
+.cd__stage { position: relative; margin: clamp(40px, 7vw, 90px) 0 0; }
+.cd__svg { width: 100%; height: clamp(170px, 24vw, 300px); display: block; overflow: visible; }
+.cd__seg { fill: var(--black); }
+.cd__seg--end { fill: #8A877F; }
+.cd__area { fill: var(--red); }
+.cd__edge { fill: none; stroke: var(--black); stroke-width: 1.2; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; }
+.cd__tip { fill: var(--black); }
+.cd__labels { position: relative; height: 34px; margin-top: 10px; }
+.cd__labels button { all: unset; cursor: pointer; position: absolute; top: 0; font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: #8A877F; padding-left: 6px; box-sizing: border-box; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .3s; }
+.cd__labels button.done { color: var(--black); }
+.cd__labels button.on { color: var(--red); }
+.cd__cap { margin-top: clamp(30px, 5vw, 60px); max-width: 640px; min-height: 190px; }
+.cd__n { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #8A877F; }
+.cd h3 { font-weight: 500; font-size: clamp(24px, 2.8vw, 40px); letter-spacing: -.02em; line-height: 1.05; margin: 10px 0 12px; }
+.cd__d, .cd__gcap p { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.45; }
+.cd__d em, .cd__gcap p em { font-style: normal; color: var(--red); }
+.cd__foot { font-size: 11px; color: #8A877F; margin-top: 20px; }
+
+.cd__gap { background: var(--black); color: var(--cream); }
+.cd__tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 30px; }
+.cd__tabs button { all: unset; cursor: pointer; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; padding: 9px 14px; border-radius: 999px; border: 1px solid #3A3936; color: rgba(242,239,232,.7); transition: background .3s, color .3s, border-color .3s; }
+.cd__tabs button span { margin-right: 8px; opacity: .6; }
+.cd__tabs button.on { background: var(--red); border-color: var(--red); color: var(--cream); }
+.cd__scene { width: 100%; max-width: 1000px; display: block; margin: clamp(20px, 4vw, 50px) auto 0; overflow: visible; }
+.cd__g { opacity: 0; transition: opacity .5s; pointer-events: none; }
+.cd__g.on { opacity: 1; }
+.cd__ring { fill: none; stroke: rgba(242,239,232,.35); stroke-width: 1; }
+.cd__ring--dash { stroke-dasharray: 4 6; }
+.cd__pie { fill: none; stroke: var(--cream); stroke-width: 120; stroke-dasharray: 100; stroke-dashoffset: 100; transform: rotate(-90deg); transform-origin: 290px 190px; transition: stroke-dashoffset 1.6s cubic-bezier(.6,0,.2,1) .2s; }
+.cd__g.on .cd__pie { stroke-dashoffset: 0; }
+.cd__dot { fill: var(--red); }
+.cd__q { fill: var(--red); font: 400 96px var(--sans); text-anchor: middle; opacity: 0; transition: opacity .6s 1.4s; }
+.cd__g.on .cd__q { opacity: 1; animation: cdBlink 1.6s 2s infinite; }
+@keyframes cdBlink { 50% { opacity: .25; } }
+.cd__lab { fill: rgba(242,239,232,.6); font: 400 14px var(--mono); text-anchor: middle; text-transform: uppercase; letter-spacing: .03em; }
+.cd__big { fill: var(--cream); font: 400 54px var(--sans); text-anchor: middle; letter-spacing: -.03em; }
+.cd__block { fill: #2A2926; transform: translateY(-260px) rotate(-8deg); transform-box: fill-box; transform-origin: center; transition: transform .9s cubic-bezier(.6,0,.3,1.2); }
+.cd__g.on .cd__block { transform: none; }
+.cd__fill { fill: var(--red); transform: scaleY(0); transform-box: fill-box; transform-origin: bottom; transition: transform 1.4s cubic-bezier(.6,0,.2,1) .7s; }
+.cd__g.on .cd__fill { transform: none; }
+.cd__floor { stroke: var(--cream); stroke-width: 3; }
+.cd__st { fill: none; stroke: rgba(242,239,232,.5); stroke-width: 1; opacity: 0; transition: opacity .2s; }
+.cd__st--out { fill: var(--red); stroke: var(--red); }
+.cd__g.on .cd__st { opacity: 1; }
+.cd__hand { stroke: var(--red); stroke-width: 2; transform-origin: 500px 170px; }
+.cd__g.on .cd__hand { animation: cdSweep 2.6s cubic-bezier(.6,0,.2,1) both; }
+@keyframes cdSweep { 0% { transform: rotate(0); } 55% { transform: rotate(360deg); } 70% { transform: rotate(352deg); } 100% { transform: rotate(360deg); } }
+.cd__pend rect { fill: none; stroke: rgba(242,239,232,.5); stroke-dasharray: 3 4; }
+.cd__pend text { fill: rgba(242,239,232,.75); font: 400 13px var(--mono); text-anchor: middle; text-transform: uppercase; }
+.cd__pend > * { opacity: 0; transition: opacity .4s 1.6s; }
+.cd__g.on .cd__pend > * { opacity: 1; }
+.cd__legend p { display: none; flex-wrap: wrap; gap: 10px 26px; justify-content: center; font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: rgba(242,239,232,.65); margin-top: 18px; }
+.cd__legend p.on { display: flex; animation: cdIn .5s both; }
+@keyframes cdIn { from { opacity: 0; transform: translateY(6px); } }
+.cd__legend span { display: inline-flex; align-items: center; gap: 8px; }
+.cd__k { width: 10px; height: 10px; display: inline-block; flex: none; }
+.cd__k--fill { background: var(--cream); border-radius: 50%; } .cd__k--red { background: var(--red); }
+.cd__k--dash { border: 1px dashed rgba(242,239,232,.7); border-radius: 50%; } .cd__k--line { border: 1px solid rgba(242,239,232,.6); }
+.cd__gcap { max-width: 640px; min-height: 170px; margin-top: clamp(20px, 3vw, 40px); }
+.cd__gcap h3 { color: var(--cream); }
+.cd__gcap p { color: rgba(242,239,232,.75); }
+.cd__end { margin-top: clamp(50px, 8vw, 100px); font-size: clamp(22px, 3vw, 40px); line-height: 1.2; letter-spacing: -.02em; max-width: 30ch; }
+.cd__end em { font-style: normal; color: var(--red); }
+
+@media (max-width: 720px) {
+  .cd__labels { height: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cd__labels button { position: static; width: auto !important; padding: 6px 10px; border: 1px solid #CFCBC1; border-radius: 999px; }
+  .cd__labels button.on { border-color: var(--red); }
+  .cd__pend text { font-size: 22px; }
+  .cd__cap { min-height: 240px; } .cd__gcap { min-height: 230px; }
+}
