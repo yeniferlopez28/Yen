@@ -447,6 +447,53 @@
       </div>
     </section>
 
+    <!-- ====== PRODUCT CONFIGURATOR (menu · bar with hotspots · summary) ====== -->
+    <section class="cfg" id="producto">
+      <p class="mono cfg__meta"><span>FIBO · El producto</span><span>08 / Análisis</span></p>
+      <h2 class="cfg__title">Más proteína, más fibra en una sola barra.</h2>
+      <p class="cfg__lead">FIBO combina un formato de 65 gramos con un alto aporte de proteína y fibra, diseñado para acompañar distintos momentos del día.</p>
+      <div class="cfg__grid">
+        <nav class="cfg__menu mono" id="cfgMenu" aria-label="Analizar">
+          <p>Analizar</p>
+          <button type="button" data-m="attr">Atributos</button>
+          <button type="button" data-m="fort">Fortalezas</button>
+          <button type="button" data-m="reto">Retos competitivos</button>
+          <button type="button" data-m="exp">Experiencia</button>
+          <p class="cfg__sub">Sabor</p>
+          <div class="cfg__flav" id="cfgFlav">
+            <button type="button" data-f="0" style="--c:#D6B787">Cookies &amp; Cream</button>
+            <button type="button" data-f="1" style="--c:#F2D31B">Chocolate</button>
+            <button type="button" data-f="2" style="--c:#4E2275">Brownie</button>
+            <button type="button" data-f="3" style="--c:#D6161D">Frutos Rojos</button>
+          </div>
+        </nav>
+        <div class="cfg__stage">
+          <div class="cfg__bar" id="cfgBar">
+            <img id="cfgImg" src="assets/fibo-cookies.webp" alt="Barra FIBO">
+            <div class="cfg__spots" id="cfgSpots"></div>
+          </div>
+          <div class="cfg__plate" aria-hidden="true"></div>
+          <div class="cfg__note" id="cfgNote" aria-live="polite"></div>
+          <button class="cfg__toggle mono" id="cfgToggle" type="button" aria-pressed="false"><i></i><span>Ver retos</span></button>
+        </div>
+        <aside class="cfg__sum">
+          <p class="cfg__sumhead"><b>Tu FIBO</b><span id="cfgName">Cookies &amp; Cream</span></p>
+          <p class="mono cfg__sumsub">Barra alta en proteína · Hecha en Jalisco</p>
+          <dl class="cfg__rows">
+            <div><dt>Peso</dt><dd>65 g</dd></div>
+            <div><dt>Proteína</dt><dd>22 g</dd></div>
+            <div><dt>Fibra</dt><dd>10 g</dd></div>
+            <div><dt>Calorías</dt><dd id="cfgKcal">Por validar</dd></div>
+            <div><dt>Azúcares</dt><dd id="cfgSug">Por validar</dd></div>
+            <div><dt>Sellos</dt><dd>Exceso calorías · Exceso grasas saturadas</dd></div>
+          </dl>
+          <div class="cfg__total"><span>Diferenciador</span><b>Proteína + fibra + tamaño</b></div>
+          <p class="cfg__close">La oportunidad de FIBO es convertir sus atributos nutrimentales en una experiencia rica, práctica y competitiva.</p>
+          <p class="mono cfg__fine">*Valores calóricos según sabor; datos de la documentación disponible, pendientes de validación para todo el portafolio.</p>
+        </aside>
+      </div>
+    </section>
+
     <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
@@ -705,6 +752,7 @@
   <script src="folders.js"></script>
   <script src="posters.js"></script>
   <script src="who.js"></script>
+  <script src="configurator.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
