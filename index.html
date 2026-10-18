@@ -121,6 +121,38 @@
       <p class="ctx__note mono">Cifras de facturación interna (venta bruta); margen preliminar con costo por validar.</p>
     </section>
 
+    <!-- ====== PLAN (tilted floating bars that open into cards) ====== -->
+    <section class="plan" id="plan">
+      <header class="plan__head">
+        <p class="plan__meta mono"><span>FIBO · Plan estratégico</span><span>02 / Resumen ejecutivo</span></p>
+        <h2>Ordenar para crecer.</h2>
+        <p class="plan__lead">FIBO tiene producto y distribución. El reto es recuperar relevancia, proteger la rentabilidad y construir una razón clara para elegirla.</p>
+        <button class="br plan__toggle" id="planToggle" type="button">Abrir todo</button>
+      </header>
+      <div class="plan__board" id="planBoard">
+        <article class="plan__card" style="--c: var(--red); --t: var(--cream); --i: 0">
+          <button class="plan__bar" type="button" aria-expanded="false"><span class="mono">01 · Oportunidad</span><b aria-hidden="true">+</b></button>
+          <div class="plan__body"><h3>La barra que llena tu día.</h3><p>Conectar el producto con los momentos cotidianos de Guadalajara, más allá del gimnasio.</p></div>
+        </article>
+        <article class="plan__card" style="--c: var(--blue); --t: var(--cream); --i: 1">
+          <button class="plan__bar" type="button" aria-expanded="false"><span class="mono">02 · Prioridad</span><b aria-hidden="true">+</b></button>
+          <div class="plan__body"><h3>Primero, ordenar.</h3><p>Validar producto y claims, estructurar precios y proteger el margen.</p></div>
+        </article>
+        <article class="plan__card" style="--c: var(--lime); --t: var(--black); --i: 2">
+          <button class="plan__bar" type="button" aria-expanded="false"><span class="mono">03 · Activación</span><b aria-hidden="true">+</b></button>
+          <div class="plan__body"><h3>Hacerla visible.</h3><p>Impulsar distribución, punto de venta, contenido, experiencias y e-commerce.</p></div>
+        </article>
+        <article class="plan__card" style="--c: var(--black); --t: var(--cream); --i: 3">
+          <button class="plan__bar" type="button" aria-expanded="false"><span class="mono">04 · Ejecución</span><b aria-hidden="true">+</b></button>
+          <div class="plan__body"><h3>$19,000 MXN</h3><p>Escenario de inversión externa recomendado, sujeto a aprobación, más producto para activaciones.</p></div>
+        </article>
+        <article class="plan__card plan__card--wide" style="--c: #D6B787; --t: var(--black); --i: 4">
+          <button class="plan__bar" type="button" aria-expanded="false"><span class="mono">Concepto rector</span><b aria-hidden="true">+</b></button>
+          <div class="plan__body"><h3>CON FIBO TE ENCUENTRAS.</h3><p>Una estrategia para recuperar presencia y construir crecimiento rentable.</p></div>
+        </article>
+      </div>
+    </section>
+
     <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
@@ -374,6 +406,7 @@
   <script src="main.js"></script>
   <script src="flavorshow.js"></script>
   <script src="context.js"></script>
+  <script src="plan.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
