@@ -153,46 +153,110 @@
       </div>
     </section>
 
-    <!-- ====== TIMELINE (grid of eras, years count in, bars climb like a staircase) ====== -->
+    <!-- ====== TIMELINE (vertical years; the active one opens into a text panel) ====== -->
     <section class="tl" id="historia">
       <header class="tl__head">
-        <p class="mono">FIBO · Historia de marca</p>
+        <p class="mono">FIBO · Historia de marca <span>03 / Antecedentes</span></p>
         <h2>Una marca con historia.<br>Una nueva dirección.</h2>
-        <p class="mono">03 / Antecedentes</p>
+        <p class="tl__sub">De la nutrición deportiva a una marca que busca conectar con la vida cotidiana.</p>
       </header>
-      <p class="tl__sub">De la nutrición deportiva a una marca que busca conectar con la vida cotidiana.</p>
-      <div class="tl__grid" id="tlGrid">
-        <article class="tl__col tl__col--blocks" style="--i: 0; --lvl: 0">
-          <p class="tl__era mono">El origen</p>
-          <p class="tl__year" data-year="2015">2015</p>
-          <div class="tl__stage"><span class="tl__blocks" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></span></div>
-          <p class="tl__txt">El Molino crea su planta de barras para maquila y desarrollo de marca propia.</p>
+      <div class="tl__rail" id="tlRail">
+        <article class="tl__col" data-i="0" tabindex="0" aria-label="2015: El origen">
+          <span class="tl__year">2015</span>
+          <div class="tl__detail">
+            <div class="tl__top">
+              <h3>El origen</h3>
+              <span class="mono tl__small">2015</span>
+            </div>
+            <div class="tl__bottom">
+              <p class="tl__txt">El Molino crea su planta de barras para maquila y desarrollo de marca propia.</p>
+              <dl class="tl__meta mono">
+                <div><dt>Etapa</dt><dd>Inicio</dd></div>
+                <div><dt>Periodo</dt><dd>2015</dd></div>
+                <div><dt>Clave</dt><dd>Planta propia · Zapopan</dd></div>
+                <div class="tl__count"><b>01</b> / 05</div>
+              </dl>
+            </div>
+          </div>
         </article>
-        <article class="tl__col tl__col--old" style="--i: 1; --lvl: 1">
-          <p class="tl__era mono">La llegada al mercado</p>
-          <p class="tl__year" data-year="2017–18">2017–18</p>
-          <div class="tl__stage"><img src="assets/fibo-chocolate.webp" alt="" style="--k:0"></div>
-          <p class="tl__txt">Nace FIBO BAR con una identidad centrada en el entrenamiento y la nutrición deportiva.</p>
+        <article class="tl__col" data-i="1" tabindex="0" aria-label="2017–18: La llegada al mercado">
+          <span class="tl__year">2017–18</span>
+          <div class="tl__detail">
+            <div class="tl__top">
+              <h3>La llegada al mercado</h3>
+              <span class="mono tl__small">2017–18</span>
+            </div>
+            <div class="tl__bottom">
+              <p class="tl__txt">Nace FIBO BAR con una identidad centrada en el entrenamiento y la nutrición deportiva.</p>
+              <dl class="tl__meta mono">
+                <div><dt>Etapa</dt><dd>Lanzamiento</dd></div>
+                <div><dt>Periodo</dt><dd>2017–18</dd></div>
+                <div><dt>Clave</dt><dd>Nutrición deportiva</dd></div>
+                <div class="tl__count"><b>02</b> / 05</div>
+              </dl>
+            </div>
+          </div>
         </article>
-        <article class="tl__col tl__col--old" style="--i: 2; --lvl: 2">
-          <p class="tl__era mono">Expansión y experimentación</p>
-          <p class="tl__year" data-year="2021–23">2021–23</p>
-          <div class="tl__stage"><img src="assets/fibo-cookies.webp" alt="" style="--k:0"><img src="assets/fibo-frutos.webp" alt="" style="--k:1"><img src="assets/fibo-chocolate.webp" alt="" style="--k:2"></div>
-          <p class="tl__txt">Colaboraciones deportivas, nuevos sabores y líneas, y entrada a cadenas como Nutrisa.</p>
+        <article class="tl__col" data-i="2" tabindex="0" aria-label="2021–23: Expansión y experimentación">
+          <span class="tl__year">2021–23</span>
+          <div class="tl__detail">
+            <div class="tl__top">
+              <h3>Expansión y experimentación</h3>
+              <span class="mono tl__small">2021–23</span>
+            </div>
+            <div class="tl__bottom">
+              <p class="tl__txt">Colaboraciones deportivas, nuevos sabores y líneas, y entrada a cadenas como Nutrisa.</p>
+              <dl class="tl__meta mono">
+                <div><dt>Etapa</dt><dd>Crecimiento</dd></div>
+                <div><dt>Periodo</dt><dd>2021–23</dd></div>
+                <div><dt>Clave</dt><dd>Nuevos sabores · Nutrisa</dd></div>
+                <div class="tl__count"><b>03</b> / 05</div>
+              </dl>
+            </div>
+          </div>
         </article>
-        <article class="tl__col tl__col--fade" style="--i: 3; --lvl: 1">
-          <p class="tl__era mono">Pérdida de impulso</p>
-          <p class="tl__year" data-year="2024–25">2024–25</p>
-          <div class="tl__stage"><img src="assets/fibo-brownie.webp" alt="" style="--k:0"><img src="assets/fibo-frutos.webp" alt="" style="--k:1"></div>
-          <p class="tl__txt">La actividad de marketing disminuye, las redes se enfrían y la identidad pierde consistencia.</p>
+        <article class="tl__col" data-i="3" tabindex="0" aria-label="2024–25: Pérdida de impulso">
+          <span class="tl__year">2024–25</span>
+          <div class="tl__detail">
+            <div class="tl__top">
+              <h3>Pérdida de impulso</h3>
+              <span class="mono tl__small">2024–25</span>
+            </div>
+            <div class="tl__bottom">
+              <p class="tl__txt">La actividad de marketing disminuye, las redes se enfrían y la identidad pierde consistencia.</p>
+              <dl class="tl__meta mono">
+                <div><dt>Etapa</dt><dd>Pausa</dd></div>
+                <div><dt>Periodo</dt><dd>2024–25</dd></div>
+                <div><dt>Clave</dt><dd>Marca sin gestión</dd></div>
+                <div class="tl__count"><b>04</b> / 05</div>
+              </dl>
+            </div>
+          </div>
         </article>
-        <article class="tl__col tl__col--new" style="--i: 4; --lvl: 3">
-          <p class="tl__era mono">Una nueva dirección</p>
-          <p class="tl__year" data-year="2026">2026</p>
-          <div class="tl__stage"><img src="assets/fibo-cookies.webp" alt="" style="--k:0"><img src="assets/fibo-chocolate.webp" alt="" style="--k:1"><img src="assets/fibo-frutos.webp" alt="" style="--k:2"><img src="assets/fibo-brownie.webp" alt="" style="--k:3"></div>
-          <p class="tl__txt">Se consolida el portafolio de cuatro sabores y se define el concepto rector «Con FIBO te encuentras».</p>
+        <article class="tl__col" data-i="4" tabindex="0" aria-label="2026: Una nueva dirección">
+          <span class="tl__year">2026</span>
+          <div class="tl__detail">
+            <div class="tl__top">
+              <h3>Una nueva dirección</h3>
+              <span class="mono tl__small">2026</span>
+            </div>
+            <div class="tl__bottom">
+              <p class="tl__txt">Se consolida el portafolio de cuatro sabores y se define el concepto rector «Con FIBO te encuentras».</p>
+              <dl class="tl__meta mono">
+                <div><dt>Etapa</dt><dd>Relanzamiento</dd></div>
+                <div><dt>Periodo</dt><dd>2026</dd></div>
+                <div><dt>Clave</dt><dd>4 sabores · Con FIBO te encuentras</dd></div>
+                <div class="tl__count"><b>05</b> / 05</div>
+              </dl>
+            </div>
+          </div>
         </article>
       </div>
+      <nav class="tl__nav">
+        <button class="show__arrow" id="tlPrev" type="button" aria-label="Etapa anterior"><svg class="px-arrow" viewBox="0 0 9 9" style="transform:scaleX(-1)"><use href="#arrow"/></svg></button>
+        <button class="br tl__all" id="tlAll" type="button">Ver todos los años</button>
+        <button class="show__arrow" id="tlNext" type="button" aria-label="Etapa siguiente"><svg class="px-arrow" viewBox="0 0 9 9"><use href="#arrow"/></svg></button>
+      </nav>
       <div class="tl__learn">
         <span class="mono">El aprendizaje</span>
         <b>FIBO construyó distribución. Ahora necesita construir marca.</b>
