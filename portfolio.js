@@ -12,3 +12,11 @@
   items.forEach((b, i) => (b.onclick = () => set(cur === i ? -1 : i)));
   dets.forEach((d) => (d.querySelector(".clk__x").onclick = () => set(-1)));
 })();
+
+// Analysis charts: grow in when they scroll into view.
+(() => {
+  const vz = document.getElementById("vz");
+  if (!vz) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { vz.classList.add("in"); return; }
+  new IntersectionObserver(([e], io) => { if (e.isIntersecting) { vz.classList.add("in"); io.disconnect(); } }, { threshold: 0.15 }).observe(vz);
+})();
