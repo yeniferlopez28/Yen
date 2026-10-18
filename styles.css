@@ -684,3 +684,53 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   .tl__col.on .tl__detail { display: grid; grid-template-rows: auto auto; }
   .tl__meta { grid-template-columns: 1fr 1fr; }
 }
+
+/* ============ WHY EVOLVE: folders ============ */
+.why { background: #FAF9F5; color: var(--black); padding: clamp(50px, 7vw, 100px) var(--pad) clamp(30px, 4vw, 60px); border-top: 1.5px solid var(--black); }
+.why__meta { display: flex; justify-content: space-between; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 20px; }
+.why__cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 60px); }
+.why__head h2 { font-size: clamp(36px, 5vw, 80px); font-weight: 500; letter-spacing: -.04em; line-height: .95; }
+.why__claim { font-size: clamp(20px, 2.2vw, 32px); letter-spacing: -.02em; line-height: 1.15; margin-bottom: 14px; }
+.why__lead { font-size: clamp(14px, 1.15vw, 17px); line-height: 1.45; opacity: .8; max-width: 56ch; }
+.why__board { position: relative; margin-top: clamp(220px, 30vw, 380px);
+  display: grid; grid-template-columns: repeat(20, 1fr); grid-template-rows: repeat(3, clamp(78px, 8.6vw, 128px)); }
+.fold { position: relative; outline: none; transition: opacity .35s; cursor: pointer; }
+.fold--a { grid-column: 1 / 11; grid-row: 1; z-index: 1; }
+.fold--b { grid-column: 11 / 21; grid-row: 1; z-index: 1; }
+.fold--c { grid-column: 1 / 10; grid-row: 2; z-index: 2; }
+.fold--d { grid-column: 9 / 21; grid-row: 2; z-index: 3; }
+.fold--e { grid-column: 1 / 21; grid-row: 3; z-index: 4; }
+.fold__tab { position: absolute; inset: 0 0 -24px 0; background: var(--c); color: var(--black);
+  clip-path: polygon(0 0, 44% 0, 48% 26%, 100% 26%, 100% 100%, 0 100%); padding: 10px 18px; display: grid; align-content: start; gap: 2px;
+  box-shadow: 0 -8px 20px rgba(0,0,0,.08); transition: background .35s, color .35s; }
+.fold--e .fold__tab { color: var(--cream); clip-path: polygon(0 0, 22% 0, 25% 26%, 100% 26%, 100% 100%, 0 100%); inset: 0; }
+.fold__tab span { font-size: 11px; }
+.fold__tab strong { font-size: clamp(30px, 4.4vw, 70px); font-weight: 400; letter-spacing: -.035em; line-height: 1; }
+.why__board.has-on .fold:not(.on) .fold__tab { background: #ECEAE4; color: #C9C5BB; }
+.why__board.has-on .fold:not(.on) { z-index: 1; }
+.fold.on { z-index: 10 !important; }
+.fold__sheet { position: absolute; left: 4%; bottom: calc(100% - 10px); width: min(560px, 92%); z-index: -1;
+  background: #fff; color: var(--black); padding: clamp(16px, 1.8vw, 24px); display: grid; gap: 10px;
+  box-shadow: 8px 10px 0 rgba(12,11,10,.85); transform: translateY(60%) rotate(-2deg); opacity: 0; pointer-events: none;
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .3s; }
+.fold--b .fold__sheet, .fold--d .fold__sheet { left: auto; right: 4%; transform: translateY(60%) rotate(2deg); }
+.fold--e .fold__sheet { width: min(760px, 92%); }
+.fold.on .fold__sheet { transform: translateY(0) rotate(-2deg); opacity: 1; pointer-events: auto; }
+.fold--b.on .fold__sheet, .fold--d.on .fold__sheet { transform: translateY(0) rotate(2deg); }
+.fold__sheet > span { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; opacity: .65; }
+.fold__sheet h3 { font-size: clamp(20px, 2vw, 30px); font-weight: 500; letter-spacing: -.025em; line-height: 1.08; }
+.fold__sheet p { font-size: clamp(13px, 1.05vw, 15px); line-height: 1.45; }
+.fold__sheet b { font-size: 12px; text-transform: uppercase; background: var(--lime); padding: 8px 10px; justify-self: start; line-height: 1.4; }
+.fold__sheet--dark { background: var(--black); color: var(--cream); box-shadow: 8px 10px 0 var(--lime); }
+.fold__sheet--dark h3 { font-size: clamp(22px, 2.6vw, 38px); }
+.fold__sheet--dark > span { color: var(--lime); opacity: 1; }
+.why__note { font-size: 11px; margin-top: 40px; opacity: .7; }
+@media (max-width: 760px) {
+  .why__cols { grid-template-columns: 1fr; }
+  .why__board { margin-top: 30px; display: grid; grid-template-columns: 1fr; grid-template-rows: none; gap: 0; }
+  .fold { grid-column: 1 !important; grid-row: auto !important; display: flex; flex-direction: column-reverse; margin-top: -10px; }
+  .fold__tab { position: relative; inset: auto; min-height: 92px; }
+  .fold__tab strong { font-size: 40px; }
+  .fold__sheet { position: relative; left: auto; right: auto !important; bottom: auto; width: 100%; transform: none !important; display: none; box-shadow: none; z-index: 0; margin: 0 0 6px; }
+  .fold.on .fold__sheet { display: grid; }
+}
