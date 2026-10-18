@@ -1411,6 +1411,66 @@
       </div>
     </section>
 
+    <section class="mk" id="mercado">
+      <p class="mk__eyebrow"><i class="mk__star" aria-hidden="true">✷</i>Tamaño del mercado</p>
+      <h2>Un mercado pequeño que <span class="mk__dot" aria-hidden="true">$</span> crece de forma constante.</h2>
+
+      <div class="mk__intro">
+        <p>Según IMARC Group, la fuente recomendada, las barras de proteína en México valían <b>59.8 millones de dólares en 2025</b>: unos <b>$1,100 millones de pesos</b> al año (a $18.50 por dólar).</p>
+        <div class="mk__years" id="mkYears" aria-label="Crecimiento del mercado de 59.8 a 89.9 millones de dólares entre 2025 y 2034">
+          <span style="--h: 40%"><b>2025</b><i>$59.8 M</i></span>
+          <span style="--h: 52%"><b>2028</b></span>
+          <span style="--h: 64%"><b>2030</b></span>
+          <span style="--h: 78%"><b>2032</b></span>
+          <span class="on" style="--h: 100%"><b>2034</b><i>$89.9 M</i></span>
+        </div>
+      </div>
+
+      <div class="mk__scope">
+        <div class="mk__venn" id="mkVenn">
+          <svg viewBox="0 0 900 420" aria-hidden="true">
+            <circle cx="230" cy="210" r="190"/><circle cx="470" cy="210" r="150"/><circle cx="680" cy="210" r="110"/>
+          </svg>
+          <span class="mk__vl" style="left: 25.6%">Barras en general</span>
+          <span class="mk__vl" style="left: 52.2%">Barras de proteína</span>
+          <span class="mk__vl" style="left: 75.6%">FIBO</span>
+          <span class="mk__pill" style="left: 9%; top: 28%">$421.5 M USD · 2024</span>
+          <span class="mk__pill" style="left: 6%; top: 44%">cereal · granola · fruta · proteína</span>
+          <span class="mk__pill" style="left: 28%; top: 60%">≈13.5% son de proteína</span>
+          <span class="mk__pill" style="left: 47%; top: 36%">$59.8 M USD · 2025</span>
+          <span class="mk__pill" style="left: 57%; top: 52%">≈0.8% a precio El Molino</span>
+          <span class="mk__pill" style="left: 68%; top: 68%">≈2% a precio de anaquel</span>
+        </div>
+        <p class="mk__note">FIBO vende unos <b>$8.9 millones de pesos al año</b> a sus clientes: cerca del <b>0.8%</b> del mercado. Con el precio que paga el consumidor, sube a alrededor de <b>2%</b>. Son estimaciones propias, útiles como orden de magnitud.</p>
+      </div>
+
+      <div class="mk__res">
+        <div class="mk__cards" id="mkCards">
+          <article class="mk__c mk__c--blue"><b>+4.64%</b><p>crece la categoría cada año en promedio, según IMARC: de $59.8 M a $89.9 M de dólares en 2034.</p></article>
+          <article class="mk__c"><b>+12.1%</b><p>creció FIBO este año, bastante más que el mercado.</p></article>
+          <article class="mk__c"><b>2%</b><p>de participación, como máximo: hay un espacio muy amplio para crecer sin que el mercado se expanda.</p></article>
+          <article class="mk__c mk__c--lime"><b>+236%</b><p>creció el yogur alto en proteína de Danone. Bimbo y Lala ya lanzaron productos con proteína para el día a día: más personas la buscan, y llegan más competidores con más recursos.</p></article>
+        </div>
+        <div class="mk__dial">
+          <div class="mk__ticks" id="mkTicks"><span class="mk__dv"><b id="mkIeps">8%</b><small>IEPS</small></span></div>
+          <div class="mk__card">
+            <i class="mk__ic" aria-hidden="true">!</i>
+            <p>FIBO paga <b>IEPS de 8%</b> por tener más de 275 calorías por cada 100 g. Existe una propuesta para subirlo a <b>20%</b>: encarecería la barra en una categoría donde el precio pesa mucho.</p>
+          </div>
+        </div>
+        <p class="mk__warn">Ojo: el crecimiento de FIBO viene casi por completo de <b>un solo cliente</b>, así que no se puede leer como una ganancia sólida de participación.</p>
+      </div>
+
+      <div class="mk__flow">
+        <p class="mk__eyebrow">Cómo leer las cifras</p>
+        <ol class="mk__path">
+          <li>Usar solo IMARC</li><li>No mezclar con Grand View ($467.5 M)</li><li>Su definición es más amplia</li>
+          <li>Ventas FIBO: $8.9 M MXN</li><li>≈0.8% a precio El Molino</li>
+          <li>≈2% a precio de anaquel</li><li class="hi">Revisar el 2.3%: 386 mil barras × $50 ≈ 1.8%</li>
+        </ol>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -1680,6 +1740,7 @@
   <script src="findings.js"></script>
   <script src="category.js"></script>
   <script src="pile.js"></script>
+  <script src="market.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
