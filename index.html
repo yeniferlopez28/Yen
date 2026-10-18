@@ -1229,6 +1229,56 @@
       <p class="dg__end">El reto del relanzamiento no es solo vender más, sino <em>vender mejor</em>: con precios que protejan el margen y una base de clientes y canales más diversificada.</p>
     </section>
 
+    <section class="hz" id="hallazgos">
+      <header class="hz__head">
+        <h2>FIBO no está mal, <b>está abandonada.</b></h2>
+        <p>El producto funciona, la barra se vende y la planta tiene capacidad de sobra, pero nadie gestiona la marca de forma integral. Los problemas no vienen de una falla de origen, sino de años sin dirección. Se agrupan en seis.</p>
+      </header>
+
+      <div class="hz__stage">
+        <article class="hz__det" id="hzDet" aria-live="polite">
+          <p class="mono hz__n" id="hzN"></p>
+          <h3 id="hzT"></h3>
+          <p class="hz__big"><b id="hzV"></b><small id="hzVl"></small></p>
+          <ul id="hzP"></ul>
+        </article>
+
+        <div class="hz__radar" id="hzRadar">
+          <svg viewBox="0 0 600 520" aria-hidden="true">
+            <g id="hzGrid"></g>
+            <g id="hzAxes"></g>
+            <polygon class="hz__shape" id="hzShape" points=""/>
+            <polygon class="hz__hi" id="hzHi" points=""/>
+            <g id="hzDots"></g>
+          </svg>
+          <div id="hzCorners"></div>
+        </div>
+
+        <aside class="hz__list">
+          <ul id="hzList"></ul>
+          <p class="mono"><b>Arrastra</b> un problema a una esquina del hexágono, o tócalo para ver sus puntos clave.</p>
+        </aside>
+      </div>
+
+      <div class="hz__notes mono">
+        <p>El centro (0) es ausencia del problema; cada esquina (100%) es el problema completo. Cada eje usa un dato real del diagnóstico.</p>
+        <p>Ejemplo: 87 de los 105 clientes no tienen correo registrado, por eso «Información» llega a 83%.</p>
+      </div>
+
+      <div class="hz__end">
+        <p class="hz__note">Ninguno de estos problemas es de producto ni de nombre, y todos tienen solución.</p>
+        <h3>El primer trabajo de FIBO no es crecer, <b>sino ordenar.</b></h3>
+        <ol class="mono">
+          <li>Validar el producto y sus claims</li>
+          <li>Ordenar los precios</li>
+          <li>Recuperar el control de los canales</li>
+          <li>Darle a la barra un lugar propio en el anaquel</li>
+          <li>Construir la información para medir</li>
+        </ol>
+        <p class="hz__note">Solo sobre esa base tendrá sentido invertir en que más gente conozca la marca.</p>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -1495,6 +1545,7 @@
   <script src="mapdata.js"></script>
   <script src="channels.js"></script>
   <script src="diagnosis.js"></script>
+  <script src="findings.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
