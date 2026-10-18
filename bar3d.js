@@ -116,8 +116,9 @@
     const data = o.getImageData(0, 0, W, H).data;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    // each full turn shows the next flavour's wrapper colour
-    const turn = Math.floor((rotY + Math.PI) / (Math.PI * 2));
+    // the bar looks the same front and back, so every half rotation reads as one turn:
+    // switch to the next colour each time it passes end-on to the camera
+    const turn = Math.floor((rotY - Math.PI / 2) / Math.PI);
     ctx.fillStyle = WRAPPERS[((turn % WRAPPERS.length) + WRAPPERS.length) % WRAPPERS.length];
     const STEP = Math.max(6, Math.round(W / 95));
     for (let x = 0; x < W; x += STEP) {
