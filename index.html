@@ -153,6 +153,53 @@
       </div>
     </section>
 
+    <!-- ====== TIMELINE (grid of eras, years count in, bars climb like a staircase) ====== -->
+    <section class="tl" id="historia">
+      <header class="tl__head">
+        <p class="mono">FIBO · Historia de marca</p>
+        <h2>Una marca con historia.<br>Una nueva dirección.</h2>
+        <p class="mono">03 / Antecedentes</p>
+      </header>
+      <p class="tl__sub">De la nutrición deportiva a una marca que busca conectar con la vida cotidiana.</p>
+      <div class="tl__grid" id="tlGrid">
+        <article class="tl__col tl__col--blocks" style="--i: 0; --lvl: 0">
+          <p class="tl__era mono">El origen</p>
+          <p class="tl__year" data-year="2015">2015</p>
+          <div class="tl__stage"><span class="tl__blocks" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></span></div>
+          <p class="tl__txt">El Molino crea su planta de barras para maquila y desarrollo de marca propia.</p>
+        </article>
+        <article class="tl__col tl__col--old" style="--i: 1; --lvl: 1">
+          <p class="tl__era mono">La llegada al mercado</p>
+          <p class="tl__year" data-year="2017–18">2017–18</p>
+          <div class="tl__stage"><img src="assets/fibo-chocolate.webp" alt="" style="--k:0"></div>
+          <p class="tl__txt">Nace FIBO BAR con una identidad centrada en el entrenamiento y la nutrición deportiva.</p>
+        </article>
+        <article class="tl__col tl__col--old" style="--i: 2; --lvl: 2">
+          <p class="tl__era mono">Expansión y experimentación</p>
+          <p class="tl__year" data-year="2021–23">2021–23</p>
+          <div class="tl__stage"><img src="assets/fibo-cookies.webp" alt="" style="--k:0"><img src="assets/fibo-frutos.webp" alt="" style="--k:1"><img src="assets/fibo-chocolate.webp" alt="" style="--k:2"></div>
+          <p class="tl__txt">Colaboraciones deportivas, nuevos sabores y líneas, y entrada a cadenas como Nutrisa.</p>
+        </article>
+        <article class="tl__col tl__col--fade" style="--i: 3; --lvl: 1">
+          <p class="tl__era mono">Pérdida de impulso</p>
+          <p class="tl__year" data-year="2024–25">2024–25</p>
+          <div class="tl__stage"><img src="assets/fibo-brownie.webp" alt="" style="--k:0"><img src="assets/fibo-frutos.webp" alt="" style="--k:1"></div>
+          <p class="tl__txt">La actividad de marketing disminuye, las redes se enfrían y la identidad pierde consistencia.</p>
+        </article>
+        <article class="tl__col tl__col--new" style="--i: 4; --lvl: 3">
+          <p class="tl__era mono">Una nueva dirección</p>
+          <p class="tl__year" data-year="2026">2026</p>
+          <div class="tl__stage"><img src="assets/fibo-cookies.webp" alt="" style="--k:0"><img src="assets/fibo-chocolate.webp" alt="" style="--k:1"><img src="assets/fibo-frutos.webp" alt="" style="--k:2"><img src="assets/fibo-brownie.webp" alt="" style="--k:3"></div>
+          <p class="tl__txt">Se consolida el portafolio de cuatro sabores y se define el concepto rector «Con FIBO te encuentras».</p>
+        </article>
+      </div>
+      <div class="tl__learn">
+        <span class="mono">El aprendizaje</span>
+        <b>FIBO construyó distribución. Ahora necesita construir marca.</b>
+      </div>
+      <p class="tl__note mono">Periodos históricos sujetos a validación documental.</p>
+    </section>
+
     <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
@@ -407,6 +454,7 @@
   <script src="flavorshow.js"></script>
   <script src="context.js"></script>
   <script src="plan.js"></script>
+  <script src="timeline.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
