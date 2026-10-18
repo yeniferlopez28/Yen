@@ -1159,3 +1159,91 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .pv__card--warn p { color: #d8d5cd; }
 .pv__card--warn .pv__new { background: var(--red); color: var(--cream); }
 @media (max-width: 720px) { .pv__peek { width: 80vw; bottom: -10px; } .pv__card img { height: 150px; margin: 8px 0 18px; } }
+
+/* ============ MODELO DE NEGOCIO (dark finance UI) ============ */
+.mn { background: var(--black); color: var(--cream); padding: clamp(80px, 12vw, 150px) var(--pad); display: grid; gap: clamp(70px, 10vw, 130px); overflow: hidden; }
+.mn__kick { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--lime); }
+.mn h2 { font-weight: 500; font-size: clamp(34px, 5.4vw, 76px); line-height: 1; letter-spacing: -.03em; max-width: 15ch; margin: 18px 0 22px; }
+.mn__lead { max-width: 56ch; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5; color: rgba(242,239,232,.72); }
+
+.mn__flow { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; margin-top: -30px; }
+.mn__flow::before { content: ""; position: absolute; left: 0; top: 7px; height: 1px; width: 100%; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform 1.4s cubic-bezier(.2,.8,.2,1); }
+.mn__flow.in::before { transform: scaleX(1); }
+.mn__flow li { display: grid; gap: 8px; padding-right: 20px; opacity: 0; transform: translateY(14px); transition: opacity .6s, transform .6s; }
+.mn__flow.in li { opacity: 1; transform: none; }
+.mn__flow.in li:nth-child(2) { transition-delay: .45s; } .mn__flow.in li:nth-child(3) { transition-delay: .9s; }
+.mn__node { width: 15px; height: 15px; border-radius: 50%; background: var(--black); border: 1px solid var(--lime); margin-bottom: 14px; }
+.mn__flow li:last-child .mn__node { background: var(--lime); }
+.mn__flow b { font-family: var(--sans); font-weight: 500; font-size: clamp(20px, 2.2vw, 30px); letter-spacing: -.02em; }
+.mn__flow small { font-size: 12px; color: rgba(242,239,232,.55); text-transform: uppercase; letter-spacing: .03em; line-height: 1.5; }
+
+.mn__value { display: grid; grid-template-columns: 1fr minmax(280px, min(460px, 70svh)); gap: clamp(30px, 6vw, 90px); align-items: center; }
+.mn h3 { font-weight: 500; font-size: clamp(26px, 3vw, 42px); letter-spacing: -.02em; line-height: 1.05; max-width: 16ch; }
+.mn__note { font-size: 12px; color: rgba(242,239,232,.55); margin: 14px 0 26px; text-transform: uppercase; letter-spacing: .03em; }
+.mn__pills, .mn__years { display: flex; gap: 6px; flex-wrap: wrap; }
+.mn__pills button, .mn__years button { all: unset; cursor: pointer; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; padding: 8px 12px; border-radius: 999px; color: rgba(242,239,232,.7); background: #1C1B19; transition: background .25s, color .25s; }
+.mn__pills button.on, .mn__years button.on { background: var(--lime); color: var(--black); }
+.mn__txt { margin-top: 26px; max-width: 46ch; line-height: 1.55; color: rgba(242,239,232,.75); }
+.mn__txt b { color: var(--cream); font-weight: 500; }
+
+.mn__box { position: relative; aspect-ratio: 1; background: #1C1B19; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;
+  border-radius: 50%; transform: scale(.7); transition: border-radius 1s cubic-bezier(.7,0,.2,1), transform 1s cubic-bezier(.7,0,.2,1); }
+.mn__box.in { border-radius: 4px; transform: none; }
+.mn__corner { position: absolute; top: 14px; right: 16px; text-align: right; display: grid; gap: 4px; z-index: 2; }
+.mn__corner em { font-style: normal; font-size: 10px; text-transform: uppercase; color: rgba(242,239,232,.55); }
+.mn__corner b { font-size: 15px; font-weight: 500; }
+.mn__seg { height: var(--h); position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 0 14px; overflow: hidden;
+  transition: height 1s cubic-bezier(.7,0,.2,1), opacity .4s; }
+.mn__seg.off { opacity: 0; }
+.mn__seg i { font-style: normal; font-size: 10px; text-transform: uppercase; padding-top: 10px; letter-spacing: .03em; }
+.mn__seg b { font-family: var(--sans); font-weight: 400; font-size: clamp(30px, 4vw, 54px); letter-spacing: -.03em; padding-bottom: 6px; line-height: 1; }
+.mn__seg--canal { color: rgba(242,239,232,.8); justify-content: flex-end; flex-direction: column-reverse; }
+.mn__seg--canal i { padding: 0 0 12px; } .mn__seg--canal b { padding: 14px 0 0; }
+.mn__seg--costo { background: #2E2D2A; color: var(--cream); }
+.mn__seg--costo b { font-size: clamp(22px, 2.6vw, 34px); }
+.mn__seg--molino { background: var(--lime); color: var(--black); }
+
+.mn__gwrap { display: grid; grid-template-columns: minmax(260px, 440px) 1fr; gap: clamp(30px, 6vw, 90px); align-items: center; margin-top: 40px; }
+.mn__gauge { position: relative; aspect-ratio: 1; display: grid; place-items: center; }
+.mn__gauge svg { position: absolute; inset: 9%; width: 82%; height: 82%; transform: rotate(-90deg); overflow: visible; }
+.mn__track { fill: none; stroke: #2A2926; stroke-width: 1; }
+.mn__arc { fill: none; stroke: var(--lime); stroke-width: 1.6; stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.1s cubic-bezier(.6,0,.2,1); filter: drop-shadow(0 0 6px rgba(201,242,58,.55)); }
+.mn__gauge:not(.in) .mn__arc { stroke-dashoffset: 100 !important; }
+.mn__tick { position: absolute; font-size: 10px; color: rgba(242,239,232,.5); transform: translate(-50%, -50%); }
+.mn__center { display: grid; gap: 6px; text-align: center; justify-items: center; max-width: 60%; }
+.mn__center em { font-style: normal; font-size: 10px; text-transform: uppercase; color: rgba(242,239,232,.55); line-height: 1.4; }
+.mn__center b { font-family: var(--sans); font-weight: 400; font-size: clamp(38px, 5vw, 64px); letter-spacing: -.03em; line-height: 1; }
+.mn__years { position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); justify-content: center; width: max-content; }
+.mn__risks { display: grid; }
+.mn__r { all: unset; cursor: pointer; display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; padding: 22px 0; border-top: 1px solid #2A2926; }
+.mn__r:last-child { border-bottom: 1px solid #2A2926; }
+.mn__r span { font-size: 12px; color: rgba(242,239,232,.45); padding-top: 6px; transition: color .3s; }
+.mn__r b { font-weight: 500; font-size: clamp(19px, 1.9vw, 26px); letter-spacing: -.02em; transition: color .3s; color: rgba(242,239,232,.55); }
+.mn__r p { grid-column: 2; font-size: 15px; line-height: 1.55; color: rgba(242,239,232,.7); max-height: 0; overflow: hidden; opacity: 0; transition: max-height .6s, opacity .5s, margin .5s; }
+.mn__r.on b { color: var(--cream); } .mn__r.on span { color: var(--lime); }
+.mn__r.on p { max-height: 200px; opacity: 1; margin-top: 10px; }
+
+.mn__prio ol { list-style: none; counter-reset: p; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 22px; }
+.mn__prio li { counter-increment: p; background: #1C1B19; border-radius: 4px; padding: 16px 14px 18px; font-size: 13px; line-height: 1.5; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between;
+  opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s, background .3s, color .3s; }
+.mn__prio li::before { content: "0" counter(p); font-size: 11px; color: var(--lime); }
+.mn__prio li:hover { background: var(--lime); color: var(--black); } .mn__prio li:hover::before { color: var(--black); }
+.mn__prio.in li { opacity: 1; transform: none; }
+.mn__prio.in li:nth-child(2) { transition-delay: .1s; } .mn__prio.in li:nth-child(3) { transition-delay: .2s; } .mn__prio.in li:nth-child(4) { transition-delay: .3s; } .mn__prio.in li:nth-child(5) { transition-delay: .4s; }
+.mn__end { font-size: clamp(22px, 3vw, 40px); line-height: 1.2; letter-spacing: -.02em; max-width: 30ch; color: rgba(242,239,232,.7); }
+.mn__end b { color: var(--lime); font-weight: 500; }
+
+@media (max-width: 860px) {
+  .mn__value, .mn__gwrap { grid-template-columns: 1fr; }
+  .mn__prio ol { grid-template-columns: 1fr 1fr; }
+  .mn__prio li { min-height: 140px; }
+}
+@media (max-width: 560px) {
+  .mn__flow { grid-template-columns: 1fr; gap: 26px; margin-top: 0; }
+  .mn__flow::before { left: 7px; top: 0; width: 1px; height: 100%; transform: scaleY(0); transform-origin: top; }
+  .mn__flow.in::before { transform: scaleY(1); }
+  .mn__flow li { grid-template-columns: 15px 1fr; column-gap: 16px; }
+  .mn__flow .mn__node { grid-row: span 2; margin: 6px 0 0; }
+  .mn__prio ol { grid-template-columns: 1fr; }
+  .mn__prio li { min-height: 0; gap: 14px; }
+}

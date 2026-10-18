@@ -822,6 +822,75 @@
     </section>
 
     <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
+    <section class="mn" id="modelo">
+      <header class="mn__head">
+        <p class="mono mn__kick">Modelo comercial B2B</p>
+        <h2>FIBO vende a negocios para llegar al consumidor.</h2>
+        <p class="mn__lead">El Molino factura principalmente a clientes comerciales que compran el producto para revenderlo o distribuirlo. Por eso, los ingresos de FIBO dependen directamente de las compras de sus clientes, mientras que la venta al consumidor final ocurre principalmente a través de terceros.</p>
+      </header>
+
+      <ol class="mn__flow mono">
+        <li><span class="mn__node"></span><b>El Molino</b><small>Producción y venta de FIBO</small></li>
+        <li><span class="mn__node"></span><b>Clientes comerciales</b><small>Cadenas, distribuidores y otros compradores</small></li>
+        <li><span class="mn__node"></span><b>Consumidor final</b><small>Compra y consumo del producto</small></li>
+      </ol>
+
+      <div class="mn__value">
+        <div class="mn__copy">
+          <h3>¿Cómo se distribuye el valor de una barra?</h3>
+          <p class="mono mn__note">Ejemplo ilustrativo con un precio al consumidor de $50 MXN.</p>
+          <div class="mn__pills mono" id="mnSteps">
+            <button type="button" data-step="0">Precio al público</button>
+            <button type="button" data-step="1">Ingreso de El Molino</button>
+            <button type="button" data-step="2">Margen bruto</button>
+          </div>
+          <p class="mn__txt">El Molino recibe en promedio <b>$23.82</b> por barra. Después de un costo de producción estimado de <b>$14.39</b>, quedan <b>$9.43</b> de margen bruto, antes de otros gastos operativos y comerciales.</p>
+        </div>
+        <div class="mn__box mono" id="mnBox" aria-live="polite">
+          <span class="mn__corner"><em id="mnCap">Precio al público</em><b id="mnVal">$50.00</b></span>
+          <div class="mn__seg mn__seg--canal" style="--h: 0%"><i>Canal y terceros</i><b>52.4%</b></div>
+          <div class="mn__seg mn__seg--costo" style="--h: 0%"><i>Costo de producción · $14.39</i><b>28.8%</b></div>
+          <div class="mn__seg mn__seg--molino" style="--h: 100%"><i id="mnLime">Precio al público</i><b id="mnPct">100%</b></div>
+        </div>
+      </div>
+
+      <div class="mn__risk">
+        <p class="mono mn__kick">Rentabilidad y vulnerabilidades del modelo</p>
+        <h2>Crecer en volumen no siempre significa ganar más.</h2>
+        <p class="mn__lead">El modelo enfrenta tres riesgos que afectan su estabilidad y rentabilidad.</p>
+        <div class="mn__gwrap">
+          <div class="mn__gauge mono">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="mn__track" cx="100" cy="100" r="86"/>
+              <circle class="mn__arc" id="mnArc" cx="100" cy="100" r="86" pathLength="100"/>
+            </svg>
+            <span class="mn__tick" style="left: 50%; top: 5%">0</span><span class="mn__tick" style="left: 95%; top: 50%">25</span>
+            <span class="mn__tick" style="left: 50%; top: 95%">50</span><span class="mn__tick" style="left: 5%; top: 50%">75</span>
+            <div class="mn__center"><em id="mnGCap"></em><b id="mnGVal"></b></div>
+            <div class="mn__years" id="mnYears"></div>
+          </div>
+          <div class="mn__risks" id="mnRisks">
+            <button type="button" class="mn__r" data-r="0"><span class="mono">01</span><b>Alta concentración de clientes</b><p>Cerca del 60% del volumen depende de dos clientes. Edgar García representa el 29.1% y compra a $20.14 por barra, uno de los precios más bajos de la lista.</p></button>
+            <button type="button" class="mn__r" data-r="1"><span class="mono">02</span><b>Presión sobre los márgenes</b><p>El costo por barra aumentó 11.6%, mientras el precio promedio de venta creció solo 2.1%. Como resultado, el margen bruto pasó de 42.5% a 37.2%.</p></button>
+            <button type="button" class="mn__r" data-r="2"><span class="mono">03</span><b>Seguimiento comercial limitado</b><p>87 de los 105 clientes registrados carecen de correo electrónico, lo que dificulta mantener contacto, recuperar compradores inactivos y desarrollar nuevas oportunidades.</p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mn__prio">
+        <p class="mono mn__kick">Prioridades para fortalecer el modelo</p>
+        <ol class="mono">
+          <li>Validar el costo real por barra y calcular la venta neta.</li>
+          <li>Unificar los precios y definir condiciones comerciales por canal.</li>
+          <li>Reducir la dependencia de los principales clientes.</li>
+          <li>Fortalecer el registro y seguimiento de la cartera comercial.</li>
+          <li>Desarrollar canales que permitan capturar una mayor proporción del precio final.</li>
+        </ol>
+      </div>
+
+      <p class="mn__end"><b>Conclusión:</b> el reto de FIBO no es únicamente vender más, sino construir un modelo comercial más rentable, diversificado y capaz de sostener su crecimiento.</p>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -1083,6 +1152,7 @@
   <script src="portfolio.js"></script>
   <script src="essential.js"></script>
   <script src="value.js"></script>
+  <script src="model.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
