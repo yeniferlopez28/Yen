@@ -1618,6 +1618,131 @@
       </div>
     </section>
 
+    <section class="nd" id="necesidades">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="ic-fork" viewBox="0 0 48 48"><path d="M14 6v14a5 5 0 0 0 10 0V6M19 6v36M34 6c-4 2-6 8-6 14h6v22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="ic-clock" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 13v11l8 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+        <symbol id="ic-cup" viewBox="0 0 48 48"><path d="M10 14h28l-3 26H13z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M8 14h32M17 8h14v6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+        <symbol id="ic-bar" viewBox="0 0 48 48"><rect x="6" y="16" width="36" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M11 16v16M37 16v16" stroke="currentColor" stroke-width="2.5"/><text x="24" y="27.5" font-size="7" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" fill="currentColor">FIBO</text></symbol>
+        <symbol id="ic-taste" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="17" cy="20" r="2" fill="currentColor"/><circle cx="31" cy="20" r="2" fill="currentColor"/><path d="M15 28c5 6 13 6 18 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M22 32c0 5 4 5 4 0" fill="none" stroke="currentColor" stroke-width="2.5"/></symbol>
+        <symbol id="ic-tag" viewBox="0 0 48 48"><path d="M6 24 24 6h16v16L22 40z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="33" cy="13" r="3" fill="currentColor"/></symbol>
+        <symbol id="ic-seal" viewBox="0 0 48 48"><path d="M17 5h14l12 12v14L31 43H17L5 31V17z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 22h18M15 28h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+        <symbol id="ic-eye" viewBox="0 0 48 48"><path d="M4 24s8-12 20-12 20 12 20 12-8 12-20 12S4 24 4 24z" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M8 40 40 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+        <symbol id="ic-pin" viewBox="0 0 48 48"><path d="M24 44S10 30 10 19a14 14 0 0 1 28 0c0 11-14 25-14 25z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M18 19h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+        <symbol id="ic-bite" viewBox="0 0 48 48"><path d="M6 16h26a5 5 0 0 0 5 5 5 5 0 0 0 5 5v6H6z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 38l2-3M20 40l1-4M28 38l-1-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+        <symbol id="ic-lens" viewBox="0 0 48 48"><circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M30 30l12 12M20 13v8M20 26v1" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+      </svg>
+
+      <div class="nd__intro" id="ndIntro">
+        <p class="mono nd__k">Necesidades, motivaciones y barreras</p>
+        <p class="nd__line"><mark>La proteína</mark> hace que alguien voltee a ver una barra.</p>
+        <p class="nd__line"><mark>El sabor y el precio</mark> deciden si la compra.</p>
+        <p class="nd__line"><mark>La textura</mark> decide si la vuelve a comprar.</p>
+      </div>
+
+      <div class="nd__arcs" id="ndArcs" aria-label="Del interés a la recompra: proteína, sabor y precio, textura">
+        <svg viewBox="0 0 900 470" aria-hidden="true">
+          <defs>
+            <path id="ndA3" d="M90 0 A360 360 0 0 0 810 0"/>
+            <path id="ndA2" d="M190 0 A260 260 0 0 0 710 0"/>
+            <path id="ndA1" d="M290 0 A160 160 0 0 0 610 0"/>
+          </defs>
+          <path class="nd__arc nd__arc--3" d="M50 0 A400 400 0 0 0 850 0Z"/>
+          <path class="nd__arc nd__arc--2" d="M150 0 A300 300 0 0 0 750 0Z"/>
+          <path class="nd__arc nd__arc--1" d="M250 0 A200 200 0 0 0 650 0Z"/>
+          <path class="nd__arrow" d="M450 20v120M410 100l40 40 40-40"/>
+          <text class="nd__at"><textPath href="#ndA1" startOffset="50%" text-anchor="middle" dy="-14">la proteína · voltea a verla</textPath></text>
+          <text class="nd__at"><textPath href="#ndA2" startOffset="50%" text-anchor="middle">sabor y precio · la compra</textPath></text>
+          <text class="nd__at"><textPath href="#ndA3" startOffset="50%" text-anchor="middle">textura · la vuelve a comprar</textPath></text>
+        </svg>
+      </div>
+
+      <div class="nd__need">
+        <div class="nd__wave" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="nd__nh">
+          <p class="mono nd__k">La necesidad</p>
+          <h3>Quitar el hambre <mark>entre comidas</mark>.</h3>
+        </div>
+        <div class="nd__needg">
+          <article class="nd__tile"><svg class="nd__ic"><use href="#ic-fork"/></svg><h4>Saciedad</h4><p>Busca llenarse y, si entrena, recuperarse.</p></article>
+          <article class="nd__tile"><svg class="nd__ic nd__ic--spin"><use href="#ic-clock"/></svg><h4>Falta de tiempo</h4><p>Es la principal razón para no hacer ejercicio (MOPRADEF), y empuja a comer algo práctico en el camino.</p></article>
+          <article class="nd__tile"><svg class="nd__ic"><use href="#ic-cup"/></svg><h4>+236%</h4><p>creció el yogur alto en proteína de Danone: ya no es exclusiva del gimnasio.</p></article>
+        </div>
+        <div class="nd__prot" id="ndProt">
+          <p class="mono nd__k">Proteína por pieza</p>
+          <div class="nd__row"><span>Mayoría de barras comerciales<small class="mono">Profeco</small></span><div class="nd__blocks" data-n="12" data-from="8"></div><b>8–12 g</b></div>
+          <div class="nd__row nd__row--fibo"><span>FIBO<small class="mono">65 g · 10 g de fibra</small></span><div class="nd__blocks" data-n="22"></div><b>22 g</b></div>
+          <p class="nd__quote">Los consumidores la describen como <mark>«llenadora»</mark>.</p>
+        </div>
+      </div>
+
+      <div class="nd__mot">
+        <p class="mono nd__k">Lo que lleva a elegir una marca</p>
+        <div class="nd__motg">
+          <article class="nd__m nd__m--1"><span class="nd__no mono">01</span><svg class="nd__ic"><use href="#ic-taste"/></svg><h4>El sabor</h4><b class="nd__big">58%</b><p>del crecimiento en ocasiones de snacks viene de las que se eligen «por el sabor» (Kantar). La mitad de los mexicanos come botanas porque saben bien (Innova).</p></article>
+          <article class="nd__m nd__m--2"><span class="nd__no mono">02</span><svg class="nd__ic"><use href="#ic-tag"/></svg><h4>El precio</h4>
+            <div class="nd__px" id="ndPx">
+              <p><span>FIBO</span><i style="--w: 100%"></i><b>$50</b></p>
+              <p><span>Las que más ve</span><i class="r" style="--a: 50%; --w: 74%"></i><b>$25–37</b></p>
+            </div>
+            <p>En conveniencia se mide <b>por pieza</b>, no por gramo. Por gramo de proteína FIBO sale bien frente a las importadas (≈$2.27 por gramo).</p></article>
+          <article class="nd__m nd__m--3"><span class="nd__no mono">03</span><svg class="nd__ic"><use href="#ic-seal"/></svg><h4>La etiqueta</h4><b class="nd__big">85%</b><p>de los jóvenes de 20 a 29 años considera importante al menos un sello (INSP). La mitad de los consumidores lee las etiquetas con más atención que antes.</p></article>
+        </div>
+        <div class="nd__hyp">
+          <div class="nd__scale" id="ndScale">
+            <span class="nd__zone" style="--a: 35; --b: 40"><b>$35–40 · compra frecuente</b></span>
+            <span class="nd__pt" style="--v: 50">$50 · compra ocasional</span>
+            <i class="nd__tick" style="--v: 20">$20</i><i class="nd__tick" style="--v: 30">$30</i><i class="nd__tick" style="--v: 40">$40</i><i class="nd__tick" style="--v: 50">$50</i><i class="nd__tick" style="--v: 60">$60</i>
+          </div>
+          <p class="nd__note">No existe en México un estudio de cuánto está dispuesto a pagar el consumidor por una barra de proteína. <mark>Hipótesis interna:</mark> $35–40 para comprarla seguido. A $50, para un joven de ingreso medio, FIBO es una compra ocasional.</p>
+        </div>
+      </div>
+
+      <div class="nd__bar">
+        <p class="mono nd__k">Las barreras para probar FIBO</p>
+        <div class="nd__hill" id="ndHill">
+          <svg viewBox="0 0 900 300" preserveAspectRatio="none" aria-hidden="true">
+            <path class="nd__h nd__h--1" d="M0 300 C220 300 300 40 450 40 C600 40 680 300 900 300Z"/>
+            <path class="nd__h nd__h--2" d="M60 300 C250 300 320 100 450 100 C580 100 650 300 840 300Z"/>
+            <path class="nd__h nd__h--3" d="M130 300 C280 300 350 160 450 160 C550 160 620 300 770 300Z"/>
+            <path class="nd__h nd__h--4" d="M200 300 C310 300 380 220 450 220 C520 220 590 300 700 300Z"/>
+          </svg>
+          <span class="nd__peak mono">Primera mordida</span>
+          <div class="nd__stages mono"><span>Antes · conocerla</span><span>Antes · encontrarla</span><span>Durante · probarla</span><span>Después · confiar</span></div>
+        </div>
+        <div class="nd__barg">
+          <article class="nd__b"><svg class="nd__ic"><use href="#ic-eye"/></svg><h4>No la conocen</h4><p><b>11 meses</b> sin publicar en redes. En Andares y Tesistán, el propio personal de 7-Eleven no conoce la barra.</p></article>
+          <article class="nd__b"><svg class="nd__ic nd__ic--bob"><use href="#ic-pin"/></svg><h4>No siempre la encuentran</h4>
+            <div class="nd__dots" id="ndDots" aria-label="17 de 53 puntos visitados sin barra"></div>
+            <p><b>17 de 53</b> puntos visitados no tenían barra. No está en OXXO, y desde 2025 no se vende dentro de escuelas ni universidades.</p></article>
+          <article class="nd__b"><svg class="nd__ic nd__ic--shake"><use href="#ic-bite"/></svg><h4>Riesgo de que no guste</h4><p>La queja más repetida en reseñas: <b>«reseca»</b>. Una mala primera mordida cierra la puerta a la recompra.</p></article>
+          <article class="nd__b"><svg class="nd__ic"><use href="#ic-lens"/></svg><h4>Desconfianza</h4><p>Profeco ha encontrado productos que no cumplen lo que declaran, incluidas barras «proteicas» que no lo son.</p></article>
+        </div>
+      </div>
+
+      <div class="nd__faq">
+        <p class="mono nd__k">Dudas que FIBO debe poder responder</p>
+        <div class="nd__qs" id="ndQs">
+          <button type="button" data-a="Solo si FIBO comunica únicamente lo que puede comprobar, con su tabla nutrimental completa.">¿De verdad tiene la proteína que dice?</button>
+          <button type="button" data-a="Lleva sellos, pero está pensada como colación, no como sustituto de comida.">¿Es comida chatarra porque lleva sellos?</button>
+          <button type="button" data-a="Tiene azúcares moderados.">¿Tiene mucha azúcar?</button>
+          <button type="button" data-a="Es una colación entre comidas, no un sustituto de comida.">¿Engorda?</button>
+          <button type="button" data-a="Los edulcorantes que usa son seguros en dosis normales.">¿Los edulcorantes hacen daño?</button>
+          <button type="button" data-a="No: es para el día a día, no solo para entrenar.">¿Es solo para quien va al gimnasio?</button>
+        </div>
+        <p class="nd__ans" id="ndAns" aria-live="polite">Toca una pregunta para ver la respuesta.</p>
+      </div>
+
+      <div class="nd__end">
+        <p class="nd__line nd__line--end"><mark>FIBO ya resuelve la necesidad de fondo.</mark></p>
+        <p class="nd__line nd__line--end">Es una barra que llena y tiene más proteína que la mayoría. Lo que hoy la frena depende de ella misma:</p>
+        <ol class="nd__four mono">
+          <li>Que la conozcan</li><li>Que la encuentren</li><li>Que convenza en la primera mordida</li><li>Que su precio y su etiqueta generen confianza</li>
+        </ol>
+        <p class="mono nd__k">La encuesta y la prueba de sabor confirmarán cuál pesa más.</p>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -1890,6 +2015,7 @@
   <script src="market.js"></script>
   <script src="dossier.js"></script>
   <script src="consumer.js"></script>
+  <script src="needs.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
