@@ -1158,4 +1158,4 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .pv__card--warn { background: var(--black); color: var(--cream); }
 .pv__card--warn p { color: #d8d5cd; }
 .pv__card--warn .pv__new { background: var(--red); color: var(--cream); }
-@media (max-width: 720px) { .pv__peek { width: 80vw; bottom: -10px; } .pv__detail { min-height: 560px; } }
+@media (max-width: 720px) { .pv__peek { width: 80vw; bottom: -10px; } .pv__detail { min-height: 560px; } .pv__card img { height: 150px; margin: 8px 0 18px; } }
