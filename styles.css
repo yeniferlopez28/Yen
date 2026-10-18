@@ -980,7 +980,7 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .clk__item:hover .clk__name, .clk__item.on .clk__name { border-color: var(--c); }
 .clk__price { font-size: 14px; }
 .clk__item:focus-visible { outline: 2px solid var(--red); outline-offset: 6px; }
-.clk__dets { position: relative; display: grid; }
+.clk__dets { position: relative; display: grid; margin-bottom: 30px; }
 .clk__det { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) auto; gap: clamp(16px, 3vw, 44px); align-items: center;
   background: var(--c); color: var(--cream); padding: clamp(18px, 2.4vw, 32px); margin-top: 30px;
   clip-path: inset(0 0 100% 0); visibility: hidden; transition: clip-path .55s cubic-bezier(.7,0,.2,1), visibility 0s .55s; }
