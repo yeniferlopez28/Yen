@@ -1563,3 +1563,6 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   .dg__lab small { font-size: 10px; }
   .dg__lab b { font-size: 26px; }
 }
+/* first sheet: FIBO blue and black spheres */
+.dg__sheet:not(.dg__sheet--two) .dg__ball--g { background: radial-gradient(circle at 50% 45%, #8A8782 0 6%, #3A3836 34%, #0C0B0A 76%, rgba(12,11,10,0) 100%); }
+.dg__sheet:not(.dg__sheet--two) .dg__ball--r { background: radial-gradient(circle at 50% 45%, #E3E9FF 0 6%, #6F8BFF 34%, #3A5CFF 76%, rgba(58,92,255,0) 100%); }
