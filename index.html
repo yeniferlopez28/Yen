@@ -69,6 +69,58 @@
       </div>
     </section>
 
+    <!-- ====== CONTEXT (colour tabs that open into stat panels with falling balls) ====== -->
+    <section class="ctx" id="contexto">
+      <div class="ctx__frame" id="ctxFrame">
+        <div class="ctx__base">
+          <header class="ctx__meta mono"><span>FIBO · Proyecto estratégico</span><span>01 / Contexto</span></header>
+          <i class="ctx__dot" aria-hidden="true"></i>
+          <h2 class="ctx__title">Punto de partida.</h2>
+          <p class="ctx__lead">FIBO tiene las bases para competir. El reto es convertirlas en una marca relevante y un negocio sostenible.</p>
+          <p class="ctx__hint mono">Abre cada pestaña →</p>
+        </div>
+
+        <div class="ctx__panel" data-k="0" style="--c: var(--red); --t: var(--cream)">
+          <p class="ctx__num"><span data-to="22">0</span>&nbsp;g</p>
+          <p class="ctx__cap">de proteína por barra.</p>
+          <canvas class="ctx__balls" data-n="22" data-on="22" data-label="22G" aria-hidden="true"></canvas>
+        </div>
+        <div class="ctx__panel" data-k="1" style="--c: var(--blue); --t: var(--cream)">
+          <p class="ctx__num"><span data-to="68">0</span>%</p>
+          <p class="ctx__cap">de presencia en 53 puntos de venta auditados.<br><small class="mono">● 36 con barra · ○ 17 sin barra</small></p>
+          <canvas class="ctx__balls" data-n="53" data-on="36" data-label="PDV" aria-hidden="true"></canvas>
+        </div>
+        <div class="ctx__panel" data-k="2" style="--c: var(--lime); --t: var(--black)">
+          <p class="ctx__num">+<span data-to="12.1">0</span>%</p>
+          <p class="ctx__cap">en facturación, enero–agosto 2026 vs. 2025.<br><small class="mono">$5.27 M → $5.91 M · cada bolita = $100 mil</small></p>
+          <canvas class="ctx__balls" data-n="59" data-on="53" data-label="$" aria-hidden="true"></canvas>
+        </div>
+        <div class="ctx__panel" data-k="3" style="--c: var(--black); --t: var(--cream)">
+          <p class="ctx__num"><span data-to="37.2">0</span>%</p>
+          <p class="ctx__cap">de margen bruto en 2026, frente a 42.5% en 2025.<br><small class="mono">● margen 2026 · ○ lo que se perdió</small></p>
+          <canvas class="ctx__balls" data-n="43" data-on="37" data-label="%" aria-hidden="true"></canvas>
+        </div>
+        <div class="ctx__panel ctx__panel--reto" data-k="4" style="--c: var(--cream); --t: var(--black)">
+          <h3 class="ctx__h">El reto</h3>
+          <ol class="ctx__retos">
+            <li><b>Una marca que perdió visibilidad</b><span>11 meses sin publicar en redes y sin material de marca en los puntos auditados.</span></li>
+            <li><b>Un negocio bajo presión</b><span>El costo crece más rápido que el precio y la cartera depende de pocos clientes.</span></li>
+            <li><b>Una propuesta por construir</b><span>22 g de proteína ya no bastan para diferenciarse: FIBO necesita una razón clara para ser elegida.</span></li>
+          </ol>
+          <div class="ctx__quote"><span class="mono">Punto de partida estratégico</span><b>La barra está. Ahora hay que hacer que la marca importe.</b></div>
+        </div>
+
+        <nav class="ctx__tabs" aria-label="Datos del punto de partida">
+          <button type="button" data-k="0" style="--c: var(--red); --t: var(--cream)"><span>22 g · Proteína</span></button>
+          <button type="button" data-k="1" style="--c: var(--blue); --t: var(--cream)"><span>68% · Presencia</span></button>
+          <button type="button" data-k="2" style="--c: var(--lime); --t: var(--black)"><span>+12.1% · Facturación</span></button>
+          <button type="button" data-k="3" style="--c: var(--black); --t: var(--cream)"><span>37.2% · Margen</span></button>
+          <button type="button" data-k="4" style="--c: var(--cream); --t: var(--black)"><span>El reto</span></button>
+        </nav>
+      </div>
+      <p class="ctx__note mono">Cifras de facturación interna (venta bruta); margen preliminar con costo por validar.</p>
+    </section>
+
     <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
@@ -321,6 +373,7 @@
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <script src="main.js"></script>
   <script src="flavorshow.js"></script>
+  <script src="context.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
