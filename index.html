@@ -722,6 +722,110 @@
       <p class="ess__foot mono"><span>Tres presentaciones comerciales</span><span>Vida de anaquel: 18 meses</span></p>
     </section>
 
+    <!-- ====== VALUE PROPOSITION (shop-like filters, detail panel, search) ====== -->
+    <section class="pv" id="propuesta">
+      <div class="pv__ui mono">
+        <div class="pv__top">
+          <button type="button" class="pv__pill" data-tab="detalle">Propuesta</button>
+          <button type="button" class="pv__pill" data-tab="todo">Ver todo<sup>11</sup></button>
+          <label class="pv__search"><button type="button" class="pv__pill" id="pvSearchBtn">Buscar</button><input id="pvQ" type="search" placeholder="Escribe aquí: sabor, precio, saciedad…" aria-label="Buscar en la propuesta de valor"></label>
+        </div>
+        <div class="pv__filters">
+          <button type="button" class="pv__f" data-tab="pilares">Pilares</button>
+          <button type="button" class="pv__f" data-tab="evolucion">Evolución</button>
+          <button type="button" class="pv__f" data-tab="consumidor">Consumidor</button>
+          <button type="button" class="pv__f" data-tab="retos">Retos</button>
+        </div>
+      </div>
+
+      <div class="pv__detail" id="pvDetail">
+        <p class="mono pv__price">22 g de proteína · 10 g de fibra · 65 g</p>
+        <h2 class="mono">Más que proteína: una barra que llena.</h2>
+        <p class="mono pv__lbl">Detalles</p>
+        <p class="mono pv__txt">Actualmente, FIBO comunica una promesa funcional: <b>22 gramos de proteína en una barra práctica y fácil de llevar.</b> Sin embargo, la proteína por sí sola ya no basta para diferenciarla en una categoría donde muchas marcas ofrecen cantidades similares.</p>
+        <p class="mono pv__more" id="pvMore" hidden>FIBO no necesita competir únicamente por gramos de proteína. Su oportunidad está en unir proteína, fibra, sabor y valor en una experiencia cotidiana, y convertir esa combinación en una marca con la que las personas conecten.</p>
+        <button type="button" class="pv__pill mono" id="pvRead">Leer más</button>
+        <img class="pv__peek" src="assets/fibo-brownie.webp" alt="">
+      </div>
+
+      <div class="pv__panel" id="pvPanel" hidden>
+        <p class="mono pv__count" id="pvCount"></p>
+        <div class="pv__grid" id="pvGrid">
+            <article class="pv__card" data-cat="pilares" data-q="saciedad la combinación de proteína y fibra responde a la necesidad de una colación que ayude a calmar el hambre entre actividades. pilar 01">
+              <span class="pv__new mono">Pilar 01</span>
+              <img src="assets/fibo-cookies.webp" alt="">
+              <h4 class="mono">Saciedad</h4>
+              <p>La combinación de proteína y fibra responde a la necesidad de una colación que ayude a calmar el hambre entre actividades.</p>
+            </article>
+            <article class="pv__card" data-cat="pilares" data-q="sabor sus cuatro sabores inspirados en postres ofrecen una experiencia que va más allá de los atributos nutrimentales. pilar 02">
+              <span class="pv__new mono">Pilar 02</span>
+              <img src="assets/fibo-chocolate.webp" alt="">
+              <h4 class="mono">Sabor</h4>
+              <p>Sus cuatro sabores inspirados en postres ofrecen una experiencia que va más allá de los atributos nutrimentales.</p>
+            </article>
+            <article class="pv__card" data-cat="pilares" data-q="valor por proteína en la comparación de ocho barras realizada por el equipo, fibo registró un costo de $2.16 por gramo de proteína, por debajo de varias alternativas importadas analizadas. pilar 03 · $2.16 / g">
+              <span class="pv__new mono">Pilar 03 · $2.16 / g</span>
+              <img src="assets/fibo-brownie.webp" alt="">
+              <h4 class="mono">Valor por proteína</h4>
+              <p>En la comparación de ocho barras realizada por el equipo, FIBO registró un costo de $2.16 por gramo de proteína, por debajo de varias alternativas importadas analizadas.</p>
+            </article>
+            <article class="pv__card" data-cat="pilares" data-q="origen local es una marca hecha en jalisco, con producción propia y una historia empresarial detrás del producto. pilar 04">
+              <span class="pv__new mono">Pilar 04</span>
+              <img src="assets/fibo-frutos.webp" alt="">
+              <h4 class="mono">Origen local</h4>
+              <p>Es una marca hecha en Jalisco, con producción propia y una historia empresarial detrás del producto.</p>
+            </article>
+            <article class="pv__card" data-cat="evolucion" data-q="22 gramos de proteína en una barra práctica. una promesa funcional basada principalmente en el aporte nutrimental. hoy">
+              <span class="pv__new mono">Hoy</span>
+              
+              <h4 class="mono">22 gramos de proteína en una barra práctica.</h4>
+              <p>Una promesa funcional basada principalmente en el aporte nutrimental.</p>
+            </article>
+            <article class="pv__card" data-cat="evolucion" data-q="una pausa rica en medio de lo que te mueve. fibo combina proteína, fibra y sabores disfrutables en una barra pensada para acompañar los momentos entre una actividad y otra. dirección propuesta">
+              <span class="pv__new mono">Dirección propuesta</span>
+              
+              <h4 class="mono">Una pausa rica en medio de lo que te mueve.</h4>
+              <p>FIBO combina proteína, fibra y sabores disfrutables en una barra pensada para acompañar los momentos entre una actividad y otra.</p>
+            </article>
+            <article class="pv__card" data-cat="evolucion" data-q="con fibo te encuentras el producto deja de hablar únicamente de nutrientes y comienza a formar parte de la vida cotidiana: una pausa, un antojo, un trayecto o un momento para ti. concepto">
+              <span class="pv__new mono">Concepto</span>
+              
+              <h4 class="mono">Con FIBO te encuentras</h4>
+              <p>El producto deja de hablar únicamente de nutrientes y comienza a formar parte de la vida cotidiana: una pausa, un antojo, un trayecto o un momento para ti.</p>
+            </article>
+            <article class="pv__card" data-cat="evolucion" data-q="la propuesta de valor que buscamos construir una barra de proteína que combina saciedad, sabor y practicidad, con una propuesta de valor accesible para acompañar el día. meta">
+              <span class="pv__new mono">Meta</span>
+              
+              <h4 class="mono">La propuesta de valor que buscamos construir</h4>
+              <p>Una barra de proteína que combina saciedad, sabor y practicidad, con una propuesta de valor accesible para acompañar el día.</p>
+            </article>
+            <article class="pv__card" data-cat="consumidor" data-q="¿qué impulsa la elección? identificar qué pesa más al comprar fibo: proteína, sensación de saciedad, sabor o precio. descubrir 01">
+              <span class="pv__new mono">Descubrir 01</span>
+              
+              <h4 class="mono">¿Qué impulsa la elección?</h4>
+              <p>Identificar qué pesa más al comprar FIBO: proteína, sensación de saciedad, sabor o precio.</p>
+            </article>
+            <article class="pv__card" data-cat="consumidor" data-q="¿qué conexión emocional genera? comprobar si la idea de una pausa rica en medio del día resulta relevante, auténtica y memorable para el público objetivo. descubrir 02">
+              <span class="pv__new mono">Descubrir 02</span>
+              
+              <h4 class="mono">¿Qué conexión emocional genera?</h4>
+              <p>Comprobar si la idea de una pausa rica en medio del día resulta relevante, auténtica y memorable para el público objetivo.</p>
+            </article>
+            <article class="pv__card" data-cat="consumidor" data-q="¿qué nos hace diferentes? validar qué atributos distinguen a fibo de las alternativas y cuáles pueden convertirse en razones concretas de compra. descubrir 03">
+              <span class="pv__new mono">Descubrir 03</span>
+              
+              <h4 class="mono">¿Qué nos hace diferentes?</h4>
+              <p>Validar qué atributos distinguen a FIBO de las alternativas y cuáles pueden convertirse en razones concretas de compra.</p>
+            </article>
+            <article class="pv__card pv__card--warn" data-cat="retos" data-q="retos azúcares calorías sellos ingredientes competencia">
+              <span class="pv__new mono">Retos frente a la competencia</span>
+              <h4 class="mono">Construir sobre atributos reales</h4>
+              <p>FIBO tiene más azúcares y calorías que algunas alternativas, mientras que otras destacan por sus ingredientes o por no tener sellos de advertencia. Su diferenciación debe construirse sobre sus atributos reales, no sobre una promesa de superioridad saludable.</p>
+            </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ====== FLAVOR SHOW (poster per flavour, pixel word, protein counter) ====== -->
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
@@ -983,6 +1087,7 @@
   <script src="configurator.js"></script>
   <script src="portfolio.js"></script>
   <script src="essential.js"></script>
+  <script src="value.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
