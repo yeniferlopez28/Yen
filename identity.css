@@ -23,3 +23,25 @@ mark { background: none; color: var(--lime); }
 .pz__kk, .mx__kk { color: var(--lime); } .tc__kk { color: var(--red); }
 /* pills & buttons */
 button, .om__pills button, .mx__pill { font-family: var(--sans); font-weight: 600; }
+/* colored sections (set by identity.js) */
+.idc { background-image: none !important; transition: color .4s; }
+.idc--d { background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1.4px) !important; background-size: 30px 30px !important; }
+.idc--l { background-image: radial-gradient(rgba(11,10,9,.07) 1px, transparent 1.4px) !important; background-size: 30px 30px !important; }
+/* lime ticker */
+.idt { background: var(--lime); color: var(--black); overflow: hidden; border-block: 2px solid var(--black); position: relative; z-index: 2; }
+.idt > div { display: flex; align-items: center; width: max-content; animation: idtk 32s linear infinite; }
+.idt.rv > div { animation-direction: reverse; } .idt:hover > div { animation-play-state: paused; }
+.idt span { font: 400 clamp(20px, 2vw, 28px)/1 var(--display); text-transform: uppercase; padding: 14px 18px; white-space: nowrap; }
+.idt i { font-style: normal; color: var(--red); font-size: 18px; }
+@keyframes idtk { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .idt > div { animation: none; } }
+/* ticket stickers (like the site's tagbars) for kickers */
+.om__k, .nt__blk, .pz__kk, .tc__kk, .mx__kk { position: relative; display: inline-flex !important; align-items: center; gap: 8px; background: var(--black); color: var(--lime) !important; padding: 8px 22px !important; border-radius: 10px; rotate: -2deg; box-shadow: 0 10px 18px rgba(11,10,9,.2); }
+.om__k::before, .om__k::after, .nt__blk::before, .nt__blk::after, .pz__kk::before, .pz__kk::after, .tc__kk::before, .tc__kk::after, .mx__kk::before, .mx__kk::after { content: ""; position: absolute; top: 0; bottom: 0; width: 9px; background: repeating-linear-gradient(0deg, rgba(255,255,255,.2) 0 3px, transparent 3px 7px); }
+.om__k::before, .nt__blk::before, .pz__kk::before, .tc__kk::before, .mx__kk::before { left: 0; border-radius: 10px 0 0 10px; } .om__k::after, .nt__blk::after, .pz__kk::after, .tc__kk::after, .mx__kk::after { right: 0; border-radius: 0 10px 10px 0; }
+/* accents swap so nothing disappears on its own background color */
+.idc--red { --red: #C9F23A; } .idc--red mark { color: var(--lime); }
+.idc--blue { --blue: #FF89B8; }
+.idc--lime { --lime: #FF89B8; }
+.idc--pink { --pink: #F5EBD7; }
+.idc--d .pc__head h2 span { color: #C9F23A; } .idc--red .pc__head h2 span { color: #F5EBD7; opacity: .7; }
