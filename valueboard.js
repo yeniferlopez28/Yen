@@ -5,7 +5,7 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // cursors wandering around the board
-  const C = [["Marca", "#D6161D"], ["Ventas", "#3A5CFF"], ["Calidad", "#4C8A1E"], ["Diseño", "#B03CE0"], ["Digital", "#F2B705"], ["Planta", "#0C0B0A"]];
+  const C = [["Marca", "#D6161D"], ["Ventas", "#3A5CFF"], ["Calidad", "#0C0B0A"], ["Diseño", "#E8559A"], ["Digital", "#2A48E0"], ["Planta", "#0C0B0A"]];
   const curs = document.getElementById("vbCurs");
   curs.innerHTML = C.map(([n, c]) => `<span class="vb__cur" style="--c:${c}"><svg viewBox="0 0 20 20"><path d="M2 2l14 6-6 2-2 6z"/></svg><b>${n}</b></span>`).join("");
   const ce = [...curs.children];

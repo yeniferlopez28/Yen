@@ -4084,6 +4084,34 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .vb__chk li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; background: #EEF9E8; border-radius: 12px; padding: 12px 14px; } .vb__chk i { font-style: normal; width: 34px; height: 34px; border-radius: 50%; background: #4C8A1E; color: #fff; display: grid; place-items: center; font-weight: 600; }
 .vb__chk div { display: grid; gap: 3px; } .vb__chk b { font-size: 16px; } .vb__chk span { font-size: 13.5px; color: #45423D; line-height: 1.45; }
 .vb__end { margin: 0; text-align: center; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.25; letter-spacing: -.02em; max-width: 1000px; justify-self: center; opacity: 0; transition: opacity .6s; } .vb__end.in { opacity: 1; } .vb__end mark { font-weight: 600; }
+/* vb · FIBO palette: blue, pink, lime, black, red and bone */
+.vb { --pink: #FF89B8; --bone: #F2EFE8; background-color: var(--blue); color: var(--bone); background-image: radial-gradient(rgba(242,239,232,.22) 1.2px, transparent 1.6px); }
+.vb__head .vb__k, .vb__fh .vb__k, .vb > .vb__k { color: rgba(242,239,232,.75); }
+.vb__head h2 span { color: var(--lime); }
+.vb__shift p { background: var(--bone); color: var(--black); } .vb__shift > i { color: var(--lime); }
+.vb__shift .nw { background: var(--red); color: var(--bone); }
+.vb__app { background: var(--bone); box-shadow: 0 30px 60px rgba(0,0,0,.3); color: var(--black); }
+.vb__board { background-color: #EAE6DD; background-image: radial-gradient(#CFCAC0 1px, transparent 1.4px); }
+.vb__top > div, .vb__tools, .vb__zoom { background: var(--bone); }
+.vb__tools i.on { background: var(--lime); color: var(--black); }
+.vb__center .sw path { stroke: var(--pink); }
+.vb__center .sig { background: var(--red); box-shadow: 0 8px 20px rgba(214,22,29,.35); }
+.vb__n .cnt { background: var(--red); } .vb__burst path { stroke: var(--red); }
+.vb__n.y { background: var(--lime); } .vb__n.p { background: var(--pink); }
+.vb__n.g { background: var(--blue); color: var(--bone); } .vb__n.b { background: var(--black); color: var(--bone); }
+.vb__n.w { background: #FBF9F4; } .vb__n.o { background: var(--red); color: var(--bone); }
+.vb__n.g .vb__terr s { background: rgba(242,239,232,.18); } .vb__n.g .vb__terr b { background: var(--lime); color: var(--black); }
+.vb__n.b .vb__mbar i { background: rgba(242,239,232,.25); }
+.vb__ph { background: #FBF9F4; }
+.vb__why, .vb__frame { background: var(--bone); color: var(--black); box-shadow: 0 20px 40px -20px rgba(0,0,0,.35); }
+.vb__why .vb__k, .vb__frame .vb__k { color: #6B6862; }
+.vb__frame .ttl b { background: var(--red); }
+.vb__card { background: var(--bone); color: var(--black); box-shadow: none; } .vb__card:hover { box-shadow: 0 0 0 3px var(--lime); }
+.vb__plus { color: var(--lime); }
+.vb__both { color: var(--bone); } .vb__both mark, .vb__end mark { color: var(--lime); }
+.vb__duo .vb__n.w { background: var(--bone); color: var(--black); }
+.vb__n.x { background: var(--pink); color: var(--black); } .vb__n.x > b { text-decoration-color: var(--red); } .vb__n.x::after { background: var(--black); color: var(--pink); }
+.vb__chk li { background: var(--lime); } .vb__chk i { background: var(--black); color: var(--lime); } .vb__chk span { color: #2B2A27; }
 @media (max-width: 1100px) { .vb__wg, .vb__tg { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vb__pg, .vb__rules { grid-template-columns: 1fr; } }
 @media (max-width: 900px) {
   .vb { padding: 80px 16px; }
