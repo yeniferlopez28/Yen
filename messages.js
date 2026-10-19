@@ -9,7 +9,19 @@
     bus: "M5 4h14v12H5zM5 11h14M8 19v-3M16 19v-3M8 14h.01M16 14h.01", book: "M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5M8 7h7",
     lap: "M4 5h16v10H4zM2 19h20", gym: "M3 10v4M6 7v10M18 7v10M21 10v4M6 12h12", cup: "M5 8h11v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 4h-2",
     car: "M3 13l2-6h14l2 6v5H3zM3 13h18M7 18v2M17 18v2M7 15h.01M17 15h.01", chat: "M4 5h16v11H9l-5 4z", shelf: "M3 4h18M3 12h18M3 20h18M6 4v16M18 4v16",
-    check: "M5 12l4 4 10-10", flag: "M5 21V4l12 4-12 4", tag: "M3 12V4h8l10 10-8 8zM7.5 8.5h.01",
+    check: "M5 12l4 4 10-10", target: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10M12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2",
+    shield: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM8.5 12l2.5 2.5 4.5-5", pin: "M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11zM12 7.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5",
+    shuffle: "M3 7h4l10 10h4M17 21l4-4-4-4M3 17h4l3-3M14 10l3-3h4M17 3l4 4-4 4", chart: "M4 20V10M10 20V4M16 20v-7M22 20H2", battery: "M3 8h15v8H3zM21 11v2M6 11h9v2H6z",
+    coins: "M5 7c0-1.7 3.1-3 7-3s7 1.3 7 3-3.1 3-7 3-7-1.3-7-3zM5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5", cookie: "M12 3a9 9 0 1 0 9 9 3 3 0 0 1-3-3 3 3 0 0 1-3-3 3 3 0 0 1-3-3M8 10h.01M10 15h.01M15 14h.01",
+    bolt: "M13 2L4 14h7l-1 8 9-12h-7z", leaf: "M5 19C5 10 11 4 20 4c0 9-6 15-15 15zM5 19l8-8", ruler: "M3 17L17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2",
+    palette: "M12 3a9 9 0 1 0 0 18c1 0 1.5-.7 1.5-1.5S13 18 13 17a2 2 0 0 1 2-2h2a4 4 0 0 0 4-4c0-4.4-4-8-9-8zM7.5 11h.01M10 7.5h.01M15 7.5h.01", flame: "M12 22c4 0 7-3 7-7 0-5-5-7-5-12-3 2-5 5-5 8-1-1-2-2-2-4-2 2-2 5-2 8 0 4 3 7 7 7z",
+    cube: "M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9", oct: "M8 3h8l5 5v8l-5 5H8l-5-5V8zM12 8v5M12 16h.01", heart: "M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z",
+    play: "M5 4h14v16H5zM10 9l5 3-5 3z", mega: "M3 10v4h3l6 4V6L6 10zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12", gift: "M3 9h18v4H3zM5 13h14v8H5zM12 9v12M12 9C9 9 7 4 10 4s2 5 2 5 0-5 2-5 1 5-2 5",
+    cart: "M3 4h2l2.5 11h11L21 7H7M10 20h.01M17 20h.01", brief: "M3 7h18v13H3zM8 7V4h8v3M3 12h18", box: "M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10",
+    seed: "M12 20c-4 0-6-3-6-6s3-6 6-9c3 3 6 6 6 9s-2 6-6 6z", sprout: "M12 21v-9M12 12C12 7 8 5 4 5c0 4 3 7 8 7zM12 14c0-4 3-6 7-6 0 3-2 6-7 6z", tree: "M12 21v-6M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z",
+    eye: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6", search: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14M21 21l-5-5", loop: "M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4",
+    layers: "M12 3l9 5-9 5-9-5zM3 13l9 5 9-5", ppl: "M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6M2 20c0-3.3 2.7-5 6-5s6 1.7 6 5M14 15.3c.6-.2 1.3-.3 2-.3 3.3 0 6 1.7 6 5",
+    mic: "M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3M5 11a7 7 0 0 0 14 0M12 18v3", grid: "M4 4h7v7H4zM13 13h7v7h-7zM13 4h7v7h-7zM4 13h7v7H4z", star: "M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z", flag: "M5 21V4l12 4-12 4", tag: "M3 12V4h8l10 10-8 8zM7.5 8.5h.01",
   };
   const BAR = { br: "assets/fibo-brownie.webp", ch: "assets/fibo-chocolate.webp", ck: "assets/fibo-cookies.webp", fr: "assets/fibo-frutos.webp" };
 
@@ -80,16 +92,17 @@
   $("mxPrev").addEventListener("click", () => focus(-1)); $("mxNext").addEventListener("click", () => focus(1));
 
   /* pillars */
+  const PI = [I.battery, I.coins, I.pin, I.cookie, I.search];
   const PIL = [["A", "Te llena", "beneficio principal", "Dar la razón número uno para elegir FIBO.", "Una barra que sí te llena.", ["Para el hambre de las cinco", "Que el hambre espere", "Cuando la comida todavía no llega", "Pendientes sí. Hambre no."], "22 g de proteína y 10 g de fibra en 65 g; consumidores que la describen como «llenadora».", "Es lenguaje del consumidor, no un claim clínico. Nunca con horas ni comparaciones de saciedad.", "#D6161D"],
     ["B", "Rinde más", "valor", "Justificar por qué cuesta más que una barra de 25 pesos.", "Más barra, más proteína, por lo que pagas.", ["22 g: más del doble que una de 10", "Más proteína por tu dinero", "Paga por proteína, no por empaque"], "22 g contra 10 g de las masivas; $19.55 por cada 10 g en fibo.mx contra $33–35 de las importadas.", "«Más proteína por tu dinero» solo en línea y frente a importadas. En 7-Eleven el precio por gramo empata con Wild Protein y 7-Select.", "#3A5CFF"],
     ["C", "Hecha aquí, para tu día", "marca y ciudad", "Dar a FIBO una identidad que nadie más puede copiar.", "Hecha en Jalisco para los días que no paran.", ["Con FIBO te encuentras: en el camión, entre juntas, después del gym", "De Zapopan a tu mochila", "Tu día no para. Tu barra tampoco."], "Fabricada en la planta de El Molino en Zapopan; presente en 7-Eleven, gimnasios y tiendas de Guadalajara.", "", "#0C0B0A"],
     ["D", "Antojo", "sabor", "Que la barra se antoje y no se sienta como suplemento.", "Sabe a postre. Y sí te llena.", ["¿Con cuál FIBO te encuentras hoy?", "Cookies & Cream, pero con 22 g de proteína", "Se te antoja. Y te llena."], "Cuatro sabores de postre.", "Escalar solo cuando la prueba de sabor confirme la textura.", "#FF89B8"],
     ["E", "Encuentra FIBO", "disponibilidad", "Acortar la distancia entre el interés y la compra.", "Está más cerca de lo que crees.", ["Búscala en tu 7-Eleven", "¿Sí te llenó? Está a una cuadra", "Pídela en Amazon o fibo.mx"], "", "Activar solo donde el inventario y el sabor estén confirmados. Si FIBO no está donde dice, el concepto rector pierde credibilidad.", "#C9F23A"]];
   const pt = $("mxPtabs"), pv = $("mxPv");
-  pt.innerHTML = PIL.map(([l, n], i) => `<button type="button" style="--c:${PIL[i][8]}"><b class="mono">${l}</b>${n}</button>`).join("");
+  pt.innerHTML = PIL.map(([l, n], i) => `<button type="button" style="--c:${PIL[i][8]}"><b>${ic(PI[i])}</b>${n}</button>`).join("");
   const pbs = [...pt.children];
   const showPil = (i) => { pbs.forEach((b, k) => b.classList.toggle("on", k === i)); const [l, n, s, f, m, ap, pr, cu, c] = PIL[i];
-    pv.innerHTML = `<div class="mx__pm" style="--c:${c}"><p class="mono">${l} · ${n} <span>(${s})</span></p><h4>«${m}»</h4><p class="fn">${f}</p></div>
+    pv.innerHTML = `<div class="mx__pm" style="--c:${c}"><span class="pic">${ic(PI[i])}</span><p class="mono">${l} · ${n} <span>(${s})</span></p><h4>«${m}»</h4><p class="fn">${f}</p></div>
       <div class="mx__pa"><p class="mx__k mono">Mensajes de apoyo</p>${ap.map((a) => `<span class="mx__bub">${a}</span>`).join("")}</div>
       <div class="mx__pp">${pr ? `<div><small class="mono">✓ Prueba</small><p>${pr}</p></div>` : ""}${cu ? `<div class="cu"><small class="mono">⚠ Cuidado</small><p>${cu}</p></div>` : ""}</div>`; };
   pbs.forEach((b, i) => b.addEventListener("click", () => showPil(i))); showPil(0);
@@ -189,6 +202,43 @@
   td.innerHTML = TD.map(([t, w]) => `<button type="button" class="mx__td"><i></i><span>${t}</span><em class="mono">${w}</em></button>`).join("");
   const tds = [...td.children];
   tds.forEach((b) => b.addEventListener("click", () => { b.classList.toggle("on"); tdc.textContent = `${tds.filter((x) => x.classList.contains("on")).length} / 10`; }));
+
+  /* ——— dynamic layer: hero typing, KPIs, tickers, icons, counters, growth funnel ——— */
+  const TY = ["Pendientes sí. Hambre no.", "Una barra que sí te llena.", "¿Con cuál FIBO te encuentras hoy?", "¿Sí te llenó? Está a una cuadra.", "Hay encuentros que pasan entre una parada y otra.", "Ya sabes cuál te llena. Llévate el pack."];
+  const tyEl = $("mxType"); let ti = 0, tc = 0, del = false;
+  const type = () => { const s = TY[ti];
+    if (!del) { tc++; tyEl.textContent = s.slice(0, tc); if (tc === s.length) { del = true; return setTimeout(type, 1800); } }
+    else { tc -= 2; tyEl.textContent = s.slice(0, Math.max(0, tc)); if (tc <= 0) { del = false; tc = 0; ti = (ti + 1) % TY.length; } }
+    setTimeout(type, del ? 22 : 48); };
+  if (reduced) tyEl.textContent = TY[0]; else type();
+  $("mxQk").innerHTML = OC.map((o, i) => `<button type="button" data-i="${i}" style="--d:${i * 0.06}s">${ic(o.i)}${o.n}</button>`).join("");
+  $("mxQk").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { pick(+b.dataset.i); $("mxSit").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }); }));
+  const KP = [[5, "principios", I.target, "#C9F23A"], [5, "pilares", I.layers, "#FF89B8"], [8, "ocasiones", I.pin, "#3A5CFF"], [11, "canales", I.mega, "#D6161D"], [10, "preguntas antes de publicar", I.shield, "#0C0B0A"]];
+  const kpis = $("mxKpis");
+  kpis.innerHTML = KP.map(([n, l, i, c], k) => `<div style="--c:${c};--d:${k * 0.1}s"><span class="ic">${ic(i)}</span><b data-n="${n}">0</b><small>${l}</small></div>`).join("");
+  const countUp = (el, n, suf = "") => { if (reduced) { el.textContent = n + suf; return; } const t0 = performance.now(); const f = (t) => { const k = Math.min(1, (t - t0) / 1100); el.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))) + suf; if (k < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { kpis.classList.add("in"); kpis.querySelectorAll("b").forEach((b) => countUp(b, +b.dataset.n)); o.disconnect(); } }, { threshold: 0.4 }).observe(kpis);
+  const TK = ["Pendientes sí. Hambre no.", "Que el hambre espere.", "Sabe a postre. Y sí te llena.", "Tu día no para. Tu barra tampoco.", "De Zapopan a tu mochila.", "¿Team Brownie o Cookies & Cream?", "Está más cerca de lo que crees.", "Más barra, más proteína, por lo que pagas.", "Hecha en Jalisco para los días que no paran.", "22 g después de entrenar."];
+  const TKI = [I.lap, I.cup, I.cookie, I.bus, I.pin, I.chat, I.search, I.coins, I.star, I.gym];
+  sec.querySelectorAll(".mx__tick .trk, .mx__tick.rv .trk").forEach((t, r) => { const L = r ? [...TK].reverse() : TK; const one = L.map((s, i) => `<span>${ic(TKI[(r ? L.length - 1 - i : i)])}${s}</span>`).join(""); t.innerHTML = one + one; });
+  // pane header badges
+  const PH = { mxPil: [I.layers, "02"], mxProd: [I.box, "03"], mxSit: [I.pin, "04"], mxAud: [I.ppl, "05"], mxCh: [I.mega, "06"], mxCta: [I.sprout, "07"], mxTone: [I.mic, "08"], mxMat: [I.grid, "09"], mxGov: [I.shield, "10"] };
+  Object.entries(PH).forEach(([id, [i, n]]) => { const h = $(id) && $(id).querySelector(".mx__ph2 h3"); if (h) h.insertAdjacentHTML("afterbegin", `<span class="mx__hic">${ic(i)}<em class="mono">${n}</em></span>`); });
+  // icons on principles, attributes, channels, funnel, baselines, tone
+  const ins = (sel, list, cls = "mx__ico") => sec.querySelectorAll(sel).forEach((el, k) => list[k] && el.insertAdjacentHTML("afterbegin", `<span class="${cls}">${ic(list[k])}</span>`));
+  ins("#mxPr li", [I.target, I.shield, I.pin, I.shuffle, I.chart]);
+  ins(".mx__at .t", [I.bolt, I.leaf, I.ruler, I.palette, I.flame, I.cube, I.oct, I.pin]);
+  ins(".mx__cc .t", [I.tag, I.shelf, I.box, I.heart, I.play, I.mega, I.gift, I.gym, I.flag, I.cart, I.brief]);
+  ins(".mx__fs .t", [I.seed, I.eye, I.search, I.gift, I.cart, I.loop, I.brief]);
+  ins(".mx__base .t", [I.eye, I.search, I.gift, I.cart, I.loop, I.brief]);
+  ins(".mx__sound div", [I.search, I.heart, I.star, I.pin, I.cookie, I.target]);
+  ins(".mx__hier div", [I.star, I.box, I.shelf, I.cart, I.brief], "mx__ico sm");
+  // count-up product numbers when the pane shows
+  new IntersectionObserver(([e], o) => { if (!e.isIntersecting) return; sec.querySelectorAll(".mx__at > b").forEach((b) => { const m = b.textContent.match(/^(\d+)(.*)$/); if (m && +m[1] < 400) countUp(b, +m[1], m[2]); }); o.disconnect(); }, { threshold: 0.2 }).observe($("mxProd"));
+  // governance ring
+  const qhd = qs.querySelector(".hd"); qhd.insertAdjacentHTML("afterbegin", `<svg class="mx__ring" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><circle class="v" cx="20" cy="20" r="16" pathLength="10"/></svg>`);
+  const ring = qhd.querySelector(".v"); qb.forEach((b) => b.addEventListener("click", () => { const n = qb.filter((x) => x.classList.contains("on")).length; ring.style.strokeDashoffset = 10 - n; ring.classList.toggle("ok", n === 10); }));
+  const grow = sec.querySelector(".mx__grow"); new IntersectionObserver(([e], o) => { if (e.isIntersecting) { grow.classList.add("in"); o.disconnect(); } }, { threshold: 0.3 }).observe(grow);
 
   /* tab highlight while scrolling + reveal */
   const tabs = [...sec.querySelectorAll(".mx__tabs a")];
