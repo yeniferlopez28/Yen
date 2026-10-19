@@ -151,15 +151,19 @@
       stk: `<span class="st stamp" style="--r:-10deg">GDL</span>` },
   ];
   const book = document.getElementById("puBook");
+  const ILL = [0, 3, 7];
+  const noSvg = `<svg viewBox="0 0 360 260"><rect width="360" height="260" fill="#F2EFE8"/><circle cx="180" cy="120" r="78" fill="#C9F23A"/><path d="M180 58c-26 0-46 20-46 46 0 34 46 82 46 82s46-48 46-82c0-26-20-46-46-46z" fill="#D6161D"><animateTransform attributeName="transform" type="translate" values="0 0;0 -8;0 0" dur="2s" repeatCount="indefinite"/></path><text x="180" y="114" text-anchor="middle" font-family="Anton" font-size="30" fill="#fff">GDL<animateTransform attributeName="transform" type="translate" values="0 0;0 -8;0 0" dur="2s" repeatCount="indefinite"/></text><ellipse cx="180" cy="204" rx="30" ry="6" fill="rgba(0,0,0,.15)"/>${["Niños", "Atletas", "Todo México"].map((t, i) => `<g transform="translate(${60 + i * 120} 232)"><rect x="-48" y="-14" width="96" height="26" rx="13" fill="#fff" stroke="#0C0B0A" stroke-width="1.5"/><text y="4" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#8A877F">${t}</text><path d="M-40 -1h80" stroke="#D6161D" stroke-width="2.5"/></g>`).join("")}</svg>`;
   book.innerHTML = B.map((b, i) => `
     <article class="pu__pg" ${b.id ? `id="${b.id}"` : ""} style="--c:${b.c};--i:${i}">
-      <header><span class="mono">fecha <b>${b.date}</b></span><span class="days mono">${days(b.k)}</span></header>
-      <p class="tp"><span class="mono">tema</span>${b.topic}</p>
-      ${b.ck ? `<ul class="ck">${b.ck.map((x) => `<li>${x}</li>`).join("")}</ul>` : ""}
-      ${b.no ? `<ul class="no">${b.no.map(([h, x]) => `<li><b>${h}</b><span>${x}</span></li>`).join("")}</ul>` : ""}
-      ${b.body ? `<p class="bd">${b.body}</p>` : ""}
-      <p class="ft mono">${b.foot}</p>
-      <div class="stk">${b.stk}</div>
+      <div class="ill">${i < 3 ? `<svg viewBox="0 0 360 260">${S[ILL[i]].svg()}</svg>` : noSvg}</div>
+      <div class="tx">
+        <p class="mono lb"><i></i>${["Núcleo", "Secundario", "Tercer grupo", "Fuera del foco"][i]}</p>
+        <h3>${(i === 3 ? b.topic : b.topic.replace(/^[^·]*· /, "")).replace(/^./, (m) => m.toUpperCase())}</h3>
+        ${b.ck ? `<ul class="ck">${b.ck.map((x) => `<li>${x}</li>`).join("")}</ul>` : ""}
+        ${b.no ? `<ul class="no">${b.no.map(([h, x]) => `<li><b>${h}</b><span>${x}</span></li>`).join("")}</ul>` : ""}
+        ${b.body ? `<p class="bd">${b.body}</p>` : ""}
+        <p class="ft mono">${b.foot}</p>
+      </div>
     </article>`).join("");
 
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 });
