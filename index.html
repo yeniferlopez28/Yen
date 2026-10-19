@@ -3105,49 +3105,23 @@
     </section>
 
     <section class="om" id="objetivos-marca">
-      <div class="om__band"><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="10"/><ellipse cx="16" cy="16" rx="6" ry="10"/><path d="M2 16h28M5 10h22M5 22h22"/></svg><span>Lo que la marca tiene que lograr</span></div>
-
-      <div class="om__top">
-        <div class="om__ybox om__intro">
-          <h2>Objetivos<br>de marca</h2>
-          <p>No cuánto vender, sino <b>qué tiene que pensar, sentir y hacer la gente frente a FIBO.</b> Si la marca los cumple, las ventas tienen una base más sólida y menos dependiente de dos clientes.</p>
-          <div class="om__stamp red" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="omC1" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#omC1">PENSAR · SENTIR · HACER · PENSAR · SENTIR · HACER ·</textPath></text></svg><b>✳</b></div>
+      <header class="om__head">
+        <p class="mono om__k">Objetivos de marca</p>
+        <h2>Qué tiene que pensar, sentir y hacer la gente frente a FIBO.</h2>
+        <p>No cuánto vender: si la marca cumple estos seis objetivos, las ventas tienen una base más sólida y menos dependiente de dos clientes.</p>
+        <div class="om__pills" id="omPills"><button type="button" class="on" data-v="all">Todos</button><button type="button" data-v="p">Pensar</button><button type="button" data-v="s">Sentir</button><button type="button" data-v="h">Hacer</button></div>
+      </header>
+      <div class="om__decks" id="omDecks"></div>
+      <p class="om__hint mono">Pasa el mouse para abrir cada mazo · toca para barajar</p>
+      <div class="om__base">
+        <div class="om__pile mini" aria-hidden="true"><div class="om__cd" style="--n:2"><div class="om__img" style="background:#0C0B0A"></div></div><div class="om__cd" style="--n:1"><div class="om__img" style="background:#3A5CFF"></div></div><div class="om__cd" style="--n:0"><div class="om__img nov" style="background:#D6161D"><b>NOV</b><span class="mono">línea base</span></div><div class="om__bd"><p class="src"><i></i>FIBO · Medición</p><h5>Primero medir, después fijar metas</h5></div></div></div>
+        <div>
+          <h3>Sin metas sin línea base</h3>
+          <p>Como en los objetivos del proyecto, no se fijan metas numéricas sin un punto de partida. La encuesta, la prueba de sabor y el piloto de exhibición lo darán en noviembre; de ahí salen las metas de los primeros seis meses.</p>
+          <div class="om__tg"><span>Encuesta</span><span>Prueba de sabor</span><span>Piloto de exhibición</span><span class="k">Metas a 6 meses</span></div>
         </div>
-        <div class="om__cloud"><span>Son 6 objetivos,<br>todos medibles</span></div>
       </div>
-
-      <div class="om__stage" id="omStage">
-        <svg class="om__lines" id="omLines" aria-hidden="true"></svg>
-        <div class="om__calls l" id="omCallsL"></div>
-
-        <div class="om__tab" id="omTab">
-          <div class="om__tnav"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><span class="ic dk"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><nav class="mono"><span>Conocer</span><span>Identidad</span><span>Día a día</span><span>Confianza</span><span>Recompra</span><span>Punto de venta</span></nav><b class="mb">Con FIBO te encuentras</b></div>
-          <div class="om__thead"><h3>FIBO</h3><h3>Objetivos</h3></div>
-          <div class="om__tbody">
-            <aside class="om__filters">
-              <svg class="fi" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9h24M4 16h24M4 23h24"/><circle cx="11" cy="9" r="3"/><circle cx="21" cy="16" r="3"/><circle cx="13" cy="23" r="3"/></svg>
-              <div class="om__chips" id="omChips"><button type="button" class="on" data-v="all">Todos</button><button type="button" data-v="p">Pensar</button><button type="button" data-v="s">Sentir</button><button type="button" data-v="h">Hacer</button></div>
-              <hr>
-              <svg class="fi" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="2"/><path d="M4 12h24M10 3v6M22 3v6M10 17h4M18 17h4M10 22h4M18 22h4"/></svg>
-              <div class="om__when"><span class="on">Noviembre · línea base</span><span>Primeros 6 meses</span></div>
-            </aside>
-            <div class="om__cards" id="omCards"></div>
-          </div>
-        </div>
-
-        <div class="om__calls r" id="omCallsR"></div>
-      </div>
-
-      <div class="om__bottom">
-        <div class="om__ybox om__base">
-          <h3>Sin metas sin<br>línea base</h3>
-          <p>Como en los objetivos del proyecto, no se fijan metas numéricas sin un punto de partida. <b>La encuesta, la prueba de sabor y el piloto de exhibición</b> lo darán en noviembre, y de ahí salen las metas de los primeros seis meses.</p>
-          <ol class="om__steps mono"><li><i>01</i>Encuesta</li><li><i>02</i>Prueba de sabor</li><li><i>03</i>Piloto de exhibición</li><li class="g"><i>→</i>Metas a 6 meses</li></ol>
-          <div class="om__stamp green" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="omC2" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#omC2">LÍNEA BASE · NOVIEMBRE · LÍNEA BASE · NOVIEMBRE ·</textPath></text></svg><b><svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="14" ry="10"/><ellipse cx="16" cy="16" rx="6" ry="10"/><path d="M2 16h28"/></svg></b></div>
-        </div>
-        <p class="om__end">Que FIBO deje de ser <s>una barra que está en el anaquel</s> y se convierta en <mark>una marca que la gente reconoce, encuentra y elige.</mark></p>
-      </div>
-      <div class="om__floor" aria-hidden="true"></div>
+      <p class="om__end">Todos apuntan a lo mismo: que FIBO deje de ser <s>una barra que está en el anaquel</s> y se convierta en <mark>una marca que la gente reconoce, encuentra y elige.</mark></p>
     </section>
 
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
