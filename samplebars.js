@@ -45,7 +45,8 @@
   let W = 0, H = 0, S = 1;
 
   function size() {
-    W = canvas.clientWidth; H = canvas.clientHeight;
+    W = Math.round(canvas.clientWidth); H = Math.round(canvas.clientHeight);
+    if (!W || !H) return;
     canvas.width = W * dpr; canvas.height = H * dpr;
     off.width = W; off.height = H;
     S = Math.min(W / 5.6, H / 3.75);
@@ -118,7 +119,8 @@
   let visible = false;
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
   function frame(t) {
-    if (visible && W) {
+    if (visible && canvas.clientWidth !== W) size();
+    if (visible && W > 0 && H > 0) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);
       BARS.forEach((b) => drawBar(b, t));
