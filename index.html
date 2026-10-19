@@ -2997,6 +2997,34 @@
       </div>
     </section>
 
+    <section class="fd" id="foda">
+      <header class="fd__head">
+        <p class="fd__lab mono"><i></i>Análisis FODA</p>
+        <h2>Lo que FIBO tiene <mark class="g">a favor</mark> y <mark class="r">en contra</mark>, dentro y fuera.</h2>
+        <div class="fd__use mono"><span>Sirve para decidir qué</span><b class="u1">aprovechar</b><b class="u2">corregir</b><b class="u3">y de qué protegerse</b></div>
+      </header>
+
+      <div class="fd__board" id="fdBoard">
+        <span class="fd__ax top a1 mono">A favor ↓</span><span class="fd__ax top a2 mono">En contra ↓</span>
+        <span class="fd__ax side s1 mono">Interno · la empresa</span><span class="fd__ax side s2 mono">Externo · el mercado</span>
+        <div class="fd__grid" id="fdGrid" data-open="-1"></div>
+        <button type="button" class="fd__core" id="fdCore" aria-label="Ver todo el FODA"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="fdRing" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#fdRing">FODA · FIBO · 2026 · FODA · FIBO · 2026 ·</textPath></text></svg><b>FIBO</b></button>
+        <p class="fd__tip mono" id="fdTip">Toca un cuadrante para abrirlo</p>
+      </div>
+
+      <div class="fd__cross" id="fdCross">
+        <div class="fd__xl">
+          <p class="fd__lab mono"><i></i>Lo que dice el FODA en conjunto</p>
+          <div class="fd__tabs" id="fdTabs" role="tablist"></div>
+          <div class="fd__xt" id="fdXt" aria-live="polite"><span class="mono"></span><h3></h3><p></p><ul></ul></div>
+        </div>
+        <div class="fd__map" aria-hidden="true">
+          <div class="fd__mg"><i data-q="F">F</i><i data-q="D">D</i><i data-q="O">O</i><i data-q="A">A</i></div>
+          <svg class="fd__arr" viewBox="0 0 200 200"><path id="fdArr" d="M60 60 L60 140"/><circle r="6"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#fdArr"/></animateMotion></circle></svg>
+        </div>
+      </div>
+    </section>
+
     <section class="show" id="presenta" style="--bg: #D6161D; --fg: #F2EFE8; --pc: #0C0B0A; --pt: #F2EFE8">
       <canvas class="show__word" id="showWord" aria-hidden="true"></canvas>
       <div class="show__pix" id="showPix" aria-hidden="true"></div>
@@ -3281,6 +3309,7 @@
   <script src="samplebars.js"></script>
   <script src="synthesis.js"></script>
   <script src="brandnotes.js"></script>
+  <script src="swot.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
