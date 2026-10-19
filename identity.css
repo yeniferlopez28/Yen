@@ -1,0 +1,25 @@
+/* FIBO web identity (COPIA): Anton headlines in caps, Archivo text, warm bone, red · black · lime · pink · blue */
+:root {
+  --cream: #F5EBD7; --bone: #F5EBD7; --paper: #F5EBD7;
+  --red: #D6161D; --black: #0B0A09; --lime: #C9F23A; --blue: #3A5CFF; --pink: #FF89B8;
+  --sans: "Archivo", system-ui, sans-serif;
+  --mono: "Archivo", system-ui, sans-serif;
+  --display: "Anton", "Arial Narrow", Impact, sans-serif;
+}
+body { font-family: var(--sans); }
+h1, h2, h3 { font-family: var(--display) !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: 0 !important; line-height: .92 !important; }
+h1 *, h2 *, h3 * { letter-spacing: 0 !important; }
+h4, h5 { font-family: var(--sans); font-weight: 700; letter-spacing: -.01em; }
+.mono { font-family: var(--sans) !important; font-weight: 700; letter-spacing: .02em !important; }
+mark { background: none; color: var(--lime); }
+/* big statements read as poster type */
+.pz__goldbig, .tc__insbig, .tc__rulebig, .pz__nb, .mx__kpis b, .tc__spec b, .mx__at > b, .tc__big, .pz__big, .pz__card h4, .mx__pm h4, .mx__close, .pz__gl, .tc__rl, .mx__ask, .pz__att b, .tc__eq span, .mx__sig, .mx__bk b {
+  font-family: var(--display) !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: 0 !important; line-height: .95;
+}
+.pz__goldbig { font-size: clamp(48px, 7vw, 120px); } .tc__insbig { font-size: clamp(40px, 6vw, 96px); } .tc__rulebig { font-size: clamp(42px, 6.4vw, 104px); }
+.pz__nb { font-size: clamp(64px, 7vw, 110px); }
+/* kicker lines look like the site's lime/red labels */
+.nt__k, .om__k, .pz__kk, .tc__kk, .mx__kk, .vb__k, .cr__kick, .pz__k, .tc__k, .mx__k { font-family: var(--sans) !important; font-weight: 700; text-transform: none; letter-spacing: 0 !important; font-size: 15px; }
+.pz__kk, .mx__kk { color: var(--lime); } .tc__kk { color: var(--red); }
+/* pills & buttons */
+button, .om__pills button, .mx__pill { font-family: var(--sans); font-weight: 600; }
