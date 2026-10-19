@@ -6,15 +6,15 @@
   const ic = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
 
   const O = [
-    { k: "Conocer", v: "p", t: "Que la gente conozca a FIBO", c: ["#C9F23A", "#3A5CFF"], i: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6",
+    { k: "Conocer", v: "p", t: "Que la gente conozca a FIBO", c: ["#C9F23A", "#D6161D"], i: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6",
       now: "≈430 calificaciones públicas. En algunas tiendas ni el personal la reconoce.", goal: "Que el joven de Guadalajara recuerde a FIBO cuando piense en una barra de proteína.", m: "Reconocimiento de marca en la encuesta (línea base) y crecimiento de la comunidad en redes." },
-    { k: "Una identidad", v: "s", t: "Que se vea y suene igual en todas partes", c: ["#B03CE0", "#F2EFE8"], i: "M4 4h7v7H4zM13 13h7v7h-7zM13 4h7v7h-7zM4 13h7v7H4z",
+    { k: "Una identidad", v: "s", t: "Que se vea y suene igual en todas partes", c: ["#3A5CFF", "#F2EFE8"], i: "M4 4h7v7H4zM13 13h7v7h-7zM13 4h7v7h-7zM4 13h7v7H4z",
       now: "2 logos, 4 nombres, 3 líneas visuales y 5 precios.", goal: "Un logo, un nombre, una paleta y un tono en el empaque, el anaquel, las redes, Amazon y el material de venta.", m: "Auditoría de marca: cuántos puntos de contacto cumplen con el Brand Book." },
-    { k: "Día a día", v: "p", t: "Que se asocie con el día a día, no solo con el gimnasio", c: ["#FF8A3D", "#D6161D"], i: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M12 7v5l3 2",
+    { k: "Día a día", v: "p", t: "Que se asocie con el día a día, no solo con el gimnasio", c: ["#D6161D", "#C9F23A"], i: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M12 7v5l3 2",
       now: "Se asocia al gimnasio y al suplemento.", goal: "La barra que llena entre clases, en la oficina o en el camino.", m: "Encuesta: en qué momentos imaginan comer FIBO, y la respuesta a «Con FIBO te encuentras»." },
     { k: "Confianza", v: "s", t: "Que la gente confíe en lo que dice FIBO", c: ["#3A5CFF", "#0C0B0A"], i: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM8.5 12l2.5 2.5 4.5-5",
       now: "Claims que no se pueden sostener, en una categoría donde Profeco encontró productos que no cumplen.", goal: "Cada mensaje respaldado: proteína validada en laboratorio, claims correctos y tablas completas de los 4 sabores.", m: "Revisión de claims por parte de Calidad y credibilidad del mensaje en la encuesta." },
-    { k: "Recompra", v: "h", t: "Que quien la pruebe quiera volver a comprarla", c: ["#D6161D", "#F6D6E0"], i: "M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4",
+    { k: "Recompra", v: "h", t: "Que quien la pruebe quiera volver a comprarla", c: ["#D6161D", "#F2EFE8"], i: "M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4",
       now: "La queja más repetida: está seca. Amazon ≈4.1 estrellas.", goal: "Sabor y textura a la altura de la competencia.", m: "Prueba de sabor a ciegas, calificación en Amazon e intención de recompra." },
     { k: "Punto de venta", v: "h", t: "Que FIBO se vea en el punto de venta", c: ["#0C0B0A", "#C9F23A"], i: "M3 9l2-5h14l2 5M4 9h16v11H4zM9 14h6",
       now: "Ningún punto visitado tiene material propio.", goal: "Un espacio reconocible en sus principales tiendas, con los 4 sabores juntos.", m: "Porcentaje de tiendas con material y rotación por tienda." },

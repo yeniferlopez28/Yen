@@ -3994,3 +3994,53 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
   .om__groups { height: auto; display: grid; gap: 10px; } .om__g { position: static; width: auto !important; }
   .om__ly { grid-template-columns: 64px 1fr; } .om__ly .th { width: 64px; height: 56px; }
 }
+/* Objetivos de marca · FIBO look (red / blue / lime / black / cream, display type, more motion) */
+.om { background-color: var(--red); background-image: radial-gradient(rgba(242,239,232,.18) 1.4px, transparent 1.8px); background-size: 24px 24px; animation: omDots 18s linear infinite; color: var(--cream); }
+@keyframes omDots { to { background-position: 240px 120px; } }
+.om h2, .om h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: 0; }
+.om mark { color: var(--lime); }
+.om__k { color: rgba(242,239,232,.75); }
+.om__hero { background: var(--blue); box-shadow: 0 30px 60px rgba(0,0,0,.25); }
+.om__hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 20% 10%, rgba(201,242,58,.28), transparent 70%), radial-gradient(50% 50% at 90% 90%, rgba(214,22,29,.45), transparent 70%); pointer-events: none; }
+.om__brand { color: var(--cream); } .om__brand i { border-color: var(--lime); border-right-color: transparent; animation: fdSpin 2.4s linear infinite; }
+.om__hero h2 { position: relative; z-index: 3; font-size: clamp(48px, 7.4vw, 120px); line-height: .9; color: var(--cream); }
+.om__hero h2 em { font-style: normal; color: var(--lime); -webkit-text-stroke: 0; }
+.om__sub { position: relative; z-index: 3; color: #DCE3FF; }
+.om__pill { background: var(--black); box-shadow: 0 0 0 1px rgba(255,255,255,.2), 0 0 0 10px rgba(255,255,255,.06), 0 0 0 20px rgba(255,255,255,.03); }
+.om__pill b { color: var(--cream); }
+.om__orbit i { border-top-color: rgba(201,242,58,.7); } .om__orbit i + i { border-top-color: rgba(242,239,232,.45); }
+.om__orbit i { animation: omWob 8s ease-in-out infinite; } .om__orbit i + i { animation-delay: -4s; }
+@keyframes omWob { 50% { transform: rotate(-2deg) translateY(-10px); } }
+.om__orb .ball { box-shadow: inset -20px -24px 50px rgba(0,0,0,.45), 0 20px 40px rgba(0,0,0,.35); }
+.om__orb.on .ball { animation: omFloat 4s ease-in-out infinite; }
+@keyframes omFloat { 50% { translate: 0 -10px; } }
+.om__orb .lb { font-family: var(--display); text-transform: uppercase; font-size: 22px; letter-spacing: .02em; }
+.om__seg { background: var(--black); box-shadow: none; }
+.om__seg button { color: #BDBAB3; } .om__seg button.on { background: var(--lime); color: var(--black); box-shadow: none; }
+.om__stk { position: absolute; z-index: 1; width: clamp(110px, 13vw, 190px); filter: drop-shadow(0 16px 18px rgba(0,0,0,.35)); animation: omStk 7s ease-in-out infinite; pointer-events: none; }
+.om__stk.k1 { left: 1.5%; top: 46%; --r: -18deg; } .om__stk.k2 { right: 1.5%; top: 44%; --r: 14deg; animation-delay: -2s; } .om__stk.k3 { left: 4%; bottom: 4%; --r: 10deg; animation-delay: -4s; } .om__stk.k4 { right: 4%; bottom: 5%; --r: -12deg; animation-delay: -5.5s; }
+@keyframes omStk { 0%, 100% { transform: rotate(var(--r)) translateY(0); } 50% { transform: rotate(calc(var(--r) * -.4)) translateY(-16px); } }
+.om__mq { align-self: start; height: max-content; margin: -30px calc(var(--pad) * -1); background: var(--lime); color: var(--black); overflow: hidden; transform: rotate(-1.5deg); border-block: 3px solid var(--black); }
+.om__mq div { display: flex; width: max-content; animation: slide 26s linear infinite; }
+.om__mq span, .om__mq i { font-family: var(--display); text-transform: uppercase; font-style: normal; font-size: clamp(26px, 3vw, 42px); line-height: 1; padding: 14px 18px 12px; white-space: nowrap; } .om__mq i { color: var(--red); }
+.om__stack { background: var(--black); box-shadow: 0 30px 60px rgba(0,0,0,.3); }
+.om__sh { background: #1C1B19; box-shadow: none; } .om__sh b { background: var(--lime); }
+.om__ly { background: #1F1E1C; } .om__ly:hover { background: #2A2926; }
+.om__ly.on { background: var(--blue); box-shadow: inset 0 0 0 2px var(--lime); } .om__ly.on .tx span { color: var(--lime); }
+.om__wire path { stroke: var(--lime); stroke-width: 2; stroke-dasharray: 6 6; animation: fdDash 1s linear infinite; } .om__wire circle { fill: var(--lime); }
+.om__ed { background: var(--cream); color: var(--black); box-shadow: 0 30px 60px rgba(0,0,0,.3); }
+.om__eh { color: #6B6862; } .om__eh .chip { background: var(--black); color: var(--cream); } .om__eh .sv { color: var(--red); font-weight: 500; }
+.om__tools i { background: #E5E2DA; color: var(--black); } .om__tools i.on { background: var(--red); color: #fff; }
+.om__canvas { background: radial-gradient(80% 70% at 50% 25%, #1E2A6B, #0C0B0A 75%); }
+.om__canvas::after { border-color: var(--lime); }
+.om__now p { background: #E8E5DD; color: var(--black); } .om__now .g { background: var(--black); color: var(--cream); } .om__now span { color: var(--red); }
+.om__prompt { background: var(--black); box-shadow: none; } .om__prompt p { color: var(--lime); }
+.om__in { background: #1F1E1C; color: var(--cream); } .om__in .cur { background: var(--lime); } .om__in b { background: var(--red); color: #fff; }
+.om__scn .oms3 .zmo circle { stroke: var(--lime); } .om__scn .oms3 .zdot { fill: var(--red); stroke: #fff; }
+.om__scn .oms4 li em::before { background: #E5E5EA; } .om__scn .oms1 .zstars { color: var(--lime); }
+.om__bh h3 { font-size: clamp(40px, 5vw, 76px); color: var(--cream); }
+.om__map { box-shadow: 0 30px 60px rgba(0,0,0,.25); background-color: var(--cream); }
+.om__links path { stroke: var(--red); }
+.om__g.g7 { background: var(--blue); border-color: var(--blue); }
+.om__end { color: var(--cream); font-weight: 500; } .om__end s { color: rgba(242,239,232,.6); text-decoration-color: var(--black); } .om__end mark { color: var(--lime); }
+@media (max-width: 760px) { .om__stk { width: 76px; } .om__stk.k1, .om__stk.k2 { display: none; } .om__stk.k3, .om__stk.k4 { bottom: 2%; } .om__mq { margin: -40px -16px; } .om__hero h2 { font-size: 44px; } }
