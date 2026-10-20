@@ -45,3 +45,22 @@ button, .om__pills button, .mx__pill { font-family: var(--sans); font-weight: 60
 .idc--lime { --lime: #FF89B8; }
 .idc--pink { --pink: #F5EBD7; }
 .idc--d .pc__head h2 span { color: #C9F23A; } .idc--red .pc__head h2 span { color: #F5EBD7; opacity: .7; }
+/* ===== title hierarchy (COPIA) ===== */
+.idc .idh1 { font-size: clamp(52px, 7.2vw, 124px) !important; line-height: .88 !important; max-width: 22ch; text-wrap: balance; overflow-wrap: normal; word-break: normal; margin-bottom: .12em; }
+.idc .idh1 span, .idc .idh1 mark, .idc .idh1 em { font-size: inherit !important; line-height: inherit !important; }
+.idc .idh2 { font-size: clamp(34px, 4.2vw, 68px) !important; line-height: .92 !important; text-wrap: balance; }
+.idc .idh3 { font-family: var(--sans) !important; font-weight: 800 !important; text-transform: none !important; letter-spacing: -.015em !important; line-height: 1.15 !important; font-size: clamp(17px, 1.3vw, 21px) !important; }
+.idc .idlead { font-family: var(--sans); font-weight: 500; font-size: clamp(17px, 1.45vw, 22px) !important; line-height: 1.45 !important; max-width: 60ch; margin-top: 18px; opacity: .9; }
+.idc h4, .idc h5 { font-weight: 800; letter-spacing: -.015em; }
+/* kicker ticket sits clearly above the title */
+.om__k, .nt__blk, .pz__kk, .tc__kk, .mx__kk { margin-bottom: 14px !important; font-size: 14px !important; }
+/* title entrance */
+.idrise.idin { animation: idRise .8s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes idRise { from { opacity: 0; transform: translateY(28px); } }
+
+/* only two families: Archivo for text, Anton for titles and highlights */
+:root { --serif: "Archivo", system-ui, sans-serif; }
+body h1, body h2, body h3:not(.idh3), body .idh1, body .idh2, body .idh1 *, body .idh2 *, body h1 *,
+body .pz__goldbig, body .tc__insbig, body .tc__rulebig, body .pz__nb, body .mx__kpis b, body .tc__spec b, body .mx__at > b, body .tc__big, body .pz__big, body .pz__card h4, body .mx__pm h4, body .mx__close, body .pz__gl, body .tc__rl, body .mx__ask, body .pz__att b, body .tc__eq span, body .mx__sig, body .mx__bk b,
+body .idt span, body .logo, body [class*="display"], body .bm__n, body .stat b, body big { font-family: "Anton", Impact, sans-serif !important; font-weight: 400 !important; }
+.idc .idh1:has(mark) { line-height: 1.02 !important; } .idc .idh1 mark { padding: 0 .08em; }

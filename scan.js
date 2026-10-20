@@ -85,7 +85,7 @@
       const bxw = 22, bxh = 9, bx = right - bxw + 1, by = Math.max(top + 2, oy + bh - 2);
       px(bx, by, bxw, bxh);
       ctx.fillStyle = BG;
-      ctx.font = `700 ${7 * PX}px "JetBrains Mono", monospace`;
+      ctx.font = `700 ${7 * PX}px "Archivo", monospace`;
       ctx.textBaseline = "middle"; ctx.textAlign = "center";
       ctx.fillText(String(Math.round(p * 22)).padStart(2, "0") + "G", (bx + bxw / 2) * PX, (by + bxh / 2 + 0.5) * PX);
       ctx.fillStyle = FG;

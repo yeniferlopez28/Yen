@@ -109,7 +109,7 @@
     ctx.moveTo(-BW / 2 + 5, -BH / 2); ctx.lineTo(-BW / 2 + 5, BH / 2);
     ctx.moveTo(BW / 2 - 5, -BH / 2); ctx.lineTo(BW / 2 - 5, BH / 2);
     ctx.stroke();
-    ctx.font = '700 8px "Space Grotesk", sans-serif';
+    ctx.font = '700 8px "Archivo", sans-serif';
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.fillText("FIBO", 0, 0.5);
     ctx.restore();

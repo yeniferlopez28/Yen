@@ -56,7 +56,7 @@
         ctx.beginPath(); ctx.arc(0, 0, R - 1, 0, Math.PI * 2);
         if (b.on) { ctx.fillStyle = fg; ctx.fill(); ctx.fillStyle = cs.backgroundColor; }
         else { ctx.lineWidth = 2; ctx.strokeStyle = fg; ctx.stroke(); ctx.fillStyle = fg; }
-        ctx.font = `700 ${Math.round(R * 0.62)}px "JetBrains Mono", monospace`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.font = `700 ${Math.round(R * 0.62)}px "Archivo", monospace`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
         ctx.fillText(label, 0, 1);
         ctx.restore();
       }

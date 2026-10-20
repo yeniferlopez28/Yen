@@ -86,7 +86,7 @@
   });
 
   /* ============ DOT-MATRIX WORDMARKS ============ */
-  function dotMatrix(canvas, { color = "#0a0a0a", weight = 700, font = "Space Grotesk" } = {}) {
+  function dotMatrix(canvas, { color = "#0a0a0a", weight = 700, font = "Archivo" } = {}) {
     const ctx = canvas.getContext("2d");
     const text = canvas.dataset.text;
     // optional: sample a logo image instead of setting text

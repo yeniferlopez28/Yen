@@ -87,7 +87,7 @@
       o.save();
       o.setTransform((bb[0] - a[0]) / 210, (bb[1] - a[1]) / 210, (c[0] - a[0]) / 60, (c[1] - a[1]) / 60, a[0], a[1]);
       o.fillStyle = "#000"; o.textBaseline = "middle"; o.textAlign = "center";
-      o.font = '700 68px "Space Grotesk", sans-serif';
+      o.font = '700 68px "Archivo", sans-serif';
       o.fillText("FIBO", 105, 33);
       o.restore();
     }

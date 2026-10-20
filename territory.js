@@ -16,7 +16,7 @@
     const lines = ["Con FIBO", "te", "encuentras"], w = Math.floor(tw / cell), fs = Math.floor(w / 6.2);
     th = Math.ceil(lines.length * fs * 0.98 + fs * 0.25) * cell;
     toff.width = w; toff.height = Math.ceil(th / cell);
-    to.clearRect(0, 0, w, toff.height); to.font = `700 ${fs}px "Space Grotesk", sans-serif`; to.textBaseline = "top";
+    to.clearRect(0, 0, w, toff.height); to.font = `700 ${fs}px "Archivo", sans-serif`; to.textBaseline = "top";
     lines.forEach((l, i) => { let x = 0; l.split(/(FIBO)/).forEach((p) => { to.fillStyle = p === "FIBO" ? "#D6161D" : "#0C0B0A"; to.fillText(p, x, i * fs * 0.98 + 2); x += to.measureText(p).width; }); });
     const d = Math.min(2, devicePixelRatio || 1); tv.width = tw * d; tv.height = th * d; tv.style.height = th + "px";
     let s = 11; const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
@@ -65,7 +65,7 @@
   const pix = (c) => {
     const Wc = c.clientWidth; if (!Wc) return;
     const cl = Wc < 700 ? 3 : 4, w = Math.floor(Wc / cl), fs = Math.min(20, w / 14);
-    const o = document.createElement("canvas"), g = o.getContext("2d"), font = `700 ${fs}px "Space Grotesk", sans-serif`; g.font = font;
+    const o = document.createElement("canvas"), g = o.getContext("2d"), font = `700 ${fs}px "Archivo", sans-serif`; g.font = font;
     const lines = []; c.dataset.px.split(" ").forEach((wd) => { const l = lines[lines.length - 1]; if (l && g.measureText(l + " " + wd).width < w - 2) lines[lines.length - 1] = l + " " + wd; else lines.push(wd); });
     const h = Math.ceil(lines.length * fs * 1.06 + fs * 0.1); o.width = w; o.height = h; g.font = font; g.fillStyle = c.dataset.c || "#0C0B0A"; g.textBaseline = "top";
     lines.forEach((l, i) => g.fillText(l, 0, i * fs * 1.06 + 1));

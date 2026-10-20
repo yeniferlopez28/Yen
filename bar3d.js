@@ -106,7 +106,7 @@
       o.fillStyle = "#000";
       o.textBaseline = "middle";
       o.textAlign = "center";
-      o.font = '700 68px "Space Grotesk", sans-serif';
+      o.font = '700 68px "Archivo", sans-serif';
       o.fillText("FIBO", 105, 33);
       o.restore();
     }

@@ -40,3 +40,29 @@
     s.after(t);
   });
 })();
+
+// Type hierarchy: section titles big, block titles medium, card titles in Archivo; titles fit their column and rise in on enter.
+(() => {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const secs = [...document.querySelectorAll("section.idc")];
+  const h2s = [], h3s = [];
+  secs.forEach((s) => {
+    s.querySelectorAll("h2").forEach((h) => { h.classList.add("idh1"); h2s.push(h); });
+    s.querySelectorAll("h3").forEach((h) => {
+      const fs = parseFloat(getComputedStyle(h).fontSize);
+      h.classList.add(fs >= 26 ? "idh2" : "idh3"); if (fs >= 26) h3s.push(h);
+    });
+    // lead paragraph right after a section title
+    s.querySelectorAll("h2 + p").forEach((p) => { if (!p.closest("button") && p.textContent.length > 40) p.classList.add("idlead"); });
+  });
+  // shrink any title whose longest word would overflow its column
+  const fit = () => [...h2s, ...h3s].forEach((h) => {
+    h.style.fontSize = ""; const min = h.classList.contains("idh1") ? 40 : 26;
+    let fs = parseFloat(getComputedStyle(h).fontSize), n = 0;
+    while (h.scrollWidth > h.clientWidth + 1 && fs > min && n++ < 30) { fs *= 0.94; h.style.fontSize = fs + "px"; }
+  });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit); addEventListener("resize", fit);
+  if (reduced) return;
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("idin"); io.unobserve(e.target); } }), { threshold: 0.2 });
+  [...h2s, ...h3s].forEach((h) => { h.classList.add("idrise"); io.observe(h); });
+})();

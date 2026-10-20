@@ -66,9 +66,9 @@
     const w = Math.floor(Wc / cell);
     let fs = full ? Math.min(22, w / 13) : 16;
     const o = document.createElement("canvas"), g = o.getContext("2d");
-    g.font = `700 ${fs}px "Space Grotesk", sans-serif`;
+    g.font = `700 ${fs}px "Archivo", sans-serif`;
     if (!full) { const mw = g.measureText(c.dataset.px).width; if (mw > w - 2) fs = fs * (w - 2) / mw; }
-    const font = `700 ${fs}px "Space Grotesk", sans-serif`; g.font = font;
+    const font = `700 ${fs}px "Archivo", sans-serif`; g.font = font;
     const words = c.dataset.px.split(" "), lines = [];
     words.forEach((wd) => { const l = lines[lines.length - 1]; if (l && (!full || g.measureText(l + " " + wd).width < w - 2)) lines[lines.length - 1] = l + " " + wd; else lines.push(wd); });
     const h = Math.ceil(lines.length * fs * 1.08 + fs * 0.08);
