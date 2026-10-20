@@ -19,11 +19,17 @@
       <span class="logo logo--nav" aria-hidden="true"></span>
     </a>
     <nav class="nav__links">
-      <a href="#barra" class="br">La barra</a>
-      <a href="#momentos" class="br">Momentos</a>
-      <a href="#sabores" class="br br--solid">Sabores</a>
+      <span class="nav__here" id="navHere" aria-live="polite"></span>
+      <button type="button" class="br br--solid nav__idx" id="idxBtn" aria-expanded="false" aria-controls="idxPanel">Índice</button>
     </nav>
   </header>
+
+  <div class="idx" id="idxPanel" hidden>
+    <div class="idx__in">
+      <div class="idx__top"><p class="idx__k">Índice de la presentación</p><button type="button" class="idx__x" id="idxClose" aria-label="Cerrar índice">✕</button></div>
+      <div class="idx__grid" id="idxGrid"></div>
+    </div>
+  </div>
 
   <main id="top">
 
@@ -4171,6 +4177,7 @@
   <script src="territory.js"></script>
   <script src="messages.js"></script>
   <script src="identity.js"></script>
+  <script src="index-nav.js"></script>
   <script src="product.js"></script>
   <script src="bar3d.js"></script>
   <script src="swarm.js"></script>
