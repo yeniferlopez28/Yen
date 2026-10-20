@@ -1,0 +1,319 @@
+<meta charset="utf-8">
+<title>FIBO Lab de Contenido</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: a dark studio wall of phone-sized frames (post 4:5 / reel 9:16), each a FIBO remake of one reference */
+:root {
+  --ink: #0B0A09; --ink2: #171513; --bone: #F5EBD7; --red: #D6161D; --lime: #C9F23A; --pink: #FF89B8; --blue: #3A5CFF; --mut: #9C9384;
+  --disp: "Anton", Impact, "Arial Narrow", sans-serif; --body: "Archivo", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--ink); color: var(--bone); font: 400 15px/1.5 var(--body); margin: 0; overflow-x: hidden; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-block: 48px 90px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--disp); font-weight: 400; text-transform: uppercase; line-height: .92; margin: 0; text-wrap: balance; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.logo { font: 400 30px/1 var(--disp); } .logo span { color: var(--lime); }
+.chip { font: 700 12px var(--body); background: var(--ink2); border: 1px solid #2E2A25; border-radius: 999px; padding: 7px 14px; color: var(--mut); }
+.hero { padding-block: 40px 30px; display: grid; gap: 16px; }
+.hero h1 { font-size: clamp(54px, 9vw, 150px); } .hero h1 em { font-style: normal; color: var(--lime); } .hero h1 b { font-weight: 400; color: var(--pink); }
+.hero p { max-width: 60ch; font-size: 18px; color: var(--mut); margin: 0; } .hero p strong { color: var(--bone); }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 34px; }
+.filters button { font: 700 14px var(--body); border: 2px solid var(--bone); background: none; color: var(--bone); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+.filters button.on { background: var(--lime); border-color: var(--lime); color: var(--ink); }
+.filters button:focus-visible, .pc button:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 34px 26px; align-items: start; }
+.pc { display: grid; gap: 12px; min-width: 0; }
+.pc[hidden] { display: none !important; }
+.frame { position: relative; width: 100%; overflow: hidden; border-radius: 18px; background: var(--bone); box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); isolation: isolate; }
+.r45 { aspect-ratio: 4/5; } .r916 { aspect-ratio: 9/16; } .r11 { aspect-ratio: 1; }
+.meta { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.meta h3 { font-size: 26px; } .meta span { font: 700 11px var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--mut); white-space: nowrap; }
+.pc p { margin: 0; color: var(--mut); font-size: 14px; } .pc p b { color: var(--bone); }
+.cap { background: var(--ink2); border-radius: 12px; padding: 10px 12px; font-size: 13px; color: var(--bone); }
+.cap small { display: block; font: 700 10px var(--body); text-transform: uppercase; letter-spacing: .08em; color: var(--lime); margin-bottom: 3px; }
+.replay { justify-self: start; font: 700 12px var(--body); background: none; border: 1.5px solid #3A352F; color: var(--bone); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.replay:hover { border-color: var(--lime); color: var(--lime); }
+
+/* shared bits */
+.bar { display: block; filter: drop-shadow(0 14px 18px rgba(0,0,0,.35)); }
+.sheet { position: absolute; background: var(--ink); color: var(--bone); border-radius: 6px; padding: 9px 11px; font: 500 9px/1.45 var(--body); letter-spacing: .02em; text-transform: uppercase; }
+.sheet b { font-weight: 800; color: var(--lime); }
+.ft { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; padding: 8px 12px; font: 700 9px var(--body); text-transform: uppercase; letter-spacing: .06em; }
+
+/* 01 pixel presence */
+.f-pix { background: #F2D3C2; }
+.f-pix .ttl { position: absolute; left: 6%; top: 5%; right: 6%; color: var(--ink); }
+.f-pix .ttl h4 { font: 800 22px/1.05 var(--body); margin: 0; letter-spacing: -.02em; } .f-pix .ttl p { font: 500 8px/1.4 var(--body); margin: 6px 0 0 50%; color: var(--ink); text-transform: uppercase; }
+.f-pix canvas { position: absolute; left: 6%; right: 6%; bottom: 13%; width: 88%; height: 62%; image-rendering: pixelated; }
+.f-pix .ft { color: var(--ink); background: #E9E4DA; }
+.f-pix .lvl { position: absolute; right: 8%; top: 32%; background: var(--ink); color: var(--lime); font: 400 15px var(--disp); padding: 4px 10px; border-radius: 6px; }
+
+/* 02 printer */
+.f-prt { background: #8E7A63; }
+.f-prt .floor { position: absolute; inset: 0; background: radial-gradient(120% 80% at 70% 90%, #B7A184, #6D5A45); }
+.f-prt .mach { position: absolute; left: -8%; top: -4%; width: 66%; height: 70%; background: linear-gradient(90deg, #E9E4D8, #F5F2EA 60%, #DCD6C9); border-radius: 0 0 12px 0; box-shadow: 20px 30px 40px rgba(0,0,0,.35); }
+.f-prt .mach::before { content: ""; position: absolute; left: 12%; right: 10%; top: 6%; height: 12%; background: #8B97A6; border-radius: 6px; }
+.f-prt .mach i { position: absolute; left: 10%; right: 12%; height: 9%; background: #EFEBE2; border: 2px solid #CFC8BA; border-radius: 6px; }
+.f-prt .mach i:nth-of-type(1) { top: 46%; } .f-prt .mach i:nth-of-type(2) { top: 58%; } .f-prt .mach i:nth-of-type(3) { top: 70%; }
+.f-prt .paper { position: absolute; left: 30%; top: 14%; width: 40%; height: 120%; transform: rotate(-11deg); transform-origin: 50% 0; overflow: hidden; }
+.f-prt .roll { position: absolute; left: 0; right: 0; top: 0; background: #FBF9F3; box-shadow: 8px 10px 20px rgba(0,0,0,.25); display: flex; flex-direction: column; align-items: center; gap: 12%; padding-top: 18%; height: 100%; animation: print 7s cubic-bezier(.6,0,.3,1) infinite; }
+.f-prt .roll img { width: 132%; transform: rotate(90deg); margin: 6% 0; filter: drop-shadow(0 4px 4px rgba(0,0,0,.15)); }
+@keyframes print { 0% { transform: translateY(-100%); } 70%, 100% { transform: translateY(0); } }
+.f-prt .tag { position: absolute; right: 6%; bottom: 6%; z-index: 2; text-shadow: 0 2px 10px rgba(0,0,0,.4); color: var(--bone); text-align: right; }
+.f-prt .tag h4 { font: 400 34px/.9 var(--disp); margin: 0; text-transform: uppercase; } .f-prt .tag span { font: 700 10px var(--body); text-transform: uppercase; }
+
+/* 03 pouch + spec label */
+.f-pch { background: radial-gradient(90% 70% at 50% 40%, #1E1C19, #050505); }
+.f-pch .pouch { position: absolute; left: 14%; right: 14%; top: 10%; bottom: 10%; background: linear-gradient(100deg, #B3DB2C, #D4F75B 45%, #A9D11E); border-radius: 6px 6px 3px 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12), 0 30px 40px rgba(0,0,0,.6); animation: sway 6s ease-in-out infinite; transform-origin: 50% 100%; }
+.f-pch .pouch::before { content: ""; position: absolute; left: 0; right: 0; top: 7%; height: 2px; background: rgba(0,0,0,.18); box-shadow: 0 6px 0 rgba(0,0,0,.08); }
+@keyframes sway { 50% { transform: rotate(1.4deg) translateY(-4px); } }
+.f-pch .lbl { position: absolute; left: 0; right: 0; top: 17%; text-align: center; color: var(--ink); font: 400 22px var(--disp); }
+.f-pch .lbl small { display: block; margin: 4px auto 0; width: max-content; border: 1.5px solid var(--ink); border-radius: 999px; padding: 1px 8px; font: 800 9px var(--body); }
+.f-pch .sheet { left: 9%; right: 9%; top: 41%; display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; }
+.f-pch .sheet .qr { grid-row: 1 / 5; grid-column: 2; width: 34px; height: 34px; background: conic-gradient(var(--bone) 25%, var(--ink) 0 50%, var(--bone) 0 75%, var(--ink) 0) 0 0/8px 8px; border: 3px solid var(--bone); align-self: center; }
+.f-pch .big { position: absolute; left: 5%; right: 5%; bottom: 5%; font: 400 74px/.82 var(--disp); color: var(--ink); text-align: center; letter-spacing: -.01em; }
+.f-pch .refl { position: absolute; left: 14%; right: 14%; top: 91%; height: 12%; background: linear-gradient(#C9F23A55, transparent); transform: scaleY(-1); filter: blur(2px); }
+
+/* 04 set the bar high */
+.f-set { background: #1A2BD8; display: grid; grid-template-columns: 1.05fr 1fr; }
+.f-set .words { position: relative; }
+.f-set .w { position: absolute; font: 400 clamp(26px, 3.2vw, 44px)/1 var(--disp); padding: 4px 9px 0; text-transform: uppercase; transform: rotate(var(--r)) scale(0); animation: pop .5s var(--d) cubic-bezier(.3,1.7,.5,1) forwards; }
+.f-set .w1 { left: 10%; top: 16%; background: var(--red); color: var(--pink); --r: -2deg; --d: .1s; }
+.f-set .w2 { left: 34%; top: 29%; background: var(--lime); color: var(--ink); --r: 12deg; --d: .35s; }
+.f-set .w3 { left: 8%; top: 44%; background: var(--pink); color: var(--red); --r: -8deg; --d: .6s; }
+.f-set .w4 { left: 14%; top: 60%; background: var(--ink); color: var(--lime); --r: 0deg; --d: .85s; box-shadow: 10px 10px 0 #0E6B2E, 20px 20px 0 #0B4A21; }
+@keyframes pop { to { transform: rotate(var(--r)) scale(1); } }
+.f-set .bars { background: #fff; position: relative; overflow: hidden; }
+.f-set .bars img { position: absolute; width: 150%; left: -5%; animation: fall 6s linear infinite; }
+.f-set .bars img:nth-child(1) { top: -10%; --rt: 18deg; } .f-set .bars img:nth-child(2) { top: 18%; --rt: 14deg; animation-delay: -1.5s; } .f-set .bars img:nth-child(3) { top: 46%; --rt: 20deg; animation-delay: -3s; } .f-set .bars img:nth-child(4) { top: 74%; --rt: 16deg; animation-delay: -4.5s; }
+@keyframes fall { 0% { transform: translateY(-30%) rotate(var(--rt)); } 100% { transform: translateY(30%) rotate(var(--rt)); } }
+
+/* 05 unwrap */
+.f-unw { background: #E7C9F0; display: grid; place-items: center; }
+.f-unw .stage { position: relative; width: 38%; height: 82%; }
+.f-unw .core { position: absolute; left: 14%; right: 14%; top: 10%; bottom: 10%; background: linear-gradient(#5A3A2A, #3C2418); border-radius: 8px; box-shadow: inset 0 0 0 4px #6F4B37; }
+.f-unw .core::after { content: ""; position: absolute; inset: 18% 20%; background: radial-gradient(circle at 30% 30%, #8A6044 10%, transparent 11%) 0 0/22px 22px; opacity: .8; }
+.f-unw .strip { position: absolute; left: -12%; right: -12%; height: 13%; background: #4E2275; color: var(--bone); display: flex; align-items: center; justify-content: center; font: 400 15px var(--disp); text-transform: uppercase; border-radius: 3px; box-shadow: 0 6px 10px rgba(0,0,0,.2); transform: rotate(var(--r)) translateX(0); animation: unwrap 5s var(--d) ease-in-out infinite; }
+.f-unw .strip:nth-child(even) { background: var(--bone); color: #4E2275; }
+@keyframes unwrap { 0%, 15% { transform: rotate(0) translateX(0); } 45%, 80% { transform: rotate(var(--r)) translateX(var(--x)); } 100% { transform: rotate(0) translateX(0); } }
+.f-unw .crimp { position: absolute; left: -4%; right: -4%; height: 4%; background: repeating-linear-gradient(90deg, #6E3B9C 0 4px, #4E2275 4px 8px); }
+.f-unw .tagline { position: absolute; left: 0; right: 0; bottom: 5%; text-align: center; font: 400 22px var(--disp); color: #4E2275; text-transform: uppercase; }
+
+/* 06 pixel-icon flavors (PL!X) */
+.f-plx { background: #E9E9EC; display: grid; grid-template-rows: repeat(3, 1fr); gap: 4%; padding: 8% 0; }
+.f-plx .can { position: relative; min-height: 0; margin: 0 -4%; display: grid; grid-template-columns: 22% 1fr 26%; background: linear-gradient(#BFC2C8, #F6F7F9 30%, #9EA2A8 55%, #E3E5E8 80%, #8C9096); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 18px rgba(0,0,0,.18); animation: roll 6s var(--d) ease-in-out infinite; }
+@keyframes roll { 50% { transform: translateX(var(--x)); } }
+.f-plx .band { background: var(--c); display: grid; place-items: center; font: 400 26px/1 var(--disp); color: var(--ink); writing-mode: vertical-rl; transform: rotate(180deg); }
+.f-plx .mid { display: grid; place-items: center; }
+.f-plx .mid canvas { height: 62%; width: auto; image-rendering: pixelated; }
+.f-plx .nm { background: #F3F3F5; display: grid; align-content: center; padding: 0 8px; gap: 3px; }
+.f-plx .nm b { font: 400 15px/1 var(--disp); text-transform: uppercase; color: var(--ink); } .f-plx .nm span { justify-self: start; background: var(--c); font: 800 8px var(--body); padding: 2px 5px; text-transform: uppercase; color: var(--ink); }
+
+/* 07 transparent kit bag */
+.f-bag { background: #0E0D0C; display: grid; place-items: center; }
+.f-bag .bag { position: relative; width: 66%; height: 70%; border-radius: 10px 10px 18px 18px; background: linear-gradient(115deg, rgba(255,255,255,.22), rgba(255,255,255,.05) 40%, rgba(255,255,255,.16) 70%, rgba(255,255,255,.04)); box-shadow: inset 0 0 0 2px rgba(255,255,255,.28), inset 0 0 40px rgba(255,255,255,.08), 0 40px 60px rgba(0,0,0,.6); backdrop-filter: blur(1px); animation: turn 6s ease-in-out infinite; transform-style: preserve-3d; }
+@keyframes turn { 0%, 100% { transform: perspective(700px) rotateY(-18deg) rotateZ(-3deg); } 50% { transform: perspective(700px) rotateY(18deg) rotateZ(3deg); } }
+.f-bag .hole { position: absolute; left: 38%; right: 38%; top: 5%; height: 7%; border-radius: 999px; background: #0E0D0C; box-shadow: inset 0 0 0 2px rgba(255,255,255,.3); }
+.f-bag .bag img { position: absolute; width: 74%; filter: drop-shadow(0 6px 8px rgba(0,0,0,.6)); }
+.f-bag .bag img:nth-of-type(1) { left: 8%; top: 22%; transform: rotate(-22deg); } .f-bag .bag img:nth-of-type(2) { left: 22%; top: 38%; transform: rotate(14deg); }
+.f-bag .bag img:nth-of-type(3) { left: 4%; top: 55%; transform: rotate(-6deg); } .f-bag .bag img:nth-of-type(4) { left: 20%; top: 70%; transform: rotate(24deg); }
+.f-bag .bl { position: absolute; left: 10%; top: 14%; font: 400 13px/1 var(--disp); text-transform: uppercase; color: var(--bone); } .f-bag .bl small { display: block; font: 700 7px var(--body); margin-top: 3px; color: var(--lime); }
+.f-bag .stk { position: absolute; right: 8%; top: 14%; background: var(--red); color: var(--bone); font: 400 11px var(--disp); padding: 3px 6px; transform: rotate(8deg); text-transform: uppercase; }
+
+/* 08 dot-matrix + spec (.raw) */
+.f-raw { background: #F4F4F2; }
+.f-raw canvas.dots { position: absolute; left: 0; right: 0; top: 10%; width: 100%; height: 18%; }
+.f-raw .prod { position: absolute; left: 50%; top: 32%; width: 74%; transform: translateX(-50%); animation: spin 5s ease-in-out infinite; }
+@keyframes spin { 0%, 100% { transform: translateX(-50%) perspective(600px) rotateY(-28deg) rotate(-6deg); } 50% { transform: translateX(-50%) perspective(600px) rotateY(28deg) rotate(6deg); } }
+.f-raw .spec { position: absolute; left: 5%; right: 5%; bottom: 5%; display: grid; grid-template-columns: auto 1fr auto; gap: 1px 14px; font: 500 9px/1.5 var(--body); text-transform: uppercase; color: var(--ink); border-top: 1px solid var(--ink); padding-top: 8px; }
+.f-raw .spec b { font-weight: 800; } .f-raw .spec i { font-style: normal; grid-row: 1 / 5; grid-column: 3; font: 400 18px var(--disp); }
+
+.notes { margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+.notes div { background: var(--ink2); border-radius: 16px; padding: 16px 18px; }
+.notes h3 { font-size: 22px; margin-bottom: 6px; color: var(--lime); } .notes p { margin: 0; color: var(--mut); font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } .f-set .w { transform: rotate(var(--r)); } .f-prt .roll { transform: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top"><span class="logo">FIBO<span>.</span></span><span class="chip">Lab de contenido · ideas para posts y reels</span></header>
+  <section class="hero">
+    <h1>Así se podrían ver <em>los posts</em> y <b>los reels.</b></h1>
+    <p>Ocho referencias que nos gustan, rehechas con <strong>FIBO, sus 4 sabores, Anton + Archivo y la paleta rojo · negro · hueso · lima · rosa · azul</strong>. Cada tarjeta trae su formato y un copy de ejemplo. Son bocetos animados para decidir dirección, no piezas finales.</p>
+  </section>
+  <nav class="filters" id="flt" aria-label="Filtrar por formato"><button type="button" class="on" data-f="all">Todos</button><button type="button" data-f="post">Post 4:5</button><button type="button" data-f="reel">Reel 9:16</button></nav>
+
+  <div class="grid" id="grid">
+    <article class="pc" data-f="post">
+      <div class="frame r45 f-pix" id="fPix">
+        <div class="ttl"><h4>Con FIBO<br>te encuentras</h4><p>Una serie que muestra cómo te vas encontrando: primero en cuadritos, luego entero.</p></div>
+        <span class="lvl" id="pixLvl">NIVEL 01</span>
+        <canvas id="pixCv" width="60" height="60" aria-label="Foto que pasa de pixel a nítida"></canvas>
+        <div class="ft"><span id="pixOut">[01] encuentro: apenas visible</span><span>fibo.mx</span></div>
+      </div>
+      <div class="meta"><h3>Te vas encontrando</h3><span>Carrusel · post 4:5</span></div>
+      <p>Ref. <b>Reading human presence</b>. Foto de la ciudad en pixeles de 3 colores que se van afinando: 3 slides del carrusel.</p>
+      <div class="cap"><small>Copy</small>Primero no te ves. Luego te encuentras. 🟩 #ConFIBOteEncuentras</div>
+      <button type="button" class="replay" data-r="pix">↻ Repetir</button>
+    </article>
+
+    <article class="pc" data-f="reel">
+      <div class="frame r916 f-prt">
+        <div class="floor"></div><div class="mach"><i></i><i></i><i></i></div>
+        <div class="paper"><div class="roll" id="roll"><img src="assets/fibo-chocolate.webp" alt=""><img src="assets/fibo-frutos.webp" alt=""><img src="assets/fibo-cookies.webp" alt=""></div></div>
+        <div class="tag"><h4>Pendientes<br>sí.<br>Hambre<br>no.</h4><span>Copiadora · piso 3</span></div>
+      </div>
+      <div class="meta"><h3>La impresora de la ofi</h3><span>Reel 9:16 · 7 s</span></div>
+      <p>Ref. <b>Betty</b>. Escena inesperada: la copiadora de la oficina imprime barras FIBO en lugar de reportes.</p>
+      <div class="cap"><small>Copy</small>Mandé a imprimir el reporte. Salió algo mejor. 🖨️</div>
+      <button type="button" class="replay" data-r="prt">↻ Repetir</button>
+    </article>
+
+    <article class="pc" data-f="post">
+      <div class="frame r45 f-pch">
+        <div class="pouch">
+          <div class="lbl">Brownie<small>65 G</small></div>
+          <div class="sheet"><span><b>Sabor:</b> Brownie</span><span class="qr"></span><span><b>Proteína:</b> 22 g · <b>Fibra:</b> 10 g</span><span><b>Origen:</b> Zapopan, Jalisco</span><span><b>Notas:</b> cacao · antojo · sí te llena</span></div>
+          <div class="big">FIBO</div>
+        </div>
+        <div class="refl"></div>
+      </div>
+      <div class="meta"><h3>Ficha de sabor</h3><span>Post 4:5 · serie de 4</span></div>
+      <p>Ref. <b>Rebel Bunny</b>. Empaque lima sobre negro, con la ficha técnica en una etiqueta negra y FIBO enorme abajo.</p>
+      <div class="cap"><small>Copy</small>Ficha técnica de tu nuevo antojo. Desliza para ver los 4. ➡️</div>
+    </article>
+
+    <article class="pc" data-f="post">
+      <div class="frame r45 f-set" id="fSet">
+        <div class="words"><span class="w w1">Sube</span><span class="w w2">la</span><span class="w w3">barra</span><span class="w w4">22 G</span></div>
+        <div class="bars"><img src="assets/fibo-brownie.webp" alt=""><img src="assets/fibo-chocolate.webp" alt=""><img src="assets/fibo-frutos.webp" alt=""><img src="assets/fibo-cookies.webp" alt=""></div>
+      </div>
+      <div class="meta"><h3>Sube la barra</h3><span>Post 4:5 · animado</span></div>
+      <p>Ref. <b>Hyper · Set the bar high</b>. Palabras en bloques de color que saltan una a una, con barras cayendo del lado blanco.</p>
+      <div class="cap"><small>Copy</small>22 g de proteína. Más del doble que una de 10. Sube la barra.</div>
+      <button type="button" class="replay" data-r="set">↻ Repetir</button>
+    </article>
+
+    <article class="pc" data-f="reel">
+      <div class="frame r916 f-unw">
+        <div class="stage">
+          <div class="core"></div>
+          <div class="crimp" style="top:2%"></div>
+          <div class="strip" style="top:12%;--r:-14deg;--x:-30%;--d:0s">22 g proteína</div>
+          <div class="strip" style="top:27%;--r:12deg;--x:28%;--d:.1s">sabor brownie</div>
+          <div class="strip" style="top:42%;--r:-10deg;--x:-26%;--d:.2s">FIBO</div>
+          <div class="strip" style="top:57%;--r:14deg;--x:30%;--d:.3s">10 g fibra</div>
+          <div class="strip" style="top:72%;--r:-12deg;--x:-28%;--d:.4s">hecha en Jalisco</div>
+          <div class="crimp" style="bottom:2%"></div>
+        </div>
+        <div class="tagline">Lo de adentro también cuenta.</div>
+      </div>
+      <div class="meta"><h3>Se desenvuelve</h3><span>Reel 9:16 · 5 s loop</span></div>
+      <p>Ref. <b>Perfect Bar</b>. La envoltura se abre en tiras con los datos, sobre un fondo de color del sabor.</p>
+      <div class="cap"><small>Copy</small>Abre. Muerde. Repite. Brownie con 22 g de proteína.</div>
+    </article>
+
+    <article class="pc" data-f="post">
+      <div class="frame r45 f-plx" id="fPlx"></div>
+      <div class="meta"><h3>Modos FIBO</h3><span>Post 4:5 · carrusel</span></div>
+      <p>Ref. <b>PL!X</b>. Cada sabor tiene un ícono en pixel y un «modo» del día, como si fueran etiquetas de lata.</p>
+      <div class="cap"><small>Copy</small>¿En qué modo andas hoy? Modo clase, modo ofi, modo antojo o modo domingo.</div>
+    </article>
+
+    <article class="pc" data-f="reel">
+      <div class="frame r916 f-bag">
+        <div class="bag"><span class="hole"></span><span class="bl">Kit FIBO<small>Para los días que no paran</small></span><span class="stk">4 sabores</span>
+          <img src="assets/fibo-cookies.webp" alt=""><img src="assets/fibo-frutos.webp" alt=""><img src="assets/fibo-brownie.webp" alt=""><img src="assets/fibo-chocolate.webp" alt=""></div>
+      </div>
+      <div class="meta"><h3>El kit que gira</h3><span>Reel 9:16 · 6 s loop</span></div>
+      <p>Ref. <b>Essential kit</b>. Bolsa transparente con los 4 sabores girando en negro. Ideal para lanzar el pack.</p>
+      <div class="cap"><small>Copy</small>Todo lo que necesitas para la semana, en una bolsa. Pídelo en fibo.mx.</div>
+    </article>
+
+    <article class="pc" data-f="reel">
+      <div class="frame r916 f-raw">
+        <canvas class="dots" id="dots" aria-label="Texto de puntitos que corre: FIBO"></canvas>
+        <img class="prod bar" src="assets/fibo-frutos.webp" alt="FIBO Frutos Rojos">
+        <div class="spec"><span><b>Item:</b></span><span>Barra FIBO</span><i>FIBO</i><span><b>Serie:</b></span><span>B-024</span><span><b>Sabor:</b></span><span>Frutos rojos · frambuesa · antojo</span><span><b>Origen:</b></span><span>Zapopan, Jalisco</span></div>
+      </div>
+      <div class="meta"><h3>Ficha en movimiento</h3><span>Reel 9:16 · loop</span></div>
+      <p>Ref. <b>.raw coffee</b>. Letras de puntitos que corren arriba, la barra girando y su ficha técnica abajo.</p>
+      <div class="cap"><small>Copy</small>Item: tu antojo de la tarde. Origen: Jalisco.</div>
+    </article>
+  </div>
+
+  <section class="notes" aria-label="Qué tienen en común">
+    <div><h3>Producto al centro</h3><p>Siempre se ve la barra real y su sabor. Fondos lisos de la paleta, sin ruido.</p></div>
+    <div><h3>Datos como diseño</h3><p>22 g, 10 g, 65 g y Zapopan aparecen como fichas o tiras, no como texto pegado.</p></div>
+    <div><h3>Pixel = encontrarse</h3><p>Los pixeles que se aclaran cuentan «Con FIBO te encuentras» sin explicarlo.</p></div>
+    <div><h3>Antes de publicar</h3><p>Revisar claims con Calidad y Legal, y nunca dirigir piezas a niñas y niños.</p></div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const P = { ink: [11, 10, 9], lime: [201, 242, 58], pink: [255, 137, 184], skin: [242, 211, 194] };
+
+  /* 01 pixel presence: photo quantized to 4 colors, resolution increases in 3 levels */
+  const cv = document.getElementById("pixCv"), cx = cv.getContext("2d");
+  const img = new Image(); img.src = "assets/cr-correr.webp";
+  const LV = [[14, "[01] encuentro: apenas visible"], [34, "[02] encuentro: parcial"], [120, "[03] encuentro: claro · con FIBO te encuentras"]];
+  let li = 0, pt = 0;
+  const draw = (n) => {
+    const w = n, h = Math.round(n * 0.75), o = document.createElement("canvas"); o.width = w; o.height = h;
+    const g = o.getContext("2d"), iw = img.width, ih = img.height, sh = iw * 0.75;
+    g.drawImage(img, 0, (ih - sh) * 0.35, iw, sh, 0, 0, w, h);
+    const d = g.getImageData(0, 0, w, h), a = d.data;
+    for (let i = 0; i < a.length; i += 4) {
+      const l = (a[i] * .3 + a[i + 1] * .59 + a[i + 2] * .11) / 255, c = l < .3 ? P.ink : l < .5 ? P.lime : l < .72 ? P.pink : P.skin;
+      a[i] = c[0]; a[i + 1] = c[1]; a[i + 2] = c[2];
+    }
+    g.putImageData(d, 0, 0); cv.width = w; cv.height = h; cx.imageSmoothingEnabled = false; cx.drawImage(o, 0, 0);
+  };
+  const step = () => { const [n, t] = LV[li]; draw(n); document.getElementById("pixLvl").textContent = "NIVEL 0" + (li + 1); document.getElementById("pixOut").textContent = t; };
+  const loop = () => { clearInterval(pt); li = 0; step(); if (!reduced) pt = setInterval(() => { li = (li + 1) % LV.length; step(); }, 1800); };
+  img.onload = loop;
+
+  /* 06 pixel icons on "cans" */
+  const ICON = {
+    heart: ["0110110", "1111111", "1111111", "0111110", "0011100", "0001000"],
+    smile: ["0011100", "0100010", "1010101", "1000001", "1011101", "0100010", "0011100"],
+    star: ["0001000", "0001000", "1111111", "0111110", "0110110", "1000001"],
+    book: ["1110111", "1001001", "1001001", "1001001", "1110111"],
+  };
+  const CANS = [["Brownie", "Modo antojo", "#FF89B8", "heart", "-6%"], ["Chocolate", "Modo clase", "#C9F23A", "book", "6%"], ["Frutos rojos", "Modo domingo", "#3A5CFF", "star", "-5%"]];
+  document.getElementById("fPlx").innerHTML = CANS.map(([s, m, c, i, x], k) => `<div class="can" style="--c:${c};--x:${x};--d:${-k * 1.2}s"><div class="band">FIBO</div><div class="mid"><canvas data-i="${i}" data-c="${c}" width="7" height="7"></canvas></div><div class="nm"><b>${m}</b><span>${s}</span></div></div>`).join("");
+  document.querySelectorAll("#fPlx canvas").forEach((c) => { const g = c.getContext("2d"), rows = ICON[c.dataset.i]; c.height = rows.length; g.fillStyle = c.dataset.c; rows.forEach((r, y) => [...r].forEach((v, x) => v === "1" && g.fillRect(x, y, 1, 1))); });
+
+  /* 08 dot-matrix marquee */
+  const dc = document.getElementById("dots"), dg = dc.getContext("2d"), off = document.createElement("canvas"), og = off.getContext("2d");
+  const TXT = "FIBO · 22 G · FIBO · HECHA EN JALISCO · ";
+  off.height = 9; og.font = "9px Archivo, sans-serif"; const tw = Math.ceil(og.measureText(TXT).width); off.width = tw; og.font = "800 9px Archivo, sans-serif"; og.fillStyle = "#000"; og.textBaseline = "top"; og.fillText(TXT, 0, 0);
+  let od = null; const prep = () => { og.clearRect(0, 0, off.width, 9); og.fillText(TXT, 0, 0); od = og.getImageData(0, 0, off.width, 9).data; };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(prep);
+  let sx = 0;
+  const dots = () => {
+    const W = dc.clientWidth, H = dc.clientHeight, dpr = Math.min(2, devicePixelRatio || 1);
+    if (dc.width !== W * dpr) { dc.width = W * dpr; dc.height = H * dpr; }
+    dg.setTransform(dpr, 0, 0, dpr, 0, 0); dg.clearRect(0, 0, W, H);
+    if (od) { const cell = H / 9, cols = Math.ceil(W / cell) + 1; dg.fillStyle = "#0B0A09";
+      for (let x = 0; x < cols; x++) for (let y = 0; y < 9; y++) { const tx = (Math.floor(sx) + x) % tw; if (od[(y * tw + tx) * 4 + 3] > 110) { dg.beginPath(); dg.arc(x * cell + cell / 2 - (sx % 1) * cell, y * cell + cell / 2, cell * .4, 0, 7); dg.fill(); } } }
+    if (!reduced) sx += .25; requestAnimationFrame(dots);
+  };
+  requestAnimationFrame(dots);
+
+  /* replay buttons restart CSS animations */
+  const restart = (el) => el.getAnimations({ subtree: true }).forEach((a) => { a.cancel(); a.play(); });
+  document.querySelectorAll(".replay").forEach((b) => b.addEventListener("click", () => {
+    const r = b.dataset.r; if (r === "pix") loop(); if (r === "prt") restart(document.getElementById("roll")); if (r === "set") restart(document.getElementById("fSet"));
+  }));
+
+  /* format filter */
+  const fb = [...document.querySelectorAll("#flt button")];
+  fb.forEach((b) => b.addEventListener("click", () => { fb.forEach((x) => x.classList.toggle("on", x === b)); document.querySelectorAll(".pc").forEach((c) => c.hidden = b.dataset.f !== "all" && c.dataset.f !== b.dataset.f); }));
+})();
+</script>
