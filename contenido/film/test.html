@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#000}#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.p-photo{position:absolute;inset:0;width:1080px;height:1920px}.p-ink{position:absolute;inset:0;width:1080px;height:1920px;mix-blend-mode:multiply;opacity:.94;filter:saturate(.9) contrast(1.02) blur(.3px)}.ground{position:absolute;inset:0}</style>
+<div id="stage"></div><script src="shared.js"></script><script>
+const st=document.getElementById('stage');
+const kit={stage:st,h:(s)=>{const d=document.createElement('div');d.innerHTML=s;return d.firstElementChild},assets:{url:(n)=>n,image:(n)=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=n})}};
+const p=PRN.build(kit); window.go=async(f)=>{await PRN.load(kit,p);PRN.draw(p,f*p.L)};
+</script>
