@@ -59,8 +59,37 @@
   };
   root.querySelectorAll("svg[data-pxz]").forEach((s) => { const r = PX[s.dataset.pxz]; if (!r) return; s.setAttribute("viewBox", "0 0 12 12"); s.setAttribute("shape-rendering", "crispEdges"); s.innerHTML = r.map((row, y) => [...row].map((c, x) => (c === "#" ? `<rect x="${x}" y="${y}" width="1" height="1"/>` : "")).join("")).join(""); });
 
+
+  // hook bar: type the next hook
+  const hooks = JSON.parse((document.getElementById("czHooks") || {}).textContent || "[]"), hk = document.getElementById("czHook"), hb = document.getElementById("czHookBtn");
+  let hi = 0, ht = 0;
+  const type = (t) => { clearInterval(ht); if (reduced) { hk.textContent = t; return; } let n = 0; hk.textContent = ""; ht = setInterval(() => { hk.textContent = t.slice(0, ++n); if (n >= t.length) clearInterval(ht); }, 28); };
+  if (hk && hb && hooks.length) hb.addEventListener("click", () => { hi = (hi + 1) % hooks.length; type(hooks[hi]); });
+
+  // copy outreach messages
+  root.querySelectorAll(".cz__copy").forEach((b) => b.addEventListener("click", async () => {
+    const t = b.previousElementSibling.textContent.trim();
+    try { await navigator.clipboard.writeText(t); b.textContent = "¡copiado!"; } catch (e) { b.textContent = "selecciona y copia"; }
+    setTimeout(() => (b.textContent = "copiar mensaje"), 1800);
+  }));
+
+  // Notion base tabs
+  const dbt = root.querySelectorAll(".cz__seg--db button");
+  dbt.forEach((b) => b.addEventListener("click", () => { dbt.forEach((t) => t.classList.toggle("on", t === b)); root.querySelectorAll(".cz__db").forEach((d) => (d.hidden = d.dataset.db !== b.dataset.db)); }));
+
+  // pilot budget scenarios
+  const BD = JSON.parse((document.getElementById("czBud") || {}).textContent || "{}"), bdt = root.querySelectorAll(".cz__seg--bd button");
+  bdt.forEach((b) => b.addEventListener("click", () => { bdt.forEach((t) => t.classList.toggle("on", t === b)); root.querySelectorAll("[data-bl]").forEach((x) => { x.textContent = BD[b.dataset.bd][+x.dataset.bl]; x.classList.remove("cz--flash"); void x.offsetWidth; x.classList.add("cz--flash"); }); }));
+
+  // internal data checklist (kept in this browser only)
+  const KEY = "fibo-cz-need", boxes = [...root.querySelectorAll(".cz__need input")], nn = document.getElementById("czNeedN");
+  let saved = []; try { saved = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) {}
+  const count = () => { if (nn) nn.textContent = `${boxes.filter((b) => b.checked).length}/${boxes.length}`; };
+  boxes.forEach((b) => { b.checked = saved.includes(+b.dataset.n); b.addEventListener("change", () => { try { localStorage.setItem(KEY, JSON.stringify(boxes.filter((x) => x.checked).map((x) => +x.dataset.n))); } catch (e) {} count(); }); });
+  count();
+
   // reveal on scroll
-  const els = root.querySelectorAll(".cz__man, .cz__shop, .cz__win, .cz__next");
+  const els = root.querySelectorAll(".cz__man, .cz__shop, .cz__win, .cz__lab, .cz__desk, .cz__truus, .cz__src");
   if (reduced || !("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
   root.classList.add("cz--anim");
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.08 });
