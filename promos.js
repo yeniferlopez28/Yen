@@ -2,7 +2,7 @@
 (() => {
   const root = document.getElementById("estrategia-promociones");
   if (!root) return;
-  const C = 14.32, N = 23.82, IVA = 1.16, M0 = N - C, D0 = 43 / IVA - C;
+  const C = 14.42, N = 23.82, IVA = 1.16, M0 = N - C, D0 = 43 / IVA - C;
   const $ = (v) => (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const pct = (v) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(Math.round(v * 100)) + "%";
   const int = (v) => Math.ceil(v).toLocaleString("es-MX");
