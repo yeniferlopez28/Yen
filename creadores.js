@@ -11,7 +11,7 @@
   const show = (k) => {
     const m = M[k]; if (!m || !feat) return;
     const [name, , obj, ent, apo, der, ocu, met, rie, uso, ph] = m;
-    const rows = [["El creador entrega", ent], ["FIBO aporta", apo], ["Derechos", der], ["Costos ocultos", ocu], ["Métricas", met], ["Riesgo", rie]];
+    const rows = [["El creador entrega", ent], ["FIBO aporta", apo], ["Riesgo", rie]];
     feat.innerHTML = `<h4>${esc(name)}:</h4><p class="cz__fo">${esc(obj)}</p><dl>${rows.map(([a, b]) => `<div><dt>${a}</dt><dd>${esc(b)}</dd></div>`).join("")}</dl><footer><b>${esc(ph)}</b><span>${esc(uso)}</span></footer>`;
     feat.classList.remove("cz--flash"); void feat.offsetWidth; feat.classList.add("cz--flash");
     cells.forEach((c) => c.classList.toggle("on", c.dataset.m === k));

@@ -6316,3 +6316,12 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .sg__meta { display: inline-block; vertical-align: middle; margin-left: 10px; font: 800 13px/1 "Archivo", sans-serif; text-transform: uppercase; letter-spacing: .04em; color: var(--bone); background: #D6161D; padding: 7px 12px; border-radius: 99px; font-style: normal; }
 .sg__dates li { display: grid; grid-template-columns: 150px 1fr; gap: 12px; } .sg__dates b { min-width: 0; }
 @media (max-width: 680px) { .sg__dates li { grid-template-columns: 1fr; gap: 0; padding: 3px 0; } }
+/* simplified creators blocks */
+.cz__rec { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cz__rec article { background: var(--lime); color: var(--ink); border-radius: 14px; padding: 18px; display: grid; gap: 8px; } .cz__rec article > b { font: 400 30px/1 "Anton", Impact, sans-serif; } .cz__rec p { margin: 0; font-size: 14.5px; font-weight: 600; }
+.cz__dbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cz__dbs article { border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; } .cz__dbs h5 { margin-bottom: 8px; } .cz__dbs ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 14px; }
+.cz__cd--1 { grid-template-columns: 1fr; max-width: 560px; text-align: center; }
+.cz__dec li { padding: 18px 16px; } .cz__dec h5 { font-size: clamp(22px, 2vw, 30px); }
+.cz__man .cz__cn { font-size: 15px; } .cz__hl { font-size: clamp(26px, 3.2vw, 46px); }
+@media (max-width: 760px) { .cz__rec, .cz__dbs { grid-template-columns: 1fr; } }
