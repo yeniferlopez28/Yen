@@ -29,7 +29,7 @@
   const meta = (t) => SER.find((s) => t.startsWith(s[0])) || SER[7];
 
   // posting slots: [day index, time, duration(h), platform, field index, label]
-  const SLOT = [[0, 18.5, 1.6, "tt ig", 1, "TikTok + Reel"], [2, 13.5, 1.6, "tt ig", 2, "TikTok + Reel"], [3, 18.5, 1.6, "tt", 3, "Solo TikTok"], [4, 12, 1.6, "ig", 4, "Carrusel IG"], [5, 10.5, 1.6, "tt ig", 5, "TikTok + Reel"]];
+  const SLOT = [[0, 18.5, 1.6, "tt ig", 1, "TikTok + Reel"], [2, 13.5, 1.6, "tt ig", 2, "TikTok + Reel"], [3, 18.5, 1.6, "tt ig", 3, "TikTok + Reel"], [4, 12, 1.6, "ig", 4, "Carrusel IG"], [5, 10.5, 1.6, "tt ig", 5, "TikTok + Reel"]];
   const STD = [1, 2, 3, 5, 6], STT = 8;
   const PROD = [[0, 9, 2, "Métricas + tendencias", "Revisar la semana anterior en el tablero, Creative Center, búsquedas y comentarios; elegir ideas del banco."],
                 [1, 9, 2.5, "Guiones + claims", "Escribir guiones y copys de la semana siguiente y mandarlos a revisión de Legal/Calidad."],
@@ -74,7 +74,7 @@
     document.getElementById("ccMonth").textContent = cap(MES[mon.getMonth()]) + (mon.getMonth() !== sun.getMonth() ? "–" + MES[sun.getMonth()] : "");
     const [ph, phd] = PH(wk), W = wk ? D.weeks[wk - 1] : null;
     const seas = [4, 6, 7, 8, 9, 10, 11].includes(wk);
-    document.getElementById("ccInfo").innerHTML = `<b>${wk ? "Semana " + wk : "Semana 0"}</b><span>${fmt(mon)} – ${fmt(sun)} ${sun.getFullYear()}</span><em>${ph}</em><span class="cc__phd">${phd}</span>${seas ? '<em class="t">De temporada</em>' : ""}${wk ? `<span class="cc__cnt">${F.tt || F.ig ? "8 piezas de feed" : ""}${F.st ? " · 1 secuencia de Stories" : ""}</span>` : '<span class="cc__cnt">Sin publicaciones · preparación</span>'}`;
+    document.getElementById("ccInfo").innerHTML = `<b>${wk ? "Semana " + wk : "Semana 0"}</b><span>${fmt(mon)} – ${fmt(sun)} ${sun.getFullYear()}</span><em>${ph}</em><span class="cc__phd">${phd}</span>${seas ? '<em class="t">De temporada</em>' : ""}${wk ? `<span class="cc__cnt">${F.tt || F.ig ? "4 videos (TikTok + Reel) + 1 carrusel" : ""}${F.st ? " · 1 secuencia de Stories" : ""}</span>` : '<span class="cc__cnt">Sin publicaciones · preparación</span>'}`;
     const ev = events(wk).filter(shown);
     const rows = [];
     for (let h = H0; h <= H1; h++) rows.push(`<span style="--r:${h - H0}">${hh(h)}</span>`);
