@@ -7442,3 +7442,15 @@ em.av--lime { background: var(--lime); } em.av--cookie { background: var(--cooki
 .sc__rulepub b { font: 400 clamp(24px, 2.4vw, 34px)/1 "Anton", Impact, sans-serif; text-transform: uppercase; }
 .sc__rulepub .a { background: var(--lime); color: var(--ink); } .sc__rulepub .b { background: var(--pink); color: var(--ink); }
 @media (max-width: 600px) { .sc__rulepub > div { grid-template-columns: 1fr; } }
+.cc__note b.ok { color: var(--ink); }
+.sc__bd { background: var(--ink); color: var(--bone); border-radius: 22px; padding: clamp(18px, 2.4vw, 28px); display: grid; gap: 14px; }
+.sc__bd header { display: grid; gap: 6px; } .sc__bd .sc__k { color: var(--lime); opacity: 1; } .sc__bd h3 { font-size: clamp(28px, 3vw, 44px); } .sc__bd header p:last-child { margin: 0; font-size: 14px; line-height: 1.45; max-width: 80ch; opacity: .85; }
+.sc__bdt { display: grid; gap: 5px; }
+.sc__bdh, .sc__bdr { display: grid; grid-template-columns: 70px 1fr 1fr 170px; gap: 6px; }
+.sc__bdh b { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px; border-radius: 10px; background: var(--pink); color: var(--ink); } .sc__bdh b:nth-child(3) { background: var(--bone); } .sc__bdh b.f { background: var(--lime); }
+.sc__bdr span { font: 400 22px/1 "Anton", Impact, sans-serif; align-self: center; }
+.sc__bdr p { margin: 0; padding: 10px 12px; border-radius: 10px; background: rgba(245,235,215,.07); font-size: 12.5px; line-height: 1.35; transition: opacity .4s calc(var(--n) * .06s), transform .4s calc(var(--n) * .06s); }
+.sc__bdr p.f { font-weight: 800; } .sc__bdr.on p.f { background: var(--lime); color: var(--ink); } .sc__bdr.lo p { opacity: .45; } .sc__bdr.lo p.f { opacity: .6; }
+.sc--anim .sc__bd:not(.in) .sc__bdr p { opacity: 0; transform: translateX(-10px); }
+.sc__wk .d-off { background: none; border: 2px dashed rgba(12,11,10,.2); opacity: .55; }
+@media (max-width: 700px) { .sc__bdh { display: none; } .sc__bdr { grid-template-columns: 1fr 1fr; } .sc__bdr span { grid-column: 1 / -1; padding-top: 8px; } .sc__bdr p.f { grid-column: 1 / -1; } .sc__bdr p:nth-of-type(1)::before { content: "IG · "; font-weight: 800; } .sc__bdr p:nth-of-type(2)::before { content: "TikTok · "; font-weight: 800; } }

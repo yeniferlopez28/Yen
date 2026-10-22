@@ -26,5 +26,5 @@
   if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
   root.classList.add("sc--anim");
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
-  root.querySelectorAll(".sc__hero, .sc__qa, .sc__res, .sc__plat, .sc__bm, .sc__mix, .sc__feed, .sc__anat, .sc__row, .sc__vs, .sc__jr, .sc__pils, .sc__kwt, .sc__ev, .sc__cal2, .sc__ninety, .sc__cx, .sc__rules").forEach((el) => io.observe(el));
+  root.querySelectorAll(".sc__bd, .sc__hero, .sc__qa, .sc__res, .sc__plat, .sc__bm, .sc__mix, .sc__feed, .sc__anat, .sc__row, .sc__vs, .sc__jr, .sc__pils, .sc__kwt, .sc__ev, .sc__cal2, .sc__ninety, .sc__cx, .sc__rules").forEach((el) => io.observe(el));
 })();

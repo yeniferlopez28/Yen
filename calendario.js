@@ -29,11 +29,12 @@
   const meta = (t) => SER.find((s) => t.startsWith(s[0])) || SER[7];
 
   // posting slots: [day index, time, duration(h), platform, field index, label]
-  const SLOT = [[0, 18.5, 1.6, "tt ig", 1, "TikTok + Reel"], [2, 13.5, 1.6, "tt ig", 2, "TikTok + Reel"], [3, 18.5, 1.6, "tt ig", 3, "TikTok + Reel"], [4, 12, 1.6, "ig", 4, "Carrusel IG"], [5, 10.5, 1.6, "tt ig", 5, "TikTok + Reel"]];
-  const STD = [1, 2, 3, 5, 6], STT = 8;
+  // research-based slots: Tue/Wed/Thu are strongest on both platforms; Fri 6 pm for TikTok; weekends weakest on Instagram
+  const SLOT = [[1, 18, 1.6, "tt ig", 1, "TikTok + Reel"], [2, 12, 1.6, "ig", 4, "Carrusel IG"], [3, 14, 1.6, "tt ig", 2, "TikTok + Reel"], [4, 18, 1.6, "tt ig", 5, "TikTok + Reel"]];
+  const STD = [0, 1, 2, 3, 4], STT = 8;
   const PROD = [[0, 9, 2, "Métricas + tendencias", "Revisar la semana anterior en el tablero, Creative Center, búsquedas y comentarios; elegir ideas del banco."],
                 [1, 9, 2.5, "Guiones + claims", "Escribir guiones y copys de la semana siguiente y mandarlos a revisión de Legal/Calidad."],
-                [2, 9, 4, "Rodaje en lote", ""], [3, 9, 3, "Edición y diseño", "Editar, armar carrusel y portadas, sacar versión TikTok y versión Instagram sin marca de agua."],
+                [2, 14, 3, "Rodaje en lote", ""], [3, 9, 3, "Edición y diseño", "Editar, armar carrusel y portadas, sacar versión TikTok y versión Instagram sin marca de agua."],
                 [4, 9, 1, "Aprobación", "Alejandro aprueba y se programa todo."]];
   const PREP = [[0, 9, 3, "Cuentas profesionales", "Pasar Instagram a perfil de empresa y TikTok a Business; cuentas indexables; nombre «FIBO · Barra de proteína»; bio «Hecha en Zapopan · En 7-Eleven»."],
                 [1, 9, 2, "Lista de tiendas", "Con Comercial: lista de 7-Eleven con FIBO confirmada e inventario de fibo.mx. Sin esto se posponen las piezas con *."],
@@ -59,10 +60,10 @@
         ev.push({ d, t, h, kind: "post", pl, cls: car ? "ca" : m[1], title: title.replace("*", ""), cond: title.endsWith("*"), lab,
           pil: car ? "Carrusel IG" : m[2], obj, cta, met, fmt: car ? "Carrusel · 5–8 láminas" : m[6], how: car ? "Portada con pregunta → respuesta → cierre «guárdalo». Texto alternativo y palabra clave en las primeras 125 letras." : m[7] });
       });
-      STD.forEach((d, n) => ev.push({ d, t: STT, h: .75, kind: "st", pl: "st", cls: "st", title: W[6], lab: `Stories ${n + 1}/5`, pil: "Comunidad", obj: "Comunidad", cta: "Votar o responder", met: "Respuestas y toques en enlace", fmt: "Secuencia de 3–6 historias", how: "Encuesta → resultado → enlace. Se guarda en destacadas." }));
+      STD.forEach((d, n) => ev.push({ d, t: STT, h: .75, kind: "st", pl: "st", cls: "st", title: W[6] + (W[3].startsWith("Te respondo") && n === 2 ? " + " + W[3].replace("*", "") : ""), lab: `Stories ${n + 1}/5`, pil: "Comunidad", obj: "Comunidad", cta: "Votar o responder", met: "Respuestas y toques en enlace", fmt: "Secuencia de 3–6 historias", how: "Encuesta → resultado → enlace. Se guarda en destacadas." }));
     }
     (k === 0 ? PREP : PROD).forEach(([d, t, h, title, how]) => {
-      if (!how) { const nx = D.weeks[k]; how = nx ? `Medio día por locación. Graba las 5 piezas de la semana ${k + 1}: ${[nx[1], nx[2], nx[3], nx[5], nx[4]].map((s) => s.replace("*", "")).join(" · ")}.` : "Sin rodaje: cierre del trimestre."; }
+      if (!how) { const nx = D.weeks[k]; how = nx ? `Tarde por locación. Graba los 3 videos de la semana ${k + 1}: ${[nx[1], nx[2], nx[5]].map((s) => s.replace("*", "")).join(" · ")}. El carrusel «${nx[4].replace("*", "")}» se diseña el jueves.` : "Sin rodaje: cierre del trimestre."; }
       ev.push({ d, t, h, kind: "pr", pl: "pr", cls: "pd", title, lab: "Producción", how, obj: "Producción", fmt: `${hh(t)} – ${hh(t + h)}` });
     });
     return ev;
@@ -74,7 +75,7 @@
     document.getElementById("ccMonth").textContent = cap(MES[mon.getMonth()]) + (mon.getMonth() !== sun.getMonth() ? "–" + MES[sun.getMonth()] : "");
     const [ph, phd] = PH(wk), W = wk ? D.weeks[wk - 1] : null;
     const seas = [4, 6, 7, 8, 9, 10, 11].includes(wk);
-    document.getElementById("ccInfo").innerHTML = `<b>${wk ? "Semana " + wk : "Semana 0"}</b><span>${fmt(mon)} – ${fmt(sun)} ${sun.getFullYear()}</span><em>${ph}</em><span class="cc__phd">${phd}</span>${seas ? '<em class="t">De temporada</em>' : ""}${wk ? `<span class="cc__cnt">${F.tt || F.ig ? "4 videos (TikTok + Reel) + 1 carrusel" : ""}${F.st ? " · 1 secuencia de Stories" : ""}</span>` : '<span class="cc__cnt">Sin publicaciones · preparación</span>'}`;
+    document.getElementById("ccInfo").innerHTML = `<b>${wk ? "Semana " + wk : "Semana 0"}</b><span>${fmt(mon)} – ${fmt(sun)} ${sun.getFullYear()}</span><em>${ph}</em><span class="cc__phd">${phd}</span>${seas ? '<em class="t">De temporada</em>' : ""}${wk ? `<span class="cc__cnt">${F.tt || F.ig ? "3 videos (TikTok + Reel) + 1 carrusel" : ""}${F.st ? " · 1 secuencia de Stories" : ""}</span>` : '<span class="cc__cnt">Sin publicaciones · preparación</span>'}`;
     const ev = events(wk).filter(shown);
     const rows = [];
     for (let h = H0; h <= H1; h++) rows.push(`<span style="--r:${h - H0}">${hh(h)}</span>`);
