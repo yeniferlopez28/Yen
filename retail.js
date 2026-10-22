@@ -24,7 +24,7 @@
     let s = +sc.querySelector('input[name="rtD"]:checked').value;
     sc.querySelectorAll("input[type=checkbox]:checked").forEach((c) => (s += +c.dataset.p));
     out.textContent = s; arc.style.strokeDashoffset = 100 - s;
-    const [t, c] = s >= 80 ? ["Excelente", "#C9F23A"] : s >= 60 ? ["Adecuado", "#3A5CFF"] : s >= 40 ? ["Mejorable", "#F2D31B"] : ["Crítico", "#D6161D"];
+    const [t, c] = s >= 80 ? ["Excelente", "#C9F23A"] : s >= 60 ? ["Adecuado", "#3A5CFF"] : s >= 40 ? ["Mejorable", "#FF89B8"] : ["Crítico", "#D6161D"];
     cls.textContent = t; arc.style.stroke = c;
   };
   sc.addEventListener("change", score); score();
