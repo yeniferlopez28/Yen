@@ -6325,3 +6325,18 @@ a.card--orange:hover .px-arrow { transform: translateX(10px); }
 .cz__dec li { padding: 18px 16px; } .cz__dec h5 { font-size: clamp(22px, 2vw, 30px); }
 .cz__man .cz__cn { font-size: 15px; } .cz__hl { font-size: clamp(26px, 3.2vw, 46px); }
 @media (max-width: 760px) { .cz__rec, .cz__dbs { grid-template-columns: 1fr; } }
+/* simpler message system: keep the core of each pane */
+#mensajes .mx__au p.r, #mensajes .mx__au p.cu, #mensajes .mx__ph2 p,
+#mensajes .mx__g2 > div:has(#mxHier), #mensajes #mxRules, #mensajes .mx__k:has(+ #mxAvoid), #mensajes #mxAvoid,
+#mensajes #mxMat, #mensajes .mx__tabs a[href="#mxMat"],
+#mensajes .mx__k:has(+ #mxStates), #mensajes #mxStates, #mensajes .mx__k:has(+ #mxWho), #mensajes #mxWho, #mensajes .mx__meas { display: none !important; }
+#mensajes .mx__g2:has(#mxHier) { grid-template-columns: 1fr !important; }
+/* simpler territory and personality: keep the core blocks */
+#concepto #tcMapR, #concepto .tc__row:has(#tcPers), #concepto .tc__row:has(#tcJr), #concepto .tc__row:has(#tcNot), #concepto #tcPend, #concepto a[href="#tcPend"],
+#personalidad #pzAk, #personalidad #pzRole, #personalidad #pzTest, #personalidad #pzMs, #personalidad .pz__beh { display: none !important; }
+/* simpler competitor wall and channel bento */
+#activaciones .ac__post .bd > p:not(.dt) { display: none; }
+#estrategia-canales .ec__c ul li:nth-child(n+4) { display: none; }
+#estrategia-canales .ec__c .ec__mut ~ .ec__mut, #estrategia-canales .ec__note { display: none; }
+#estrategia-canales .ec__grid > .ec__c:nth-child(22), #estrategia-canales .ec__grid > .ec__c:nth-child(24), #estrategia-canales .ec__grid > .ec__c:nth-child(25) { display: none; }
+#estrategia-canales .ec__ev li em, #estrategia-canales .ec__road li em { display: none; }
