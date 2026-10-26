@@ -246,6 +246,7 @@ b, strong { font-weight: 800; }
 .road:has(.road__stat) { padding-top: 64px; }
 .tb__road { margin-top: 18px; }
 .dn p { font-size: 19px; align-content: center; gap: 3px; } .dn p small { font-size: 8.5px; } .donut svg { width: clamp(140px, 14vw, 180px); }
+.solo { display: grid; gap: 10px; }
 </style>
 
 <header class="tb" aria-label="Cronómetro de la presentación">
@@ -287,7 +288,8 @@ b, strong { font-weight: 800; }
       <a class="c2" href="#objetivo"><b>02 · Qué queremos lograr</b><span></span><em>1 min</em></a>
       <a class="c3" href="#publico"><b>03 · A quién y qué le decimos</b><span></span><em>1 min</em></a>
       <a class="c4" href="#estrategia"><b>04 · La estrategia</b><span></span><em>1 min</em></a>
-      <a class="c5" href="#anaquel"><b>05–09 · Cómo la ejecutamos</b><span></span><em>6.5 min</em></a>
+      <a class="c5" href="#contenido"><b>05–06 · Primero lo digital</b><span></span><em>2.5 min</em></a>
+      <a class="c2" href="#anaquel"><b>07–09 · Anaquel, prueba y promociones</b><span></span><em>4 min</em></a>
       <a class="c1" href="#presupuesto"><b>10–12 · Permiso, dinero y fechas</b><span></span><em>2.5 min</em></a>
       <a class="c3" href="#decisiones"><b>13 · Lo que necesitamos de ti</b><span></span><em>1.5 min</em></a>
     </nav>
@@ -306,7 +308,7 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="n"><span data-count="63">63</span>%</span><p>de la facturación ene–ago en dos clientes; 7-Eleven creció +268%</p></div>
       <div class="card ink"><span class="n"><span data-count="11">11</span><small>meses</small></span><p>sin publicar en redes · ≈430 calificaciones contra miles de la competencia</p></div>
     </div>
-    <div class="split">
+    <div class="solo">
       <div class="chart"><span class="t">Facturación ene–ago 2026 · millones de pesos</span><h4>63% en dos clientes</h4>
         <div class="hb">
           <div class="me"><span>7-Eleven</span><i style="--v:100%"></i><b>$2.21M</b></div>
@@ -316,7 +318,6 @@ b, strong { font-weight: 800; }
           <div><span>Amazon</span><i style="--v:1.5%;--c:var(--red)"></i><b>$0.03M</b></div>
         </div>
         <p class="note">7-Eleven creció +268% y explica casi todo el crecimiento.</p></div>
-      <figure class="photo tilt"><img src="assets/shelf-08.webp" alt="Anaquel de 7-Eleven con barras revueltas"><figcaption>Así está el anaquel hoy</figcaption></figure>
     </div>
     <div class="grid g2">
       <div class="card"><span class="t">Donde gana</span><h4>Producto y valor</h4><p>65 g · 22 g de proteína · 10 g de fibra. La más barata por gramo de proteína en 7-Eleven ($2.27). La describen como «llenadora». Hecha en Zapopan.</p></div>
@@ -327,7 +328,7 @@ b, strong { font-weight: 800; }
 
 <!-- 02 -->
 <section class="band b-pink" id="objetivo" data-min="1" data-t="Qué queremos lograr">
-  <img class="deco deco--hand" src="assets/mm-hand.webp" alt=""><div class="in">
+  <div class="in">
     <p class="kk"><span>FIBO · Estrategia de marketing</span><span>02 / Qué queremos lograr <em>1 min</em></span></p>
     <h2 class="big">De producto que se vende solo a marca que se elige.</h2>
     <ol class="steps">
@@ -355,8 +356,7 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="t">Necesidad</span><h4>Algo que le quite el hambre entre una cosa y otra</h4><p>Que se le antoje y que no sea pan.</p></div>
       <div class="card pink"><span class="t">Diferencia</span><h4>La barra tapatía que sí te llena</h4><p>No competimos en precio más bajo, etiqueta limpia, golosina premium ni deporte de alto nivel.</p></div>
     </div>
-    <div class="split rev">
-      <figure class="photo tilt2"><img src="assets/mm-car.webp" alt="Joven comiendo una barra FIBO en el carro"><figcaption>El momento: en el camino</figcaption></figure>
+    <div class="solo">
       <div class="road" aria-label="Un día del público">
         <p class="road__stat"><b data-count="79">79</b>min al día en traslados</p>
         <div class="road__sky">
@@ -412,9 +412,64 @@ b, strong { font-weight: 800; }
 
 <div class="mq pink" aria-hidden="true"><div><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i></div></div>
 <!-- 05 -->
-<section class="band b-lime" id="anaquel" data-min="1.5" data-t="Punto de venta">
+<section class="band b-blue" id="contenido" data-min="1.5" data-t="Creadores y contenido">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>05 / Punto de venta · 7-Eleven <em>1.5 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>05 / Digital · creadores y contenido <em>1.5 min</em></span></p>
+    <h2 class="big">Momentos reales de GDL. <span class="hl">La barra aparece sola.</span></h2>
+    <div class="grid g3">
+      <div class="card lime"><span class="t">Creadores · Encuentros FIBO</span><span class="n" data-count="30">30</span><p>nanocreadores locales, 12 semanas, ~$8,150 con envío. Comprar contenido y prueba, no alcance. Se mide por zona de 7-Eleven.</p></div>
+      <div class="card"><span class="t">Contenido orgánico</span><span class="n">4<small>posts/sem</small></span><p>3 videos que salen en TikTok y como Reel + 1 carrusel solo para Instagram. 96 publicaciones del 2 nov al 24 ene.</p></div>
+      <div class="card pink"><span class="t">Lo que dice la investigación</span><h4>Lo que llama no es lo que vende</h4><p>Situaciones que la gente se manda por DM atraen; pruebas de sabor, creadores y «dónde comprar» venden.</p></div>
+    </div>
+    <div class="solo">
+      <div class="chart"><span class="t">Qué publicamos · 4 pilares</span>
+        <div class="donut"><div class="dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" stroke="#EEE6D6" pathLength="100"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#C9F23A" stroke-dasharray="35 65" stroke-dashoffset="0"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#3A5CFF" stroke-dasharray="25 75" stroke-dashoffset="-35"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#FF89B8" stroke-dasharray="25 75" stroke-dashoffset="-60"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#4E2275" stroke-dasharray="15 85" stroke-dashoffset="-85"/></svg><p>8<small>series</small></p></div>
+          <div class="lbl"><span><b>35%</b>Momentos reales · «Te encontraste…»</span><span><b>25%</b>Encuentros · rutas y creadores</span><span><b>25%</b>Sabor y producto · prueba a ciegas</span><span><b>15%</b>Comunidad y casa · Hecho en Zapopan</span></div></div>
+      </div>
+    </div>
+    <div class="week" aria-label="Semana tipo">
+      <div class="s"><b>Lun</b>Stories</div>
+      <div class="v"><b>Mar</b>18:00 · Video</div>
+      <div class="c"><b>Mié</b>12:00 · Carrusel</div>
+      <div class="v"><b>Jue</b>14:00 · Video</div>
+      <div class="v"><b>Vie</b>18:00 · Video</div>
+      <div><b>Sáb</b>—</div>
+      <div><b>Dom</b>—</div>
+    </div>
+    <p class="note">Días elegidos con Sprout Social y Buffer 2026: martes a jueves son los mejores en las dos redes; el fin de semana es lo más bajo en Instagram. Costo: tiempo del equipo (10–12 h a la semana) y ~120 barras para grabar ($1,730).</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="band b-lime" id="digital" data-min="1" data-t="E-commerce y recompra">
+  <div class="in">
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>06 / Digital · e-commerce y recompra <em>1 min</em></span></p>
+    <h2 class="big">Ya se vende en internet. <span class="hl">Pero no la controlamos.</span></h2>
+    <div class="grid g4">
+      <div class="card red"><span class="t">Amazon</span><h4>La opera un tercero</h4><p>Almacén casi vacío. La tarjeta vence el 31 oct.</p></div>
+      <div class="card red"><span class="t">Mercado Libre</span><h4>Sin acceso del equipo</h4><p>Recuperar la cuenta y corregir fichas.</p></div>
+      <div class="card"><span class="t">Margen</span><span class="n">$14–25</span><p>deja cada barra vendida en internet vs. $9.40 con distribuidores</p></div>
+      <div class="card ink"><span class="t">Plan</span><span class="n">$38–47k</span><p>Fichas, fotos, video y piloto de anuncios desde feb 2027 (~$26 mil son inventario que se recupera)</p></div>
+    </div>
+    <div class="solo">
+      <div class="chart"><span class="t">Cuánto deja cada barra según el canal</span><h4>Internet deja más, si la controlamos</h4>
+        <div class="hb">
+          <div class="me"><span>Amazon / Mercado Libre</span><i style="--v:100%"></i><b>$14–25</b></div>
+          <div><span>fibo.mx</span><i style="--v:90.6%;--c:var(--blue)"></i><b>$22.65</b></div>
+          <div><span>7-Eleven y distribuidores</span><i style="--v:37.6%;--c:var(--cookie)"></i><b>$9.40</b></div>
+        </div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><span class="t">Recompra</span><h4>La barrera es no encontrarla</h4><p>Hoy no se puede medir si la gente repite. Primero abasto y atención; después incentivos con grupo control.</p></div>
+      <div class="card"><span class="t">Arranca ya, casi gratis</span><h4>Buzón con dueño · QR en 10 tiendas</h4><p>Responder en 24 h, registro en Notion, reseñas a todos los compradores y encuesta de 60 s (meta: 150 respuestas en 8 semanas).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="band b-bone" id="anaquel" data-min="1.5" data-t="Punto de venta">
+  <div class="in">
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>07 / Punto de venta · 7-Eleven <em>1.5 min</em></span></p>
     <h2 class="big">No falta material. <span class="hl">Falta producto.</span></h2>
     <div class="grid g4">
       <div class="card"><span class="n" data-count="45">45</span><p>tiendas auditadas el 14 oct</p></div>
@@ -422,7 +477,7 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="n">15/21</span><p>mal acomodadas, revueltas entre galletas</p></div>
       <div class="card ink"><span class="n">$2.27</span><p>por gramo de proteína: la más barata del anaquel y nadie lo ve</p></div>
     </div>
-    <div class="split">
+    <div class="solo">
       <div class="chart"><span class="t">Precio por gramo de proteína · 7-Eleven</span><h4>La más barata por gramo. Nadie lo ve.</h4>
         <div class="hb">
           <div class="me"><span>FIBO · $50 · 22 g</span><i style="--v:75.7%"></i><b>$2.27</b></div>
@@ -435,7 +490,6 @@ b, strong { font-weight: 800; }
         <div class="stack"><span style="--v:71%;background:var(--lime)">32 con FIBO</span><span style="--v:13%;background:var(--red);color:var(--bone)">6</span><span style="--v:16%;background:var(--ink);color:var(--bone)">7</span></div>
         <div class="leg"><span style="--c:var(--lime)">Con FIBO</span><span style="--c:var(--red)">Agotada</span><span style="--c:var(--ink)">Nunca la han tenido</span></div>
       </div>
-      <figure class="photo contain tilt"><img src="assets/pres-display.webp" alt="Exhibidor de mostrador de FIBO"><figcaption>Exhibidor para tiendas de ruta</figcaption></figure>
     </div>
     <div class="grid g3">
       <div class="card ink"><span class="t">Qué pedir a 7-Eleven</span><h4>El bloque mínimo</h4><p>Alta de Brownie, los sabores juntos, 2 frentes y la etiqueta correcta. Después, un lugar en los ganchos de proteína.</p></div>
@@ -445,10 +499,10 @@ b, strong { font-weight: 800; }
   </div>
 </section>
 
-<!-- 06 -->
+<!-- 08 -->
 <section class="band b-pink" id="prueba" data-min="1.5" data-t="Prueba y activaciones">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>06 / Que la prueben <em>1.5 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>08 / Que la prueben <em>1.5 min</em></span></p>
     <h2 class="big">Probarla a 10 minutos de una tienda con FIBO.</h2>
     <p class="lead">Cada activación manda a la gente a una tienda concreta, con código y tienda control. La meta no es regalar barras: es saber cuánto cuesta un comprador nuevo.</p>
     <div class="pil">
@@ -457,7 +511,7 @@ b, strong { font-weight: 800; }
       <div class="card ink"><span class="t">P3 · CUCEA · 9–13 nov</span><h4>Reto FIBO</h4><p>Caso real en Negomarket, sin vender en el campus · ~$3,100</p></div>
       <div class="card pur"><span class="t">P4 · MAJA · 12–13 dic</span><h4>Salida de encuentro</h4><p>Caminata con marca outdoor afín · ~$1,500</p></div>
     </div>
-    <div class="split">
+    <div class="solo">
       <div class="chart ink"><span class="t">Costo por comprador nuevo · sampling</span><h4>Meta: menos de $120</h4>
         <div class="hb">
           <div><span>Naturista (su personal)</span><i style="--v:27%;--c:var(--lime)"></i><b>$60</b></div>
@@ -465,7 +519,6 @@ b, strong { font-weight: 800; }
           <div><span>Meta</span><i style="--v:54%;--c:var(--bone)"></i><b>$120</b></div>
           <div><span>7-Eleven (nuestro personal)</span><i style="--v:100%;--c:var(--red)"></i><b>$221</b></div>
         </div></div>
-      <figure class="photo tilt2"><img src="assets/cr-correr.webp" alt="Run club corriendo al amanecer"><figcaption>P1 · Mapa del Encuentro</figcaption></figure>
     </div>
     <div class="grid g3">
       <div class="card"><span class="t">Sampling · escenario 1</span><span class="n">$5,333</span><p>Degustación con cubo de 1/4 de barra donde FIBO ya está en anaquel. Aprobar ya.</p></div>
@@ -476,10 +529,10 @@ b, strong { font-weight: 800; }
   </div>
 </section>
 
-<!-- 07 -->
+<!-- 09 -->
 <section class="band b-bone" id="promos" data-min="1" data-t="Promociones">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>07 / Promociones <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>09 / Promociones <em>1 min</em></span></p>
     <h2 class="big">Promociones que <span class="hl">se pagan solas.</span></h2>
     <div class="grid g4">
       <div class="card ink"><span class="n">$9.40</span><p>margen de FIBO por barra en tienda</p></div>
@@ -499,63 +552,6 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="t">Probar primero · puntaje 83</span><h4>Packs surtidos</h4><p>Kit de 4 sabores a $176 en fibo.mx y caja surtida para gimnasios, desde el 15 dic.</p></div>
       <div class="card"><span class="t">Medir creadores</span><h4>Cupón de creador</h4><p>10%, un uso por cliente, solo en línea, 30 días por campaña.</p></div>
       <div class="card"><span class="t">Primera compra</span><h4>−15% en el primer pack</h4><p>Para quien probó una muestra; fibo.mx + WhatsApp, nov–ene.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 08 -->
-<section class="band b-blue" id="contenido" data-min="1.5" data-t="Creadores y contenido">
-  <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>08 / Creadores y contenido <em>1.5 min</em></span></p>
-    <h2 class="big">Momentos reales de GDL. <span class="hl">La barra aparece sola.</span></h2>
-    <div class="grid g3">
-      <div class="card lime"><span class="t">Creadores · Encuentros FIBO</span><span class="n" data-count="30">30</span><p>nanocreadores locales, 12 semanas, ~$8,150 con envío. Comprar contenido y prueba, no alcance. Se mide por zona de 7-Eleven.</p></div>
-      <div class="card"><span class="t">Contenido orgánico</span><span class="n">4<small>posts/sem</small></span><p>3 videos que salen en TikTok y como Reel + 1 carrusel solo para Instagram. 96 publicaciones del 2 nov al 24 ene.</p></div>
-      <div class="card pink"><span class="t">Lo que dice la investigación</span><h4>Lo que llama no es lo que vende</h4><p>Situaciones que la gente se manda por DM atraen; pruebas de sabor, creadores y «dónde comprar» venden.</p></div>
-    </div>
-    <div class="split">
-      <div class="chart"><span class="t">Qué publicamos · 4 pilares</span>
-        <div class="donut"><div class="dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" stroke="#EEE6D6" pathLength="100"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#C9F23A" stroke-dasharray="35 65" stroke-dashoffset="0"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#3A5CFF" stroke-dasharray="25 75" stroke-dashoffset="-35"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#FF89B8" stroke-dasharray="25 75" stroke-dashoffset="-60"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#4E2275" stroke-dasharray="15 85" stroke-dashoffset="-85"/></svg><p>8<small>series</small></p></div>
-          <div class="lbl"><span><b>35%</b>Momentos reales · «Te encontraste…»</span><span><b>25%</b>Encuentros · rutas y creadores</span><span><b>25%</b>Sabor y producto · prueba a ciegas</span><span><b>15%</b>Comunidad y casa · Hecho en Zapopan</span></div></div>
-      </div>
-      <figure class="photo contain tilt"><img src="assets/mm-estres.webp" alt="Pieza FIBO: fuera el estrés"><figcaption>Así se ve una pieza</figcaption></figure>
-    </div>
-    <div class="week" aria-label="Semana tipo">
-      <div class="s"><b>Lun</b>Stories</div>
-      <div class="v"><b>Mar</b>18:00 · Video</div>
-      <div class="c"><b>Mié</b>12:00 · Carrusel</div>
-      <div class="v"><b>Jue</b>14:00 · Video</div>
-      <div class="v"><b>Vie</b>18:00 · Video</div>
-      <div><b>Sáb</b>—</div>
-      <div><b>Dom</b>—</div>
-    </div>
-    <p class="note">Días elegidos con Sprout Social y Buffer 2026: martes a jueves son los mejores en las dos redes; el fin de semana es lo más bajo en Instagram. Costo: tiempo del equipo (10–12 h a la semana) y ~120 barras para grabar ($1,730).</p>
-  </div>
-</section>
-
-<!-- 09 -->
-<section class="band b-lime" id="digital" data-min="1" data-t="E-commerce y recompra">
-  <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>09 / E-commerce y recompra <em>1 min</em></span></p>
-    <h2 class="big">Ya se vende en internet. <span class="hl">Pero no la controlamos.</span></h2>
-    <div class="grid g4">
-      <div class="card red"><span class="t">Amazon</span><h4>La opera un tercero</h4><p>Almacén casi vacío. La tarjeta vence el 31 oct.</p></div>
-      <div class="card red"><span class="t">Mercado Libre</span><h4>Sin acceso del equipo</h4><p>Recuperar la cuenta y corregir fichas.</p></div>
-      <div class="card"><span class="t">Margen</span><span class="n">$14–25</span><p>deja cada barra vendida en internet vs. $9.40 con distribuidores</p></div>
-      <div class="card ink"><span class="t">Plan</span><span class="n">$38–47k</span><p>Fichas, fotos, video y piloto de anuncios desde feb 2027 (~$26 mil son inventario que se recupera)</p></div>
-    </div>
-    <div class="split">
-      <div class="chart"><span class="t">Cuánto deja cada barra según el canal</span><h4>Internet deja más, si la controlamos</h4>
-        <div class="hb">
-          <div class="me"><span>Amazon / Mercado Libre</span><i style="--v:100%"></i><b>$14–25</b></div>
-          <div><span>fibo.mx</span><i style="--v:90.6%;--c:var(--blue)"></i><b>$22.65</b></div>
-          <div><span>7-Eleven y distribuidores</span><i style="--v:37.6%;--c:var(--cookie)"></i><b>$9.40</b></div>
-        </div></div>
-      <figure class="photo contain tilt2"><img src="assets/pres-caja.webp" alt="Caja de FIBO con displays"><figcaption>Caja de 24 · mayoreo y oficinas</figcaption></figure>
-    </div>
-    <div class="grid g2">
-      <div class="card"><span class="t">Recompra</span><h4>La barrera es no encontrarla</h4><p>Hoy no se puede medir si la gente repite. Primero abasto y atención; después incentivos con grupo control.</p></div>
-      <div class="card"><span class="t">Arranca ya, casi gratis</span><h4>Buzón con dueño · QR en 10 tiendas</h4><p>Responder en 24 h, registro en Notion, reseñas a todos los compradores y encuesta de 60 s (meta: 150 respuestas en 8 semanas).</p></div>
     </div>
   </div>
 </section>
