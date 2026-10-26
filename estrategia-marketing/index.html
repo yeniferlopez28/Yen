@@ -85,6 +85,7 @@ b, strong { font-weight: 800; }
 .steps li::before { content: "0" counter(s); font: 400 14px/1 var(--display); opacity: .5; }
 .steps li b { font: 400 26px/1 var(--display); text-transform: uppercase; }
 .steps li:first-child { background: var(--white); opacity: .65; }
+.steps { align-items: end; } .steps li:nth-child(1) { min-height: 90px; } .steps li:nth-child(2) { min-height: 120px; } .steps li:nth-child(3) { min-height: 150px; } .steps li:nth-child(4) { min-height: 180px; background: var(--ink); color: var(--bone); } .steps li:nth-child(4) b { color: var(--lime); }
 .steps { padding: 0; margin: 0; }
 
 .prio { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; counter-reset: p; }
@@ -166,6 +167,85 @@ b, strong { font-weight: 800; }
   .dec label { grid-template-columns: 26px 1fr; } .dec label em { grid-column: 2; justify-self: start; }
   .tb__now { display: none; } .kk { font-size: 10px; }
 }
+
+/* ---- dinámico: camioncito, gráficas, fotos, cinta ---- */
+.tb__road { position: relative; max-width: 1240px; margin: 8px auto 0; padding-top: 2px; }
+.tb__road .tb__rail { margin: 0; }
+.tb__bus { position: absolute; top: -17px; left: 0; height: 18px; width: auto; transform: translateX(-50%); transition: left .9s linear; filter: drop-shadow(0 2px 0 rgba(0,0,0,.4)); }
+.mq { overflow: hidden; background: var(--ink); color: var(--lime); padding-block: 12px; border-block: 3px solid var(--ink); }
+.mq.pink { background: var(--pink); color: var(--ink); } .mq.blue { background: var(--blue); color: var(--bone); }
+.mq div { display: flex; gap: 22px; width: max-content; animation: mq 32s linear infinite; }
+.mq span { font: 400 clamp(22px, 2.6vw, 34px)/1 var(--display); text-transform: uppercase; white-space: nowrap; } .mq i { font-style: normal; font-size: 20px; align-self: center; }
+@keyframes mq { to { transform: translateX(-50%); } }
+.cover__bar { min-height: 150px; } .cover__bar img { position: relative; z-index: 1; }
+.cover__bar img.b2 { position: absolute; z-index: 0; width: min(300px, 50%); right: 32%; top: -30px; transform: rotate(14deg); opacity: .95; }
+.band { position: relative; overflow: hidden; }
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.band > .in { position: relative; z-index: 1; }
+.deco--hand { right: -20px; bottom: -40px; width: clamp(140px, 18vw, 260px); transform: rotate(-12deg); }
+.deco--outline { right: 4%; top: 40px; width: clamp(90px, 10vw, 150px); opacity: .5; transform: rotate(10deg); }
+.split { display: grid; grid-template-columns: 1.35fr .65fr; gap: 10px; align-items: stretch; }
+.split.rev { grid-template-columns: .65fr 1.35fr; }
+.chart { background: var(--white); color: var(--ink); border-radius: 18px; padding: clamp(16px, 2vw, 22px); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.b-lime .chart, .b-pink .chart { background: var(--bone); } .chart.ink { background: var(--ink); color: var(--bone); }
+.chart h4 { font-size: clamp(20px, 1.9vw, 26px); } .chart .t { font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+.hb { display: grid; gap: 7px; }
+.hb div { display: grid; grid-template-columns: minmax(96px, 150px) 1fr 70px; gap: 10px; align-items: center; font-size: 13px; }
+.hb i { height: 20px; border-radius: 6px; background: rgba(12,11,10,.08); position: relative; overflow: hidden; }
+.chart.ink .hb i { background: rgba(245,235,215,.1); }
+.hb i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--v); border-radius: inherit; background: var(--c, var(--blue)); }
+.hb b { font: 400 18px/1 var(--display); text-align: right; font-variant-numeric: tabular-nums; }
+.hb .me { font-weight: 800; } .hb .me i::after { background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+.hb .line { position: relative; }
+.goal { position: relative; height: 0; }
+.photo { margin: 0; border-radius: 16px; overflow: hidden; background: var(--ink); position: relative; min-height: 220px; box-shadow: 6px 6px 0 var(--ink); }
+.photo img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.photo figcaption { position: absolute; left: 10px; bottom: 10px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: var(--lime); color: var(--ink); padding: 5px 9px; border-radius: 99px; }
+.photo.tilt { transform: rotate(2deg); } .photo.tilt2 { transform: rotate(-2deg); }
+.photo.contain { background: var(--bone); } .photo.contain img { object-fit: contain; padding: 14px; }
+.stack { display: flex; height: 40px; border-radius: 10px; overflow: hidden; border: 3px solid var(--ink); }
+.stack span { flex: 0 0 var(--v); display: grid; place-items: center; font-size: 12px; font-weight: 800; white-space: nowrap; overflow: hidden; }
+.leg { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; } .leg span { display: flex; gap: 6px; align-items: center; } .leg span::before { content: ""; width: 12px; height: 12px; border-radius: 3px; background: var(--c); }
+.donut { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; }
+.donut svg { width: clamp(120px, 13vw, 170px); height: auto; transform: rotate(-90deg); }
+.donut circle { fill: none; stroke-width: 6; }
+.donut .lbl { display: grid; gap: 6px; font-size: 13px; } .donut .lbl b { font: 400 20px/1 var(--display); margin-right: 6px; }
+.dn { position: relative; } .dn p { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; font: 400 28px/1 var(--display); } .dn p small { display: block; font: 700 10px var(--text); letter-spacing: .06em; text-transform: uppercase; }
+/* road with the camioncito */
+.road { position: relative; border-radius: 18px; background: var(--white); color: var(--ink); overflow: hidden; padding-top: 22px; }
+.road__sky { position: relative; height: 86px; }
+.road__stop { position: absolute; left: var(--x); bottom: 0; transform: translateX(-50%); display: grid; justify-items: center; gap: 2px; font-size: 12px; font-weight: 700; text-align: center; padding-bottom: 14px; white-space: nowrap; }
+.road__stop small { font-size: 10.5px; font-weight: 600; opacity: .6; }
+.road__stop::after { content: ""; position: absolute; bottom: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); border: 2px solid var(--white); }
+.road__stop.f::before { content: "FIBO"; font: 800 9px var(--text); background: var(--lime); padding: 3px 6px; border-radius: 4px; margin-bottom: 4px; transform: rotate(-8deg); }
+.road__stop.f::after { background: var(--blue); }
+.road__lane { position: relative; height: 112px; background: #2A2927; margin-top: 18px; }
+.road__lane::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 3px dashed var(--bone); opacity: .6; }
+.road__bus { position: absolute; top: 8px; height: 44px; width: auto; left: -220px; animation: drive 14s linear infinite; }
+.road__bus.mb { top: 60px; height: 42px; animation-duration: 10s; animation-delay: -4s; animation-direction: reverse; }
+@keyframes drive { to { transform: translateX(calc(100vw + 260px)); } }
+.road__stat { position: absolute; right: 14px; top: 12px; text-align: right; font-size: 12px; font-weight: 700; } .road__stat b { display: block; font: 400 36px/1 var(--display); color: var(--blue); }
+.road--phase .road__sky { height: 70px; }
+.road--phase .road__stop { font: 400 20px/1 var(--display); text-transform: uppercase; } .road--phase .road__stop small { font: 700 10.5px var(--text); letter-spacing: .05em; }
+.road--phase .road__bus { animation-duration: 9s; }
+/* waterfall */
+.wf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; align-items: end; height: 230px; }
+.wf div { height: var(--h); border-radius: 12px 12px 4px 4px; background: var(--c); padding: 10px; display: flex; flex-direction: column; justify-content: space-between; min-height: 64px; color: var(--ink); }
+.wf b { font: 400 clamp(22px, 2.4vw, 32px)/1 var(--display); } .wf span { font-size: 11.5px; font-weight: 800; line-height: 1.2; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hb i::after, .stack span, .bud__r i::after, .bud__r i::before { animation: grow 1s cubic-bezier(.2,.8,.2,1) both; animation-timeline: view(); animation-range: entry 10% cover 35%; transform-origin: left; }
+    .wf div { animation: rise 1s cubic-bezier(.3,1.3,.5,1) both; animation-timeline: view(); animation-range: entry 10% cover 40%; transform-origin: bottom; }
+    .donut circle.seg { animation: dash 1.2s ease-out both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+    @keyframes grow { from { transform: scaleX(0); } } @keyframes rise { from { transform: scaleY(.1); } } @keyframes dash { from { stroke-dasharray: 0 100; } }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .road__bus, .mq div { animation: none; } .road__bus { left: 30%; } .road__bus.mb { left: 60%; } .tb__bus { transition: none; } }
+@media (max-width: 960px) { .split, .split.rev { grid-template-columns: 1fr; } .photo { min-height: 240px; } .deco--hand { width: 120px; opacity: .9; } .wf { height: 200px; } .road__stop.h { display: none; } }
+@media (max-width: 560px) { .hb div { grid-template-columns: 84px 1fr 54px; font-size: 12px; } .donut { grid-template-columns: 1fr; justify-items: start; } .road__stop { font-size: 10.5px; } .road--phase .road__stop { font-size: 15px; } .road__stat b { font-size: 26px; } .wf span { font-size: 10px; } .cover__bar img.b2 { display: none; } }
+.road:has(.road__stat) { padding-top: 64px; }
+.tb__road { margin-top: 18px; }
+.dn p { font-size: 19px; align-content: center; gap: 3px; } .dn p small { font-size: 8.5px; } .donut svg { width: clamp(140px, 14vw, 180px); }
 </style>
 
 <header class="tb" aria-label="Cronómetro de la presentación">
@@ -176,7 +256,7 @@ b, strong { font-weight: 800; }
     <button id="tbGo" type="button">Iniciar</button>
     <button id="tbReset" class="sec" type="button">Reiniciar</button>
   </div>
-  <nav class="tb__rail" id="tbRail" aria-label="Partes de la presentación"></nav>
+  <div class="tb__road"><nav class="tb__rail" id="tbRail" aria-label="Partes de la presentación"></nav><svg id="tbBus" class="tb__bus" viewBox="0 0 140 58" aria-hidden="true"><rect x="2" y="4" width="134" height="40" rx="8" fill="#3A5CFF"/><rect x="12" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="40" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="68" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="104" y="11" width="24" height="24" rx="2" fill="#F5EBD7"/><rect x="2" y="32" width="134" height="5" fill="#C9F23A"/><text x="52" y="42" font-size="7" font-family="Archivo, sans-serif" font-weight="700" fill="#0C0B0A">FIBO</text><circle cx="30" cy="46" r="8" fill="#0C0B0A"/><circle cx="30" cy="46" r="3" fill="#F5EBD7"/><circle cx="110" cy="46" r="8" fill="#0C0B0A"/><circle cx="110" cy="46" r="3" fill="#F5EBD7"/></svg></div>
 </header>
 
 <main>
@@ -188,7 +268,7 @@ b, strong { font-weight: 800; }
       <div class="cover__l">
         <p class="kk"><span>FIBO 2.0 · Zona Metropolitana de Guadalajara</span><span>Oct 2026 → jun 2027</span></p>
         <h1>Estrategia de marketing <span>Con FIBO te encuentras.</span></h1>
-        <div class="cover__bar"><img src="assets/barra-chocolate.webp" alt="Barra FIBO sabor chocolate"></div>
+        <div class="cover__bar"><img class="b2" src="assets/barra-brownie.webp" alt=""><img src="assets/barra-chocolate.webp" alt="Barra FIBO sabor chocolate"></div>
         <div class="cover__meta"><span>15 minutos</span><span>26 oct 2026</span><span>Presenta: Yenifer López</span></div>
       </div>
       <div class="cover__strips" aria-hidden="true"><i>22 g · Proteína</i><i>10 g · Fibra</i><i>65 g · Barra</i><i>4 sabores</i><i>Hecha en Zapopan</i></div>
@@ -196,6 +276,7 @@ b, strong { font-weight: 800; }
   </div>
 </section>
 
+<div class="mq " aria-hidden="true"><div><span>Con FIBO te encuentras</span><i>✦</i><span>22 g de proteína</span><i>✦</i><span>Hecha en Zapopan</span><i>✦</i><span>Una barra que sí te llena</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i><span>22 g de proteína</span><i>✦</i><span>Hecha en Zapopan</span><i>✦</i><span>Una barra que sí te llena</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i><span>22 g de proteína</span><i>✦</i><span>Hecha en Zapopan</span><i>✦</i><span>Una barra que sí te llena</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i><span>22 g de proteína</span><i>✦</i><span>Hecha en Zapopan</span><i>✦</i><span>Una barra que sí te llena</span><i>✦</i></div></div>
 <!-- agenda -->
 <section class="band b-pink" id="agenda" data-min="0" data-t="Agenda">
   <div class="in">
@@ -222,8 +303,20 @@ b, strong { font-weight: 800; }
     <div class="grid g4">
       <div class="card lime"><span class="n">35/45</span><p>tiendas 7-Eleven visitadas tienen FIBO</p></div>
       <div class="card red"><span class="n">0</span><p>con material propio de FIBO · 9 agotadas o en quiebre</p></div>
-      <div class="card"><span class="n">63%</span><p>de la facturación ene–ago en dos clientes; 7-Eleven creció +268%</p></div>
-      <div class="card ink"><span class="n">11<small>meses</small></span><p>sin publicar en redes · ≈430 calificaciones contra miles de la competencia</p></div>
+      <div class="card"><span class="n"><span data-count="63">63</span>%</span><p>de la facturación ene–ago en dos clientes; 7-Eleven creció +268%</p></div>
+      <div class="card ink"><span class="n"><span data-count="11">11</span><small>meses</small></span><p>sin publicar en redes · ≈430 calificaciones contra miles de la competencia</p></div>
+    </div>
+    <div class="split">
+      <div class="chart"><span class="t">Facturación ene–ago 2026 · millones de pesos</span><h4>63% en dos clientes</h4>
+        <div class="hb">
+          <div class="me"><span>7-Eleven</span><i style="--v:100%"></i><b>$2.21M</b></div>
+          <div><span>Edgar García</span><i style="--v:70%;--c:var(--pink)"></i><b>$1.54M</b></div>
+          <div><span>Saludanat</span><i style="--v:19%;--c:var(--cookie)"></i><b>$0.42M</b></div>
+          <div><span>Más Natural</span><i style="--v:18%;--c:var(--cookie)"></i><b>$0.40M</b></div>
+          <div><span>Amazon</span><i style="--v:1.5%;--c:var(--red)"></i><b>$0.03M</b></div>
+        </div>
+        <p class="note">7-Eleven creció +268% y explica casi todo el crecimiento.</p></div>
+      <figure class="photo tilt"><img src="assets/shelf-08.webp" alt="Anaquel de 7-Eleven con barras revueltas"><figcaption>Así está el anaquel hoy</figcaption></figure>
     </div>
     <div class="grid g2">
       <div class="card"><span class="t">Donde gana</span><h4>Producto y valor</h4><p>65 g · 22 g de proteína · 10 g de fibra. La más barata por gramo de proteína en 7-Eleven ($2.27). La describen como «llenadora». Hecha en Zapopan.</p></div>
@@ -234,7 +327,7 @@ b, strong { font-weight: 800; }
 
 <!-- 02 -->
 <section class="band b-pink" id="objetivo" data-min="1" data-t="Qué queremos lograr">
-  <div class="in">
+  <img class="deco deco--hand" src="assets/mm-hand.webp" alt=""><div class="in">
     <p class="kk"><span>FIBO · Estrategia de marketing</span><span>02 / Qué queremos lograr <em>1 min</em></span></p>
     <h2 class="big">De producto que se vende solo a marca que se elige.</h2>
     <ol class="steps">
@@ -262,6 +355,21 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="t">Necesidad</span><h4>Algo que le quite el hambre entre una cosa y otra</h4><p>Que se le antoje y que no sea pan.</p></div>
       <div class="card pink"><span class="t">Diferencia</span><h4>La barra tapatía que sí te llena</h4><p>No competimos en precio más bajo, etiqueta limpia, golosina premium ni deporte de alto nivel.</p></div>
     </div>
+    <div class="split rev">
+      <figure class="photo tilt2"><img src="assets/mm-car.webp" alt="Joven comiendo una barra FIBO en el carro"><figcaption>El momento: en el camino</figcaption></figure>
+      <div class="road" aria-label="Un día del público">
+        <p class="road__stat"><b data-count="79">79</b>min al día en traslados</p>
+        <div class="road__sky">
+          <span class="road__stop" style="--x:5%">Casa<small>07:00</small></span>
+          <span class="road__stop f" style="--x:25%">Media mañana<small>10:30</small></span>
+          <span class="road__stop f h" style="--x:45%">Entre clases<small>13:00</small></span>
+          <span class="road__stop f" style="--x:65%">Media tarde<small>17:00</small></span>
+          <span class="road__stop f h" style="--x:82%">Después de entrenar<small>19:30</small></span>
+          <span class="road__stop" style="--x:95%">Casa<small>21:00</small></span>
+        </div>
+        <div class="road__lane"><svg class="road__bus" viewBox="0 0 140 58" aria-hidden="true"><rect x="2" y="4" width="134" height="40" rx="8" fill="#3A5CFF"/><rect x="12" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="40" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="68" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="104" y="11" width="24" height="24" rx="2" fill="#F5EBD7"/><rect x="2" y="32" width="134" height="5" fill="#C9F23A"/><text x="52" y="42" font-size="7" font-family="Archivo, sans-serif" font-weight="700" fill="#0C0B0A">FIBO</text><circle cx="30" cy="46" r="8" fill="#0C0B0A"/><circle cx="30" cy="46" r="3" fill="#F5EBD7"/><circle cx="110" cy="46" r="8" fill="#0C0B0A"/><circle cx="110" cy="46" r="3" fill="#F5EBD7"/></svg><svg class="road__bus mb" viewBox="0 0 200 58" aria-hidden="true"><rect x="2" y="4" width="92" height="40" rx="6" fill="#D6161D"/><rect x="98" y="4" width="100" height="40" rx="6" fill="#D6161D"/><rect x="92" y="10" width="8" height="30" fill="#8E0D12"/><g fill="#F5EBD7"><rect x="10" y="11" width="18" height="15" rx="2"/><rect x="34" y="11" width="18" height="15" rx="2"/><rect x="58" y="11" width="18" height="15" rx="2"/><rect x="106" y="11" width="18" height="15" rx="2"/><rect x="130" y="11" width="18" height="15" rx="2"/><rect x="164" y="11" width="26" height="24" rx="2"/></g><text x="108" y="40" font-size="7" font-family="Archivo, sans-serif" font-weight="700" fill="#F5EBD7">MACROBÚS</text><g fill="#0C0B0A"><circle cx="24" cy="46" r="8"/><circle cx="74" cy="46" r="8"/><circle cx="122" cy="46" r="8"/><circle cx="176" cy="46" r="8"/></g></svg></div>
+      </div>
+    </div>
     <div class="promise">
       <span class="t" style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.7">La promesa</span>
       <h3>Una barra que sí te llena. <span>Con FIBO te encuentras.</span></h3>
@@ -277,6 +385,14 @@ b, strong { font-weight: 800; }
     <p class="kk"><span>FIBO · Estrategia de marketing</span><span>04 / La estrategia <em>1 min</em></span></p>
     <h2 class="big">Ganar el anaquel <span class="hl">antes que la pantalla.</span></h2>
     <p class="lead">Dinero y esfuerzo primero en el punto de venta y en que la gente la pruebe. Lo digital crece cuando esté el permiso de publicidad y haya datos.</p>
+    <div class="road road--phase" aria-hidden="true">
+      <div class="road__sky">
+        <span class="road__stop" style="--x:12%">Ordenar<small>Oct–nov</small></span>
+        <span class="road__stop f" style="--x:50%">Probar<small>Nov–ene</small></span>
+        <span class="road__stop" style="--x:88%">Escalar<small>Feb–jun 2027</small></span>
+      </div>
+      <div class="road__lane"><svg class="road__bus" viewBox="0 0 140 58" aria-hidden="true"><rect x="2" y="4" width="134" height="40" rx="8" fill="#3A5CFF"/><rect x="12" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="40" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="68" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="104" y="11" width="24" height="24" rx="2" fill="#F5EBD7"/><rect x="2" y="32" width="134" height="5" fill="#C9F23A"/><text x="52" y="42" font-size="7" font-family="Archivo, sans-serif" font-weight="700" fill="#0C0B0A">FIBO</text><circle cx="30" cy="46" r="8" fill="#0C0B0A"/><circle cx="30" cy="46" r="3" fill="#F5EBD7"/><circle cx="110" cy="46" r="8" fill="#0C0B0A"/><circle cx="110" cy="46" r="3" fill="#F5EBD7"/></svg></div>
+    </div>
     <div class="phase">
       <div><small>Oct – nov 2026</small><b>Ordenar</b>Cuentas, claims, permiso, tiendas y línea base</div>
       <div><small>Nov 2026 – ene 2027</small><b>Probar</b>Pilotos medidos contra tiendas control</div>
@@ -294,16 +410,32 @@ b, strong { font-weight: 800; }
   </div>
 </section>
 
+<div class="mq pink" aria-hidden="true"><div><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i><span>Ganar el anaquel</span><i>✦</i><span>Que la prueben</span><i>✦</i><span>Que la compren</span><i>✦</i><span>Que vuelvan</span><i>✦</i></div></div>
 <!-- 05 -->
 <section class="band b-lime" id="anaquel" data-min="1.5" data-t="Punto de venta">
   <div class="in">
     <p class="kk"><span>FIBO · Estrategia de marketing</span><span>05 / Punto de venta · 7-Eleven <em>1.5 min</em></span></p>
     <h2 class="big">No falta material. <span class="hl">Falta producto.</span></h2>
     <div class="grid g4">
-      <div class="card"><span class="n">45</span><p>tiendas auditadas el 14 oct</p></div>
+      <div class="card"><span class="n" data-count="45">45</span><p>tiendas auditadas el 14 oct</p></div>
       <div class="card red"><span class="n">9</span><p>agotadas o en quiebre; 1–2 piezas por tienda</p></div>
       <div class="card"><span class="n">15/21</span><p>mal acomodadas, revueltas entre galletas</p></div>
       <div class="card ink"><span class="n">$2.27</span><p>por gramo de proteína: la más barata del anaquel y nadie lo ve</p></div>
+    </div>
+    <div class="split">
+      <div class="chart"><span class="t">Precio por gramo de proteína · 7-Eleven</span><h4>La más barata por gramo. Nadie lo ve.</h4>
+        <div class="hb">
+          <div class="me"><span>FIBO · $50 · 22 g</span><i style="--v:75.7%"></i><b>$2.27</b></div>
+          <div><span>Wild Protein · 15 g</span><i style="--v:77.7%;--c:#9AA0A6"></i><b>$2.33</b></div>
+          <div><span>7-Select · 10 g</span><i style="--v:81.7%;--c:#9AA0A6"></i><b>$2.45</b></div>
+          <div><span>Wild Pro · 21 g</span><i style="--v:87.3%;--c:#9AA0A6"></i><b>$2.62</b></div>
+          <div><span>7-Select · 20 g</span><i style="--v:100%;--c:#9AA0A6"></i><b>$3.00</b></div>
+        </div>
+        <span class="t">45 tiendas auditadas</span>
+        <div class="stack"><span style="--v:71%;background:var(--lime)">32 con FIBO</span><span style="--v:13%;background:var(--red);color:var(--bone)">6</span><span style="--v:16%;background:var(--ink);color:var(--bone)">7</span></div>
+        <div class="leg"><span style="--c:var(--lime)">Con FIBO</span><span style="--c:var(--red)">Agotada</span><span style="--c:var(--ink)">Nunca la han tenido</span></div>
+      </div>
+      <figure class="photo contain tilt"><img src="assets/pres-display.webp" alt="Exhibidor de mostrador de FIBO"><figcaption>Exhibidor para tiendas de ruta</figcaption></figure>
     </div>
     <div class="grid g3">
       <div class="card ink"><span class="t">Qué pedir a 7-Eleven</span><h4>El bloque mínimo</h4><p>Alta de Brownie, los sabores juntos, 2 frentes y la etiqueta correcta. Después, un lugar en los ganchos de proteína.</p></div>
@@ -325,6 +457,16 @@ b, strong { font-weight: 800; }
       <div class="card ink"><span class="t">P3 · CUCEA · 9–13 nov</span><h4>Reto FIBO</h4><p>Caso real en Negomarket, sin vender en el campus · ~$3,100</p></div>
       <div class="card pur"><span class="t">P4 · MAJA · 12–13 dic</span><h4>Salida de encuentro</h4><p>Caminata con marca outdoor afín · ~$1,500</p></div>
     </div>
+    <div class="split">
+      <div class="chart ink"><span class="t">Costo por comprador nuevo · sampling</span><h4>Meta: menos de $120</h4>
+        <div class="hb">
+          <div><span>Naturista (su personal)</span><i style="--v:27%;--c:var(--lime)"></i><b>$60</b></div>
+          <div><span>Vía RecreActiva</span><i style="--v:33%;--c:var(--lime)"></i><b>$72</b></div>
+          <div><span>Meta</span><i style="--v:54%;--c:var(--bone)"></i><b>$120</b></div>
+          <div><span>7-Eleven (nuestro personal)</span><i style="--v:100%;--c:var(--red)"></i><b>$221</b></div>
+        </div></div>
+      <figure class="photo tilt2"><img src="assets/cr-correr.webp" alt="Run club corriendo al amanecer"><figcaption>P1 · Mapa del Encuentro</figcaption></figure>
+    </div>
     <div class="grid g3">
       <div class="card"><span class="t">Sampling · escenario 1</span><span class="n">$5,333</span><p>Degustación con cubo de 1/4 de barra donde FIBO ya está en anaquel. Aprobar ya.</p></div>
       <div class="card"><span class="t">Activaciones</span><span class="n">$20.7k</span><p>Completo con kit reutilizable · reducido (P1 + P2): $10,300.</p></div>
@@ -345,6 +487,14 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="n">×20</span><p>la distribución pesa casi 20 veces más que el descuento</p></div>
       <div class="card lime"><span class="n">$15–22k</span><p>presupuesto de la primera ola</p></div>
     </div>
+    <div class="chart"><span class="t">De cada barra de $50 en 7-Eleven</span><h4>Por qué un 2x1 es imposible</h4>
+      <div class="wf">
+        <div style="--h:100%;--c:var(--blue);color:var(--bone)"><b>$50</b><span>Precio en anaquel</span></div>
+        <div style="--h:47.6%;--c:var(--pink)"><b>$23.82</b><span>Le llega a El Molino</span></div>
+        <div style="--h:28.8%;--c:var(--cookie)"><b>$14.42</b><span>Cuesta hacerla</span></div>
+        <div style="--h:18.8%;--c:var(--lime)"><b>$9.40</b><span>Margen de FIBO</span></div>
+      </div>
+      <p class="note">Regalar $3 se come casi un tercio del margen: hay que vender 47% más para quedar igual.</p></div>
     <div class="grid g3">
       <div class="card"><span class="t">Probar primero · puntaje 83</span><h4>Packs surtidos</h4><p>Kit de 4 sabores a $176 en fibo.mx y caja surtida para gimnasios, desde el 15 dic.</p></div>
       <div class="card"><span class="t">Medir creadores</span><h4>Cupón de creador</h4><p>10%, un uso por cliente, solo en línea, 30 días por campaña.</p></div>
@@ -359,9 +509,16 @@ b, strong { font-weight: 800; }
     <p class="kk"><span>FIBO · Estrategia de marketing</span><span>08 / Creadores y contenido <em>1.5 min</em></span></p>
     <h2 class="big">Momentos reales de GDL. <span class="hl">La barra aparece sola.</span></h2>
     <div class="grid g3">
-      <div class="card lime"><span class="t">Creadores · Encuentros FIBO</span><span class="n">30</span><p>nanocreadores locales, 12 semanas, ~$8,150 con envío. Comprar contenido y prueba, no alcance. Se mide por zona de 7-Eleven.</p></div>
+      <div class="card lime"><span class="t">Creadores · Encuentros FIBO</span><span class="n" data-count="30">30</span><p>nanocreadores locales, 12 semanas, ~$8,150 con envío. Comprar contenido y prueba, no alcance. Se mide por zona de 7-Eleven.</p></div>
       <div class="card"><span class="t">Contenido orgánico</span><span class="n">4<small>posts/sem</small></span><p>3 videos que salen en TikTok y como Reel + 1 carrusel solo para Instagram. 96 publicaciones del 2 nov al 24 ene.</p></div>
       <div class="card pink"><span class="t">Lo que dice la investigación</span><h4>Lo que llama no es lo que vende</h4><p>Situaciones que la gente se manda por DM atraen; pruebas de sabor, creadores y «dónde comprar» venden.</p></div>
+    </div>
+    <div class="split">
+      <div class="chart"><span class="t">Qué publicamos · 4 pilares</span>
+        <div class="donut"><div class="dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" stroke="#EEE6D6" pathLength="100"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#C9F23A" stroke-dasharray="35 65" stroke-dashoffset="0"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#3A5CFF" stroke-dasharray="25 75" stroke-dashoffset="-35"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#FF89B8" stroke-dasharray="25 75" stroke-dashoffset="-60"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#4E2275" stroke-dasharray="15 85" stroke-dashoffset="-85"/></svg><p>8<small>series</small></p></div>
+          <div class="lbl"><span><b>35%</b>Momentos reales · «Te encontraste…»</span><span><b>25%</b>Encuentros · rutas y creadores</span><span><b>25%</b>Sabor y producto · prueba a ciegas</span><span><b>15%</b>Comunidad y casa · Hecho en Zapopan</span></div></div>
+      </div>
+      <figure class="photo contain tilt"><img src="assets/mm-estres.webp" alt="Pieza FIBO: fuera el estrés"><figcaption>Así se ve una pieza</figcaption></figure>
     </div>
     <div class="week" aria-label="Semana tipo">
       <div class="s"><b>Lun</b>Stories</div>
@@ -387,6 +544,15 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="t">Margen</span><span class="n">$14–25</span><p>deja cada barra vendida en internet vs. $9.40 con distribuidores</p></div>
       <div class="card ink"><span class="t">Plan</span><span class="n">$38–47k</span><p>Fichas, fotos, video y piloto de anuncios desde feb 2027 (~$26 mil son inventario que se recupera)</p></div>
     </div>
+    <div class="split">
+      <div class="chart"><span class="t">Cuánto deja cada barra según el canal</span><h4>Internet deja más, si la controlamos</h4>
+        <div class="hb">
+          <div class="me"><span>Amazon / Mercado Libre</span><i style="--v:100%"></i><b>$14–25</b></div>
+          <div><span>fibo.mx</span><i style="--v:90.6%;--c:var(--blue)"></i><b>$22.65</b></div>
+          <div><span>7-Eleven y distribuidores</span><i style="--v:37.6%;--c:var(--cookie)"></i><b>$9.40</b></div>
+        </div></div>
+      <figure class="photo contain tilt2"><img src="assets/pres-caja.webp" alt="Caja de FIBO con displays"><figcaption>Caja de 24 · mayoreo y oficinas</figcaption></figure>
+    </div>
     <div class="grid g2">
       <div class="card"><span class="t">Recompra</span><h4>La barrera es no encontrarla</h4><p>Hoy no se puede medir si la gente repite. Primero abasto y atención; después incentivos con grupo control.</p></div>
       <div class="card"><span class="t">Arranca ya, casi gratis</span><h4>Buzón con dueño · QR en 10 tiendas</h4><p>Responder en 24 h, registro en Notion, reseñas a todos los compradores y encuesta de 60 s (meta: 150 respuestas en 8 semanas).</p></div>
@@ -407,6 +573,7 @@ b, strong { font-weight: 800; }
   </div>
 </section>
 
+<div class="mq blue" aria-hidden="true"><div><span>Medir antes de escalar</span><i>✦</i><span>Tienda control</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i><span>Medir antes de escalar</span><i>✦</i><span>Tienda control</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i><span>Medir antes de escalar</span><i>✦</i><span>Tienda control</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i><span>Medir antes de escalar</span><i>✦</i><span>Tienda control</span><i>✦</i><span>Con FIBO te encuentras</span><i>✦</i></div></div>
 <!-- 11 -->
 <section class="band b-ink" id="presupuesto" data-min="1" data-t="Presupuesto">
   <div class="in">
@@ -427,6 +594,10 @@ b, strong { font-weight: 800; }
       <div class="card lime"><span class="t">Plan de marketing · oct 2026 – mar 2027</span><span class="n">$92–120k</span><p>Suma de los planes por área, sin el permiso.</p></div>
       <div class="card pink"><span class="t">Más el permiso COFEPRIS</span><span class="n">$136–208k</span><p>Si El Molino lo absorbe como inversión corporativa, no sale de la bolsa de marketing.</p></div>
     </div>
+    <div class="chart ink"><span class="t">Cómo se reparte el plan (punto medio)</span>
+      <div class="donut"><div class="dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" stroke="#2A2927" pathLength="100"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#C9F23A" stroke-dasharray="40 60" stroke-dashoffset="0"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#FF89B8" stroke-dasharray="17.4 82.6" stroke-dashoffset="-40"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#3A5CFF" stroke-dasharray="14.6 85.4" stroke-dashoffset="-57.4"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#D6B787" stroke-dasharray="13.3 86.7" stroke-dashoffset="-72"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#F5EBD7" stroke-dasharray="14.7 85.3" stroke-dashoffset="-85.3"/></svg><p>$106k<small>punto medio</small></p></div>
+        <div class="lbl"><span><b>40%</b>E-commerce y marketplaces</span><span><b>17%</b>Promociones</span><span><b>15%</b>Activaciones</span><span><b>13%</b>Piloto 7-Eleven</span><span><b>15%</b>Creadores, sampling, contenido y CX</span></div></div>
+    </div>
     <p class="note">Las barras para muestras y activaciones se cuentan a $14.42 (costo por validar con Producción). Algunos rubros pueden traslaparse; con el escenario reducido el plan baja a ~$92 mil.</p>
   </div>
 </section>
@@ -440,7 +611,7 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="n">+30%</span><span class="t">Sell-out</span><p>tiendas tratadas vs. control en 7-Eleven</p></div>
       <div class="card"><span class="n">&lt;10%</span><span class="t">Quiebres</span><p>de tiendas sin producto cada semana</p></div>
       <div class="card"><span class="n">&lt;$120</span><span class="t">Comprador nuevo</span><p>costo por primer comprador en sampling y activaciones</p></div>
-      <div class="card"><span class="n">150</span><span class="t">Respuestas</span><p>encuesta QR: satisfacción e intención de recompra</p></div>
+      <div class="card"><span class="n" data-count="150">150</span><span class="t">Respuestas</span><p>encuesta QR: satisfacción e intención de recompra</p></div>
       <div class="card"><span class="n">×1,000</span><span class="t">Intención</span><p>«¿dónde la compro?» por cada 1,000 vistas en redes</p></div>
       <div class="card"><span class="n">90<small>días</small></span><span class="t">Línea base</span><p>de recompra en fibo.mx y del reconocimiento de marca</p></div>
     </div>
@@ -508,5 +679,21 @@ b, strong { font-weight: 800; }
   }), { rootMargin: "-45% 0px -50% 0px" });
   timed.forEach((s) => io.observe(s));
   paint();
+  // camioncito on the rail: follows elapsed time while the timer runs, scroll otherwise
+  const bus = document.getElementById("tbBus");
+  const busAt = (f) => { bus.style.left = Math.max(1.5, Math.min(98.5, f * 100)) + "%"; };
+  setInterval(() => { if (tick) busAt((LIMIT - left) / LIMIT); }, 1000);
+  addEventListener("scroll", () => { if (!tick) { const m = document.documentElement; busAt(m.scrollTop / Math.max(1, m.scrollHeight - innerHeight)); } }, { passive: true });
+  busAt(0);
+  // numbers count up the first time they show
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const cio = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return; cio.unobserve(e.target);
+      const el = e.target, end = +el.dataset.count, t0 = performance.now();
+      const step = (t) => { const k = Math.min(1, (t - t0) / 1100); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }), { threshold: .6 });
+    document.querySelectorAll("[data-count]").forEach((el) => cio.observe(el));
+  }
 })();
 </script>
