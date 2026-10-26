@@ -247,6 +247,19 @@ b, strong { font-weight: 800; }
 .tb__road { margin-top: 18px; }
 .dn p { font-size: 19px; align-content: center; gap: 3px; } .dn p small { font-size: 8.5px; } .donut svg { width: clamp(140px, 14vw, 180px); }
 .solo { display: grid; gap: 10px; }
+
+.cover { grid-template-columns: 1.15fr .65fr .5fr; }
+.cover__ph { margin: 0; position: relative; overflow: hidden; background: var(--ink); }
+.cover__ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.feed { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.feed figure { margin: 0; position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 10px; background: var(--ink); max-width: 100%; }
+.feed img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.feed figure:hover img { transform: scale(1.05); }
+.feed figcaption { position: absolute; left: 8px; bottom: 8px; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; background: var(--lime); color: var(--ink); padding: 4px 9px; border-radius: 99px; }
+.feed__txt { aspect-ratio: 4 / 5; border-radius: 10px; background: var(--lime); color: var(--ink); padding: clamp(14px, 2vw, 22px); display: grid; align-content: end; gap: 8px; }
+.feed__txt b { font: 400 clamp(18px, 1.6vw, 26px)/1 var(--display); text-transform: uppercase; } .feed__txt p { font-size: 12px; line-height: 1.35; }
+@media (max-width: 960px) { .cover { grid-template-columns: 1fr; } .cover__ph { height: 340px; } .feed { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .feed { grid-template-columns: 1fr 1fr; } .feed__txt { aspect-ratio: auto; grid-column: 1 / -1; } }
 </style>
 
 <header class="tb" aria-label="Cronómetro de la presentación">
@@ -269,9 +282,10 @@ b, strong { font-weight: 800; }
       <div class="cover__l">
         <p class="kk"><span>FIBO 2.0 · Zona Metropolitana de Guadalajara</span><span>Oct 2026 → jun 2027</span></p>
         <h1>Estrategia de marketing <span>Con FIBO te encuentras.</span></h1>
-        <div class="cover__bar"><img class="b2" src="assets/barra-brownie.webp" alt=""><img src="assets/barra-chocolate.webp" alt="Barra FIBO sabor chocolate"></div>
+        
         <div class="cover__meta"><span>15 minutos</span><span>26 oct 2026</span><span>Presenta: Yenifer López</span></div>
       </div>
+      <figure class="cover__ph"><img src="assets/f-frutos.webp" alt="Mujer con una barra FIBO de Frutos Rojos al sol"></figure>
       <div class="cover__strips" aria-hidden="true"><i>22 g · Proteína</i><i>10 g · Fibra</i><i>65 g · Barra</i><i>4 sabores</i><i>Hecha en Zapopan</i></div>
     </div>
   </div>
@@ -356,7 +370,8 @@ b, strong { font-weight: 800; }
       <div class="card"><span class="t">Necesidad</span><h4>Algo que le quite el hambre entre una cosa y otra</h4><p>Que se le antoje y que no sea pan.</p></div>
       <div class="card pink"><span class="t">Diferencia</span><h4>La barra tapatía que sí te llena</h4><p>No competimos en precio más bajo, etiqueta limpia, golosina premium ni deporte de alto nivel.</p></div>
     </div>
-    <div class="solo">
+    <div class="split rev">
+      <figure class="photo tilt2"><img src="assets/f-carro.webp" alt="Barras FIBO de los 4 sabores en el asiento de un carro, con tenis y raqueta"><figcaption>En el camino, entre una cosa y otra</figcaption></figure>
       <div class="road" aria-label="Un día del público">
         <p class="road__stat"><b data-count="79">79</b>min al día en traslados</p>
         <div class="road__sky">
@@ -426,6 +441,14 @@ b, strong { font-weight: 800; }
         <div class="donut"><div class="dn"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" stroke="#EEE6D6" pathLength="100"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#C9F23A" stroke-dasharray="35 65" stroke-dashoffset="0"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#3A5CFF" stroke-dasharray="25 75" stroke-dashoffset="-35"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#FF89B8" stroke-dasharray="25 75" stroke-dashoffset="-60"/><circle class="seg" cx="21" cy="21" r="15.9" pathLength="100" stroke="#4E2275" stroke-dasharray="15 85" stroke-dashoffset="-85"/></svg><p>8<small>series</small></p></div>
           <div class="lbl"><span><b>35%</b>Momentos reales · «Te encontraste…»</span><span><b>25%</b>Encuentros · rutas y creadores</span><span><b>25%</b>Sabor y producto · prueba a ciegas</span><span><b>15%</b>Comunidad y casa · Hecho en Zapopan</span></div></div>
       </div>
+    </div>
+    <div class="feed" aria-label="Fotos propias de FIBO">
+      <figure><img src="assets/f-chocolate.webp" alt="Barra FIBO Chocolate junto a un café y una laptop"><figcaption>Jornada larga</figcaption></figure>
+      <figure><img src="assets/f-maleta.webp" alt="Barras FIBO de Frutos Rojos y Cookies &amp; Cream en una maleta de gimnasio"><figcaption>Movimiento</figcaption></figure>
+      <figure><img src="assets/f-pixel.webp" alt="Pieza gráfica FIBO 22 g en píxeles lima sobre negro"><figcaption>Gráfica</figcaption></figure>
+      <figure><img src="assets/f-brownie.webp" alt="Barra FIBO Brownie en una charola con lentes y audífonos"><figcaption>Lo que traes contigo</figcaption></figure>
+      <figure><img src="assets/f-consumidas.webp" alt="Pieza tipográfica: FIBO consumidas en octubre de 2026, día por día"><figcaption>Dato · carrusel</figcaption></figure>
+      <div class="feed__txt"><b>Ya tenemos material propio</b><p>Fotos y piezas hechas por el equipo: la base de las series «Te encontraste…», «Ruta FIBO» y los carruseles.</p></div>
     </div>
     <div class="week" aria-label="Semana tipo">
       <div class="s"><b>Lun</b>Stories</div>
