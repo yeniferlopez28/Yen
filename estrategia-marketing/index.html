@@ -171,7 +171,7 @@ b, strong { font-weight: 800; }
 /* ---- dinámico: camioncito, gráficas, fotos, cinta ---- */
 .tb__road { position: relative; max-width: 1240px; margin: 8px auto 0; padding-top: 2px; }
 .tb__road .tb__rail { margin: 0; }
-.tb__bus { position: absolute; top: -17px; left: 0; height: 18px; width: auto; transform: translateX(-50%); transition: left .9s linear; filter: drop-shadow(0 2px 0 rgba(0,0,0,.4)); }
+.tb__bus { position: absolute; top: -17px; left: 0; height: 18px; width: auto; transform: translateX(-50%); transition: left .15s linear; filter: drop-shadow(0 2px 0 rgba(0,0,0,.4)); }
 .mq { overflow: hidden; background: var(--ink); color: var(--lime); padding-block: 12px; border-block: 3px solid var(--ink); }
 .mq.pink { background: var(--pink); color: var(--ink); } .mq.blue { background: var(--blue); color: var(--bone); }
 .mq div { display: flex; gap: 22px; width: max-content; animation: mq 32s linear infinite; }
@@ -244,7 +244,7 @@ b, strong { font-weight: 800; }
 @media (max-width: 960px) { .split, .split.rev { grid-template-columns: 1fr; } .photo { min-height: 240px; } .deco--hand { width: 120px; opacity: .9; } .wf { height: 200px; } .road__stop.h { display: none; } }
 @media (max-width: 560px) { .hb div { grid-template-columns: 84px 1fr 54px; font-size: 12px; } .donut { grid-template-columns: 1fr; justify-items: start; } .road__stop { font-size: 10.5px; } .road--phase .road__stop { font-size: 15px; } .road__stat b { font-size: 26px; } .wf span { font-size: 10px; } .cover__bar img.b2 { display: none; } }
 .road:has(.road__stat) { padding-top: 64px; }
-.tb__road { margin-top: 18px; }
+.tb__road { margin-top: 26px; }
 .dn p { font-size: 19px; align-content: center; gap: 3px; } .dn p small { font-size: 8.5px; } .donut svg { width: clamp(140px, 14vw, 180px); }
 .solo { display: grid; gap: 10px; }
 
@@ -262,13 +262,10 @@ b, strong { font-weight: 800; }
 @media (max-width: 560px) { .feed { grid-template-columns: 1fr 1fr; } .feed__txt { aspect-ratio: auto; grid-column: 1 / -1; } }
 </style>
 
-<header class="tb" aria-label="Cronómetro de la presentación">
+<header class="tb" aria-label="Avance de la presentación">
   <div class="tb__in">
     <span class="tb__logo">FIBO</span>
-    <span class="tb__now" id="tbNow">Estrategia de marketing · <b>15 min</b></span>
-    <span class="tb__clock" id="tbClock" aria-live="off">15:00</span>
-    <button id="tbGo" type="button">Iniciar</button>
-    <button id="tbReset" class="sec" type="button">Reiniciar</button>
+    <span class="tb__now" id="tbNow">Estrategia de marketing · <b>Comunicación, Diseño y Marketing</b></span>
   </div>
   <div class="tb__road"><nav class="tb__rail" id="tbRail" aria-label="Partes de la presentación"></nav><svg id="tbBus" class="tb__bus" viewBox="0 0 140 58" aria-hidden="true"><rect x="2" y="4" width="134" height="40" rx="8" fill="#3A5CFF"/><rect x="12" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="40" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="68" y="11" width="22" height="15" rx="2" fill="#F5EBD7"/><rect x="104" y="11" width="24" height="24" rx="2" fill="#F5EBD7"/><rect x="2" y="32" width="134" height="5" fill="#C9F23A"/><text x="52" y="42" font-size="7" font-family="Archivo, sans-serif" font-weight="700" fill="#0C0B0A">FIBO</text><circle cx="30" cy="46" r="8" fill="#0C0B0A"/><circle cx="30" cy="46" r="3" fill="#F5EBD7"/><circle cx="110" cy="46" r="8" fill="#0C0B0A"/><circle cx="110" cy="46" r="3" fill="#F5EBD7"/></svg></div>
 </header>
@@ -277,13 +274,13 @@ b, strong { font-weight: 800; }
 <!-- 00 -->
 <section class="band b-blue" id="inicio" data-min="0.5" data-t="Portada">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>00 / Para Alejandro <em>0:30</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>00 / Para Alejandro</span></p>
     <div class="cover">
       <div class="cover__l">
         <p class="kk"><span>FIBO 2.0 · Zona Metropolitana de Guadalajara</span><span>Oct 2026 → jun 2027</span></p>
         <h1>Estrategia de marketing <span>Con FIBO te encuentras.</span></h1>
         
-        <div class="cover__meta"><span>15 minutos</span><span>26 oct 2026</span><span>Presenta: Yenifer López</span></div>
+        <div class="cover__meta"><span>Área de Comunicación, Diseño y Marketing</span><span>26 oct 2026</span></div>
       </div>
       <figure class="cover__ph"><img src="assets/f-frutos.webp" alt="Mujer con una barra FIBO de Frutos Rojos al sol"></figure>
       <div class="cover__strips" aria-hidden="true"><i>22 g · Proteína</i><i>10 g · Fibra</i><i>65 g · Barra</i><i>4 sabores</i><i>Hecha en Zapopan</i></div>
@@ -296,16 +293,16 @@ b, strong { font-weight: 800; }
 <section class="band b-pink" id="agenda" data-min="0" data-t="Agenda">
   <div class="in">
     <p class="kk"><span>FIBO · Estrategia de marketing</span><span>Agenda</span></p>
-    <h2 class="big">En 15 minutos.</h2>
+    <h2 class="big">Lo que vamos a ver.</h2>
     <nav class="ag" aria-label="Agenda">
-      <a class="c1" href="#partida"><b>01 · Dónde estamos</b><span></span><em>1 min</em></a>
-      <a class="c2" href="#objetivo"><b>02 · Qué queremos lograr</b><span></span><em>1 min</em></a>
-      <a class="c3" href="#publico"><b>03 · A quién y qué le decimos</b><span></span><em>1 min</em></a>
-      <a class="c4" href="#estrategia"><b>04 · La estrategia</b><span></span><em>1 min</em></a>
-      <a class="c5" href="#contenido"><b>05–06 · Primero lo digital</b><span></span><em>2.5 min</em></a>
-      <a class="c2" href="#anaquel"><b>07–09 · Anaquel, prueba y promociones</b><span></span><em>4 min</em></a>
-      <a class="c1" href="#presupuesto"><b>10–12 · Permiso, dinero y fechas</b><span></span><em>2.5 min</em></a>
-      <a class="c3" href="#decisiones"><b>13 · Lo que necesitamos de ti</b><span></span><em>1.5 min</em></a>
+      <a class="c1" href="#partida"><b>01 · Dónde estamos</b><span></span></a>
+      <a class="c2" href="#objetivo"><b>02 · Qué queremos lograr</b><span></span></a>
+      <a class="c3" href="#publico"><b>03 · A quién y qué le decimos</b><span></span></a>
+      <a class="c4" href="#estrategia"><b>04 · La estrategia</b><span></span></a>
+      <a class="c5" href="#contenido"><b>05–06 · Primero lo digital</b><span></span></a>
+      <a class="c2" href="#anaquel"><b>07–09 · Anaquel, prueba y promociones</b><span></span></a>
+      <a class="c1" href="#presupuesto"><b>10–12 · Permiso, dinero y fechas</b><span></span></a>
+      <a class="c3" href="#decisiones"><b>13 · Lo que necesitamos de ti</b><span></span></a>
     </nav>
   </div>
 </section>
@@ -313,7 +310,7 @@ b, strong { font-weight: 800; }
 <!-- 01 -->
 <section class="band b-bone" id="partida" data-min="1" data-t="Dónde estamos">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>01 / Dónde estamos <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>01 / Dónde estamos</span></p>
     <h2 class="big">FIBO no está mal. <span class="hl">Está abandonada.</span></h2>
     <p class="lead">El producto funciona y se vende. Lo que falla es todo lo que lo rodea: nadie gestiona la marca y el cliente no ve la nueva dirección.</p>
     <div class="grid g4">
@@ -343,7 +340,7 @@ b, strong { font-weight: 800; }
 <!-- 02 -->
 <section class="band b-pink" id="objetivo" data-min="1" data-t="Qué queremos lograr">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>02 / Qué queremos lograr <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>02 / Qué queremos lograr</span></p>
     <h2 class="big">De producto que se vende solo a marca que se elige.</h2>
     <ol class="steps">
       <li><b>Hoy</b>Se vende solo; casi nadie la conoce</li>
@@ -363,7 +360,7 @@ b, strong { font-weight: 800; }
 <!-- 03 -->
 <section class="band b-blue" id="publico" data-min="1" data-t="A quién y qué le decimos">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>03 / A quién y qué le decimos <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>03 / A quién y qué le decimos</span></p>
     <h2 class="big">Jóvenes en movimiento de <span class="hl">Guadalajara.</span></h2>
     <div class="grid g3">
       <div class="card lime"><span class="t">Público</span><span class="n">18–35</span><p>ZMG primero. Núcleo: el joven en tránsito de 20 a 29 que estudia o trabaja, pasa ~79 min al día trasladándose y compra en tiendas de conveniencia.</p></div>
@@ -397,7 +394,7 @@ b, strong { font-weight: 800; }
 <!-- 04 -->
 <section class="band b-ink" id="estrategia" data-min="1" data-t="La estrategia">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>04 / La estrategia <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>04 / La estrategia</span></p>
     <h2 class="big">Ganar el anaquel <span class="hl">antes que la pantalla.</span></h2>
     <p class="lead">Dinero y esfuerzo primero en el punto de venta y en que la gente la pruebe. Lo digital crece cuando esté el permiso de publicidad y haya datos.</p>
     <div class="road road--phase" aria-hidden="true">
@@ -429,7 +426,7 @@ b, strong { font-weight: 800; }
 <!-- 05 -->
 <section class="band b-blue" id="contenido" data-min="1.5" data-t="Creadores y contenido">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>05 / Digital · creadores y contenido <em>1.5 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>05 / Digital · creadores y contenido</span></p>
     <h2 class="big">Momentos reales de GDL. <span class="hl">La barra aparece sola.</span></h2>
     <div class="grid g3">
       <div class="card lime"><span class="t">Creadores · Encuentros FIBO</span><span class="n" data-count="30">30</span><p>nanocreadores locales, 12 semanas, ~$8,150 con envío. Comprar contenido y prueba, no alcance. Se mide por zona de 7-Eleven.</p></div>
@@ -466,7 +463,7 @@ b, strong { font-weight: 800; }
 <!-- 06 -->
 <section class="band b-lime" id="digital" data-min="1" data-t="E-commerce y recompra">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>06 / Digital · e-commerce y recompra <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>06 / Digital · e-commerce y recompra</span></p>
     <h2 class="big">Ya se vende en internet. <span class="hl">Pero no la controlamos.</span></h2>
     <div class="grid g4">
       <div class="card red"><span class="t">Amazon</span><h4>La opera un tercero</h4><p>Almacén casi vacío. La tarjeta vence el 31 oct.</p></div>
@@ -492,7 +489,7 @@ b, strong { font-weight: 800; }
 <!-- 07 -->
 <section class="band b-bone" id="anaquel" data-min="1.5" data-t="Punto de venta">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>07 / Punto de venta · 7-Eleven <em>1.5 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>07 / Punto de venta · 7-Eleven</span></p>
     <h2 class="big">No falta material. <span class="hl">Falta producto.</span></h2>
     <div class="grid g4">
       <div class="card"><span class="n" data-count="45">45</span><p>tiendas auditadas el 14 oct</p></div>
@@ -525,7 +522,7 @@ b, strong { font-weight: 800; }
 <!-- 08 -->
 <section class="band b-pink" id="prueba" data-min="1.5" data-t="Prueba y activaciones">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>08 / Que la prueben <em>1.5 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>08 / Que la prueben</span></p>
     <h2 class="big">Probarla a 10 minutos de una tienda con FIBO.</h2>
     <p class="lead">Cada activación manda a la gente a una tienda concreta, con código y tienda control. La meta no es regalar barras: es saber cuánto cuesta un comprador nuevo.</p>
     <div class="pil">
@@ -555,7 +552,7 @@ b, strong { font-weight: 800; }
 <!-- 09 -->
 <section class="band b-bone" id="promos" data-min="1" data-t="Promociones">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>09 / Promociones <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>09 / Promociones</span></p>
     <h2 class="big">Promociones que <span class="hl">se pagan solas.</span></h2>
     <div class="grid g4">
       <div class="card ink"><span class="n">$9.40</span><p>margen de FIBO por barra en tienda</p></div>
@@ -582,7 +579,7 @@ b, strong { font-weight: 800; }
 <!-- 10 -->
 <section class="band b-red" id="permiso" data-min="0.5" data-t="Permiso COFEPRIS">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>10 / Decisión crítica <em>0:30</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>10 / Decisión crítica</span></p>
     <h2 class="big">Sin permiso de COFEPRIS no hay pauta.</h2>
     <div class="grid g3">
       <div class="card ink"><span class="t">Derecho 2026</span><span class="n">$44–89k</span><p>$44,252.23 por producto y tipo de mensaje; hasta $88,504.46 si lo clasifican como bajo valor nutritivo.</p></div>
@@ -596,7 +593,7 @@ b, strong { font-weight: 800; }
 <!-- 11 -->
 <section class="band b-ink" id="presupuesto" data-min="1" data-t="Presupuesto">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>11 / Presupuesto <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>11 / Presupuesto</span></p>
     <h2 class="big">Cuánto cuesta <span class="hl">la primera ola.</span></h2>
     <div class="bud" role="table" aria-label="Presupuesto por área">
       <div class="bud__r" role="row" style="--min:81%;--max:100%"><span role="cell">E-commerce y marketplaces</span><i aria-hidden="true"></i><b role="cell">$38–47k</b></div>
@@ -624,7 +621,7 @@ b, strong { font-weight: 800; }
 <!-- 12 -->
 <section class="band b-bone" id="medicion" data-min="1" data-t="Métricas y fechas">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>12 / Cómo medimos y cuándo <em>1 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>12 / Cómo medimos y cuándo</span></p>
     <h2 class="big">Todo se mide contra <span class="hl">una tienda control.</span></h2>
     <div class="kpi">
       <div class="card"><span class="n">+30%</span><span class="t">Sell-out</span><p>tiendas tratadas vs. control en 7-Eleven</p></div>
@@ -647,7 +644,7 @@ b, strong { font-weight: 800; }
 <!-- 13 -->
 <section class="band b-lime" id="decisiones" data-min="1.5" data-t="Lo que necesitamos de ti">
   <div class="in">
-    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>13 / Lo que necesitamos de ti <em>1.5 min</em></span></p>
+    <p class="kk"><span>FIBO · Estrategia de marketing</span><span>13 / Lo que necesitamos de ti</span></p>
     <h2 class="big">Seis decisiones <span class="hl">para arrancar.</span></h2>
     <div class="dec">
       <label for="d1"><input type="checkbox" id="d1"><span><b>Ingresar el permiso COFEPRIS</b>Esta semana, como inversión corporativa de El Molino ($44–89 mil).</span><em>Hoy</em></label>
@@ -667,43 +664,20 @@ b, strong { font-weight: 800; }
 
 <script>
 (() => {
-  const secs = [...document.querySelectorAll("main > section")];
-  const rail = document.getElementById("tbRail"), now = document.getElementById("tbNow"), clock = document.getElementById("tbClock");
-  const go = document.getElementById("tbGo"), reset = document.getElementById("tbReset");
-  const timed = secs.filter((s) => +s.dataset.min > 0);
-  const total = timed.reduce((a, s) => a + +s.dataset.min, 0);
-  timed.forEach((s) => { const a = document.createElement("a"); a.href = "#" + s.id; a.title = s.dataset.t; a.style.flex = s.dataset.min; a.setAttribute("aria-label", s.dataset.t); rail.appendChild(a); });
+  const secs = [...document.querySelectorAll("main > section")].filter((s) => s.id !== "agenda");
+  const rail = document.getElementById("tbRail"), now = document.getElementById("tbNow"), bus = document.getElementById("tbBus");
+  secs.forEach((s) => { const a = document.createElement("a"); a.href = "#" + s.id; a.title = s.dataset.t; a.setAttribute("aria-label", s.dataset.t); a.style.flex = "1"; rail.appendChild(a); });
   const bars = [...rail.children];
-  // planned start of each timed section, in seconds
-  let acc = 0; const plan = timed.map((s) => { const p = acc; acc += +s.dataset.min * 60; return p; });
-  const LIMIT = 15 * 60; let left = LIMIT, tick = null;
-  const fmt = (t) => { const a = Math.abs(t); return (t < 0 ? "+" : "") + Math.floor(a / 60) + ":" + String(Math.floor(a % 60)).padStart(2, "0"); };
-  const paint = () => {
-    clock.textContent = fmt(left); clock.classList.toggle("late", left < 0);
-    const el = LIMIT - left; let k = plan.findIndex((p, i) => el >= p && (i === plan.length - 1 || el < plan[i + 1]));
-    if (tick === null && left === LIMIT) k = -1;
-    bars.forEach((b, i) => { b.classList.toggle("on", i === k); b.classList.toggle("done", k > -1 && i < k); });
-    now.innerHTML = k > -1 ? `Deberías ir en: <b>${timed[k].dataset.t}</b>` : `Estrategia de marketing · <b>${total} min de contenido</b>`;
-  };
-  go.addEventListener("click", () => {
-    if (tick) { clearInterval(tick); tick = null; go.textContent = "Seguir"; return; }
-    tick = setInterval(() => { left--; paint(); }, 1000); go.textContent = "Pausa"; paint();
-  });
-  reset.addEventListener("click", () => { clearInterval(tick); tick = null; left = LIMIT; go.textContent = "Iniciar"; paint(); });
-  // when the timer is not running, the rail follows the scroll position
-  const io = new IntersectionObserver((es) => es.forEach((e) => {
-    if (!e.isIntersecting || tick) return;
-    const k = timed.indexOf(e.target); if (k < 0) return;
+  const mark = (k) => {
     bars.forEach((b, i) => { b.classList.toggle("on", i === k); b.classList.toggle("done", i < k); });
-  }), { rootMargin: "-45% 0px -50% 0px" });
-  timed.forEach((s) => io.observe(s));
-  paint();
-  // camioncito on the rail: follows elapsed time while the timer runs, scroll otherwise
-  const bus = document.getElementById("tbBus");
-  const busAt = (f) => { bus.style.left = Math.max(1.5, Math.min(98.5, f * 100)) + "%"; };
-  setInterval(() => { if (tick) busAt((LIMIT - left) / LIMIT); }, 1000);
-  addEventListener("scroll", () => { if (!tick) { const m = document.documentElement; busAt(m.scrollTop / Math.max(1, m.scrollHeight - innerHeight)); } }, { passive: true });
-  busAt(0);
+    if (k > 0) now.innerHTML = `Estrategia de marketing · <b>${secs[k].dataset.t}</b>`;
+    else now.innerHTML = "Estrategia de marketing · <b>Comunicación, Diseño y Marketing</b>";
+  };
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) mark(secs.indexOf(e.target)); }), { rootMargin: "-45% 0px -50% 0px" });
+  secs.forEach((s) => io.observe(s));
+  // the camioncito drives along the rail as the page scrolls
+  const busAt = () => { const m = document.documentElement, f = m.scrollTop / Math.max(1, m.scrollHeight - innerHeight); bus.style.left = Math.max(1.5, Math.min(98.5, f * 100)) + "%"; };
+  addEventListener("scroll", busAt, { passive: true }); busAt(); mark(0);
   // numbers count up the first time they show
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const cio = new IntersectionObserver((es) => es.forEach((e) => {
