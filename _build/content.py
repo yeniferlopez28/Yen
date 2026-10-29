@@ -1,7 +1,7 @@
 # Contenido del sitio de Dental Crown.
 # Todo texto clínico queda marcado como pendiente de revisión por la Dra. hasta que ella lo apruebe.
 
-CATS = ['Revisión y limpieza', 'Caries y dolor de muela', 'Una sonrisa más bonita', 'Dientes chuecos', 'Si te falta un diente']
+CATS = ['Valoración y prevención', 'Restauraciones y endodoncia', 'Estética dental', 'Ortodoncia y ortopedia', 'Extracción y reposición dental']
 
 REVIEWS = {
     'roberto': ('Roberto T.', '2024', 'La doctora muy amable, te explica todo el procedimiento a detalle y sobre todo muy paciente. Yo soy una persona muy nerviosa y me atendió de maravilla y con calma. Muy recomendable, excelente experiencia.'),
@@ -141,7 +141,7 @@ TREATMENTS = [
        lead='La ortodoncia acomoda tus dientes y tu mordida con brackets, con un pago inicial y mensualidades.',
        what=['Los brackets se pegan a los dientes y, con un arco que se ajusta en cada cita, los van moviendo poco a poco a su lugar.',
              'Además de cómo se ve tu sonrisa, una buena mordida ayuda a masticar mejor y a limpiar más fácil tus dientes. En la valoración te explico qué opciones hay para tu caso y cuánto tiempo podría tomar.'],
-       when=['Tienes dientes chuecos o encimados.', 'Tienes espacios entre los dientes.', 'Tus dientes de arriba y abajo no cierran bien.', 'Quieres mejorar tu sonrisa a cualquier edad.'],
+       when=['Tienes dientes desalineados o apiñados.', 'Tienes espacios entre los dientes.', 'Tus dientes de arriba y abajo no cierran bien.', 'Quieres mejorar tu sonrisa a cualquier edad.'],
        steps=[('Valoración', 'Con fotos y radiografías hago tu plan.'),
               ('Colocación', 'Pego los brackets y coloco el arco.'),
               ('Citas de ajuste', 'Cada mes reviso el avance y ajusto.'),
@@ -209,7 +209,7 @@ TREATMENTS = [
        lead='El implante repone un diente que ya no está con una raíz de titanio y una corona encima.',
        what=['El implante es un pequeño tornillo de titanio que se coloca en el hueso y funciona como la raíz del diente. Cuando el hueso se une al implante, se coloca encima una corona con la forma y el color de tus dientes.',
              'No depende de los dientes de al lado y no se quita, por eso se siente muy parecido a un diente propio. En la valoración reviso con radiografía si tu hueso permite colocarlo.'],
-       when=['Te falta un diente o varios.', 'Te extrajeron un diente y quieres reponerlo.', 'Tu prótesis removible te incomoda.', 'Quieres una opción fija.'],
+       when=['Perdiste uno o varios dientes.', 'Te extrajeron un diente y quieres reponerlo.', 'Tu prótesis removible te incomoda.', 'Quieres una opción fija.'],
        steps=[('Valoración con radiografía', 'Reviso el hueso y planeo el implante.'),
               ('Colocación del implante', 'Con anestesia local.'),
               ('Integración', 'Se espera a que el hueso se una al implante; suele tomar algunos meses.'),
