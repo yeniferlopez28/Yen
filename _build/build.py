@@ -95,7 +95,7 @@ def header(home=False, active=''):
         <button class="mega-btn{on}" type="button" aria-expanded="false" aria-controls="mega">Tratamientos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="mega" id="mega" hidden>
           <div class="wrap mega-in">{groups}
-            <div class="mg-foot"><a href="tratamientos.html">Ver todos los tratamientos</a><a href="precios.html">Ver lista de precios</a></div>
+            <div class="mg-foot"><a href="tratamientos.html">Ver todos los tratamientos</a><a href="precios.html">Ver lista de precios</a><a href="cuidados.html">Cuidados después del tratamiento</a></div>
           </div>
         </div>
       </div>'''
@@ -124,7 +124,7 @@ def footer(home=False):
     <div class="foot-grid">
       <div><img class="lg" src="img/vertical-blanco.png" alt="Dental Crown"><p class="t">Confianza en cada sonrisa.</p></div>
       <div><h4>Tratamientos</h4><ul>{tx_links}<li><a href="tratamientos.html">Todos los tratamientos</a></li><li><a href="precios.html">Precios</a></li></ul></div>
-      <div><h4>Consultorio</h4><ul><li><a href="dra-ana-paula-lopez.html">La Dra. Ana Paula</a></li><li><a href="{pre}#consultorio">El consultorio</a></li><li><a href="{pre}#resenas">Reseñas</a></li><li><a href="{pre}#preguntas">Preguntas frecuentes</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div><h4>Consultorio</h4><ul><li><a href="dra-ana-paula-lopez.html">La Dra. Ana Paula</a></li><li><a href="{pre}#consultorio">El consultorio</a></li><li><a href="{pre}#resenas">Reseñas</a></li><li><a href="{pre}#preguntas">Preguntas frecuentes</a></li><li><a href="cuidados.html">Cuidados después del tratamiento</a></li><li><a href="blog.html">Blog</a></li></ul></div>
       <div><h4>Contacto</h4><ul><li><a href="{WA}" target="_blank" rel="noopener">WhatsApp 33 1194 6819 ↗</a></li><li><a href="https://www.instagram.com/dental.crown/" target="_blank" rel="noopener">Instagram @dental.crown ↗</a></li><li><a href="https://www.facebook.com/dentistapaulalopez/" target="_blank" rel="noopener">Facebook ↗</a></li><li>Todos los días, 1:00 a 8:00 pm</li><li><span class="pend" style="color:#F3C6D8">Correo del consultorio</span></li></ul></div>
       <div><h4>Dónde estoy</h4><ul><li>Julián Medina Castillo 1808 C</li><li>Circunvalación Oblatos</li><li>44716 Guadalajara, Jalisco</li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=Juli%C3%A1n+Medina+Castillo+1808+C,+Circunvalaci%C3%B3n+Oblatos,+44716+Guadalajara,+Jalisco" target="_blank" rel="noopener">Cómo llegar ↗</a></li></ul></div>
     </div>
@@ -276,6 +276,22 @@ def price_num(v):
     return m.group(1).replace(',', '') if m else None
 
 # ---------- Página de tratamiento ----------
+def care_teaser(t):
+    from care_pages import care_for
+    cs = care_for(t['key'])
+    if not cs:
+        return ''
+    links = ''.join(f'<a class="btn btn-vino" href="{c["slug"]}.html"><span class="ar">{SVG_ARROW}</span>{esc(c["h1"])}</a>' for c in cs)
+    c = cs[0]
+    return f'''<section class="sec care-teaser">
+  <div class="wrap">
+    <div class="ct-box">
+      <div><span class="chip">Después del tratamiento</span><h2>Cuidados para tu <em>recuperación</em></h2><p>{esc(c['intro'])}</p></div>
+      <div class="ct-actions">{links}<p class="small">Qué es normal, qué hacer, qué comer y cuándo escribir al consultorio.</p></div>
+    </div>
+  </div>
+</section>'''
+
 def tx_strip(current=None):
     chips = ''.join(f'<a href="{x["slug"]}.html"{" class=\"on\" aria-current=\"page\"" if current == x["key"] else ""}><span class="ic">{icon(x["key"])}</span>{x["short"]}</a>' for x in TREATMENTS)
     return f'<nav class="tx-strip" aria-label="Todos los tratamientos"><div class="wrap"><span class="lbl">Tratamientos</span><div class="strip">{chips}</div></div></nav>'
@@ -333,6 +349,8 @@ def treatment_page(t):
     <ol class="pg-steps">{steps}</ol>
   </div>
 </section>
+
+{care_teaser(t)}
 
 {review_block(t['review'])}
 
@@ -594,11 +612,13 @@ def build():
     pages.append(('index.html', full))
     for t in TREATMENTS:
         pages.append(treatment_page(t))
-    pages += [all_page(), prices_page(), dra_page(), blog_index()] + [post_page(p) for p in POSTS] + [not_found()]
+    pages += [all_page(), prices_page(), dra_page(), blog_index()]
+    import care_pages
+    pages += care_pages.build_care(sys.modules[__name__]) + [post_page(p) for p in POSTS] + [not_found()]
     for path, content in pages:
         open(os.path.join(OUT, path), 'w').write(content)
     # robots y sitemap
-    urls = [('', '1.0')] + [(t['slug'] + '.html', '0.9') for t in TREATMENTS] + [('tratamientos.html', '0.9'), ('precios.html', '0.9'), ('dra-ana-paula-lopez.html', '0.7'), ('blog.html', '0.6')] + [(f'blog-{p["slug"]}.html', '0.6') for p in POSTS]
+    urls = [('', '1.0')] + [(t['slug'] + '.html', '0.9') for t in TREATMENTS] + [('tratamientos.html', '0.9'), ('precios.html', '0.9'), ('cuidados.html', '0.8'), ('dra-ana-paula-lopez.html', '0.7'), ('blog.html', '0.6')] + [(f'blog-{p["slug"]}.html', '0.6') for p in POSTS] + [(c['slug'] + '.html', '0.7') for c in __import__('care').CARE]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
         f'  <url><loc>{DOMAIN}/{u}</loc><lastmod>{UPDATED}</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n'
     open(os.path.join(OUT, 'sitemap.xml'), 'w').write(sm)
