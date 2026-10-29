@@ -58,6 +58,7 @@ def build_index(B, care, posts):
         ('Página', 'Ubicación y horario', './#ubicacion', 'Julián Medina Castillo 1808 C, Circunvalación Oblatos, Guadalajara. Todos los días, 1:00 a 8:00 pm.', 'ubicacion direccion donde estan como llegar mapa horario oblatos guadalajara abierto domingo'),
         ('Página', 'Agendar una cita', './#agenda', 'Agenda en línea o por WhatsApp al 33 1194 6819.', 'agendar cita reservar whatsapp telefono'),
         ('Página', 'Reseñas de pacientes', './#resenas', '82 reseñas con 5 estrellas en Google.', 'resenas opiniones comentarios google calificacion'),
+        ('Página', 'Correo del consultorio', './#ubicacion', 'dentalcrowndraanapaula@gmail.com', 'correo email mail contacto escribir'),
         ('Página', 'Formas de pago', 'precios.html', 'Efectivo, transferencia, débito y crédito.', 'pago tarjeta credito debito efectivo transferencia meses'),
     ]
     for c, t, u, d, k in pages:

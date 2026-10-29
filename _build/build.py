@@ -125,7 +125,7 @@ def footer(home=False):
       <div><img class="lg" src="img/vertical-blanco.png" alt="Dental Crown"><p class="t">Confianza en cada sonrisa.</p></div>
       <div><h4>Tratamientos</h4><ul>{tx_links}<li><a href="tratamientos.html">Todos los tratamientos</a></li><li><a href="precios.html">Precios</a></li></ul></div>
       <div><h4>Consultorio</h4><ul><li><a href="dra-ana-paula-lopez.html">La Dra. Ana Paula</a></li><li><a href="{pre}#consultorio">El consultorio</a></li><li><a href="{pre}#resenas">Reseñas</a></li><li><a href="{pre}#preguntas">Preguntas frecuentes</a></li><li><a href="cuidados.html">Cuidados después del tratamiento</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-      <div><h4>Contacto</h4><ul><li><a href="{WA}" target="_blank" rel="noopener">WhatsApp 33 1194 6819 ↗</a></li><li><a href="https://www.instagram.com/dental.crown/" target="_blank" rel="noopener">Instagram @dental.crown ↗</a></li><li><a href="https://www.facebook.com/dentistapaulalopez/" target="_blank" rel="noopener">Facebook ↗</a></li><li>Todos los días, 1:00 a 8:00 pm</li><li><span class="pend" style="color:#F3C6D8">Correo del consultorio</span></li></ul></div>
+      <div><h4>Contacto</h4><ul><li><a href="{WA}" target="_blank" rel="noopener">WhatsApp 33 1194 6819 ↗</a></li><li><a href="https://www.instagram.com/dental.crown/" target="_blank" rel="noopener">Instagram @dental.crown ↗</a></li><li><a href="https://www.facebook.com/dentistapaulalopez/" target="_blank" rel="noopener">Facebook ↗</a></li><li>Todos los días, 1:00 a 8:00 pm</li><li><a href="mailto:dentalcrowndraanapaula@gmail.com">dentalcrowndraanapaula@gmail.com</a></li></ul></div>
       <div><h4>Dónde estoy</h4><ul><li>Julián Medina Castillo 1808 C</li><li>Circunvalación Oblatos</li><li>44716 Guadalajara, Jalisco</li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=Juli%C3%A1n+Medina+Castillo+1808+C,+Circunvalaci%C3%B3n+Oblatos,+44716+Guadalajara,+Jalisco" target="_blank" rel="noopener">Cómo llegar ↗</a></li></ul></div>
     </div>
     <div class="legal">
@@ -159,7 +159,7 @@ def ds(*parts):
 
 DENTIST = {
     "@type": "Dentist", "@id": DOMAIN + "/#consultorio", "name": "Dental Crown Dra. Ana Paula López", "url": DOMAIN + "/",
-    "telephone": "+52 33 1194 6819", "image": DOMAIN + "/img/og.jpg",
+    "telephone": "+52 33 1194 6819", "email": "dentalcrowndraanapaula@gmail.com", "image": DOMAIN + "/img/og.jpg",
     "address": {"@type": "PostalAddress", "streetAddress": "Julián Medina Castillo 1808 C", "addressLocality": "Guadalajara",
                 "addressRegion": "Jalisco", "postalCode": "44716", "addressCountry": "MX"},
 }
@@ -619,7 +619,7 @@ def build():
     pages = []
     body, lds, desc = home()
     # Ajuste de URL del JSON-LD principal al dominio
-    lds = [l.replace('"name": "Dental Crown Dra. Ana Paula López"', '"name": "Dental Crown Dra. Ana Paula López", "@id": "' + DOMAIN + '/#consultorio", "url": "' + DOMAIN + '/", "image": "' + DOMAIN + '/img/og.jpg"', 1) for l in lds]
+    lds = [l.replace('"name": "Dental Crown Dra. Ana Paula López"', '"name": "Dental Crown Dra. Ana Paula López", "email": "dentalcrowndraanapaula@gmail.com", "@id": "' + DOMAIN + '/#consultorio", "url": "' + DOMAIN + '/", "image": "' + DOMAIN + '/img/og.jpg"', 1) for l in lds]
     hdr = head('Dentista en Guadalajara · Dental Crown · Dra. Ana Paula López', desc, '')
     hdr = hdr.replace('<link rel="stylesheet" href="styles.css">\n', '<link rel="stylesheet" href="styles.css">\n' + '\n'.join(lds))
     full = hdr + '\n' + body.replace('</script>\n', '</script>\n', 1)
