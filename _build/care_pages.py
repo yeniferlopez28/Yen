@@ -128,7 +128,8 @@ def build_care(B):
         pages.append((path, page(c['seo'], c['desc'], path, main, 'care', lds)))
 
     # Página general
-    cards = ''.join(f'''<a class="tx-card" href="{c['slug']}.html"><span class="ic">{icon(c['icon'])}</span><span class="tx-card-body"><b>{esc(c['short'])}</b><span class="d">{esc(c['intro'].split('. ')[0])}.</span></span><span class="go">Ver cuidados {SVG_ARROW}</span></a>''' for c in CARE)
+    from search_index import SYN
+    cards = ''.join(f'''<a class="tx-card" href="{c['slug']}.html" data-s="{B.ds(c['h1'], c['intro'], ' '.join(SYN.get(k, '') for k in c['tx']), ' '.join(q for q, _ in c['faq']), 'que comer comida alimentacion dieta' if c.get('food') else '')}"><span class="ic">{icon(c['icon'])}</span><span class="tx-card-body"><b>{esc(c['short'])}</b><span class="d">{esc(c['intro'].split('. ')[0])}.</span></span><span class="go">Ver cuidados {SVG_ARROW}</span></a>''' for c in CARE)
     main = f'''<section class="pg-hero slim" data-cursor="light">
   <div class="wrap">
     {crumbs([('Inicio', './'), ('Cuidados', '')])}
@@ -137,7 +138,7 @@ def build_care(B):
     <p class="lead">Qué es normal sentir, qué hacer, qué evitar, qué comer y cuándo escribir al consultorio, para cada tratamiento.</p>
   </div>
 </section>
-<section class="sec"><div class="wrap"><div class="tx-cards">{cards}</div></div></section>
+<section class="sec"><div class="wrap">{B.filter_box('#care-list', 'Busca: extracción, brackets, qué comer…')}<div id="care-list"><div class="tx-cards">{cards}</div><div class="flt-empty" hidden><b>No encontré esos cuidados.</b> <a href="{wa('Hola, Dra. Ana Paula. Tengo una duda sobre los cuidados después de mi tratamiento.')}" target="_blank" rel="noopener">Pregúntame por WhatsApp</a></div></div></div></section>
 {alarm_block()}
 {B.cta_band()}'''
     lst = {"@context": "https://schema.org", "@type": "ItemList", "name": "Cuidados después del tratamiento",

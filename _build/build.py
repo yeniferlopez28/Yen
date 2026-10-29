@@ -111,7 +111,7 @@ def header(home=False, active=''):
     <nav class="links" aria-label="Secciones">
       {chr(10).join("      " + l for l in links).strip()}
     </nav>
-    <span class="hd-r"><a class="soc hd" href="https://www.instagram.com/dental.crown/" target="_blank" rel="noopener" aria-label="Instagram @dental.crown">{SVG_IG}</a><a class="soc hd" href="{WA}" target="_blank" rel="noopener" aria-label="WhatsApp 33 1194 6819">{SVG_WA.replace('2.4', '2.2')}</a>
+    <span class="hd-r"><button class="srch-btn" type="button" data-srch-open aria-label="Buscar en el sitio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button><a class="soc hd" href="https://www.instagram.com/dental.crown/" target="_blank" rel="noopener" aria-label="Instagram @dental.crown">{SVG_IG}</a><a class="soc hd" href="{WA}" target="_blank" rel="noopener" aria-label="WhatsApp 33 1194 6819">{SVG_WA.replace('2.4', '2.2')}</a>
     <a class="btn btn-vino" href="{agenda}"><span class="ar">{SVG_CAL}</span>Agendar</a></span>
   </div>
 </header>'''
@@ -141,6 +141,21 @@ FAB = f'''<a class="wa-fab" href="{wa('Hola, Dra. Ana Paula. Quiero información
 </a>
 <div class="cursor" id="cursor" aria-hidden="true"><span class="tw"><img class="v" src="img/iso-relleno-vino.png" alt=""><img class="r" src="img/iso-relleno-rosa.png" alt=""></span></div>
 <div class="toast" id="toast" role="status"></div>'''
+
+SEARCH_UI = '''<div class="srch" id="srch" hidden role="dialog" aria-modal="true" aria-label="Buscar en el sitio">
+  <div class="srch-in">
+    <div class="srch-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="srch-q" type="search" placeholder="Busca un tratamiento, cuidado o duda…" autocomplete="off" aria-controls="srch-res"><button id="srch-x" type="button" aria-label="Cerrar">Esc</button></div>
+    <div class="srch-res" id="srch-res" aria-live="polite"></div>
+  </div>
+</div>'''
+SCRIPTS = '<script src="search-index.js"></script>\n<script src="search.js"></script>'
+
+def filter_box(target, placeholder):
+    return f'''<div class="flt" data-filter="{target}"><label class="flt-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" placeholder="{placeholder}" aria-label="{placeholder}"></label><span class="flt-count" aria-live="polite"></span></div>'''
+
+def ds(*parts):
+    from search_index import norm
+    return norm(' '.join(parts))
 
 DENTIST = {
     "@type": "Dentist", "@id": DOMAIN + "/#consultorio", "name": "Dental Crown Dra. Ana Paula López", "url": DOMAIN + "/",
@@ -192,8 +207,8 @@ def head(title, desc, path, extra_ld=(), og_type='website'):
 
 def page(title, desc, path, main, active='', extra_ld=(), og_type='website'):
     return (head(title, desc, path, extra_ld, og_type) + '\n' + PROTO + '\n' + header(active=active) +
-            '\n<main id="inicio">\n' + main + '\n</main>\n' + footer() + '\n' + FAB +
-            '\n<script src="site.js"></script>\n<script src="menu.js"></script>\n</body>\n</html>\n')
+            '\n<main id="inicio">\n' + main + '\n</main>\n' + footer() + '\n' + FAB + '\n' + SEARCH_UI +
+            '\n<script src="site.js"></script>\n<script src="menu.js"></script>\n' + SCRIPTS + '\n</body>\n</html>\n')
 
 def h1_mixed(text):
     # La última palabra en cursiva serif, como en el resto de la marca.
@@ -372,8 +387,9 @@ def all_page():
     path = 'tratamientos.html'
     groups = ''
     for ci, c in enumerate(CATS):
-        cards = ''.join(f'''<a class="tx-card" href="{t['slug']}.html"><span class="ic">{icon(t['key'])}</span><span class="tx-card-body"><b>{t['short']}</b><small>{' · '.join(esc(v) for _, v in t['price'])}</small><span class="d">{esc(t['lead'])}</span></span><span class="go">Ver tratamiento {SVG_ARROW}</span></a>''' for t in TREATMENTS if t['cat'] == ci)
-        groups += f'<div class="tx-group"><h2>{c}</h2><div class="tx-cards">{cards}</div></div>'
+        from search_index import SYN
+        cards = ''.join(f'''<a class="tx-card" href="{t['slug']}.html" data-s="{ds(t['short'], t['lead'], SYN.get(t['key'], ''), c)}"><span class="ic">{icon(t['key'])}</span><span class="tx-card-body"><b>{t['short']}</b><small>{' · '.join(esc(v) for _, v in t['price'])}</small><span class="d">{esc(t['lead'])}</span></span><span class="go">Ver tratamiento {SVG_ARROW}</span></a>''' for t in TREATMENTS if t['cat'] == ci)
+        groups += f'<div class="tx-group" data-group><h2>{c}</h2><div class="tx-cards">{cards}</div></div>'
     main = f'''<section class="pg-hero slim" data-cursor="light">
   <div class="wrap">
     {crumbs([('Inicio', './'), ('Tratamientos', '')])}
@@ -382,7 +398,7 @@ def all_page():
     <p class="lead">Elige un tratamiento para ver en qué consiste, cómo es el proceso, su precio y las preguntas más frecuentes.</p>
   </div>
 </section>
-<section class="sec"><div class="wrap tx-groups">{groups}</div></section>
+<section class="sec"><div class="wrap">{filter_box('#tx-list', 'Busca un tratamiento: muela, brackets, sarro…')}<div class="tx-groups" id="tx-list">{groups}<div class="flt-empty" hidden><b>No encontré ese tratamiento.</b> <a href="{wa('Hola, Dra. Ana Paula. Quiero saber si atienden un tratamiento.')}" target="_blank" rel="noopener">Pregúntame por WhatsApp</a></div></div></div></section>
 {cta_band()}'''
     lst = {"@context": "https://schema.org", "@type": "ItemList", "name": "Tratamientos dentales en Dental Crown",
            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t['short'], "url": f"{DOMAIN}/{t['slug']}.html"} for i, t in enumerate(TREATMENTS)]}
@@ -478,7 +494,7 @@ def dra_page():
 # ---------- Blog ----------
 def blog_index():
     path = 'blog.html'
-    cards = ''.join(f'''<a class="post-card" href="blog-{p['slug']}.html"><span class="meta">{p['minutes']} min de lectura</span><h2>{esc(p['title'])}</h2><p>{esc(p['desc'])}</p><span class="go">Leer {SVG_ARROW}</span></a>''' for p in POSTS)
+    cards = ''.join(f'''<a class="post-card" href="blog-{p['slug']}.html" data-s="{ds(p['title'], p['desc'], ' '.join(v if isinstance(v, str) else ' '.join(v) for _, v in p['body']))}"><span class="meta">{p['minutes']} min de lectura</span><h2>{esc(p['title'])}</h2><p>{esc(p['desc'])}</p><span class="go">Leer {SVG_ARROW}</span></a>''' for p in POSTS)
     main = f'''<section class="pg-hero slim" data-cursor="light">
   <div class="wrap">
     {crumbs([('Inicio', './'), ('Blog', '')])}
@@ -487,7 +503,7 @@ def blog_index():
     <p class="lead">Lo que más me preguntan en consulta, explicado con palabras de todos los días.</p>
   </div>
 </section>
-<section class="sec"><div class="wrap"><div class="post-grid">{cards}</div></div></section>
+<section class="sec"><div class="wrap">{filter_box('#post-list', 'Busca en el blog: encías, sarro, limpieza…')}<div id="post-list"><div class="post-grid">{cards}</div><div class="flt-empty" hidden><b>Todavía no hay un artículo sobre eso.</b> <a href="{wa('Hola, Dra. Ana Paula. Tengo una pregunta.')}" target="_blank" rel="noopener">Pregúntame por WhatsApp</a></div></div></div></section>
 {cta_band()}'''
     blog = {"@context": "https://schema.org", "@type": "Blog", "name": "Blog de Dental Crown", "url": DOMAIN + '/' + path,
             "blogPost": [{"@type": "BlogPosting", "headline": p['title'], "url": f"{DOMAIN}/blog-{p['slug']}.html"} for p in POSTS]}
@@ -593,7 +609,7 @@ def home():
 '''
     body = body.replace('<section class="sec faq" id="preguntas">', blog_sec + '<section class="sec faq" id="preguntas">', 1)
     body = body.replace('<span><span class="pend">Aviso de privacidad</span> · <a href="#error-404" style="color:inherit">Ver página 404</a></span>', '<span><span class="pend">Aviso de privacidad</span></span>')
-    body = body.rstrip() + '\n<script src="menu.js"></script>\n'
+    body = body.rstrip() + '\n' + SEARCH_UI + '\n<script src="menu.js"></script>\n' + SCRIPTS + '\n'
     lds = re.findall(r'<script type="application/ld\+json">.*?</script>', hd, re.S)
     desc = re.search(r'<meta name="description" content="([^"]*)">', hd).group(1)
     return body, lds, desc
@@ -628,6 +644,9 @@ def build():
     open(os.path.join(OUT, 'styles.css'), 'w').write(css)
     shutil.copy(os.path.join(HERE, 'site.js'), os.path.join(OUT, 'site.js'))
     shutil.copy(os.path.join(HERE, 'menu.js'), os.path.join(OUT, 'menu.js'))
+    shutil.copy(os.path.join(HERE, 'search.js'), os.path.join(OUT, 'search.js'))
+    import search_index, care
+    open(os.path.join(OUT, 'search-index.js'), 'w').write(search_index.build_index(sys.modules[__name__], care.CARE, POSTS))
     for f in os.listdir(os.path.join(HERE, 'img')):
         shutil.copy(os.path.join(HERE, 'img', f), os.path.join(OUT, 'img', f))
     # Vista previa para Claude: la página principal sin <head> (Claude agrega el suyo)
