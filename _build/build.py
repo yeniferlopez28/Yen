@@ -77,7 +77,7 @@ STARS = '<span class="stars" aria-label="5 estrellas"><i class="star"></i><i cla
 
 PROTO = '<div class="proto">Prototipo para revisión del equipo · Lo marcado <span>así</span> está pendiente de confirmar</div>'
 
-NAV = [('Tratamientos', '#servicios', 'tx'), ('Precios', 'precios.html', 'precios'), ('La Dra.', 'dra-ana-paula-lopez.html', 'dra'),
+NAV = [('Precios', 'precios.html', 'precios'), ('La Dra.', 'dra-ana-paula-lopez.html', 'dra'),
        ('Consultorio', '#consultorio', ''), ('Reseñas', '#resenas', ''), ('Blog', 'blog.html', 'blog'), ('Ubicación', '#ubicacion', '')]
 
 def header(home=False, active=''):
@@ -86,6 +86,20 @@ def header(home=False, active=''):
         h = href if (home or not href.startswith('#')) else './' + href
         cls = ' class="on" aria-current="page"' if key and key == active else ''
         links.append(f'<a href="{h}"{cls}>{label}</a>')
+    groups = ''
+    for ci, c in enumerate(CATS):
+        items = ''.join(f'<a href="{t["slug"]}.html"><span class="ic">{icon(t["key"])}</span><span>{t["short"]}<small>{esc(t["price"][0][1])}</small></span></a>' for t in TREATMENTS if t['cat'] == ci)
+        groups += f'<div class="mg"><h4>{c}</h4>{items}</div>'
+    on = ' on' if active == 'tx' else ''
+    mega = f'''<div class="mega-wrap">
+        <button class="mega-btn{on}" type="button" aria-expanded="false" aria-controls="mega">Tratamientos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega" id="mega" hidden>
+          <div class="wrap mega-in">{groups}
+            <div class="mg-foot"><a href="tratamientos.html">Ver todos los tratamientos</a><a href="precios.html">Ver lista de precios</a></div>
+          </div>
+        </div>
+      </div>'''
+    links.insert(0, mega)
     brand_href = '#inicio' if home else './'
     agenda = '#agenda' if home else './#agenda'
     return f'''<header class="top">
@@ -104,13 +118,12 @@ def header(home=False, active=''):
 
 def footer(home=False):
     pre = '' if home else './'
-    tx_links = ''.join(f'<li><a href="{t["slug"]}.html">{t["short"]}</a></li>' for t in TREATMENTS if t['key'] in
-                       ('valoracion', 'limpieza', 'resina', 'endodoncia', 'corona', 'blanqueamiento', 'ortodoncia', 'implante'))
+    tx_links = ''.join(f'<li><a href="{t["slug"]}.html">{t["short"]}</a></li>' for t in TREATMENTS)
     return f'''<footer class="foot" data-cursor="light">
   <div class="wrap">
     <div class="foot-grid">
       <div><img class="lg" src="img/vertical-blanco.png" alt="Dental Crown"><p class="t">Confianza en cada sonrisa.</p></div>
-      <div><h4>Tratamientos</h4><ul>{tx_links}<li><a href="precios.html">Todos los precios</a></li></ul></div>
+      <div><h4>Tratamientos</h4><ul>{tx_links}<li><a href="tratamientos.html">Todos los tratamientos</a></li><li><a href="precios.html">Precios</a></li></ul></div>
       <div><h4>Consultorio</h4><ul><li><a href="dra-ana-paula-lopez.html">La Dra. Ana Paula</a></li><li><a href="{pre}#consultorio">El consultorio</a></li><li><a href="{pre}#resenas">Reseñas</a></li><li><a href="{pre}#preguntas">Preguntas frecuentes</a></li><li><a href="blog.html">Blog</a></li></ul></div>
       <div><h4>Contacto</h4><ul><li><a href="{WA}" target="_blank" rel="noopener">WhatsApp 33 1194 6819 ↗</a></li><li><a href="https://www.instagram.com/dental.crown/" target="_blank" rel="noopener">Instagram @dental.crown ↗</a></li><li><a href="https://www.facebook.com/dentistapaulalopez/" target="_blank" rel="noopener">Facebook ↗</a></li><li>Todos los días, 1:00 a 8:00 pm</li><li><span class="pend" style="color:#F3C6D8">Correo del consultorio</span></li></ul></div>
       <div><h4>Dónde estoy</h4><ul><li>Julián Medina Castillo 1808 C</li><li>Circunvalación Oblatos</li><li>44716 Guadalajara, Jalisco</li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=Juli%C3%A1n+Medina+Castillo+1808+C,+Circunvalaci%C3%B3n+Oblatos,+44716+Guadalajara,+Jalisco" target="_blank" rel="noopener">Cómo llegar ↗</a></li></ul></div>
@@ -180,7 +193,7 @@ def head(title, desc, path, extra_ld=(), og_type='website'):
 def page(title, desc, path, main, active='', extra_ld=(), og_type='website'):
     return (head(title, desc, path, extra_ld, og_type) + '\n' + PROTO + '\n' + header(active=active) +
             '\n<main id="inicio">\n' + main + '\n</main>\n' + footer() + '\n' + FAB +
-            '\n<script src="site.js"></script>\n</body>\n</html>\n')
+            '\n<script src="site.js"></script>\n<script src="menu.js"></script>\n</body>\n</html>\n')
 
 def h1_mixed(text):
     # La última palabra en cursiva serif, como en el resto de la marca.
@@ -263,6 +276,10 @@ def price_num(v):
     return m.group(1).replace(',', '') if m else None
 
 # ---------- Página de tratamiento ----------
+def tx_strip(current=None):
+    chips = ''.join(f'<a href="{x["slug"]}.html"{" class=\"on\" aria-current=\"page\"" if current == x["key"] else ""}><span class="ic">{icon(x["key"])}</span>{x["short"]}</a>' for x in TREATMENTS)
+    return f'<nav class="tx-strip" aria-label="Todos los tratamientos"><div class="wrap"><span class="lbl">Tratamientos</span><div class="strip">{chips}</div></div></nav>'
+
 def treatment_page(t):
     path = t['slug'] + '.html'
     msg = f'Hola, Dra. Ana Paula. Me gustaría agendar una cita para {t["short"].lower()}. ¿Qué días tiene disponibles?'
@@ -275,7 +292,7 @@ def treatment_page(t):
     main = f'''<section class="pg-hero" data-cursor="light">
   <div class="wrap pg-hero-grid">
     <div class="pg-hero-copy">
-      {crumbs([('Inicio', './'), ('Tratamientos', './#servicios'), (t['short'], '')])}
+      {crumbs([('Inicio', './'), ('Tratamientos', 'tratamientos.html'), (t['short'], '')])}
       <span class="chip"><span class="star"></span> {CATS[t['cat']]}</span>
       <h1>{h1_mixed(t['h1'])}</h1>
       <p class="lead">{esc(t['lead'])}</p>
@@ -285,6 +302,7 @@ def treatment_page(t):
     <div class="pg-icon">{icon(t['key'], t['short'])}</div>
   </div>
 </section>
+{tx_strip(t['key'])}
 
 <section class="sec">
   <div class="wrap pg-body">
@@ -328,8 +346,31 @@ def treatment_page(t):
     offers = [{"@type": "Offer", "name": l, "price": price_num(v), "priceCurrency": "MXN"} for l, v in t['price'] if price_num(v)]
     if offers:
         service["offers"] = offers
-    lds = [service, faq_ld(t['faq']), breadcrumb([('Inicio', ''), ('Tratamientos', '#servicios'), (t['short'], path)])]
+    lds = [service, faq_ld(t['faq']), breadcrumb([('Inicio', ''), ('Tratamientos', 'tratamientos.html'), (t['short'], path)])]
     return path, page(t['title'], t['desc'], path, main, 'tx', lds)
+
+# ---------- Todos los tratamientos ----------
+def all_page():
+    path = 'tratamientos.html'
+    groups = ''
+    for ci, c in enumerate(CATS):
+        cards = ''.join(f'''<a class="tx-card" href="{t['slug']}.html"><span class="ic">{icon(t['key'])}</span><span class="tx-card-body"><b>{t['short']}</b><small>{' · '.join(esc(v) for _, v in t['price'])}</small><span class="d">{esc(t['lead'])}</span></span><span class="go">Ver tratamiento {SVG_ARROW}</span></a>''' for t in TREATMENTS if t['cat'] == ci)
+        groups += f'<div class="tx-group"><h2>{c}</h2><div class="tx-cards">{cards}</div></div>'
+    main = f'''<section class="pg-hero slim" data-cursor="light">
+  <div class="wrap">
+    {crumbs([('Inicio', './'), ('Tratamientos', '')])}
+    <span class="chip"><span class="star"></span> 12 tratamientos</span>
+    <h1>Tratamientos dentales en <em>Guadalajara</em></h1>
+    <p class="lead">Elige un tratamiento para ver en qué consiste, cómo es el proceso, su precio y las preguntas más frecuentes.</p>
+  </div>
+</section>
+<section class="sec"><div class="wrap tx-groups">{groups}</div></section>
+{cta_band()}'''
+    lst = {"@context": "https://schema.org", "@type": "ItemList", "name": "Tratamientos dentales en Dental Crown",
+           "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": t['short'], "url": f"{DOMAIN}/{t['slug']}.html"} for i, t in enumerate(TREATMENTS)]}
+    return path, page('Tratamientos dentales en Guadalajara | Dental Crown',
+                      'Todos los tratamientos de Dental Crown en Guadalajara: consulta, limpieza, resinas, endodoncia, coronas, blanqueamiento, ortodoncia, implantes y más, con precios.',
+                      path, main, 'tx', [lst, breadcrumb([('Inicio', ''), ('Tratamientos', path)])])
 
 # ---------- Precios ----------
 def prices_page():
@@ -512,12 +553,10 @@ def home():
     a = body.index('<footer class="foot"'); b = body.index('</footer>') + len('</footer>')
     body = body[:a] + footer(home=True) + body[b:]
     # Enlace "Ver todo sobre..." en el carrusel
-    body = body.replace('<a class="btn btn-line" id="car-wa" href="#agenda">Prefiero la agenda en línea</a>\n        </div>',
-                        '<a class="btn btn-line" id="car-wa" href="#agenda">Prefiero la agenda en línea</a>\n        </div>\n        <a class="car-more" id="car-more" href="consulta-dental-guadalajara.html">Ver todo sobre valoración con radiografía</a>', 1)
     for k, slug in TX_SLUGS.items():
         body = body.replace(f"icon:'{k}',", f"icon:'{k}', slug:'{slug}',", 1)
     body = body.replace("    document.getElementById('car-plus').href = waBook;",
-                        "    document.getElementById('car-plus').href = waBook;\n    var more = document.getElementById('car-more'); more.href = t.slug + '.html'; more.textContent = 'Ver todo sobre ' + t.name.toLowerCase();", 1)
+                        "    document.getElementById('car-plus').href = waBook;\n    waEl.href = t.slug + '.html'; nameEl.href = t.slug + '.html';", 1)
     # Enlace a la página de la Dra.
     body = body.replace('<span class="pend">Cédula profesional [número]</span></div>',
                         '<span class="pend">Cédula profesional [número]</span></div>\n      <a class="link-more" href="dra-ana-paula-lopez.html">Conoce más de la Dra.</a>', 1)
@@ -536,6 +575,7 @@ def home():
 '''
     body = body.replace('<section class="sec faq" id="preguntas">', blog_sec + '<section class="sec faq" id="preguntas">', 1)
     body = body.replace('<span><span class="pend">Aviso de privacidad</span> · <a href="#error-404" style="color:inherit">Ver página 404</a></span>', '<span><span class="pend">Aviso de privacidad</span></span>')
+    body = body.rstrip() + '\n<script src="menu.js"></script>\n'
     lds = re.findall(r'<script type="application/ld\+json">.*?</script>', hd, re.S)
     desc = re.search(r'<meta name="description" content="([^"]*)">', hd).group(1)
     return body, lds, desc
@@ -554,11 +594,11 @@ def build():
     pages.append(('index.html', full))
     for t in TREATMENTS:
         pages.append(treatment_page(t))
-    pages += [prices_page(), dra_page(), blog_index()] + [post_page(p) for p in POSTS] + [not_found()]
+    pages += [all_page(), prices_page(), dra_page(), blog_index()] + [post_page(p) for p in POSTS] + [not_found()]
     for path, content in pages:
         open(os.path.join(OUT, path), 'w').write(content)
     # robots y sitemap
-    urls = [('', '1.0')] + [(t['slug'] + '.html', '0.9') for t in TREATMENTS] + [('precios.html', '0.9'), ('dra-ana-paula-lopez.html', '0.7'), ('blog.html', '0.6')] + [(f'blog-{p["slug"]}.html', '0.6') for p in POSTS]
+    urls = [('', '1.0')] + [(t['slug'] + '.html', '0.9') for t in TREATMENTS] + [('tratamientos.html', '0.9'), ('precios.html', '0.9'), ('dra-ana-paula-lopez.html', '0.7'), ('blog.html', '0.6')] + [(f'blog-{p["slug"]}.html', '0.6') for p in POSTS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
         f'  <url><loc>{DOMAIN}/{u}</loc><lastmod>{UPDATED}</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n'
     open(os.path.join(OUT, 'sitemap.xml'), 'w').write(sm)
@@ -567,6 +607,7 @@ def build():
     css = open(os.path.join(HERE, 'base.css')).read() + open(os.path.join(HERE, 'pages.css')).read()
     open(os.path.join(OUT, 'styles.css'), 'w').write(css)
     shutil.copy(os.path.join(HERE, 'site.js'), os.path.join(OUT, 'site.js'))
+    shutil.copy(os.path.join(HERE, 'menu.js'), os.path.join(OUT, 'menu.js'))
     for f in os.listdir(os.path.join(HERE, 'img')):
         shutil.copy(os.path.join(HERE, 'img', f), os.path.join(OUT, 'img', f))
     # Vista previa para Claude: la página principal sin <head> (Claude agrega el suyo)

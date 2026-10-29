@@ -89,7 +89,7 @@
       <div class="car-stage" id="car-stage">
         <div class="car-card" id="car-card" aria-live="polite">
           <span class="car-cat" id="car-cat"></span>
-          <h3 class="car-name" id="car-name"></h3>
+          <h3 class="car-name"><a id="car-name" href="consulta-dental-guadalajara.html"></a></h3>
           <div class="car-foot">
             <div><small id="car-plabel">Precio</small><b class="car-price" id="car-price"></b></div>
             <a class="car-plus" id="car-plus" href="https://wa.me/523311946819" target="_blank" rel="noopener" aria-label="Agendar este tratamiento por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></a>
@@ -105,8 +105,8 @@
       <div class="car-detail">
         <p id="car-desc"></p>
         <div class="car-actions">
-          <a class="btn btn-vino" id="car-book" href="https://wa.me/523311946819" target="_blank" rel="noopener"><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg></span>Agendar por WhatsApp</a>
-          <a class="btn btn-line" id="car-wa" href="#agenda">Prefiero la agenda en línea</a>
+          <a class="btn btn-vino" id="car-wa" href="consulta-dental-guadalajara.html"><span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>Ver tratamiento completo</a>
+          <a class="btn btn-line" id="car-book" href="https://wa.me/523311946819" target="_blank" rel="noopener">Agendar por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -503,7 +503,7 @@
   build();
 
   // Menú: marca la sección en la que vas
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('nav.links a'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('nav.links > a'));
   var secs = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
   function navTick(){
     var y = window.innerHeight * 0.35, cur = -1;
@@ -582,12 +582,12 @@
     var g = document.createElement('div'); g.className = 'grp'; g.innerHTML = '<h3>' + c + '</h3>';
     TX.forEach(function(t, i){
       if (t.cat !== ci) return;
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'pill'; b.textContent = t.name;
-      b.addEventListener('click', function(e){ e.stopPropagation(); go(i); showCar(); });
+      var b = document.createElement('a'); b.href = t.slug + '.html'; b.className = 'pill'; b.textContent = t.name;
+      b.addEventListener('click', function(e){ e.stopPropagation(); });
+      b.addEventListener('mouseenter', function(){ go(i); });
       pills.appendChild(b); pillEls[i] = b;
-      var r = document.createElement('button'); r.type = 'button'; r.className = 'row';
+      var r = document.createElement('a'); r.href = t.slug + '.html'; r.className = 'row';
       r.innerHTML = '<span class="ic"><svg viewBox="0 0 120 120" aria-hidden="true">' + ICONS[t.icon] + '</svg></span><span class="nm">' + t.name + '<small>' + (t.label === 'Desde' ? 'desde ' : '') + t.price + '</small></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
-      r.addEventListener('click', function(){ go(i); showCar(); });
       g.appendChild(r); rowEls[i] = r;
     });
     f.appendChild(pills);
@@ -657,7 +657,6 @@
     if (!t.ag) note.value = 'Me interesa: ' + t.name;
     note.dispatchEvent(new Event('input', {bubbles: true}));
   }
-  waEl.addEventListener('click', bookCurrent);
   window.addEventListener('resize', layoutCar);
   layoutCar();
 
