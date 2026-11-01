@@ -11,21 +11,23 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:#222;display:flex;flex-direction:column;gap:40px;align-items:center;padding:40px 0}
-  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:"Quicksand",sans-serif;color:var(--crema)}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:"Inter Tight",sans-serif;color:var(--crema)}
   .abs{position:absolute}
   .layer{position:absolute;inset:0;pointer-events:none}
 
   /* tipografía (2 familias, como la referencia) */
-  .serif{font-family:"Gloock",serif;line-height:.9;letter-spacing:-2.5px;filter:url(#ink)}
+  .serif{font-family:"Inter Tight",sans-serif;font-weight:800;line-height:.95;letter-spacing:-3px}
+  .tg{background:linear-gradient(180deg,#ff6aa2 0%,#ff9a52 55%,#ffd84d 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tgb{background:linear-gradient(180deg,#ff8fc0 0%,#8fd0ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .body{font-weight:500;font-size:34px;line-height:1.18}
-  .body b{font-weight:700}
-  .top{position:absolute;top:58px;font-size:24px;font-weight:500}
+  .body b{font-weight:800}
+  .top{position:absolute;top:58px;font-size:20px;font-weight:500;font-family:"Audiowide";letter-spacing:1px}
   .top b{font-weight:700}
   .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
   /* badge ovalado con borde punteado */
   .badge{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    background:var(--naranja);color:var(--crema);border-radius:50%;font-weight:500;font-size:32px;line-height:.95;padding:18px 34px;
+    background:var(--naranja);color:var(--crema);border-radius:50%;font-family:"Audiowide";font-size:24px;line-height:1.05;text-transform:uppercase;letter-spacing:1px;padding:18px 34px;
     outline:3px dotted var(--crema);outline-offset:-10px}
   .badge b{font-weight:700}
 
@@ -38,7 +40,7 @@
   .frame{position:absolute;padding:24px 24px 90px}
   .frame img{display:block;width:100%;height:100%;object-fit:cover}
   .cut{position:absolute;filter:drop-shadow(0 12px 18px rgba(0,0,0,.25))}
-  .tag{position:absolute;font-weight:700;font-size:26px;padding:10px 20px;border-radius:999px;white-space:nowrap;color:var(--negro)}
+  .tag{position:absolute;font-family:"Audiowide";font-size:22px;text-transform:uppercase;letter-spacing:1px;padding:10px 20px;border-radius:999px;white-space:nowrap;color:var(--negro)}
 
   svg.deco{position:absolute;overflow:visible;pointer-events:none}
 </style>
@@ -65,7 +67,7 @@
   <div class="top" style="left:70px">@<b>byensitamkt</b></div>
   <div class="top" style="right:70px"><b>Marketing</b> + pop</div>
   <img class="cut" src="cut/saludo.png" style="right:-30px;bottom:-60px;width:560px">
-  <div class="abs serif" style="left:66px;top:190px;width:520px;font-size:116px">Una comunidad que no desaparece</div>
+  <div class="abs serif tg" style="left:66px;top:190px;width:620px;font-size:100px">Una comunidad que no desaparece</div>
   <div class="badge" style="left:70px;top:760px;transform:rotate(-7deg);background:var(--rosaf)">el marketing de<br><b>Harry Styles</b></div>
   <svg class="deco kstar" data-text="KISS ALL THE TIME. " data-c="#f7a1c4" style="left:600px;top:130px" width="210" height="210"></svg>
   <svg class="deco sstar" data-c="#ffd84d" style="left:470px;top:1100px" width="90" height="90"></svg>
@@ -75,10 +77,10 @@
 <section class="slide" id="s2" style="background:var(--naranja)">
   <div class="tex" data-fold="1"></div>
   <div class="top" style="left:0;right:0;text-align:center">@<b>byensitamkt</b></div>
-  <div class="abs serif" style="left:66px;top:170px;width:560px;font-size:168px">Tres años sin gira.</div>
+  <div class="abs serif" style="left:66px;top:170px;width:560px;font-size:150px">Tres años sin gira.</div>
   <div class="stamp" style="left:640px;top:170px;width:380px;height:500px;transform:rotate(3deg)"><img src="img/escenario.jpg" style="object-position:50% 55%"></div>
-  <img class="cut" src="cut/reloj.png" style="left:110px;top:770px;width:280px;transform:rotate(-10deg)">
-  <div class="abs body" style="left:450px;top:760px;width:570px">Y la emoción seguía intacta. Sus fans siguieron <b>compartiendo recuerdos, creando contenido</b> y conectando entre ellos.</div>
+  <img class="cut" src="cut/reloj.png" style="left:110px;top:820px;width:280px;transform:rotate(-10deg)">
+  <div class="abs body" style="left:450px;top:800px;width:570px">Y la emoción seguía intacta. Sus fans siguieron <b>compartiendo recuerdos, creando contenido</b> y conectando entre ellos.</div>
   <div class="badge" style="left:600px;top:1080px;transform:rotate(-6deg);background:var(--royal)">¿cómo lo<br><b>logró?</b></div>
 </section>
 
@@ -125,7 +127,7 @@
       <text x="14" y="265" fill="#0c0c0e">TOGETHER</text>
     </g>
   </svg>
-  <div class="abs serif" style="left:66px;top:480px;width:620px;font-size:104px">La música se vive distinto cuando la <span class="grad">compartes.</span></div>
+  <div class="abs serif" style="left:66px;top:480px;width:620px;font-size:96px">La música se vive distinto cuando la <span class="tg">compartes.</span></div>
   <div class="stamp" style="left:720px;top:470px;width:310px;height:420px;transform:rotate(-4deg)"><img src="img/night06.jpg" style="object-position:50% 25%"></div>
   <img class="cut" src="cut/bola.png" style="left:820px;top:850px;width:190px;border-radius:50%;filter:drop-shadow(0 0 30px rgba(255,255,255,.35))">
   <div class="abs body" style="left:70px;top:960px;width:600px">Cantar con miles, reencontrarte con amigos y <b>crear recuerdos.</b></div>
@@ -166,7 +168,7 @@
   <svg class="deco kstar" data-text="KISS ALL THE TIME. " data-c="#f7a1c4" style="left:400px;top:560px" width="200" height="200"></svg>
   <div class="abs body" style="left:70px;top:780px;width:620px;font-size:30px;color:var(--rosaf)">Las marcas más fuertes no son las que más venden. Son las que <b style="text-decoration:underline;text-underline-offset:5px">crean conexiones que la gente quiere mantener.</b></div>
   <div class="abs serif" style="left:66px;top:1000px;width:700px;font-size:104px">¿Tu marca da ganas de quedarse?</div>
-  <div class="badge" style="left:780px;top:1120px;transform:rotate(-6deg);font-size:26px">te leo en<br><b>comentarios</b></div>
+  <div class="badge" style="left:720px;top:1110px;transform:rotate(-6deg);font-size:26px">te leo en<br><b>comentarios</b></div>
 </section>
 
 <style>
