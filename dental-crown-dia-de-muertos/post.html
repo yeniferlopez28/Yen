@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dental Crown · Día de Muertos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#2B1712}
+  #post{width:1080px;height:1350px;display:block}
+  .serif{font-family:'Fraunces',serif}
+  .sans{font-family:'Josefin Sans',sans-serif}
+</style>
+</head>
+<body>
+<svg id="post" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="62%" r="65%">
+      <stop offset="0" stop-color="#5A2E1F"/>
+      <stop offset="0.55" stop-color="#3D2018"/>
+      <stop offset="1" stop-color="#2B1712"/>
+    </radialGradient>
+    <radialGradient id="flameGlow">
+      <stop offset="0" stop-color="#FFD36B" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#FFB13B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="paper" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="n"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.85  0 0 0 0.09 0"/>
+    </filter>
+    <filter id="grain2" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.18 0"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1A0B07" flood-opacity="0.45"/>
+    </filter>
+    <clipPath id="mouthClip">
+      <path d="M470 868 Q540 884 610 868 Q600 930 540 934 Q480 930 470 868 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="1080" height="1350" fill="url(#bgGlow)"/>
+  <rect width="1080" height="1350" filter="url(#grain2)"/>
+
+  <!-- Destellos -->
+  <g id="stars" fill="#F6B73C"></g>
+
+  <!-- Papel picado -->
+  <g id="picado"></g>
+
+  <!-- Encabezado -->
+  <g text-anchor="middle">
+    <!-- Logo provisional: reemplazar por el logo oficial de Dental Crown -->
+    <g transform="translate(540 214)">
+      <path d="M-21 0 l7 -16 l7 9 l7 -12 l7 12 l7 -9 l7 16 z" fill="#F6B73C" transform="translate(-152 -2)"/>
+      <text x="20" y="0" class="sans" font-size="21" font-weight="700" letter-spacing="7" fill="#F6E9D2">DENTAL CROWN</text>
+    </g>
+    <text x="540" y="268" class="sans" font-size="18" font-weight="600" letter-spacing="6" fill="#F39A2B">DÍA DE MUERTOS  ·  1 Y 2 DE NOVIEMBRE</text>
+    <text x="540" y="350" class="serif" font-size="66" font-weight="500" fill="#F6E9D2">Que nunca nos falten</text>
+    <text x="540" y="428" class="serif" font-size="66" font-weight="500" fill="#F6E9D2">motivos para <tspan font-style="italic" font-weight="700" fill="#F6B73C">sonreír.</tspan></text>
+  </g>
+
+  <!-- ===== Catrina ===== -->
+  <g id="catrina" filter="url(#soft)">
+    <!-- Vestido -->
+    <path d="M300 1350 C305 1160 360 1060 460 1015 L620 1015 C720 1060 775 1160 780 1350 Z" fill="#E07B22"/>
+    <!-- Bordado del escote -->
+    <path d="M460 1015 Q540 1080 620 1015" fill="none" stroke="#F6B73C" stroke-width="10" stroke-linecap="round"/>
+    <g id="neckDots" fill="#F6E9D2"></g>
+    <!-- Cuello -->
+    <rect x="514" y="925" width="52" height="95" rx="14" fill="#F1E2C6"/>
+    <g stroke="#C9B08C" stroke-width="4" stroke-linecap="round">
+      <line x1="526" y1="955" x2="554" y2="955"/><line x1="526" y1="980" x2="554" y2="980"/>
+    </g>
+    <!-- Rebozo -->
+    <path d="M318 1190 C332 1100 395 1058 468 1045 C495 1110 518 1160 540 1215 C562 1160 585 1110 612 1045 C685 1058 748 1100 762 1190 L768 1260 L312 1260 Z" fill="#B8432B"/>
+    <path d="M340 1150 C370 1100 420 1075 470 1068 M610 1068 C660 1075 710 1100 740 1150" fill="none" stroke="#E9A23B" stroke-width="5" stroke-dasharray="2 14" stroke-linecap="round"/>
+    <path d="M486 1080 L540 1205 L594 1080" fill="none" stroke="#7E2A1C" stroke-width="5" stroke-linejoin="round"/>
+
+    <!-- Cabello (atrás) -->
+    <ellipse cx="380" cy="745" rx="62" ry="78" fill="#170A07"/>
+    <ellipse cx="700" cy="745" rx="62" ry="78" fill="#170A07"/>
+    <path d="M362 800 C350 650 440 580 540 580 C640 580 730 650 718 800 Z" fill="#170A07"/>
+
+    <path d="M352 700 C360 670 380 690 372 720 M728 700 C720 670 700 690 708 720" fill="none" stroke="#5A3A2E" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+    <!-- Aretes -->
+    <g id="earrings"></g>
+
+    <!-- Cara -->
+    <path d="M540 612 C645 612 706 682 706 772 C706 832 678 862 648 882 C632 918 596 942 540 942 C484 942 448 918 432 882 C402 862 374 832 374 772 C374 682 435 612 540 612 Z" fill="#F6E9D2"/>
+    <!-- sombra suave de mandíbula -->
+    <path d="M432 882 C448 918 484 942 540 942 C596 942 632 918 648 882 C620 905 585 915 540 915 C495 915 460 905 432 882 Z" fill="#E8D3B0"/>
+
+    <!-- Fleco / raya en medio -->
+    <path d="M378 790 C368 662 448 598 540 598 C632 598 712 662 702 790 C690 712 625 664 548 632 L532 632 C455 664 390 712 378 790 Z" fill="#170A07"/>
+
+    <!-- Adorno frente -->
+    <g transform="translate(540 680)">
+      <path d="M0 14 C-18 2 -20 -12 -10 -16 C-4 -18 0 -12 0 -9 C0 -12 4 -18 10 -16 C20 -12 18 2 0 14 Z" fill="#C2452D"/>
+      <circle cx="-34" cy="-2" r="4.5" fill="#E07B22"/><circle cx="34" cy="-2" r="4.5" fill="#E07B22"/>
+      <circle cx="-52" cy="8" r="3.5" fill="#F6B73C"/><circle cx="52" cy="8" r="3.5" fill="#F6B73C"/>
+      <path d="M-26 30 Q0 40 26 30" fill="none" stroke="#E07B22" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 10"/>
+    </g>
+
+    <!-- Ojos -->
+    <g id="eyes"></g>
+
+    <!-- Nariz -->
+    <path d="M540 846 C528 834 524 822 532 818 C536 816 540 820 540 823 C540 820 544 816 548 818 C556 822 552 834 540 846 Z" fill="#4A2219"/>
+
+    <!-- Mejillas -->
+    <circle cx="440" cy="850" r="24" fill="#F08C6A" opacity="0.45"/>
+    <circle cx="640" cy="850" r="24" fill="#F08C6A" opacity="0.45"/>
+    <g fill="#E07B22">
+      <circle cx="418" cy="822" r="4"/><circle cx="410" cy="840" r="3"/><circle cx="662" cy="822" r="4"/><circle cx="670" cy="840" r="3"/>
+    </g>
+
+    <!-- Sonrisa -->
+    <path d="M470 868 Q540 884 610 868 Q600 930 540 934 Q480 930 470 868 Z" fill="#5A1F18"/>
+    <g clip-path="url(#mouthClip)">
+      <ellipse cx="540" cy="928" rx="40" ry="16" fill="#D9616A"/>
+      <!-- dientes superiores -->
+      <path d="M465 860 L615 860 L615 896 Q540 906 465 896 Z" fill="#FFFDF7"/>
+      <g stroke="#E3D6BF" stroke-width="2.5">
+        <line x1="540" y1="874" x2="540" y2="902"/>
+        <line x1="514" y1="874" x2="515" y2="900"/><line x1="566" y1="874" x2="565" y2="900"/>
+        <line x1="492" y1="872" x2="494" y2="896"/><line x1="588" y1="872" x2="586" y2="896"/>
+      </g>
+    </g>
+    <path d="M470 868 Q540 884 610 868 Q600 930 540 934 Q480 930 470 868 Z" fill="none" stroke="#B8432B" stroke-width="5" stroke-linejoin="round"/>
+    <!-- comisuras -->
+    <path d="M462 862 Q466 870 472 870" fill="none" stroke="#B8432B" stroke-width="4" stroke-linecap="round"/>
+    <path d="M618 862 Q614 870 608 870" fill="none" stroke="#B8432B" stroke-width="4" stroke-linecap="round"/>
+    <!-- brillo dental -->
+    <path d="M626 856 l4 -12 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 z" fill="#F6B73C"/>
+    <!-- mentón -->
+    <g fill="#E07B22"><circle cx="520" cy="952" r="0"/></g>
+
+    <!-- Corona de flores -->
+    <g id="crown"></g>
+  </g>
+
+  <!-- Mesa / ofrenda -->
+  <rect x="0" y="1225" width="1080" height="125" fill="#241210"/>
+  <g id="tableEdge"></g>
+  <g id="altar"></g>
+
+  <!-- Pie -->
+  <text x="540" y="1302" text-anchor="middle" class="serif" font-size="34" font-style="italic" font-weight="500" fill="#F6E9D2">Bonito Día de Muertos</text>
+  <text x="540" y="1332" text-anchor="middle" class="sans" font-size="14" font-weight="600" letter-spacing="5" fill="#F39A2B">CON CARIÑO, DENTAL CROWN</text>
+
+  <!-- Textura papel -->
+  <rect width="1080" height="1350" filter="url(#paper)" pointer-events="none"/>
+</svg>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+
+// Cempasúchil: anillos de pétalos redondeados
+function flor(parent,cx,cy,r,pal){
+  const g=el('g',{},parent);
+  const layers=[{rr:r*0.78,n:14,pr:r*0.32,c:pal[0]},{rr:r*0.52,n:11,pr:r*0.28,c:pal[1]},{rr:r*0.28,n:8,pr:r*0.24,c:pal[2]}];
+  layers.forEach((L,i)=>{
+    el('circle',{cx,cy,r:L.rr,fill:L.c},g);
+    for(let k=0;k<L.n;k++){const a=(k/L.n)*Math.PI*2+i*0.3;el('circle',{cx:cx+Math.cos(a)*L.rr,cy:cy+Math.sin(a)*L.rr,r:L.pr,fill:L.c},g);}
+    // líneas de pétalo
+    for(let k=0;k<L.n;k++){const a=(k/L.n)*Math.PI*2+i*0.3+Math.PI/L.n;
+      el('line',{x1:cx+Math.cos(a)*L.rr*0.75,y1:cy+Math.sin(a)*L.rr*0.75,x2:cx+Math.cos(a)*(L.rr+L.pr*0.6),y2:cy+Math.sin(a)*(L.rr+L.pr*0.6),stroke:'rgba(90,30,10,.22)','stroke-width':Math.max(1.5,r*0.03),'stroke-linecap':'round'},g);}
+  });
+  el('circle',{cx,cy,r:r*0.12,fill:pal[3]||'#8A3A12'},g);
+  return g;
+}
+function hoja(parent,x,y,ang,len){
+  const g=el('g',{transform:`translate(${x} ${y}) rotate(${ang})`},parent);
+  el('path',{d:`M0 0 Q${len*0.5} ${-len*0.32} ${len} 0 Q${len*0.5} ${len*0.32} 0 0 Z`,fill:'#5E7A2E'},g);
+  el('path',{d:`M4 0 L${len*0.85} 0`,stroke:'#3F5520','stroke-width':2.5},g);
+}
+const ORANGE=['#E8731C','#F39A2B','#F6B73C','#9C3F12'];
+const YELLOW=['#F2A31F','#F6C344','#FBD96A','#A5561A'];
+const TERRA=['#B8432B','#D2603B','#E9875A','#5A1F18'];
+const PURPLE=['#7A3E8F','#9A57AE','#C08AD0','#3E1A4A'];
+
+// Estrellas
+const stars=document.getElementById('stars');
+function star(x,y,s){el('path',{d:`M${x} ${y-s} Q${x+s*0.14} ${y-s*0.14} ${x+s} ${y} Q${x+s*0.14} ${y+s*0.14} ${x} ${y+s} Q${x-s*0.14} ${y+s*0.14} ${x-s} ${y} Q${x-s*0.14} ${y-s*0.14} ${x} ${y-s} Z`},stars);}
+[[120,560,26],[960,520,34],[905,650,16],[175,690,14],[985,800,12],[95,880,18],[240,470,10],[840,470,12]].forEach(s=>star(...s));
+
+// Papel picado
+const picado=document.getElementById('picado');
+const pcols=['#E8731C','#F6B73C','#B8432B','#F6E9D2','#7A3E8F','#E8731C','#F6B73C','#B8432B'];
+el('path',{d:'M-10 28 Q540 70 1090 28',fill:'none',stroke:'#F6E9D2','stroke-width':3,opacity:.7},picado);
+const nflags=8,fw=118,gap=(1080-nflags*fw)/(nflags+1);
+for(let i=0;i<nflags;i++){
+  const x=gap+i*(fw+gap), t=(x+fw/2)/1080, y=28+ (1-(2*t-1)**2)*21 -2;
+  const fh=128, c=pcols[i];
+  const g=el('g',{transform:`translate(${x} ${y}) rotate(${(t-0.5)*-6} ${fw/2} 0)`},picado);
+  // bandera con borde ondulado inferior
+  let d=`M0 0 L${fw} 0 L${fw} ${fh}`;
+  const sc=7, sw=fw/sc;
+  for(let k=0;k<sc;k++){const x2=fw-(k+1)*sw;d+=` Q${fw-(k+0.5)*sw} ${fh+12} ${x2} ${fh}`;}
+  d+=' Z';
+  el('path',{d,fill:c,opacity:0.95},g);
+  const hole='#3A1E16';
+  // calados
+  const cx=fw/2, cy=58;
+  if(i%2===0){
+    // flor central
+    for(let k=0;k<8;k++){const a=k/8*Math.PI*2;el('ellipse',{cx:cx+Math.cos(a)*16,cy:cy+Math.sin(a)*16,rx:8,ry:4.5,transform:`rotate(${a*180/Math.PI} ${cx+Math.cos(a)*16} ${cy+Math.sin(a)*16})`,fill:hole},g);}
+    el('circle',{cx,cy,r:6,fill:hole},g);
+  } else {
+    // corazón
+    el('path',{d:`M${cx} ${cy+16} C${cx-26} ${cy} ${cx-22} ${cy-20} ${cx-10} ${cy-18} C${cx-4} ${cy-17} ${cx} ${cy-11} ${cx} ${cy-7} C${cx} ${cy-11} ${cx+4} ${cy-17} ${cx+10} ${cy-18} C${cx+22} ${cy-20} ${cx+26} ${cy} ${cx} ${cy+16} Z`,fill:hole},g);
+  }
+  for(let k=0;k<4;k++){el('path',{d:`M${12+k*30} 18 l6 -6 l6 6 l-6 6 z`,fill:hole},g);}
+  for(let k=0;k<5;k++){el('circle',{cx:16+k*21.5,cy:104,r:4,fill:hole},g);}
+  el('path',{d:`M14 88 Q${cx} 78 ${fw-14} 88`,fill:'none',stroke:hole,'stroke-width':3.5,'stroke-dasharray':'8 6'},g);
+}
+
+// Ojos felices
+const eyes=document.getElementById('eyes');
+[[468,772],[612,772]].forEach(([x,y],j)=>{
+  const g=el('g',{},eyes);
+  const cols=['#E8731C','#F6B73C'];
+  for(let k=0;k<12;k++){const a=k/12*Math.PI*2;const px=x+Math.cos(a)*50,py=y+Math.sin(a)*46;
+    el('ellipse',{cx:px,cy:py,rx:13,ry:8,transform:`rotate(${a*180/Math.PI} ${px} ${py})`,fill:cols[k%2]},g);}
+  el('ellipse',{cx:x,cy:y,rx:46,ry:42,fill:'#3A1A14'},g);
+  // ojo cerrado sonriente (arco)
+  el('path',{d:`M${x-24} ${y+8} Q${x} ${y-22} ${x+24} ${y+8}`,fill:'none',stroke:'#F6E9D2','stroke-width':6,'stroke-linecap':'round'},g);
+  const s=j===0?-1:1;
+  [[-20,-4,-30,-14],[-8,-11,-12,-24],[6,-11,8,-24]].forEach(([a,b,c,d])=>{
+    const ax=j===0?a:-a, cx2=j===0?c:-c;
+    el('line',{x1:x+ax,y1:y+b,x2:x+cx2,y2:y+d,stroke:'#F6E9D2','stroke-width':4,'stroke-linecap':'round'},g);
+  });
+  // brillito
+  el('circle',{cx:x+(j===0?22:-22),cy:y+20,r:4,fill:'#F6B73C'},g);
+});
+
+// Aretes
+const ear=document.getElementById('earrings');
+[[372,835],[708,835]].forEach(([x,y])=>{
+  el('line',{x1:x,y1:y-18,x2:x,y2:y+6,stroke:'#F6B73C','stroke-width':3},ear);
+  el('circle',{cx:x,cy:y-18,r:6,fill:'#F6B73C'},ear);
+  flor(ear,x,y+22,16,TERRA);
+  el('path',{d:`M${x-8} ${y+40} L${x} ${y+64} L${x+8} ${y+40} Z`,fill:'#F6B73C'},ear);
+});
+
+// Puntos del escote
+const nd=document.getElementById('neckDots');
+for(let k=0;k<=8;k++){const t=k/8;const x=450+t*180;const y=1015+Math.sin(t*Math.PI)*48;if(x>470&&x<610)el('circle',{cx:x,cy:y+20,r:4},nd);}
+
+// Corona de flores
+const crown=document.getElementById('crown');
+hoja(crown,400,640,-150,60);hoja(crown,680,640,-30,60);hoja(crown,470,585,-120,52);hoja(crown,610,585,-60,52);
+hoja(crown,360,700,170,48);hoja(crown,720,700,10,48);
+flor(crown,385,690,40,TERRA);
+flor(crown,695,690,40,PURPLE);
+flor(crown,430,630,52,YELLOW);
+flor(crown,650,630,52,YELLOW);
+flor(crown,490,590,56,ORANGE);
+flor(crown,590,590,56,ORANGE);
+flor(crown,540,560,44,YELLOW);
+el('circle',{cx:455,cy:565,r:7,fill:'#F6E9D2'},crown);el('circle',{cx:625,cy:565,r:7,fill:'#F6E9D2'},crown);
+el('circle',{cx:350,cy:650,r:6,fill:'#F6B73C'},crown);el('circle',{cx:730,cy:650,r:6,fill:'#F6B73C'},crown);
+
+// Borde de la mesa (papel picado pequeño)
+const te=document.getElementById('tableEdge');
+el('rect',{x:0,y:1225,width:1080,height:10,fill:'#E8731C'},te);
+for(let k=0;k<54;k++){el('path',{d:`M${k*20} 1235 q10 12 20 0 z`,fill:'#E8731C'},te);}
+
+// Ofrenda: veladoras, pan, flores
+const altar=document.getElementById('altar');
+function veladora(x,base,w,h){
+  const g=el('g',{},altar);
+  el('circle',{cx:x,cy:base-h-28,r:60,fill:'url(#flameGlow)'},g);
+  el('rect',{x:x-w/2,y:base-h,width:w,height:h,rx:6,fill:'#F6E9D2'},g);
+  el('rect',{x:x-w/2,y:base-h,width:w,height:12,rx:6,fill:'#E8D3B0'},g);
+  el('rect',{x:x-w/2,y:base-h*0.55,width:w,height:10,fill:'#E8731C',opacity:.85},g);
+  el('line',{x1:x,y1:base-h,x2:x,y2:base-h-10,stroke:'#3A1A14','stroke-width':3},g);
+  el('path',{d:`M${x} ${base-h-46} C${x+14} ${base-h-28} ${x+12} ${base-h-10} ${x} ${base-h-8} C${x-12} ${base-h-10} ${x-14} ${base-h-28} ${x} ${base-h-46} Z`,fill:'#F6B73C'},g);
+  el('path',{d:`M${x} ${base-h-30} C${x+6} ${base-h-20} ${x+5} ${base-h-12} ${x} ${base-h-11} C${x-5} ${base-h-12} ${x-6} ${base-h-20} ${x} ${base-h-30} Z`,fill:'#FFF2C2'},g);
+}
+function pan(x,base,r){
+  const g=el('g',{},altar);
+  el('path',{d:`M${x-r} ${base} C${x-r} ${base-r*1.05} ${x+r} ${base-r*1.05} ${x+r} ${base} Z`,fill:'#C9772E'},g);
+  el('path',{d:`M${x-r*0.85} ${base-r*0.12} C${x-r*0.8} ${base-r*0.85} ${x+r*0.8} ${base-r*0.85} ${x+r*0.85} ${base-r*0.12}`,fill:'none',stroke:'#E0974A','stroke-width':5,opacity:.6},g);
+  // huesitos
+  [[-0.45,0],[0.45,0],[0,0]].forEach(([dx],i)=>{
+    const bx=x+dx*r;
+    el('path',{d:`M${bx} ${base-r*0.78} L${bx+(i===2?0:dx*18)} ${base-4}`,stroke:'#9E5520','stroke-width':12,'stroke-linecap':'round'},g);
+    for(let k=1;k<4;k++){el('circle',{cx:bx+(i===2?0:dx*18)*k/4,cy:base-r*0.78+(r*0.78-4)*k/4,r:8,fill:'#9E5520'},g);}
+  });
+  el('circle',{cx:x,cy:base-r*0.8,r:12,fill:'#9E5520'},g);
+  el('g',{},g);
+  for(let k=0;k<26;k++){el('circle',{cx:x-r*0.8+Math.random()*r*1.6,cy:base-r*0.15-Math.random()*r*0.55,r:1.6,fill:'#FFF2C2',opacity:.8},g);}
+}
+// flores al fondo
+[[ -10,1215,62,ORANGE],[95,1195,52,YELLOW],[985,1205,58,ORANGE],[1085,1210,62,YELLOW],[300,1225,42,YELLOW],[780,1225,42,ORANGE]].forEach(f=>flor(altar,f[0],f[1],f[2],f[3]));
+veladora(205,1228,46,92);
+veladora(880,1228,46,110);
+veladora(160,1228,34,58);
+veladora(930,1228,34,62);
+pan(330,1228,70);
+flor(altar,250,1235,38,TERRA);
+flor(altar,820,1235,40,TERRA);
+flor(altar,420,1238,30,ORANGE);
+flor(altar,700,1238,34,YELLOW);
+// calaverita de azúcar pequeña
+(function(){const x=760,b=1228;const g=el('g',{},altar);
+  el('path',{d:`M${x-34} ${b-30} C${x-34} ${b-78} ${x+34} ${b-78} ${x+34} ${b-30} C${x+34} ${b-12} ${x+20} ${b-8} ${x+18} ${b} L${x-18} ${b} C${x-20} ${b-8} ${x-34} ${b-12} ${x-34} ${b-30} Z`,fill:'#F6E9D2'},g);
+  el('circle',{cx:x-14,cy:b-38,r:10,fill:'#3A1A14'},g);el('circle',{cx:x+14,cy:b-38,r:10,fill:'#3A1A14'},g);
+  el('circle',{cx:x-14,cy:b-38,r:14,fill:'none',stroke:'#7A3E8F','stroke-width':3,'stroke-dasharray':'3 4'},g);
+  el('circle',{cx:x+14,cy:b-38,r:14,fill:'none',stroke:'#7A3E8F','stroke-width':3,'stroke-dasharray':'3 4'},g);
+  el('path',{d:`M${x} ${b-26} l-4 7 h8 z`,fill:'#3A1A14'},g);
+  el('path',{d:`M${x-14} ${b-12} Q${x} ${b-4} ${x+14} ${b-12}`,fill:'none',stroke:'#B8432B','stroke-width':3},g);
+  for(let k=-2;k<=2;k++)el('line',{x1:x+k*6,y1:b-14+Math.abs(k)*0.6,x2:x+k*6,y2:b-7,stroke:'#B8432B','stroke-width':2},g);
+  el('path',{d:`M${x} ${b-64} c-6 -6 -12 0 0 8 c12 -8 6 -14 0 -8z`,fill:'#E8731C'},g);
+})();
+</script>
+</body>
+</html>
