@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Carrusel Prima</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  /* ====== EDITA AQUÍ TU USUARIO ====== */
+  :root{
+    --handle: "@tuusuario";
+    --fucsia:#ff1f8e;
+    --fucsia-deep:#e0127a;
+    --negro:#0d0b0c;
+    --papel:#f6f1ea;
+    --cielo:#cfe2ec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;display:flex;flex-direction:column;gap:40px;align-items:center;padding:40px 0}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:"Courier Prime",monospace;color:var(--negro)}
+  .bg-fucsia{background:var(--fucsia)}
+  .bg-negro{background:var(--negro)}
+  .bg-cielo{background:var(--cielo)}
+  .layer{position:absolute;inset:0;pointer-events:none}
+  .crinkle{mix-blend-mode:multiply;opacity:.55}
+  .crinkle-light{mix-blend-mode:soft-light;opacity:.9}
+  .grain{mix-blend-mode:overlay;opacity:.35}
+  .speck{opacity:.55}
+
+  /* ---- tipografía ---- */
+  .label{position:absolute;font-family:"Courier Prime",monospace;font-weight:700;font-size:40px;
+    padding:6px 18px 8px;border:4px solid var(--negro);letter-spacing:-.5px;white-space:nowrap;line-height:1.1}
+  .label.dark{background:var(--negro);color:#fff}
+  .label.pink{background:var(--fucsia);color:#fff}
+  .label.paper{background:var(--papel);color:var(--negro)}
+  .marker{position:absolute;font-family:"Permanent Marker",cursive;line-height:.92;filter:url(#rough);white-space:nowrap}
+  .marker.black{color:var(--negro)}
+  .marker.pink{color:var(--fucsia)}
+  .marker.white{color:#fff}
+  .anton{font-family:"Anton",sans-serif}
+
+  .card{position:absolute;background:var(--papel);padding:34px 38px;font-size:35px;line-height:1.28;
+    box-shadow:6px 8px 0 rgba(0,0,0,.18)}
+  .card p+p{margin-top:24px}
+  .card b{font-weight:700}
+  .card i{font-style:italic;font-weight:700}
+  mark{-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(transparent 12%, var(--fucsia) 12%, var(--fucsia) 88%, transparent 88%);color:#fff;padding:0 6px;font-weight:700}
+  .bg-negro mark, .on-dark mark{color:#fff}
+  u{text-decoration:none;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C40 3 80 11 120 6 S180 4 198 7' stroke='%23ff1f8e' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") bottom/100% 14px no-repeat;padding-bottom:6px}
+
+  .callout{position:absolute;background:var(--fucsia);color:#fff;border:5px solid var(--negro);
+    padding:28px 34px;font-size:35px;line-height:1.25;font-weight:700;box-shadow:12px 12px 0 var(--negro)}
+  .callout.dark{background:var(--negro);color:#fff;border-color:var(--fucsia);box-shadow:12px 12px 0 var(--fucsia)}
+  .callout u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C40 3 80 11 120 6 S180 4 198 7' stroke='%23ffffff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")}
+  .callout i{font-style:italic}
+
+  .mono-small{position:absolute;font-family:"Special Elite",monospace;font-size:17px;line-height:1.3;white-space:pre}
+
+  /* ---- fotos ---- */
+  .frame{position:absolute;background:#fbf8f3;padding:16px 16px 16px;box-shadow:10px 14px 0 rgba(0,0,0,.25)}
+  .frame img{display:block;width:100%;height:100%;object-fit:cover}
+  .frame .gloss{position:absolute;inset:16px;background:linear-gradient(115deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 62%,rgba(255,255,255,.18) 75%,rgba(255,255,255,0) 90%);pointer-events:none}
+  .tape{position:absolute;width:170px;height:46px;background:rgba(255,255,255,.55);
+    box-shadow:0 1px 3px rgba(0,0,0,.15);
+    clip-path:polygon(3% 0,97% 4%,100% 22%,96% 40%,100% 60%,97% 80%,100% 100%,2% 96%,0 78%,4% 58%,0 38%,3% 20%)}
+
+  /* ---- footer ---- */
+  .footer{position:absolute;left:0;right:0;bottom:0;height:64px;background:var(--negro);display:flex;align-items:center;overflow:hidden;
+    border-top:4px solid var(--fucsia)}
+  .footer .run{font-family:"Special Elite",monospace;color:var(--fucsia);font-size:26px;white-space:nowrap;letter-spacing:1px;padding-left:18px}
+  .bg-negro .footer{background:var(--fucsia);border-top-color:var(--negro)}
+  .bg-negro .footer .run{color:var(--negro)}
+  .count{position:absolute;right:34px;bottom:86px;font-family:"Permanent Marker";font-size:34px;filter:url(#rough)}
+  .bg-negro .count{color:#fff}
+  .swipe{position:absolute;font-family:"Permanent Marker";font-size:34px;filter:url(#rough)}
+
+  svg.deco{position:absolute;overflow:visible;pointer-events:none}
+</style>
+</head>
+<body>
+
+<!-- filtros compartidos -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
+    </filter>
+    <filter id="splat" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="26"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ============ 01 PORTADA ============ -->
+<section class="slide bg-fucsia" id="s1">
+  <div class="tex" data-type="fucsia" data-seed="3"></div>
+
+  <div class="frame" style="left:56px;top:84px;width:590px;height:770px;transform:rotate(-2.5deg)">
+    <img src="img/tijeras.jpg" style="object-position:50% 30%"><div class="gloss"></div>
+  </div>
+  <div class="tape" style="left:260px;top:62px;transform:rotate(-6deg)"></div>
+  <div class="tape" style="left:540px;top:820px;transform:rotate(38deg);width:130px"></div>
+
+  <div class="mono-small" style="right:46px;top:96px;color:#fff;transform:rotate(1.5deg);opacity:.92">Produced by tu marca
+Written by @tuusuario
+Styled with ✂ y cero miedo
+Recorded live · Pink Wall Studio</div>
+
+  <div class="label dark" style="left:640px;top:330px;transform:rotate(3deg)">Cosas que una</div>
+  <svg class="deco scribble" data-seed="4" style="left:470px;top:400px" width="560" height="280"></svg>
+  <div class="marker black" style="left:425px;top:425px;font-size:178px;transform:rotate(-7deg);text-shadow:8px 8px 0 #fff">PRIMA</div>
+  <div class="callout" style="left:560px;top:700px;width:470px;transform:rotate(2deg);font-size:40px;padding:20px 30px">le cortaría a tu marca&nbsp;✂</div>
+
+  <svg class="deco star" style="left:925px;top:230px" width="110" height="110"></svg>
+  <svg class="deco star" style="left:880px;top:290px" width="64" height="64"></svg>
+
+  <div class="card" style="left:56px;top:950px;width:760px;transform:rotate(-1deg);font-size:34px">
+    <p>Ponte las puntas, porque hoy vengo a <mark>decir lo que me choca</mark> del mundo del diseño.</p>
+  </div>
+  <div class="swipe" style="right:46px;top:1170px;color:#fff;transform:rotate(-6deg);font-size:44px">desliza →</div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="color:#fff;bottom:auto;top:1060px">01/06</div>
+</section>
+
+<!-- ============ 02 ESTÉTICA ============ -->
+<section class="slide bg-fucsia" id="s2">
+  <div class="tex" data-type="fucsia" data-seed="9"></div>
+
+  <div class="label dark" style="left:60px;top:90px;transform:rotate(-1.5deg)">De quien cambia de</div>
+  <div class="marker black" style="left:56px;top:170px;font-size:128px;transform:rotate(-3deg)">estética cada</div>
+  <div class="marker white" style="left:150px;top:300px;font-size:150px;transform:rotate(-4deg)">semana</div>
+
+  <div class="card" style="left:60px;top:500px;width:610px;transform:rotate(-1deg)">
+    <p>Hoy minimalista, mañana Y2K y el jueves <i>“aesthetic beige”</i>. Así <b>nadie te reconoce</b>.</p>
+    <p>Ella lleva años de rosa y la ubicas <u>en un segundo</u>.</p>
+  </div>
+
+  <div class="frame" style="left:640px;top:450px;width:390px;height:470px;transform:rotate(4deg)">
+    <img src="img/estrella.jpg" style="object-position:50% 35%"><div class="gloss"></div>
+  </div>
+  <div class="tape" style="left:760px;top:430px;transform:rotate(-3deg)"></div>
+  <svg class="deco star" style="left:930px;top:880px" width="100" height="100"></svg>
+
+  <div class="callout" style="left:60px;top:990px;width:700px;transform:rotate(1deg);background:var(--negro);border-color:#fff;box-shadow:12px 12px 0 #fff">
+    La consistencia <u>no es aburrida</u>: es lo que hace que <i>te recuerden</i>.
+  </div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="color:#fff">02/06</div>
+</section>
+
+<!-- ============ 03 IA ============ -->
+<section class="slide bg-negro on-dark" id="s3">
+  <div class="tex" data-type="negro" data-seed="5"></div>
+  <svg class="deco splatter" data-seed="21" style="left:520px;top:620px" width="560" height="560"></svg>
+
+  <img src="img/pelo.jpg" style="position:absolute;right:-60px;top:-40px;width:760px;transform:rotate(-8deg);
+    -webkit-mask-image:radial-gradient(ellipse 60% 50% at 60% 35%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 60% 50% at 60% 35%,#000 55%,transparent 100%)">
+
+  <div class="label pink" style="left:60px;top:500px;transform:rotate(-2deg)">De quien diseña sus posts</div>
+  <div class="marker pink" style="left:60px;top:585px;font-size:170px;transform:rotate(-4deg)">sólo con IA</div>
+
+  <div class="card" style="left:60px;top:800px;width:620px;transform:rotate(1deg);font-size:33px">
+    <p>Se nota: misma luz, mismas caras, <b>cero alma</b>.</p>
+    <p>La IA es una herramienta increíble, pero no tiene <mark>criterio</mark> ni sabe quién es tu cliente.</p>
+  </div>
+  <div class="tape" style="left:300px;top:780px;transform:rotate(4deg)"></div>
+
+  <div class="callout dark" style="left:640px;top:1060px;width:390px;transform:rotate(-2deg);font-size:30px;padding:22px 26px">
+    Sin intención no hay conexión. Y sin conexión, <u>nadie te recuerda</u>.
+  </div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="bottom:auto;top:40px">03/06</div>
+</section>
+
+<!-- ============ 04 BRIEF ============ -->
+<section class="slide bg-cielo" id="s4">
+  <div class="tex" data-type="cielo" data-seed="14"></div>
+
+  <div class="frame" style="left:600px;top:80px;width:430px;height:520px;transform:rotate(3deg)">
+    <img src="img/guino.jpg" style="object-position:50% 25%"><div class="gloss"></div>
+  </div>
+  <div class="tape" style="left:740px;top:60px;transform:rotate(-4deg)"></div>
+
+  <div class="label pink" style="left:60px;top:110px;transform:rotate(-2deg)">De quien pide algo</div>
+  <svg class="deco scribble" data-seed="8" style="left:40px;top:200px" width="560" height="330"></svg>
+  <div class="marker black" style="left:56px;top:200px;font-size:104px;transform:rotate(-4deg);line-height:1">“sencillito</div>
+  <div class="marker black" style="left:56px;top:310px;font-size:104px;transform:rotate(-4deg);line-height:1">pero que</div>
+  <div class="marker pink" style="left:90px;top:420px;font-size:124px;transform:rotate(-5deg);line-height:1">impacte”</div>
+
+  <div class="card" style="left:60px;top:640px;width:680px;transform:rotate(-1deg);border:4px solid var(--negro)">
+    <p>Pregunto colores, público u objetivo y me contestan: <i>“tú sabes, sorpréndeme”</i>.</p>
+    <p>El brief es la <b>coreografía</b>: sin él, cada quien baila lo que quiere.</p>
+  </div>
+
+  <div class="callout" style="left:300px;top:1040px;width:720px;transform:rotate(1.5deg)">
+    El éxito de tu post empieza con <u>la claridad</u> de lo que me cuentas.
+  </div>
+  <svg class="deco star" style="left:80px;top:1080px" width="120" height="120"></svg>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="bottom:auto;top:40px;right:auto;left:60px">04/06</div>
+</section>
+
+<!-- ============ 05 PRIMO ============ -->
+<section class="slide bg-negro on-dark" id="s5">
+  <div class="tex" data-type="negro" data-seed="31"></div>
+  <svg class="deco splatter" data-seed="5" style="left:-80px;top:340px" width="620" height="620"></svg>
+
+  <div class="label pink" style="left:60px;top:80px;transform:rotate(-1.5deg)">De quien dice:</div>
+  <div class="marker white" style="left:56px;top:170px;font-size:100px;transform:rotate(-3deg)">“mi primo lo hace</div>
+  <div class="marker pink" style="left:140px;top:285px;font-size:150px;transform:rotate(-4deg)">más barato”</div>
+
+  <div class="frame" style="left:60px;top:470px;width:420px;height:560px;transform:rotate(-3deg)">
+    <img src="img/barra.jpg" style="object-position:40% 40%"><div class="gloss"></div>
+  </div>
+  <div class="tape" style="left:180px;top:450px;transform:rotate(5deg)"></div>
+
+  <div class="card" style="left:520px;top:500px;width:510px;transform:rotate(1.5deg);font-size:33px">
+    <p>Seguro que sí. Pero una <mark>prima</mark> no se hace en un fin de semana: son <b>años de ensayo</b>, técnica y disciplina.</p>
+  </div>
+  <div class="callout" style="left:520px;top:900px;width:510px;transform:rotate(-1deg);font-size:31px;padding:22px 28px">
+    Lo barato en diseño se paga después: con una marca que <u>nadie</u> toma en serio.
+  </div>
+
+  <!-- nota tipo papelito -->
+  <div style="position:absolute;left:80px;top:1075px;width:430px;padding:20px 26px;background:var(--papel);transform:rotate(-4deg);box-shadow:8px 10px 0 rgba(0,0,0,.4);clip-path:polygon(0 4%,8% 0,22% 3%,40% 0,58% 4%,76% 0,92% 3%,100% 0,98% 50%,100% 100%,82% 96%,64% 100%,44% 96%,26% 100%,10% 96%,0 100%,2% 50%)">
+    <div style="font-family:'Courier Prime';font-weight:700;font-size:25px">Lo profesional no es gasto,</div>
+    <div class="marker pink" style="position:static;font-size:62px;margin-top:2px">es inversión</div>
+  </div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="bottom:auto;top:40px">05/06</div>
+</section>
+
+<!-- ============ 06 CTA ============ -->
+<section class="slide bg-fucsia" id="s6">
+  <div class="tex" data-type="fucsia" data-seed="17"></div>
+
+  <div class="frame" style="left:640px;top:360px;width:400px;height:620px;transform:rotate(3deg)">
+    <img src="img/jeans.jpg" style="object-position:50% 20%"><div class="gloss"></div>
+  </div>
+  <div class="tape" style="left:770px;top:340px;transform:rotate(-5deg)"></div>
+  <div class="frame" style="left:770px;top:84px;width:250px;height:250px;padding:12px;transform:rotate(-6deg)">
+    <img src="img/pinkwall.jpg" style="object-position:50% 40%">
+  </div>
+
+  <div class="label dark" style="left:60px;top:90px;transform:rotate(-2deg)">¿Y sabes de quién</div>
+  <div class="marker black" style="left:56px;top:170px;font-size:126px;transform:rotate(-4deg)">sí hablaría</div>
+  <div class="marker white" style="left:200px;top:290px;font-size:150px;transform:rotate(-5deg)">bien?</div>
+
+  <div class="card" style="left:60px;top:480px;width:580px;transform:rotate(-1deg);font-size:33px">
+    <p>De las marcas que se atreven a tener <mark>su propio pink wall</mark>.</p>
+    <p>Que entienden que el diseño <b>no es adorno</b>: es <u>posicionamiento</u>.</p>
+  </div>
+
+  <div class="callout" style="left:60px;top:930px;width:560px;transform:rotate(1deg);background:var(--negro);border-color:#fff;box-shadow:12px 12px 0 #fff;font-size:33px">
+    Si quieres que tu marca sea <i>la protagonista del show</i>, yo te ayudo.
+  </div>
+
+  <!-- boleto -->
+  <div style="position:absolute;left:640px;top:1030px;width:400px;height:150px;background:var(--papel);transform:rotate(-4deg);
+      border:4px dashed var(--negro);outline:10px solid var(--papel);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:10px 12px 0 rgba(0,0,0,.25)">
+    <div style="font-family:'Special Elite';font-size:20px;letter-spacing:3px">ADMIT ONE ★ VIP</div>
+    <div class="marker black" style="position:static;font-size:36px;text-align:center;line-height:1.05">Cotizaciones en<br>el link de la bio</div>
+  </div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="color:#fff;bottom:auto;top:40px;right:auto;left:40px;display:none">06/06</div>
+</section>
+
+<script>
+// ---------- utilidades ----------
+function rng(seed){let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296}}
+const NS="http://www.w3.org/2000/svg";
+
+// handle repetido en el footer
+const handle=getComputedStyle(document.documentElement).getPropertyValue('--handle').trim().replace(/"/g,'');
+document.querySelectorAll('.footer .run').forEach(r=>{r.textContent=Array(12).fill(handle+'  ✦  ').join('')});
+
+// texturas de fondo
+document.querySelectorAll('.tex').forEach((t,i)=>{
+  const type=t.dataset.type, seed=+t.dataset.seed;
+  let svg='';
+  if(type==='negro'){
+    svg=`<svg class="layer speck" width="1080" height="1350"><filter id="sp${i}"><feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="1" seed="${seed}"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  28 0 0 0 -21"/></filter><rect width="100%" height="100%" filter="url(#sp${i})"/></svg>
+         <svg class="layer" style="mix-blend-mode:screen;opacity:.12" width="1080" height="1350"><filter id="cr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="4" seed="${seed}"/><feDiffuseLighting lighting-color="#2a2226" surfaceScale="5"><feDistantLight azimuth="50" elevation="40"/></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#cr${i})"/></svg>`;
+  } else {
+    svg=`<svg class="layer crinkle" width="1080" height="1350"><filter id="cr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="5" seed="${seed}"/><feDiffuseLighting lighting-color="#fff" surfaceScale="7"><feDistantLight azimuth="45" elevation="52"/></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#cr${i})"/></svg>`;
+  }
+  svg+=`<svg class="layer grain" width="1080" height="1350"><filter id="gr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="${seed+1}"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gr${i})"/></svg>`;
+  t.outerHTML=svg;
+});
+
+// estrellas (negras con borde rosa y estrellitas dentro)
+function starPath(cx,cy,R,r,rot=-Math.PI/2){let d='';for(let k=0;k<10;k++){const a=rot+k*Math.PI/5,rad=k%2?r:R;d+=(k?'L':'M')+(cx+Math.cos(a)*rad).toFixed(1)+' '+(cy+Math.sin(a)*rad).toFixed(1)}return d+'Z'}
+document.querySelectorAll('svg.star').forEach((s,i)=>{
+  const w=+s.getAttribute('width'),c=w/2,R=w*.48;
+  const rot=-Math.PI/2+(i%3-1)*.25;
+  let inner='';const g=rng(i+3);
+  for(let k=0;k<5;k++){inner+=`<path d="${starPath(c+(g()-.5)*R*.9,c+(g()-.5)*R*.9,R*.17,R*.07)}" fill="none" stroke="#ff1f8e" stroke-width="1.5"/>`}
+  s.innerHTML=`<path d="${starPath(c,c,R,R*.42,rot)}" fill="#0d0b0c" stroke="#ff1f8e" stroke-width="${Math.max(3,w*.04)}" stroke-linejoin="round"/>${inner}<path d="${starPath(c,c,R,R*.42,rot)}" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 6" transform="translate(${c} ${c}) scale(.85) translate(${-c} ${-c})"/>`;
+});
+
+// garabatos de lápiz blanco
+document.querySelectorAll('svg.scribble').forEach(s=>{
+  const w=+s.getAttribute('width'),h=+s.getAttribute('height'),g=rng(+s.dataset.seed);
+  let out='';
+  for(let l=0;l<9;l++){
+    let x=g()*w,y=g()*h,d=`M${x.toFixed(1)} ${y.toFixed(1)}`;
+    for(let k=0;k<3;k++){d+=` C${(g()*w).toFixed(1)} ${(g()*h).toFixed(1)} ${(g()*w).toFixed(1)} ${(g()*h).toFixed(1)} ${(g()*w).toFixed(1)} ${(g()*h).toFixed(1)}`}
+    out+=`<path d="${d}" fill="none" stroke="#fff" stroke-width="${(1.5+g()*2).toFixed(1)}" stroke-linecap="round" opacity="${(.55+g()*.4).toFixed(2)}"/>`;
+  }
+  s.innerHTML=`<g filter="url(#rough)">${out}</g>`;
+});
+
+// salpicaduras rosas
+document.querySelectorAll('svg.splatter').forEach(s=>{
+  const w=+s.getAttribute('width'),c=w/2,g=rng(+s.dataset.seed);
+  let out=`<circle cx="${c}" cy="${c}" r="${w*.2}"/>`;
+  for(let k=0;k<16;k++){
+    const a=g()*Math.PI*2,len=w*(.22+g()*.28),x=c+Math.cos(a)*len,y=c+Math.sin(a)*len;
+    out+=`<path d="M${c} ${c} L${x.toFixed(1)} ${y.toFixed(1)}" stroke="#ff1f8e" stroke-width="${(4+g()*14).toFixed(1)}" stroke-linecap="round"/>`;
+    out+=`<circle cx="${(x+Math.cos(a)*10).toFixed(1)}" cy="${(y+Math.sin(a)*10).toFixed(1)}" r="${(5+g()*16).toFixed(1)}"/>`;
+  }
+  for(let k=0;k<90;k++){const a=g()*Math.PI*2,rad=w*(.15+g()*.35);out+=`<circle cx="${(c+Math.cos(a)*rad).toFixed(1)}" cy="${(c+Math.sin(a)*rad).toFixed(1)}" r="${(.8+g()*4).toFixed(1)}"/>`}
+  s.innerHTML=`<g fill="#ff1f8e" filter="url(#splat)" opacity=".92">${out}</g>`;
+});
+
+// bordes irregulares en los marcos de fotos
+document.querySelectorAll('.frame').forEach((f,i)=>{
+  const g=rng(i+40),pts=[];const n=14;
+  const j=()=> (g()*1.1).toFixed(2);
+  for(let k=0;k<=n;k++)pts.push(`${(k*100/n).toFixed(1)}% ${j()}%`);
+  for(let k=1;k<=n;k++)pts.push(`${(100-+j()).toFixed(2)}% ${(k*100/n).toFixed(1)}%`);
+  for(let k=n-1;k>=0;k--)pts.push(`${(k*100/n).toFixed(1)}% ${(100-+j()).toFixed(2)}%`);
+  for(let k=n-1;k>0;k--)pts.push(`${j()}% ${(k*100/n).toFixed(1)}%`);
+  f.style.clipPath=`polygon(${pts.join(',')})`;
+});
+</script>
+</body>
+</html>
