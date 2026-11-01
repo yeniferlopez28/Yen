@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tu marca tiene un problema de comunidad</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --negro:#0c0c0e; --royal:#26388f; --rosa:#f7a1c4; --rosaf:#e23a7f; --bebe:#a8daf5; --amarillo:#ffd84d; --crema:#fff1c1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;display:flex;flex-direction:column;gap:40px;align-items:center;padding:40px 0}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;font-family:"Inter Tight",sans-serif;color:#f4f4f4;background:var(--negro)}
+  .rosa{background:var(--rosa);color:var(--negro)} .bebe{background:var(--bebe);color:var(--negro)} .royal{background:var(--royal);color:#fff}
+  .abs{position:absolute} .layer{position:absolute;inset:0;pointer-events:none}
+
+  /* títulos estilo portada v1 / Together */
+  .T{position:absolute;padding-top:.18em;margin-top:-.18em;font-weight:900;text-transform:uppercase;letter-spacing:-3px;line-height:.98;white-space:nowrap}
+  .tg{background:linear-gradient(180deg,#ff6aa2 0%,#ff9a52 52%,#ffd84d 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tgh{background:linear-gradient(90deg,#ff6aa2,#ff9a52 50%,#ffd84d);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tb{background:linear-gradient(180deg,#ff8fc0 0%,#8fd0ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .k{position:absolute;font-family:"Audiowide";font-size:20px;letter-spacing:2px;text-transform:uppercase}
+  .hook{position:absolute;font-weight:800;letter-spacing:-1px;line-height:1.08}
+  .p{position:absolute;font-weight:500;font-size:27px;line-height:1.38}
+  .p b{font-weight:800}
+  .box{position:absolute;border-radius:28px;padding:28px 34px}
+  .ctitle{font-weight:900;text-transform:uppercase;letter-spacing:-1px;font-size:44px;line-height:1;margin-bottom:12px}
+  .pill{position:absolute;font-family:"Audiowide";font-size:19px;text-transform:uppercase;letter-spacing:1px;padding:9px 16px;border-radius:999px;white-space:nowrap;color:var(--negro)}
+  .ph{position:absolute;overflow:hidden;border-radius:28px}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .cut{position:absolute;filter:drop-shadow(0 14px 20px rgba(0,0,0,.3))}
+  .handle{position:absolute;left:56px;bottom:30px;font-family:"Audiowide";font-size:17px;letter-spacing:1px;opacity:.8}
+  svg.deco{position:absolute;overflow:visible;pointer-events:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter>
+  <linearGradient id="gTog" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff6aa2"/><stop offset=".5" stop-color="#ff9a52"/><stop offset="1" stop-color="#ffd84d"/></linearGradient>
+  <linearGradient id="gTog2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8fa8ff"/><stop offset="1" stop-color="#5fe0d0"/></linearGradient>
+  <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#26388f"/></marker>
+</defs></svg>
+
+
+<!-- 01 GANCHO -->
+<section class="slide" id="s1">
+  <div class="tex"></div>
+  <div class="T tg" style="left:0;right:0;top:70px;text-align:center;font-size:196px">HARRY<br>STYLES</div>
+  <img class="cut" src="cut/saludo.png" style="left:470px;top:530px;width:620px">
+  <svg class="deco kstar" data-text="KISS ALL THE TIME. " data-c="#f7a1c4" style="left:860px;top:440px" width="190" height="190"></svg>
+  <div class="hook" style="left:60px;top:520px;width:460px;font-size:52px">desapareció 3 años.</div>
+  <div class="hook" style="left:60px;top:660px;width:460px;font-size:52px;color:var(--rosa)">Cualquier marca habría muerto.</div>
+  <div class="hook tgh" style="left:60px;top:860px;width:460px;font-size:58px">Él volvió más fuerte.</div>
+  <div class="p" style="left:60px;top:1030px;width:420px;font-size:25px;color:#cfcfd4">La diferencia no fue la fama. <b style="color:#fff">Fue la comunidad.</b></div>
+  <div class="pill" style="left:60px;top:1190px;background:var(--bebe)">Desliza →</div>
+  <div class="handle">@byensitamkt</div>
+</section>
+
+<!-- 02 QUÉ PASA -->
+<section class="slide royal" id="s2">
+  <div class="tex"></div>
+  <div class="k" style="left:60px;top:60px;color:var(--rosa)">¿Qué pasa cuando desapareces?</div>
+  <div class="hook" style="left:60px;top:110px;width:820px;font-size:58px">¿Qué pasa con tus clientes cuando <span style="color:var(--rosa)">dejas de publicar?</span></div>
+  <img class="cut" src="cut/reloj.png" style="left:850px;top:90px;width:180px;transform:rotate(-12deg)">
+  <div class="p" style="left:60px;top:330px;width:960px;font-size:26px">Un estudio del <b>Ehrenberg-Bass Institute</b> analizó marcas que dejaron de anunciarse. Esto pasó con sus ventas:</div>
+  <div class="abs" style="left:60px;top:470px;width:960px;height:560px;display:flex;align-items:flex-start;gap:40px">
+    <div class="bar"><div class="num tb">-16%</div><div class="b" style="height:140px"></div><div class="lab">1 año</div></div>
+    <div class="bar"><div class="num tb">-25%</div><div class="b" style="height:220px"></div><div class="lab">2 años</div></div>
+    <div class="bar"><div class="num tb">-36%</div><div class="b" style="height:320px"></div><div class="lab">3 años</div></div>
+  </div>
+  <div class="box" style="left:60px;top:1060px;width:960px;background:#fff;color:var(--negro)">
+    <div style="font-size:29px;line-height:1.3;font-weight:700">Y las marcas pequeñas fueron <span style="color:var(--rosaf)">las que más rápido cayeron.</span></div>
+  </div>
+  <div class="src" style="color:#c9cff0">Fuente: Ehrenberg-Bass Institute, marcas que pausaron su publicidad. Promedios.</div>
+</section>
+
+<!-- 03 POR QUÉ TE OLVIDAN -->
+<section class="slide rosa" id="s3">
+  <div class="tex"></div>
+  <div class="T" style="left:54px;top:90px;font-size:120px;color:var(--royal);text-shadow:6px 6px 0 #fff">¿POR QUÉ<br>TE OLVIDAN?</div>
+  <svg class="deco sstar" data-c="#26388f" style="left:900px;top:110px" width="110" height="110"></svg>
+  <div class="hook" style="left:60px;top:345px;width:960px;font-size:40px">No es que dejen de quererte. <span style="color:var(--rosaf)">Es que dejan de pensar en ti.</span></div>
+  <div class="abs" style="left:60px;top:480px;width:960px;display:flex;flex-direction:column;gap:18px">
+    <div class="rc"><span class="rn">01</span><div><b>La memoria se borra.</b> Desde los estudios de Ebbinghaus sabemos que lo que no se refuerza, se olvida.</div></div>
+    <div class="rc"><span class="rn">02</span><div><b>Tu competencia no se detiene.</b> Si tú no ocupas un lugar en su mente, alguien más lo hace.</div></div>
+    <div class="rc"><span class="rn">03</span><div><b>El algoritmo te olvida.</b> Si no publicas y nadie interactúa contigo, te muestra a menos personas.</div></div>
+  </div>
+  <div class="box" style="left:60px;top:1010px;width:960px;background:var(--royal);color:#fff">
+    <div class="ctitle" style="color:var(--rosa);font-size:38px">Disponibilidad mental</div>
+    <div style="font-size:26px;line-height:1.35;font-weight:500">Qué tan fácil es que un cliente piense en ti <b style="font-weight:800">cuando necesita lo que vendes.</b></div>
+  </div>
+  <div class="handle" style="bottom:20px">@byensitamkt</div>
+</section>
+
+<!-- 04 FRASE -->
+<section class="slide" id="s4">
+  <img src="img/disco.jpg" class="layer" style="width:100%;height:100%;object-fit:cover;object-position:50% 62%">
+  <div class="layer" style="background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 70%)"></div>
+  <div class="tex"></div>
+  <div class="hook" style="left:60px;top:220px;width:760px;font-size:64px">La publicidad te mantiene presente.</div>
+  <div class="T tg" style="left:56px;top:410px;font-size:100px;white-space:normal;width:900px;line-height:.95;letter-spacing:-3px">LA COMUNIDAD TE MANTIENE VIVO.</div>
+  <div class="handle">@byensitamkt</div>
+</section>
+
+<!-- 05 POR QUÉ VENDE -->
+<section class="slide bebe" id="s5">
+  <div class="tex"></div>
+  <div class="T" style="left:54px;top:90px;font-size:96px;color:var(--royal);text-shadow:6px 6px 0 var(--rosa)">¿POR QUÉ LA<br>COMUNIDAD VENDE?</div>
+  <div class="stat" style="top:370px"><div class="sn">89%</div><div class="st">de las personas confía en las <b>recomendaciones de gente que conoce</b>, por encima de cualquier anuncio.<div class="sf">Nielsen, Trust in Advertising 2021 (EE. UU.)</div></div></div>
+  <div class="stat" style="top:640px"><div class="sn" style="color:var(--rosaf)">+19%</div><div class="st">gastan las personas que <b>se unen a la comunidad de una marca</b>, frente a las que no.<div class="sf">“Social Dollars”, Ross School of Business, Univ. de Michigan</div></div></div>
+  <img class="cut" src="cut/amarillo-cutout.png" style="left:820px;top:880px;width:230px;transform:rotate(6deg)">
+  <div class="box" style="left:60px;top:960px;width:730px;background:var(--royal);color:#fff">
+    <div style="font-size:29px;line-height:1.3;font-weight:700">Una comunidad no solo te recuerda. <span style="color:var(--rosa)">Te recomienda, te defiende y te compra más.</span></div>
+  </div>
+  <div class="handle" style="bottom:20px">@byensitamkt</div>
+</section>
+
+<!-- 06 AUDIENCIA VS COMUNIDAD -->
+<section class="slide" id="s6">
+  <div class="tex"></div>
+  <div class="ph" style="left:0;top:0;width:1080px;height:380px;border-radius:0"><img src="img/night06.jpg" style="object-position:50% 30%;filter:brightness(.8)"></div>
+  <div class="layer" style="height:380px;background:linear-gradient(180deg,rgba(12,12,14,0) 40%,#0c0c0e)"></div>
+  <div class="T" style="left:54px;top:300px;font-size:108px;color:#8a8a94">AUDIENCIA</div>
+  <div class="T tg" style="left:54px;top:400px;font-size:108px">VS. COMUNIDAD</div>
+  <div class="abs" style="left:60px;top:570px;width:960px">
+    <div class="row hd"><span>Audiencia</span><span class="c">Comunidad</span></div>
+    <div class="row"><span>Te sigue</span><span class="c">Te recomienda</span></div>
+    <div class="row"><span>Consume tu contenido</span><span class="c">Crea contenido sobre ti</span></div>
+    <div class="row"><span>Habla contigo</span><span class="c">Habla entre ellos</span></div>
+    <div class="row"><span>Se va cuando te callas</span><span class="c">Sigue la conversación</span></div>
+  </div>
+  <svg class="deco kstar" data-text="DISCO, OCCASIONALLY. " data-c="#a8daf5" style="left:860px;top:1080px" width="180" height="180"></svg>
+  <div class="handle">@byensitamkt</div>
+</section>
+
+<!-- 07 CÓMO CONSTRUIRLA -->
+<section class="slide royal" id="s7">
+  <div class="tex"></div>
+  <div class="k" style="left:60px;top:60px;color:var(--rosa)">Paso a paso</div>
+  <div class="T tb" style="left:54px;top:100px;font-size:118px">CÓMO<br>CONSTRUIRLA</div>
+  <img class="cut" src="cut/blazer.png" style="left:720px;top:560px;width:360px">
+  <div class="abs" style="left:60px;top:370px;width:680px;display:flex;flex-direction:column;gap:16px">
+    <div class="sc"><span class="sn2">1</span><div><b>Dale una identidad.</b> Códigos, palabras, estética o rituales que solo tu comunidad reconozca.</div></div>
+    <div class="sc"><span class="sn2">2</span><div><b>Conecta a tus clientes entre ellos.</b> No todo debe pasar entre la marca y el cliente.</div></div>
+    <div class="sc"><span class="sn2">3</span><div><b>Crea experiencias, no solo contenido.</b> Eventos, retos o lanzamientos que se vivan en grupo.</div></div>
+    <div class="sc"><span class="sn2">4</span><div><b>Dales protagonismo.</b> Comparte lo que crean, responde y reconoce a quienes participan.</div></div>
+    <div class="sc"><span class="sn2">5</span><div><b>Sé constante.</b> La comunidad se construye antes de necesitarla.</div></div>
+  </div>
+  <div class="handle" style="bottom:20px">@byensitamkt</div>
+</section>
+
+<!-- 08 CONCLUSIÓN -->
+<section class="slide" id="s8">
+  <div class="tex"></div>
+  <img class="cut" src="cut/cantando.png" style="left:690px;top:280px;width:390px">
+  <svg class="deco sstar" data-c="#ffd84d" style="left:900px;top:150px" width="100" height="100"></svg>
+  <div class="hook" style="left:60px;top:110px;width:600px;font-size:60px">Tu marca no tiene un problema de ventas.</div>
+  <div class="T tg" style="left:56px;top:400px;font-size:92px;white-space:normal;width:640px;line-height:.95">TIENE UN PROBLEMA DE COMUNIDAD.</div>
+  <img class="cut" src="cut/bola.png" style="left:80px;top:850px;width:150px;border-radius:50%;filter:drop-shadow(0 0 30px rgba(255,255,255,.35))">
+  <div class="box" style="left:60px;top:1060px;width:960px;background:var(--rosa);color:var(--negro)">
+    <div style="font-size:32px;line-height:1.25;font-weight:800">¿Tu marca tiene audiencia o comunidad? Te leo 👇</div>
+  </div>
+  <div class="handle" style="bottom:20px">@byensitamkt</div>
+</section>
+
+<style>
+  .src{position:absolute;left:60px;bottom:26px;font-size:15px;font-weight:500}
+  .bar{flex:1;display:flex;flex-direction:column;align-items:flex-start}
+  .num{font-weight:900;font-size:120px;letter-spacing:-4px;line-height:1;padding-top:.15em;margin-top:-.15em}
+  .b{width:100%;border-radius:18px 18px 0 0;background:linear-gradient(180deg,#ff8fc0,#8fd0ff);margin-top:14px;opacity:.95}
+  .lab{font-family:"Audiowide";font-size:20px;text-transform:uppercase;margin-top:12px;letter-spacing:1px}
+  .bar{justify-content:flex-end;height:560px}
+  .rc{display:flex;gap:20px;align-items:flex-start;background:#fff;border-radius:24px;padding:22px 26px;font-size:26px;line-height:1.35;box-shadow:7px 7px 0 var(--royal)}
+  .rc b{font-weight:800}
+  .rn{font-family:"Audiowide";font-size:22px;background:var(--royal);color:#fff;border-radius:999px;padding:8px 12px;flex:none}
+  .stat{position:absolute;left:60px;width:960px;display:flex;gap:30px;align-items:center}
+  .sn{font-weight:900;font-size:170px;letter-spacing:-6px;line-height:1;color:var(--royal);flex:none;width:400px}
+  .st{font-size:28px;line-height:1.32;font-weight:500}
+  .st b{font-weight:800}
+  .sf{font-size:15px;margin-top:10px;opacity:.7}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:22px 0;border-bottom:2px solid #26262d;font-size:30px;font-weight:600}
+  .row span:first-child{color:#8a8a94}
+  .row .c{color:#fff;font-weight:800}
+  .row.hd{font-family:"Audiowide";font-size:20px;text-transform:uppercase;letter-spacing:1px;padding-bottom:14px}
+  .row.hd .c{color:var(--rosa);font-weight:400}
+  .sc{display:flex;gap:18px;align-items:flex-start;background:#fff;color:var(--negro);border-radius:22px;padding:18px 22px;font-size:24px;line-height:1.32;box-shadow:6px 6px 0 var(--rosa)}
+  .sc b{font-weight:800}
+  .sn2{font-weight:900;font-size:40px;line-height:1;color:var(--royal);width:30px;flex:none}
+</style>
+
+<script>
+function rng(seed){let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296}}
+document.querySelectorAll('.tex').forEach((t,i)=>{t.outerHTML=`<svg class="layer" style="mix-blend-mode:overlay;opacity:.3" width="1080" height="1350"><filter id="gr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="${i+3}"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gr${i})"/></svg><div class="layer" style="background:radial-gradient(circle,rgba(0,0,0,.08) 1.6px,transparent 2px) 0 0/12px 12px"></div>`});
+document.querySelectorAll('svg.sstar').forEach((s,i)=>{const w=+s.getAttribute('width'),c=w/2,R=w*.46,g=rng(i+11),p=[];
+  for(let k=0;k<6;k++){const a=-Math.PI/2+k*4*Math.PI/5;p.push([c+Math.cos(a)*R*(0.92+g()*.12),c+Math.sin(a)*R*(0.92+g()*.12)])}
+  s.innerHTML=`<path d="M${p.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join(' L')}" fill="none" stroke="${s.dataset.c}" stroke-width="${Math.max(4,w*.07)}" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)"/>`;});
+function starPts(c,R,r,rot=0){const p=[];for(let k=0;k<10;k++){const a=-Math.PI/2+rot+k*Math.PI/5,rad=k%2?r:R;p.push((c+Math.cos(a)*rad).toFixed(1)+','+(c+Math.sin(a)*rad).toFixed(1))}return p.join(' ')}
+document.querySelectorAll('svg.kstar').forEach((s,i)=>{const w=+s.getAttribute('width'),c=w/2,r=w*.2,id='kp'+i;
+  s.innerHTML=`<polygon points="${starPts(c,w*.5,w*.27,.12)}" fill="${s.dataset.c}" stroke="#fff" stroke-width="5" stroke-linejoin="round" style="filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))"/>
+  <path id="${id}" d="M ${c} ${c-r} a ${r} ${r} 0 1 1 -0.1 0" fill="none"/>
+  <text font-family="Inter Tight" font-weight="700" font-size="${w*.075}" fill="#26388f" letter-spacing="1"><textPath href="#${id}">${s.dataset.text}</textPath></text>
+  <circle cx="${c}" cy="${c}" r="${w*.05}" fill="#fff" opacity=".8"/>`;});
+</script>
+</body>
+</html>
