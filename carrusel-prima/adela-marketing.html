@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El marketing detrás del fenómeno ADÉLA</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  /* ====== EDITA AQUÍ TU USUARIO ====== */
+  :root{
+    --handle:"@tuusuario";
+    --fucsia:#ff1f8e; --negro:#0d0b0c; --papel:#f6f1ea; --plata:#d4d4da;
+    --chrome:linear-gradient(180deg,#ffffff 0%,#d9d9e0 30%,#8e8e99 49%,#f2f2f6 58%,#b4b4bd 78%,#ffffff 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#222;display:flex;flex-direction:column;gap:40px;align-items:center;padding:40px 0}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;color:var(--negro);font-family:"Archivo",sans-serif}
+  .bg-fucsia{background:var(--fucsia)} .bg-negro{background:var(--negro)} .bg-plata{background:var(--plata)}
+  .layer{position:absolute;inset:0;pointer-events:none}
+
+  /* --- tipos --- */
+  .kicker{position:absolute;font-family:"Courier Prime",monospace;font-weight:700;font-size:26px;letter-spacing:2px;text-transform:uppercase;
+    padding:6px 14px;border:3px solid var(--negro);background:var(--negro);color:#fff;white-space:nowrap}
+  .kicker.pink{background:var(--fucsia);color:#fff}
+  .kicker.silver{background:var(--chrome);color:var(--negro)}
+  .concept{position:absolute;font-family:"Anton",sans-serif;text-transform:uppercase;line-height:.86;white-space:nowrap;letter-spacing:1px}
+  .chrome{padding-top:.2em;margin-top:-.2em;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(6px 6px 0 var(--negro))}
+  .chrome.onblack{filter:drop-shadow(5px 5px 0 var(--fucsia))}
+  .outline{color:transparent;-webkit-text-stroke:3px var(--negro)}
+  .marker{font-family:"Permanent Marker",cursive;line-height:1.02;filter:url(#rough)}
+  .abs{position:absolute}
+  .col{position:absolute;display:flex;flex-direction:column;gap:26px}
+
+  .card{background:var(--papel);padding:26px 30px;font-size:28px;line-height:1.32;box-shadow:7px 9px 0 rgba(0,0,0,.22)}
+  .card p+p{margin-top:16px}
+  .card b{font-weight:800}
+  mark{white-space:nowrap;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(transparent 10%,var(--fucsia) 10%,var(--fucsia) 90%,transparent 90%);color:#fff;padding:0 5px;font-weight:800}
+
+  /* definición tipo diccionario */
+  .def{background:var(--negro);color:#fff;border:3px solid #fff;outline:3px solid var(--negro);padding:22px 26px;font-family:"Courier Prime",monospace;font-size:24px;line-height:1.3;
+    box-shadow:10px 10px 0 var(--fucsia)}
+  .def .tag{display:inline-block;font-family:"Courier Prime";font-weight:700;font-size:18px;letter-spacing:3px;background:var(--chrome);color:var(--negro);padding:3px 10px;margin-bottom:12px}
+  .def b{color:var(--fucsia);font-weight:700}
+  .bg-negro .def{border-color:var(--fucsia);box-shadow:10px 10px 0 #9a9aa5}
+
+  .callout{background:var(--fucsia);color:#fff;border:4px solid var(--negro);padding:20px 26px;font-family:"Archivo";font-weight:800;font-size:31px;line-height:1.2;box-shadow:10px 10px 0 var(--negro)}
+  .callout.dark{background:var(--negro);border-color:#fff;box-shadow:10px 10px 0 #fff}
+  .callout.silver{background:var(--chrome);color:var(--negro)}
+
+  /* fotos */
+  .frame{position:absolute;background:#fbf8f3;padding:14px;box-shadow:10px 14px 0 rgba(0,0,0,.25)}
+  .frame img{display:block;width:100%;height:100%;object-fit:cover}
+  .frame .gloss{position:absolute;inset:14px;background:linear-gradient(115deg,rgba(255,255,255,.28),rgba(255,255,255,0) 30%,rgba(255,255,255,0) 62%,rgba(255,255,255,.18) 75%,rgba(255,255,255,0) 90%);pointer-events:none}
+  .tape{position:absolute;width:150px;height:42px;background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.15);
+    clip-path:polygon(3% 0,97% 4%,100% 22%,96% 40%,100% 60%,97% 80%,100% 100%,2% 96%,0 78%,4% 58%,0 38%,3% 20%)}
+  .tape.silver{background:linear-gradient(90deg,rgba(220,220,228,.85),rgba(255,255,255,.9),rgba(170,170,180,.85))}
+  .note{position:absolute;font-family:"Permanent Marker";font-size:30px;filter:url(#rough);white-space:nowrap}
+  .sticker{position:absolute;font-family:"Courier Prime";font-weight:700;font-size:22px;padding:6px 12px;background:#fff;border:3px solid var(--negro);white-space:nowrap;box-shadow:4px 4px 0 var(--negro)}
+
+  .footer{position:absolute;left:0;right:0;bottom:0;height:60px;background:var(--negro);display:flex;align-items:center;overflow:hidden;border-top:4px solid var(--fucsia)}
+  .footer .run{font-family:"Special Elite";color:var(--fucsia);font-size:24px;white-space:nowrap;letter-spacing:1px;padding-left:18px}
+  .bg-negro .footer{background:var(--fucsia);border-top-color:var(--negro)} .bg-negro .footer .run{color:var(--negro)}
+  .count{position:absolute;font-family:"Permanent Marker";font-size:30px;filter:url(#rough)}
+  svg.deco{position:absolute;overflow:visible;pointer-events:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/></filter>
+  <filter id="splat" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="26"/></filter>
+</defs></svg>
+
+<!-- ================= 01 PORTADA ================= -->
+<section class="slide bg-fucsia" id="s1">
+  <div class="tex" data-type="fucsia" data-seed="3"></div>
+  <div class="kicker" style="left:56px;top:40px;z-index:3">El marketing detrás del fenómeno</div>
+  <div class="concept" style="left:44px;top:135px;font-size:310px;color:var(--negro)">ADÉLA</div>
+
+  <div class="frame" style="left:575px;top:330px;width:465px;height:640px;transform:rotate(3deg)">
+    <img src="img/tijeras.jpg" style="object-position:50% 25%"><div class="gloss"></div>
+  </div>
+  <div class="tape silver" style="left:740px;top:312px;transform:rotate(-4deg)"></div>
+  <div class="frame" style="left:880px;top:900px;width:170px;height:170px;padding:9px;transform:rotate(-8deg)"><img src="img/prima-portada.jpg"></div>
+  <svg class="deco star" style="left:520px;top:960px" width="90" height="90"></svg>
+
+  <div class="abs marker" style="left:56px;top:455px;width:520px;font-size:58px;color:#fff;text-shadow:4px 4px 0 var(--negro)">¿Cómo hizo ADÉLA para convertirse en una marca imposible de ignorar?</div>
+  <div class="col" style="left:56px;top:880px;width:600px">
+    <div class="card" style="transform:rotate(-1deg);font-size:30px;font-weight:600">El marketing detrás de una de las identidades más llamativas del <mark>nuevo pop</mark>.</div>
+  </div>
+  <div class="callout dark abs" style="left:56px;top:1130px;width:780px;transform:rotate(1deg);font-size:28px">Desliza, porque aquí hay más marketing del que imaginas. →</div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px;color:#fff">01/08</div>
+</section>
+
+<!-- ================= 02 BRANDING ================= -->
+<section class="slide bg-negro" id="s2">
+  <div class="tex" data-type="negro" data-seed="5"></div>
+  <img src="img/pelo.jpg" style="position:absolute;right:-80px;top:-60px;width:720px;transform:rotate(-8deg);
+    -webkit-mask-image:radial-gradient(ellipse 60% 50% at 60% 35%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 60% 50% at 60% 35%,#000 55%,transparent 100%)">
+  <div class="kicker pink" style="left:56px;top:48px">02 · Concepto</div>
+  <div class="concept chrome onblack" style="left:50px;top:100px;font-size:190px">BRANDING</div>
+  <div class="abs marker" style="left:56px;top:290px;width:620px;font-size:52px;color:var(--fucsia)">¿Cabello rosa? Sí. ¿Una identidad reconocible? También.</div>
+
+  <div class="col" style="left:56px;top:450px;width:560px">
+    <div class="card" style="transform:rotate(-1deg)">
+      <p>Piensa en ADÉLA. Seguramente una de las primeras cosas que recuerdas es su <mark>cabello rosa</mark>.</p>
+      <p>Y esto tiene mucho que ver con el marketing: las marcas necesitan elementos que las personas puedan <b>reconocer y asociar</b> fácilmente con ellas.</p>
+    </div>
+  </div>
+  <div class="col" style="left:650px;top:600px;width:390px">
+    <div class="def" style="transform:rotate(1.5deg)"><span class="tag">DEF.</span><br>Se llaman <b>activos distintivos de marca</b>.<br><br>Son esos colores, símbolos o elementos visuales que hacen que una marca sea identificable incluso antes de leer su nombre.</div>
+  </div>
+  <div class="abs" style="left:250px;top:850px;width:260px;background:#fff;padding:12px 12px 14px;transform:rotate(-5deg);box-shadow:8px 8px 0 #9a9aa5">
+    <div style="height:120px;background:var(--fucsia)"></div>
+    <div style="font-family:'Courier Prime';font-weight:700;font-size:20px;margin-top:10px;letter-spacing:1px">ROSA</div>
+    <div style="font-family:'Courier Prime';font-size:17px;color:#555">activo distintivo</div>
+  </div>
+  <div class="callout abs" style="left:56px;top:1095px;width:860px;transform:rotate(-1deg)">Moraleja: no basta con verte diferente, necesitas que te recuerden por algo.</div>
+  <svg class="deco star" style="left:930px;top:1060px" width="100" height="100"></svg>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px;color:#fff">02/08</div>
+</section>
+
+<!-- ================= 03 UNIVERSO DE MARCA ================= -->
+<section class="slide bg-fucsia" id="s3">
+  <div class="tex" data-type="fucsia" data-seed="9"></div>
+  <div class="kicker" style="left:56px;top:48px">03 · Universo de marca</div>
+  <div class="abs marker" style="left:56px;top:110px;width:960px;font-size:62px">ADÉLA no tiene solamente una estética. <span style="color:#fff">Tiene todo un universo.</span></div>
+
+  <!-- moodboard -->
+  <div class="frame" style="left:640px;top:330px;width:300px;height:380px;transform:rotate(4deg)"><img src="img/barra.jpg" style="object-position:40% 40%"></div>
+  <div class="frame" style="left:560px;top:620px;width:250px;height:300px;transform:rotate(-6deg)"><img src="img/estrella.jpg" style="object-position:50% 35%"></div>
+  <div class="frame" style="left:800px;top:690px;width:230px;height:330px;transform:rotate(5deg)"><img src="img/jeans.jpg" style="object-position:50% 20%"></div>
+  <div class="tape silver" style="left:720px;top:315px;transform:rotate(-6deg)"></div>
+  <div class="sticker" style="left:880px;top:345px;transform:rotate(8deg)">ballet</div>
+  <div class="sticker" style="left:575px;top:900px;transform:rotate(-5deg)">colores</div>
+  <div class="sticker" style="left:900px;top:990px;transform:rotate(4deg)">moda</div>
+
+  <div class="col" style="left:56px;top:320px;width:500px">
+    <div class="card" style="transform:rotate(-1deg)">
+      <p><b>Ballet, moda, referencias dosmileras, colores, vestuario y una personalidad provocadora.</b></p>
+      <p>Sus elementos visuales y musicales ayudan a construir una identidad que se siente <mark>coherente</mark>.</p>
+    </div>
+    <div class="def" style="transform:rotate(1deg)"><span class="tag">DEF.</span><br>En marketing, esto se relaciona con el <b>universo de marca</b>: crear un mundo propio alrededor de una marca para que el público pueda reconocerlo y conectar con él.</div>
+  </div>
+  <div class="callout dark abs" style="left:56px;top:1105px;width:900px;transform:rotate(1deg)">Porque una marca memorable no solo tiene un logo. Tiene personalidad.</div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px;color:#fff">03/08</div>
+</section>
+
+<!-- ================= 04 STORYTELLING ================= -->
+<section class="slide bg-plata" id="s4">
+  <div class="tex" data-type="plata" data-seed="14"></div>
+  <div class="kicker pink" style="left:56px;top:48px">04 · Concepto</div>
+  <div class="concept" style="left:50px;top:100px;font-size:150px;color:var(--fucsia);filter:drop-shadow(6px 6px 0 var(--negro))">STORYTELLING</div>
+  <div class="abs marker" style="left:56px;top:262px;width:560px;font-size:46px">A veces, la historia detrás de una marca es tan importante como lo que ofrece.</div>
+
+  <div class="frame" style="left:660px;top:280px;width:370px;height:470px;transform:rotate(3deg)"><img src="img/mic.jpg" style="object-position:45% 30%"><div class="gloss"></div></div>
+  <div class="tape" style="left:780px;top:262px;transform:rotate(-5deg)"></div>
+
+  <!-- línea de tiempo -->
+  <svg class="deco" style="left:56px;top:520px" width="580" height="120">
+    <path d="M20 60 C150 40 300 80 560 55" stroke="#0d0b0c" stroke-width="4" fill="none" stroke-dasharray="10 8" filter="url(#rough)"/>
+    <circle cx="30" cy="58" r="16" fill="#ff1f8e" stroke="#0d0b0c" stroke-width="4"/>
+    <circle cx="290" cy="62" r="16" fill="#fff" stroke="#0d0b0c" stroke-width="4"/>
+    <circle cx="555" cy="55" r="16" fill="#ff1f8e" stroke="#0d0b0c" stroke-width="4"/>
+  </svg>
+  <div class="sticker" style="left:56px;top:610px;transform:rotate(-3deg)">Dream Academy</div>
+  <div class="sticker" style="left:290px;top:612px;transform:rotate(2deg);background:var(--negro);color:#fff">eliminada</div>
+  <div class="sticker" style="left:520px;top:612px;transform:rotate(-3deg);background:var(--fucsia);color:#fff">solista</div>
+
+  <div class="col" style="left:56px;top:700px;width:580px">
+    <div class="card" style="transform:rotate(-1deg);font-size:27px">
+      <p>ADÉLA participó en <b>Dream Academy</b>, fue eliminada y posteriormente comenzó a desarrollar su carrera como solista.</p>
+      <p>Su trayectoria forma parte de la historia que su audiencia puede <mark>conocer y seguir</mark>.</p>
+    </div>
+  </div>
+  <div class="col" style="left:670px;top:790px;width:370px">
+    <div class="def" style="transform:rotate(1.5deg)"><span class="tag">DEF.</span><br>Esto es <b>storytelling</b>: utilizar historias para generar conexión, identificación y significado alrededor de una marca.</div>
+  </div>
+  <div class="callout abs" style="left:56px;top:1105px;width:960px;transform:rotate(-.8deg);font-size:29px">Las personas no siempre conectan solamente con lo que haces, sino también con lo que hay detrás.</div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px">04/08</div>
+</section>
+
+<!-- ================= 05 DIFERENCIACIÓN ================= -->
+<section class="slide bg-negro" id="s5">
+  <div class="tex" data-type="negro" data-seed="31"></div>
+  <div class="kicker pink" style="left:56px;top:48px">05 · Concepto</div>
+  <div class="abs marker" style="left:56px;top:105px;width:960px;font-size:54px;color:#fff">En una industria llena de artistas, <span style="color:var(--fucsia)">¿qué hace que alguien destaque?</span></div>
+
+  <div class="frame" style="left:40px;top:270px;width:1000px;height:440px;transform:rotate(-1.5deg)"><img src="img/swaggerina.jpg" style="object-position:50% 55%"></div>
+  <svg class="deco" style="left:400px;top:330px" width="280" height="330">
+    <ellipse cx="140" cy="165" rx="115" ry="150" fill="none" stroke="#fff" stroke-width="6" filter="url(#rough)" transform="rotate(-8 140 165)"/>
+  </svg>
+  <svg class="deco star" style="left:640px;top:300px" width="80" height="80"></svg>
+  <div class="concept chrome onblack" style="left:50px;top:640px;font-size:118px">DIFERENCIACIÓN</div>
+
+  <div class="col" style="left:56px;top:790px;width:560px">
+    <div class="card" style="transform:rotate(-1deg);font-size:26px">
+      <p>No basta con tener una buena canción o una imagen llamativa.</p>
+      <p>La combinación de influencias musicales, referencias de ballet, estética y personalidad contribuye a que ADÉLA tenga una <mark>propuesta artística propia</mark>.</p>
+    </div>
+  </div>
+  <div class="col" style="left:650px;top:800px;width:390px">
+    <div class="def" style="transform:rotate(1.5deg);font-size:23px"><span class="tag">DEF.</span><br>En marketing, esto se llama <b>diferenciación</b>: encontrar aquello que te distingue de las demás opciones.</div>
+  </div>
+  <div class="callout abs" style="left:56px;top:1145px;width:960px;transform:rotate(.8deg);font-size:28px">No necesitas ser para todos. Necesitas tener algo que te haga único.</div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px;color:#fff">05/08</div>
+</section>
+
+<!-- ================= 06 UGC ================= -->
+<section class="slide bg-fucsia" id="s6">
+  <div class="tex" data-type="fucsia" data-seed="17"></div>
+  <div class="kicker" style="left:56px;top:48px">06 · UGC y viralidad</div>
+  <div class="concept chrome" style="left:44px;top:95px;font-size:330px">UGC</div>
+  <div class="abs marker" style="left:560px;top:110px;width:470px;font-size:52px">¿Y si tus propios consumidores hicieran tu publicidad?</div>
+
+  <!-- teléfono -->
+  <div class="abs" style="left:665px;top:400px;width:360px;height:620px;background:var(--negro);border-radius:46px;padding:16px;transform:rotate(4deg);box-shadow:12px 14px 0 rgba(0,0,0,.3);border:3px solid #9a9aa5">
+    <div style="width:100%;height:100%;border-radius:32px;overflow:hidden;position:relative">
+      <img src="img/aint-in-la.jpg" style="width:100%;height:100%;object-fit:cover;object-position:50% 40%">
+      <div style="position:absolute;right:14px;bottom:24px;display:flex;flex-direction:column;gap:18px;font-size:34px;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.6);text-align:center">
+        <span>♥</span><span>💬</span><span>➤</span>
+      </div>
+    </div>
+  </div>
+  <div class="note" style="left:600px;top:1035px;transform:rotate(-4deg);color:#fff">tu ciudad, tu versión ↑</div>
+
+  <div class="col" style="left:56px;top:470px;width:570px">
+    <div class="card" style="transform:rotate(-1deg);font-size:27px">
+      <p>Con <b>«Ain’t In LA»</b>, la idea de mostrar tu ciudad se convirtió en un formato que las personas podían adaptar y compartir.</p>
+      <p>Así, la audiencia dejó de ser solamente espectadora y comenzó a <mark>crear contenido</mark> alrededor de la canción.</p>
+    </div>
+    <div class="def" style="transform:rotate(1deg);font-size:23px"><span class="tag">DEF.</span><br>Esto se conoce como <b>UGC (User Generated Content)</b>: contenido creado por los propios usuarios que puede ayudar a amplificar el alcance de una marca.</div>
+  </div>
+  <div class="callout dark abs" style="left:56px;top:1130px;width:960px;transform:rotate(-.8deg);font-size:29px">Cuando tu audiencia participa, tu contenido puede llegar mucho más lejos.</div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px;color:#fff">06/08</div>
+</section>
+
+<!-- ================= 07 POSICIONAMIENTO ================= -->
+<section class="slide bg-plata" id="s7">
+  <div class="tex" data-type="plata" data-seed="23"></div>
+  <div class="kicker pink" style="left:56px;top:48px">07 · Concepto</div>
+  <div class="concept" style="left:48px;top:98px;font-size:122px;color:var(--negro);filter:drop-shadow(5px 5px 0 var(--fucsia))">POSICIONAMIENTO</div>
+  <div class="abs marker" style="left:56px;top:240px;width:980px;font-size:44px">No se trata solamente de que te conozcan. <span style="color:var(--fucsia)">Se trata de qué recuerdan de ti.</span></div>
+
+  <!-- mapa mental -->
+  <div class="frame" style="left:600px;top:420px;width:420px;height:420px;transform:rotate(-3deg)"><img src="img/pinkwall.jpg" style="object-position:40% 50%"><div class="gloss"></div></div>
+  <svg class="deco" style="left:520px;top:380px" width="560" height="520">
+    <g stroke="#0d0b0c" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#rough)">
+      <path d="M80 20 C120 40 140 60 150 90"/><path d="M500 0 C470 30 450 50 440 70"/>
+      <path d="M40 480 C80 460 110 440 130 420"/><path d="M520 500 C490 480 470 460 450 440"/>
+    </g>
+  </svg>
+  <div class="sticker" style="left:500px;top:350px;transform:rotate(-4deg);background:var(--fucsia);color:#fff">cabello rosa</div>
+  <div class="sticker" style="left:930px;top:345px;transform:rotate(5deg)">ballet</div>
+  <div class="sticker" style="left:585px;top:880px;transform:rotate(3deg)">estética</div>
+  <div class="sticker" style="left:800px;top:885px;transform:rotate(-3deg);background:var(--negro);color:#fff">propuesta musical</div>
+
+  <div class="col" style="left:56px;top:390px;width:470px">
+    <div class="card" style="transform:rotate(-1deg);font-size:27px">
+      <p>Cuando una persona piensa en ADÉLA, puede asociarla con su cabello rosa, el ballet, su estética y su propuesta musical.</p>
+    </div>
+    <div class="def" style="transform:rotate(1deg);font-size:23px"><span class="tag">DEF.</span><br>Eso conecta con el <b>posicionamiento de marca</b>: el lugar que una marca busca ocupar en la mente de las personas frente a sus competidores.</div>
+  </div>
+  <div class="abs" style="left:56px;top:1010px;width:970px">
+    <div class="marker" style="font-size:54px;transform:rotate(-1.5deg)">Ser visible consigue atención.</div>
+    <div class="marker" style="font-size:60px;color:#fff;-webkit-text-stroke:0;text-shadow:4px 4px 0 var(--fucsia),-2px -2px 0 var(--negro),2px -2px 0 var(--negro),-2px 2px 0 var(--negro),2px 2px 0 var(--negro);transform:rotate(-1.5deg);margin-top:8px">Ser reconocible construye memoria.</div>
+  </div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:44px">07/08</div>
+</section>
+
+<!-- ================= 08 APRENDIZAJE FINAL ================= -->
+<section class="slide bg-negro" id="s8">
+  <div class="tex" data-type="negro" data-seed="41"></div>
+  <svg class="deco splatter" data-seed="5" style="left:640px;top:-60px" width="520" height="520"></svg>
+  <div class="frame" style="left:720px;top:80px;width:320px;height:520px;transform:rotate(4deg)"><img src="img/brazo.jpg" style="object-position:50% 25%"><div class="gloss"></div></div>
+  <div class="tape silver" style="left:810px;top:62px;transform:rotate(-5deg)"></div>
+
+  <div class="kicker pink" style="left:56px;top:48px">08 · Aprendizaje final</div>
+  <div class="abs marker" style="left:56px;top:110px;width:640px;font-size:66px;color:var(--fucsia)">¿Qué puede aprender tu negocio de ADÉLA?</div>
+  <div class="abs" style="left:56px;top:330px;width:620px;font-size:29px;line-height:1.3;color:#fff;font-weight:600">No necesitas ser una estrella pop para construir una marca memorable.</div>
+
+  <div class="abs card" style="left:56px;top:450px;width:640px;padding:22px 28px;transform:rotate(-1deg)">
+    <ol class="list" style="list-style:none;display:flex;flex-direction:column;gap:16px;font-size:30px;font-weight:600;line-height:1.2">
+      <li><span class="num">1.</span>Encuentra un elemento que te identifique.</li>
+      <li><span class="num">2.</span>Construye una personalidad propia.</li>
+      <li><span class="num">3.</span>Diferénciate de tu competencia.</li>
+      <li><span class="num">4.</span>Mantén una identidad coherente.</li>
+      <li><span class="num">5.</span>Crea contenido con el que tu audiencia quiera participar.</li>
+    </ol>
+  </div>
+  <div class="callout silver abs" style="left:56px;top:900px;width:960px;transform:rotate(.8deg);font-size:28px">Recuerda: llamar la atención es el comienzo. Conseguir que te recuerden es el verdadero reto del branding.</div>
+
+  <div class="abs" style="left:56px;top:1075px;width:960px;display:flex;align-items:center;gap:22px">
+    <svg width="96" height="96" viewBox="0 0 100 100" style="flex:none;filter:url(#rough)"><path d="M10 15 H90 V68 H45 L25 88 V68 H10 Z" fill="#ff1f8e" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></svg>
+    <div class="marker" style="font-size:54px;color:#fff">¿Qué otra artista analizarías desde el marketing?</div>
+  </div>
+
+  <div class="footer"><div class="run"></div></div>
+  <div class="count" style="right:40px;top:1210px;color:#fff;display:none">08/08</div>
+</section>
+
+<style>
+  .list li{display:flex;gap:14px;align-items:baseline}
+  .num{font-family:"Anton";font-size:40px;color:var(--fucsia);min-width:38px;line-height:1}
+</style>
+
+<script>
+function rng(seed){let s=seed>>>0||1;return()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<5;s>>>=0;return s/4294967296}}
+const handle=getComputedStyle(document.documentElement).getPropertyValue('--handle').trim().replace(/"/g,'');
+document.querySelectorAll('.footer .run').forEach(r=>{r.textContent=Array(12).fill(handle+'  ✦  ').join('')});
+
+document.querySelectorAll('.tex').forEach((t,i)=>{
+  const type=t.dataset.type,seed=+t.dataset.seed;let svg='';
+  if(type==='negro'){
+    svg=`<svg class="layer" style="opacity:.55" width="1080" height="1350"><filter id="sp${i}"><feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="1" seed="${seed}"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  28 0 0 0 -21"/></filter><rect width="100%" height="100%" filter="url(#sp${i})"/></svg>
+         <svg class="layer" style="mix-blend-mode:screen;opacity:.12" width="1080" height="1350"><filter id="cr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="4" seed="${seed}"/><feDiffuseLighting lighting-color="#2a2226" surfaceScale="5"><feDistantLight azimuth="50" elevation="40"/></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#cr${i})"/></svg>`;
+  } else {
+    const op = type==='plata' ? .6 : .55;
+    svg=`<svg class="layer" style="mix-blend-mode:multiply;opacity:${op}" width="1080" height="1350"><filter id="cr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="5" seed="${seed}"/><feDiffuseLighting lighting-color="#fff" surfaceScale="${type==='plata'?9:7}"><feDistantLight azimuth="45" elevation="52"/></feDiffuseLighting></filter><rect width="100%" height="100%" filter="url(#cr${i})"/></svg>`;
+    if(type==='plata') svg+=`<svg class="layer" style="mix-blend-mode:screen;opacity:.35" width="1080" height="1350"><defs><linearGradient id="sh${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".35" stop-color="#fff" stop-opacity=".8"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#sh${i})"/></svg>`;
+  }
+  svg+=`<svg class="layer" style="mix-blend-mode:overlay;opacity:.35" width="1080" height="1350"><filter id="gr${i}"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="${seed+1}"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gr${i})"/></svg>`;
+  t.outerHTML=svg;
+});
+
+function starPath(cx,cy,R,r,rot=-Math.PI/2){let d='';for(let k=0;k<10;k++){const a=rot+k*Math.PI/5,rad=k%2?r:R;d+=(k?'L':'M')+(cx+Math.cos(a)*rad).toFixed(1)+' '+(cy+Math.sin(a)*rad).toFixed(1)}return d+'Z'}
+document.querySelectorAll('svg.star').forEach((s,i)=>{
+  const w=+s.getAttribute('width'),c=w/2,R=w*.48,rot=-Math.PI/2+(i%3-1)*.25,g=rng(i+3);let inner='';
+  for(let k=0;k<5;k++)inner+=`<path d="${starPath(c+(g()-.5)*R*.9,c+(g()-.5)*R*.9,R*.17,R*.07)}" fill="none" stroke="#ff1f8e" stroke-width="1.5"/>`;
+  s.innerHTML=`<path d="${starPath(c,c,R,R*.42,rot)}" fill="#0d0b0c" stroke="#ff1f8e" stroke-width="${Math.max(3,w*.04)}" stroke-linejoin="round"/>${inner}`;
+});
+document.querySelectorAll('svg.splatter').forEach(s=>{
+  const w=+s.getAttribute('width'),c=w/2,g=rng(+s.dataset.seed);let out=`<circle cx="${c}" cy="${c}" r="${w*.2}"/>`;
+  for(let k=0;k<16;k++){const a=g()*Math.PI*2,len=w*(.22+g()*.28),x=c+Math.cos(a)*len,y=c+Math.sin(a)*len;
+    out+=`<path d="M${c} ${c} L${x.toFixed(1)} ${y.toFixed(1)}" stroke="#ff1f8e" stroke-width="${(4+g()*14).toFixed(1)}" stroke-linecap="round"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(5+g()*16).toFixed(1)}"/>`}
+  for(let k=0;k<90;k++){const a=g()*Math.PI*2,rad=w*(.15+g()*.35);out+=`<circle cx="${(c+Math.cos(a)*rad).toFixed(1)}" cy="${(c+Math.sin(a)*rad).toFixed(1)}" r="${(.8+g()*4).toFixed(1)}"/>`}
+  s.innerHTML=`<g fill="#ff1f8e" filter="url(#splat)" opacity=".9">${out}</g>`;
+});
+document.querySelectorAll('.frame').forEach((f,i)=>{
+  const g=rng(i+40),pts=[],n=14,j=()=>(g()*1.1).toFixed(2);
+  for(let k=0;k<=n;k++)pts.push(`${(k*100/n).toFixed(1)}% ${j()}%`);
+  for(let k=1;k<=n;k++)pts.push(`${(100-+j()).toFixed(2)}% ${(k*100/n).toFixed(1)}%`);
+  for(let k=n-1;k>=0;k--)pts.push(`${(k*100/n).toFixed(1)}% ${(100-+j()).toFixed(2)}%`);
+  for(let k=n-1;k>0;k--)pts.push(`${j()}% ${(k*100/n).toFixed(1)}%`);
+  f.style.clipPath=`polygon(${pts.join(',')})`;
+});
+</script>
+</body>
+</html>
