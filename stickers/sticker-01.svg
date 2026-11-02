@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <clipPath id="hairClip"><use href="#hairShape"/></clipPath>
+    <clipPath id="frontL"><use href="#strandL"/></clipPath>
+    <clipPath id="frontR"><use href="#strandR"/></clipPath>
+    <!-- hair silhouette (behind) -->
+    <path id="hairShape" d="M500 170 C 360 168 268 260 262 390 C 258 450 240 480 246 530 C 252 580 228 610 236 660 C 244 710 222 740 238 790 L 762 790 C 778 740 756 710 764 660 C 772 610 748 580 754 530 C 760 480 742 450 738 390 C 732 260 640 168 500 170 Z"/>
+    <!-- front strands falling over shoulders -->
+    <path id="strandL" d="M500 200 C 410 205 362 270 358 360 C 354 450 372 530 352 610 C 336 680 360 740 340 800 C 330 840 350 880 330 915 C 300 900 270 870 268 820 C 266 760 290 720 280 660 C 270 600 296 560 290 500 C 282 380 320 230 500 200 Z"/>
+    <path id="strandR" d="M500 200 C 590 205 638 270 642 360 C 646 450 628 530 648 610 C 664 680 640 740 660 800 C 670 840 650 880 670 915 C 700 900 730 870 732 820 C 734 760 710 720 720 660 C 730 600 704 560 710 500 C 718 380 680 230 500 200 Z"/>
+    <g id="balayage">
+      <rect x="0" y="0" width="1000" height="1000" fill="#4A2318"/>
+      <path fill="#A9502A" d="M0 1000 L0 560 C 120 520 220 600 300 540 C 380 480 440 600 500 560 C 560 520 640 470 720 540 C 800 600 900 520 1000 560 L1000 1000 Z"/>
+      <path fill="#D98A4E" d="M0 1000 L0 740 C 120 700 220 770 300 720 C 380 670 440 760 520 730 C 600 700 660 670 740 730 C 820 780 900 700 1000 730 L1000 1000 Z"/>
+    </g>
+  </defs>
+
+  <!-- starbursts -->
+  <g fill="#F7A1B5">
+    <path d="M175 300 L203 375 L280 352 L222 408 L270 474 L196 446 L165 523 L154 443 L77 452 L141 405 L99 336 L167 372 Z"/>
+    <path d="M830 560 L849 610 L902 599 L861 635 L891 682 L841 662 L819 715 L813 660 L760 662 L804 632 L780 588 L824 610 Z"/>
+    <path d="M790 180 L801 211 L832 204 L808 226 L823 255 L795 242 L781 274 L777 240 L746 242 L770 222 L757 196 L783 211 Z"/>
+  </g>
+  <g fill="#6B6B10">
+    <path d="M140 640 L146 664 L170 670 L146 676 L140 700 L134 676 L110 670 L134 664 Z"/>
+    <path d="M860 380 L865 400 L885 405 L865 410 L860 430 L855 410 L835 405 L855 400 Z"/>
+  </g>
+
+  <!-- paper cutout border -->
+  <g fill="#FCEFD9" stroke="#FCEFD9" stroke-width="58" stroke-linejoin="bevel">
+    <use href="#hairShape"/>
+    <path d="M240 940 C 240 840 300 790 400 770 L600 770 C 700 790 760 840 760 940 Z"/>
+    <use href="#strandL"/><use href="#strandR"/>
+  </g>
+
+  <!-- back hair -->
+  <g clip-path="url(#hairClip)"><use href="#balayage"/></g>
+
+  <!-- neck -->
+  <path fill="#FCEFD9" d="M455 560 L455 720 L545 720 L545 560 Z"/>
+  <path fill="#E9D4BC" d="M455 575 C 480 600 520 600 545 575 L545 610 C 520 625 480 625 455 610 Z"/>
+
+  <!-- shoulders -->
+  <path fill="#FCEFD9" d="M240 940 C 240 840 300 790 400 770 C 430 762 450 735 455 700 L545 700 C 550 735 570 762 600 770 C 700 790 760 840 760 940 Z"/>
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M240 940 C 240 840 300 790 400 770 C 430 762 450 735 455 700 L545 700 C 550 735 570 762 600 770 C 700 790 760 840 760 940"/>
+  <!-- camisole -->
+  <path fill="#5B3326" d="M262 940 C 270 880 300 845 330 835 C 380 850 430 862 500 862 C 570 862 620 850 670 835 C 700 845 730 880 738 940 Z"/>
+  <!-- lace scallops -->
+  <g fill="#7E4A38">
+    <circle cx="345" cy="842" r="14"/><circle cx="372" cy="850" r="14"/><circle cx="399" cy="856" r="14"/>
+    <circle cx="426" cy="860" r="14"/><circle cx="453" cy="862" r="14"/><circle cx="480" cy="863" r="14"/>
+    <circle cx="507" cy="863" r="14"/><circle cx="534" cy="862" r="14"/><circle cx="561" cy="860" r="14"/>
+    <circle cx="588" cy="856" r="14"/><circle cx="615" cy="850" r="14"/><circle cx="642" cy="843" r="14"/>
+  </g>
+  <path fill="#5B3326" d="M300 870 C 380 878 440 880 500 880 C 560 880 620 878 700 870 L 738 940 L262 940 Z"/>
+  <g fill="#FCEFD9" opacity="0.5">
+    <circle cx="400" cy="900" r="4"/><circle cx="430" cy="910" r="4"/><circle cx="460" cy="900" r="4"/><circle cx="490" cy="910" r="4"/>
+    <circle cx="520" cy="900" r="4"/><circle cx="550" cy="910" r="4"/><circle cx="580" cy="900" r="4"/><circle cx="610" cy="910" r="4"/>
+  </g>
+  <path stroke="#3A1E16" stroke-width="9" fill="none" stroke-linecap="round" d="M372 846 L388 776 M628 846 L612 776"/>
+
+  <!-- face -->
+  <path fill="#FCEFD9" d="M500 280 C 580 280 636 345 636 430 C 636 520 580 588 500 588 C 420 588 364 520 364 430 C 364 345 420 280 500 280 Z"/>
+
+  <!-- front strands -->
+  <g clip-path="url(#frontL)"><use href="#balayage"/></g>
+  <g clip-path="url(#frontR)"><use href="#balayage"/></g>
+  <!-- hair wave lines -->
+  <g fill="none" stroke="#2E140D" stroke-width="5" stroke-linecap="round" opacity="0.55">
+    <path d="M320 420 C 300 480 330 520 312 580"/>
+    <path d="M680 420 C 700 480 670 520 688 580"/>
+    <path d="M300 650 C 285 700 315 740 298 800"/>
+    <path d="M700 650 C 715 700 685 740 702 800"/>
+  </g>
+  <!-- center part -->
+  <path fill="none" stroke="#2E140D" stroke-width="5" stroke-linecap="round" d="M500 200 L500 250"/>
+
+  <!-- blush -->
+  <g fill="#F07C98">
+    <ellipse cx="420" cy="482" rx="44" ry="33"/>
+    <ellipse cx="580" cy="482" rx="44" ry="33"/>
+  </g>
+
+  <!-- thick brows -->
+  <g fill="#3A1A12">
+    <path d="M400 392 C 420 372 462 370 482 380 L480 396 C 458 389 426 393 404 405 Z"/>
+    <path d="M600 392 C 580 372 538 370 518 380 L520 396 C 542 389 574 393 596 405 Z"/>
+  </g>
+
+  <!-- closed eyes + lashes -->
+  <g fill="none" stroke="#8B1A3D" stroke-width="7" stroke-linecap="round">
+    <path d="M410 436 C 424 452 458 452 472 436"/>
+    <path d="M528 436 C 542 452 576 452 590 436"/>
+    <path d="M414 442 L402 450 M428 449 L420 461 M444 452 L441 465 M460 449 L463 461"/>
+    <path d="M586 442 L598 450 M572 449 L580 461 M556 452 L559 465 M540 449 L537 461"/>
+  </g>
+
+  <!-- nose -->
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M490 412 C 494 448 488 474 480 492 C 492 504 508 504 518 496"/>
+
+  <!-- soft smile -->
+  <path fill="#E9879B" d="M466 532 C 482 548 518 548 534 532 C 522 526 511 529 500 531 C 489 529 478 526 466 532 Z"/>
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M462 532 C 482 547 518 547 538 532"/>
+</svg>
