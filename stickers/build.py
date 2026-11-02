@@ -441,12 +441,95 @@ def s_walk():
     return svg2(W, H, back, hair_g + body + face_g)
 
 
+BLACK = "#231815"
+DENIM_WHITE = "#F7F4EE"
+SILVER = "#C9CCD1"
+
+
+def s_look():
+    W, H = 1000, 1300
+    back = star(180, 300, 0.8, "#F2A0B4") + star(850, 820, 0.6, "#F2A0B4") + sparkle(820, 230, 1.0) + sparkle(150, 900, 0.9)
+    HT = 'transform="translate(220,-12) scale(0.56)"'
+    hair_g = f'<g {HT}>{hair_back()}</g>'
+    glasses = f"""
+  <path fill="{BLACK}" d="M378 418 C 420 404 470 406 492 420 C 498 450 486 486 448 488 C 410 490 384 470 378 440 Z"/>
+  <path fill="{BLACK}" d="M622 418 C 580 404 530 406 508 420 C 502 450 514 486 552 488 C 590 490 616 470 622 440 Z"/>
+  <path fill="none" stroke="{BLACK}" stroke-width="10" d="M488 424 C 496 418 504 418 512 424 M378 424 L352 418 M622 424 L648 418"/>
+  <path fill="none" stroke="#5A4C48" stroke-width="6" stroke-linecap="round" d="M400 428 C 410 420 426 418 440 420 M560 420 C 574 418 590 420 600 428"/>"""
+    face_g = f'<g {HT}>{face_base()}{brows(0)}{glasses}{MOUTH_SOFT}</g>'
+
+    stripes = f"""
+  <pattern id="stripes" width="40" height="28" patternUnits="userSpaceOnUse">
+    <rect width="40" height="28" fill="{CREAM}"/><rect y="0" width="40" height="9" fill="{BLACK}"/>
+  </pattern>"""
+
+    def sleeve(d, w):
+        return (f'<path fill="none" stroke="{WINE}" stroke-width="{w + 12}" stroke-linecap="butt" stroke-linejoin="round" d="{d}"/>'
+                f'<path fill="none" stroke="url(#stripes)" stroke-width="{w}" stroke-linecap="butt" stroke-linejoin="round" d="{d}"/>')
+
+    body = f"""
+  <defs>{stripes}</defs>
+  <!-- neck -->
+  <path fill="{SKIN}" d="M472 250 L528 250 L528 330 L472 330 Z"/>
+
+  <g transform="translate(0,600) scale(1,0.8) translate(0,-600)">
+  <!-- white wide-leg jeans (curvy hips) -->
+  <path fill="{DENIM_WHITE}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M366 600 L634 600 C 660 660 672 720 674 790 L 730 1400 L 530 1400 L 500 850 L 470 1400 L 270 1400 L 326 790 C 328 720 340 660 366 600 Z"/>
+  <g fill="none" stroke="#B9A79A" stroke-width="4" stroke-dasharray="10 8">
+    <path d="M352 650 C 340 900 300 1150 286 1360"/>
+    <path d="M648 650 C 660 900 700 1150 714 1360"/>
+    <path d="M400 640 C 420 680 440 700 470 704"/>
+    <path d="M600 640 C 580 680 560 700 530 704"/>
+  </g>
+  <path fill="none" stroke="{WINE}" stroke-width="5" stroke-linecap="round" d="M500 640 L500 850"/>
+  <path fill="{DENIM_WHITE}" stroke="{WINE}" stroke-width="6" d="M272 1350 L468 1356 L470 1404 L268 1400 Z M532 1356 L728 1350 L732 1400 L530 1404 Z"/>
+  <!-- sandals peeking out -->
+  <g fill="{BLACK}">
+    <path d="M300 1400 L440 1400 C 444 1418 430 1426 410 1426 L320 1426 C 300 1426 294 1414 300 1400 Z"/>
+    <path d="M560 1400 L700 1400 C 706 1414 700 1426 680 1426 L590 1426 C 570 1426 556 1418 560 1400 Z"/>
+  </g>
+
+  </g>
+  <!-- black belt -->
+  <path fill="{BLACK}" d="M362 596 L638 596 L644 636 L356 636 Z"/>
+  <rect x="520" y="592" width="46" height="48" rx="6" fill="none" stroke="{SILVER}" stroke-width="8"/>
+
+  <!-- left arm (viewer's left) holding the bag -->
+  {sleeve("M352 470 C 344 560 336 660 330 760", 60)}
+  <!-- bag -->
+  <path fill="none" stroke="{BLACK}" stroke-width="16" d="M300 840 C 290 770 360 760 360 820"/>
+  <path fill="{BLACK}" d="M244 840 C 300 820 380 820 400 846 C 412 950 404 1060 372 1150 C 330 1170 280 1166 250 1146 C 222 1060 226 940 244 840 Z"/>
+  <path fill="none" stroke="#4A3C38" stroke-width="5" stroke-linecap="round" d="M270 880 C 266 960 268 1040 280 1110 M370 880 C 376 960 374 1040 360 1110"/>
+  <rect x="306" y="860" width="26" height="30" rx="5" fill="none" stroke="{SILVER}" stroke-width="5"/>
+  <circle cx="318" cy="924" r="16" fill="{PINK}"/><circle cx="306" cy="908" r="7" fill="{PINK}"/><circle cx="330" cy="908" r="7" fill="{PINK}"/>
+  <!-- right arm bent, hand in the pocket -->
+  {sleeve("M648 470 C 690 540 706 600 690 650 C 678 686 650 698 620 690", 58)}
+    <!-- black tee over striped long sleeves (curvy torso) -->
+  <path fill="{BLACK}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M396 336 C 432 322 468 318 500 318 C 532 318 568 322 604 336 C 642 350 658 378 662 412 L 672 478 L 628 486
+           C 640 530 646 566 640 600 L360 600 C 354 566 360 530 372 486 L 328 478 L 338 412 C 342 378 358 350 396 336 Z"/>
+  <path fill="{BLACK}" d="M462 300 L538 300 L542 332 C 520 342 480 342 458 332 Z"/>
+  <!-- necklace -->
+  <path fill="none" stroke="{SILVER}" stroke-width="3" d="M470 330 C 470 400 488 470 496 520 M530 330 C 530 400 512 470 504 520"/>
+  <ellipse cx="500" cy="540" rx="24" ry="26" fill="none" stroke="{SILVER}" stroke-width="10"/>
+
+  <!-- hand on the handle -->
+  <path fill="{SKIN}" stroke="{WINE}" stroke-width="6" d="M304 774 C 300 800 306 826 328 834 C 352 840 366 822 362 796 C 358 776 344 766 328 766 Z"/>
+  <path fill="none" stroke="{WINE}" stroke-width="5" stroke-linecap="round" d="M310 800 C 322 806 340 806 356 800 M312 816 C 324 822 340 822 354 816"/>
+
+<path fill="{SKIN}" stroke="{WINE}" stroke-width="6" d="M626 670 C 600 668 584 680 586 698 C 588 712 604 716 624 712 Z"/>
+  <path fill="none" stroke="{WINE}" stroke-width="6" stroke-linecap="round" d="M572 650 C 588 690 604 706 628 708"/>"""
+    return svg2(W, H, back, hair_g + body + face_g)
+
+
 STICKERS = {
     "sticker-02-sonrisa": s_smile,
     "sticker-03-beso": s_kiss,
     "sticker-04-sorpresa": s_surprise,
     "sticker-05-cafe-compu": s_coffee,
     "sticker-06-caminando": s_walk,
+    "sticker-07-look": s_look,
 }
 
 if __name__ == "__main__":

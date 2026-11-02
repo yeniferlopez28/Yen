@@ -54,6 +54,11 @@ Agrega al prompt de caminando o de cuerpo completo:
 Outfit: oversized cropped knit sweater with wide black and cream horizontal stripes and a mock neck, long sleeves; short denim mini skirt; white sneakers with black socks.
 ```
 
+**Look: playera negra + rayas + jeans blancos**
+```
+Full body, standing facing forward in a relaxed confident pose, one hand in her front pocket, the other hand holding a slouchy black leather shoulder bag with a small pink charm. Outfit: fitted black short-sleeve mock-neck tee layered over a long-sleeve black and cream striped shirt, black leather belt with a silver buckle, low-rise white wide-leg jeans with visible contrast stitching and rolled cuffs, black sandals. Black oval sunglasses, long silver chain necklace with a chunky organic silver ring pendant. Soft smile.
+```
+
 ## 3. Consejos
 - Si sale distinta la cara o el pelo, pídele: *"Same character as the attached sticker: copper-cinnamon wavy hair, round face, soft blush, no freckles."*
 - Para fondo transparente: *"transparent background, PNG"* (o quítalo después con remove.bg / Canva).

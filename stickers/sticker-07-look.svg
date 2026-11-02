@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1300" width="1000" height="1300">
+  <defs>
+    <path id="hair" d="M500 170 C 375 170 294 252 288 370 C 284 430 260 458 266 518
+      C 272 572 250 600 256 655 C 262 708 240 738 254 788 C 268 832 310 850 338 836
+      C 360 852 392 846 404 830 L 596 830 C 608 846 640 852 662 836
+      C 690 850 732 832 746 788 C 760 738 738 708 744 655 C 750 600 728 572 734 518
+      C 740 458 716 430 712 370 C 706 252 625 170 500 170 Z"/>
+    <radialGradient id="blush">
+      <stop offset="0" stop-color="#F07C98" stop-opacity="0.75"/>
+      <stop offset="0.5" stop-color="#F28CA4" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#F7A1B5" stop-opacity="0"/>
+    </radialGradient>
+    <!-- paper cut-out border around everything inside the group -->
+    <filter id="cutout" x="-20%" y="-20%" width="140%" height="140%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="26" result="grow"/>
+      <feFlood flood-color="#FCEFD9"/>
+      <feComposite in2="grow" operator="in" result="border"/>
+      <feMerge><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="dots" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="60" height="60" fill="#F7A1B5"/>
+      <ellipse cx="15" cy="15" rx="8" ry="11" fill="#8B1A3D"/>
+      <ellipse cx="45" cy="45" rx="8" ry="11" fill="#8B1A3D"/>
+    </pattern>
+  </defs>
+  <defs>
+  <pattern id="dotsCream" width="70" height="70" patternUnits="userSpaceOnUse">
+    <rect width="70" height="70" fill="#FCEFD9"/>
+    <ellipse cx="18" cy="18" rx="10" ry="13" fill="#8B1A3D"/>
+    <ellipse cx="53" cy="53" rx="10" ry="13" fill="#8B1A3D"/>
+  </pattern></defs>
+  <g><path transform="translate(180,300) scale(0.8)" fill="#F2A0B4" d="M0 -100 L22 -30 L95 -31 L36 12 L59 81 L0 38 L-59 81 L-36 12 L-95 -31 L-22 -30 Z"/><path transform="translate(850,820) scale(0.6)" fill="#F2A0B4" d="M0 -100 L22 -30 L95 -31 L36 12 L59 81 L0 38 L-59 81 L-36 12 L-95 -31 L-22 -30 Z"/><path transform="translate(820,230) scale(1.0)" fill="#6B6B10" d="M0 -30 L6 -6 L30 0 L6 6 L0 30 L-6 6 L-30 0 L-6 -6 Z"/><path transform="translate(150,900) scale(0.9)" fill="#6B6B10" d="M0 -30 L6 -6 L30 0 L6 6 L0 30 L-6 6 L-30 0 L-6 -6 Z"/></g>
+  <g filter="url(#cutout)"><g transform="translate(220,-12) scale(0.56)">
+  <use href="#hair" fill="#8A3E1E"/>
+  <g fill="none" stroke-linecap="round">
+    <path stroke="#B8693F" stroke-width="10" opacity="0.8" d="M415 210 C 372 230 340 268 326 322"/>
+    <path stroke="#B8693F" stroke-width="10" opacity="0.8" d="M585 210 C 628 230 660 268 674 322"/>
+    <path stroke="#B8693F" stroke-width="7" opacity="0.6" d="M296 610 C 286 650 304 680 292 728"/>
+    <path stroke="#B8693F" stroke-width="7" opacity="0.6" d="M704 610 C 714 650 696 680 708 728"/>
+    <g stroke="#4E1D0C" stroke-width="5">
+      <path d="M318 425 C 304 465 328 495 312 545"/>
+      <path d="M682 425 C 696 465 672 495 688 545"/>
+    </g>
+  </g></g>
+  <defs>
+  <pattern id="stripes" width="40" height="28" patternUnits="userSpaceOnUse">
+    <rect width="40" height="28" fill="#FCEFD9"/><rect y="0" width="40" height="9" fill="#231815"/>
+  </pattern></defs>
+  <!-- neck -->
+  <path fill="#FCEFD9" d="M472 250 L528 250 L528 330 L472 330 Z"/>
+
+  <g transform="translate(0,600) scale(1,0.8) translate(0,-600)">
+  <!-- white wide-leg jeans (curvy hips) -->
+  <path fill="#F7F4EE" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round"
+        d="M366 600 L634 600 C 660 660 672 720 674 790 L 730 1400 L 530 1400 L 500 850 L 470 1400 L 270 1400 L 326 790 C 328 720 340 660 366 600 Z"/>
+  <g fill="none" stroke="#B9A79A" stroke-width="4" stroke-dasharray="10 8">
+    <path d="M352 650 C 340 900 300 1150 286 1360"/>
+    <path d="M648 650 C 660 900 700 1150 714 1360"/>
+    <path d="M400 640 C 420 680 440 700 470 704"/>
+    <path d="M600 640 C 580 680 560 700 530 704"/>
+  </g>
+  <path fill="none" stroke="#8B1A3D" stroke-width="5" stroke-linecap="round" d="M500 640 L500 850"/>
+  <path fill="#F7F4EE" stroke="#8B1A3D" stroke-width="6" d="M272 1350 L468 1356 L470 1404 L268 1400 Z M532 1356 L728 1350 L732 1400 L530 1404 Z"/>
+  <!-- sandals peeking out -->
+  <g fill="#231815">
+    <path d="M300 1400 L440 1400 C 444 1418 430 1426 410 1426 L320 1426 C 300 1426 294 1414 300 1400 Z"/>
+    <path d="M560 1400 L700 1400 C 706 1414 700 1426 680 1426 L590 1426 C 570 1426 556 1418 560 1400 Z"/>
+  </g>
+
+  </g>
+  <!-- black belt -->
+  <path fill="#231815" d="M362 596 L638 596 L644 636 L356 636 Z"/>
+  <rect x="520" y="592" width="46" height="48" rx="6" fill="none" stroke="#C9CCD1" stroke-width="8"/>
+
+  <!-- left arm (viewer's left) holding the bag -->
+  <path fill="none" stroke="#8B1A3D" stroke-width="72" stroke-linecap="butt" stroke-linejoin="round" d="M352 470 C 344 560 336 660 330 760"/><path fill="none" stroke="url(#stripes)" stroke-width="60" stroke-linecap="butt" stroke-linejoin="round" d="M352 470 C 344 560 336 660 330 760"/>
+  <!-- bag -->
+  <path fill="none" stroke="#231815" stroke-width="16" d="M300 840 C 290 770 360 760 360 820"/>
+  <path fill="#231815" d="M244 840 C 300 820 380 820 400 846 C 412 950 404 1060 372 1150 C 330 1170 280 1166 250 1146 C 222 1060 226 940 244 840 Z"/>
+  <path fill="none" stroke="#4A3C38" stroke-width="5" stroke-linecap="round" d="M270 880 C 266 960 268 1040 280 1110 M370 880 C 376 960 374 1040 360 1110"/>
+  <rect x="306" y="860" width="26" height="30" rx="5" fill="none" stroke="#C9CCD1" stroke-width="5"/>
+  <circle cx="318" cy="924" r="16" fill="#F7A1B5"/><circle cx="306" cy="908" r="7" fill="#F7A1B5"/><circle cx="330" cy="908" r="7" fill="#F7A1B5"/>
+  <!-- right arm bent, hand in the pocket -->
+  <path fill="none" stroke="#8B1A3D" stroke-width="70" stroke-linecap="butt" stroke-linejoin="round" d="M648 470 C 690 540 706 600 690 650 C 678 686 650 698 620 690"/><path fill="none" stroke="url(#stripes)" stroke-width="58" stroke-linecap="butt" stroke-linejoin="round" d="M648 470 C 690 540 706 600 690 650 C 678 686 650 698 620 690"/>
+    <!-- black tee over striped long sleeves (curvy torso) -->
+  <path fill="#231815" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round"
+        d="M396 336 C 432 322 468 318 500 318 C 532 318 568 322 604 336 C 642 350 658 378 662 412 L 672 478 L 628 486
+           C 640 530 646 566 640 600 L360 600 C 354 566 360 530 372 486 L 328 478 L 338 412 C 342 378 358 350 396 336 Z"/>
+  <path fill="#231815" d="M462 300 L538 300 L542 332 C 520 342 480 342 458 332 Z"/>
+  <!-- necklace -->
+  <path fill="none" stroke="#C9CCD1" stroke-width="3" d="M470 330 C 470 400 488 470 496 520 M530 330 C 530 400 512 470 504 520"/>
+  <ellipse cx="500" cy="540" rx="24" ry="26" fill="none" stroke="#C9CCD1" stroke-width="10"/>
+
+  <!-- hand on the handle -->
+  <path fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6" d="M304 774 C 300 800 306 826 328 834 C 352 840 366 822 362 796 C 358 776 344 766 328 766 Z"/>
+  <path fill="none" stroke="#8B1A3D" stroke-width="5" stroke-linecap="round" d="M310 800 C 322 806 340 806 356 800 M312 816 C 324 822 340 822 354 816"/>
+
+<path fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6" d="M626 670 C 600 668 584 680 586 698 C 588 712 604 716 624 712 Z"/>
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M572 650 C 588 690 604 706 628 708"/><g transform="translate(220,-12) scale(0.56)">
+  <path fill="#FCEFD9" d="M500 280 C 594 280 652 346 652 434 C 652 530 588 590 500 590 C 412 590 348 530 348 434 C 348 346 406 280 500 280 Z"/>
+  <path fill="#8A3E1E" d="M500 262 C 436 262 368 300 348 370 C 340 400 342 440 348 470
+    C 360 420 386 360 428 330 C 460 306 488 300 500 290 C 512 300 540 306 572 330
+    C 614 360 642 420 652 470 C 658 440 660 400 652 370 C 632 300 564 262 500 262 Z"/>
+  <path fill="none" stroke="#4E1D0C" stroke-width="5" stroke-linecap="round" d="M500 200 L500 288"/>
+  <g fill="url(#blush)">
+    <ellipse cx="420" cy="488" rx="56" ry="44"/>
+    <ellipse cx="580" cy="488" rx="56" ry="44"/>
+  </g>
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M490 414 C 494 450 488 476 480 494 C 492 506 508 506 518 498"/>
+  <g fill="#4E2414" transform="translate(0,0)">
+    <path d="M402 394 C 422 374 462 372 482 382 L480 398 C 458 391 426 395 406 407 Z"/>
+    <path d="M598 394 C 578 374 538 372 518 382 L520 398 C 542 391 574 395 594 407 Z"/>
+  </g>
+  <path fill="#231815" d="M378 418 C 420 404 470 406 492 420 C 498 450 486 486 448 488 C 410 490 384 470 378 440 Z"/>
+  <path fill="#231815" d="M622 418 C 580 404 530 406 508 420 C 502 450 514 486 552 488 C 590 490 616 470 622 440 Z"/>
+  <path fill="none" stroke="#231815" stroke-width="10" d="M488 424 C 496 418 504 418 512 424 M378 424 L352 418 M622 424 L648 418"/>
+  <path fill="none" stroke="#5A4C48" stroke-width="6" stroke-linecap="round" d="M400 428 C 410 420 426 418 440 420 M560 420 C 574 418 590 420 600 428"/>
+  <path fill="#E9879B" d="M466 534 C 482 550 518 550 534 534 C 522 528 511 531 500 533 C 489 531 478 528 466 534 Z"/>
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M462 534 C 482 549 518 549 538 534"/></g>
+  </g>
+  <g></g>
+</svg>
