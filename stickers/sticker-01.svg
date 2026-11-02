@@ -1,20 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
   <defs>
     <!-- wavy hair silhouette -->
-    <path id="hair" d="M500 168
-      C 370 166 282 248 270 370
-      C 262 430 228 455 238 515
-      C 248 565 212 590 222 645
-      C 232 700 196 725 212 780
-      C 226 830 270 850 300 835
-      C 330 860 380 852 395 830
-      L 605 830
-      C 620 852 670 860 700 835
-      C 730 850 774 830 788 780
-      C 804 725 768 700 778 645
-      C 788 590 752 565 762 515
-      C 772 455 738 430 730 370
-      C 718 248 630 166 500 168 Z"/>
+    <path id="hair" d="M500 172
+      C 385 172 312 248 306 360
+      C 302 430 292 470 294 530
+      C 296 590 282 630 286 690
+      C 290 750 274 790 292 832
+      C 322 852 362 846 382 832
+      L 618 832
+      C 638 846 678 852 708 832
+      C 726 790 710 750 714 690
+      C 718 630 704 590 706 530
+      C 708 470 698 430 694 360
+      C 688 248 615 172 500 172 Z"/>
     <path id="body" d="M300 940 C 300 850 340 800 420 782 C 445 776 455 750 457 712 L543 712 C 545 750 555 776 580 782 C 660 800 700 850 700 940"/>
   </defs>
 
@@ -36,31 +34,32 @@
   </g>
 
   <!-- hair (single reddish tone) -->
-  <use href="#hair" fill="#A8382A"/>
-  <!-- soft wave details -->
-  <g fill="none" stroke="#6E1F17" stroke-width="6" stroke-linecap="round">
-    <path d="M300 430 C 285 470 310 500 292 545"/>
-    <path d="M270 620 C 255 660 282 690 262 735"/>
-    <path d="M700 430 C 715 470 690 500 708 545"/>
-    <path d="M730 620 C 745 660 718 690 738 735"/>
+  <use href="#hair" fill="#9C2222"/>
+  <!-- shine + soft waves -->
+  <g fill="none" stroke-linecap="round">
+    <path stroke="#C8473C" stroke-width="10" opacity="0.8" d="M420 215 C 380 235 350 270 338 320"/>
+    <path stroke="#C8473C" stroke-width="10" opacity="0.8" d="M580 215 C 620 235 650 270 662 320"/>
+    <path stroke="#C8473C" stroke-width="7" opacity="0.6" d="M322 600 C 315 640 330 670 320 720"/>
+    <path stroke="#C8473C" stroke-width="7" opacity="0.6" d="M678 600 C 685 640 670 670 680 720"/>
+    <g stroke="#5E1212" stroke-width="5">
+      <path d="M330 420 C 320 460 338 490 326 535"/>
+      <path d="M670 420 C 680 460 662 490 674 535"/>
+    </g>
   </g>
 
   <g transform="translate(500,-55) scale(1.12,1) translate(-500,0)">
   <!-- neck + shoulders -->
   <path fill="#FCEFD9" d="M300 940 C 300 850 340 800 420 782 C 445 776 455 750 457 712 L457 520 L543 520 L543 712 C 545 750 555 776 580 782 C 660 800 700 850 700 940 Z"/>
   <path fill="#EBD5BD" d="M457 570 C 480 598 520 598 543 570 L543 612 C 520 628 480 628 457 612 Z"/>
-  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M300 940 C 300 850 340 800 420 782 C 445 776 455 750 457 712 M700 940 C 700 850 660 800 580 782 C 555 776 545 750 543 712"/>
-
-  <!-- brown camisole with lace -->
-  <path fill="#5B3326" d="M314 940 C 318 890 336 862 358 850 C 400 862 450 868 500 868 C 550 868 600 862 642 850 C 664 862 682 890 686 940 Z"/>
-  <g fill="#7E4A38">
-    <circle cx="368" cy="853" r="12"/><circle cx="392" cy="859" r="12"/><circle cx="416" cy="863" r="12"/>
-    <circle cx="440" cy="866" r="12"/><circle cx="464" cy="868" r="12"/><circle cx="488" cy="869" r="12"/>
-    <circle cx="512" cy="869" r="12"/><circle cx="536" cy="868" r="12"/><circle cx="560" cy="866" r="12"/>
-    <circle cx="584" cy="863" r="12"/><circle cx="608" cy="859" r="12"/><circle cx="632" cy="853" r="12"/>
+  <!-- camisole clipped to the body so it follows the shoulders -->
+  <clipPath id="bodyClip"><path d="M300 940 C 300 850 340 800 420 782 C 445 776 455 750 457 712 L457 520 L543 520 L543 712 C 545 750 555 776 580 782 C 660 800 700 850 700 940 Z"/></clipPath>
+  <g clip-path="url(#bodyClip)">
+    <path fill="#5B3326" d="M250 845 C 340 846 420 872 500 872 C 580 872 660 846 750 845 L750 960 L250 960 Z"/>
+    <path fill="none" stroke="#7E4A38" stroke-width="7" stroke-dasharray="1 13" stroke-linecap="round" d="M250 852 C 340 853 420 879 500 879 C 580 879 660 853 750 852"/>
+    <path fill="none" stroke="#7E4A38" stroke-width="3" d="M250 860 C 340 861 420 887 500 887 C 580 887 660 861 750 860"/>
   </g>
-  <path fill="#5B3326" d="M340 876 C 400 882 450 884 500 884 C 550 884 600 882 660 876 L686 940 L314 940 Z"/>
-  <path stroke="#3A1E16" stroke-width="8" fill="none" stroke-linecap="round" d="M392 855 L405 790 M608 855 L595 790"/>
+  <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M300 940 C 300 850 340 800 420 782 C 445 776 455 750 457 712 M700 940 C 700 850 660 800 580 782 C 555 776 545 750 543 712"/>
+  <path stroke="#3A1E16" stroke-width="7" fill="none" stroke-linecap="round" d="M372 852 L392 788 M628 852 L608 788"/>
 
   </g>
 
@@ -68,7 +67,7 @@
   <path fill="#FCEFD9" d="M500 282 C 580 282 634 346 634 430 C 634 520 580 588 500 588 C 420 588 366 520 366 430 C 366 346 420 282 500 282 Z"/>
 
   <!-- hairline with center part (curtains over forehead edges) -->
-  <path fill="#A8382A" d="M500 262
+  <path fill="#9C2222" d="M500 262
     C 440 262 380 300 360 370 C 352 400 356 440 362 470
     C 372 420 392 360 430 330 C 460 306 488 300 500 290
     C 512 300 540 306 570 330 C 608 360 628 420 638 470
