@@ -76,9 +76,14 @@
   <path fill="none" stroke="#6E1F17" stroke-width="5" stroke-linecap="round" d="M500 200 L500 288"/>
 
   <!-- blush -->
-  <g fill="#F07C98">
-    <ellipse cx="422" cy="482" rx="42" ry="32"/>
-    <ellipse cx="578" cy="482" rx="42" ry="32"/>
+  <radialGradient id="blush">
+    <stop offset="0" stop-color="#F07C98" stop-opacity="0.75"/>
+    <stop offset="0.5" stop-color="#F28CA4" stop-opacity="0.4"/>
+    <stop offset="1" stop-color="#F7A1B5" stop-opacity="0"/>
+  </radialGradient>
+  <g fill="url(#blush)">
+    <ellipse cx="426" cy="484" rx="56" ry="44"/>
+    <ellipse cx="574" cy="484" rx="56" ry="44"/>
   </g>
 
   <!-- brows -->
