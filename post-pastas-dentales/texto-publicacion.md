@@ -1,6 +1,6 @@
 # Carrusel: ¿Qué pasta te conviene más?
 
-7 láminas de 1080 × 1350 (`pastas-1.png` a `pastas-7.png`).
+8 láminas de 1080 × 1350 (`pastas-1.png` a `pastas-8.png`). La 8 es el cierre con el llamado a agendar.
 
 ## Texto para la publicación
 
