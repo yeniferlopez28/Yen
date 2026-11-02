@@ -14,4 +14,4 @@ Para todos, lo básico es el flúor: búscalo en la etiqueta, entre 1,000 y 1,50
 
 ## Fotos (lámina 5)
 
-Ya van puestas las fotos que mandaste: Colgate Máxima Protección Anticaries, Crest, Sensodyne, Colgate Sensitive, GUM SensiVital+, Colgate Luminous White y Oral-B 3D White. Para "Encías" va un dibujo porque no hubo foto.
+Ya van puestas las fotos que mandaste: Colgate Máxima Protección Anticaries, Crest, Sensodyne, Colgate Sensitive, GUM SensiVital+, Colgate Luminous White y Oral-B 3D White. En "Encías" va Crest Pro-Salud (fluoruro de estaño). No está en el estudio de Profeco: va como ejemplo del ingrediente.
