@@ -15,295 +15,288 @@
   .abs{position:absolute}
   .blob{position:absolute;border-radius:50%;background:var(--rosa);opacity:.35}
   .url{position:absolute;left:0;right:0;top:54px;text-align:center;font:500 19px Montserrat;letter-spacing:5px;color:var(--gris);z-index:5}
-  .wrap{position:absolute;left:72px;right:72px;top:118px;z-index:3}
+  .wrap{position:absolute;left:60px;right:60px;top:150px;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .wrap.left{align-items:flex-start;text-align:left;left:70px;right:70px}
 
-  /* tiras de título */
-  .tt{display:flex;flex-direction:column;align-items:flex-start}
-  .st{display:inline-block;font:800 66px/1 Montserrat;text-transform:uppercase;letter-spacing:1.5px;padding:15px 26px 11px;white-space:nowrap;position:relative}
-  .st.o{background:var(--naranja);color:var(--crema)}
-  .st.pk{background:var(--rosa);color:var(--vino)}
-  .st.b{background:var(--azul);color:var(--crema)}
-  .st.w{background:var(--vino);color:var(--crema)}
-  .st.l{background:var(--lima);color:var(--vino)}
-  .cut1{clip-path:polygon(0 6%,100% 0,99% 100%,1% 94%)}
-  .cut2{clip-path:polygon(1% 0,99% 5%,100% 96%,0 100%)}
-  .cut3{clip-path:polygon(0 0,100% 4%,98% 100%,2% 97%)}
-  .sc{font-family:Satisfy,cursive;font-size:128px;line-height:1;color:var(--vino);-webkit-text-stroke:2.5px currentColor;position:relative;z-index:4;white-space:nowrap}
-  .badge{display:inline-flex;align-items:center;justify-content:center;width:112px;height:112px;background:var(--vino);color:var(--crema);font:800 78px/1 Montserrat;clip-path:polygon(8% 4%,96% 0,100% 92%,0 100%);transform:rotate(-6deg)}
+  /* fondos */
+  .bg-vino{background:var(--vino)} .bg-rosa{background:#F8D9E1} .bg-azul{background:#DCE4F4} .bg-lima{background:#F1F3CF} .bg-naranja{background:var(--naranja)}
+  .grid{background-color:var(--crema);background-image:radial-gradient(rgba(122,31,61,.22) 2.2px,transparent 2.4px);background-size:38px 38px;background-position:19px 19px}
+  .dark .url{color:rgba(252,241,221,.6)}
+  .dark .lead,.dark .tx{color:var(--crema)} .dark .tx b,.dark .lead b{color:var(--lima)}
+  .dark .blob{opacity:.16}
+  .dark mark{background:linear-gradient(180deg,transparent 56%,rgba(242,169,190,.55) 56%,rgba(242,169,190,.55) 92%,transparent 92%)}
+
+  /* bloque de título */
+  .tb{position:relative;display:flex;flex-direction:column;align-items:center}
+  .tb.left{align-items:flex-start}
+  .tb.right{align-items:flex-end}
+  .tl{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:16px;padding:20px 44px 16px;font:800 66px/1 Montserrat;letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+  .tl::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);clip-path:var(--cp)}
+  .pk{min-height:104px;--bg:var(--rosa);color:var(--vino);--cp:polygon(5% 0,87% 0,100% 30%,97% 100%,0 100%)}
+  .or{--bg:var(--naranja);color:var(--crema);--cp:polygon(0 5%,100% 0,99.4% 100%,.6% 95%)}
+  .bl{--bg:var(--azul);color:var(--crema);--cp:polygon(0 5%,100% 0,99.4% 100%,.6% 95%)}
+  .vn{--bg:var(--vino);color:var(--crema);--cp:polygon(0 5%,100% 0,99.4% 100%,.6% 95%)}
+  .pk2{min-height:128px;--bg:var(--rosa);color:var(--vino);--cp:polygon(0 7%,97% 0,100% 100%,3% 93%)}
+  .lb{--bg:var(--vino);color:var(--crema);font-size:30px;letter-spacing:3px;padding:12px 26px 10px;gap:12px;--cp:polygon(0 0,100% 0,100% 100%,0 100%)}
+  .lb.cr{--bg:var(--crema);color:var(--vino)}
+  .lb.li{--bg:var(--lima);color:var(--vino)}
+  .sm{font-size:.62em}
+  .sc{font-family:Sacramento,cursive;font-weight:400;text-transform:none;letter-spacing:0;-webkit-text-stroke:.04em currentColor;line-height:0;font-size:2.1em;display:inline-block;transform:translateY(.06em)}
+  .peek{position:absolute;left:50%;transform:translateX(-50%);z-index:0;filter:drop-shadow(0 6px 10px rgba(94,26,51,.15))}
+  .stk{position:absolute;z-index:4;filter:drop-shadow(0 10px 14px rgba(94,26,51,.18))}
 
   /* texto */
-  .lead{font:700 44px/1.22 Montserrat;color:var(--vino);letter-spacing:-.2px}
-  .tx{font:500 31px/1.42 Montserrat;color:var(--vinot);margin-top:24px}
+  .lead{font:700 40px/1.25 Montserrat;color:var(--vino);width:880px;margin-top:50px}
+  .tx{font:500 30px/1.45 Montserrat;color:var(--vinot);margin-top:20px;width:860px}
   .tx b,.lead b{font-weight:800;color:var(--vino)}
   mark{background:linear-gradient(180deg,transparent 52%,rgba(242,169,190,.85) 52%,rgba(242,169,190,.85) 92%,transparent 92%);color:inherit;padding:0 3px}
   mark.l{background:linear-gradient(180deg,transparent 52%,var(--lima) 52%,var(--lima) 92%,transparent 92%)}
 
   /* tarjeta de definición */
-  .def{position:relative;background:var(--vino);color:var(--crema);padding:48px 42px 36px;font:500 29px/1.42 Montserrat;clip-path:polygon(0 2%,100% 0,99.5% 100%,.5% 98%)}
+  .defw{position:relative;margin-top:60px;width:900px}
+  .def{position:relative;background:var(--vino);color:var(--crema);padding:52px 50px 38px;font:500 29px/1.4 Montserrat;clip-path:polygon(0 3%,96% 0,100% 18%,99.5% 100%,.5% 97%)}
   .def b{font-weight:800;color:var(--lima)}
-  .defw{position:relative;margin-top:30px}
-  .slide .defw{margin-top:70px !important}
-  .tag{position:absolute;left:28px;top:-26px;z-index:2;background:var(--lima);color:var(--vino);font:800 22px/1 Montserrat;letter-spacing:2px;text-transform:uppercase;padding:12px 18px 10px;transform:rotate(-3deg);clip-path:polygon(0 6%,100% 0,98% 100%,2% 94%)}
-  .def .term{display:block;font-family:Satisfy;font-size:68px;line-height:1.05;color:var(--rosa);-webkit-text-stroke:1px currentColor;margin-bottom:8px}
+  .def.pink{background:var(--rosa);color:var(--vino)} .def.pink b{color:var(--vino)}
+  .tag{position:absolute;left:50%;transform:translateX(-50%) rotate(-2deg);top:-26px;z-index:2;background:var(--lima);color:var(--vino);font:800 24px/1 Montserrat;letter-spacing:2.5px;text-transform:uppercase;padding:13px 22px 11px;white-space:nowrap}
+  .left .tag{left:40px;transform:rotate(-2deg)}
+  .def .term{display:block;font-family:Sacramento;font-size:88px;line-height:.9;color:var(--rosa);-webkit-text-stroke:3px currentColor;margin-bottom:10px}
 
-  .stk{position:absolute;z-index:6;filter:drop-shadow(0 10px 14px rgba(94,26,51,.18))}
   svg.d{position:absolute;overflow:visible;z-index:2}
-  svg.d.top{z-index:7}
+  svg.d.inl{position:relative}
+  svg.d.top{z-index:6}
+  .row svg{flex:none}
+  .stick{filter:drop-shadow(4px 0 0 #FCF1DD) drop-shadow(-4px 0 0 #FCF1DD) drop-shadow(0 4px 0 #FCF1DD) drop-shadow(0 -4px 0 #FCF1DD)}
+  .row{display:flex;align-items:center;justify-content:center;gap:34px;margin-top:40px}
+  .chip{display:inline-block;background:var(--rosa);color:var(--vino);font:800 26px/1 Montserrat;text-transform:uppercase;letter-spacing:1.5px;padding:15px 22px 13px;clip-path:polygon(0 6%,100% 0,98% 100%,2% 94%)}
+  .chip.v{background:var(--vino);color:var(--crema)} .chip.b{background:var(--azul);color:var(--crema)} .chip.l{background:var(--lima)} .chip.c{background:var(--crema)}
+  .chip:nth-child(odd){transform:rotate(-2deg)} .chip:nth-child(even){transform:rotate(1.5deg)}
+
+  /* postal */
+  .postal{position:relative;margin-top:44px;width:900px;background:#FFF8EC;border:4px solid var(--vino);border-radius:14px;padding:38px 40px 36px;display:flex;gap:34px;transform:rotate(-1.5deg);box-shadow:10px 12px 0 rgba(122,31,61,.14);text-align:left}
+  .postal .izq{flex:1;border-right:3px dashed rgba(122,31,61,.45);padding-right:30px}
+  .postal .der{width:240px;position:relative}
+  .postal .ciao{font-family:Sacramento;font-size:92px;line-height:.8;color:var(--naranja);-webkit-text-stroke:3px currentColor}
+  .postal .lineas div{height:3px;background:rgba(122,31,61,.35);margin-top:30px;border-radius:2px}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>
   <symbol id="spark" viewBox="0 0 100 100"><path d="M50 0C54 38 62 46 100 50C62 54 54 62 50 100C46 62 38 54 0 50C38 46 46 38 50 0Z"/></symbol>
   <symbol id="arrow" viewBox="0 0 200 90"><ellipse cx="98" cy="50" rx="92" ry="22" fill="#E4EB9C" transform="rotate(-3 98 50)"/><path d="M14 46C60 41 110 43 168 45" fill="none" stroke="#6B7027" stroke-width="7" stroke-linecap="round"/><path d="M140 20L172 45L141 70" fill="none" stroke="#6B7027" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="arrowc" viewBox="0 0 200 90"><ellipse cx="98" cy="50" rx="92" ry="22" fill="#F2A9BE" transform="rotate(-3 98 50)"/><path d="M14 46C60 41 110 43 168 45" fill="none" stroke="#FCF1DD" stroke-width="7" stroke-linecap="round"/><path d="M140 20L172 45L141 70" fill="none" stroke="#FCF1DD" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
 
-<!-- ============ 01 PORTADA ============ -->
-<section class="slide" id="s1">
-  <div class="url">@BYENSITAMKT</div>
-  <svg class="d scallop" data-c="#EE8A55" data-r="34" style="left:52px;top:118px" width="976" height="1060"></svg>
-  <div class="wrap" style="top:200px;left:118px">
-    <div class="tt">
-      <span class="st b cut1" style="font-size:60px;transform:rotate(-2deg)">LA FIL GUADALAJARA</span>
-      <span class="sc" style="color:var(--crema);font-size:118px;margin:-14px 0 -20px 30px;transform:rotate(-4deg)">es mucho más</span>
-      <span class="st w cut2" style="font-size:42px;margin-left:10px;transform:rotate(1.5deg)">QUE UNA FERIA DE LIBROS.</span>
-    </div>
-    <div class="tt" style="margin-top:62px">
-      <span class="st pk cut3" style="font-size:72px;transform:rotate(-1.5deg)">ES TODO UN</span>
-      <span class="st b cut1" style="font-size:72px;margin:6px 0 0 70px;transform:rotate(1deg)">CASO DE</span>
-      <span class="sc" style="color:var(--vino);font-size:170px;margin:-52px 0 0 30px;transform:rotate(-5deg)">marketing</span>
-    </div>
-  </div>
-  <div class="abs" style="left:122px;top:925px;width:430px;z-index:4;font:600 25px/1.42 Montserrat;color:var(--crema)">Comunidad, experiencias, creadores de contenido y estrategias para reunir a miles de personas alrededor de la literatura.</div>
-  <img class="stk" src="cut/lee-audifonos.png" style="left:585px;top:780px;width:480px">
-  <svg class="d burst top" data-c="#E4EB9C" style="left:870px;top:150px" width="150" height="150"></svg>
-  <svg class="d star8" data-c="#F2A9BE" style="left:690px;top:540px" width="90" height="90"></svg>
-  <svg class="d top" style="left:930px;top:690px" width="60" height="60" fill="#6B7027"><use href="#spark"/></svg>
-  <svg class="d" style="left:110px;top:1210px" width="60" height="60" fill="#F2A9BE"><use href="#spark"/></svg>
-  <svg class="d top" style="left:120px;top:1110px" width="170" height="78"><use href="#arrow"/></svg>
-  <div class="blob" style="left:20px;top:1240px;width:120px;height:120px"></div>
-</section>
+<!-- La portada (lámina 01) vive en portada.html -->
 
-<!-- ============ 02 TIKTOK BOOK AWARDS ============ -->
-<section class="slide" id="s2">
-  <div class="blob" style="left:-60px;top:260px;width:180px;height:180px"></div>
-  <div class="blob" style="left:930px;top:1180px;width:200px;height:200px"></div>
+<!-- ============ 02 TIKTOK BOOK AWARDS · fondo vino, logo al centro ============ -->
+<section class="slide dark bg-vino" id="s2">
   <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge">1</span>
-        <span class="st w cut1" style="transform:rotate(-1.5deg)">TIKTOK</span>
-      </div>
-      <span class="sc" style="margin:-22px 0 0 150px;transform:rotate(-4deg)">Book Awards</span>
+  <div class="blob" style="left:60px;top:150px;width:120px;height:120px"></div>
+  <div class="blob" style="left:920px;top:560px;width:160px;height:160px"></div>
+  <div class="blob" style="left:-40px;top:1150px;width:180px;height:180px"></div>
+  <div class="wrap" style="top:130px">
+    <div class="tb">
+      <span class="tl or" style="font-size:80px;padding:22px 60px 16px">TIKTOK</span>
+      <span class="tl pk2" style="margin-top:-4px;padding:28px 50px 30px"><span class="sm">BOOK</span><span class="sc">Awards</span></span>
+      <span class="tl lb li" style="margin-top:-16px">3 DE DICIEMBRE <span class="sc">en la FIL</span></span>
     </div>
-    <div class="lead" style="margin-top:34px;width:660px"><mark>BookTok</mark> llega por primera vez a la FIL Guadalajara.</div>
-    <p class="tx" style="width:640px">Se premiará a <b>creadores literarios, librerías, editoriales independientes y novela gráfica.</b></p>
-    <p class="tx" style="width:640px">La ceremonia será el <mark class="l"><b>3 de diciembre</b></mark>.</p>
-    <div class="defw" style="margin-top:60px;width:760px">
+    <div class="row" style="margin-top:44px">
+      <svg class="d inl cal stick" data-day="3" data-mon="DIC" width="170" height="178"></svg>
+      <svg class="d inl tiktok" width="250" height="250"></svg>
+      <svg class="d inl trophy stick" width="140" height="172"></svg>
+    </div>
+    <div class="lead" style="margin-top:40px"><mark>BookTok</mark> llega por primera vez a la FIL Guadalajara.</div>
+    <p class="tx">Se premiará a <b>creadores literarios, librerías, editoriales independientes y novela gráfica.</b></p>
+    <div class="defw" style="margin-top:54px">
       <span class="tag">¿Lo interesante?</span>
-      <div class="def">Una comunidad que nació en lo <b>digital</b> ahora tiene su premio en un <b>gran evento cultural</b>.</div>
+      <div class="def pink" style="padding:46px 50px 34px">Una comunidad que nació en lo <b>digital</b> ahora tiene su premio en un <b>gran evento cultural</b>.</div>
     </div>
   </div>
-  <svg class="d cal top" data-day="3" data-mon="DIC" style="left:770px;top:390px" width="220" height="230"></svg>
-  <svg class="d star8 top" data-c="#F2A9BE" style="left:930px;top:340px" width="90" height="90"></svg>
-  <svg class="d" style="left:720px;top:620px" width="46" height="46" fill="#6B7027"><use href="#spark"/></svg>
-  <svg class="d tiktok top" style="left:110px;top:1010px" width="270" height="270"></svg>
-  <svg class="d trophy top" style="left:450px;top:1080px" width="150" height="185"></svg>
-  <svg class="d star8" data-c="#F2A9BE" style="left:380px;top:1000px" width="60" height="60"></svg>
-  <svg class="d" style="left:880px;top:1215px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d star8" data-c="#F2A9BE" style="left:840px;top:150px" width="80" height="80"></svg>
+  <svg class="d" style="left:180px;top:420px" width="44" height="44" fill="#E4EB9C"><use href="#spark"/></svg>
+  <svg class="d" style="left:900px;top:1275px" width="130" height="59"><use href="#arrowc"/></svg>
 </section>
 
-<!-- ============ 03 COMMUNITY MARKETING ============ -->
+<!-- ============ 03 COMMUNITY · crema, título a la izquierda + sticker grande ============ -->
 <section class="slide" id="s3">
-  <div class="blob" style="left:960px;top:150px;width:200px;height:200px"></div>
   <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge" style="background:var(--naranja)">2</span>
-        <span class="st b cut2" style="transform:rotate(1deg)">COMMUNITY</span>
-      </div>
-      <span class="sc" style="margin:-24px 0 0 170px;transform:rotate(-4deg)">marketing</span>
+  <div class="blob" style="left:820px;top:520px;width:200px;height:200px"></div>
+  <div class="blob" style="left:40px;top:1180px;width:120px;height:120px"></div>
+  <img class="stk" src="cut/cafe.png" style="left:690px;top:110px;width:370px">
+  <div class="wrap left" style="top:170px">
+    <div class="tb left">
+      <span class="tl or" style="font-size:74px">COMMUNITY</span>
+      <span class="tl pk2" style="margin:-4px 0 0 40px;padding:36px 60px 34px"><span class="sc">marketing</span></span>
+      <span class="tl lb" style="margin:-16px 0 0 90px">ESTRATEGIA <span class="sc">uno</span></span>
     </div>
-    <div class="lead" style="margin-top:24px;width:900px">Hay quienes esperan todo el año para <mark>volver a encontrarse entre libros.</mark></div>
-    <p class="tx" style="width:640px">Ahorran, viajan y se organizan con amigos para conocer a sus autores favoritos.</p>
-    <p class="tx" style="width:640px">Y <b>BookTok y BookTube</b> mantienen viva la conversación todo el año.</p>
-    <div class="defw" style="width:680px;margin-top:40px">
+    <div class="lead" style="width:580px;margin-top:60px">Hay quienes esperan todo el año para <mark>volver a encontrarse entre libros.</mark></div>
+    <p class="tx" style="width:900px;margin-top:26px">Ahorran, viajan y se organizan con amigos. Y <b>BookTok y BookTube</b> mantienen viva la conversación todo el año.</p>
+    <div class="defw" style="width:940px;margin-top:64px">
       <span class="tag">Esto es</span>
-      <div class="def"><span class="term">Community Marketing</span>crear relaciones entre personas con intereses en común y conectarlas con una <b>marca</b>.</div>
+      <div class="def" style="clip-path:polygon(0 0,100% 3%,99.5% 97%,.5% 100%)"><span class="term">Community Marketing</span>crear relaciones entre personas con intereses en común y conectarlas con una <b>marca</b>.</div>
     </div>
   </div>
-  <img class="stk" src="cut/cafe.png" style="left:735px;top:860px;width:340px">
-  <svg class="d star8 top" data-c="#F2A9BE" style="left:960px;top:800px" width="80" height="80"></svg>
-  <svg class="d books" style="left:790px;top:610px" width="170" height="170"></svg>
-  <svg class="d" style="left:72px;top:1235px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d books" style="left:830px;top:1150px" width="190" height="179"></svg>
+  <svg class="d star8 top" data-c="#F2A9BE" style="left:960px;top:540px" width="70" height="70"></svg>
+  <svg class="d" style="left:200px;top:1250px" width="40" height="40" fill="#6B7027"><use href="#spark"/></svg>
+  <svg class="d" style="left:560px;top:1265px" width="130" height="59"><use href="#arrow"/></svg>
 </section>
 
-<!-- ============ 04 MARKETING DE EXPECTATIVA ============ -->
-<section class="slide" id="s4">
-  <div class="blob" style="left:-70px;top:1100px;width:220px;height:220px"></div>
+<!-- ============ 04 EXPECTATIVA · rosa, boleto gigante ============ -->
+<section class="slide bg-rosa" id="s4">
   <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge">3</span>
-        <span class="st o cut3" style="transform:rotate(-1deg)">MARKETING DE</span>
-      </div>
-      <span class="sc" style="margin:-24px 0 0 120px;transform:rotate(-4deg)">expectativa</span>
+  <div class="blob" style="left:60px;top:160px;width:110px;height:110px;background:#fff;opacity:.5"></div>
+  <div class="blob" style="left:900px;top:300px;width:140px;height:140px;background:#fff;opacity:.5"></div>
+  <div class="wrap" style="top:130px">
+    <div class="tb">
+      <span class="tl or" style="font-size:70px">MARKETING DE</span>
+      <span class="tl pk2" style="--bg:var(--crema);margin-top:-4px;padding:36px 60px 34px"><span class="sc">expectativa</span></span>
+      <span class="tl lb" style="margin-top:-16px">ESTRATEGIA <span class="sc">dos</span></span>
     </div>
-    <div class="lead" style="margin-top:28px;width:640px">La emoción empieza <mark>mucho antes de abrir las puertas.</mark></div>
-    <p class="tx" style="width:640px">Autores invitados, firmas y presentaciones: <b>cada anuncio es un motivo para guardar la fecha.</b></p>
-    <div class="defw" style="width:936px;margin-top:46px">
+    <svg class="d inl bigticket" style="margin-top:34px" width="600" height="300"></svg>
+    <div class="lead" style="margin-top:26px">La emoción empieza <mark style="background:linear-gradient(180deg,transparent 52%,#fff 52%,#fff 92%,transparent 92%)">mucho antes de abrir las puertas.</mark></div>
+    <p class="tx">Autores invitados, firmas y presentaciones: <b>cada anuncio es un motivo para guardar la fecha.</b></p>
+    <div class="defw" style="margin-top:56px">
       <span class="tag">Esto es</span>
-      <div class="def"><span class="term">Marketing de expectativa</span>generar <b>anticipación</b> antes de que una experiencia suceda.</div>
+      <div class="def" style="padding:48px 50px 34px"><span class="term" style="font-size:80px">Marketing de expectativa</span>generar <b>anticipación</b> antes de que una experiencia suceda.</div>
     </div>
   </div>
-  <svg class="d ticket top" style="left:735px;top:330px" width="290" height="190"></svg>
-  <svg class="d burst" data-c="#E4EB9C" style="left:880px;top:250px" width="120" height="120"></svg>
-  <svg class="d" style="left:745px;top:540px" width="50" height="50" fill="#F2A9BE"><use href="#spark"/></svg>
-  <svg class="d megaphone" style="left:640px;top:1090px" width="200" height="170"></svg>
-  <svg class="d openbook" style="left:110px;top:1060px" width="300" height="240"></svg>
-  <svg class="d star8" data-c="#F2A9BE" style="left:915px;top:1070px" width="80" height="80"></svg>
-  <svg class="d" style="left:880px;top:1215px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d megaphone" style="left:40px;top:470px" width="150" height="128"></svg>
+  <svg class="d star8" data-c="#FCF1DD" style="left:900px;top:470px" width="80" height="80"></svg>
+  <svg class="d" style="left:900px;top:1275px" width="130" height="59"><use href="#arrow"/></svg>
 </section>
 
-<!-- ============ 05 INFLUENCER MARKETING Y UGC ============ -->
-<section class="slide" id="s5">
-  <div class="blob" style="left:940px;top:240px;width:220px;height:220px"></div>
-  <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge" style="background:var(--naranja)">4</span>
-        <span class="st pk cut1" style="transform:rotate(-1.5deg)">INFLUENCER</span>
-      </div>
-      <div style="display:flex;align-items:flex-end;margin:-26px 0 0 130px">
-        <span class="sc" style="transform:rotate(-4deg)">marketing</span>
-        <span class="st w cut2" style="font-size:50px;margin:0 0 6px 18px;transform:rotate(2deg)">Y UGC</span>
-      </div>
+<!-- ============ 05 INFLUENCER + UGC · cuadrícula, celular grande a la izquierda ============ -->
+<section class="slide grid" id="s5">
+  <div class="url" style="background:var(--crema);left:390px;right:390px;padding:4px 0">@BYENSITAMKT</div>
+  <div class="wrap" style="top:130px;left:60px;right:60px;align-items:flex-end;text-align:right">
+    <div class="tb right">
+      <span class="tl bl" style="font-size:72px">INFLUENCER</span>
+      <span class="tl pk2" style="margin:-4px 30px 0 0;padding:36px 50px 34px"><span class="sc">marketing</span><span class="sm">Y UGC</span></span>
+      <span class="tl lb" style="margin:-16px 80px 0 0">ESTRATEGIA <span class="sc">tres</span></span>
     </div>
-    <div class="lead" style="margin-top:24px;width:930px">Los lectores también hacen marketing. <mark>(Y sin darse cuenta).</mark></div>
-    <p class="tx" style="width:640px"><b>Book hauls, reseñas y recorridos</b> por la feria inspiran a otros a querer vivir la experiencia.</p>
-    <div class="defw" style="width:640px;margin-top:40px">
+  </div>
+  <svg class="d bigphone" style="left:40px;top:470px" width="330" height="536"></svg>
+  <span class="chip abs" style="left:190px;top:430px;z-index:5">#BookTok</span>
+  <span class="chip l abs" style="left:20px;top:900px;z-index:5;transform:rotate(-6deg)">book haul</span>
+  <span class="chip c abs" style="left:270px;top:960px;z-index:5;border:3px solid var(--vino);transform:rotate(4deg)">reseña ★★★★★</span>
+  <div class="abs" style="left:470px;right:60px;top:560px;z-index:3;text-align:left">
+    <div class="lead" style="width:auto;margin-top:0">Los lectores también hacen marketing. <mark>(Y sin darse cuenta).</mark></div>
+    <p class="tx" style="width:auto;margin-top:26px"><b>Book hauls, reseñas y recorridos</b> por la feria inspiran a otros a querer vivir la experiencia.</p>
+  </div>
+  <div class="wrap" style="top:1070px">
+    <div class="defw" style="margin-top:0;width:960px">
       <span class="tag">Esto conecta con</span>
-      <div class="def"><span class="term">Influencer Marketing y UGC</span>usar la voz de <b>creadores</b> y el contenido de los <b>propios lectores</b> para ampliar la conversación.</div>
+      <div class="def" style="padding:46px 44px 30px"><span class="term" style="font-size:76px">Influencer Marketing y UGC</span>usar la voz de <b>creadores</b> y el contenido de los <b>propios lectores</b> para ampliar la conversación.</div>
     </div>
   </div>
-  <img class="stk" src="cut/lee-sonrie.png" style="left:705px;top:810px;width:360px">
-  <svg class="d phone top" style="left:770px;top:600px" width="130" height="200"></svg>
-  <svg class="d heart top" style="left:900px;top:600px" width="70" height="64"></svg>
-  <svg class="d" style="left:72px;top:1235px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d heart top" style="left:370px;top:520px" width="64" height="58"></svg>
+  <svg class="d star8 top" data-c="#F2A9BE" style="left:40px;top:430px" width="70" height="70"></svg>
 </section>
 
-<!-- ============ 06 MARKETING EXPERIENCIAL ============ -->
-<section class="slide" id="s6">
-  <div class="blob" style="left:-60px;top:500px;width:160px;height:160px"></div>
+<!-- ============ 06 EXPERIENCIAL · azul, marco ondulado naranja ============ -->
+<section class="slide bg-azul" id="s6">
   <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge">5</span>
-        <span class="st b cut1" style="transform:rotate(1deg)">MARKETING</span>
-      </div>
-      <span class="sc" style="margin:-24px 0 0 150px;transform:rotate(-4deg)">experiencial</span>
+  <svg class="d scallop" data-c="#EE8A55" data-r="30" style="left:56px;top:110px;z-index:1" width="968" height="880"></svg>
+  <div class="wrap" style="top:200px">
+    <div class="tb">
+      <span class="tl pk" style="font-size:78px;padding:22px 70px 18px 50px;min-height:0">MARKETING</span>
+      <span class="sc" style="font-size:150px;color:var(--crema);margin:50px 0 56px;position:relative;z-index:2">experiencial</span>
+      <span class="tl lb" style="margin:40px 0 0 300px">ESTRATEGIA <span class="sc">cuatro</span></span>
     </div>
-    <div class="lead" style="margin-top:28px;width:930px">No vas solo a comprar libros. <mark>Vas a vivir todo lo que pasa alrededor de ellos.</mark></div>
-    <div style="margin-top:34px;width:660px;display:flex;flex-wrap:wrap;gap:14px 12px">
-      <span class="chip">Firmas con autores</span><span class="chip o">Presentaciones</span><span class="chip b">Encuentros</span><span class="chip l">Talleres</span><span class="chip o">Exposiciones</span><span class="chip">Actividades culturales</span>
+    <div class="lead" style="color:var(--crema);width:820px;margin-top:40px">No vas solo a comprar libros. Vas a vivir <span style="color:var(--vino)">todo lo que pasa alrededor de ellos.</span></div>
+    <div style="margin-top:34px;width:860px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 14px">
+      <span class="chip">Firmas</span><span class="chip v">Presentaciones</span><span class="chip b">Talleres</span><span class="chip l">Exposiciones</span><span class="chip c">Encuentros</span>
     </div>
-    <div class="defw" style="width:936px;margin-top:46px">
+    <div class="defw" style="margin-top:110px">
       <span class="tag">Esto es</span>
       <div class="def"><span class="term">Experiential Marketing</span>conectar a través de <b>experiencias que van más allá del producto</b>.</div>
     </div>
   </div>
-  <svg class="d books top" style="left:790px;top:440px" width="200" height="200"></svg>
-  <svg class="d openbook" style="left:110px;top:1060px" width="300" height="240"></svg>
-  <svg class="d ticket" style="left:480px;top:1110px" width="270" height="177"></svg>
-  <svg class="d star8" data-c="#F2A9BE" style="left:960px;top:380px" width="80" height="80"></svg>
-  <svg class="d" style="left:745px;top:700px" width="50" height="50" fill="#6B7027"><use href="#spark"/></svg>
-  <svg class="d" style="left:880px;top:1215px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d openbook top" style="left:40px;top:60px" width="210" height="168"></svg>
+  <svg class="d star8 top" data-c="#F2A9BE" style="left:930px;top:80px" width="90" height="90"></svg>
+  <svg class="d top" style="left:900px;top:900px" width="50" height="50" fill="#E4EB9C"><use href="#spark"/></svg>
+  <svg class="d" style="left:900px;top:1275px" width="130" height="59"><use href="#arrow"/></svg>
 </section>
 
-<!-- ============ 07 TRADE MARKETING Y VISUAL MERCHANDISING ============ -->
+<!-- ============ 07 TRADE + VM · crema, ilustración arriba y título abajo ============ -->
 <section class="slide" id="s7">
-  <div class="blob" style="left:950px;top:120px;width:200px;height:200px"></div>
   <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge" style="background:var(--naranja)">6</span>
-        <span class="st w cut3" style="font-size:58px;transform:rotate(-1deg)">TRADE MARKETING</span>
-      </div>
-      <span class="sc" style="font-size:104px;margin:-18px 0 0 110px;transform:rotate(-4deg)">y visual</span>
-      <span class="st l cut2" style="font-size:52px;margin:-26px 0 0 400px;transform:rotate(1.5deg)">MERCHANDISING</span>
+  <div class="blob" style="left:130px;top:110px;width:390px;height:390px;opacity:.28"></div>
+  <svg class="d stand" style="left:120px;top:130px" width="390" height="328"></svg>
+  <img class="stk" src="cut/lee-audifonos.png" style="left:590px;top:100px;width:310px">
+  <svg class="d star8 top" data-c="#F2A9BE" style="left:930px;top:160px" width="80" height="80"></svg>
+  <svg class="d burst top" data-c="#E4EB9C" style="left:500px;top:120px" width="110" height="110"></svg>
+  <div class="wrap" style="top:500px">
+    <div class="tb">
+      <span class="tl vn" style="font-size:62px">TRADE MARKETING</span>
+      <span class="tl pk2" style="margin-top:-4px;padding:34px 44px 32px"><span class="sm">Y</span><span class="sc" style="font-size:1.85em">visual merchandising</span></span>
+      <span class="tl lb li" style="margin-top:-16px">ESTRATEGIA <span class="sc">cinco</span></span>
     </div>
-    <div class="lead" style="margin-top:30px;width:930px">Miles de libros y <mark>una batalla por tu atención.</mark></div>
-    <p class="tx" style="width:640px">Stands, portadas, ediciones especiales y activaciones <b>deciden qué libro descubres.</b></p>
-    <div class="defw" style="width:640px;margin-top:40px">
+    <div class="lead" style="margin-top:40px;font-size:38px">Miles de libros y <mark>una batalla por tu atención.</mark></div>
+    <p class="tx" style="font-size:28px">Stands, portadas, ediciones especiales y activaciones <b>deciden qué libro descubres.</b></p>
+    <div class="defw" style="margin-top:50px">
       <span class="tag">Aquí entran</span>
-      <div class="def"><span class="term">Trade Marketing y Visual Merchandising</span>estrategias para que un producto <b>destaque y se venda</b> en el punto de venta.</div>
+      <div class="def" style="padding:46px 44px 30px;font-size:27px"><span class="term" style="font-size:64px">Trade Marketing y Visual Merchandising</span>estrategias para que un producto <b>destaque y se venda</b> en el punto de venta.</div>
     </div>
   </div>
-  <img class="stk" src="cut/lee-audifonos.png" style="left:755px;top:960px;width:300px">
-  <svg class="d stand top" style="left:800px;top:770px" width="220" height="185"></svg>
-  <svg class="d star8 top" data-c="#F2A9BE" style="left:735px;top:930px" width="70" height="70"></svg>
-  <svg class="d" style="left:72px;top:1235px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d" style="left:900px;top:420px" width="130" height="59"><use href="#arrow"/></svg>
 </section>
 
-<!-- ============ 08 MARKETING CULTURAL ============ -->
-<section class="slide" id="s8">
-  <div class="blob" style="left:-60px;top:1150px;width:200px;height:200px"></div>
+<!-- ============ 08 CULTURAL · lima, postal de Italia ============ -->
+<section class="slide bg-lima" id="s8">
   <div class="url">@BYENSITAMKT</div>
-  <div class="wrap">
-    <div class="tt">
-      <div style="display:flex;align-items:center;gap:18px">
-        <span class="badge">7</span>
-        <span class="st o cut2" style="transform:rotate(-1.5deg)">MARKETING</span>
+  <div class="blob" style="left:60px;top:160px;width:110px;height:110px;background:#fff;opacity:.55"></div>
+  <div class="blob" style="left:900px;top:330px;width:120px;height:120px;background:#fff;opacity:.55"></div>
+  <div class="wrap" style="top:140px">
+    <div class="tb">
+      <span class="tl or" style="font-size:80px">MARKETING</span>
+      <span class="tl pk2" style="margin-top:-4px;padding:36px 60px 34px"><span class="sc">cultural</span></span>
+      <span class="tl lb" style="margin-top:-16px">ESTRATEGIA <span class="sc">seis</span></span>
+    </div>
+    <div class="postal">
+      <div class="izq">
+        <div class="ciao">Ciao!</div>
+        <div class="lead" style="width:auto;margin-top:20px;font-size:36px">En 2026, el país invitado de honor es <mark class="l">Italia.</mark></div>
+        <p class="tx" style="width:auto;font-size:26px;margin-top:16px">Literatura, arte, cine, música y gastronomía: <b>la feria convierte una cultura en experiencia.</b></p>
       </div>
-      <span class="sc" style="margin:-24px 0 0 150px;transform:rotate(-4deg)">cultural</span>
+      <div class="der">
+        <svg class="d stamp" style="right:-6px;top:-10px" width="150" height="180"></svg>
+        <svg class="d postmark top" style="left:-30px;top:120px" width="210" height="113"></svg>
+        <div class="lineas" style="position:absolute;left:0;right:0;bottom:6px"><div></div><div></div><div></div></div>
+      </div>
     </div>
-    <div class="lead" style="margin-top:28px;width:640px">En 2026, el país invitado de honor es <mark class="l"><b>Italia</b></mark>.</div>
-    <p class="tx" style="width:640px">Literatura, arte, cine, música y gastronomía: <b>la feria convierte una cultura en experiencia.</b></p>
-    <div class="defw" style="width:936px;margin-top:46px">
+    <div class="defw" style="margin-top:66px">
       <span class="tag">Esto conecta con</span>
-      <div class="def"><span class="term">Marketing Cultural y Place Branding</span>usar la cultura para <b>proyectar la identidad</b> de un lugar.</div>
+      <div class="def" style="padding:48px 50px 34px"><span class="term" style="font-size:80px">Marketing Cultural y Place Branding</span>usar la cultura para <b>proyectar la identidad</b> de un lugar.</div>
     </div>
   </div>
-  <svg class="d stamp top" style="left:745px;top:330px" width="250" height="300"></svg>
-  <svg class="d cup" style="left:150px;top:1080px" width="150" height="193"></svg>
-  <svg class="d books" style="left:400px;top:1110px" width="210" height="198"></svg>
-  <svg class="d star8 top" data-c="#F2A9BE" style="left:950px;top:300px" width="80" height="80"></svg>
-  <svg class="d" style="left:715px;top:600px" width="50" height="50" fill="#6B7027"><use href="#spark"/></svg>
-  <svg class="d" style="left:880px;top:1215px" width="170" height="78"><use href="#arrow"/></svg>
+  <svg class="d cup" style="left:50px;top:430px" width="110" height="141"></svg>
+  <svg class="d star8" data-c="#F2A9BE" style="left:920px;top:160px" width="80" height="80"></svg>
+  <svg class="d" style="left:900px;top:1275px" width="130" height="59"><use href="#arrow"/></svg>
 </section>
 
-<!-- ============ 09 CIERRE ============ -->
-<section class="slide" id="s9">
-  <div class="url">@BYENSITAMKT</div>
-  <div class="blob" style="left:900px;top:520px;width:220px;height:220px"></div>
-  <div class="wrap">
-    <div class="tt">
-      <span class="sc" style="font-size:112px;margin:0 0 -14px 6px;transform:rotate(-4deg)">Entonces,</span>
-      <span class="st o cut1" style="font-size:56px;transform:rotate(-1deg)">¿QUÉ HAY DETRÁS DE UNA</span>
-      <span class="st pk cut2" style="font-size:56px;margin-top:6px;transform:rotate(1deg)">FERIA QUE REÚNE A</span>
-      <span class="st b cut3" style="font-size:56px;margin-top:6px;transform:rotate(-1deg)">TODA UNA COMUNIDAD?</span>
+<!-- ============ 09 CIERRE · naranja, a la izquierda + sticker ============ -->
+<section class="slide dark bg-naranja" id="s9">
+  <div class="url" style="color:rgba(252,241,221,.75)">@BYENSITAMKT</div>
+  <div class="blob" style="left:860px;top:420px;width:200px;height:200px;background:var(--crema);opacity:.25"></div>
+  <div class="blob" style="left:30px;top:1180px;width:140px;height:140px;background:var(--crema);opacity:.25"></div>
+  <div class="wrap left" style="top:160px">
+    <div class="tb left">
+      <span class="tl pk" style="font-size:58px;padding:30px 64px 26px 40px"><span class="sm">ENTONCES,</span><span class="sc" style="font-size:1.9em">¿qué hay detrás</span></span>
+      <span class="tl vn" style="font-size:54px;margin:-4px 0 0 30px;padding:22px 40px 16px">DE UNA FERIA QUE REÚNE</span>
+      <span class="tl lb cr" style="margin:-12px 0 0 70px">A TODA UNA <span class="sc">comunidad?</span></span>
     </div>
-    <p class="tx" style="width:930px;margin-top:40px">Una <b>marca</b> reconocida, una <b>comunidad</b> que la espera y <b>experiencias</b> que invitan a regresar.</p>
+    <p class="tx" style="width:600px;margin-top:56px;font-size:32px">Una <b>marca</b> reconocida, una <b>comunidad</b> que la espera y <b>experiencias</b> que invitan a regresar.</p>
+    <div class="defw" style="margin-top:60px;width:640px">
+      <div class="def" style="padding:44px 44px 40px;font-size:30px;font-weight:600;clip-path:polygon(0 2%,97% 0,100% 12%,99.5% 100%,.5% 98%)">Porque los libros cuentan historias, pero <span class="term" style="font-size:78px;margin-top:8px">las comunidades que se forman alrededor de ellos también.</span></div>
+    </div>
   </div>
-  <svg class="d scallop" data-c="#7A1F3D" data-r="26" style="left:46px;top:900px" width="660" height="400"></svg>
-  <svg class="d fil top" style="left:330px;top:640px" width="340" height="220"></svg>
-  <svg class="d heart" style="left:720px;top:700px" width="70" height="64"></svg>
-  <svg class="d" style="left:250px;top:700px" width="44" height="44" fill="#6B7027"><use href="#spark"/></svg>
-  <div class="abs" style="left:96px;top:950px;width:570px;z-index:4;font:600 29px/1.4 Montserrat;color:var(--crema)">Porque los libros cuentan historias, pero <span style="font-family:Satisfy;font-size:58px;line-height:1.05;color:var(--rosa);-webkit-text-stroke:1px currentColor;display:block;margin-top:6px">las comunidades que se forman alrededor de ellos también.</span></div>
-  <img class="stk" src="cut/lee-sonrie.png" style="left:690px;top:890px;width:380px">
-  <svg class="d burst top" data-c="#E4EB9C" style="left:640px;top:860px" width="110" height="110"></svg>
+  <img class="stk" src="cut/lee-sonrie.png" style="left:640px;top:830px;width:430px">
+  <svg class="d fil top" style="left:700px;top:560px" width="320" height="207"></svg>
+  <svg class="d star8 top" data-c="#FCF1DD" style="left:940px;top:440px" width="80" height="80"></svg>
+  <svg class="d top" style="left:700px;top:470px" width="50" height="50" fill="#E4EB9C"><use href="#spark"/></svg>
 </section>
-
-<style>
-  .chip{display:inline-block;background:var(--rosa);color:var(--vino);font:800 22px/1 Montserrat;text-transform:uppercase;letter-spacing:1px;padding:13px 18px 11px;clip-path:polygon(0 6%,100% 0,98% 100%,2% 94%)}
-  .chip.o{background:var(--naranja);color:var(--crema)} .chip.b{background:var(--azul);color:var(--crema)} .chip.l{background:var(--lima)}
-  .chip:nth-child(odd){transform:rotate(-2deg)} .chip:nth-child(even){transform:rotate(1.5deg)}
-</style>
 
 <script src="doodles.js"></script>
 </body>
