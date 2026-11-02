@@ -1,12 +1,12 @@
-# Carrusel: ¿Pagas de más por tu pasta?
+# Carrusel: ¿Qué pasta te conviene más?
 
 7 láminas de 1080 × 1350 (`pastas-1.png` a `pastas-7.png`).
 
 ## Texto para la publicación
 
-Una pasta de $30 y una de $140 pueden protegerte igual contra la caries. 🪥
+¿Qué pasta te conviene más? Depende de tu caso. 🪥
 
-Lo que importa es el flúor: búscalo en la etiqueta, entre 1,000 y 1,500 ppm.
+Para todos, lo básico es el flúor: búscalo en la etiqueta, entre 1,000 y 1,500 ppm. Desliza y descubre cuál es para ti: diario, sensibilidad, encías o manchas.
 
 ¿Dudas sobre cuál usar? Escríbenos por WhatsApp.
 
