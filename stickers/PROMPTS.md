@@ -13,7 +13,7 @@ Están en inglés porque las IAs de imagen entienden mejor así.
 ```
 Flat vector sticker illustration in a retro hand-drawn editorial style. Limited palette: deep wine/burgundy (#8B1A3D) for all outlines and line art, warm cream (#FCEFD9) for skin, soft pink (#F7A1B5), orange (#F2864E) and olive green (#6B6B10) as accents. Bold, slightly organic burgundy outlines, simple line-art face (the nose is a single line that continues from one eyebrow), hands drawn with clear separate fingers. Thick irregular cream paper-cut border around the whole figure, like a die-cut sticker. Small pink starbursts and olive four-point sparkles behind. Plain white background, no text, no logos.
 
-Character (keep identical in every image): young woman with a round, soft, full face and a curvy, slightly chubby body. Long, softly wavy, voluminous copper-cinnamon auburn hair (#8A3E1E) with a center part, falling past the shoulders. Thick, defined dark brown eyebrows. Brown almond-shaped eyes with visible lashes. Soft, diffused pink blush on both cheeks (not hard circles). Natural pink lips of normal size (not full). Fair warm skin with NO freckles. Wears a chocolate brown top with a thin lace trim.
+Character (keep identical in every image): young woman with a round, soft, full face and a curvy, full-figured body: soft rounded shoulders and arms, full bust, soft tummy, wide hips and full thighs, average height (draw her body realistically curvy, not slim). Long, softly wavy, voluminous copper-cinnamon auburn hair (#8A3E1E) with a center part, falling past the shoulders. Thick, defined dark brown eyebrows. Brown almond-shaped eyes with visible lashes. Soft, diffused pink blush on both cheeks (not hard circles). Natural pink lips of normal size (not full). Fair warm skin with NO freckles. Wears a chocolate brown top with a thin lace trim.
 ```
 
 ## 2. Prompts por sticker (van después del bloque base)
@@ -46,6 +46,12 @@ Half body at a desk, three-quarter view. She smiles softly while typing on a pin
 **Caminando**
 ```
 Full body, walking to the right in a confident wide stride, three-quarter view, smiling. Long-sleeve chocolate brown sweater, high-waisted wide-leg flowing pink trousers with burgundy polka dots, burgundy sneakers. The back arm swings behind with an open relaxed hand, the front arm swings forward. Hair moving slightly with the walk.
+```
+
+**Outfit opcional (como en tu foto)**
+Agrega al prompt de caminando o de cuerpo completo:
+```
+Outfit: oversized cropped knit sweater with wide black and cream horizontal stripes and a mock neck, long sleeves; short denim mini skirt; white sneakers with black socks.
 ```
 
 ## 3. Consejos
