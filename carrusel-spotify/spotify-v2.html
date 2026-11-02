@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El fenómeno Spotify Wrapped · pastel</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{--butter:#FCEFB4;--blue:#C4DDEB;--pink:#F6D3DB;--pinkd:#EDA8BE;--sage:#D8D9AE;--olive:#8E9A58;--choco:#4A2E2B;--cream:#F8F2E3;--berry:#A93A62;--spot:#7DC88B;--white:#FFFDF7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#333;display:flex;flex-direction:column;gap:40px;align-items:center;padding:40px 0}
+  .slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--cream);font-family:Montserrat,sans-serif;color:var(--choco)}
+  .abs{position:absolute}
+  .url{position:absolute;left:0;right:0;top:46px;text-align:center;font:600 19px Montserrat;letter-spacing:5px;color:rgba(74,46,43,.55);z-index:20}
+  .mono{font-family:'Courier Prime',monospace}
+  .grain{position:absolute;inset:0;pointer-events:none;z-index:40;opacity:.16;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .15  0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+  .scatter{position:absolute;inset:0;z-index:0}
+
+  /* patrones */
+  .dots-berry{background-color:var(--pink);background-image:radial-gradient(var(--berry) 0 8px,transparent 8.6px);background-size:52px 52px;background-position:10px 10px}
+  .dots-choco{background-color:var(--pink);background-image:radial-gradient(var(--choco) 0 7px,transparent 7.6px);background-size:44px 44px}
+  .dots-olive{background-color:var(--olive);background-image:radial-gradient(var(--berry) 0 12px,transparent 12.6px),radial-gradient(var(--berry) 0 12px,transparent 12.6px);background-size:96px 96px;background-position:0 0,48px 48px}
+  .str-pink{background:repeating-linear-gradient(90deg,var(--pinkd) 0 20px,var(--pink) 20px 42px)}
+  .str-og{background:repeating-linear-gradient(90deg,var(--olive) 0 30px,var(--pink) 30px 62px)}
+  .str-blue{background:repeating-linear-gradient(90deg,var(--blue) 0 14px,var(--white) 14px 30px)}
+  .wob{filter:url(#wob)}
+
+  /* bloques de título (identidad byensita) */
+  .tb{position:relative;display:flex;flex-direction:column;align-items:center}
+  .tb.left{align-items:flex-start}
+  .tl{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:16px 36px 12px;font:800 48px/1 Montserrat;letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
+  .tl::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);clip-path:var(--cp,polygon(0 5%,100% 0,99.4% 100%,.6% 95%))}
+  .t-ch{--bg:var(--choco);color:var(--cream)} .t-pk{--bg:var(--pink);color:var(--choco)} .t-pd{--bg:var(--pinkd);color:var(--choco)} .t-bu{--bg:var(--butter);color:var(--choco)}
+  .t-bl{--bg:var(--blue);color:var(--choco)} .t-sg{--bg:var(--sage);color:var(--choco)} .t-cr{--bg:var(--cream);color:var(--choco)}
+  .cut{--cp:polygon(5% 0,87% 0,100% 30%,97% 100%,0 100%)}
+  .tall{min-height:118px}
+  .sm{font-size:.6em}
+  .sc{font-family:Sacramento,cursive;font-weight:400;text-transform:none;letter-spacing:0;-webkit-text-stroke:.04em currentColor;line-height:0;font-size:2.1em;display:inline-block;transform:translateY(.06em)}
+  .big{display:block;line-height:1;font-family:Sacramento,cursive;-webkit-text-stroke:.035em currentColor;position:relative;z-index:3;white-space:nowrap}
+
+  .lead{font:700 33px/1.25 Montserrat}
+  .tx{font:500 26px/1.42 Montserrat}
+  .tw{font:400 24px/1.5 'Courier Prime',monospace}
+  .tw b{font-weight:700}
+  mark{background:linear-gradient(180deg,transparent 54%,var(--pinkd) 54%,var(--pinkd) 92%,transparent 92%);color:inherit;padding:0 3px}
+  mark.y{background:linear-gradient(180deg,transparent 54%,var(--butter) 54%,var(--butter) 92%,transparent 92%)}
+  .pill{display:inline-block;background:var(--choco);color:var(--butter);font:800 20px/1 Montserrat;letter-spacing:2.5px;text-transform:uppercase;padding:13px 20px 11px;border-radius:999px;white-space:nowrap}
+  .chip{display:inline-block;font:800 19px/1 Montserrat;text-transform:uppercase;letter-spacing:1.2px;padding:11px 15px 9px;border:2.5px solid var(--choco);border-radius:999px;background:var(--white)}
+  .tape{position:absolute;z-index:12;width:150px;height:42px;background:rgba(237,168,190,.78);clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,100% 0,96% 12%,100% 24%,96% 38%,100% 52%,96% 66%,100% 80%,96% 92%,100% 100%,0 100%,4% 88%,0 74%,4% 60%,0 46%,4% 32%,0 18%)}
+  .tape.y{background:rgba(252,239,180,.92)} .tape.b{background:rgba(196,221,235,.9)}
+  .stk{position:absolute;z-index:10;filter:drop-shadow(0 8px 12px rgba(74,46,43,.2))}
+  svg.d{position:absolute;overflow:visible;z-index:6}
+  svg.inl{position:relative;flex:none;vertical-align:middle}
+  .card{position:absolute;border:3px solid var(--choco);background:var(--white)}
+
+  /* sitio web (lámina 1) */
+  .site{position:absolute;border:3px solid var(--choco);display:flex;flex-direction:column;background:var(--cream);z-index:3}
+  .site>*{border-bottom:3px solid var(--choco)} .site>*:last-child{border-bottom:0}
+  .topbar{height:44px;background:var(--choco);color:var(--cream);display:flex;align-items:center;justify-content:center;font:400 19px 'Courier Prime',monospace;letter-spacing:.5px}
+  .nav{height:80px;background:var(--pink);display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:700 19px Montserrat;letter-spacing:1.5px}
+  .nav .g{display:flex;gap:34px;width:300px} .nav .g.r{justify-content:flex-end}
+  .logo{font-family:Sacramento;font-size:70px;line-height:1;-webkit-text-stroke:1.6px currentColor;display:flex;align-items:center;gap:4px}
+  .marq{height:60px;background:var(--butter);display:flex;align-items:center;justify-content:space-around;font:800 22px Montserrat;letter-spacing:1px}
+  .band{height:96px;background:var(--sage);display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 24px Montserrat}
+  .tiles{flex:1;display:flex} .tiles>div{flex:1;position:relative;overflow:hidden;border-right:3px solid var(--choco)} .tiles>div:last-child{border-right:0}
+  .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font:700 19px 'Courier Prime',monospace}
+
+  /* mini historias Wrapped */
+  .story{position:absolute;width:300px;border:3px solid var(--choco);border-radius:24px;padding:24px 22px 22px;box-shadow:7px 8px 0 rgba(74,46,43,.18);text-align:left;z-index:5}
+  .story .bars{display:flex;gap:5px;margin-bottom:14px} .story .bars i{flex:1;height:5px;border-radius:3px;background:var(--choco);opacity:.25} .story .bars i:first-child{opacity:.9}
+  .story .lbl{font:700 19px 'Courier Prime',monospace}
+  .rank{display:flex;align-items:center;gap:10px;height:40px;margin-top:6px;padding:0 10px;font:800 19px/1 Montserrat;border:2px solid var(--choco);border-radius:8px}
+  .rank b{font:900 26px/1 Montserrat;width:20px}
+
+  /* calendario */
+  .cal table{border-collapse:collapse;width:100%}
+  .cal th{font:700 18px 'Courier Prime',monospace;padding:8px 0;border:2px solid var(--berry);color:var(--berry)}
+  .cal td{position:relative;height:78px;border:2px solid var(--berry);vertical-align:top;text-align:right;padding:6px 9px;font:700 21px 'Courier Prime',monospace;color:var(--berry)}
+
+  /* fotos con marco */
+  .print{position:absolute;background:var(--white);border:3px solid var(--choco);padding:14px;box-shadow:7px 8px 0 rgba(74,46,43,.2);z-index:5}
+  .print .in{height:100%;border:2.5px solid var(--choco);display:flex;flex-direction:column;justify-content:center;padding:0 26px;text-align:left}
+  .num{font:900 86px/1 Montserrat;letter-spacing:-3px}
+  .lab{font:700 21px/1.35 'Courier Prime',monospace;margin-top:8px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="wob" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="6" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter>
+</defs></svg>
+
+<!-- ============ 01 PORTADA · página web estilo loaffa ============ -->
+<section class="slide" id="s1" style="background:var(--butter)">
+  <div class="url">@BYENSITAMKT</div>
+  <div class="site" style="left:44px;top:96px;width:992px;height:1196px">
+    <div class="topbar">Tu resumen del año ya está aquí · desliza para descubrir qué hay detrás</div>
+    <div class="nav">
+      <div class="g"><span>INICIO</span><span>CASOS</span><span>TIPS</span></div>
+      <div class="logo">byensita<svg class="inl flower" data-c="#4A2E2B" width="26" height="26"></svg></div>
+      <div class="g r"><span>GUARDAR</span><span>COMPARTIR(1)</span></div>
+    </div>
+    <div style="height:570px;display:flex">
+      <div style="width:380px;background:var(--pink);border-right:3px solid var(--choco);position:relative;overflow:hidden">
+        <svg class="d star8" data-c="#EDA8BE" style="left:30px;top:40px" width="70" height="70"></svg>
+        <svg class="d notes" style="left:280px;top:60px" width="70" height="66"></svg>
+        <img class="stk" src="cut/audifonos-musica.png" style="left:10px;top:150px;width:360px">
+      </div>
+      <div style="flex:1;background:var(--blue);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center">
+        <div class="scatter" data-n="12" data-c="#FFFDF7" data-r="27" data-seed="9"></div>
+        <div class="tb" style="z-index:2">
+          <span class="tl t-ch" style="font-size:27px">¿Por qué todos esperamos</span>
+          <span class="big" style="font-size:132px;color:var(--choco);margin:-4px 0 -8px">diciembre</span>
+          <span class="tl t-bu" style="font-size:27px">para compartir nuestro</span>
+          <span class="tl t-pd cut" style="font-size:42px;margin-top:-2px;padding:18px 50px 14px 34px">Spotify Wrapped?</span>
+        </div>
+      </div>
+    </div>
+    <div class="marq"><span>TOP ARTISTAS</span><svg class="inl flower" width="22" height="22"></svg><span>MINUTOS</span><svg class="inl flower" width="22" height="22"></svg><span>GÉNEROS</span><svg class="inl flower" width="22" height="22"></svg><span>TOP CANCIONES</span></div>
+    <div class="band"><span>La estrategia de marketing detrás de un fenómeno digital</span><span style="display:flex;align-items:center;gap:12px;font-weight:800">Desliza <svg class="inl arrow" data-h="#F6D3DB" width="96" height="43"></svg></span></div>
+    <div class="tiles">
+      <div class="dots-berry"><svg class="d spotify" style="left:52px;top:56px" width="140" height="140"></svg><div class="cap"><span style="background:var(--white);padding:4px 10px;border:2px solid var(--choco)">tus canciones</span></div></div>
+      <div style="background:var(--white)">
+        <div class="story" style="width:180px;left:30px;top:26px;padding:16px 14px;background:var(--butter);transform:rotate(-4deg)"><div class="bars"><i></i><i></i><i></i></div><div class="lbl" style="font-size:15px">Minutos escuchados</div><div style="font:900 34px/1 Montserrat;margin-top:10px">32,450</div></div>
+        <div class="cap">tus minutos</div>
+      </div>
+      <div class="str-blue wob"><img class="stk" src="cut/libro-cel.png" style="left:12px;top:30px;width:220px"></div>
+      <div style="background:var(--sage)">
+        <svg class="d flower" data-c="#A93A62" data-m="#FCEFB4" style="left:62px;top:40px" width="120" height="120"></svg>
+        <div class="cap">tu personalidad</div>
+      </div>
+    </div>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ 02 EL FENÓMENO · calendario scrapbook ============ -->
+<section class="slide" id="s2">
+  <div class="scatter" data-n="9" data-c="#F6D3DB" data-r="30" data-seed="21"></div>
+  <div class="url">@BYENSITAMKT</div>
+  <div class="abs" style="left:60px;right:60px;top:110px;z-index:5;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div class="tb">
+      <span class="tl t-ch">Spotify convirtió</span>
+      <span class="big" style="font-size:150px;color:var(--berry);margin:-6px 0 -8px">estadísticas</span>
+      <span class="tl t-bl">en un acontecimiento</span>
+    </div>
+    <div class="lead" style="width:900px;margin-top:30px">Cada diciembre, las redes se llenan de canciones, artistas favoritos y <mark>minutos escuchados.</mark></div>
+  </div>
+  <div class="card cal" style="left:60px;top:560px;width:650px;padding:20px 22px 22px;transform:rotate(-2deg);z-index:4;box-shadow:8px 9px 0 rgba(74,46,43,.15)">
+    <div class="tape" style="left:250px;top:-22px;transform:rotate(-4deg)"></div>
+    <div style="display:flex;align-items:baseline;gap:12px;color:var(--berry);margin-bottom:14px">
+      <span style="font:700 24px Montserrat">Un vistazo a</span><span style="font-family:Sacramento;font-size:76px;line-height:.7;-webkit-text-stroke:2.4px currentColor">diciembre</span>
+    </div>
+    <table>
+      <tr><th>lun</th><th>mar</th><th>mié</th><th>jue</th><th>vie</th><th>sáb</th><th>dom</th></tr>
+      <tr><td></td><td>1<svg class="d star4" data-c="#8E9A58" style="left:8px;top:28px" width="34" height="34"></svg></td><td>2</td>
+        <td>3<svg class="d heart" data-c="#F6D3DB" style="left:6px;top:8px;z-index:-1" width="66" height="61"></svg><span class="abs" style="left:-22px;top:58px;z-index:7;background:var(--berry);color:var(--white);font:700 15px 'Courier Prime';padding:3px 8px;transform:rotate(-6deg);white-space:nowrap">¡Wrapped!</span></td>
+        <td>4</td><td>5<svg class="d notes" data-c="#4A2E2B" style="left:10px;top:30px" width="40" height="38"></svg></td><td>6</td></tr>
+      <tr><td>7</td><td>8</td><td>9<svg class="d spotify" style="left:8px;top:22px" width="44" height="44"></svg></td><td>10</td><td>11</td><td>12<svg class="d heart" style="left:12px;top:28px" width="40" height="37"></svg></td><td>13</td></tr>
+      <tr><td>14</td><td>15</td><td>16</td><td>17<svg class="d star8" data-c="#EDA8BE" style="left:8px;top:26px" width="42" height="42"></svg></td><td>18</td><td>19</td><td>20</td></tr>
+    </table>
+  </div>
+  <img class="stk" src="cut/libro-cel.png" style="left:690px;top:560px;width:370px">
+  <svg class="d star4" data-c="#8E9A58" style="left:1000px;top:540px" width="44" height="44"></svg>
+  <div class="card" style="left:110px;right:110px;top:1030px;background:var(--pink);padding:44px 40px 30px;transform:rotate(1deg);z-index:6;box-shadow:8px 9px 0 rgba(74,46,43,.15)">
+    <div class="tape y" style="left:40px;top:-20px;transform:rotate(-6deg);width:200px"></div>
+    <div class="tape y" style="right:30px;top:-18px;transform:rotate(7deg);width:120px"></div>
+    <div style="font:800 29px/1.3 Montserrat">Pero piénsalo: ¿cuántas veces has visto a alguien compartir publicidad de una app con tanto entusiasmo?</div>
+    <div class="tw" style="margin-top:14px;font-size:22px">Millones la esperan, la comparten y hablan de ella por su cuenta. <b>Y eso no es casualidad.</b></div>
+  </div>
+  <svg class="d arrow" style="left:930px;top:1278px" width="120" height="54"></svg>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ 03 LA ESTRATEGIA · página dividida ============ -->
+<section class="slide" id="s3" style="background:var(--choco)">
+  <div class="abs dots-choco wob" style="left:-20px;top:-20px;width:490px;height:1390px"></div>
+  <div class="url" style="left:470px;color:rgba(248,242,227,.6)">@BYENSITAMKT</div>
+  <div class="story" style="left:60px;top:120px;background:var(--butter);transform:rotate(-7deg)">
+    <div class="tape b" style="left:90px;top:-24px;transform:rotate(3deg)"></div>
+    <div class="bars"><i></i><i></i><i></i><i></i></div>
+    <div class="lbl">Minutos escuchados</div>
+    <div style="font:900 56px/1 Montserrat;letter-spacing:-2px;margin-top:12px">32,450</div>
+  </div>
+  <div class="story" style="left:120px;top:420px;background:var(--blue);transform:rotate(5deg)">
+    <div class="bars"><i></i><i></i><i></i><i></i></div>
+    <div class="lbl">Tus géneros top</div>
+    <div class="rank" style="background:var(--pink);margin-top:12px"><b>1</b>Pop</div>
+    <div class="rank" style="background:var(--white)"><b>2</b>Indie</div>
+    <div class="rank" style="background:var(--butter)"><b>3</b>Reggaetón</div>
+    <div class="rank" style="background:var(--sage)"><b>4</b>R&amp;B</div>
+  </div>
+  <div class="story" style="left:50px;top:780px;background:var(--sage);transform:rotate(-4deg)">
+    <div class="tape" style="left:110px;top:-24px;transform:rotate(-5deg)"></div>
+    <div class="bars"><i></i><i></i><i></i><i></i></div>
+    <div class="lbl">Tu personalidad musical</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:14px">
+      <svg class="inl flower" data-c="#A93A62" data-m="#FCEFB4" width="70" height="70"></svg>
+      <div style="font:900 25px/1.1 Montserrat">La<br>Exploradora</div>
+    </div>
+  </div>
+  <svg class="d star8" data-c="#FCEFB4" style="left:330px;top:1110px" width="80" height="80"></svg>
+  <svg class="d heart" style="left:360px;top:360px;z-index:8" width="62" height="57"></svg>
+  <div class="abs" style="left:510px;right:50px;top:130px;z-index:5;color:var(--cream)">
+    <div class="tb left">
+      <span class="tl t-pk" style="font-size:44px">No se trata</span>
+      <span class="tl t-bu" style="font-size:44px;margin-top:-2px">de música,</span>
+    </div>
+    <div class="tw" style="font-size:28px;margin:26px 0 0 4px">se trata de</div>
+    <span class="big" style="font-size:150px;color:var(--pinkd);margin:-14px 0 0 -6px">identidad</span>
+    <div class="tw" style="color:var(--cream);margin-top:24px">Spotify entendió que no solo queremos consumir contenido: <b style="color:var(--butter)">queremos descubrirnos.</b></div>
+    <div class="tw" style="color:var(--cream);margin-top:16px">Convirtió los datos de escucha en una experiencia personal que conecta con <b style="color:var(--pinkd)">recuerdos, emociones y personalidad.</b></div>
+    <div style="border-top:3px dashed rgba(248,242,227,.4);margin:34px 0 26px"></div>
+    <div style="font:800 30px/1.2 Montserrat">Ya no compartes estadísticas:</div>
+    <span class="big" style="font-size:88px;color:var(--butter);margin-top:8px">compartes quién eres.</span>
+    <div style="margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+      <span class="pill" style="background:var(--pink);color:var(--choco)">Personalización</span><span style="font:800 26px Montserrat;color:var(--butter)">+</span><span class="pill" style="background:var(--butter);color:var(--choco)">Marketing emocional</span>
+    </div>
+  </div>
+  <svg class="d arrow" data-c="#F8F2E3" data-h="#A93A62" style="left:930px;top:1278px" width="120" height="54"></svg>
+  <div class="grain" style="opacity:.1"></div>
+</section>
+
+<!-- ============ 04 EL DIFERENCIADOR · tienda / comparativa ============ -->
+<section class="slide" id="s4">
+  <div class="abs str-og wob" style="left:-20px;top:-20px;width:170px;height:1390px"></div>
+  <div class="url" style="left:150px">@BYENSITAMKT</div>
+  <div class="abs" style="left:190px;right:50px;top:120px;z-index:5;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div class="tb">
+      <span class="tl t-ch" style="font-size:46px">¿Y por qué Spotify</span>
+      <span class="tl t-pk tall" style="margin-top:-2px;padding:26px 44px"><span class="sm" style="font-size:.85em">y no</span><span class="sc" style="color:var(--berry)">Apple Music?</span></span>
+    </div>
+    <div class="lead" style="width:780px;margin-top:30px">Apple también tiene su resumen musical: <mark class="y">Replay.</mark></div>
+  </div>
+  <!-- tarjeta Spotify -->
+  <div class="card" style="left:190px;top:560px;width:450px;z-index:5;transform:rotate(-2deg);box-shadow:9px 10px 0 rgba(74,46,43,.18)">
+    <div style="height:54px;background:var(--sage);border-bottom:3px solid var(--choco);display:flex;align-items:center;justify-content:space-between;padding:0 20px;font:800 21px Montserrat;letter-spacing:1.5px">SPOTIFY WRAPPED <svg class="inl flower" width="22" height="22"></svg></div>
+    <div class="dots-berry" style="height:220px;border-bottom:3px solid var(--choco);position:relative"><svg class="d spotify" style="left:145px;top:30px" width="160" height="160"></svg></div>
+    <div style="padding:16px 22px 22px">
+      <span class="big" style="font-size:68px;color:var(--berry)">un acontecimiento</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"><span class="chip" style="background:var(--butter)">visual</span><span class="chip" style="background:var(--pink)">divertido</span><span class="chip" style="background:var(--blue)">personal</span><span class="chip" style="background:var(--choco);color:var(--butter)">para compartir</span></div>
+    </div>
+  </div>
+  <div class="abs" style="left:592px;top:640px;z-index:8;width:100px;height:100px;border-radius:50%;background:var(--butter);border:3px solid var(--choco);font:900 36px/94px Montserrat;text-align:center;transform:rotate(-8deg)">VS</div>
+  <!-- tarjeta Apple -->
+  <div class="card" style="left:670px;top:600px;width:360px;z-index:4;transform:rotate(2.5deg);box-shadow:9px 10px 0 rgba(74,46,43,.12)">
+    <div style="height:54px;background:var(--cream);border-bottom:3px solid var(--choco);display:flex;align-items:center;padding:0 18px;font:800 19px Montserrat;letter-spacing:1px">APPLE MUSIC REPLAY</div>
+    <div style="height:200px;background:var(--blue);border-bottom:3px solid var(--choco);position:relative"><svg class="d applemusic" style="left:115px;top:40px" width="120" height="120"></svg></div>
+    <div style="padding:20px 22px 24px"><div style="font:600 26px/1.3 Montserrat;opacity:.8">un resumen musical</div></div>
+  </div>
+  <svg class="d star8" data-c="#EDA8BE" style="left:980px;top:540px" width="70" height="70"></svg>
+  <svg class="d notes" style="left:880px;top:990px" width="70" height="66"></svg>
+  <div class="abs" style="left:190px;right:50px;top:1120px;z-index:5;text-align:center">
+    <div class="tx" style="font-size:27px">Cada publicación es exposición orgánica: <b style="font-weight:800">sus usuarios no solo consumen Spotify, también lo promocionan.</b></div>
+    <div style="margin-top:22px"><span class="pill">UGC + marketing viral + brand engagement</span></div>
+  </div>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ 05 LOS RESULTADOS · reloj y fotos ============ -->
+<section class="slide" id="s5" style="background:var(--olive)">
+  <div class="abs dots-olive wob" style="inset:-20px"></div>
+  <div class="url" style="color:rgba(248,242,227,.8)">@BYENSITAMKT</div>
+  <div class="abs" style="left:60px;right:60px;top:110px;z-index:5;display:flex;flex-direction:column;align-items:center">
+    <div class="tb">
+      <span class="tl t-cr" style="font-size:38px">Y sí, también se traduce en</span>
+      <span class="big" style="font-size:160px;color:var(--butter);margin-top:-4px;text-shadow:5px 5px 0 var(--choco)">resultados</span>
+    </div>
+  </div>
+  <div class="abs" style="left:60px;top:440px;width:450px;height:600px;border-radius:50%;background:var(--cream);border:4px solid var(--choco);z-index:4;display:flex;flex-direction:column;align-items:center;padding-top:62px;text-align:center;box-shadow:9px 10px 0 rgba(74,46,43,.25)">
+    <svg class="inl clock" width="230" height="230"></svg>
+    <div class="num" style="margin-top:18px">200M+</div>
+    <div class="lab" style="width:300px">personas vieron su Wrapped en sus primeras 24 horas (2025)</div>
+  </div>
+  <div class="print" style="left:560px;top:450px;width:460px;height:270px;transform:rotate(2.5deg)">
+    <svg class="d pin" style="left:212px;top:-18px;z-index:9" width="36" height="36"></svg>
+    <div class="in" style="background:var(--butter)"><div class="num">500M+</div><div class="lab">veces compartido en el lanzamiento: 41% más que en 2024</div></div>
+  </div>
+  <div class="print" style="left:550px;top:760px;width:460px;height:270px;transform:rotate(-2deg)">
+    <svg class="d pin" style="left:212px;top:-18px;z-index:9" width="36" height="36"></svg>
+    <div class="in" style="background:var(--pink)"><div class="num">+20%</div><div class="lab">en descargas de la app, según el caso de Wrapped premiado en Cannes</div></div>
+  </div>
+  <div class="card" style="left:60px;right:60px;top:1085px;background:var(--cream);padding:28px 34px 22px;z-index:5">
+    <div class="tape b" style="left:50%;margin-left:-75px;top:-22px;transform:rotate(-3deg)"></div>
+    <div style="font:700 28px/1.3 Montserrat;text-align:center">Una sola experiencia que impulsa <mark>visibilidad, adquisición y participación.</mark></div>
+    <div style="font:400 15px/1.4 'Courier Prime';text-align:center;margin-top:12px;opacity:.7">Fuentes: Spotify vía TechCrunch y Music Business Worldwide (dic. 2025) · WARC, Cannes Creative Effectiveness 2024.</div>
+  </div>
+  <svg class="d star8" data-c="#F6D3DB" style="left:470px;top:410px" width="70" height="70"></svg>
+  <svg class="d arrow" style="left:940px;top:1285px" width="110" height="50"></svg>
+  <div class="grain"></div>
+</section>
+
+<!-- ============ 06 APRENDIZAJE · cierre ============ -->
+<section class="slide" id="s6">
+  <div class="abs str-pink wob" style="left:670px;top:-20px;width:430px;height:1390px"></div>
+  <div class="url" style="right:410px">@BYENSITAMKT</div>
+  <div class="abs" style="left:70px;width:590px;top:130px;z-index:5">
+    <span class="pill" style="display:inline-flex;align-items:center;gap:10px">El aprendizaje <svg class="inl flower" data-c="#FCEFB4" data-m="#A93A62" width="20" height="20"></svg></span>
+    <div style="font:900 54px/1.06 Montserrat;letter-spacing:-1px;margin-top:30px">No hagas que tus clientes hablen de tu marca.</div>
+    <span class="big" style="font-size:104px;line-height:.92;color:var(--berry);white-space:normal;margin-top:18px">Crea algo de lo que quieran hablar.</span>
+    <svg class="inl squiggle" style="margin-top:10px" width="176" height="40"></svg>
+    <div class="tw" style="margin-top:22px">A veces, la mejor estrategia no es promocionar tu producto: es crear una experiencia <b>tan personal que la gente quiera compartirla.</b></div>
+    <div style="position:relative;margin-top:40px;background:var(--choco);color:var(--cream);padding:34px 32px 28px;font:600 25px/1.42 Montserrat;clip-path:polygon(0 3%,100% 0,99.4% 100%,.6% 97%)">Cuando tu producto se vuelve parte de la conversación, <b style="color:var(--butter)">tus consumidores se convierten en tus mejores promotores.</b> <span style="color:var(--pinkd)">♡</span></div>
+  </div>
+  <img class="stk" src="cut/audifonos-musica.png" style="left:640px;top:180px;width:430px">
+  <img class="stk" src="cut/libro-cel.png" style="left:690px;top:800px;width:370px">
+  <svg class="d spotify" style="left:940px;top:1150px;z-index:11" width="110" height="110"></svg>
+  <svg class="d star8" data-c="#FCEFB4" style="left:660px;top:120px;z-index:11" width="70" height="70"></svg>
+  <svg class="d heart" style="left:100px;top:1190px" width="70" height="64"></svg>
+  <svg class="d star4" data-c="#8E9A58" style="left:200px;top:1220px" width="44" height="44"></svg>
+  <div class="grain"></div>
+</section>
+
+<script src="pastel.js"></script>
+</body>
+</html>
