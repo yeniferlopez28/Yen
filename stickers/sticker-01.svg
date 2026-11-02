@@ -36,14 +36,14 @@
   </g>
 
   <!-- hair (single reddish tone) -->
-  <use href="#hair" fill="#9C2222"/>
+  <use href="#hair" fill="#8A3E1E"/>
   <!-- shine + soft waves -->
   <g fill="none" stroke-linecap="round">
-    <path stroke="#C8473C" stroke-width="10" opacity="0.8" d="M415 210 C 372 230 340 268 326 322"/>
-    <path stroke="#C8473C" stroke-width="10" opacity="0.8" d="M585 210 C 628 230 660 268 674 322"/>
-    <path stroke="#C8473C" stroke-width="7" opacity="0.6" d="M296 610 C 286 650 304 680 292 728"/>
-    <path stroke="#C8473C" stroke-width="7" opacity="0.6" d="M704 610 C 714 650 696 680 708 728"/>
-    <g stroke="#5E1212" stroke-width="5">
+    <path stroke="#B8693F" stroke-width="10" opacity="0.8" d="M415 210 C 372 230 340 268 326 322"/>
+    <path stroke="#B8693F" stroke-width="10" opacity="0.8" d="M585 210 C 628 230 660 268 674 322"/>
+    <path stroke="#B8693F" stroke-width="7" opacity="0.6" d="M296 610 C 286 650 304 680 292 728"/>
+    <path stroke="#B8693F" stroke-width="7" opacity="0.6" d="M704 610 C 714 650 696 680 708 728"/>
+    <g stroke="#4E1D0C" stroke-width="5">
       <path d="M318 425 C 304 465 328 495 312 545"/>
       <path d="M682 425 C 696 465 672 495 688 545"/>
     </g>
@@ -68,12 +68,12 @@
   <path fill="#FCEFD9" d="M500 280 C 594 280 652 346 652 434 C 652 530 588 590 500 590 C 412 590 348 530 348 434 C 348 346 406 280 500 280 Z"/>
 
   <!-- hairline with center part (curtains over forehead edges) -->
-  <path fill="#9C2222" d="M500 262
+  <path fill="#8A3E1E" d="M500 262
     C 436 262 368 300 348 370 C 340 400 342 440 348 470
     C 360 420 386 360 428 330 C 460 306 488 300 500 290
     C 512 300 540 306 572 330 C 614 360 642 420 652 470
     C 658 440 660 400 652 370 C 632 300 564 262 500 262 Z"/>
-  <path fill="none" stroke="#6E1F17" stroke-width="5" stroke-linecap="round" d="M500 200 L500 288"/>
+  <path fill="none" stroke="#4E1D0C" stroke-width="5" stroke-linecap="round" d="M500 200 L500 288"/>
 
   <!-- blush -->
   <radialGradient id="blush">
@@ -87,7 +87,7 @@
   </g>
 
   <!-- brows -->
-  <g fill="#5A1E14">
+  <g fill="#4E2414">
     <path d="M402 394 C 422 374 462 372 482 382 L480 398 C 458 391 426 395 406 407 Z"/>
     <path d="M598 394 C 578 374 538 372 518 382 L520 398 C 542 391 574 395 594 407 Z"/>
   </g>
