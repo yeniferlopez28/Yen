@@ -32,7 +32,7 @@
   <!-- paper cutout border -->
   <g fill="#FCEFD9" stroke="#FCEFD9" stroke-width="58" stroke-linejoin="bevel">
     <use href="#hair"/>
-    <path transform="translate(500,-55) scale(1.12,1) translate(-500,0)" d="M300 940 C 300 850 340 800 420 782 L580 782 C 660 800 700 850 700 940 Z"/>
+    <path transform="translate(500,-75) scale(1.25,1) translate(-500,0)" d="M300 940 C 300 850 340 800 420 782 L580 782 C 660 800 700 850 700 940 Z"/>
   </g>
 
   <!-- hair (single reddish tone) -->
@@ -49,7 +49,7 @@
     </g>
   </g>
 
-  <g transform="translate(500,-55) scale(1.12,1) translate(-500,0)">
+  <g transform="translate(500,-75) scale(1.25,1) translate(-500,0)">
   <!-- neck + shoulders -->
   <path fill="#FCEFD9" d="M300 940 C 300 850 340 800 420 782 C 445 776 455 750 457 712 L457 520 L543 520 L543 712 C 545 750 555 776 580 782 C 660 800 700 850 700 940 Z"/>
   <path fill="#EBD5BD" d="M457 570 C 480 598 520 598 543 570 L543 612 C 520 628 480 628 457 612 Z"/>
@@ -66,14 +66,14 @@
   </g>
 
   <!-- face -->
-  <path fill="#FCEFD9" d="M500 282 C 580 282 634 346 634 430 C 634 520 580 588 500 588 C 420 588 366 520 366 430 C 366 346 420 282 500 282 Z"/>
+  <path fill="#FCEFD9" d="M500 280 C 594 280 652 346 652 434 C 652 530 588 590 500 590 C 412 590 348 530 348 434 C 348 346 406 280 500 280 Z"/>
 
   <!-- hairline with center part (curtains over forehead edges) -->
   <path fill="#9C2222" d="M500 262
-    C 440 262 380 300 360 370 C 352 400 356 440 362 470
-    C 372 420 392 360 430 330 C 460 306 488 300 500 290
-    C 512 300 540 306 570 330 C 608 360 628 420 638 470
-    C 644 440 648 400 640 370 C 620 300 560 262 500 262 Z"/>
+    C 436 262 368 300 348 370 C 340 400 342 440 348 470
+    C 360 420 386 360 428 330 C 460 306 488 300 500 290
+    C 512 300 540 306 572 330 C 614 360 642 420 652 470
+    C 658 440 660 400 652 370 C 632 300 564 262 500 262 Z"/>
   <path fill="none" stroke="#6E1F17" stroke-width="5" stroke-linecap="round" d="M500 200 L500 288"/>
 
   <!-- blush -->
@@ -83,8 +83,8 @@
     <stop offset="1" stop-color="#F7A1B5" stop-opacity="0"/>
   </radialGradient>
   <g fill="url(#blush)">
-    <ellipse cx="426" cy="484" rx="56" ry="44"/>
-    <ellipse cx="574" cy="484" rx="56" ry="44"/>
+    <ellipse cx="420" cy="488" rx="56" ry="44"/>
+    <ellipse cx="580" cy="488" rx="56" ry="44"/>
   </g>
 
   <!-- brows -->
