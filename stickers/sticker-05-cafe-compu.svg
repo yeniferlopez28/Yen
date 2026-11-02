@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1060" width="1000" height="1060">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" width="1000" height="1080">
   <defs>
     <path id="hair" d="M500 170 C 375 170 294 252 288 370 C 284 430 260 458 266 518
       C 272 572 250 600 256 655 C 262 708 240 738 254 788 C 268 832 310 850 338 836
@@ -23,8 +23,14 @@
       <ellipse cx="45" cy="45" rx="8" ry="11" fill="#8B1A3D"/>
     </pattern>
   </defs>
-  <g><path transform="translate(150,330) scale(0.85)" fill="#F7A1B5" d="M0 -100 L22 -30 L95 -31 L36 12 L59 81 L0 38 L-59 81 L-36 12 L-95 -31 L-22 -30 Z"/><path transform="translate(860,230) scale(1.1)" fill="#6B6B10" d="M0 -30 L6 -6 L30 0 L6 6 L0 30 L-6 6 L-30 0 L-6 -6 Z"/><path transform="translate(120,660) scale(0.8)" fill="#6B6B10" d="M0 -30 L6 -6 L30 0 L6 6 L0 30 L-6 6 L-30 0 L-6 -6 Z"/></g>
-  <g filter="url(#cutout)">
+  <defs>
+  <pattern id="dotsCream" width="70" height="70" patternUnits="userSpaceOnUse">
+    <rect width="70" height="70" fill="#FCEFD9"/>
+    <ellipse cx="18" cy="18" rx="10" ry="13" fill="#8B1A3D"/>
+    <ellipse cx="53" cy="53" rx="10" ry="13" fill="#8B1A3D"/>
+  </pattern><clipPath id="crop"><rect x="0" y="0" width="1000" height="1040"/></clipPath></defs>
+  <g><path transform="translate(830,300) scale(0.9)" fill="#F2A0B4" d="M0 -100 L22 -30 L95 -31 L36 12 L59 81 L0 38 L-59 81 L-36 12 L-95 -31 L-22 -30 Z"/><path transform="translate(170,760) scale(0.7)" fill="#F2A0B4" d="M0 -100 L22 -30 L95 -31 L36 12 L59 81 L0 38 L-59 81 L-36 12 L-95 -31 L-22 -30 Z"/><path transform="translate(170,300) scale(1.0)" fill="#6B6B10" d="M0 -30 L6 -6 L30 0 L6 6 L0 30 L-6 6 L-30 0 L-6 -6 Z"/><path transform="translate(860,700) scale(0.9)" fill="#6B6B10" d="M0 -30 L6 -6 L30 0 L6 6 L0 30 L-6 6 L-30 0 L-6 -6 Z"/></g>
+  <g filter="url(#cutout)"><g clip-path="url(#crop)">
   <use href="#hair" fill="#8A3E1E"/>
   <g fill="none" stroke-linecap="round">
     <path stroke="#B8693F" stroke-width="10" opacity="0.8" d="M415 210 C 372 230 340 268 326 322"/>
@@ -37,15 +43,15 @@
     </g>
   </g>
   <g transform="translate(500,-75) scale(1.25,1) translate(-500,0)">
-    <path fill="#FCEFD9" d="M300 940 C 300 852 336 806 404 792 C 440 784 457 764 457 728 L457 520 L543 520 L543 728 C 543 764 560 784 596 792 C 664 806 700 852 700 940 Z"/>
+    <path fill="#FCEFD9" d="M300 1200 L300 940 C 300 852 336 806 404 792 C 440 784 457 764 457 728 L457 520 L543 520 L543 728 C 543 764 560 784 596 792 C 664 806 700 852 700 940 L700 1200 Z"/>
     <path fill="#EBD5BD" d="M457 570 C 480 598 520 598 543 570 L543 612 C 520 628 480 628 457 612 Z"/>
-    <clipPath id="bodyClip-coffee"><path d="M300 940 C 300 852 336 806 404 792 C 440 784 457 764 457 728 L457 520 L543 520 L543 728 C 543 764 560 784 596 792 C 664 806 700 852 700 940 Z"/></clipPath>
-    <g clip-path="url(#bodyClip-coffee)">
-      <path fill="#5B3326" d="M250 845 C 340 846 420 872 500 872 C 580 872 660 846 750 845 L750 960 L250 960 Z"/>
-      <path fill="none" stroke="#7E4A38" stroke-width="7" stroke-dasharray="1 13" stroke-linecap="round" d="M250 852 C 340 853 420 879 500 879 C 580 879 660 853 750 852"/>
-      <path fill="none" stroke="#7E4A38" stroke-width="3" d="M250 860 C 340 861 420 887 500 887 C 580 887 660 861 750 860"/>
+    <clipPath id="bodyClip-coffee2"><path d="M300 1200 L300 940 C 300 852 336 806 404 792 C 440 784 457 764 457 728 L457 520 L543 520 L543 728 C 543 764 560 784 596 792 C 664 806 700 852 700 940 L700 1200 Z"/></clipPath>
+    <g clip-path="url(#bodyClip-coffee2)">
+      <path fill="#5B3326" d="M380 862 C 430 874 470 878 500 878 C 530 878 570 874 620 862 L640 1200 L360 1200 Z"/>
+      <path fill="none" stroke="#7E4A38" stroke-width="7" stroke-dasharray="1 13" stroke-linecap="round" d="M380 868 C 430 880 470 884 500 884 C 530 884 570 880 620 868"/>
+      <path fill="url(#dotsCream)" stroke="#8B1A3D" stroke-width="6" d="M240 780 L404 790 L470 1200 L240 1200 Z"/>
+      <path fill="url(#dotsCream)" stroke="#8B1A3D" stroke-width="6" d="M760 780 L596 790 L530 1200 L760 1200 Z"/>
     </g>
-    <path stroke="#3A1E16" stroke-width="7" fill="none" stroke-linecap="round" d="M372 852 L392 788 M628 852 L608 788"/>
   </g>
   <path fill="#FCEFD9" d="M500 280 C 594 280 652 346 652 434 C 652 530 588 590 500 590 C 412 590 348 530 348 434 C 348 346 406 280 500 280 Z"/>
   <path fill="#8A3E1E" d="M500 262 C 436 262 368 300 348 370 C 340 400 342 440 348 470
@@ -57,7 +63,7 @@
     <ellipse cx="580" cy="488" rx="56" ry="44"/>
   </g>
   <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M490 414 C 494 450 488 476 480 494 C 492 506 508 506 518 498"/>
-  <g fill="#4E2414" transform="translate(0,0)">
+  <g fill="#4E2414" transform="translate(0,-6)">
     <path d="M402 394 C 422 374 462 372 482 382 L480 398 C 458 391 426 395 406 407 Z"/>
     <path d="M598 394 C 578 374 538 372 518 382 L520 398 C 542 391 574 395 594 407 Z"/>
   </g>
@@ -67,44 +73,55 @@
     <path d="M412 442 L400 434 M588 442 L600 434"/>
   </g>
   <g fill="#8B1A3D">
-    <circle cx="448" cy="448" r="12"/>
-    <circle cx="564" cy="448" r="12"/>
+    <circle cx="452" cy="448" r="12"/>
+    <circle cx="568" cy="448" r="12"/>
   </g>
   <g fill="#FCEFD9">
-    <circle cx="453" cy="443" r="4"/>
-    <circle cx="569" cy="443" r="4"/>
+    <circle cx="457" cy="443" r="4"/>
+    <circle cx="573" cy="443" r="4"/>
   </g>
   <path fill="#E9879B" d="M466 534 C 482 550 518 550 534 534 C 522 528 511 531 500 533 C 489 531 478 528 466 534 Z"/>
   <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round" d="M462 534 C 482 549 518 549 538 534"/>
-  <!-- forearm holding the mug -->
-  <path fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round"
-        d="M790 985 C 760 920 736 860 706 800 L776 790 C 806 850 840 910 872 975 Z"/>
-  <!-- mug -->
-  <path fill="#8B1A3D" d="M680 690 L800 690 L792 800 C 790 812 690 812 688 800 Z"/>
-  <path fill="none" stroke="#8B1A3D" stroke-width="16" d="M798 716 C 846 716 846 776 794 776"/>
-  <path fill="#F7A1B5" d="M712 726 C 712 716 724 710 734 720 C 744 710 756 716 756 726 C 756 740 734 752 734 752 C 734 752 712 740 712 726 Z"/>
-  <g fill="none" stroke="#8B1A3D" stroke-width="7" stroke-linecap="round">
-    <path d="M720 670 C 706 650 734 636 720 612"/>
-    <path d="M756 670 C 742 650 770 636 756 612"/>
-  </g>
-  <!-- fingers wrapped around the mug -->
-  <g fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6">
-    <rect x="664" y="726" width="58" height="26" rx="13"/>
-    <rect x="660" y="752" width="62" height="26" rx="13"/>
-    <rect x="664" y="778" width="58" height="26" rx="13"/>
-  </g>
-  <!-- laptop (back of the lid facing us) -->
-  <g transform="rotate(-6 420 860)">
-    <rect x="220" y="740" width="400" height="250" rx="22" fill="#F7A1B5" stroke="#8B1A3D" stroke-width="7"/>
-    <path transform="translate(420,862) scale(1.6)" fill="#8B1A3D" d="M0 12 C -6 2 -22 -2 -22 -14 C -22 -24 -10 -28 0 -18 C 10 -28 22 -24 22 -14 C 22 -2 6 2 0 12 Z"/>
+  <!-- sleeve of the arm holding the cup -->
+  <path fill="url(#dotsCream)" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round"
+        d="M200 1100 C 236 980 280 890 340 812 L442 846 C 404 920 376 1000 362 1100 Z"/>
+  <path fill="#8B1A3D" d="M332 824 L344 794 L452 832 L440 862 Z"/>
+  <g transform="translate(-10,95) rotate(-8 470 600)">
+    <!-- palm behind cup -->
+    <path fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round"
+          d="M372 735 C 370 690 384 640 414 610 L452 600 L470 700 C 450 735 410 750 372 735 Z"/>
+    <!-- to-go cup -->
+    <path fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round" d="M408 470 L532 470 L516 652 L424 652 Z"/>
+    <path fill="#8B1A3D" d="M415 540 L525 540 L520 598 L420 598 Z"/>
+    <path transform="translate(470,572) scale(0.75)" fill="#F7A1B5" d="M0 12 C -6 2 -22 -2 -22 -14 C -22 -24 -10 -28 0 -18 C 10 -28 22 -24 22 -14 C 22 -2 6 2 0 12 Z"/>
+    <rect x="396" y="440" width="148" height="36" rx="12" fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6"/>
+    <rect x="420" y="422" width="100" height="24" rx="9" fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6"/>
+    <path fill="none" stroke="#8B1A3D" stroke-width="5" stroke-linecap="round" d="M440 492 L436 528 M470 492 L470 528 M500 492 L504 528"/>
+    <!-- fingers wrapped across the cup -->
     <g fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6">
-      <rect x="430" y="716" width="24" height="54" rx="12"/>
-      <rect x="456" y="712" width="24" height="58" rx="12"/>
-      <rect x="482" y="716" width="24" height="54" rx="12"/>
-      <rect x="508" y="724" width="22" height="46" rx="11"/>
+      <rect x="408" y="604" width="92" height="26" rx="13"/>
+      <rect x="404" y="628" width="98" height="26" rx="13"/>
+      <rect x="408" y="652" width="88" height="26" rx="13"/>
+      <rect x="396" y="560" width="26" height="62" rx="13" transform="rotate(-12 409 591)"/>
     </g>
   </g>
-  <rect x="150" y="975" width="700" height="14" rx="7" fill="#8B1A3D"/>
+  <!-- notebook hugged with the other arm -->
+  <g transform="rotate(18 700 900)">
+    <rect x="590" y="770" width="230" height="290" rx="14" fill="#F7A1B5" stroke="#8B1A3D" stroke-width="7"/>
+    <path stroke="#8B1A3D" stroke-width="7" d="M616 770 L616 1060"/>
+    <path fill="none" stroke="#8B1A3D" stroke-width="6" stroke-linecap="round"
+          d="M660 880 C 680 850 700 900 720 870 C 740 840 760 890 780 860"/>
+    <path transform="translate(735,960) scale(0.22)" fill="#8B1A3D" d="M0 -100 L22 -30 L95 -31 L36 12 L59 81 L0 38 L-59 81 L-36 12 L-95 -31 L-22 -30 Z"/>
+  </g>
+  <path fill="url(#dotsCream)" stroke="#8B1A3D" stroke-width="6" stroke-linejoin="round"
+        d="M860 1100 C 830 1000 780 930 712 892 L652 960 C 700 990 740 1040 760 1100 Z"/>
+  <path fill="#8B1A3D" d="M706 880 L724 904 L664 972 L644 950 Z"/>
+  <g fill="#FCEFD9" stroke="#8B1A3D" stroke-width="6">
+    <path d="M642 958 C 610 950 590 930 596 905 C 602 885 628 880 650 892 L690 905 Z"/>
+    <rect x="574" y="866" width="70" height="24" rx="12" transform="rotate(30 609 878)"/>
+    <rect x="566" y="892" width="70" height="24" rx="12" transform="rotate(30 601 904)"/>
+    <rect x="566" y="918" width="62" height="24" rx="12" transform="rotate(30 597 930)"/>
+  </g></g>
   </g>
   <g></g>
 </svg>

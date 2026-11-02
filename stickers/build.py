@@ -292,6 +292,155 @@ def s_walk():
     return svg(W, H, back, head_g + body + face_g)
 
 
+# ---------- v2 poses, closer to the reference illustration style ----------
+
+DOTS_CREAM = f"""
+  <pattern id="dotsCream" width="70" height="70" patternUnits="userSpaceOnUse">
+    <rect width="70" height="70" fill="{CREAM}"/>
+    <ellipse cx="18" cy="18" rx="10" ry="13" fill="{WINE}"/>
+    <ellipse cx="53" cy="53" rx="10" ry="13" fill="{WINE}"/>
+  </pattern>"""
+
+
+def svg2(w, h, back, character, front="", crop_bottom=None):
+    clip = ""
+    inner = character
+    if crop_bottom:
+        clip = f'<clipPath id="crop"><rect x="0" y="0" width="{w}" height="{crop_bottom}"/></clipPath>'
+        inner = f'<g clip-path="url(#crop)">{character}</g>'
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">{DEFS}
+  <defs>{DOTS_CREAM}{clip}</defs>
+  <g>{back}</g>
+  <g filter="url(#cutout)">{inner}
+  </g>
+  <g>{front}</g>
+</svg>
+"""
+
+
+def cardigan_body(uid):
+    long_body = BODY_PATH.replace("M300 940", "M300 1200 L300 940").replace("700 940 Z", "700 940 L700 1200 Z")
+    return f"""
+  <g {BODY_T}>
+    <path fill="{SKIN}" d="{long_body}"/>
+    <path fill="{SKIN_SHADE}" d="M457 570 C 480 598 520 598 543 570 L543 612 C 520 628 480 628 457 612 Z"/>
+    <clipPath id="bodyClip-{uid}"><path d="{long_body}"/></clipPath>
+    <g clip-path="url(#bodyClip-{uid})">
+      <path fill="{TOP}" d="M380 862 C 430 874 470 878 500 878 C 530 878 570 874 620 862 L640 1200 L360 1200 Z"/>
+      <path fill="none" stroke="{TOP_LACE}" stroke-width="7" stroke-dasharray="1 13" stroke-linecap="round" d="M380 868 C 430 880 470 884 500 884 C 530 884 570 880 620 868"/>
+      <path fill="url(#dotsCream)" stroke="{WINE}" stroke-width="6" d="M240 780 L404 790 L470 1200 L240 1200 Z"/>
+      <path fill="url(#dotsCream)" stroke="{WINE}" stroke-width="6" d="M760 780 L596 790 L530 1200 L760 1200 Z"/>
+    </g>
+  </g>"""
+
+
+def s_coffee():
+    back = star(830, 300, 0.9, "#F2A0B4") + star(170, 760, 0.7, "#F2A0B4") + sparkle(170, 300, 1.0) + sparkle(860, 700, 0.9)
+    cup_hand = f"""
+  <!-- sleeve of the arm holding the cup -->
+  <path fill="url(#dotsCream)" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M200 1100 C 236 980 280 890 340 812 L442 846 C 404 920 376 1000 362 1100 Z"/>
+  <path fill="{WINE}" d="M332 824 L344 794 L452 832 L440 862 Z"/>
+  <g transform="translate(-10,95) rotate(-8 470 600)">
+    <!-- palm behind cup -->
+    <path fill="{SKIN}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+          d="M372 735 C 370 690 384 640 414 610 L452 600 L470 700 C 450 735 410 750 372 735 Z"/>
+    <!-- to-go cup -->
+    <path fill="{CREAM}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round" d="M408 470 L532 470 L516 652 L424 652 Z"/>
+    <path fill="{WINE}" d="M415 540 L525 540 L520 598 L420 598 Z"/>
+    {heart(470, 572, 0.75, PINK)}
+    <rect x="396" y="440" width="148" height="36" rx="12" fill="{CREAM}" stroke="{WINE}" stroke-width="6"/>
+    <rect x="420" y="422" width="100" height="24" rx="9" fill="{CREAM}" stroke="{WINE}" stroke-width="6"/>
+    <path fill="none" stroke="{WINE}" stroke-width="5" stroke-linecap="round" d="M440 492 L436 528 M470 492 L470 528 M500 492 L504 528"/>
+    <!-- fingers wrapped across the cup -->
+    <g fill="{SKIN}" stroke="{WINE}" stroke-width="6">
+      <rect x="408" y="604" width="92" height="26" rx="13"/>
+      <rect x="404" y="628" width="98" height="26" rx="13"/>
+      <rect x="408" y="652" width="88" height="26" rx="13"/>
+      <rect x="396" y="560" width="26" height="62" rx="13" transform="rotate(-12 409 591)"/>
+    </g>
+  </g>"""
+    notebook = f"""
+  <!-- notebook hugged with the other arm -->
+  <g transform="rotate(18 700 900)">
+    <rect x="590" y="770" width="230" height="290" rx="14" fill="{PINK}" stroke="{WINE}" stroke-width="7"/>
+    <path stroke="{WINE}" stroke-width="7" d="M616 770 L616 1060"/>
+    <path fill="none" stroke="{WINE}" stroke-width="6" stroke-linecap="round"
+          d="M660 880 C 680 850 700 900 720 870 C 740 840 760 890 780 860"/>
+    {star(735, 960, 0.22, WINE)}
+  </g>
+  <path fill="url(#dotsCream)" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M860 1100 C 830 1000 780 930 712 892 L652 960 C 700 990 740 1040 760 1100 Z"/>
+  <path fill="{WINE}" d="M706 880 L724 904 L664 972 L644 950 Z"/>
+  <g fill="{SKIN}" stroke="{WINE}" stroke-width="6">
+    <path d="M642 958 C 610 950 590 930 596 905 C 602 885 628 880 650 892 L690 905 Z"/>
+    <rect x="574" y="866" width="70" height="24" rx="12" transform="rotate(30 609 878)"/>
+    <rect x="566" y="892" width="70" height="24" rx="12" transform="rotate(30 601 904)"/>
+    <rect x="566" y="918" width="62" height="24" rx="12" transform="rotate(30 597 930)"/>
+  </g>"""
+    character = (hair_back() + cardigan_body("coffee2") +
+                 face_base() + brows(6) + eyes_open(look_x=10) + MOUTH_SOFT + cup_hand + notebook)
+    return svg2(1000, 1080, back, character, crop_bottom=1040)
+
+
+def s_walk():
+    W, H = 1000, 1150
+    back = star(180, 260, 0.75, "#F2A0B4") + star(840, 700, 0.6, "#F2A0B4") + sparkle(800, 200, 1.0) + sparkle(150, 820, 0.9)
+    HT = 'transform="translate(220,6) scale(0.5)"'
+    hair_g = f'<g {HT}>{hair_back()}</g>'
+    face_g = f'<g {HT}>{face_base()}{brows(4)}{eyes_open(look_x=12)}{MOUTH_BIG_SMILE}</g>'
+
+    def finger(d):
+        return (f'<path fill="none" stroke="{WINE}" stroke-width="24" stroke-linecap="round" d="{d}"/>'
+                f'<path fill="none" stroke="{SKIN}" stroke-width="12" stroke-linecap="round" d="{d}"/>')
+
+    body = f"""
+  <!-- back arm swinging back, open hand -->
+  <path fill="{TOP}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M402 345 C 362 420 322 500 282 586 L338 610 C 372 528 414 456 446 392 Z"/>
+  <path fill="{WINE}" d="M280 584 L340 610 L330 632 L270 606 Z"/>
+  {finger("M276 640 L252 690")}{finger("M292 650 L276 704")}{finger("M308 652 L302 704")}{finger("M322 646 L328 690")}
+  <path fill="{SKIN}" stroke="{WINE}" stroke-width="6" d="M268 612 C 256 632 262 660 290 668 C 318 674 336 650 332 628 Z"/>
+  {finger("M272 628 L258 656")}
+
+  <g transform="translate(0,612) scale(1,0.74) translate(0,-612)">
+  <!-- back leg -->
+  <path fill="url(#dots)" stroke="{WINE}" stroke-width="7" stroke-linejoin="round"
+        d="M396 612 L486 612 C 466 800 418 1000 392 1236 L222 1212 C 288 1000 350 800 396 612 Z"/>
+  <g transform="rotate(-24 300 1250)">
+    <path fill="{WINE}" d="M222 1226 L380 1226 C 392 1226 398 1250 390 1270 L210 1270 C 196 1270 196 1240 222 1226 Z"/>
+    <path stroke="{CREAM}" stroke-width="5" stroke-linecap="round" d="M300 1236 L340 1236 M296 1248 L336 1248"/>
+  </g>
+
+  </g>
+  <g transform="translate(0,612) scale(1,0.74) translate(0,-612)">
+  <!-- front leg stepping forward -->
+  <path fill="url(#dots)" stroke="{WINE}" stroke-width="7" stroke-linejoin="round"
+        d="M466 612 L574 612 C 640 800 716 1000 784 1212 L612 1242 C 572 1000 520 800 466 612 Z"/>
+  <g transform="rotate(6 700 1260)">
+    <path fill="{WINE}" d="M610 1240 L760 1236 C 800 1240 818 1260 812 1282 L606 1284 C 596 1270 598 1250 610 1240 Z"/>
+    <path stroke="{CREAM}" stroke-width="5" stroke-linecap="round" d="M680 1248 L720 1246 M684 1260 L724 1258"/>
+  </g>
+
+  </g>
+  <!-- neck + sweater -->
+  <path fill="{SKIN}" d="M446 250 L494 250 L494 330 L446 330 Z"/>
+  <path fill="{TOP}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M402 340 C 428 322 446 318 450 318 C 458 338 482 338 490 318 C 500 318 524 324 544 340
+           C 572 362 584 396 584 436 L576 622 L392 622 L384 436 C 382 396 384 362 402 340 Z"/>
+  <path fill="none" stroke="{TOP_LACE}" stroke-width="6" stroke-dasharray="1 11" stroke-linecap="round" d="M452 326 C 462 344 480 344 488 326"/>
+  <!-- waistband -->
+  <path fill="{PINK}" stroke="{WINE}" stroke-width="7" d="M388 604 L582 604 L586 640 L384 640 Z"/>
+
+  <!-- front arm swinging forward, relaxed fist -->
+  <path fill="{TOP}" stroke="{WINE}" stroke-width="6" stroke-linejoin="round"
+        d="M540 344 C 576 400 606 470 632 548 L580 570 C 562 500 540 440 512 392 Z"/>
+  <path fill="{WINE}" d="M580 568 L634 546 L642 568 L588 592 Z"/>
+  <path fill="{SKIN}" stroke="{WINE}" stroke-width="6" d="M590 592 C 586 622 604 646 630 642 C 656 638 664 610 650 584 Z"/>
+  <path fill="none" stroke="{WINE}" stroke-width="5" stroke-linecap="round" d="M604 612 C 616 616 630 614 640 606 M608 626 C 620 630 632 628 642 620"/>"""
+    return svg2(W, H, back, hair_g + body + face_g)
+
+
 STICKERS = {
     "sticker-02-sonrisa": s_smile,
     "sticker-03-beso": s_kiss,
