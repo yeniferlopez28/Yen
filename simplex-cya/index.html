@@ -1,0 +1,1251 @@
+<title>Simplex en el almacén C&amp;A</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: full-screen vertical deck. Each slide = spoken script (left) + flat animated scene (right).
+   Single deliberate look taken from the references: per-slide flat color fields, black blocks, orange accent. */
+:root{
+  color-scheme: light;
+  --paper:#E8E6DC;     /* minimal data-viz cream */
+  --cream:#FBEFD9;     /* thermometer cream */
+  --ink:#1D1D1B;       /* near-black blocks */
+  --ink-2:#4A4842;
+  --mute:#8A877E;
+  --orange:#F7A23B;    /* single accent */
+  --orange-d:#C9701A;
+  --coral:#F4777F;     /* shelf scene */
+  --lav:#B6B8DC;       /* paper chart */
+  --navy:#2B2F5E;
+  --salmon:#F4A29C;
+  --red:#E9443A;
+  --teal:#4CC3EA;
+  --wood:#674A40;
+  --wood-d:#45372F;
+  --white:#FFFDF8;
+  --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --hud-h:56px;
+  --guide-h:78px;
+  --ease:cubic-bezier(.72,0,.18,1);
+}
+html,body{height:100%}
+body{background:var(--ink);color:var(--ink);font-family:var(--body);overflow:hidden;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+/* ---------- deck & slides ---------- */
+.deck{position:fixed;inset:0;overflow:hidden}
+.slide{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.18fr);gap:clamp(20px,3vw,56px);
+  padding-top:calc(var(--hud-h) + 22px + env(safe-area-inset-top,0px));
+  padding-bottom:calc(var(--guide-h) + 26px + env(safe-area-inset-bottom,0px));
+  padding-left:max(clamp(16px,5vw,84px), env(safe-area-inset-left,0px));
+  padding-right:max(clamp(16px,5vw,84px), env(safe-area-inset-right,0px));
+  transform:translateY(100%);
+  transition:transform .95s var(--ease);
+  overflow:hidden;
+}
+.slide.is-before{transform:translateY(-100%)}
+.slide.is-active{transform:none}
+.slide.no-tr{transition:none}
+body.guide-off .slide{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+
+.bg-coral{background:var(--coral)}
+.bg-paper{background:var(--paper)}
+.bg-ink{background:var(--ink);color:var(--paper)}
+.bg-cream{background:var(--cream)}
+.bg-lav{background:var(--lav)}
+
+/* ---------- spoken column ---------- */
+.talk{display:flex;flex-direction:column;justify-content:center;gap:14px;min-width:0;min-height:0}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
+.eyebrow i{display:inline-block;width:22px;height:2px;background:currentColor}
+h1,h2{font-family:var(--display);font-stretch:112%;font-weight:800;letter-spacing:-.02em;line-height:.98;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,3.4vw,56px)}
+h2 em{font-style:normal;color:var(--orange-d)}
+.bg-ink h2 em,.bg-coral h2 em{color:var(--orange)}
+.bg-coral h2 em{color:var(--white)}
+.says{position:relative;display:grid}
+.say{
+  grid-area:1/1;align-self:start;
+  font-size:clamp(16px,0.62vw + 10px,22px);line-height:1.5;max-width:60ch;
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:opacity .45s ease, transform .45s ease;
+}
+.say.on{opacity:1;transform:none;pointer-events:auto;transition-delay:.12s}
+.say p{margin:0 0 .7em}
+.say p:last-child{margin-bottom:0}
+.say b{font-weight:700;background:linear-gradient(transparent 62%, rgba(247,162,59,.55) 62%);padding:0 .08em}
+.bg-ink .say b{background:linear-gradient(transparent 62%, rgba(247,162,59,.45) 62%)}
+.bg-coral .say b{background:linear-gradient(transparent 62%, rgba(255,253,248,.55) 62%)}
+.mic{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.65;display:flex;align-items:center;gap:8px}
+.mic svg{width:14px;height:14px}
+.sup{font:600 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px dashed currentColor;border-radius:3px;padding:3px 5px;opacity:.75;white-space:nowrap;vertical-align:2px}
+
+/* enter animation for talk column */
+.is-active .talk>*{animation:rise .7s var(--ease) both}
+.is-active .talk>*:nth-child(2){animation-delay:.42s}
+.is-active .talk>*:nth-child(3){animation-delay:.52s}
+.is-active .talk>*:nth-child(4){animation-delay:.62s}
+.is-active .talk>*:first-child{animation-delay:.34s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* step-revealed things */
+[data-step]{transition:opacity .5s ease, transform .5s var(--ease)}
+[data-step]:not(.on){opacity:0;transform:translateY(10px);pointer-events:none}
+[data-only]{transition:opacity .4s ease}
+[data-only]:not(.on){opacity:0;pointer-events:none}
+
+.stage{position:relative;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
+
+/* ---------- HUD ---------- */
+.hud{
+  position:fixed;left:0;right:0;top:0;z-index:20;height:calc(var(--hud-h) + env(safe-area-inset-top,0px));
+  padding-top:env(safe-area-inset-top,0px);
+  padding-left:max(clamp(16px,2.4vw,36px), env(safe-area-inset-left,0px));
+  padding-right:max(clamp(16px,2.4vw,36px), env(safe-area-inset-right,0px));
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
+  color:var(--hud-fg,var(--ink));transition:color .6s ease;
+  font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+}
+body[data-tone="dark"]{--hud-fg:var(--paper)}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap;overflow:hidden}
+.brand b{font:800 15px/1 var(--display);font-stretch:118%;letter-spacing:-.01em;text-transform:none}
+.squares{display:flex;gap:6px}
+.squares button{width:11px;height:11px;border:1.5px solid currentColor;background:transparent;padding:0;opacity:.55;transition:all .3s ease}
+.squares button.on{background:var(--orange);border-color:var(--orange);opacity:1}
+.squares button.extra{border-style:dashed}
+.hud-r{justify-self:end;display:flex;gap:14px;align-items:center}
+.pill{border:1.5px solid currentColor;padding:7px 10px;background:transparent;font:inherit;letter-spacing:inherit;text-transform:inherit}
+.pill.solid{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+
+/* corner brackets (frame) */
+.frame{position:fixed;z-index:15;pointer-events:none;
+  top:calc(var(--hud-h) + 4px + env(safe-area-inset-top,0px));
+  bottom:calc(var(--guide-h) + 8px + env(safe-area-inset-bottom,0px));
+  left:max(clamp(8px,1.8vw,28px), env(safe-area-inset-left,0px));right:max(clamp(8px,1.8vw,28px), env(safe-area-inset-right,0px));
+  color:var(--hud-fg,var(--ink));transition:inset .6s var(--ease), color .6s ease;
+}
+body.guide-off .frame{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+.frame i{position:absolute;width:20px;height:20px;border:0 solid currentColor;opacity:.75;transition:transform .55s var(--ease)}
+.frame i:nth-child(1){top:0;left:0;border-top-width:2px;border-left-width:2px}
+.frame i:nth-child(2){top:0;right:0;border-top-width:2px;border-right-width:2px}
+.frame i:nth-child(3){bottom:0;left:0;border-bottom-width:2px;border-left-width:2px}
+.frame i:nth-child(4){bottom:0;right:0;border-bottom-width:2px;border-right-width:2px}
+.frame.squeeze i:nth-child(1){transform:translate(26px,18px)}
+.frame.squeeze i:nth-child(2){transform:translate(-26px,18px)}
+.frame.squeeze i:nth-child(3){transform:translate(26px,-18px)}
+.frame.squeeze i:nth-child(4){transform:translate(-26px,-18px)}
+
+/* ---------- Guide bar ---------- */
+.guide{
+  position:fixed;left:0;right:0;bottom:0;z-index:25;
+  min-height:calc(var(--guide-h) + env(safe-area-inset-bottom,0px));
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:max(clamp(16px,2.4vw,36px), env(safe-area-inset-left,0px));
+  padding-right:max(clamp(16px,2.4vw,36px), env(safe-area-inset-right,0px));
+  background:var(--ink);color:var(--paper);
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(12px,2vw,28px);align-items:center;
+  border-top:1px solid #34332f;
+  transition:transform .5s var(--ease);
+}
+body.guide-off .guide{transform:translateY(105%)}
+.g-tag{font:600 11px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
+.g-tag span{color:var(--orange)}
+.g-cue{font-size:clamp(13px,.45vw + 9px,16px);line-height:1.4;min-width:0}
+.g-cue b{color:var(--orange);font-weight:600}
+.g-right{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono)}
+.g-time{display:flex;flex-direction:column;gap:5px;align-items:flex-end;white-space:nowrap}
+.g-time small{opacity:.6;letter-spacing:.06em;text-transform:uppercase;font-size:10px}
+.clock{font:600 20px/1 var(--mono);font-variant-numeric:tabular-nums}
+.clock.late{color:var(--red)}
+.navbtn{width:40px;height:40px;border:1.5px solid #55534c;background:transparent;display:grid;place-items:center;border-radius:50%;color:var(--paper)}
+.navbtn:hover{border-color:var(--orange);color:var(--orange)}
+.navbtn svg{width:16px;height:16px}
+.timerbtn{border:1.5px solid #55534c;background:transparent;color:var(--paper);border-radius:20px;padding:8px 12px;font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.timerbtn.run{border-color:var(--orange);color:var(--orange)}
+.stepdots{display:flex;gap:4px;margin-top:2px}
+.stepdots i{width:14px;height:3px;background:#55534c}
+.stepdots i.on{background:var(--orange)}
+.showguide{position:fixed;z-index:24;right:max(16px, env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--paper);border:0;border-radius:20px;padding:9px 14px;font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;display:none}
+body.guide-off .showguide{display:block}
+
+/* ================= SLIDE 1 — Portada (shelf scene) ================= */
+#s1{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:0}
+#s1 .talk{justify-content:flex-start;gap:16px;max-width:1100px;padding-top:min(3vh,24px)}
+#s1 h1{font-size:clamp(38px,5.2vw,88px);color:var(--ink)}
+#s1 h1 span{color:var(--white)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font:600 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.meta span{display:flex;gap:8px;align-items:center}
+.meta span::before{content:"";width:6px;height:6px;background:var(--ink);display:inline-block}
+.counter{position:absolute;left:0;right:0;bottom:0;height:min(42vh,360px);pointer-events:none}
+.counter .top{position:absolute;left:0;right:0;bottom:calc(var(--guide-h) + 72px + env(safe-area-inset-bottom,0px));height:6px;background:#2C2522}
+.counter .band{position:absolute;left:0;right:0;bottom:calc(var(--guide-h) + env(safe-area-inset-bottom,0px));height:72px;background:var(--wood)}
+.counter .floor{position:absolute;left:0;right:0;bottom:0;height:calc(var(--guide-h) + env(safe-area-inset-bottom,0px));background:var(--wood-d)}
+body.guide-off .counter .top{bottom:calc(98px + env(safe-area-inset-bottom,0px))}
+body.guide-off .counter .band{bottom:calc(26px + env(safe-area-inset-bottom,0px))}
+body.guide-off .counter .floor{height:calc(26px + env(safe-area-inset-bottom,0px))}
+.belt{position:absolute;left:0;bottom:calc(var(--guide-h) + 78px + env(safe-area-inset-bottom,0px));display:flex;align-items:flex-end;gap:clamp(40px,6vw,110px);
+  white-space:nowrap;animation:belt 26s linear infinite;will-change:transform}
+body.guide-off .belt{bottom:calc(104px + env(safe-area-inset-bottom,0px))}
+.belt svg{flex:none;height:auto;max-height:13vh;width:auto}
+@keyframes belt{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tagbubble{position:absolute;left:78%;bottom:calc(var(--guide-h) + 78px + 130px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  background:var(--white);border-radius:8px;padding:12px 18px 10px;text-align:center;min-width:170px;
+  box-shadow:0 2px 0 rgba(0,0,0,.06)}
+body.guide-off .tagbubble{bottom:calc(104px + 130px + env(safe-area-inset-bottom,0px))}
+.tagbubble::after{content:"";position:absolute;left:50%;bottom:-11px;margin-left:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--white)}
+.tagbubble small{display:block;font:800 13px/1 var(--display);font-stretch:115%;letter-spacing:.06em;color:#5C9E5A}
+.tagbubble strong{display:block;font:900 clamp(30px,3vw,44px)/1.05 var(--display);font-stretch:115%;color:#5C9E5A;font-variant-numeric:tabular-nums}
+.tagbubble.bump{animation:pop .5s var(--ease)}
+#s1 .says{max-width:min(880px,68%)}
+#s1 .say{font-size:clamp(15px,0.55vw + 9px,20px)}
+#s1 .say{color:var(--ink)}
+
+/* ================= SLIDE 2 — Empresa (timeline) ================= */
+.flow{width:100%;max-width:720px}
+.flow svg{width:100%;height:auto;overflow:visible}
+.flow .lbl{font:600 12px var(--mono);fill:var(--ink);letter-spacing:.06em}
+.flow .big{font:800 15px var(--display);fill:var(--ink)}
+.is-active .truck{animation:drive 1.6s var(--ease) .3s both}
+@keyframes drive{from{transform:translateX(-260px)}to{transform:none}}
+.grow{transform-box:fill-box;transform-origin:left center;transform:scaleX(0)}
+.is-active .grow{animation:growx 2.4s var(--ease) 1.4s forwards}
+@keyframes growx{to{transform:scaleX(1)}}
+.later{opacity:0}
+.is-active .later{animation:fade .6s ease forwards}
+.d1{animation-delay:1.9s!important}.d2{animation-delay:2.6s!important}.d3{animation-delay:3.3s!important}.d4{animation-delay:3.9s!important}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.chip{background:var(--white);border-radius:6px;padding:10px 14px;display:flex;flex-direction:column;gap:4px;min-width:0;max-width:300px}
+.chip b{font:800 14px/1 var(--display);font-stretch:112%;display:flex;gap:8px;align-items:center}
+.chip b i{width:10px;height:10px;display:inline-block}
+.chip span{font-size:13px;line-height:1.35;color:var(--ink-2)}
+
+/* ================= SLIDE 3 — Área (gantt) ================= */
+.gantt{width:100%;max-width:760px;display:flex;flex-direction:column;gap:9px}
+.g-axis{position:relative;height:18px;margin-left:var(--gl);font:500 11px/1 var(--mono);color:var(--ink-2)}
+.g-axis span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.g-axis span:first-child{transform:none}
+.g-axis span:last-child{transform:translateX(-100%)}
+.gantt{--gl:132px}
+.g-row{display:grid;grid-template-columns:var(--gl) 1fr;align-items:center}
+.g-row .who{font:600 12px/1.15 var(--mono);display:flex;align-items:center;gap:8px}
+.g-row .who svg{width:12px;height:22px;flex:none}
+.track{position:relative;height:24px;background:repeating-linear-gradient(90deg, rgba(29,29,27,.12) 0 1px, transparent 1px calc(100%/10.5))}
+.bar{position:absolute;left:0;top:0;bottom:0;background:var(--ink);transform:scaleX(0);transform-origin:left}
+.is-active .bar{animation:growx 1.3s var(--ease) forwards}
+.lunch{position:absolute;top:0;bottom:0;left:57.14%;width:9.52%;background:repeating-linear-gradient(-45deg,var(--paper) 0 3px,var(--mute) 3px 5px);opacity:0}
+.is-active .lunch{animation:fade .5s ease 1.6s forwards}
+.g-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-left:var(--gl);font:500 11px/1.3 var(--mono);color:var(--ink-2)}
+.sums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;margin-top:18px;margin-left:var(--gl)}
+.sum{background:var(--ink);color:var(--paper);padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.sum small{font:500 11px/1.2 var(--mono);opacity:.75}
+.sum strong{font:800 clamp(22px,2.3vw,36px)/1 var(--display);font-stretch:120%;font-variant-numeric:tabular-nums}
+.sum.acc{background:var(--orange);color:var(--ink)}
+.area-wrap{margin-left:var(--gl);margin-top:6px}
+.area-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+
+/* ================= SLIDE 4 — Problema (paper chart) ================= */
+#s4{background:var(--lav);grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);padding-left:0;gap:0}
+#s4 .talk{
+  background-color:#ECEBE7;
+  background-image:linear-gradient(rgba(60,60,60,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(60,60,60,.09) 1px,transparent 1px);
+  background-size:14px 14px;
+  margin-top:calc(-1 * (var(--hud-h) + 22px + env(safe-area-inset-top,0px)));
+  margin-bottom:calc(-1 * (var(--guide-h) + 26px + env(safe-area-inset-bottom,0px)));
+  padding-top:calc(var(--hud-h) + 22px + env(safe-area-inset-top,0px));
+  padding-bottom:calc(var(--guide-h) + 26px + env(safe-area-inset-bottom,0px));
+  padding-left:max(clamp(16px,5vw,84px), env(safe-area-inset-left,0px));padding-right:clamp(20px,3vw,48px);
+  color:var(--navy);position:relative;z-index:1
+}
+body.guide-off #s4 .talk{margin-bottom:calc(-1 * (30px + env(safe-area-inset-bottom,0px)));padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+#s4 h2 em{color:var(--red)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0 0.3 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.specks{position:absolute;inset:0;pointer-events:none}
+.specks i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--navy);opacity:.55}
+.chart{position:relative;width:100%;height:100%;min-height:320px}
+.plot{position:absolute;left:0;right:clamp(10px,4vw,60px);top:6%;bottom:96px}
+.ylab{position:absolute;left:clamp(10px,1.5vw,24px);transform:translateY(50%);display:flex;align-items:center;gap:0;z-index:2}
+.ylab b{font:900 clamp(22px,2.6vw,40px)/1 var(--display);font-stretch:118%;color:var(--navy);padding-right:10px;white-space:nowrap}
+.ylab i{width:clamp(20px,2.4vw,40px);height:5px;background:var(--salmon)}
+.capline{position:absolute;left:clamp(110px,10vw,170px);right:0;border-top:2px dashed var(--navy);opacity:.75}
+.capline span{position:absolute;right:0;top:-24px;font:600 11px/1 var(--mono);color:var(--navy);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.bars{position:absolute;inset:0 0 0 clamp(110px,10vw,170px);display:flex;align-items:flex-end;justify-content:space-around;padding:0 4%}
+.pbar{position:relative;width:min(22%,150px);display:flex;flex-direction:column-reverse;height:var(--h);transform:scaleY(0);transform-origin:bottom}
+.is-active .pbar{animation:growy 1.2s var(--ease) forwards}
+.is-active .pbar.b2{animation-delay:.25s}
+@keyframes growy{to{transform:scaleY(1)}}
+.pbar .seg{background:var(--salmon);position:relative;flex:none}
+.pbar .seg.edge-l{box-shadow:inset 22px 0 0 var(--red)}
+.pbar .seg.edge-r{box-shadow:inset -14px 0 0 var(--red)}
+.pbar .seg.nov{background:var(--red)}
+.pbar .v{position:absolute;left:50%;top:-30px;transform:translateX(-50%);font:900 18px/1 var(--display);font-stretch:115%;color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pbar .segl{position:absolute;inset:0;display:grid;place-items:center;font:600 11px/1.2 var(--mono);color:var(--white);text-align:center;padding:4px}
+.base{position:absolute;left:-2%;right:clamp(4px,2vw,30px);bottom:62px;height:34px;background:var(--navy)}
+.xl{position:absolute;bottom:22px;left:clamp(110px,10vw,170px);right:clamp(10px,4vw,60px);display:flex;justify-content:space-around;padding:0 4%}
+.xl span{width:min(22%,150px);text-align:center;font:700 12px/1.2 var(--display);font-stretch:110%;color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
+.bracket{position:absolute;border:3px solid var(--white);border-right:0;width:22px}
+.bracket::after{content:"";position:absolute;left:-10px;top:50%;width:10px;height:3px;background:var(--white)}
+.bracket span{position:absolute;right:calc(100% + 16px);top:50%;transform:translateY(-50%);font:800 14px/1.1 var(--display);color:var(--white);white-space:nowrap;text-align:right}
+
+/* ================= SLIDE 5 — Modelo ================= */
+.model{width:100%;max-width:700px;display:flex;flex-direction:column;gap:16px}
+.eq{background:var(--white);padding:18px 20px;display:flex;flex-direction:column;gap:10px;font:500 clamp(14px,1.05vw,18px)/1.35 var(--mono)}
+.eq .row{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.eq .k{font:600 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);width:92px;flex:none}
+.eq .m{color:var(--ink);min-width:0}
+.eq .m strong{font-weight:600}
+.eq .m .o{color:var(--orange-d);font-weight:600}
+.vars{display:flex;gap:12px;flex-wrap:wrap}
+.var{display:flex;gap:12px;align-items:center;background:var(--ink);color:var(--paper);padding:12px 14px;flex:1 1 220px;min-width:0}
+.var.o{background:var(--orange);color:var(--ink)}
+.var svg{width:38px;height:34px;flex:none}
+.var b{font:800 22px/1 var(--display);font-stretch:118%}
+.var span{font-size:13px;line-height:1.3}
+.scale{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.sc-row{display:grid;grid-template-columns:42px 1fr;align-items:center;gap:10px}
+.sc-row b{font:700 13px/1 var(--mono)}
+.sc-track{position:relative;height:26px}
+.sc-fill{position:absolute;left:0;top:0;bottom:0;width:var(--w);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease) .2s;
+  background:repeating-linear-gradient(90deg,var(--c) 0 calc(10% - 2px),transparent calc(10% - 2px) 10%);background-size:calc(100% * 100 / var(--wn)) 100%}
+.on .sc-fill{transform:scaleX(1)}
+.sc-val{position:absolute;top:50%;transform:translate(8px,-50%);left:var(--w);font:600 12px/1 var(--mono);white-space:nowrap}
+.sc-axis{display:flex;justify-content:space-between;margin-left:52px;font:500 10px/1 var(--mono);color:var(--mute)}
+
+/* ================= SLIDE 6 — Simplex ================= */
+#s6{grid-template-columns:minmax(0,.92fr) minmax(0,1.2fr)}
+.sx{width:100%;max-width:640px;display:flex;flex-direction:column;gap:14px}
+.sx-top{display:flex;justify-content:space-between;align-items:center;font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.sx-top .tabs{display:flex;gap:6px}
+.sx-top .tabs i{font-style:normal;border:1.5px solid #4a4944;padding:6px 8px;color:var(--mute)}
+.sx-top .tabs i.on{border-color:var(--orange);color:var(--orange)}
+table.tbl{width:100%;border-collapse:collapse;font:500 clamp(15px,1.3vw,22px)/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--paper)}
+.tbl th{font:600 12px/1 var(--mono);letter-spacing:.1em;color:var(--mute);text-align:right;padding:10px 14px;border-bottom:1px solid #3d3c37}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:clamp(10px,1.6vh,16px) 14px;text-align:right;border-bottom:1px solid #2f2e2a;position:relative;transition:background .4s ease,color .4s ease}
+.tbl td:first-child{text-align:left;color:var(--mute);font-weight:600}
+.tbl tr.zrow td{border-top:2px solid var(--paper);border-bottom:0}
+.tbl tr.zrow td:first-child{color:var(--paper)}
+.tbl td.pc,.tbl th.pc{background:rgba(247,162,59,.14)}
+.tbl th.pc{color:var(--orange)}
+.tbl tr.pr td{background:rgba(247,162,59,.14)}
+.tbl tr.pr td.pc{background:rgba(247,162,59,.25)}
+.tbl td.piv span{display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;border-radius:50%;background:var(--orange);color:var(--ink);font-weight:600}
+.tbl td.neg{color:var(--orange);font-weight:600}
+.tbl td.best{color:var(--orange);font-weight:600}
+.tbl td.ratio{color:var(--orange);font-size:.8em;text-align:left;padding-left:20px;white-space:nowrap}
+.tbl td.ratio.dim{color:var(--mute)}
+.tbl td.flash{animation:flash 1s ease}
+@keyframes flash{0%{background:rgba(247,162,59,.55)}100%{background:transparent}}
+.tbl td.final{color:var(--ink);background:var(--orange)!important;font-weight:600}
+.sx-note{border-left:3px solid var(--orange);padding:4px 0 4px 14px;font:500 clamp(13px,1vw,16px)/1.5 var(--mono);color:var(--paper);min-height:3.2em}
+.sx-note b{color:var(--orange);font-weight:600}
+
+/* ================= SLIDE 7 — Resultados (thermometers) ================= */
+.res{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:clamp(18px,3vw,48px);align-items:center;width:100%;max-width:820px}
+.thermo{position:relative;width:clamp(64px,6vw,92px);height:min(46vh,380px);display:flex;flex-direction:column;align-items:center}
+.tube{position:relative;width:100%;flex:1;border-radius:60px;background:#DCDCCF;overflow:hidden}
+.tube .fill{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(to top,var(--teal),#9FC9A5 45%,var(--orange));transition:height 1.6s var(--ease)}
+.tube .fill::before{content:"";position:absolute;left:-30%;right:-30%;top:-9px;height:18px;border-radius:50%;background:rgba(247,162,59,.6);animation:wave 2.6s ease-in-out infinite alternate}
+@keyframes wave{from{transform:translateX(-12%) rotate(-3deg)}to{transform:translateX(12%) rotate(3deg)}}
+.tube .ticks{position:absolute;left:0;top:10%;bottom:10%;width:14px;display:flex;flex-direction:column;justify-content:space-between}
+.tube .ticks i{height:2px;background:var(--white);opacity:.85}
+.tube .shine{position:absolute;left:16%;top:18%;width:10%;height:40%;border-radius:10px;background:rgba(255,255,255,.35)}
+.thermo .cap{margin-top:10px;font:600 11px/1.2 var(--mono);text-align:center;letter-spacing:.06em;text-transform:uppercase}
+.tbub{position:absolute;right:calc(100% + 14px);transform:translateY(50%);width:74px;height:74px;border-radius:50%;background:#3A3134;color:var(--white);display:grid;place-items:center;
+  font:800 18px/1 var(--display);font-stretch:115%;transition:bottom 1.6s var(--ease), opacity .4s ease;opacity:0}
+.tbub::after{content:"";position:absolute;right:-12px;top:50%;margin-top:-9px;border:9px solid transparent;border-right:0;border-left:14px solid #3A3134}
+.tbub.show{opacity:1}
+.outs{display:flex;flex-direction:column;gap:10px;min-width:0}
+.out{display:flex;flex-direction:column;gap:4px;padding:12px 14px;background:var(--white)}
+.out small{font:600 11px/1.2 var(--mono);color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase}
+.out strong{font:900 clamp(26px,2.8vw,44px)/1 var(--display);font-stretch:118%;font-variant-numeric:tabular-nums}
+.out.o{background:var(--orange)}
+.checks{display:flex;flex-direction:column;gap:6px;font:500 13px/1.35 var(--mono)}
+.checks div{display:flex;gap:10px;align-items:baseline}
+.checks div::before{content:"✓";color:#2e8b57;font-weight:700}
+
+/* ================= SLIDE 8 — Modelo 2 (people on counter) ================= */
+#s8 .stage{flex-direction:column;justify-content:flex-start;gap:16px;padding-top:2vh}
+.card2{background:var(--white);width:100%;max-width:600px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;font:500 clamp(13px,1vw,16px)/1.4 var(--mono)}
+.card2 .h{font:600 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.mini{border-collapse:collapse;font:500 15px/1 var(--mono);font-variant-numeric:tabular-nums}
+.mini th,.mini td{padding:7px 14px;border-bottom:1px solid #e5e1d6;text-align:right}
+.mini th:first-child,.mini td:first-child{text-align:left;color:var(--mute)}
+.mini .pc{background:rgba(247,162,59,.2)}
+.mini .piv span{display:inline-grid;place-items:center;width:2.2em;height:2.2em;border-radius:50%;background:var(--orange)}
+.cards2{position:relative;display:grid;width:100%;max-width:600px}
+.cards2>*{grid-area:1/1}
+.crowd{position:relative;width:100%;max-width:600px;margin-top:auto;height:120px;display:flex;align-items:flex-end;gap:clamp(4px,1vw,12px);padding:0 10px}
+.crowd svg{width:clamp(24px,2.7vw,36px);height:auto;flex:none;color:var(--ink)}
+.crowd svg.x{color:var(--orange-d)}
+.crowd .shelf{position:absolute;left:0;right:0;bottom:-6px;height:6px;background:#2C2522}
+.crowd .shelf2{position:absolute;left:0;right:0;bottom:-36px;height:30px;background:var(--wood)}
+.crowd .ext{display:flex;gap:inherit;align-items:flex-end}
+.crowd .ext svg{opacity:0;transform:translateY(-30px)}
+.crowd.on .ext svg{animation:drop .6s var(--ease) forwards}
+.crowd.on .ext svg:nth-child(2){animation-delay:.15s}
+.crowd.on .ext svg:nth-child(3){animation-delay:.3s}
+.crowd.on .ext svg:nth-child(4){animation-delay:.45s}
+@keyframes drop{to{opacity:1;transform:none}}
+.plus{position:absolute;right:10px;bottom:132px;background:var(--white);border-radius:8px;padding:10px 14px;text-align:center}
+.plus::after{content:"";position:absolute;left:50%;bottom:-10px;margin-left:-10px;border:10px solid transparent;border-bottom:0;border-top-color:var(--white)}
+.plus small{display:block;font:800 11px/1 var(--display);letter-spacing:.08em;color:var(--orange-d)}
+.plus strong{display:block;font:900 30px/1.05 var(--display);font-stretch:118%;color:var(--orange-d)}
+
+/* ================= SLIDE 9 — Propuesta (calculator) ================= */
+#s9{grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr)}
+.calc{width:100%;max-width:660px;display:flex;flex-direction:column;gap:16px}
+.calc-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
+.field label{display:block;font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
+.big-num{font:900 clamp(34px,4vw,64px)/1 var(--display);font-stretch:120%;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.big-num small{font:600 14px/1 var(--mono);letter-spacing:0;margin-left:6px}
+input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0 0}
+.seg2{display:flex;border:1.5px solid var(--ink)}
+.seg2 button{border:0;background:transparent;padding:9px 12px;font:600 12px/1 var(--mono)}
+.seg2 button.on{background:var(--ink);color:var(--paper)}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{border:1.5px solid var(--ink);background:transparent;padding:6px 9px;font:600 11px/1 var(--mono)}
+.presets button.on{background:var(--orange);border-color:var(--orange)}
+.hbar{display:flex;flex-direction:column;gap:6px}
+.hbar .lane{position:relative;height:30px;display:flex;gap:2px}
+.hbar .blk{height:100%;background:var(--ink);transition:width .5s var(--ease),background .3s ease;flex:none}
+.hbar .blk.off{background:#B9B6AC}
+.hbar .blk.ex{background:var(--orange)}
+.hbar .need{position:absolute;top:-34px;bottom:-4px;border-left:2px dotted var(--ink);transition:left .5s var(--ease)}
+.hbar .need::before{content:"";position:absolute;left:-6px;top:-2px;width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.hbar .need span{position:absolute;left:8px;top:-6px;font:600 11px/1 var(--mono);white-space:nowrap}
+.hbar .need.flip span{left:auto;right:10px}
+.hbar .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font:500 11px/1.2 var(--mono);color:var(--ink-2)}
+.hbar .leg i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+.kpi{background:var(--white);padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.kpi small{font:600 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.kpi strong{font:900 clamp(22px,2.2vw,34px)/1 var(--display);font-stretch:118%;font-variant-numeric:tabular-nums}
+.kpi.o{background:var(--orange)}
+.calc-model{font:500 12px/1.5 var(--mono);color:var(--ink-2)}
+.calc-model b{color:var(--ink);font-weight:600}
+.people{display:flex;flex-wrap:wrap;gap:4px;align-items:flex-end;min-height:40px}
+.people svg{width:18px;height:36px;color:var(--ink);flex:none}
+.people svg.x{color:var(--orange-d);animation:pop .4s var(--ease)}
+.warn{font:600 12px/1.3 var(--mono);color:var(--red)}
+
+/* ================= SLIDE 10 — Conclusiones (orbit) ================= */
+#s10 .stage{flex-direction:column;gap:22px}
+.orbit{position:relative;width:min(42vh,380px);aspect-ratio:1;max-width:100%}
+.orbit .disc{position:absolute;inset:0;border-radius:50%;background:var(--paper);transform:scale(0)}
+.is-active .orbit .disc{animation:popin 1s var(--ease) .2s forwards}
+@keyframes popin{to{transform:scale(1)}}
+.orbit .ring{position:absolute;inset:-6%;border-radius:50%;border:1.5px dotted rgba(232,230,220,.45)}
+.orbit .sat{position:absolute;inset:-6%;animation:spin 14s linear infinite}
+.orbit .sat i{position:absolute;left:50%;top:-8px;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:var(--orange)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit .core{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--ink)}
+.orbit .core>div{grid-area:1/1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12%}
+.orbit .core strong{font:900 clamp(36px,4.6vw,72px)/1 var(--display);font-stretch:118%;letter-spacing:-.02em}
+.orbit .core small{font:600 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.orbit .dot{width:22px;height:22px;border-radius:50%;background:var(--orange)}
+.c-line{font-size:clamp(16px,1.3vw,22px);text-align:center;max-width:36ch;color:var(--paper);display:grid}
+.c-line>*{grid-area:1/1}
+.c-line em{font-style:normal;color:var(--orange)}
+
+/* ================= SLIDE 11 — Preguntas ================= */
+#s11{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.qa{width:100%;max-width:720px;display:flex;flex-direction:column;gap:2px;max-height:100%;overflow:auto}
+.qa details{background:var(--white)}
+.qa summary{list-style:none;cursor:pointer;padding:14px 16px;font:700 clamp(15px,1.1vw,18px)/1.3 var(--display);font-stretch:108%;display:flex;justify-content:space-between;gap:14px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";font:500 20px/1 var(--mono);color:var(--orange-d)}
+.qa details[open] summary::after{content:"−"}
+.qa details p{margin:0;padding:0 16px 16px;font-size:clamp(14px,1vw,17px);line-height:1.5;color:var(--ink-2);max-width:62ch}
+.qa details.lim{background:var(--ink);color:var(--paper)}
+.qa details.lim p{color:#cfccc1}
+.qa details.lim ul{margin:0;padding:0 16px 16px 34px;font-size:14px;line-height:1.5;color:#cfccc1}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  :root{--hud-h:48px;--guide-h:96px}
+  .slide,#s1,#s4,#s6,#s9,#s11{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;overflow-y:auto;align-content:start;gap:22px}
+  .stage{order:-1;min-height:280px}
+  #s1 .stage{order:0}
+  #s4{padding-left:max(16px, env(safe-area-inset-left,0px))}
+  #s4 .talk{margin:0;padding:18px;order:1}
+  #s4 .stage{min-height:360px}
+  .says{min-height:0}
+  .brand{display:none}
+  .guide{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;row-gap:6px;padding-top:8px}
+  .g-tag{display:none}
+  .g-cue{grid-column:1/-1;font-size:13px}
+  .res{grid-template-columns:auto auto;justify-content:center}
+  .res .outs{grid-column:1/-1}
+  .thermo{height:260px}
+  .counter{position:relative;height:260px;margin-left:calc(-1 * max(16px, env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px, env(safe-area-inset-right,0px)))}
+  .counter .top{bottom:78px}.counter .band{bottom:6px}.counter .floor{height:6px}
+  .belt{bottom:84px}.tagbubble{bottom:150px;left:50%}
+  #s1 .says{max-width:none}
+  .gantt{--gl:96px}
+  .sums{margin-left:0}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpis .kpi:last-child{grid-column:1/-1}
+  .calc-in{grid-template-columns:1fr}
+  .hud{grid-template-columns:1fr auto}
+  .squares{justify-self:start!important}
+  .squares{justify-self:center;gap:4px}
+  .squares button{width:8px;height:8px}
+  .frame{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .belt{animation:none}
+}
+</style>
+
+<!-- shared symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ppl" viewBox="0 0 40 80"><circle cx="20" cy="13" r="10" fill="currentColor"/><path d="M5 37a15 15 0 0 1 30 0v41H5z" fill="currentColor"/></symbol>
+    <symbol id="box" viewBox="0 0 38 34"><rect x="1" y="6" width="36" height="27" fill="currentColor"/><rect x="1" y="1" width="36" height="7" fill="currentColor" opacity=".7"/><rect x="15" y="1" width="8" height="14" fill="#fff" opacity=".55"/></symbol>
+    <symbol id="mic" viewBox="0 0 16 16"><rect x="5" y="1" width="6" height="9" rx="3" fill="currentColor"/><path d="M3 7.5a5 5 0 0 0 10 0M8 12.5V15" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
+  </defs>
+</svg>
+
+<header class="hud" aria-label="Navegación">
+  <div class="brand"><b>Simplex</b><span>· Almacén C&amp;A · IO I</span></div>
+  <div class="squares" id="squares" role="tablist" aria-label="Diapositivas"></div>
+  <div class="hud-r">
+    <span id="count">01 / 11</span>
+    <button class="pill" id="fsBtn" type="button" title="Pantalla completa (F)">Pantalla</button>
+  </div>
+</header>
+<div class="frame" id="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<main class="deck" id="deck">
+
+<!-- ============ 1 PORTADA ============ -->
+<section class="slide bg-coral" id="s1" data-tone="light" data-time="30" data-steps="1">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Investigación de Operaciones I · CUCEA · 2026B</div>
+    <h1>Simplex en el <span>almacén</span> de C&amp;A</h1>
+    <div class="meta"><span>Arellano Lara Karla Valeria</span><span>Proyecto final</span><span>Método Simplex</span></div>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Preséntense con su nombre. Respiren: esta parte es solo para abrir. <b>Pasen a la siguiente con → o espacio.</b>">
+        <p>Hola, buenos días a todos. Nuestro proyecto se llama <b>Aplicación del método Simplex en el área de almacén de C&amp;A</b>.</p>
+        <p>En los próximos diez minutos les vamos a contar un problema real que vivimos cada semana en el almacén, y cómo con el método Simplex logramos decidir dos cosas: <b>qué ropa procesar primero</b> y <b>cuánta gente extra pedir</b> cuando el embarque viene muy grande.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage" aria-hidden="true">
+    <div class="counter">
+      <div class="belt" id="belt"></div>
+      <div class="tagbubble" id="tagbubble"><small>NOVEDAD</small><strong>6,804</strong></div>
+      <div class="top"></div><div class="band"></div><div class="floor"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 EMPRESA ============ -->
+<section class="slide bg-paper" id="s2" data-tone="light" data-time="40" data-steps="1">
+  <div class="talk">
+    <div class="eyebrow"><i></i>La empresa</div>
+    <h2>Cada semana llega un <em>embarque</em> de ropa</h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala el camión y luego sigue con el dedo la línea naranja hasta el perchero: <b>embarque → almacén → piso de venta</b>.">
+        <p>C&amp;A es una tienda de ropa para mujer, hombre, niños y el hogar. Cada semana a la tienda le llega un <b>embarque</b>: cajas y cajas de prendas que vienen anotadas en un documento que se llama <b>bitácora de envío</b>.</p>
+        <p>Esa ropa no sale directo a la tienda. Primero pasa por el almacén, que es donde trabajamos, y la meta es que todo quede listo para piso de venta en <b>2 a 3 días</b>.</p>
+        <p>En el embarque vienen dos tipos de ropa: la <b>novedad</b>, que son las prendas nuevas y salen primero, y la <b>reposición</b>, que sirve para rellenar lo que ya se vendió.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="flow">
+      <svg viewBox="0 0 640 330" role="img" aria-label="Línea de tiempo: el embarque llega, pasa 2 a 3 días en almacén y sale a piso de venta">
+        <!-- truck -->
+        <g class="truck">
+          <rect x="0" y="150" width="86" height="56" fill="#1D1D1B"/>
+          <rect x="86" y="168" width="34" height="38" fill="#F7A23B"/>
+          <rect x="94" y="174" width="18" height="14" fill="#E8E6DC"/>
+          <circle cx="24" cy="210" r="10" fill="#1D1D1B" stroke="#E8E6DC" stroke-width="4"/>
+          <circle cx="98" cy="210" r="10" fill="#1D1D1B" stroke="#E8E6DC" stroke-width="4"/>
+          <text x="43" y="183" text-anchor="middle" fill="#E8E6DC" style="font:700 12px Archivo,sans-serif">C&amp;A</text>
+        </g>
+        <!-- orange area -->
+        <g class="grow">
+          <path d="M140 232 L140 204 C 260 200, 380 186, 560 158 L560 232 Z" fill="#F7A23B"/>
+          <path d="M140 204 C 260 200, 380 186, 560 158" fill="none" stroke="#1D1D1B" stroke-width="1.5" stroke-dasharray="2 4"/>
+          <circle cx="560" cy="158" r="5" fill="#1D1D1B"/>
+        </g>
+        <!-- day blocks -->
+        <rect x="140" y="232" width="138" height="28" fill="#1D1D1B"/>
+        <rect x="281" y="232" width="138" height="28" fill="#1D1D1B"/>
+        <rect x="422" y="232" width="138" height="28" fill="#8A877E"/>
+        <text class="lbl" x="150" y="282">DÍA 1</text>
+        <text class="lbl" x="291" y="282">DÍA 2</text>
+        <text class="lbl" x="432" y="282">DÍA 3</text>
+        <text class="lbl later d4" x="140" y="312" style="fill:#4A4842">separar · empleyetar · colocar · perchar</text>
+        <!-- rack -->
+        <g class="later d3">
+          <rect x="586" y="120" width="4" height="112" fill="#1D1D1B"/><rect x="630" y="120" width="4" height="112" fill="#1D1D1B"/>
+          <rect x="580" y="118" width="60" height="5" fill="#1D1D1B"/>
+          <path d="M596 124 l-6 30 h18 z" fill="#F4777F"/><path d="M612 124 l-5 40 h16 z" fill="#B6B8DC"/><path d="M624 124 l-4 26 h10 z" fill="#F7A23B"/>
+          <text class="big" x="610" y="104" text-anchor="middle">Piso de venta</text>
+        </g>
+        <g class="later d1">
+          <rect x="150" y="104" width="128" height="40" rx="6" fill="#FFFDF8"/><path d="M196 144 l10 10 l10 -10z" fill="#FFFDF8"/>
+          <text x="214" y="122" text-anchor="middle" style="font:800 11px Archivo,sans-serif;letter-spacing:.06em" fill="#C9701A">NOVEDAD</text>
+          <text x="214" y="136" text-anchor="middle" style="font:500 10px 'IBM Plex Mono',monospace" fill="#1D1D1B">sale primero</text>
+        </g>
+        <g class="later d2">
+          <rect x="296" y="88" width="128" height="40" rx="6" fill="#FFFDF8"/><path d="M342 128 l10 10 l10 -10z" fill="#FFFDF8"/>
+          <text x="360" y="106" text-anchor="middle" style="font:800 11px Archivo,sans-serif;letter-spacing:.06em" fill="#1D1D1B">REPOSICIÓN</text>
+          <text x="360" y="120" text-anchor="middle" style="font:500 10px 'IBM Plex Mono',monospace" fill="#1D1D1B">rellena lo vendido</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 ÁREA ============ -->
+<section class="slide bg-paper" id="s3" data-tone="light" data-time="50" data-steps="2">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Área de trabajo · almacén</div>
+    <h2>Seis personas, <em>51 horas</em> al día</h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala las barras negras: <b>4 de tiempo completo</b> y <b>2 de medio turno</b>. La parte rayada es la comida (dato por confirmar).">
+        <p>En el almacén, a cada prenda le hacemos cuatro cosas: la <b>separamos</b> en novedad o reposición, la <b>empleyetamos</b>, la <b>colocamos</b> y la <b>perchamos</b>.</p>
+        <p>Somos un equipo fijo de seis personas. <b>Cuatro trabajan tiempo completo</b>, de 6 de la mañana a 4:30 de la tarde, con una hora de comida, así que cada una trabaja 9.5 horas. Las otras <b>dos son de medio turno</b>, de 6 a 12:30, o sea 6.5 horas.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Lee las tres cajas de izquierda a derecha. Remata con la naranja: <b>9,180 piezas al día</b> es el número que vamos a usar todo el tiempo.">
+        <p>Si lo sumamos: 4 por 9.5 son <b>38 horas</b>, más 2 por 6.5, que son <b>13 horas</b>. Nos da <b>51 horas-persona al día</b>.</p>
+        <p>Nuestra meta es de <b>180 piezas por hora</b> por persona. Entonces 51 por 180 nos da que el equipo puede procesar <b>9,180 piezas al día</b>. En dos días son 18,360 y en tres días, 27,540.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="gantt">
+      <div class="g-axis"><span style="left:0">6:00</span><span style="left:19.05%">8:00</span><span style="left:38.1%">10:00</span><span style="left:57.14%">12:00</span><span style="left:76.19%">14:00</span><span style="left:100%">16:30</span></div>
+      <div id="ganttRows" style="display:flex;flex-direction:column;gap:9px"></div>
+      <div class="g-note"><span>▨ comida 1 h <span class="sup">supuesto</span></span><span>medio turno termina 12:30</span></div>
+      <div class="area-wrap" data-step="1">
+        <svg viewBox="0 0 600 70" aria-hidden="true">
+          <path d="M0 70 L0 66 C 150 60, 330 40, 600 6 L600 70 Z" fill="#F7A23B"/>
+          <path d="M0 66 C 150 60, 330 40, 600 6" fill="none" stroke="#1D1D1B" stroke-width="1.5" stroke-dasharray="2 4"/>
+          <circle cx="600" cy="6" r="5" fill="#1D1D1B"/>
+          <text x="590" y="30" text-anchor="end" style="font:600 11px 'IBM Plex Mono',monospace" fill="#1D1D1B">piezas acumuladas en el día</text>
+        </svg>
+      </div>
+      <div class="sums" data-step="1">
+        <div class="sum"><small>4 × 9.5 h</small><strong data-count="38" data-suf=" h">38 h</strong></div>
+        <div class="sum"><small>2 × 6.5 h</small><strong data-count="13" data-suf=" h">13 h</strong></div>
+        <div class="sum acc"><small>51 h × 180 pzs/h</small><strong data-count="9180">9,180</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 PROBLEMA ============ -->
+<section class="slide" id="s4" data-tone="light" data-time="60" data-steps="2">
+  <div class="talk">
+    <div class="eyebrow"><i></i>El problema</div>
+    <h2>El embarque cambia, el equipo <em>no</em></h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala la línea punteada (lo que cabe en un día) y luego la barra de 17,000 que se pasa. <b>Haz la pregunta en voz alta.</b>">
+        <p>Aquí está el problema. El tamaño del embarque cambia muchísimo de una semana a otra: una semana llegan <b>9,000 piezas</b> y la siguiente pueden llegar <b>17,000</b>. Pero el equipo siempre puede lo mismo: <b>9,180 piezas al día</b>.</p>
+        <p>Hoy no tenemos una forma ordenada de saber <b>cuánta gente se necesita</b> ni <b>qué procesar primero</b> para que el embarque salga a tiempo.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Señala la barra del centro: la parte roja es la novedad. <b>55 horas contra 51</b>: no cabe en un día.">
+        <p>Para trabajar con datos reales tomamos la bitácora de un embarque: <b>9,912 piezas</b>, de las cuales <b>6,804 son novedad</b> y <b>3,108 son reposición</b>.</p>
+        <p>Si dividimos 9,912 entre 180 nos da <b>55 horas</b>, y solo tenemos 51. No cabe en un día. Entonces la pregunta es: <b>el día 1, ¿qué procesamos primero?</b> Ahí entra el método Simplex.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="grain"></div><div class="specks" id="specks"></div>
+    <div class="chart">
+      <div class="plot">
+        <div class="ylab" style="bottom:94.44%"><b>17,000</b><i></i></div>
+        <div class="ylab" style="bottom:51%"><b>9,180</b><i></i></div>
+        <div class="capline" style="bottom:51%"><span>lo que cabe en 1 día</span></div>
+        <div class="bars">
+          <div class="pbar" style="--h:50%"><div class="seg edge-l" style="height:100%"></div><span class="v">9,000</span></div>
+          <div class="pbar b3" data-step="1" style="--h:55.07%">
+            <div class="seg nov" style="height:68.64%"><span class="segl">novedad<br>6,804</span></div>
+            <div class="seg" style="height:31.36%"><span class="segl" style="color:var(--navy)">repos.<br>3,108</span></div>
+            <span class="v">9,912</span>
+          </div>
+          <div class="pbar b2" style="--h:94.44%"><div class="seg edge-r" style="height:100%"></div><span class="v">17,000</span>
+            <div class="bracket" style="top:0;height:46%;left:-34px"><span>faltan<br>7,820</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="base"></div>
+      <div class="xl"><span>Semana A</span><span data-step="1">Nuestro ejemplo</span><span>Semana B</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 MODELO ============ -->
+<section class="slide bg-paper" id="s5" data-tone="light" data-time="80" data-steps="3">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Modelo 1 · Formulación</div>
+    <h2>Maximizar lo que sale <em>el día 1</em></h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala las dos cajas: <b>naranja = novedad (x₁)</b>, <b>negra = reposición (x₂)</b>. Aclara lo de las centenas.">
+        <p>Para que los números sean más chicos, trabajamos en <b>centenas de piezas</b>. Por ejemplo, 6,804 piezas son 68.04 centenas.</p>
+        <p>Nuestras <b>variables de decisión</b> son dos: <b>x₁</b>, las centenas de novedad que procesamos el día 1, y <b>x₂</b>, las centenas de reposición que procesamos el día 1.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Señala el <b>2</b> de la función objetivo. Si preguntan: Z son puntos de prioridad, no piezas ni dinero.">
+        <p>La <b>función objetivo</b> es maximizar <b>Z = 2x₁ + x₂</b>.</p>
+        <p>El 2 es un peso: le dice al método que la novedad vale el doble que la reposición, porque es la que sale primero a la tienda. Z no son piezas ni dinero, son <b>puntos de prioridad</b>. Lo que realmente nos importa del resultado son x₁ y x₂.</p>
+      </div>
+      <div class="say" data-say="2" data-cue="Recorre las tres barras de arriba a abajo mientras dices cada restricción.">
+        <p>Y tenemos tres restricciones. <b>R1, el tiempo:</b> x₁ + x₂ no puede pasar de <b>91.8</b>, que son las 9,180 piezas que caben en el día.</p>
+        <p><b>R2:</b> no podemos procesar más novedad de la que llegó, <b>68.04</b>. <b>R3:</b> tampoco más reposición de la que llegó, <b>31.08</b>. Y ninguna variable puede ser negativa, porque no existen piezas negativas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="model">
+      <div class="vars">
+        <div class="var o"><svg><use href="#box"/></svg><div><b>x₁</b><br><span>centenas de <strong>novedad</strong> el día 1</span></div></div>
+        <div class="var"><svg style="color:var(--paper)"><use href="#box"/></svg><div><b>x₂</b><br><span>centenas de <strong>reposición</strong> el día 1</span></div></div>
+      </div>
+      <div class="eq">
+        <div class="row" data-step="1"><span class="k">Objetivo</span><span class="m"><strong>Max Z = <span class="o">2</span>x₁ + x₂</strong></span></div>
+        <div class="row" data-step="2"><span class="k">R1 tiempo</span><span class="m">x₁ + x₂ ≤ 91.8</span></div>
+        <div class="row" data-step="2"><span class="k">R2 novedad</span><span class="m">x₁ ≤ 68.04</span></div>
+        <div class="row" data-step="2"><span class="k">R3 reposición</span><span class="m">x₂ ≤ 31.08</span></div>
+        <div class="row" data-step="2"><span class="k">No negat.</span><span class="m">x₁, x₂ ≥ 0</span></div>
+      </div>
+      <div class="scale" data-step="2">
+        <div class="sc-row"><b>R1</b><div class="sc-track"><div class="sc-fill" style="--w:91.8%;--wn:91.8;--c:#1D1D1B"></div><span class="sc-val">91.8 · 9,180 pzs</span></div></div>
+        <div class="sc-row"><b>R2</b><div class="sc-track"><div class="sc-fill" style="--w:68.04%;--wn:68.04;--c:#F7A23B"></div><span class="sc-val">68.04 · 6,804</span></div></div>
+        <div class="sc-row"><b>R3</b><div class="sc-track"><div class="sc-fill" style="--w:31.08%;--wn:31.08;--c:#F4777F"></div><span class="sc-val">31.08 · 3,108</span></div></div>
+        <div class="sc-axis"><span>0</span><span>25</span><span>50</span><span>75</span><span>100 centenas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 SIMPLEX ============ -->
+<section class="slide bg-ink" id="s6" data-tone="dark" data-time="110" data-steps="6">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Aplicación del método</div>
+    <h2>La tabla <em>Simplex</em>, paso a paso</h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala el renglón Z. <b>Tabla 1 de 3.</b>">
+        <p><b>Paso 1.</b> Armamos la tabla Simplex. Las restricciones se colocan tal cual, y la función objetivo se pasa a la forma <b>Z − 2x₁ − x₂ = 0</b>. Por eso en el renglón de Z aparecen los valores negativos.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Señala el <b>−2</b> en naranja.">
+        <p><b>Paso 2.</b> Buscamos la <b>columna pivote</b>: es donde Z tiene el valor más negativo. Aquí es el <b>−2</b>, así que la columna pivote es <b>x₁</b>. Eso quiere decir que lo que más conviene aumentar primero es la novedad.</p>
+      </div>
+      <div class="say" data-say="2" data-cue="Señala la columna de razones y luego el <b>1 encerrado</b> en R2.">
+        <p><b>Paso 3.</b> Sacamos las <b>razones</b>: dividimos R entre la columna pivote. R1 da 91.8, R2 da <b>68.04</b> y R3 no se usa porque tiene cero.</p>
+        <p>La razón más pequeña es 68.04, entonces la <b>fila pivote es R2</b> y el pivote es el 1 de R2.</p>
+      </div>
+      <div class="say" data-say="3" data-cue="Señala las fórmulas de abajo. Las celdas que brillaron son las que cambiaron. <b>Tabla 2 de 3.</b>">
+        <p><b>Paso 4 y 5.</b> Como el pivote es 1, R2 se queda igual. Ahora volvemos cero la columna pivote con la regla: <b>fila nueva = fila actual − coeficiente × fila pivote</b>.</p>
+        <p>R1 nueva queda en (0, 1, 23.76) y Z nueva queda en (0, −1, <b>136.08</b>). R3 no cambia porque ya tenía cero.</p>
+      </div>
+      <div class="say" data-say="4" data-cue="Señala el <b>−1</b> que queda en Z y luego el pivote en R1.">
+        <p><b>Paso 6.</b> ¿Todavía hay negativos en Z? Sí, un <b>−1</b>. Entonces repetimos. La columna pivote ahora es <b>x₂</b>.</p>
+        <p>Razones: R1 da <b>23.76</b> y R3 da 31.08. La menor es 23.76, así que la <b>fila pivote es R1</b>.</p>
+      </div>
+      <div class="say" data-say="5" data-cue="Señala el <b>159.84</b> resaltado. <b>Tabla 3 de 3: ya no hay negativos.</b>">
+        <p>Volvemos cero la columna: R3 nueva queda en <b>7.32</b> y Z nueva queda en <b>159.84</b>.</p>
+        <p><b>Paso 7.</b> Ya no hay ningún valor negativo en Z, así que <b>terminamos</b>: llegamos a la solución óptima.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="sx">
+      <div class="sx-top"><span id="sxLabel">Tabla inicial</span><span class="tabs" id="sxTabs"><i>1</i><i>2</i><i>3</i></span></div>
+      <div style="overflow-x:auto"><table class="tbl" id="sxTable" aria-live="polite"></table></div>
+      <div class="sx-note" id="sxNote"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 RESULTADOS ============ -->
+<section class="slide bg-cream" id="s7" data-tone="light" data-time="70" data-steps="3">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Resultados y comprobación</div>
+    <h2>Toda la novedad sale <em>el día 1</em></h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala los dos números grandes. Recuerda multiplicar por 100 para volver a piezas.">
+        <p>Este es el resultado. <b>x₁ = 68.04</b>, o sea que el día 1 procesamos las <b>6,804 piezas de novedad</b>: toda la novedad.</p>
+        <p>Y <b>x₂ = 23.76</b>, que son <b>2,376 piezas de reposición</b>. Con eso el termómetro del día 1 queda lleno: usamos las 51 horas completas.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Lee las cuatro palomitas. <b>Esto es lo que pide la rúbrica: comprobar.</b>">
+        <p>Y lo comprobamos. 6,804 más 2,376 dan <b>9,180</b>, justo lo que cabe en el día. La novedad, 6,804, no pasa de lo que llegó. La reposición, 2,376, es menor que 3,108.</p>
+        <p>Y Z: 2 por 6,804 más 2,376 nos da <b>15,984 puntos</b>. Todo cumple.</p>
+      </div>
+      <div class="say" data-say="2" data-cue="Señala el segundo termómetro, casi vacío: <b>día 2 solo 4 horas</b>.">
+        <p>¿Qué significa esto en el trabajo? Que el día 1 sale toda la novedad, y para el día 2 solo nos quedan <b>732 piezas de reposición</b>, que son unas <b>4 horas</b> de trabajo. El embarque termina en el día 2.</p>
+        <p>Y fíjense: la holgura de R3, el <b>7.32</b> que quedó en la tabla, es exactamente esa reposición que falta.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="res">
+      <div class="thermo" id="th1">
+        <div class="tbub" id="tb1">51 h</div>
+        <div class="tube"><div class="fill" id="tf1"></div><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="shine"></div></div>
+        <div class="cap">Día 1</div>
+      </div>
+      <div class="thermo" id="th2" data-step="2">
+        <div class="tbub" id="tb2">4.07 h</div>
+        <div class="tube"><div class="fill" id="tf2"></div><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="shine"></div></div>
+        <div class="cap">Día 2</div>
+      </div>
+      <div class="outs">
+        <div class="out o"><small>x₁ = 68.04 · novedad</small><strong data-count="6804">6,804</strong></div>
+        <div class="out"><small>x₂ = 23.76 · reposición</small><strong data-count="2376">2,376</strong></div>
+        <div class="checks" data-step="1">
+          <div>Tiempo: 6,804 + 2,376 = 9,180 ≤ 9,180</div>
+          <div>Novedad: 6,804 ≤ 6,804</div>
+          <div>Reposición: 2,376 ≤ 3,108</div>
+          <div>Z = 2(6,804) + 2,376 = 15,984</div>
+        </div>
+        <div class="out" data-step="2" style="background:var(--ink);color:var(--paper)"><small style="color:#cfccc1">Día 2 · 3,108 − 2,376</small><strong>732 pzs</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 MODELO 2 ============ -->
+<section class="slide bg-coral" id="s8" data-tone="light" data-time="70" data-steps="3">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Modelo 2 · Propuesta de optimización</div>
+    <h2>¿Cuánta gente <em>pedir prestada</em>?</h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Señala la tarjeta blanca con el modelo. Las personas negras son nuestro equipo de 6.">
+        <p>Ahora, la segunda pregunta: ¿qué pasa si el embarque viene enorme? El primer día nos pueden prestar gente de piso. Queremos pedir <b>la menor cantidad posible</b> y aun así terminar a tiempo.</p>
+        <p>Las variables son <b>x₁</b>, personas extra de tiempo completo, que aportan 9.5 horas, y <b>x₂</b>, personas extra de medio turno, que aportan 6.5. Minimizamos <b>Z = x₁ + x₂</b>, con la condición de que <b>9.5x₁ + 6.5x₂</b> cubra las horas que faltan.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Di los números despacio: <b>138.89 − 102 = 36.89 horas</b>. Menciona que lo resolvimos con la forma dual, como en clase.">
+        <p>Ejemplo: un embarque de <b>25,000 piezas</b> que queremos terminar en 2 días. 25,000 entre 180 son <b>138.89 horas</b>. En 2 días el equipo tiene 102. Nos faltan <b>36.89 horas</b>.</p>
+        <p>Como es un problema de minimizar con mayor o igual, lo resolvemos con su <b>forma dual</b>: maximizar W = 36.89y, con 9.5y ≤ 1 y 6.5y ≤ 1.</p>
+      </div>
+      <div class="say" data-say="2" data-cue="Señala las 4 personas naranjas que aparecen. <b>3.88 → se redondea hacia arriba a 4.</b>">
+        <p>La columna pivote es y. Las razones: 1 entre 9.5 da 0.1053 y 1 entre 6.5 da 0.1538. La menor es R1, el pivote es 9.5. Al hacer las operaciones, <b>W queda en 3.88</b>.</p>
+        <p>Necesitamos 3.88 personas, y como no se pueden pedir 0.88 personas, redondeamos: <b>4 personas de tiempo completo</b>. Comprobamos: 4 por 9.5 son 38 horas, que sí cubren las 36.89. Con 3 serían 28.5, no alcanza. Sale tiempo completo porque cada persona aporta más horas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="cards2">
+      <div class="card2" data-only="0">
+        <span class="h">Formulación</span>
+        <div><b>Min Z = x₁ + x₂</b></div>
+        <div>s.a. 9.5x₁ + 6.5x₂ ≥ horas que faltan</div>
+        <div>horas que faltan = piezas ÷ 180 − 51 × días</div>
+        <div>x₁, x₂ ≥ 0 · redondear hacia arriba</div>
+      </div>
+      <div class="card2" data-only="1">
+        <span class="h">Ejemplo · 25,000 piezas en 2 días</span>
+        <div>25,000 ÷ 180 = <b>138.89 h</b></div>
+        <div>51 h × 2 días = <b>102 h</b></div>
+        <div>faltan = <b style="color:var(--orange-d)">36.89 h</b></div>
+        <div style="margin-top:4px">Dual: <b>Max W = 36.89y</b> · 9.5y ≤ 1 · 6.5y ≤ 1</div>
+      </div>
+      <div class="card2" data-only="2">
+        <span class="h">Tabla del dual</span>
+        <table class="mini">
+          <tr><th></th><th class="pc">y</th><th>R</th><th>Razón</th></tr>
+          <tr><td>R1</td><td class="pc piv"><span>9.5</span></td><td>1</td><td style="color:var(--orange-d)">0.1053 ←</td></tr>
+          <tr><td>R2</td><td class="pc">6.5</td><td>1</td><td>0.1538</td></tr>
+          <tr><td>W</td><td class="pc">−36.89</td><td>0 → <b>3.88</b></td><td></td></tr>
+        </table>
+        <div>W = 3.88 → <b>4 personas de tiempo completo</b> · 4 × 9.5 = 38 h ≥ 36.89 h ✓</div>
+      </div>
+    </div>
+    <div class="crowd" id="crowd">
+      <svg viewBox="0 0 40 80"><use href="#ppl"/></svg><svg viewBox="0 0 40 80"><use href="#ppl"/></svg><svg viewBox="0 0 40 80"><use href="#ppl"/></svg><svg viewBox="0 0 40 80"><use href="#ppl"/></svg>
+      <svg viewBox="0 0 40 80" style="height:auto;transform:scale(.82);transform-origin:bottom"><use href="#ppl"/></svg><svg viewBox="0 0 40 80" style="transform:scale(.82);transform-origin:bottom"><use href="#ppl"/></svg>
+      <span class="ext"><svg class="x" viewBox="0 0 40 80"><use href="#ppl"/></svg><svg class="x" viewBox="0 0 40 80"><use href="#ppl"/></svg><svg class="x" viewBox="0 0 40 80"><use href="#ppl"/></svg><svg class="x" viewBox="0 0 40 80"><use href="#ppl"/></svg></span>
+      <div class="plus" data-step="2"><small>EXTRA DÍA 1</small><strong>+4</strong></div>
+      <div class="shelf"></div><div class="shelf2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 PROPUESTA ============ -->
+<section class="slide bg-paper" id="s9" data-tone="light" data-time="50" data-steps="1">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Propuesta de mejora</div>
+    <h2>Una <em>calculadora</em> para cada lunes</h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Usa la calculadora en vivo: pica <b>25,000</b> y muestra que salen 4 personas; luego <b>30,000</b> en 3 días. Al final lee las 4 propuestas.">
+        <p>Con esto armamos nuestra propuesta. <b>Uno:</b> una calculadora de personal. Cada lunes, con la bitácora, ponemos el tamaño del embarque y sabemos cuánta gente pedir a piso el día 1. Por ejemplo, con 25,000 piezas en 2 días salen 4 personas.</p>
+        <p><b>Dos:</b> una regla de prioridad: siempre procesar primero la novedad. <b>Tres:</b> aviso anticipado: si el embarque pasa de <b>18,360 piezas</b>, que es lo que cabe en 2 días, pedimos apoyo con tiempo. <b>Y cuatro</b>, el impacto: terminar el embarque en el plazo y evitar tiempo extra.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="calc">
+      <div class="calc-in">
+        <div class="field">
+          <label for="pzs">Piezas del embarque</label>
+          <div class="big-num"><span id="pzsOut">25,000</span><small>pzs</small></div>
+          <input type="range" id="pzs" min="5000" max="32000" step="100" value="25000" aria-label="Piezas del embarque">
+        </div>
+        <div class="field">
+          <label>Terminar en</label>
+          <div class="seg2" id="daysSeg"><button type="button" data-d="2" class="on">2 días</button><button type="button" data-d="3">3 días</button></div>
+        </div>
+      </div>
+      <div class="presets" id="presets"></div>
+      <div class="hbar">
+        <div class="lane" id="lane"></div>
+        <div class="leg"><span><i style="background:var(--ink)"></i>51 h por día (equipo)</span><span><i style="background:var(--orange)"></i>horas de gente extra (día 1)</span><span>┊ horas que pide el embarque</span></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><small>Horas necesarias</small><strong id="kH">138.9</strong></div>
+        <div class="kpi"><small>Horas que faltan</small><strong id="kF">36.9</strong></div>
+        <div class="kpi o"><small>Personas extra</small><strong id="kP">4</strong></div>
+      </div>
+      <div class="people" id="people" aria-hidden="true"></div>
+      <div class="calc-model" id="cModel"></div>
+      <div class="warn" id="cWarn"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 CONCLUSIONES ============ -->
+<section class="slide bg-ink" id="s10" data-tone="dark" data-time="40" data-steps="3">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Conclusiones</div>
+    <h2>Tres ideas para <em>llevarse</em></h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Conclusión 1 de 3.">
+        <p><b>Primera:</b> con 6 personas procesamos <b>9,180 piezas al día</b>, y un embarque como el de nuestro ejemplo, de 9,912 piezas, termina en <b>2 días</b>.</p>
+      </div>
+      <div class="say" data-say="1" data-cue="Conclusión 2 de 3.">
+        <p><b>Segunda:</b> el método Simplex nos permite <b>priorizar la novedad</b> y <b>calcular cuánta gente extra pedir</b> según el tamaño del embarque.</p>
+      </div>
+      <div class="say" data-say="2" data-cue="Cierre. Den las gracias y abran a preguntas. <b>La siguiente diapositiva es de respaldo.</b>">
+        <p><b>Y tercera:</b> cada semana solo cambian las cantidades del lado derecho, y el modelo <b>se vuelve a usar igual</b>.</p>
+        <p>Muchas gracias por su atención. ¿Tienen alguna pregunta?</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="orbit">
+      <div class="ring"></div>
+      <div class="disc"></div>
+      <div class="sat"><i></i></div>
+      <div class="core">
+        <div data-only="0"><strong>9,180</strong><small>piezas al día · 2 días</small></div>
+        <div data-only="1"><span class="dot"></span><strong>1º</strong><small>novedad · luego gente extra</small></div>
+        <div data-only="2"><strong>R</strong><small>solo cambia el lado derecho</small></div>
+      </div>
+    </div>
+    <div class="c-line">
+      <span data-only="0">Un embarque de <em>9,912</em> termina en <em>2 días</em>.</span>
+      <span data-only="1">Simplex decide <em>qué va primero</em> y <em>a cuántos pedir</em>.</span>
+      <span data-only="2">El mismo modelo, <em>cada semana</em>.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 PREGUNTAS (respaldo) ============ -->
+<section class="slide bg-paper" id="s11" data-tone="light" data-time="0" data-steps="1" data-extra="1">
+  <div class="talk">
+    <div class="eyebrow"><i></i>Respaldo · no cuenta en los 10 min</div>
+    <h2>Si nos <em>preguntan</em>…</h2>
+    <div class="says">
+      <div class="say" data-say="0" data-cue="Solo si hay preguntas. Abre la que te pregunten y léela con tus palabras.">
+        <p>Estas son las respuestas a lo que más probablemente nos pueden preguntar. Abran la pregunta que les hagan y respóndanla con sus palabras.</p>
+      </div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="qa">
+      <details><summary>¿Por qué usar Simplex y no una simple división?</summary><p>Con una sola velocidad, una división basta para saber los días. Pero Simplex es el método general: cuando agreguemos velocidades distintas, límites de personal o prioridades, sigue funcionando y la división ya no. Además, la división no te dice qué procesar primero.</p></details>
+      <details><summary>¿Qué significa Z?</summary><p>Es el valor de la función objetivo. En el modelo 1 son puntos de prioridad (15,984), no piezas ni dinero. En el modelo 2 es el número de personas extra.</p></details>
+      <details><summary>¿Por qué el pivote es el más negativo?</summary><p>Porque esa variable es la que más aumenta Z por cada unidad que se agrega. Por eso la novedad, con peso 2, entró primero.</p></details>
+      <details><summary>¿Cómo saben que ya terminaron?</summary><p>Cuando en el renglón de Z ya no hay ningún valor negativo. En nuestra tercera tabla Z quedó en (0, 0, 159.84).</p></details>
+      <details><summary>¿Qué pasa si cambia el embarque?</summary><p>Solo cambian los lados derechos: R2 = novedad ÷ 100 y R3 = reposición ÷ 100. R1 sigue en 91.8 mientras el equipo sea el mismo. Se repite el mismo procedimiento.</p></details>
+      <details><summary>¿Por qué salen personas de tiempo completo y no de medio turno?</summary><p>Porque cada persona de tiempo completo aporta 9.5 horas contra 6.5 de medio turno. Para cubrir las mismas horas se necesitan menos personas.</p></details>
+      <details class="lim"><summary>Limitaciones del modelo</summary>
+        <ul>
+          <li>Usamos una sola velocidad (180 pzs/h) para todas las prendas; calzado o ropa colgada pueden tardar distinto.</li>
+          <li>Suponemos que todos procesan durante todo su horario; si hay recepción o descarga, hay que restar esas horas.</li>
+          <li>No consideramos ausencias ni retardos.</li>
+          <li>El peso 2 de la novedad es una decisión del área, no un dato exacto.</li>
+          <li>Datos por confirmar: duración de la comida (1 h) y horas de la gente de piso prestada (9.5 h).</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="guide" id="guide">
+  <div class="g-tag">Guía<span id="gStep">Paso 1 de 1</span><div class="stepdots" id="gDots"></div></div>
+  <div class="g-cue" id="gCue"></div>
+  <div class="g-right">
+    <div class="g-time"><small id="gSug">Sugerido 0:30</small><span class="clock" id="clock">00:00</span></div>
+    <button class="timerbtn" id="timerBtn" type="button" title="Iniciar / pausar cronómetro (T)">Iniciar</button>
+    <button class="navbtn" id="prevBtn" type="button" aria-label="Anterior"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+    <button class="navbtn" id="nextBtn" type="button" aria-label="Siguiente"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+    <button class="timerbtn" id="hideGuide" type="button" title="Ocultar guía (G)">Ocultar</button>
+  </div>
+</footer>
+<button class="showguide" id="showGuide" type="button">Mostrar guía (G)</button>
+
+<script>
+(function(){
+  const $ = (s,c=document)=>c.querySelector(s);
+  const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+  const slides = $$('.slide');
+  const N = slides.length;
+  let cur = 0, step = 0, prev = -1;
+  const fmt = n => n.toLocaleString('en-US');
+
+  /* ---------- slide 1: belt items ---------- */
+  const items = [
+    // folded tee
+    '<svg width="120" height="72" viewBox="0 0 120 72"><path d="M10 14h100v58H10z" fill="#B6B8DC"/><path d="M10 14h100v10H10z" fill="#9B9ECB"/><path d="M48 14c4 8 20 8 24 0z" fill="#F4777F"/><rect x="10" y="40" width="100" height="10" fill="#FFD84D"/><circle cx="34" cy="45" r="11" fill="#F7A23B"/></svg>',
+    // apple-like round tag? -> shoe box
+    '<svg width="110" height="64" viewBox="0 0 110 64"><rect x="4" y="10" width="102" height="54" fill="#E9443A"/><rect x="0" y="4" width="110" height="12" fill="#C7322A"/><rect x="36" y="28" width="38" height="22" fill="#FFFDF8"/><rect x="42" y="34" width="26" height="3" fill="#1D1D1B"/><rect x="42" y="40" width="18" height="3" fill="#1D1D1B"/></svg>',
+    // jeans
+    '<svg width="70" height="104" viewBox="0 0 70 104"><path d="M6 0h58l4 104H40L35 40l-5 64H2z" fill="#3E5FA8"/><rect x="6" y="0" width="58" height="8" fill="#2E4A88"/><path d="M14 10v12M56 10v12" stroke="#7FA0DC" stroke-width="2"/></svg>',
+    // hanger dress
+    '<svg width="90" height="130" viewBox="0 0 90 130"><path d="M45 4a6 6 0 1 1 6 6" stroke="#1D1D1B" stroke-width="3" fill="none"/><path d="M45 10 8 30h74z" stroke="#1D1D1B" stroke-width="3" fill="none"/><path d="M28 30h34l6 20-8 4 20 76H10l20-76-8-4z" fill="#FFD84D"/><circle cx="45" cy="82" r="9" fill="#F7A23B"/></svg>',
+    // carton box
+    '<svg width="120" height="96" viewBox="0 0 120 96"><rect x="0" y="12" width="120" height="84" fill="#E2C7A6"/><rect x="0" y="0" width="120" height="16" fill="#F2DCC0"/><rect x="50" y="0" width="20" height="40" fill="#C9A47E"/><rect x="12" y="58" width="40" height="26" fill="#FFFDF8"/><rect x="16" y="64" width="2" height="14" fill="#1D1D1B"/><rect x="21" y="64" width="4" height="14" fill="#1D1D1B"/><rect x="28" y="64" width="2" height="14" fill="#1D1D1B"/><rect x="33" y="64" width="5" height="14" fill="#1D1D1B"/><rect x="41" y="64" width="2" height="14" fill="#1D1D1B"/><rect x="45" y="64" width="3" height="14" fill="#1D1D1B"/></svg>',
+    // tag / label strip
+    '<svg width="120" height="40" viewBox="0 0 120 40"><path d="M0 4h120v32H0z" fill="#F2E3D2"/><path d="M0 4l5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4M120 4l-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4" stroke="#F4777F" fill="none"/><rect x="20" y="8" width="80" height="24" fill="#5C9E5A"/><rect x="40" y="12" width="40" height="16" rx="3" fill="#E9443A"/><rect x="46" y="16" width="28" height="8" fill="#FFD84D"/></svg>',
+    // shopping bag
+    '<svg width="84" height="104" viewBox="0 0 84 104"><path d="M26 26V16a16 16 0 0 1 32 0v10" stroke="#1D1D1B" stroke-width="4" fill="none"/><rect x="4" y="24" width="76" height="80" fill="#FFFDF8"/><rect x="4" y="60" width="76" height="14" fill="#F4777F"/><text x="42" y="52" text-anchor="middle" style="font:800 16px Archivo,sans-serif" fill="#1D1D1B">C&amp;A</text></svg>'
+  ];
+  const belt = $('#belt');
+  belt.innerHTML = items.join('') + items.join('');
+  const bubbles = [['NOVEDAD','6,804'],['REPOSICIÓN','3,108'],['EMBARQUE','9,912'],['META','180 pzs/h']];
+  let bi = 0; const tb = $('#tagbubble');
+  setInterval(()=>{ if(cur!==0) return; bi=(bi+1)%bubbles.length; tb.querySelector('small').textContent=bubbles[bi][0]; tb.querySelector('strong').textContent=bubbles[bi][1]; tb.classList.remove('bump'); void tb.offsetWidth; tb.classList.add('bump'); }, 2600);
+
+  /* ---------- slide 3: gantt rows ---------- */
+  const gr = $('#ganttRows'); let gh='';
+  for(let i=0;i<6;i++){
+    const full = i<4;
+    gh += `<div class="g-row"><div class="who"><svg viewBox="0 0 40 80"><use href="#ppl"/></svg>${full?'T. completo':'Medio turno'}</div><div class="track"><div class="bar" style="width:${full?100:61.9}%;animation-delay:${.2+i*.12}s"></div>${full?'<div class="lunch"></div>':''}</div></div>`;
+  }
+  gr.innerHTML = gh;
+
+  /* ---------- slide 4: specks ---------- */
+  const sp = $('#specks'); let sh=''; let seed=7;
+  const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
+  for(let i=0;i<40;i++) sh+=`<i style="left:${(rnd()*100).toFixed(1)}%;top:${(rnd()*100).toFixed(1)}%;transform:scale(${(0.4+rnd()*1.2).toFixed(2)})"></i>`;
+  sp.innerHTML = sh;
+
+  /* ---------- slide 6: simplex ---------- */
+  const T0=[[1,1,91.8],[1,0,68.04],[0,1,31.08],[-2,-1,0]];
+  const T1=[[0,1,23.76],[1,0,68.04],[0,1,31.08],[0,-1,136.08]];
+  const T2=[[0,1,23.76],[1,0,68.04],[0,0,7.32],[0,0,159.84]];
+  const SX=[
+    {t:T0,tab:0,label:'Tabla inicial',note:'Z − 2x₁ − x₂ = 0 → en el renglón Z van <b>−2</b> y <b>−1</b>.'},
+    {t:T0,tab:0,pc:0,negs:[[3,0]],label:'Columna pivote',note:'El más negativo en Z es <b>−2</b> → entra <b>x₁</b>.'},
+    {t:T0,tab:0,pc:0,pr:1,ratio:['91.8 ÷ 1 = 91.8','68.04 ÷ 1 = 68.04 ← menor','tiene 0, no se usa',''],best:1,label:'Razones y fila pivote',note:'Razón = R ÷ columna pivote. La menor es <b>68.04</b> → fila pivote <b>R2</b>, pivote = <b>1</b>.'},
+    {t:T1,tab:1,chg:[0,3],negs:[[3,1]],label:'Primera iteración',note:'R1 nueva = R1 − 1·R2 = <b>(0, 1, 23.76)</b><br>Z nueva = Z + 2·R2 = <b>(0, −1, 136.08)</b>'},
+    {t:T1,tab:1,pc:1,pr:0,negs:[[3,1]],ratio:['23.76 ÷ 1 = 23.76 ← menor','tiene 0, no se usa','31.08 ÷ 1 = 31.08',''],best:0,label:'Otra vez: pivote en x₂',note:'Todavía hay <b>−1</b> en Z → entra <b>x₂</b>. La menor razón es <b>23.76</b> → fila pivote <b>R1</b>.'},
+    {t:T2,tab:2,chg:[2,3],fin:true,label:'Tabla final',note:'R3 nueva = R3 − 1·R1 = <b>(0, 0, 7.32)</b><br>Z nueva = Z + 1·R1 = <b>(0, 0, 159.84)</b> · sin negativos → <b>óptimo</b>'}
+  ];
+  const nf = v => v<0 ? '−'+Math.abs(v) : String(v);
+  function renderSX(s){
+    const st=SX[s], names=['R1','R2','R3','Z'];
+    let h='<thead><tr><th></th>'+['x₁','x₂','R'].map((c,i)=>`<th class="${st.pc===i?'pc':''}">${c}</th>`).join('')+`<th style="text-align:left;padding-left:20px">${st.ratio?'Razón':''}</th></tr></thead><tbody>`;
+    st.t.forEach((row,r)=>{
+      h+=`<tr class="${r===3?'zrow':''} ${st.pr===r?'pr':''}"><td>${names[r]}</td>`;
+      row.forEach((v,c)=>{
+        const cls=[]; if(st.pc===c) cls.push('pc');
+        let inner=nf(v);
+        if(st.pc===c && st.pr===r){cls.push('piv'); inner=`<span>${inner}</span>`;}
+        if(st.negs && st.negs.some(([a,b])=>a===r&&b===c)) cls.push('neg');
+        if(st.chg && st.chg.includes(r)) cls.push('flash');
+        if(st.fin && r===3 && c===2) cls.push('final');
+        h+=`<td class="${cls.join(' ')}">${inner}</td>`;
+      });
+      const rt = st.ratio ? st.ratio[r] : '';
+      h+=`<td class="ratio ${st.best===r?'':'dim'}">${rt}</td></tr>`;
+    });
+    $('#sxTable').innerHTML=h+'</tbody>';
+    $('#sxNote').innerHTML=st.note;
+    $('#sxLabel').textContent=st.label;
+    $$('#sxTabs i').forEach((e,i)=>e.classList.toggle('on',i===st.tab));
+  }
+
+  /* ---------- slide 7: thermometers ---------- */
+  function thermo(n,pct,show){
+    $('#tf'+n).style.height = show? pct+'%' : '0%';
+    const b=$('#tb'+n); b.style.bottom = show? `calc(${pct}% * 0.9 + 26px)` : '26px'; b.classList.toggle('show',show);
+  }
+
+  /* ---------- slide 9: calculator ---------- */
+  let calcD=2;
+  const presets=[9912,17000,20000,25000,30000];
+  $('#presets').innerHTML = presets.map(p=>`<button type="button" data-p="${p}">${fmt(p)}</button>`).join('');
+  const pIn=$('#pzs');
+  function calc(){
+    const pz=+pIn.value, horas=pz/180, cap=51*calcD, faltan=horas-cap;
+    const z = faltan>0 ? faltan/9.5 : 0;
+    const extra = faltan>0 ? Math.ceil(z-1e-9) : 0;
+    $('#pzsOut').textContent=fmt(pz);
+    $('#kH').textContent=horas.toFixed(1);
+    $('#kF').textContent= faltan>0? faltan.toFixed(1) : '0';
+    $('#kP').textContent= extra;
+    $$('#presets button').forEach(b=>b.classList.toggle('on',+b.dataset.p===pz));
+    $$('#daysSeg button').forEach(b=>b.classList.toggle('on',+b.dataset.d===calcD));
+    // lane: scale 0..190 h
+    const S=190, w=h=>(h/S*100);
+    const exH = extra*9.5;
+    let lane='';
+    lane+=`<div class="blk" style="width:calc(${w(51)}% - 2px)" title="Día 1 equipo"></div>`;
+    if(exH>0) lane+=`<div class="blk ex" style="width:calc(${w(exH)}% - 2px)" title="Extra día 1"></div>`;
+    lane+=`<div class="blk" style="width:calc(${w(51)}% - 2px)" title="Día 2"></div>`;
+    lane+=`<div class="blk ${calcD===3?'':'off'}" style="width:calc(${w(51)}% - 2px)" title="Día 3"></div>`;
+    const nl=Math.min(horas,S);
+    lane+=`<div class="need ${nl>S*0.72?'flip':''}" style="left:${w(nl)}%"><span>${horas.toFixed(1)} h</span></div>`;
+    $('#lane').innerHTML=lane;
+    let pp=''; for(let i=0;i<6;i++) pp+='<svg viewBox="0 0 40 80"><use href="#ppl"/></svg>';
+    for(let i=0;i<extra;i++) pp+=`<svg class="x" viewBox="0 0 40 80" style="animation-delay:${i*.06}s"><use href="#ppl"/></svg>`;
+    $('#people').innerHTML=pp;
+    $('#cModel').innerHTML = faltan>0
+      ? `Min Z = x₁ + x₂ · s.a. 9.5x₁ + 6.5x₂ ≥ <b>${faltan.toFixed(2)}</b> → Z = ${z.toFixed(2)} → <b>${extra} de tiempo completo</b> el día 1.`
+      : `Horas que faltan = ${horas.toFixed(1)} − ${cap} ≤ 0 → <b>no se necesita ayuda</b>. Con el equipo de 6 termina en ${Math.ceil(horas/51-1e-9)} día${Math.ceil(horas/51-1e-9)>1?'s':''}.`;
+    let warn='';
+    if(extra>=6) warn='Poco realista pedir tantas personas: mejor planear el embarque a 3 días.';
+    else if(pz>18360 && calcD===2) warn='Pasa de 18,360 piezas: avisar a piso con anticipación.';
+    if(horas>153) warn = (warn?warn+' ':'')+'Con solo 6 personas no cabe ni en 3 días.';
+    $('#cWarn').textContent=warn;
+  }
+  pIn.addEventListener('input',calc);
+  $('#presets').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; pIn.value=b.dataset.p; calc();});
+  $('#daysSeg').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; calcD=+b.dataset.d; calc();});
+  calc();
+
+  /* ---------- count-up ---------- */
+  function countUp(el){
+    const end=+el.dataset.count, suf=el.dataset.suf||''; const t0=performance.now(), d=1100;
+    const tick=t=>{const k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); el.textContent=fmt(Math.round(end*e))+suf; if(k<1) requestAnimationFrame(tick);};
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- HUD ---------- */
+  const sq=$('#squares');
+  sq.innerHTML = slides.map((s,i)=>`<button type="button" class="${s.dataset.extra?'extra':''}" aria-label="Diapositiva ${i+1}"></button>`).join('');
+  sq.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; go([...sq.children].indexOf(b),0);});
+
+  const steps = i => +slides[i].dataset.steps || 1;
+  const mmss = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+
+  function render(){
+    const frame=$('#frame');
+    slides.forEach((s,k)=>{
+      s.classList.toggle('no-tr', !(k===cur||k===prev));
+      s.classList.toggle('is-active',k===cur);
+      s.classList.toggle('is-before',k<cur);
+      s.setAttribute('aria-hidden', k===cur?'false':'true');
+      if(k!==cur) s.inert = true; else s.inert = false;
+    });
+    const sl=slides[cur];
+    $$('[data-step]',sl).forEach(e=>{
+      const was=e.classList.contains('on'), on=+e.dataset.step<=step;
+      e.classList.toggle('on',on);
+      if(on && !was) $$('[data-count]',e).forEach(countUp);
+    });
+    $$('[data-only]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.only===step));
+    $$('.say',sl).forEach(e=>e.classList.toggle('on',+e.dataset.say===step));
+    const say=$(`.say[data-say="${step}"]`,sl);
+    $('#gCue').innerHTML = say ? say.dataset.cue : '';
+    const ns=steps(cur);
+    $('#gStep').textContent = `Paso ${step+1} de ${ns}`;
+    $('#gDots').innerHTML = Array.from({length:ns},(_,i)=>`<i class="${i<=step?'on':''}"></i>`).join('');
+    const tsec=+sl.dataset.time;
+    $('#gSug').textContent = tsec? `Sugerido ${mmss(tsec)}` : 'Respaldo';
+    $('#count').textContent = `${String(cur+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}`;
+    [...sq.children].forEach((b,i)=>b.classList.toggle('on',i===cur));
+    document.body.dataset.tone = sl.dataset.tone || 'light';
+    // per-slide hooks
+    if(sl.id==='s6') renderSX(step);
+    if(sl.id==='s7'){ thermo(1,100,true); thermo(2,8,step>=2); }
+    if(sl.id==='s8') $('#crowd').classList.toggle('on',step>=2);
+    try{ history.replaceState(null,'','#diapo-'+(cur+1)); }catch(e){}
+  }
+
+  function enterSlide(){
+    const sl=slides[cur];
+    // count-ups visible from step 0 without data-step parent
+    $$('[data-count]',sl).forEach(el=>{ if(!el.closest('[data-step]')) countUp(el); });
+    if(sl.id==='s7'){ thermo(1,0,false); thermo(2,0,false); requestAnimationFrame(()=>requestAnimationFrame(()=>render())); }
+  }
+
+  function go(i,s,fromDir){
+    i=Math.max(0,Math.min(N-1,i));
+    if(i!==cur){
+      prev=cur; cur=i; step = s==='last' ? steps(i)-1 : (s||0);
+      const leaving=slides[prev]; $$('[data-step]',leaving).forEach(e=>e.classList.remove('on'));
+      const f=$('#frame'); f.classList.add('squeeze'); setTimeout(()=>f.classList.remove('squeeze'),520);
+      render(); enterSlide();
+    } else { step = s==='last' ? steps(i)-1 : (s||0); render(); }
+  }
+  function next(){ if(step<steps(cur)-1){ step++; render(); } else if(cur<N-1){ go(cur+1,0); } }
+  function back(){ if(step>0){ step--; render(); } else if(cur>0){ go(cur-1,'last'); } }
+
+  /* ---------- timer ---------- */
+  let tRun=false, tAcc=0, tStart=0;
+  const clock=$('#clock'), tBtn=$('#timerBtn');
+  function tNow(){ return tAcc + (tRun? (Date.now()-tStart)/1000 : 0); }
+  function tToggle(){ if(tRun){ tAcc=tNow(); tRun=false; } else { tStart=Date.now(); tRun=true; } tBtn.textContent=tRun?'Pausar':'Seguir'; tBtn.classList.toggle('run',tRun); }
+  setInterval(()=>{ const s=Math.floor(tNow()); clock.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; clock.classList.toggle('late',s>600); },250);
+  tBtn.addEventListener('click',tToggle);
+
+  /* ---------- controls ---------- */
+  $('#nextBtn').addEventListener('click',next);
+  $('#prevBtn').addEventListener('click',back);
+  const toggleGuide=()=>document.body.classList.toggle('guide-off');
+  $('#hideGuide').addEventListener('click',toggleGuide);
+  $('#showGuide').addEventListener('click',toggleGuide);
+  $('#fsBtn').addEventListener('click',()=>{ try{ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} });
+
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches('input,textarea')) { if(e.key!=='Escape') return; }
+    const k=e.key;
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)){ if(k==='Enter' && e.target.closest('button,summary')) return; e.preventDefault(); next(); }
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(k)){ e.preventDefault(); back(); }
+    else if(k==='g'||k==='G') toggleGuide();
+    else if(k==='t'||k==='T') tToggle();
+    else if(k==='f'||k==='F') $('#fsBtn').click();
+    else if(k==='Home') go(0,0);
+    else if(k==='End') go(N-1,0);
+  });
+  let wheelLock=0;
+  window.addEventListener('wheel',e=>{
+    if(window.innerWidth<=860) return;
+    if(e.target.closest('.qa')) return;
+    const now=Date.now(); if(now<wheelLock || Math.abs(e.deltaY)<18) return;
+    wheelLock=now+900; e.deltaY>0?next():back();
+  },{passive:true});
+  let tx=null,ty=null;
+  window.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  window.addEventListener('touchend',e=>{ if(tx===null) return; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.4 && !e.target.closest('input')){ dx<0?next():back(); } tx=null; },{passive:true});
+
+  /* ---------- start ---------- */
+  const m=/^#diapo-(\d+)$/.exec(location.hash);
+  if(m){ cur=Math.max(0,Math.min(N-1,(+m[1])-1)); }
+  render(); enterSlide();
+  const deckEl=$('#deck'); deckEl.addEventListener('scroll',()=>{deckEl.scrollTop=0;deckEl.scrollLeft=0;});
+  window.addEventListener('hashchange',()=>{ const m=/^#diapo-(\d+)$/.exec(location.hash); if(m && (+m[1]-1)!==cur) go(+m[1]-1,0); });
+})();
+</script>
