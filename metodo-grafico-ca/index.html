@@ -2321,7 +2321,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="says">
       <div class="say" data-say="0"><p>Queremos que el día 1 salga <b>lo más importante posible</b>.</p><p>Como queremos que algo sea lo <b>más grande</b> posible, es un problema de <b>maximizar</b>.</p></div>
       <div class="say" data-say="1"><p>Le damos un <b>peso</b> a cada tipo de ropa.</p><p>Cada pieza de <b>novedad vale 2 puntos</b>, porque es más urgente. Cada pieza de <b>reposición vale 1 punto</b>.</p></div>
-      <div class="say" data-say="2"><p>Así queda la <b>función objetivo</b>: <b>Max Z = 2x<sub>1</sub> + x<sub>2</sub></b>.</p><p>Z se mide en <b>puntos de prioridad</b>. Ejemplo: 100 piezas de novedad y 100 de reposición dan Z = 2(100) + 100 = <b>300 puntos</b>.</p></div>
+      <div class="say" data-say="2"><p>Así queda la <b>función objetivo</b>: <b>Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Z se mide en <b>puntos de prioridad</b>. Ejemplo: 100 piezas de novedad y 100 de reposición dan Z = 2(100) + 1(100) = <b>300 puntos</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2342,7 +2342,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       </div>
       <div class="fw" data-step="1"><div class="o"><strong>2</strong><small>puntos por cada pieza de novedad</small></div><div><strong>1</strong><small>punto por cada pieza de reposición</small></div></div>
       <div class="fformula" data-step="2"><small>Función objetivo</small><p>Max Z = <em>2</em>x<sub>1</sub> + <em>1</em>x<sub>2</sub></p><span>Unidad de Z: puntos de prioridad</span></div>
-      <div class="fex" data-step="2">Ejemplo: x<sub>1</sub> = 100, x<sub>2</sub> = 100 → Z = 2(100) + 100 = <b>300 puntos</b></div>
+      <div class="fex" data-step="2">Ejemplo: x<sub>1</sub> = 100, x<sub>2</sub> = 100 → Z = 2(100) + 1(100) = <b>300 puntos</b></div>
     </div>
   </div>
 </section>
@@ -2353,9 +2353,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">04</span>Modelo · restricciones</div>
     <h2>Los <em>límites</em> del problema</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Las <b>restricciones</b> son los límites: lo que <b>no podemos pasar</b>.</p><p><b>R1, tiempo:</b> el equipo tiene <b>51 horas</b> al día y hace <b>180 piezas por hora</b>. 51 × 180 = <b>9,180 piezas</b>. Entonces <b>x<sub>1</sub> + x<sub>2</sub> ≤ 9,180</b>.</p></div>
-      <div class="say" data-say="1"><p><b>R2, novedad:</b> no podemos preparar más novedad de la que llegó.</p><p>Llegaron 6,804 piezas, entonces <b>x<sub>1</sub> ≤ 6,804</b>.</p></div>
-      <div class="say" data-say="2"><p><b>R3, reposición:</b> tampoco más reposición de la que llegó.</p><p>Llegaron 3,108 piezas, entonces <b>x<sub>2</sub> ≤ 3,108</b>.</p></div>
+      <div class="say" data-say="0"><p>Las <b>restricciones</b> son los límites: lo que <b>no podemos pasar</b>.</p><p><b>R1, tiempo:</b> el equipo tiene <b>51 horas</b> al día y hace <b>180 piezas por hora</b>. 51 × 180 = <b>9,180 piezas</b>. Entonces <b>1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</b>.</p></div>
+      <div class="say" data-say="1"><p><b>R2, novedad:</b> no podemos preparar más novedad de la que llegó.</p><p>Llegaron 6,804 piezas, entonces <b>1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</b>.</p></div>
+      <div class="say" data-say="2"><p><b>R3, reposición:</b> tampoco más reposición de la que llegó.</p><p>Llegaron 3,108 piezas, entonces <b>0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</b>.</p></div>
       <div class="say" data-say="3"><p>Y la <b>no negatividad</b>: <b>x<sub>1</sub> ≥ 0</b> y <b>x<sub>2</sub> ≥ 0</b>.</p><p>Porque no existen piezas negativas.</p></div>
     </div>
   </div>
@@ -2364,9 +2364,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <table class="rtable">
         <thead><tr><th>Restricción</th><th>Fórmula</th><th>En palabras</th><th>De dónde sale</th></tr></thead>
         <tbody>
-          <tr data-step="0"><td><b>R1</b> Tiempo</td><td class="fm">x<sub>1</sub> + x<sub>2</sub> ≤ 9,180</td><td>En un día no caben más de 9,180 piezas</td><td>51 h × 180 piezas por hora</td></tr>
-          <tr data-step="1"><td><b>R2</b> Novedad</td><td class="fm">x<sub>1</sub> ≤ 6,804</td><td>No más novedad de la que llegó</td><td>Bitácora</td></tr>
-          <tr data-step="2"><td><b>R3</b> Reposición</td><td class="fm">x<sub>2</sub> ≤ 3,108</td><td>No más reposición de la que llegó</td><td>Bitácora</td></tr>
+          <tr data-step="0"><td><b>R1</b> Tiempo</td><td class="fm">1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</td><td>En un día no caben más de 9,180 piezas</td><td>51 h × 180 piezas por hora</td></tr>
+          <tr data-step="1"><td><b>R2</b> Novedad</td><td class="fm">1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</td><td>No más novedad de la que llegó</td><td>Bitácora</td></tr>
+          <tr data-step="2"><td><b>R3</b> Reposición</td><td class="fm">0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</td><td>No más reposición de la que llegó</td><td>Bitácora</td></tr>
           <tr data-step="3"><td><b>No neg.</b></td><td class="fm">x<sub>1</sub>, x<sub>2</sub> ≥ 0</td><td>No hay piezas negativas</td><td>—</td></tr>
         </tbody>
       </table>
@@ -2391,11 +2391,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
   </div>
   <div class="stage">
     <div class="mfull">
-      <div class="ml top"><span class="me">Max Z = 2x<sub>1</sub> + x<sub>2</sub></span><span class="mw">lo que queremos lograr: lo más importante el día 1</span></div>
+      <div class="ml top"><span class="me">Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></span><span class="mw">lo que queremos lograr: lo más importante el día 1</span></div>
       <div class="msa">sujeto a:</div>
-      <div class="ml" style="--d:.15s"><span class="me">x<sub>1</sub> + x<sub>2</sub> ≤ 9,180</span><span class="mw">R1 · lo que cabe en un día</span></div>
-      <div class="ml" style="--d:.3s"><span class="me">x<sub>1</sub> ≤ 6,804</span><span class="mw">R2 · la novedad que llegó</span></div>
-      <div class="ml" style="--d:.45s"><span class="me">x<sub>2</sub> ≤ 3,108</span><span class="mw">R3 · la reposición que llegó</span></div>
+      <div class="ml" style="--d:.15s"><span class="me">1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</span><span class="mw">R1 · lo que cabe en un día</span></div>
+      <div class="ml" style="--d:.3s"><span class="me">1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</span><span class="mw">R2 · la novedad que llegó</span></div>
+      <div class="ml" style="--d:.45s"><span class="me">0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</span><span class="mw">R3 · la reposición que llegó</span></div>
       <div class="ml" style="--d:.6s"><span class="me">x<sub>1</sub>, x<sub>2</sub> ≥ 0</span><span class="mw">no hay piezas negativas</span></div>
     </div>
   </div>
@@ -2424,8 +2424,8 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <div class="say" data-say="2"><p><b>Pasos 2 y 3</b>, con R1.</p><p>Imaginamos que <b>no hacemos reposición</b> (x<sub>2</sub> = 0). Queda 1x<sub>1</sub> = 9,180, y despejamos: x<sub>1</sub> = <b>9,180</b>.</p><p>Es nuestro <b>primer punto</b>, en el eje de novedad.</p></div>
       <div class="say" data-say="3"><p>Ahora al revés: <b>no hacemos novedad</b> (x<sub>1</sub> = 0).</p><p>Queda 1x<sub>2</sub> = 9,180, entonces x<sub>2</sub> = <b>9,180</b>. Es el <b>segundo punto</b>, en el eje de reposición.</p></div>
       <div class="say" data-say="4"><p><b>Paso 4:</b> unimos los dos puntos con una línea.</p><p>Esa línea es <b>R1</b>. Todo lo que queda <b>abajo</b> de ella cabe en un día de trabajo.</p></div>
-      <div class="say" data-say="5"><p>Ahora <b>R2</b>: x<sub>1</sub> = <b>6,804</b>.</p><p>Solo habla de <b>novedad</b>, no tiene x<sub>2</sub>. Por eso es una línea <b>vertical</b> (de arriba a abajo). No podemos pasarnos a la derecha.</p></div>
-      <div class="say" data-say="6"><p>Y <b>R3</b>: x<sub>2</sub> = <b>3,108</b>.</p><p>Solo habla de <b>reposición</b>, no tiene x<sub>1</sub>. Es una línea <b>horizontal</b> (de lado a lado). No podemos pasarnos hacia arriba.</p></div>
+      <div class="say" data-say="5"><p>Ahora <b>R2</b>: 1x<sub>1</sub> + 0x<sub>2</sub> = 6,804.</p><p>Si x<sub>2</sub> = 0, queda x<sub>1</sub> = <b>6,804</b>. Si x<sub>1</sub> = 0, queda 0x<sub>2</sub> = 6,804, y eso <b>no tiene valor</b>: nunca toca el eje de reposición.</p><p>Por eso es una línea <b>vertical</b> (de arriba a abajo). No podemos pasarnos a la derecha.</p></div>
+      <div class="say" data-say="6"><p>Y <b>R3</b>: 0x<sub>1</sub> + 1x<sub>2</sub> = 3,108.</p><p>Si x<sub>1</sub> = 0, queda x<sub>2</sub> = <b>3,108</b>. Si x<sub>2</sub> = 0, queda 0x<sub>1</sub> = 3,108: <b>no tiene valor</b>, nunca toca el eje de novedad.</p><p>Es una línea <b>horizontal</b> (de lado a lado). No podemos pasarnos hacia arriba.</p></div>
       <div class="say" data-say="7"><p>La zona pintada cumple <b>los tres límites</b> al mismo tiempo.</p><p>Se llama <b>región factible</b>: son todas las opciones que sí se pueden hacer.</p></div>
       <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b> de esa zona.</p><p>Tiene 5 esquinas: <b>A, B, C, D y E</b>. A, B y E se leen directo en los ejes.</p></div>
       <div class="say" data-say="9"><p><b>C y D</b> salen con una resta.</p><p>En C hacemos toda la novedad (6,804) y el tiempo que sobra es reposición: 9,180 − 6,804 = <b>2,376</b>.</p><p>En D: 9,180 − 3,108 = <b>6,072</b>.</p></div>
@@ -2469,8 +2469,8 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
             <p class="in">F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></p>
             <p><span class="k">Sujeto a:</span></p>
             <div class="g3-sys">
-              <div class="g3-ineq"><p><b>R1:</b> 1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</p><p><b>R2:</b> 1x<sub>1</sub> ≤ 6,804</p><p><b>R3:</b> 1x<sub>2</sub> ≤ 3,108</p></div>
-              <div class="g3-eq" data-step="1"><i class="br" aria-hidden="true"></i><div><p>1x<sub>1</sub> + 1x<sub>2</sub> <mark>=</mark> 9,180</p><p>1x<sub>1</sub> <mark>=</mark> 6,804</p><p>1x<sub>2</sub> <mark>=</mark> 3,108</p></div></div>
+              <div class="g3-ineq"><p><b>R1:</b> 1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</p><p><b>R2:</b> 1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</p><p><b>R3:</b> 0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</p></div>
+              <div class="g3-eq" data-step="1"><i class="br" aria-hidden="true"></i><div><p>1x<sub>1</sub> + 1x<sub>2</sub> <mark>=</mark> 9,180</p><p>1x<sub>1</sub> + 0x<sub>2</sub> <mark>=</mark> 6,804</p><p>0x<sub>1</sub> + 1x<sub>2</sub> <mark>=</mark> 3,108</p></div></div>
             </div>
           </div>
           <div class="g3-solve">
@@ -2478,11 +2478,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
               <p><span class="if">si x<sub>2</sub> = 0:</span> 1x<sub>1</sub> = 9,180 → x<sub>1</sub> = 9,180/1 = <em>9,180</em></p>
               <p data-step="3"><span class="if">si x<sub>1</sub> = 0:</span> 1x<sub>2</sub> = 9,180 → x<sub>2</sub> = 9,180/1 = <em>9,180</em></p></div>
             <div class="g3-r" style="--c:#398C9C" data-step="5"><b>R2</b>
-              <p>1x<sub>1</sub> = 6,804 → x<sub>1</sub> = 6,804/1 = <em>6,804</em></p>
-              <p class="no">no tiene x<sub>2</sub> → línea vertical ↕</p></div>
+              <p><span class="if">si x<sub>2</sub> = 0:</span> 1x<sub>1</sub> = 6,804 → x<sub>1</sub> = 6,804/1 = <em>6,804</em></p>
+              <p class="no"><span class="if">si x<sub>1</sub> = 0:</span> 0x<sub>2</sub> = 6,804 → no hay valor: línea vertical ↕</p></div>
             <div class="g3-r" style="--c:#E3A63B" data-step="6"><b>R3</b>
-              <p>1x<sub>2</sub> = 3,108 → x<sub>2</sub> = 3,108/1 = <em>3,108</em></p>
-              <p class="no">no tiene x<sub>1</sub> → línea horizontal ↔</p></div>
+              <p class="no"><span class="if">si x<sub>2</sub> = 0:</span> 0x<sub>1</sub> = 3,108 → no hay valor: línea horizontal ↔</p>
+              <p><span class="if">si x<sub>1</sub> = 0:</span> 1x<sub>2</sub> = 3,108 → x<sub>2</sub> = 3,108/1 = <em>3,108</em></p></div>
           </div>
         </div>
         <div class="g3-note" data-range="7-7">
@@ -2494,11 +2494,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
         <table class="rtable ztab gm-tab">
           <thead><tr><th>Esquina</th><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>F.O. = 2x<sub>1</sub> + 1x<sub>2</sub></th></tr></thead>
           <tbody>
-            <tr><td><b>A</b></td><td>0</td><td>0</td><td><span data-range="10-99" class="zc"><b>0</b><small>2(0) + 0</small></span></td></tr>
-            <tr><td><b>B</b></td><td>6,804</td><td>0</td><td><span data-range="10-99" class="zc"><b>13,608</b><small>2(6,804) + 0</small></span></td></tr>
-            <tr class="cbest"><td><b>C</b></td><td><span data-range="9-99" class="g3-cd">6,804</span></td><td><span data-range="9-99" class="g3-cd">2,376</span></td><td><span data-range="10-99" class="zc"><b>15,984</b><small>2(6,804) + 2,376</small></span></td></tr>
-            <tr><td><b>D</b></td><td><span data-range="9-99" class="g3-cd">6,072</span></td><td><span data-range="9-99" class="g3-cd">3,108</span></td><td><span data-range="10-99" class="zc"><b>15,252</b><small>2(6,072) + 3,108</small></span></td></tr>
-            <tr><td><b>E</b></td><td>0</td><td>3,108</td><td><span data-range="10-99" class="zc"><b>3,108</b><small>2(0) + 3,108</small></span></td></tr>
+            <tr><td><b>A</b></td><td>0</td><td>0</td><td><span data-range="10-99" class="zc"><b>0</b><small>2(0) + 1(0)</small></span></td></tr>
+            <tr><td><b>B</b></td><td>6,804</td><td>0</td><td><span data-range="10-99" class="zc"><b>13,608</b><small>2(6,804) + 1(0)</small></span></td></tr>
+            <tr class="cbest"><td><b>C</b></td><td><span data-range="9-99" class="g3-cd">6,804</span></td><td><span data-range="9-99" class="g3-cd">2,376</span></td><td><span data-range="10-99" class="zc"><b>15,984</b><small>2(6,804) + 1(2,376)</small></span></td></tr>
+            <tr><td><b>D</b></td><td><span data-range="9-99" class="g3-cd">6,072</span></td><td><span data-range="9-99" class="g3-cd">3,108</span></td><td><span data-range="10-99" class="zc"><b>15,252</b><small>2(6,072) + 1(3,108)</small></span></td></tr>
+            <tr><td><b>E</b></td><td>0</td><td>3,108</td><td><span data-range="10-99" class="zc"><b>3,108</b><small>2(0) + 1(3,108)</small></span></td></tr>
           </tbody>
         </table>
         <div class="gm-how" data-step="9"><b>¿De dónde salen C y D?</b><span>C: x<sub>1</sub> = 6,804 → x<sub>2</sub> = 9,180 − 6,804 = <b>2,376</b></span><span>D: x<sub>2</sub> = 3,108 → x<sub>1</sub> = 9,180 − 3,108 = <b>6,072</b></span></div>
@@ -2556,10 +2556,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">06</span>Comprobación · restricciones</div>
     <h2>¿Cumple <em>todo</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Ahora comprobamos que la solución <b>cumple cada límite</b>. Sustituimos x<sub>1</sub> = 6,804 y x<sub>2</sub> = 2,376.</p><p><b>R1:</b> 6,804 + 2,376 = <b>9,180</b>, justo el límite. Se usa <b>todo el día</b>.</p></div>
-      <div class="say" data-say="1"><p><b>R2:</b> x<sub>1</sub> = 6,804, justo el límite. Sale <b>toda la novedad</b>.</p></div>
-      <div class="say" data-say="2"><p><b>R3:</b> x<sub>2</sub> = 2,376, menor que 3,108. Sobran <b>732 piezas</b> de reposición.</p><p>Y las dos son positivas: cumple la no negatividad.</p></div>
-      <div class="say" data-say="3"><p>Por último, calculamos Z: 2(6,804) + 2,376 = <b>15,984</b>.</p><p>Es <b>el mismo valor</b> que nos dio la gráfica en la esquina C. Todo cumple.</p></div>
+      <div class="say" data-say="0"><p>Ahora comprobamos que la solución <b>cumple cada límite</b>. Sustituimos x<sub>1</sub> = 6,804 y x<sub>2</sub> = 2,376.</p><p><b>R1:</b> 1(6,804) + 1(2,376) = <b>9,180</b>, justo el límite. Se usa <b>todo el día</b>.</p></div>
+      <div class="say" data-say="1"><p><b>R2:</b> 1(6,804) + 0(2,376) = 6,804, justo el límite. Sale <b>toda la novedad</b>.</p></div>
+      <div class="say" data-say="2"><p><b>R3:</b> 0(6,804) + 1(2,376) = 2,376, menor que 3,108. Sobran <b>732 piezas</b> de reposición.</p><p>Y las dos son positivas: cumple la no negatividad.</p></div>
+      <div class="say" data-say="3"><p>Por último, calculamos Z: 2(6,804) + 1(2,376) = <b>15,984</b>.</p><p>Es <b>el mismo valor</b> que nos dio la gráfica en la esquina C. Todo cumple.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2567,13 +2567,13 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <table class="rtable vtab">
         <thead><tr><th>Restricción</th><th>Sustituimos</th><th>Resultado</th><th>Límite</th><th>¿Sobra?</th><th></th></tr></thead>
         <tbody>
-          <tr data-step="0"><td><b>R1</b> Tiempo</td><td>6,804 + 2,376</td><td class="fm">9,180</td><td>≤ 9,180</td><td>nada</td><td class="ok">✓</td></tr>
-          <tr data-step="1"><td><b>R2</b> Novedad</td><td>6,804</td><td class="fm">6,804</td><td>≤ 6,804</td><td>nada</td><td class="ok">✓</td></tr>
-          <tr data-step="2"><td><b>R3</b> Reposición</td><td>2,376</td><td class="fm">2,376</td><td>≤ 3,108</td><td>732</td><td class="ok">✓</td></tr>
+          <tr data-step="0"><td><b>R1</b> Tiempo</td><td>1(6,804) + 1(2,376)</td><td class="fm">9,180</td><td>≤ 9,180</td><td>nada</td><td class="ok">✓</td></tr>
+          <tr data-step="1"><td><b>R2</b> Novedad</td><td>1(6,804) + 0(2,376)</td><td class="fm">6,804</td><td>≤ 6,804</td><td>nada</td><td class="ok">✓</td></tr>
+          <tr data-step="2"><td><b>R3</b> Reposición</td><td>0(6,804) + 1(2,376)</td><td class="fm">2,376</td><td>≤ 3,108</td><td>732</td><td class="ok">✓</td></tr>
           <tr data-step="2"><td><b>No neg.</b></td><td>6,804 ; 2,376</td><td class="fm">≥ 0</td><td>≥ 0</td><td>—</td><td class="ok">✓</td></tr>
         </tbody>
       </table>
-      <div class="zcheck" data-step="3"><small>Valor de Z</small><p>Z = 2(6,804) + 2,376 = <b>15,984</b></p><span>= mismo resultado que la esquina C de la gráfica ✓</span></div>
+      <div class="zcheck" data-step="3"><small>Valor de Z</small><p>Z = 2(6,804) + 1(2,376) = <b>15,984</b></p><span>= mismo resultado que la esquina C de la gráfica ✓</span></div>
     </div>
   </div>
 </section>
@@ -2872,7 +2872,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
   ];
   function renderSX(s){
     const st=SX[s];
-    const RN=[["<svg class='ti' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9.5' fill='none' stroke='currentColor' stroke-width='2.4'/><path d='M12 6.5V12l4 2.5' fill='none' stroke='currentColor' stroke-width='2.4' stroke-linecap='round'/></svg>",'R1','Tiempo','x<sub>1</sub> + x<sub>2</sub> ≤ 9,180'],["<svg class='ti nov' viewBox='0 0 24 24'><use href='#teeS'/></svg>",'R2','Novedad que llegó','x<sub>1</sub> ≤ 6,804'],["<svg class='ti rep' viewBox='0 0 24 24'><use href='#teeS'/></svg>",'R3','Reposición que llegó','x<sub>2</sub> ≤ 3,108'],["<svg class='ti star' viewBox='0 0 24 24'><path d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8l-6.3 3.6 1.5-7.1L1.8 9.4 9 8.6z' fill='currentColor'/></svg>",'Z','Puntos','Max Z = 2x<sub>1</sub> + x<sub>2</sub>']];
+    const RN=[["<svg class='ti' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9.5' fill='none' stroke='currentColor' stroke-width='2.4'/><path d='M12 6.5V12l4 2.5' fill='none' stroke='currentColor' stroke-width='2.4' stroke-linecap='round'/></svg>",'R1','Tiempo','1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180'],["<svg class='ti nov' viewBox='0 0 24 24'><use href='#teeS'/></svg>",'R2','Novedad que llegó','1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804'],["<svg class='ti rep' viewBox='0 0 24 24'><use href='#teeS'/></svg>",'R3','Reposición que llegó','0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108'],["<svg class='ti star' viewBox='0 0 24 24'><path d='M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8l-6.3 3.6 1.5-7.1L1.8 9.4 9 8.6z' fill='currentColor'/></svg>",'Z','Puntos','Max Z = 2x<sub>1</sub> + 1x<sub>2</sub>']];
     const CH=[["<svg class='ti nov' viewBox='0 0 24 24'><use href='#teeS'/></svg>",'x<sub>1</sub>','Novedad','piezas'],["<svg class='ti rep' viewBox='0 0 24 24'><use href='#teeS'/></svg>",'x<sub>2</sub>','Reposición','piezas'],["<svg class='ti' viewBox='0 0 24 24'><path d='M5 2v20' stroke='currentColor' stroke-width='2.4'/><path d='M6 3h12l-3 4.5 3 4.5H6z' fill='currentColor'/></svg>",'RHS','Límite','lado derecho']];
     let h='<thead class="'+(st.rows===0?'newhead':'')+'"><tr><th class="rlh">Restricción</th>'+CH.map((c,i)=>`<th class="${st.pc===i?'pc':''}${i===RC?' rc':''}"><span class="ch">${c[0]}<b>${c[1]}</b><small>${c[2]}</small><em>${c[3]}</em></span></th>`).join('')+`<th class="rt">${st.ratio?'Razón<small>RHS ÷ pivote</small>':(st.sol?'Solución':'')}</th></tr></thead><tbody>`;
     const solv=['x<sub>2</sub> = 2,376','x<sub>1</sub> = 6,804','sobran 732','Z = 15,984'];
