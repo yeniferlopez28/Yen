@@ -1675,6 +1675,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .gplot .pts2 circle{transform-box:fill-box;transform-origin:50% 50%}
 .gplot .pts2.on circle{animation:pinpop .5s cubic-bezier(.3,1.6,.5,1) both}
 @media (max-width:860px){.gm-side{width:100%}}
+.bit{border-collapse:collapse;margin:8px 0;font-variant-numeric:tabular-nums;font-size:.95em}.bit th,.bit td{padding:4px 12px;text-align:right;border-bottom:1px solid #E3E8EA}.bit th:first-child,.bit td:first-child{text-align:left}.bit th{font-weight:600}.bit tr.t td{font-weight:700;border-top:2px solid #111}
 @media (max-width:860px){.depts{grid-template-columns:1fr 1fr 1fr!important}}
 /* ===== G3 · método gráfico con los pasos de la clase ===== */
 #gm{grid-template-columns:minmax(0,.72fr) minmax(0,1.5fr)}
@@ -1945,7 +1946,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">01</span>La empresa · qué vende</div>
     <h2>Ropa para <em>toda la familia</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>C&amp;A vende ropa para toda la familia, y la acomoda en <b>departamentos</b>: <b>mujer, hombre</b> y <b>niños</b>.</p><p>En el embarque que estudiamos <b>solo llega ropa</b>: no hay accesorios ni otros artículos.</p></div>
+      <div class="say" data-say="0"><p>C&amp;A vende ropa para toda la familia, y la acomoda en <b>departamentos</b>: <b>mujer, hombre</b> y <b>niños</b>.</p><p>En nuestro embarque casi todo es <b>ropa</b> (8,771 piezas). También llegan un poco de <b>calzado</b> (350) y <b>accesorios</b> (791).</p></div>
       <div class="say" data-say="1"><p>No toda la ropa se acomoda igual. Unas prendas van <b>colgadas en gancho</b>, como vestidos, camisas y chamarras.</p><p>Otras van <b>dobladas</b> en mesas o anaqueles, como playeras, suéteres y jeans.</p></div>
       <div class="say" data-say="2"><p>Y la ropa cambia con la <b>temporada</b>. En calor llegan shorts y vestidos frescos; en frío, suéteres y chamarras; y en diciembre, la <b>ropa de Navidad</b>.</p><p>Por eso <b>cada semana llega algo distinto</b> al almacén.</p></div>
     </div>
@@ -2824,10 +2825,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <details><summary>¿Qué significa Z?</summary><p>Es el valor de la función objetivo: puntos de prioridad (15,984), no piezas ni dinero. En el modelo 2 es el número de personas extra.</p></details>
       <details><summary>¿Qué pasa si cambia el embarque?</summary><p>Solo se mueven las líneas de R2 y R3 a los nuevos números de la bitácora. R1 sigue en 9,180 mientras el equipo sea el mismo. Se vuelven a revisar las esquinas.</p></details>
       <details><summary>¿Por qué en el modelo 2 solo contamos personas de tiempo completo?</summary><p>Porque cada una aporta 9.5 horas contra 6.5 de medio turno: se necesitan menos personas. Así el modelo queda con una sola variable.</p></details>
+      <details><summary>¿Qué trae el embarque de 9,912 piezas?</summary><p>Es la bitácora de envío correcta (lo que se recibió).</p><table class="bit"><thead><tr><th>Departamento</th><th>Novedad</th><th>Reposición</th><th>Total</th></tr></thead><tbody><tr><td>Mujer</td><td>1,644</td><td>1,174</td><td>2,818</td></tr><tr><td>Hombre</td><td>2,347</td><td>827</td><td>3,174</td></tr><tr><td>Kids</td><td>761</td><td>108</td><td>869</td></tr><tr><td>Denim</td><td>1,278</td><td>632</td><td>1,910</td></tr><tr><td>Calzado</td><td>287</td><td>63</td><td>350</td></tr><tr><td>Accesorio</td><td>487</td><td>304</td><td>791</td></tr><tr class="t"><td>Total</td><td>6,804</td><td>3,108</td><td>9,912</td></tr></tbody></table><p>Usamos esta semana porque la bitácora trae las <b>piezas</b>. El formato nuevo de envío solo lista <b>modelos</b> (por ejemplo, 204 modelos), sin decir cuántas piezas son de cada uno.</p></details>
       <details><summary>¿De dónde salen los datos de la empresa?</summary><p>Historia de C&amp;A: sitio corporativo de C&amp;A y Wikipedia. C&amp;A en México (1999 en Angelópolis, compra de Grupo Alfar en dic 2023, 78 → 84 tiendas y meta de 100): Expansión, octubre de 2024, y Forbes México, 2023. Datos del almacén (embarque, horarios, mínimo de 180 pzs/h): bitácora y operación real de la tienda donde trabaja Karla.</p></details>
       <details class="lim"><summary>Limitaciones del modelo</summary>
         <ul>
-          <li>Usamos 180 pzs/h, que es el <b>mínimo</b> por persona. En la práctica se hacen unas 200, así que la capacidad real puede ser mayor.</li><li>Usamos la misma velocidad para todas las prendas; la ropa colgada y la doblada pueden tardar distinto.</li>
+          <li>Usamos 180 pzs/h, que es el <b>mínimo</b> por persona. En la práctica se hacen unas 200, así que la capacidad real puede ser mayor.</li><li>Usamos la misma velocidad para todo; calzado, accesorios o ropa colgada pueden tardar distinto.</li>
           <li>Suponemos que todos procesan durante todo su horario; si hay recepción o descarga, hay que restar esas horas.</li>
           <li>No consideramos ausencias ni retardos.</li>
           <li>El peso 2 de la novedad es una decisión del área, no un dato exacto.</li>
