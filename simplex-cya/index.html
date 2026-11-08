@@ -57,9 +57,8 @@ input[type=range]{touch-action:pan-x}
 /* swipe hint */
 .swipehint{position:fixed;z-index:26;left:50%;transform:translateX(-50%);
   bottom:calc(var(--guide-h) + 18px + env(safe-area-inset-bottom,0px));
-  display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);border-radius:30px;padding:10px 16px 10px 12px;
-  font:500 13px/1 var(--body);white-space:nowrap;pointer-events:none;transition:opacity .5s ease, transform .5s ease}
-.swipehint .arw{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--orange);color:var(--ink);animation:nudgeY 1.4s var(--ease) infinite}
+  display:flex;align-items:center;pointer-events:none;transition:opacity .5s ease, transform .5s ease}
+.swipehint .arw{display:inline-grid;place-items:center;width:40px;height:40px;font:600 18px/1 var(--body);box-shadow:0 4px 14px rgba(0,0,0,.18);border-radius:50%;background:var(--orange);color:var(--ink);animation:nudgeY 1.4s var(--ease) infinite}
 .swipehint .mob{display:none}
 @keyframes nudgeY{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
 @keyframes nudgeX{0%,100%{transform:translateX(5px)}50%{transform:translateX(-7px)}}
@@ -595,7 +594,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <h1>Simplex en el <span>almacén</span> de C&amp;A</h1>
     <div class="meta"><span>Arellano Lara Karla Valeria</span><span>Proyecto final</span><span>Método Simplex</span></div>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Preséntense con su nombre. Respiren: esta parte es solo para abrir. <b>Pasen a la siguiente con → o espacio.</b>">
+      <div class="say" data-say="0" data-cue="Preséntense con su nombre. Respiren: esta parte es solo para abrir. <b>Luego deslicen hacia abajo.</b>">
         <p>Hola, buenos días a todos. Nuestro proyecto se llama <b>Aplicación del método Simplex en el área de almacén de C&amp;A</b>.</p>
         <p>En los próximos diez minutos les vamos a contar un problema real que vivimos cada semana en el almacén, y cómo con el método Simplex logramos decidir dos cosas: <b>qué ropa procesar primero</b> y <b>cuánta gente extra pedir</b> cuando el embarque viene muy grande.</p>
       </div>
@@ -1061,7 +1060,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
   </div>
 </footer>
 <button class="showguide" id="showGuide" type="button">Mostrar guía (G)</button>
-<div class="swipehint" aria-hidden="true"><span class="arw">↓</span><span>Desliza hacia abajo</span></div>
+<div class="swipehint" aria-hidden="true"><span class="arw">↓</span></div>
 
 <script>
 (function(){
