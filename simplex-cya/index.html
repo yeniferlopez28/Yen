@@ -28,7 +28,7 @@
   --body:"Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif;
   --mono:"Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif;
   --hud-h:56px;
-  --guide-h:78px;
+  --guide-h:64px;
   --ease:cubic-bezier(.72,0,.18,1);
 }
 html,body{height:100%}
@@ -163,7 +163,7 @@ body.guide-off .frame{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
   padding-left:max(clamp(16px,2.4vw,36px), env(safe-area-inset-left,0px));
   padding-right:max(clamp(16px,2.4vw,36px), env(safe-area-inset-right,0px));
   background:var(--ink);color:var(--paper);
-  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(12px,2vw,28px);align-items:center;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(12px,2vw,28px);align-items:center;
   border-top:1px solid #34332f;
   transition:transform .5s var(--ease);
 }
@@ -172,7 +172,7 @@ body.guide-off .guide{transform:translateY(105%)}
 .g-tag span{color:var(--orange)}
 .g-cue{font-size:clamp(13px,.45vw + 9px,16px);line-height:1.4;min-width:0}
 .g-cue b{color:var(--orange);font-weight:600}
-.g-right{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono)}
+.g-right{justify-self:end;display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono)}
 .g-time{display:flex;flex-direction:column;gap:5px;align-items:flex-end;white-space:nowrap}
 .g-time small{opacity:.6;letter-spacing:.06em;text-transform:uppercase;font-size:10px}
 .clock{font:600 20px/1 var(--mono);font-variant-numeric:tabular-nums}
@@ -484,7 +484,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
 
 /* ---------- responsive ---------- */
 @media (max-width:860px){
-  :root{--hud-h:48px;--guide-h:96px}
+  :root{--hud-h:48px;--guide-h:64px}
   .deck{scroll-snap-type:y proximity}
   .slide,#s1,#s4,#s6,#s9,#s11{display:flex;flex-direction:column;justify-content:flex-start;gap:26px;height:auto;min-height:100%;overflow:hidden;scroll-snap-stop:normal}
   .slide>*{flex:none}
@@ -538,7 +538,8 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
   #s4 .stage{min-height:360px}
   .says{min-height:0}
   .brand{display:none}
-  .guide{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;row-gap:6px;padding-top:8px}
+  .guide{grid-template-columns:minmax(0,1fr)}
+  .g-right{justify-content:space-between}
   .g-tag{display:none}
   .g-cue{grid-column:1/-1;font-size:13px}
   .res{grid-template-columns:auto auto;justify-content:center}
@@ -594,7 +595,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <h1>Simplex en el <span>almacén</span> de C&amp;A</h1>
     <div class="meta"><span>Arellano Lara Karla Valeria</span><span>Proyecto final</span><span>Método Simplex</span></div>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Preséntense con su nombre. Respiren: esta parte es solo para abrir. <b>Luego deslicen hacia abajo.</b>">
+      <div class="say" data-say="0">
         <p>Hola, buenos días a todos. Nuestro proyecto se llama <b>Aplicación del método Simplex en el área de almacén de C&amp;A</b>.</p>
         <p>En los próximos diez minutos les vamos a contar un problema real que vivimos cada semana en el almacén, y cómo con el método Simplex logramos decidir dos cosas: <b>qué ropa procesar primero</b> y <b>cuánta gente extra pedir</b> cuando el embarque viene muy grande.</p>
       </div>
@@ -615,7 +616,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>La empresa</div>
     <h2>Cada semana llega un <em>embarque</em> de ropa</h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala el camión y luego sigue con el dedo la línea naranja hasta el perchero: <b>embarque → almacén → piso de venta</b>.">
+      <div class="say" data-say="0">
         <p>C&amp;A es una tienda de ropa para mujer, hombre, niños y el hogar. Cada semana a la tienda le llega un <b>embarque</b>: cajas y cajas de prendas que vienen anotadas en un documento que se llama <b>bitácora de envío</b>.</p>
         <p>Esa ropa no sale directo a la tienda. Primero pasa por el almacén, que es donde trabajamos, y la meta es que todo quede listo para piso de venta en <b>2 a 3 días</b>.</p>
         <p>En el embarque vienen dos tipos de ropa: la <b>novedad</b>, que son las prendas nuevas y salen primero, y la <b>reposición</b>, que sirve para rellenar lo que ya se vendió.</p>
@@ -676,11 +677,11 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Área de trabajo · almacén</div>
     <h2>Seis personas, <em>51 horas</em> al día</h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala las barras negras: <b>4 de tiempo completo</b> y <b>2 de medio turno</b>. La parte rayada es la comida (dato por confirmar).">
+      <div class="say" data-say="0">
         <p>En el almacén, a cada prenda le hacemos cuatro cosas: la <b>separamos</b> en novedad o reposición, la <b>empleyetamos</b>, la <b>colocamos</b> y la <b>perchamos</b>.</p>
         <p>Somos un equipo fijo de seis personas. <b>Cuatro trabajan tiempo completo</b>, de 6 de la mañana a 4:30 de la tarde, con una hora de comida, así que cada una trabaja 9.5 horas. Las otras <b>dos son de medio turno</b>, de 6 a 12:30, o sea 6.5 horas.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Lee las tres cajas de izquierda a derecha. Remata con la naranja: <b>9,180 piezas al día</b> es el número que vamos a usar todo el tiempo.">
+      <div class="say" data-say="1">
         <p>Si lo sumamos: 4 por 9.5 son <b>38 horas</b>, más 2 por 6.5, que son <b>13 horas</b>. Nos da <b>51 horas-persona al día</b>.</p>
         <p>Nuestra meta es de <b>180 piezas por hora</b> por persona. Entonces 51 por 180 nos da que el equipo puede procesar <b>9,180 piezas al día</b>. En dos días son 18,360 y en tres días, 27,540.</p>
       </div>
@@ -714,11 +715,11 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>El problema</div>
     <h2>El embarque cambia, el equipo <em>no</em></h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala la línea punteada (lo que cabe en un día) y luego la barra de 17,000 que se pasa. <b>Haz la pregunta en voz alta.</b>">
+      <div class="say" data-say="0">
         <p>Aquí está el problema. El tamaño del embarque cambia muchísimo de una semana a otra: una semana llegan <b>9,000 piezas</b> y la siguiente pueden llegar <b>17,000</b>. Pero el equipo siempre puede lo mismo: <b>9,180 piezas al día</b>.</p>
         <p>Hoy no tenemos una forma ordenada de saber <b>cuánta gente se necesita</b> ni <b>qué procesar primero</b> para que el embarque salga a tiempo.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Señala la barra del centro: la parte roja es la novedad. <b>55 horas contra 51</b>: no cabe en un día.">
+      <div class="say" data-say="1">
         <p>Para trabajar con datos reales tomamos la bitácora de un embarque: <b>9,912 piezas</b>, de las cuales <b>6,804 son novedad</b> y <b>3,108 son reposición</b>.</p>
         <p>Si dividimos 9,912 entre 180 nos da <b>55 horas</b>, y solo tenemos 51. No cabe en un día. Entonces la pregunta es: <b>el día 1, ¿qué procesamos primero?</b> Ahí entra el método Simplex.</p>
       </div>
@@ -755,15 +756,15 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Modelo 1 · Formulación</div>
     <h2>Maximizar lo que sale <em>el día 1</em></h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala las dos cajas: <b>naranja = novedad (x₁)</b>, <b>negra = reposición (x₂)</b>. Aclara lo de las centenas.">
+      <div class="say" data-say="0">
         <p>Para que los números sean más chicos, trabajamos en <b>centenas de piezas</b>. Por ejemplo, 6,804 piezas son 68.04 centenas.</p>
         <p>Nuestras <b>variables de decisión</b> son dos: <b>x₁</b>, las centenas de novedad que procesamos el día 1, y <b>x₂</b>, las centenas de reposición que procesamos el día 1.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Señala el <b>2</b> de la función objetivo. Si preguntan: Z son puntos de prioridad, no piezas ni dinero.">
+      <div class="say" data-say="1">
         <p>La <b>función objetivo</b> es maximizar <b>Z = 2x₁ + x₂</b>.</p>
         <p>El 2 es un peso: le dice al método que la novedad vale el doble que la reposición, porque es la que sale primero a la tienda. Z no son piezas ni dinero, son <b>puntos de prioridad</b>. Lo que realmente nos importa del resultado son x₁ y x₂.</p>
       </div>
-      <div class="say" data-say="2" data-cue="Recorre las tres barras de arriba a abajo mientras dices cada restricción.">
+      <div class="say" data-say="2">
         <p>Y tenemos tres restricciones. <b>R1, el tiempo:</b> x₁ + x₂ no puede pasar de <b>91.8</b>, que son las 9,180 piezas que caben en el día.</p>
         <p><b>R2:</b> no podemos procesar más novedad de la que llegó, <b>68.04</b>. <b>R3:</b> tampoco más reposición de la que llegó, <b>31.08</b>. Y ninguna variable puede ser negativa, porque no existen piezas negativas.</p>
       </div>
@@ -798,25 +799,25 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Aplicación del método</div>
     <h2>La tabla <em>Simplex</em>, paso a paso</h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala el renglón Z. <b>Tabla 1 de 3.</b>">
+      <div class="say" data-say="0">
         <p><b>Paso 1.</b> Armamos la tabla Simplex. Las restricciones se colocan tal cual, y la función objetivo se pasa a la forma <b>Z − 2x₁ − x₂ = 0</b>. Por eso en el renglón de Z aparecen los valores negativos.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Señala el <b>−2</b> en naranja.">
+      <div class="say" data-say="1">
         <p><b>Paso 2.</b> Buscamos la <b>columna pivote</b>: es donde Z tiene el valor más negativo. Aquí es el <b>−2</b>, así que la columna pivote es <b>x₁</b>. Eso quiere decir que lo que más conviene aumentar primero es la novedad.</p>
       </div>
-      <div class="say" data-say="2" data-cue="Señala la columna de razones y luego el <b>1 encerrado</b> en R2.">
+      <div class="say" data-say="2">
         <p><b>Paso 3.</b> Sacamos las <b>razones</b>: dividimos R entre la columna pivote. R1 da 91.8, R2 da <b>68.04</b> y R3 no se usa porque tiene cero.</p>
         <p>La razón más pequeña es 68.04, entonces la <b>fila pivote es R2</b> y el pivote es el 1 de R2.</p>
       </div>
-      <div class="say" data-say="3" data-cue="Señala las fórmulas de abajo. Las celdas que brillaron son las que cambiaron. <b>Tabla 2 de 3.</b>">
+      <div class="say" data-say="3">
         <p><b>Paso 4 y 5.</b> Como el pivote es 1, R2 se queda igual. Ahora volvemos cero la columna pivote con la regla: <b>fila nueva = fila actual − coeficiente × fila pivote</b>.</p>
         <p>R1 nueva queda en (0, 1, 23.76) y Z nueva queda en (0, −1, <b>136.08</b>). R3 no cambia porque ya tenía cero.</p>
       </div>
-      <div class="say" data-say="4" data-cue="Señala el <b>−1</b> que queda en Z y luego el pivote en R1.">
+      <div class="say" data-say="4">
         <p><b>Paso 6.</b> ¿Todavía hay negativos en Z? Sí, un <b>−1</b>. Entonces repetimos. La columna pivote ahora es <b>x₂</b>.</p>
         <p>Razones: R1 da <b>23.76</b> y R3 da 31.08. La menor es 23.76, así que la <b>fila pivote es R1</b>.</p>
       </div>
-      <div class="say" data-say="5" data-cue="Señala el <b>159.84</b> resaltado. <b>Tabla 3 de 3: ya no hay negativos.</b>">
+      <div class="say" data-say="5">
         <p>Volvemos cero la columna: R3 nueva queda en <b>7.32</b> y Z nueva queda en <b>159.84</b>.</p>
         <p><b>Paso 7.</b> Ya no hay ningún valor negativo en Z, así que <b>terminamos</b>: llegamos a la solución óptima.</p>
       </div>
@@ -837,15 +838,15 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Resultados y comprobación</div>
     <h2>Toda la novedad sale <em>el día 1</em></h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala los dos números grandes. Recuerda multiplicar por 100 para volver a piezas.">
+      <div class="say" data-say="0">
         <p>Este es el resultado. <b>x₁ = 68.04</b>, o sea que el día 1 procesamos las <b>6,804 piezas de novedad</b>: toda la novedad.</p>
         <p>Y <b>x₂ = 23.76</b>, que son <b>2,376 piezas de reposición</b>. Con eso el termómetro del día 1 queda lleno: usamos las 51 horas completas.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Lee las cuatro palomitas. <b>Esto es lo que pide la rúbrica: comprobar.</b>">
+      <div class="say" data-say="1">
         <p>Y lo comprobamos. 6,804 más 2,376 dan <b>9,180</b>, justo lo que cabe en el día. La novedad, 6,804, no pasa de lo que llegó. La reposición, 2,376, es menor que 3,108.</p>
         <p>Y Z: 2 por 6,804 más 2,376 nos da <b>15,984 puntos</b>. Todo cumple.</p>
       </div>
-      <div class="say" data-say="2" data-cue="Señala el segundo termómetro, casi vacío: <b>día 2 solo 4 horas</b>.">
+      <div class="say" data-say="2">
         <p>¿Qué significa esto en el trabajo? Que el día 1 sale toda la novedad, y para el día 2 solo nos quedan <b>732 piezas de reposición</b>, que son unas <b>4 horas</b> de trabajo. El embarque termina en el día 2.</p>
         <p>Y fíjense: la holgura de R3, el <b>7.32</b> que quedó en la tabla, es exactamente esa reposición que falta.</p>
       </div>
@@ -884,15 +885,15 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Modelo 2 · Propuesta de optimización</div>
     <h2>¿Cuánta gente <em>pedir prestada</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Señala la tarjeta blanca con el modelo. Las personas negras son nuestro equipo de 6.">
+      <div class="say" data-say="0">
         <p>Ahora, la segunda pregunta: ¿qué pasa si el embarque viene enorme? El primer día nos pueden prestar gente de piso. Queremos pedir <b>la menor cantidad posible</b> y aun así terminar a tiempo.</p>
         <p>Las variables son <b>x₁</b>, personas extra de tiempo completo, que aportan 9.5 horas, y <b>x₂</b>, personas extra de medio turno, que aportan 6.5. Minimizamos <b>Z = x₁ + x₂</b>, con la condición de que <b>9.5x₁ + 6.5x₂</b> cubra las horas que faltan.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Di los números despacio: <b>138.89 − 102 = 36.89 horas</b>. Menciona que lo resolvimos con la forma dual, como en clase.">
+      <div class="say" data-say="1">
         <p>Ejemplo: un embarque de <b>25,000 piezas</b> que queremos terminar en 2 días. 25,000 entre 180 son <b>138.89 horas</b>. En 2 días el equipo tiene 102. Nos faltan <b>36.89 horas</b>.</p>
         <p>Como es un problema de minimizar con mayor o igual, lo resolvemos con su <b>forma dual</b>: maximizar W = 36.89y, con 9.5y ≤ 1 y 6.5y ≤ 1.</p>
       </div>
-      <div class="say" data-say="2" data-cue="Señala las 4 personas naranjas que aparecen. <b>3.88 → se redondea hacia arriba a 4.</b>">
+      <div class="say" data-say="2">
         <p>La columna pivote es y. Las razones: 1 entre 9.5 da 0.1053 y 1 entre 6.5 da 0.1538. La menor es R1, el pivote es 9.5. Al hacer las operaciones, <b>W queda en 3.88</b>.</p>
         <p>Necesitamos 3.88 personas, y como no se pueden pedir 0.88 personas, redondeamos: <b>4 personas de tiempo completo</b>. Comprobamos: 4 por 9.5 son 38 horas, que sí cubren las 36.89. Con 3 serían 28.5, no alcanza. Sale tiempo completo porque cada persona aporta más horas.</p>
       </div>
@@ -941,7 +942,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Propuesta de mejora</div>
     <h2>Una <em>calculadora</em> para cada lunes</h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Usa la calculadora en vivo: pica <b>25,000</b> y muestra que salen 4 personas; luego <b>30,000</b> en 3 días. Al final lee las 4 propuestas.">
+      <div class="say" data-say="0">
         <p>Con esto armamos nuestra propuesta. <b>Uno:</b> una calculadora de personal. Cada lunes, con la bitácora, ponemos el tamaño del embarque y sabemos cuánta gente pedir a piso el día 1. Por ejemplo, con 25,000 piezas en 2 días salen 4 personas.</p>
         <p><b>Dos:</b> una regla de prioridad: siempre procesar primero la novedad. <b>Tres:</b> aviso anticipado: si el embarque pasa de <b>18,360 piezas</b>, que es lo que cabe en 2 días, pedimos apoyo con tiempo. <b>Y cuatro</b>, el impacto: terminar el embarque en el plazo y evitar tiempo extra.</p>
       </div>
@@ -983,13 +984,13 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Conclusiones</div>
     <h2>Tres ideas para <em>llevarse</em></h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Conclusión 1 de 3.">
+      <div class="say" data-say="0">
         <p><b>Primera:</b> con 6 personas procesamos <b>9,180 piezas al día</b>, y un embarque como el de nuestro ejemplo, de 9,912 piezas, termina en <b>2 días</b>.</p>
       </div>
-      <div class="say" data-say="1" data-cue="Conclusión 2 de 3.">
+      <div class="say" data-say="1">
         <p><b>Segunda:</b> el método Simplex nos permite <b>priorizar la novedad</b> y <b>calcular cuánta gente extra pedir</b> según el tamaño del embarque.</p>
       </div>
-      <div class="say" data-say="2" data-cue="Cierre. Den las gracias y abran a preguntas. <b>La siguiente diapositiva es de respaldo.</b>">
+      <div class="say" data-say="2">
         <p><b>Y tercera:</b> cada semana solo cambian las cantidades del lado derecho, y el modelo <b>se vuelve a usar igual</b>.</p>
         <p>Muchas gracias por su atención. ¿Tienen alguna pregunta?</p>
       </div>
@@ -1020,7 +1021,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     <div class="eyebrow"><i></i>Respaldo · no cuenta en los 10 min</div>
     <h2>Si nos <em>preguntan</em>…</h2>
     <div class="says">
-      <div class="say" data-say="0" data-cue="Solo si hay preguntas. Abre la que te pregunten y léela con tus palabras.">
+      <div class="say" data-say="0">
         <p>Estas son las respuestas a lo que más probablemente nos pueden preguntar. Abran la pregunta que les hagan y respóndanla con sus palabras.</p>
       </div>
     </div>
@@ -1050,7 +1051,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
 
 <footer class="guide" id="guide">
   <div class="g-tag">Guía<span id="gStep">Paso 1 de 1</span><div class="stepdots" id="gDots"></div></div>
-  <div class="g-cue" id="gCue"></div>
+  <div class="g-cue" id="gCue" hidden></div>
   <div class="g-right">
     <div class="g-time"><small id="gSug">Sugerido 0:30</small><span class="clock" id="clock">00:00</span></div>
     <button class="timerbtn" id="timerBtn" type="button" title="Iniciar / pausar cronómetro (T)">Iniciar</button>
@@ -1228,7 +1229,6 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     const sl=slides[cur];
     paint(sl, step, true);
     const say=$(`.say[data-say="${step}"]`,sl);
-    $('#gCue').innerHTML = say ? say.dataset.cue : '';
     const ns=steps(cur);
     $('#gStep').textContent = `Paso ${step+1} de ${ns}`;
     $('#gDots').innerHTML = Array.from({length:ns},(_,i)=>`<i class="${i<=step?'on':''}"></i>`).join('');
