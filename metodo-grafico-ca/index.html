@@ -1687,6 +1687,16 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .g3-r .no{opacity:.7}
 .g3-r span[data-step]{display:inline}
 @media (max-width:860px){.g3-side{flex:none;width:100%}}
+.g3-work mark{background:#FFE8B8;color:inherit;padding:0 .15em;border-radius:3px}
+.g3-r .if{font-size:.82em;font-weight:600;color:#2B6F7C;margin-right:.3em}
+.g3-cd{transition:opacity .5s ease}
+.g3-res [data-range].g3-cd:not(.on){opacity:0}
+.g3-res:has(.gm-win.on) tr.cbest td{background:rgba(198,40,40,.12);color:#C62828}
+.g3-note{align-self:center;background:#fff;border:2px solid #111;padding:clamp(12px,2vh,20px) clamp(14px,1.2vw,20px);display:flex;flex-direction:column;gap:10px;font-family:var(--body);font-size:clamp(15px,min(1.1vw,2.1vh),20px);line-height:1.4}
+.g3-note small{font:600 clamp(12px,.9vw,15px)/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:#2B6F7C}
+.g3-note p{margin:0}
+.g3-note ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.g3-note li{border-left:4px solid var(--c);padding-left:10px}
 /* ===== /G3 ===== */
 </style>
 
@@ -2404,18 +2414,23 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 
 
 <!-- ============ 05 · MÉTODO GRÁFICO (paso a paso) ============ -->
-<section class="slide bg-cream" id="gm" data-tone="light" data-steps="7" data-sec="5">
+<section class="slide bg-cream" id="gm" data-tone="light" data-steps="12" data-sec="5">
   <div class="talk">
     <div class="eyebrow"><i></i><span class="sec">05</span>Método gráfico · paso a paso</div>
     <h2>Lo resolvemos <em>dibujando</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>Paso 1:</b> crear un sistema de ecuaciones con <b>igualdades</b>.</p><p>Cambiamos cada <b>≤</b> por <b>=</b>. Así cada restricción se vuelve una línea que podemos dibujar.</p></div>
-      <div class="say" data-say="1"><p><b>Paso 2:</b> encontrar los valores de x<sub>1</sub> y x<sub>2</sub> en cada ecuación.</p><p><b>Eliminamos x<sub>2</sub></b> para encontrar x<sub>1</sub>, y viceversa. Por ejemplo, en R1 queda <b>1x<sub>1</sub> = 9,180</b> y <b>1x<sub>2</sub> = 9,180</b>.</p></div>
-      <div class="say" data-say="2"><p><b>Paso 3:</b> despejar y encontrar el valor de x<sub>1</sub> y x<sub>2</sub>.</p><p>En R1: x<sub>1</sub> = 9,180/1 = <b>9,180</b> y x<sub>2</sub> = 9,180/1 = <b>9,180</b>. R2 solo tiene x<sub>1</sub> = <b>6,804</b> y R3 solo tiene x<sub>2</sub> = <b>3,108</b>.</p></div>
-      <div class="say" data-say="3"><p><b>Paso 4:</b> representar los valores en la gráfica (plano cartesiano).</p><p>x<sub>1</sub>, la <b>novedad</b>, va en el eje horizontal. x<sub>2</sub>, la <b>reposición</b>, va en el vertical. Marcamos los dos puntos de R1 y los unimos.</p></div>
-      <div class="say" data-say="4"><p><b>Paso 4:</b> seguimos con R2 y R3.</p><p>R2 solo toca el eje x<sub>1</sub> en <b>6,804</b>: es una línea <b>vertical</b>. R3 solo toca el eje x<sub>2</sub> en <b>3,108</b>: es una línea <b>horizontal</b>.</p></div>
-      <div class="say" data-say="5"><p>La zona que cumple <b>las tres al mismo tiempo</b> es la <b>región factible</b>. Sus esquinas son A, B, C, D y E.</p><p>C y D salen con una resta: 9,180 − 6,804 = <b>2,376</b> y 9,180 − 3,108 = <b>6,072</b>.</p></div>
-      <div class="say" data-say="6"><p>Evaluamos la <b>F.O. = 2x<sub>1</sub> + 1x<sub>2</sub></b> en cada esquina.</p><p>Gana <b>C</b> con <b>Z = 15,984</b>: el día 1 se hacen <b>6,804 de novedad</b> y <b>2,376 de reposición</b>.</p></div>
+      <div class="say" data-say="0"><p>Este es nuestro problema.</p><p>Arriba está lo que queremos <b>lograr</b> (la F.O.). Abajo están los <b>límites</b>: R1, R2 y R3.</p></div>
+      <div class="say" data-say="1"><p><b>Paso 1:</b> cambiamos el signo <b>≤</b> por <b>=</b>.</p><p>¿Para qué? Con el <b>=</b>, cada límite se vuelve una <b>línea</b> que podemos dibujar.</p></div>
+      <div class="say" data-say="2"><p><b>Pasos 2 y 3</b>, con R1.</p><p>Imaginamos que <b>no hacemos reposición</b> (x<sub>2</sub> = 0). Queda 1x<sub>1</sub> = 9,180, y despejamos: x<sub>1</sub> = <b>9,180</b>.</p><p>Es nuestro <b>primer punto</b>, en el eje de novedad.</p></div>
+      <div class="say" data-say="3"><p>Ahora al revés: <b>no hacemos novedad</b> (x<sub>1</sub> = 0).</p><p>Queda 1x<sub>2</sub> = 9,180, entonces x<sub>2</sub> = <b>9,180</b>. Es el <b>segundo punto</b>, en el eje de reposición.</p></div>
+      <div class="say" data-say="4"><p><b>Paso 4:</b> unimos los dos puntos con una línea.</p><p>Esa línea es <b>R1</b>. Todo lo que queda <b>abajo</b> de ella cabe en un día de trabajo.</p></div>
+      <div class="say" data-say="5"><p>Ahora <b>R2</b>: x<sub>1</sub> = <b>6,804</b>.</p><p>Solo habla de <b>novedad</b>, no tiene x<sub>2</sub>. Por eso es una línea <b>vertical</b> (de arriba a abajo). No podemos pasarnos a la derecha.</p></div>
+      <div class="say" data-say="6"><p>Y <b>R3</b>: x<sub>2</sub> = <b>3,108</b>.</p><p>Solo habla de <b>reposición</b>, no tiene x<sub>1</sub>. Es una línea <b>horizontal</b> (de lado a lado). No podemos pasarnos hacia arriba.</p></div>
+      <div class="say" data-say="7"><p>La zona pintada cumple <b>los tres límites</b> al mismo tiempo.</p><p>Se llama <b>región factible</b>: son todas las opciones que sí se pueden hacer.</p></div>
+      <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b> de esa zona.</p><p>Tiene 5 esquinas: <b>A, B, C, D y E</b>. A, B y E se leen directo en los ejes.</p></div>
+      <div class="say" data-say="9"><p><b>C y D</b> salen con una resta.</p><p>En C hacemos toda la novedad (6,804) y el tiempo que sobra es reposición: 9,180 − 6,804 = <b>2,376</b>.</p><p>En D: 9,180 − 3,108 = <b>6,072</b>.</p></div>
+      <div class="say" data-say="10"><p>Probamos cada esquina en la <b>F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Cada pieza de novedad vale <b>2 puntos</b> y cada pieza de reposición vale <b>1</b>.</p></div>
+      <div class="say" data-say="11"><p>Gana la esquina <b>C</b> con <b>15,984 puntos</b>, el número más alto.</p><p>El día 1 hacemos <b>6,804 piezas de novedad</b> y <b>2,376 de reposición</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2423,18 +2438,24 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <svg class="gplot gm-plot g3" viewBox="0 0 660 560" role="img" aria-label="Método gráfico: x1 novedad en el eje horizontal, x2 reposición en el vertical; R1 une x1 = 9,180 y x2 = 9,180; R2 es la vertical x1 = 6,804; R3 la horizontal x2 = 3,108; óptimo en C (6,804 ; 2,376)">
 <rect x="80" y="70.0" width="520" height="420" fill="#FFFFFF"/>
 <line x1="132.0" y1="490" x2="132.0" y2="70.0" stroke="#F1F4F5"/><line x1="80" y1="448.0" x2="600.0" y2="448.0" stroke="#F1F4F5"/><line x1="184.0" y1="490" x2="184.0" y2="70.0" stroke="#E3E8EA"/><line x1="80" y1="406.0" x2="600.0" y2="406.0" stroke="#E3E8EA"/><line x1="236.0" y1="490" x2="236.0" y2="70.0" stroke="#F1F4F5"/><line x1="80" y1="364.0" x2="600.0" y2="364.0" stroke="#F1F4F5"/><line x1="288.0" y1="490" x2="288.0" y2="70.0" stroke="#E3E8EA"/><line x1="80" y1="322.0" x2="600.0" y2="322.0" stroke="#E3E8EA"/><line x1="340.0" y1="490" x2="340.0" y2="70.0" stroke="#F1F4F5"/><line x1="80" y1="280.0" x2="600.0" y2="280.0" stroke="#F1F4F5"/><line x1="392.0" y1="490" x2="392.0" y2="70.0" stroke="#E3E8EA"/><line x1="80" y1="238.0" x2="600.0" y2="238.0" stroke="#E3E8EA"/><line x1="444.0" y1="490" x2="444.0" y2="70.0" stroke="#F1F4F5"/><line x1="80" y1="196.0" x2="600.0" y2="196.0" stroke="#F1F4F5"/><line x1="496.0" y1="490" x2="496.0" y2="70.0" stroke="#E3E8EA"/><line x1="80" y1="154.0" x2="600.0" y2="154.0" stroke="#E3E8EA"/><line x1="548.0" y1="490" x2="548.0" y2="70.0" stroke="#F1F4F5"/><line x1="80" y1="112.0" x2="600.0" y2="112.0" stroke="#F1F4F5"/><line x1="600.0" y1="490" x2="600.0" y2="70.0" stroke="#E3E8EA"/><line x1="80" y1="70.0" x2="600.0" y2="70.0" stroke="#E3E8EA"/>
-<polygon class="region" data-range="5-99" points="80.0,490.0 433.8,490.0 433.8,390.2 395.7,359.5 80.0,359.5" fill="#A9D3DB"/>
-<g data-range="5-99"><text x="230.8" y="435.4" text-anchor="middle" class="sv-reg">REGIÓN FACTIBLE</text></g>
-<g data-range="3-99" class="ln"><line x1="80.0" y1="104.4" x2="557.4" y2="490.0" stroke="#111111" stroke-width="4"/></g>
-<g data-range="3-99"><text x="215.2" y="199.6" class="g3-rn">R1</text></g>
-<g data-range="3-4" class="pts2"><circle cx="557.4" cy="490.0" r="8" fill="#111111" stroke="#fff" stroke-width="2.5"/><circle cx="80.0" cy="104.4" r="8" fill="#111111" stroke="#fff" stroke-width="2.5"/></g>
-<g data-range="3-4" class="g3-pl"><text x="561.4" y="476.0"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">1</tspan><tspan dy="-0.28em">​</tspan> = 9,180</text><text x="94.0" y="96.4"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 9,180</text></g>
-<g data-range="4-99" class="ln"><line x1="433.8" y1="70.0" x2="433.8" y2="490" stroke="#398C9C" stroke-width="4"/><line x1="80" y1="359.5" x2="600.0" y2="359.5" stroke="#E3A63B" stroke-width="4"/></g>
-<g data-range="4-99"><text x="443.8" y="90.0" class="g3-rn" fill="#2B6F7C">R2</text><use href="#icNov" x="466.8" y="75.0" width="16" height="16" style="color:#398C9C"/><text x="576.0" y="349.5" text-anchor="end" class="g3-rn" fill="#A06A12">R3</text><use href="#icRep" x="580.0" y="334.5" width="16" height="16" style="color:#E3A63B"/></g>
-<g data-range="4-4" class="pts2"><circle cx="433.8" cy="490" r="8" fill="#398C9C" stroke="#fff" stroke-width="2.5"/><circle cx="80" cy="359.5" r="8" fill="#E3A63B" stroke="#fff" stroke-width="2.5"/></g>
-<g data-range="4-4" class="g3-pl"><text x="443.8" y="478" fill="#2B6F7C"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">1</tspan><tspan dy="-0.28em">​</tspan> = 6,804</text><text x="94" y="349.5" fill="#A06A12"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 3,108</text></g>
-<g data-range="5-99"><g class="vx" style="--i:0"><circle cx="80.0" cy="490.0" r="7" fill="#111111"/><text x="94.0" y="478.0" text-anchor="start" class="g3-v">A</text></g><g class="vx" style="--i:1"><circle cx="433.8" cy="490.0" r="7" fill="#111111"/><text x="445.8" y="478.0" text-anchor="start" class="g3-v">B</text></g><g class="vx" style="--i:2"><circle cx="433.8" cy="390.2" r="7" fill="#111111"/><text x="421.8" y="412.2" text-anchor="end" class="g3-v">C</text></g><g class="vx" style="--i:3"><circle cx="395.7" cy="359.5" r="7" fill="#111111"/><text x="395.7" y="345.5" text-anchor="middle" class="g3-v">D</text></g><g class="vx" style="--i:4"><circle cx="80.0" cy="359.5" r="7" fill="#111111"/><text x="70.0" y="349.5" text-anchor="end" class="g3-v">E</text></g></g>
-<g data-range="6-99" class="iso"><path class="star" d="M433.8 375.2l4.4 9.3 10.2 1.2-7.6 7 2 10-9-5-9 5 2-10-7.6-7 10.2-1.2z" fill="#C62828"/><line x1="445.8" y1="378.2" x2="473.8" y2="328.2" stroke="#C62828" stroke-width="1.6"/><text x="477.8" y="308.2" class="g3-opt">C = (6,804 ; 2,376)</text><text x="477.8" y="330.2" class="g3-opt z">Z = 15,984</text></g>
+<polygon class="region" data-range="7-99" points="80.0,490.0 433.8,490.0 433.8,390.2 395.7,359.5 80.0,359.5" fill="#A9D3DB"/>
+<g data-range="7-99"><text x="230.8" y="435.4" text-anchor="middle" class="sv-reg">REGIÓN FACTIBLE</text></g>
+<g data-range="2-6" class="pts2"><circle cx="557.4" cy="490.0" r="8" fill="#111111" stroke="#fff" stroke-width="2.5"/></g>
+<g data-range="2-6" class="g3-pl"><text x="561.4" y="476.0"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">1</tspan><tspan dy="-0.28em">​</tspan> = 9,180</text></g>
+<g data-range="3-6" class="pts2"><circle cx="80.0" cy="104.4" r="8" fill="#111111" stroke="#fff" stroke-width="2.5"/></g>
+<g data-range="3-6" class="g3-pl"><text x="94.0" y="96.4"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 9,180</text></g>
+<g data-range="4-99" class="ln"><line x1="80.0" y1="104.4" x2="557.4" y2="490.0" stroke="#111111" stroke-width="4"/></g>
+<g data-range="4-99"><text x="215.2" y="199.6" class="g3-rn">R1</text></g>
+<g data-range="5-99" class="ln"><line x1="433.8" y1="70.0" x2="433.8" y2="490" stroke="#398C9C" stroke-width="4"/></g>
+<g data-range="5-99"><text x="443.8" y="90.0" class="g3-rn" fill="#2B6F7C">R2</text><use href="#icNov" x="466.8" y="75.0" width="16" height="16" style="color:#398C9C"/></g>
+<g data-range="5-6" class="pts2"><circle cx="433.8" cy="490" r="8" fill="#398C9C" stroke="#fff" stroke-width="2.5"/></g>
+<g data-range="5-6" class="g3-pl"><text x="443.8" y="478" fill="#2B6F7C"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">1</tspan><tspan dy="-0.28em">​</tspan> = 6,804</text></g>
+<g data-range="6-99" class="ln"><line x1="80" y1="359.5" x2="600.0" y2="359.5" stroke="#E3A63B" stroke-width="4"/></g>
+<g data-range="6-99"><text x="576.0" y="349.5" text-anchor="end" class="g3-rn" fill="#A06A12">R3</text><use href="#icRep" x="580.0" y="334.5" width="16" height="16" style="color:#E3A63B"/></g>
+<g data-range="6-6" class="pts2"><circle cx="80" cy="359.5" r="8" fill="#E3A63B" stroke="#fff" stroke-width="2.5"/></g>
+<g data-range="6-6" class="g3-pl"><text x="94" y="349.5" fill="#A06A12"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 3,108</text></g>
+<g data-range="8-99"><g class="vx" style="--i:0"><circle cx="80.0" cy="490.0" r="7" fill="#111111"/><text x="94.0" y="478.0" text-anchor="start" class="g3-v">A</text></g><g class="vx" style="--i:1"><circle cx="433.8" cy="490.0" r="7" fill="#111111"/><text x="445.8" y="478.0" text-anchor="start" class="g3-v">B</text></g><g class="vx" style="--i:2"><circle cx="433.8" cy="390.2" r="7" fill="#111111"/><text x="421.8" y="412.2" text-anchor="end" class="g3-v">C</text></g><g class="vx" style="--i:3"><circle cx="395.7" cy="359.5" r="7" fill="#111111"/><text x="395.7" y="345.5" text-anchor="middle" class="g3-v">D</text></g><g class="vx" style="--i:4"><circle cx="80.0" cy="359.5" r="7" fill="#111111"/><text x="70.0" y="349.5" text-anchor="end" class="g3-v">E</text></g></g>
+<g data-range="11-99" class="iso"><path class="star" d="M433.8 375.2l4.4 9.3 10.2 1.2-7.6 7 2 10-9-5-9 5 2-10-7.6-7 10.2-1.2z" fill="#C62828"/><line x1="445.8" y1="378.2" x2="473.8" y2="328.2" stroke="#C62828" stroke-width="1.6"/><text x="477.8" y="308.2" class="g3-opt">C = (6,804 ; 2,376)</text><text x="477.8" y="330.2" class="g3-opt z">Z = 15,984</text></g>
 <line x1="80" y1="490" x2="614.0" y2="490" stroke="#111111" stroke-width="2.5"/><line x1="80" y1="490" x2="80" y2="56.0" stroke="#111111" stroke-width="2.5"/>
 <path d="M614.0 484 l10 6 -10 6z M74 56.0 l6 -10 6 10z" fill="#111111"/>
 <line x1="80.0" y1="490" x2="80.0" y2="496" stroke="#111111"/><text x="80.0" y="514" text-anchor="middle" class="sv-ax">0</text><line x1="184.0" y1="490" x2="184.0" y2="496" stroke="#111111"/><text x="184.0" y="514" text-anchor="middle" class="sv-ax">2,000</text><line x1="74" y1="406.0" x2="80" y2="406.0" stroke="#111111"/><text x="70" y="411.0" text-anchor="end" class="sv-ax">2,000</text><line x1="288.0" y1="490" x2="288.0" y2="496" stroke="#111111"/><text x="288.0" y="514" text-anchor="middle" class="sv-ax">4,000</text><line x1="74" y1="322.0" x2="80" y2="322.0" stroke="#111111"/><text x="70" y="327.0" text-anchor="end" class="sv-ax">4,000</text><line x1="392.0" y1="490" x2="392.0" y2="496" stroke="#111111"/><text x="392.0" y="514" text-anchor="middle" class="sv-ax">6,000</text><line x1="74" y1="238.0" x2="80" y2="238.0" stroke="#111111"/><text x="70" y="243.0" text-anchor="end" class="sv-ax">6,000</text><line x1="496.0" y1="490" x2="496.0" y2="496" stroke="#111111"/><text x="496.0" y="514" text-anchor="middle" class="sv-ax">8,000</text><line x1="74" y1="154.0" x2="80" y2="154.0" stroke="#111111"/><text x="70" y="159.0" text-anchor="end" class="sv-ax">8,000</text><line x1="600.0" y1="490" x2="600.0" y2="496" stroke="#111111"/><text x="600.0" y="514" text-anchor="middle" class="sv-ax">10,000</text><line x1="74" y1="70.0" x2="80" y2="70.0" stroke="#111111"/><text x="70" y="75.0" text-anchor="end" class="sv-ax">10,000</text>
@@ -2442,41 +2463,46 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <g class="g3-axt"><use href="#icRep" x="20" y="22.0" width="17" height="17" style="color:#E3A63B"/><text x="42" y="36.0"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> · reposición (piezas)</text></g>
 </svg>
       <div class="gm-side g3-side">
-        <div class="g3-work" data-range="0-4">
+        <div class="g3-work" data-range="0-6">
           <div class="g3-model">
             <p><span class="k">Maximizar</span></p>
             <p class="in">F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></p>
             <p><span class="k">Sujeto a:</span></p>
             <div class="g3-sys">
               <div class="g3-ineq"><p><b>R1:</b> 1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</p><p><b>R2:</b> 1x<sub>1</sub> ≤ 6,804</p><p><b>R3:</b> 1x<sub>2</sub> ≤ 3,108</p></div>
-              <div class="g3-eq" data-step="0"><i class="br" aria-hidden="true"></i><div><p>1x<sub>1</sub> + 1x<sub>2</sub> = 9,180</p><p>1x<sub>1</sub> = 6,804</p><p>1x<sub>2</sub> = 3,108</p></div></div>
+              <div class="g3-eq" data-step="1"><i class="br" aria-hidden="true"></i><div><p>1x<sub>1</sub> + 1x<sub>2</sub> <mark>=</mark> 9,180</p><p>1x<sub>1</sub> <mark>=</mark> 6,804</p><p>1x<sub>2</sub> <mark>=</mark> 3,108</p></div></div>
             </div>
           </div>
-          <div class="g3-solve" data-step="1">
-            <div class="g3-r" style="--c:#111111"><b>R1</b>
-              <p>1x<sub>1</sub> = 9,180 <span data-step="2">→ x<sub>1</sub> = 9,180/1 = <em>9,180</em></span></p>
-              <p>1x<sub>2</sub> = 9,180 <span data-step="2">→ x<sub>2</sub> = 9,180/1 = <em>9,180</em></span></p></div>
-            <div class="g3-r" style="--c:#398C9C"><b>R2</b>
-              <p>1x<sub>1</sub> = 6,804 <span data-step="2">→ x<sub>1</sub> = 6,804/1 = <em>6,804</em></span></p>
-              <p class="no">0x<sub>2</sub> = 6,804 <span data-step="2">→ no toca el eje x<sub>2</sub> (línea vertical)</span></p></div>
-            <div class="g3-r" style="--c:#E3A63B"><b>R3</b>
-              <p class="no">0x<sub>1</sub> = 3,108 <span data-step="2">→ no toca el eje x<sub>1</sub> (línea horizontal)</span></p>
-              <p>1x<sub>2</sub> = 3,108 <span data-step="2">→ x<sub>2</sub> = 3,108/1 = <em>3,108</em></span></p></div>
+          <div class="g3-solve">
+            <div class="g3-r" style="--c:#111111" data-step="2"><b>R1</b>
+              <p><span class="if">si x<sub>2</sub> = 0:</span> 1x<sub>1</sub> = 9,180 → x<sub>1</sub> = 9,180/1 = <em>9,180</em></p>
+              <p data-step="3"><span class="if">si x<sub>1</sub> = 0:</span> 1x<sub>2</sub> = 9,180 → x<sub>2</sub> = 9,180/1 = <em>9,180</em></p></div>
+            <div class="g3-r" style="--c:#398C9C" data-step="5"><b>R2</b>
+              <p>1x<sub>1</sub> = 6,804 → x<sub>1</sub> = 6,804/1 = <em>6,804</em></p>
+              <p class="no">no tiene x<sub>2</sub> → línea vertical ↕</p></div>
+            <div class="g3-r" style="--c:#E3A63B" data-step="6"><b>R3</b>
+              <p>1x<sub>2</sub> = 3,108 → x<sub>2</sub> = 3,108/1 = <em>3,108</em></p>
+              <p class="no">no tiene x<sub>1</sub> → línea horizontal ↔</p></div>
           </div>
         </div>
-        <div class="g3-res" data-range="5-99">
+        <div class="g3-note" data-range="7-7">
+        <small>Región factible</small>
+        <p>Son todas las opciones que <b>sí se pueden</b>. Cumple los tres límites al mismo tiempo:</p>
+        <ul><li style="--c:#111111">abajo de <b>R1</b> · cabe en el día</li><li style="--c:#398C9C">a la izquierda de <b>R2</b> · no más novedad de la que llegó</li><li style="--c:#E3A63B">abajo de <b>R3</b> · no más reposición de la que llegó</li></ul>
+      </div>
+        <div class="g3-res" data-range="8-99">
         <table class="rtable ztab gm-tab">
           <thead><tr><th>Esquina</th><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>F.O. = 2x<sub>1</sub> + 1x<sub>2</sub></th></tr></thead>
           <tbody>
-            <tr><td><b>A</b></td><td>0</td><td>0</td><td><span data-range="6-99" class="zc"><b>0</b><small>2(0) + 0</small></span></td></tr>
-            <tr><td><b>B</b></td><td>6,804</td><td>0</td><td><span data-range="6-99" class="zc"><b>13,608</b><small>2(6,804) + 0</small></span></td></tr>
-            <tr class="cbest"><td><b>C</b></td><td>6,804</td><td>2,376</td><td><span data-range="6-99" class="zc best"><b>15,984</b><small>2(6,804) + 2,376</small></span></td></tr>
-            <tr><td><b>D</b></td><td>6,072</td><td>3,108</td><td><span data-range="6-99" class="zc"><b>15,252</b><small>2(6,072) + 3,108</small></span></td></tr>
-            <tr><td><b>E</b></td><td>0</td><td>3,108</td><td><span data-range="6-99" class="zc"><b>3,108</b><small>2(0) + 3,108</small></span></td></tr>
+            <tr><td><b>A</b></td><td>0</td><td>0</td><td><span data-range="10-99" class="zc"><b>0</b><small>2(0) + 0</small></span></td></tr>
+            <tr><td><b>B</b></td><td>6,804</td><td>0</td><td><span data-range="10-99" class="zc"><b>13,608</b><small>2(6,804) + 0</small></span></td></tr>
+            <tr class="cbest"><td><b>C</b></td><td><span data-range="9-99" class="g3-cd">6,804</span></td><td><span data-range="9-99" class="g3-cd">2,376</span></td><td><span data-range="10-99" class="zc"><b>15,984</b><small>2(6,804) + 2,376</small></span></td></tr>
+            <tr><td><b>D</b></td><td><span data-range="9-99" class="g3-cd">6,072</span></td><td><span data-range="9-99" class="g3-cd">3,108</span></td><td><span data-range="10-99" class="zc"><b>15,252</b><small>2(6,072) + 3,108</small></span></td></tr>
+            <tr><td><b>E</b></td><td>0</td><td>3,108</td><td><span data-range="10-99" class="zc"><b>3,108</b><small>2(0) + 3,108</small></span></td></tr>
           </tbody>
         </table>
-        <div class="gm-how"><b>¿De dónde salen C y D?</b><span>C: x<sub>1</sub> = 6,804 → x<sub>2</sub> = 9,180 − 6,804 = <b>2,376</b></span><span>D: x<sub>2</sub> = 3,108 → x<sub>1</sub> = 9,180 − 3,108 = <b>6,072</b></span></div>
-        <div class="gm-win" data-step="6"><small>La mejor esquina</small><p>C · Z = <b>15,984</b></p></div>
+        <div class="gm-how" data-step="9"><b>¿De dónde salen C y D?</b><span>C: x<sub>1</sub> = 6,804 → x<sub>2</sub> = 9,180 − 6,804 = <b>2,376</b></span><span>D: x<sub>2</sub> = 3,108 → x<sub>1</sub> = 9,180 − 3,108 = <b>6,072</b></span></div>
+        <div class="gm-win" data-step="11"><small>La mejor esquina</small><p>C · Z = <b>15,984</b></p></div>
       </div>
       </div>
     </div>
