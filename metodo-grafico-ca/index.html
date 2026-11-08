@@ -1675,6 +1675,13 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .gplot .pts2 circle{transform-box:fill-box;transform-origin:50% 50%}
 .gplot .pts2.on circle{animation:pinpop .5s cubic-bezier(.3,1.6,.5,1) both}
 @media (max-width:860px){.gm-side{width:100%}}
+.ri{width:1.15em;height:1.15em;vertical-align:-.2em;margin-right:.4em;flex:none}
+.ml .mw .ri{width:1.3em;height:1.3em}
+.ag7 li{grid-template-columns:clamp(56px,6vw,110px) clamp(30px,2.8vw,48px) minmax(0,1fr)}
+.ag-ic{width:100%;height:auto;color:var(--acc-l)}
+.ag7 li.hot .ag-ic{color:var(--orange)}
+@media (max-width:860px){.ag7 li{grid-template-columns:56px 30px minmax(0,1fr)}}
+
 .bit{border-collapse:collapse;margin:8px 0;font-variant-numeric:tabular-nums;font-size:.95em}.bit th,.bit td{padding:4px 12px;text-align:right;border-bottom:1px solid #E3E8EA}.bit th:first-child,.bit td:first-child{text-align:left}.bit th{font-weight:600}.bit tr.t td{font-weight:700;border-top:2px solid #111}
 @media (max-width:860px){.depts{grid-template-columns:1fr 1fr 1fr!important}}
 /* ===== G3 · método gráfico con los pasos de la clase ===== */
@@ -1722,7 +1729,18 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="icNov" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"/></symbol><symbol id="icRep" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M21 3v6h-6"/></g></symbol>
-    <symbol id="teeS" viewBox="0 0 24 24"><path fill="currentColor" d="M8 3 2 6.5l2.2 4.3 2.3-1.1V22h11V9.7l2.3 1.1L22 6.5 16 3c-.7 1.5-2.2 2.4-4 2.4S8.7 4.5 8 3z"/></symbol>
+    <symbol id="icClk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.8 2.4"/></g></symbol>
+<symbol id="icZero" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 19V4M5 19h15"/><path d="M5 19l9-9" opacity=".45"/></g></symbol>
+<symbol id="icGoal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="5.5"/></g><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+<symbol id="icDay2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g><text x="12" y="19" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="sans-serif">2</text></symbol>
+<symbol id="icStore" viewBox="0 0 24 24"><path fill="currentColor" d="M3 4h18l1 5c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3S2 10.7 2 9zM4 13.5c.3.1.7.1 1 .1V20h5v-4h4v4h5v-6.4c.3 0 .7 0 1-.1V22H4z"/></symbol>
+<symbol id="icBox" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></g></symbol>
+<symbol id="icAlert" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 1 21h22zm-1 7h2v6h-2zm0 8h2v2h-2z"/></symbol>
+<symbol id="icFx" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h7M4 12h11M4 17h7"/><path d="M16 15l4 4M20 15l-4 4"/></g></symbol>
+<symbol id="icChart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M5 7l14 10M14 3v18" opacity=".8"/></g><path d="M14 13.4l1.2 2.4 2.6.3-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.3z" fill="currentColor"/></symbol>
+<symbol id="icChk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 12.5l3 3 6-7"/></g></symbol>
+<symbol id="icUp" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 16l6-6 4 4 7-8"/><path d="M15 6h6v6"/></g></symbol>
+<symbol id="teeS" viewBox="0 0 24 24"><path fill="currentColor" d="M8 3 2 6.5l2.2 4.3 2.3-1.1V22h11V9.7l2.3 1.1L22 6.5 16 3c-.7 1.5-2.2 2.4-4 2.4S8.7 4.5 8 3z"/></symbol>
     <symbol id="ppl" viewBox="0 0 40 80"><circle cx="20" cy="13" r="10" fill="currentColor"/><path d="M5 37a15 15 0 0 1 30 0v41H5z" fill="currentColor"/></symbol>
     <symbol id="box" viewBox="0 0 38 34"><rect x="1" y="6" width="36" height="27" fill="currentColor"/><rect x="1" y="1" width="36" height="7" fill="currentColor" opacity=".7"/><rect x="15" y="1" width="8" height="14" fill="#fff" opacity=".55"/></symbol>
     <symbol id="mic" viewBox="0 0 16 16"><rect x="5" y="1" width="6" height="9" rx="3" fill="currentColor"/><path d="M3 7.5a5 5 0 0 0 10 0M8 12.5V15" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
@@ -1771,9 +1789,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     </div>
     <div class="cover-row">
       <div class="says">
-      <div class="say" data-say="0"><p>Nuestro proyecto es la <b>aplicación del método gráfico en el área de almacén de C&amp;A</b>.</p></div>
-      <div class="say" data-say="1"><p><b>C&amp;A</b> es una tienda de ropa para <b>mujer, hombre y niños</b>. Nuestra compañera <b>Karla Valeria</b> trabaja en el almacén de una de sus tiendas.</p></div>
-      <div class="say" data-say="2"><p>Antes de llegar a los anaqueles, toda la ropa pasa por el <b>almacén</b>. Ahí encontramos un problema real que se vive cada semana, y lo resolvimos con el método gráfico.</p></div>
+      <div class="say" data-say="0"><p>Nuestro proyecto es: <b>el método gráfico en el almacén de C&amp;A</b>.</p></div>
+      <div class="say" data-say="1"><p>C&amp;A es una tienda de <b>ropa</b> para mujer, hombre y niños.</p><p>Nuestra compañera <b>Karla</b> trabaja en el almacén de una tienda.</p></div>
+      <div class="say" data-say="2"><p>Toda la ropa pasa primero por el <b>almacén</b>.</p><p>Ahí encontramos un problema real. Y lo resolvimos con el <b>método gráfico</b>.</p></div>
       </div>
     </div>
   </div>
@@ -1792,18 +1810,18 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i>Índice</div>
     <h2>Lo que vamos a <em>contar</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Vamos en <b>siete partes</b>, en este orden: la <b>empresa</b>, el <b>área de trabajo</b> y la <b>problemática</b>.</p><p>Después el <b>modelo</b>, el <b>método gráfico</b>, la <b>solución comprobada</b> y, al final, qué significa y nuestra <b>mejora</b>.</p></div>
+      <div class="say" data-say="0"><p>Lo vamos a contar en <b>7 partes</b>.</p><p>Primero la empresa, el almacén y el problema. Después el modelo, la gráfica, la solución y nuestra mejora.</p></div>
     </div>
   </div>
   <div class="stage">
     <ol class="agenda ag7">
-      <li><span class="num">01</span><div><b>La empresa</b><span>Quién es C&amp;A y qué vende</span></div></li>
-      <li><span class="num">02</span><div><b>El área de trabajo</b><span>El almacén: embarque, tareas y equipo</span></div></li>
-      <li><span class="num">03</span><div><b>La problemática</b><span>Qué falla, por qué importa y la pregunta</span></div></li>
-      <li><span class="num">04</span><div><b>Modelo matemático</b><span>Variables, función objetivo y restricciones</span></div></li>
-      <li><span class="num">05</span><div><b>Método gráfico</b><span>Lo resolvemos dibujando</span></div></li>
-      <li><span class="num">06</span><div><b>Solución y comprobación</b><span>La solución y su comprobación</span></div></li>
-      <li class="hot"><span class="num">07</span><div><b>Interpretación y mejora</b><span>Qué significa e impacto de la propuesta</span></div></li>
+      <li><span class="num">01</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icStore"/></svg><div><b>La empresa</b><span>Quién es C&amp;A y qué vende</span></div></li>
+      <li><span class="num">02</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icBox"/></svg><div><b>El área de trabajo</b><span>El almacén: embarque, tareas y equipo</span></div></li>
+      <li><span class="num">03</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icAlert"/></svg><div><b>La problemática</b><span>Qué falla, por qué importa y la pregunta</span></div></li>
+      <li><span class="num">04</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icFx"/></svg><div><b>Modelo matemático</b><span>Variables, función objetivo y restricciones</span></div></li>
+      <li><span class="num">05</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icChart"/></svg><div><b>Método gráfico</b><span>Lo resolvemos dibujando</span></div></li>
+      <li><span class="num">06</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icChk"/></svg><div><b>Solución y comprobación</b><span>La solución y su comprobación</span></div></li>
+      <li class="hot"><span class="num">07</span><svg class="ag-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#icUp"/></svg><div><b>Interpretación y mejora</b><span>Qué significa e impacto de la propuesta</span></div></li>
     </ol>
   </div>
 </section>
@@ -1832,13 +1850,13 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">01</span>La empresa · la historia de C&amp;A</div>
     <h2>¿Quién es <em>C&amp;A</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>C&amp;A</b> es una cadena de <b>tiendas de ropa</b>.</p><p>Seguro la han visto en las plazas comerciales.</p></div>
-      <div class="say" data-say="1"><p>Empezó hace más de <b>180 años</b>, en <b>1841</b>, en un pueblo de los Países Bajos.</p><p>La fundaron dos hermanos: <b>Clemens</b> y <b>August</b>. Por eso se llama <b>C y A</b>.</p></div>
-      <div class="say" data-say="2"><p>Su idea fue vender <b>ropa ya hecha y barata</b>, para que cualquier familia la pudiera comprar.</p><p>Le fue tan bien que hoy tiene <b>más de 1,300 tiendas</b> en Europa.</p></div>
-      <div class="say" data-say="3"><p>En <b>1999</b> llegó a <b>México</b>.</p><p>Su primera tienda abrió en <b>Puebla</b>, en la plaza Angelópolis.</p></div>
-      <div class="say" data-say="4"><p>En <b>2023</b> la compró <b>Grupo Alfar</b>, una empresa mexicana.</p><p>Desde entonces, C&amp;A México es <b>de mexicanos</b>.</p></div>
-      <div class="say" data-say="5"><p>Y sigue creciendo: tenía <b>78 tiendas</b>, hoy tiene <b>84</b>, y quiere llegar a <b>100</b>.</p></div>
-      <div class="say" data-say="6"><p>Cada una de esas tiendas tiene un <b>almacén</b>: una bodega atrás, donde se prepara la ropa antes de salir a la tienda.</p><p>Ahí trabaja nuestra compañera <b>Karla</b>.</p></div>
+      <div class="say" data-say="0"><p>C&amp;A es una cadena de <b>tiendas de ropa</b>.</p><p>Seguro la han visto en las plazas.</p></div>
+      <div class="say" data-say="1"><p>Nació en <b>1841</b>, en los Países Bajos.</p><p>La fundaron dos hermanos: <b>C</b>lemens y <b>A</b>ugust. Por eso se llama <b>C&amp;A</b>.</p></div>
+      <div class="say" data-say="2"><p>Su idea: vender ropa <b>ya hecha y barata</b>.</p><p>Hoy tiene más de <b>1,300 tiendas</b> en Europa.</p></div>
+      <div class="say" data-say="3"><p>En <b>1999</b> llegó a México.</p><p>La primera tienda abrió en <b>Puebla</b>.</p></div>
+      <div class="say" data-say="4"><p>En <b>2023</b> la compró <b>Grupo Alfar</b>, una empresa mexicana.</p></div>
+      <div class="say" data-say="5"><p>Tenía 78 tiendas y hoy tiene <b>84</b> en México.</p><p>Quiere llegar a <b>100</b>.</p></div>
+      <div class="say" data-say="6"><p>Cada tienda tiene un <b>almacén</b>: una bodega atrás.</p><p>Ahí se prepara la ropa antes de salir a la tienda. Ahí trabaja <b>Karla</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -1946,9 +1964,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">01</span>La empresa · qué vende</div>
     <h2>Ropa para <em>toda la familia</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>C&amp;A vende ropa para toda la familia, y la acomoda en <b>departamentos</b>: <b>mujer, hombre</b> y <b>niños</b>.</p><p>En nuestro embarque casi todo es <b>ropa</b> (8,771 piezas). También llegan un poco de <b>calzado</b> (350) y <b>accesorios</b> (791).</p></div>
-      <div class="say" data-say="1"><p>No toda la ropa se acomoda igual. Unas prendas van <b>colgadas en gancho</b>, como vestidos, camisas y chamarras.</p><p>Otras van <b>dobladas</b> en mesas o anaqueles, como playeras, suéteres y jeans.</p></div>
-      <div class="say" data-say="2"><p>Y la ropa cambia con la <b>temporada</b>. En calor llegan shorts y vestidos frescos; en frío, suéteres y chamarras; y en diciembre, la <b>ropa de Navidad</b>.</p><p>Por eso <b>cada semana llega algo distinto</b> al almacén.</p></div>
+      <div class="say" data-say="0"><p>C&amp;A acomoda la ropa en <b>departamentos</b>: mujer, hombre y niños.</p><p>En nuestro embarque casi todo es <b>ropa</b> (8,771 piezas). También llega un poco de <b>calzado</b> (350) y <b>accesorios</b> (791).</p></div>
+      <div class="say" data-say="1"><p>La ropa se acomoda de dos formas.</p><p><b>Colgada</b> en gancho: vestidos, camisas, chamarras.</p><p><b>Doblada</b> en mesas: playeras, suéteres, jeans.</p></div>
+      <div class="say" data-say="2"><p>La ropa cambia con la <b>temporada</b>: calor, frío y Navidad.</p><p>Por eso <b>cada semana llega algo distinto</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -1992,11 +2010,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">02</span>Área de trabajo · el embarque</div>
     <h2>Cada semana llega un <em>embarque</em> de ropa</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Cada semana a la tienda le llega un <b>embarque</b>: un camión con toda la ropa nueva que nos mandan para vender.</p></div>
-      <div class="say" data-say="1"><p>El camión trae <b>cajas y cajas de ropa</b>, que hay que abrir y preparar.</p></div>
-      <div class="say" data-say="2"><p>Las cajas vienen con una lista que se llama <b>bitácora de envío</b>. Ahí dice cuántas piezas llegaron. En nuestro ejemplo, <b>9,912 piezas</b>.</p></div>
-      <div class="say" data-say="3"><p>La bitácora también dice de <b>qué tipo</b> es cada pieza: <b>6,804</b> de un tipo y <b>3,108</b> de otro.</p><p>Se llaman <b>novedad</b> y <b>reposición</b>, y en la siguiente diapositiva vemos qué es cada una.</p></div>
-      <div class="say" data-say="4"><p>Esa ropa no sale directo a la tienda: primero se prepara en el <b>almacén</b>.</p><p>La meta es tenerla lista para la tienda en <b>2 a 3 días</b>.</p></div>
+      <div class="say" data-say="0"><p>Cada semana llega un <b>embarque</b>.</p><p>Es un camión con la ropa nueva para vender.</p></div>
+      <div class="say" data-say="1"><p>El camión trae <b>muchas cajas</b>.</p><p>Hay que abrirlas y preparar la ropa.</p></div>
+      <div class="say" data-say="2"><p>Las cajas traen una lista: la <b>bitácora de envío</b>.</p><p>Dice cuántas piezas llegaron. En nuestro ejemplo: <b>9,912 piezas</b>.</p></div>
+      <div class="say" data-say="3"><p>La bitácora también dice el <b>tipo</b> de ropa.</p><p><b>6,804</b> son de <b>novedad</b> y <b>3,108</b> de <b>reposición</b>.</p></div>
+      <div class="say" data-say="4"><p>La ropa no sale directo a la tienda. Primero se prepara en el almacén.</p><p>La meta: tenerla lista en <b>2 a 3 días</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2072,9 +2090,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">02</span>Área de trabajo · tipos de ropa del embarque</div>
     <h2>Novedad y <em>reposición</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>La <b>novedad</b> es ropa que llega <b>por primera vez</b> a la tienda. Nadie la ha visto todavía.</p><p>Por ejemplo, cuando llega la <b>colección de Navidad</b>: suéteres y pijamas nuevos. Es lo que el cliente viene a buscar, por eso <b>sale primero</b>.</p></div>
-      <div class="say" data-say="1"><p>La <b>reposición</b> es ropa que <b>ya está en la tienda</b>, pero se vendió.</p><p>Por ejemplo: se acabaron los <b>jeans talla 30</b>. Llegan más para volver a llenar ese espacio. Es importante, pero puede esperar un poco más.</p></div>
-      <div class="say" data-say="2"><p>En nuestro embarque, de cada <b>10 piezas</b>, unas <b>7 son novedad</b> y <b>3 son reposición</b>: 6,804 contra 3,108.</p><p>Por eso la regla es: <b>primero la novedad</b>, después la reposición.</p></div>
+      <div class="say" data-say="0"><p><b>Novedad</b> = ropa que llega <b>por primera vez</b>.</p><p>Ejemplo: la colección de Navidad. Es lo que el cliente viene a buscar. Por eso <b>va primero</b>.</p></div>
+      <div class="say" data-say="1"><p><b>Reposición</b> = más piezas de algo que <b>ya se vendió</b>.</p><p>Ejemplo: se acabaron los jeans talla 30 y llegan más. Es importante, pero <b>puede esperar</b>.</p></div>
+      <div class="say" data-say="2"><p>De cada <b>10 piezas</b>: <b>7 son novedad</b> y <b>3 son reposición</b>.</p><p>Regla: <b>primero la novedad</b>, después la reposición.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2111,12 +2129,12 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">02</span>Área de trabajo · el almacén por dentro</div>
     <h2>Del camión al <em>gancho</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Veamos qué se hace con cada prenda. Todo empieza con la <b>recepción</b>: llega el camión, se bajan las cajas y se cuentan con la <b>bitácora</b>.</p></div>
-      <div class="say" data-say="1"><p>Luego cada prenda pasa por <b>cuatro tareas</b>. La primera es <b>separar</b>: ver si es <b>novedad</b> o <b>reposición</b> y ponerla en su lugar, como cuando separas la ropa blanca de la de color antes de lavar.</p></div>
-      <div class="say" data-say="2"><p>La segunda es <b>emplayetar</b>: dejar la prenda identificada y lista para venderse.</p></div>
-      <div class="say" data-say="3"><p>La tercera es <b>colocar</b>: acomodar la prenda por <b>departamento</b> y por <b>talla</b> en el anaquel.</p><p>Así se encuentra rápido cuando hay que sacarla.</p></div>
-      <div class="say" data-say="4"><p>La cuarta es <b>perchar</b>: colgar la prenda en su <b>gancho</b> y ponerla en el <b>perchero</b>.</p><p>Así ya está lista para salir a la tienda.</p></div>
-      <div class="say" data-say="5"><p>Al final, la prenda sale al <b>piso de venta</b> y el cliente ya la puede comprar.</p><p>Cada persona debe hacer <b>mínimo 180 piezas por hora</b>, haciendo las cuatro tareas. En la práctica hacemos más, unas <b>200</b>, pero para el modelo usamos el mínimo.</p></div>
+      <div class="say" data-say="0"><p>¿Qué pasa con cada prenda?</p><p>Primero, la <b>recepción</b>: bajamos las cajas y las contamos con la bitácora.</p></div>
+      <div class="say" data-say="1"><p>Tarea 1: <b>separar</b>.</p><p>¿Es novedad o reposición? Cada prenda a su lugar, como separar la ropa blanca de la de color.</p></div>
+      <div class="say" data-say="2"><p>Tarea 2: <b>emplayetar</b>.</p><p>Dejar la prenda identificada y lista para venta.</p></div>
+      <div class="say" data-say="3"><p>Tarea 3: <b>colocar</b>.</p><p>Acomodar la prenda por departamento y por talla.</p></div>
+      <div class="say" data-say="4"><p>Tarea 4: <b>perchar</b>.</p><p>Colgar la prenda en su gancho.</p></div>
+      <div class="say" data-say="5"><p>Y sale al <b>piso de venta</b>. El cliente ya la puede comprar.</p><p>Cada persona hace <b>mínimo 180 piezas por hora</b>. En la práctica unas 200, pero usamos el mínimo.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2168,10 +2186,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">02</span>Área de trabajo · el equipo</div>
     <h2>Seis personas, <em>51 horas</em> al día</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Todas esas tareas las hacemos entre <b>seis personas</b>. <b>Cuatro trabajan tiempo completo</b>, de 6:00 de la mañana a 4:30 de la tarde. Son 10.5 horas, pero tienen <b>1 hora de comida</b>, así que cada una trabaja <b>9.5 horas</b>.</p></div>
-      <div class="say" data-say="1"><p>Las otras <b>dos son de medio turno</b>: entran a las 6:00 y salen a las 12:30 de la tarde, <b>sin hora de comida</b>, o sea <b>6.5 horas</b>.</p><p>Solo los de tiempo completo tienen comida.</p></div>
-      <div class="say" data-say="2"><p>Si lo sumamos: 4 por 9.5 son <b>38 horas</b>, más 2 por 6.5, que son <b>13 horas</b>. En total tenemos <b>51 horas de trabajo al día</b>.</p></div>
-      <div class="say" data-say="3"><p>Cada persona hace <b>mínimo 180 piezas por hora</b>. Entonces 51 × 180 = <b>9,180 piezas al día</b>.</p><p>Esa es la capacidad del equipo: lo que puede preparar en un día.</p></div>
+      <div class="say" data-say="0"><p>Somos <b>6 personas</b>.</p><p><b>4 de tiempo completo</b>: de 6:00 a 4:30. Tienen 1 hora de comida. Trabajan <b>9.5 horas</b>.</p></div>
+      <div class="say" data-say="1"><p><b>2 de medio turno</b>: de 6:00 a 12:30, <b>sin comida</b>.</p><p>Trabajan <b>6.5 horas</b>.</p></div>
+      <div class="say" data-say="2"><p>Sumamos: 4 × 9.5 = <b>38 h</b>. 2 × 6.5 = <b>13 h</b>.</p><p>Total: <b>51 horas al día</b>.</p></div>
+      <div class="say" data-say="3"><p>51 horas × 180 piezas = <b>9,180 piezas al día</b>.</p><p>Es lo que el equipo puede preparar en un día.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2215,10 +2233,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">03</span>Problemática · el embarque varía</div>
     <h2>El embarque cambia, el equipo <em>no</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Aquí está el problema. El equipo siempre puede lo mismo: <b>9,180 piezas al día</b>. Esta línea punteada es lo que cabe en un día.</p></div>
-      <div class="say" data-say="1"><p>Pero el tamaño del embarque cambia muchísimo de una semana a otra. Una semana pueden llegar <b>9,000 piezas</b>, y esas sí caben en un día.</p></div>
-      <div class="say" data-say="2"><p>Y la siguiente pueden llegar <b>17,000</b>. Ahí faltan <b>7,820 piezas</b>. Hoy no tenemos una forma ordenada de saber <b>cuánta gente se necesita</b> ni <b>qué procesar primero</b> para que el embarque salga a tiempo.</p></div>
-      <div class="say" data-say="3"><p>Nuestro embarque real tiene <b>9,912 piezas</b>. 9,912 ÷ 180 = <b>55 horas</b>, y solo tenemos <b>51</b>.</p><p>No cabe en un día: hay que decidir <b>qué entra el día 1</b>.</p></div>
+      <div class="say" data-say="0"><p>Aquí está el problema.</p><p>El equipo siempre puede lo mismo: <b>9,180 piezas al día</b>. Es la línea punteada.</p></div>
+      <div class="say" data-say="1"><p>Pero el embarque <b>cambia cada semana</b>.</p><p>Si llegan <b>9,000</b> piezas, sí caben en un día.</p></div>
+      <div class="say" data-say="2"><p>Si llegan <b>17,000</b>, faltan <b>7,820</b>.</p><p>Hoy no hay una forma ordenada de decidir qué va primero ni cuánta gente pedir.</p></div>
+      <div class="say" data-say="3"><p>Nuestro embarque: <b>9,912 piezas</b>. Necesita <b>55 horas</b> y solo tenemos <b>51</b>.</p><p>No cabe en un día. Hay que decidir <b>qué entra el día 1</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2240,10 +2258,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">03</span>Problemática · por qué importa</div>
     <h2>Ropa en bodega <em>no se vende</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>¿Por qué esto es un problema real y no solo de números? Primero: <b>la novedad que no sale, no se ve</b>.</p><p>En la ropa, lo nuevo dura poco: la colección cambia cada pocas semanas. Si la ropa se queda en la bodega, el cliente llega, <b>no la encuentra y se va</b>.</p></div>
-      <div class="say" data-say="1"><p>Segundo: la reposición rellena lo que ya se vendió. Si no sale, quedan <b>huecos en el piso</b>: faltan tallas o colores, y se pierde la venta de algo que el cliente ya quería comprar.</p></div>
-      <div class="say" data-say="2"><p>Tercero: <b>los embarques se empalman</b>. Si uno no termina a tiempo, el de la siguiente semana llega encima y el atraso se va acumulando.</p></div>
-      <div class="say" data-say="3"><p>Y cuarto: hoy todo se resuelve <b>al tanteo</b>. Se pide gente prestada a piso de venta al momento, o se queda tiempo extra. Eso deja al piso con menos gente para atender clientes, o sube el costo.</p></div>
+      <div class="say" data-say="0"><p>¿Por qué importa? Uno: <b>la novedad que no sale, no se ve</b>.</p><p>Si se queda en bodega, el cliente no la encuentra y se va.</p></div>
+      <div class="say" data-say="1"><p>Dos: <b>huecos en el piso</b>.</p><p>Si la reposición no sale, faltan tallas y colores. Se pierden ventas.</p></div>
+      <div class="say" data-say="2"><p>Tres: <b>los embarques se juntan</b>.</p><p>Si uno se atrasa, el de la otra semana llega encima.</p></div>
+      <div class="say" data-say="3"><p>Cuatro: <b>todo es al tanteo</b>.</p><p>Se pide gente a piso de venta al momento, o se queda tiempo extra.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2262,10 +2280,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">03</span>Problemática · dónde está el límite</div>
     <h2>¿Hasta dónde <em>alcanza</em> el equipo?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Con nuestros datos podemos ver exactamente dónde está el límite. Si el embarque trae hasta <b>9,180 piezas</b>, el equipo termina en <b>un día</b>.</p></div>
-      <div class="say" data-say="1"><p>Hasta <b>18,360 piezas</b> termina en <b>dos días</b>: dentro de la meta. Ahí caen nuestro ejemplo de 9,912 y la semana de 17,000.</p></div>
-      <div class="say" data-say="2"><p>Entre 18,360 y <b>27,540</b> ya se necesitan <b>tres días</b>: es el límite de la meta. Un embarque de 25,000 piezas cae aquí.</p></div>
-      <div class="say" data-say="3"><p>Y arriba de 27,540, con seis personas <b>no cabe ni en tres días</b>. Con 30,000 piezas faltarían <b>2,460</b>. Sin ayuda extra, ese embarque se atrasa.</p></div>
+      <div class="say" data-say="0"><p>¿Hasta dónde alcanza el equipo?</p><p>Hasta <b>9,180 piezas</b>: <b>1 día</b>.</p></div>
+      <div class="say" data-say="1"><p>Hasta <b>18,360</b>: <b>2 días</b>. Está dentro de la meta.</p><p>Aquí caen nuestro embarque de 9,912 y uno de 17,000.</p></div>
+      <div class="say" data-say="2"><p>Hasta <b>27,540</b>: <b>3 días</b>. Es el límite de la meta.</p><p>Un embarque de 25,000 cae aquí.</p></div>
+      <div class="say" data-say="3"><p>Más de 27,540: <b>no cabe ni en 3 días</b>.</p><p>Con 30,000 faltan 2,460 piezas. Se necesita ayuda.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2288,9 +2306,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">03</span>Problemática · planteamiento</div>
     <h2>El problema <em>en una pregunta</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>En pocas palabras: el almacén siempre tiene <b>las mismas 51 horas al día</b>, pero cada semana llega <b>una cantidad distinta de ropa</b>. Y hoy no hay una forma ordenada de decidir <b>qué hacer primero</b> ni <b>cuánta gente pedir</b>.</p></div>
-      <div class="say" data-say="1"><p>De ahí salen dos preguntas. <b>Una:</b> el día 1, ¿cuánta novedad y cuánta reposición procesamos para que salga lo más importante?</p><p><b>Dos:</b> cuando el embarque no cabe, ¿cuál es el <b>mínimo de personas extra</b> que hay que pedir?</p></div>
-      <div class="say" data-say="2"><p>Las dos preguntas son del mismo tipo: buscar <b>la mejor decisión</b> cuando el tiempo y la gente <b>no alcanzan para todo</b>. Eso se llama <b>programación lineal</b>. Como solo tiene dos variables, lo resolvemos con el <b>método gráfico</b>.</p></div>
+      <div class="say" data-say="0"><p>En pocas palabras: las horas <b>no cambian</b>, siempre son 51 al día.</p><p>La ropa que llega <b>sí cambia</b>.</p></div>
+      <div class="say" data-say="1"><p>Así que tenemos <b>dos preguntas</b>.</p><p><b>1.</b> El día 1, ¿cuánta novedad y cuánta reposición hacemos?</p><p><b>2.</b> Si no cabe, ¿cuánta gente extra pedimos, lo mínimo?</p></div>
+      <div class="say" data-say="2"><p>Esto se resuelve con <b>programación lineal</b>.</p><p>Como solo hay <b>2 variables</b>, usamos el <b>método gráfico</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2328,9 +2346,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">04</span>Modelo · variables de decisión</div>
     <h2>¿Qué vamos a <em>decidir</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Una <b>variable de decisión</b> es algo que <b>nosotros podemos elegir</b>.</p><p>Aquí la decisión es: <b>el día 1</b>, ¿cuánto procesamos de cada tipo de ropa?</p></div>
-      <div class="say" data-say="1"><p>Por eso tenemos dos variables:</p><p><b>x<sub>1</sub></b> = cantidad de <b>novedad</b> que procesamos el día 1.<br><b>x<sub>2</sub></b> = cantidad de <b>reposición</b> que procesamos el día 1.</p></div>
-      <div class="say" data-say="2"><p>La <b>unidad</b> es muy sencilla: <b>piezas</b>.</p><p>Si x<sub>1</sub> = 1,000, quiere decir <b>1,000 piezas de novedad</b> el día 1. Si x<sub>2</sub> = 500, son <b>500 piezas de reposición</b>.</p></div>
+      <div class="say" data-say="0"><p>Una <b>variable</b> es lo que nosotros decidimos.</p><p>Aquí decidimos: el día 1, ¿cuánto hacemos de cada tipo de ropa?</p></div>
+      <div class="say" data-say="1"><p>Tenemos dos:</p><p><b>x<sub>1</sub></b> = piezas de <b>novedad</b> el día 1.<br><b>x<sub>2</sub></b> = piezas de <b>reposición</b> el día 1.</p></div>
+      <div class="say" data-say="2"><p>Se miden en <b>piezas</b>.</p><p>x<sub>1</sub> = 1,000 → 1,000 piezas de novedad.<br>x<sub>2</sub> = 500 → 500 piezas de reposición.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2352,9 +2370,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="goal"><span>Objetivo</span><b>Maximizar</b></div>
     <h2>¿Qué queremos <em>lograr</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Queremos que el día 1 salga <b>lo más importante posible</b>.</p><p>Como queremos que algo sea lo <b>más grande</b> posible, es un problema de <b>maximizar</b>.</p></div>
-      <div class="say" data-say="1"><p>Le damos un <b>peso</b> a cada tipo de ropa.</p><p>Cada pieza de <b>novedad vale 2 puntos</b>, porque es más urgente. Cada pieza de <b>reposición vale 1 punto</b>.</p></div>
-      <div class="say" data-say="2"><p>Así queda la <b>función objetivo</b>: <b>Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Z se mide en <b>puntos de prioridad</b>. Ejemplo: 100 piezas de novedad y 100 de reposición dan Z = 2(100) + 1(100) = <b>300 puntos</b>.</p></div>
+      <div class="say" data-say="0"><p>Queremos que el día 1 salga <b>lo más importante</b>.</p><p>Queremos lo más grande posible: eso es <b>maximizar</b>.</p></div>
+      <div class="say" data-say="1"><p>Cada pieza tiene un valor.</p><p><b>Novedad = 2 puntos</b>, porque es más urgente.<br><b>Reposición = 1 punto</b>.</p></div>
+      <div class="say" data-say="2"><p>La <b>función objetivo</b> queda: <b>Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Ejemplo: 100 de cada una → Z = 2(100) + 1(100) = <b>300 puntos</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2386,10 +2404,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">04</span>Modelo · restricciones</div>
     <h2>Los <em>límites</em> del problema</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Las <b>restricciones</b> son los límites: lo que <b>no podemos pasar</b>.</p><p><b>R1, tiempo:</b> el equipo tiene <b>51 horas</b> al día y hace <b>mínimo 180 piezas por hora</b>. 51 × 180 = <b>9,180 piezas</b>. Entonces <b>1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</b>.</p></div>
-      <div class="say" data-say="1"><p><b>R2, novedad:</b> no podemos preparar más novedad de la que llegó.</p><p>Llegaron 6,804 piezas, entonces <b>1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</b>.</p></div>
-      <div class="say" data-say="2"><p><b>R3, reposición:</b> tampoco más reposición de la que llegó.</p><p>Llegaron 3,108 piezas, entonces <b>0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</b>.</p></div>
-      <div class="say" data-say="3"><p>Y la <b>no negatividad</b>: <b>x<sub>1</sub> ≥ 0</b> y <b>x<sub>2</sub> ≥ 0</b>.</p><p>Porque no existen piezas negativas.</p></div>
+      <div class="say" data-say="0"><p>Las <b>restricciones</b> son los límites.</p><p><b>R1, tiempo</b>: 51 horas × 180 piezas = 9,180.<br>Queda <b>1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</b>.</p></div>
+      <div class="say" data-say="1"><p><b>R2, novedad</b>: no podemos hacer más novedad de la que llegó.</p><p><b>1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</b>.</p></div>
+      <div class="say" data-say="2"><p><b>R3, reposición</b>: tampoco más reposición de la que llegó.</p><p><b>0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</b>.</p></div>
+      <div class="say" data-say="3"><p>Y la <b>no negatividad</b>: x<sub>1</sub> ≥ 0 y x<sub>2</sub> ≥ 0.</p><p>No hay piezas negativas.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2397,10 +2415,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <table class="rtable">
         <thead><tr><th>Restricción</th><th>Fórmula</th><th>En palabras</th><th>De dónde sale</th></tr></thead>
         <tbody>
-          <tr data-step="0"><td><b>R1</b> Tiempo</td><td class="fm">1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</td><td>En un día no caben más de 9,180 piezas</td><td>51 h × 180 piezas por hora (mínimo)</td></tr>
-          <tr data-step="1"><td><b>R2</b> Novedad</td><td class="fm">1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</td><td>No más novedad de la que llegó</td><td>Bitácora</td></tr>
-          <tr data-step="2"><td><b>R3</b> Reposición</td><td class="fm">0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</td><td>No más reposición de la que llegó</td><td>Bitácora</td></tr>
-          <tr data-step="3"><td><b>No neg.</b></td><td class="fm">x<sub>1</sub>, x<sub>2</sub> ≥ 0</td><td>No hay piezas negativas</td><td>—</td></tr>
+          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#111111"><use href="#icClk"/></svg><b>R1</b> Tiempo</td><td class="fm">1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</td><td>En un día no caben más de 9,180 piezas</td><td>51 h × 180 piezas por hora (mínimo)</td></tr>
+          <tr data-step="1"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#398C9C"><use href="#icNov"/></svg><b>R2</b> Novedad</td><td class="fm">1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</td><td>No más novedad de la que llegó</td><td>Bitácora</td></tr>
+          <tr data-step="2"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#E3A63B"><use href="#icRep"/></svg><b>R3</b> Reposición</td><td class="fm">0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</td><td>No más reposición de la que llegó</td><td>Bitácora</td></tr>
+          <tr data-step="3"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#111111"><use href="#icZero"/></svg><b>No neg.</b></td><td class="fm">x<sub>1</sub>, x<sub>2</sub> ≥ 0</td><td>No hay piezas negativas</td><td>—</td></tr>
         </tbody>
       </table>
       <div class="rbars">
@@ -2419,17 +2437,17 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">04</span>Modelo · completo</div>
     <h2>El modelo <em>completo</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Juntando todo, este es nuestro <b>modelo completo</b>.</p><p>Arriba lo que queremos <b>lograr</b>, abajo los <b>límites</b>. Con esto ya lo podemos dibujar.</p></div>
+      <div class="say" data-say="0"><p>Este es el <b>modelo completo</b>.</p><p>Arriba, lo que queremos lograr. Abajo, los límites. Ahora lo vamos a <b>dibujar</b>.</p></div>
     </div>
   </div>
   <div class="stage">
     <div class="mfull">
-      <div class="ml top"><span class="me">Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></span><span class="mw">lo que queremos lograr: lo más importante el día 1</span></div>
+      <div class="ml top"><span class="me">Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></span><span class="mw"><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#7CC1CE"><use href="#icGoal"/></svg>lo que queremos lograr: lo más importante el día 1</span></div>
       <div class="msa">sujeto a:</div>
-      <div class="ml" style="--d:.15s"><span class="me">1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</span><span class="mw">R1 · lo que cabe en un día</span></div>
-      <div class="ml" style="--d:.3s"><span class="me">1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</span><span class="mw">R2 · la novedad que llegó</span></div>
-      <div class="ml" style="--d:.45s"><span class="me">0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</span><span class="mw">R3 · la reposición que llegó</span></div>
-      <div class="ml" style="--d:.6s"><span class="me">x<sub>1</sub>, x<sub>2</sub> ≥ 0</span><span class="mw">no hay piezas negativas</span></div>
+      <div class="ml" style="--d:.15s"><span class="me">1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</span><span class="mw"><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#FFFFFF"><use href="#icClk"/></svg>R1 · lo que cabe en un día</span></div>
+      <div class="ml" style="--d:.3s"><span class="me">1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</span><span class="mw"><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#7CC1CE"><use href="#icNov"/></svg>R2 · la novedad que llegó</span></div>
+      <div class="ml" style="--d:.45s"><span class="me">0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</span><span class="mw"><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#E3A63B"><use href="#icRep"/></svg>R3 · la reposición que llegó</span></div>
+      <div class="ml" style="--d:.6s"><span class="me">x<sub>1</sub>, x<sub>2</sub> ≥ 0</span><span class="mw"><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#FFFFFF"><use href="#icZero"/></svg>no hay piezas negativas</span></div>
     </div>
   </div>
 </section>
@@ -2567,9 +2585,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">06</span>Solución óptima · en piezas</div>
     <h2>La solución <em>óptima</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p>La gráfica nos dice que la mejor esquina es <b>C</b>: <b>x<sub>1</sub> = 6,804</b> y <b>x<sub>2</sub> = 2,376</b>.</p><p>O sea: el día 1 se preparan <b>6,804 piezas de novedad</b> y <b>2,376 de reposición</b>.</p></div>
-      <div class="say" data-say="1"><p>De la reposición quedan 3,108 − 2,376 = <b>732 piezas</b>.</p><p>Son las que <b>no caben el día 1</b>.</p></div>
-      <div class="say" data-say="2"><p>Y el valor óptimo es <b>Z = 15,984 puntos</b> de prioridad.</p><p>Es el número más alto que se puede lograr con estos límites.</p></div>
+      <div class="say" data-say="0"><p>La mejor esquina es <b>C</b>.</p><p>El día 1 hacemos <b>6,804 de novedad</b> y <b>2,376 de reposición</b>.</p></div>
+      <div class="say" data-say="1"><p>De reposición quedan 3,108 − 2,376 = <b>732 piezas</b>.</p><p>Esas pasan al día 2.</p></div>
+      <div class="say" data-say="2"><p>El valor máximo es <b>Z = 15,984 puntos</b>.</p><p>Es lo más alto que se puede lograr.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2577,9 +2595,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <table class="rtable stab">
         <thead><tr><th>Resultado</th><th>Valor</th><th>Qué significa</th></tr></thead>
         <tbody>
-          <tr data-step="0"><td><b>x<sub>1</sub></b></td><td class="fm o">6,804</td><td>piezas de novedad el día 1</td></tr>
-          <tr data-step="0"><td><b>x<sub>2</sub></b></td><td class="fm">2,376</td><td>piezas de reposición el día 1</td></tr>
-          <tr data-step="1"><td><b>Reposición que queda</b></td><td class="fm">732</td><td>piezas de reposición que no caben el día 1</td></tr>
+          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#398C9C"><use href="#icNov"/></svg><b>x<sub>1</sub></b></td><td class="fm o">6,804</td><td>piezas de novedad el día 1</td></tr>
+          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#E3A63B"><use href="#icRep"/></svg><b>x<sub>2</sub></b></td><td class="fm">2,376</td><td>piezas de reposición el día 1</td></tr>
+          <tr data-step="1"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#111111"><use href="#icDay2"/></svg><b>Reposición que queda</b></td><td class="fm">732</td><td>piezas de reposición que no caben el día 1</td></tr>
         </tbody>
       </table>
       <div class="sol-day" data-step="0"><b>Día 1</b><div class="bxrow"><i class="bx" style="--c:#398C9C;--f:1.000;--k:0"></i><i class="bx" style="--c:#398C9C;--f:1.000;--k:1"></i><i class="bx" style="--c:#398C9C;--f:1.000;--k:2"></i><i class="bx" style="--c:#398C9C;--f:1.000;--k:3"></i><i class="bx" style="--c:#398C9C;--f:1.000;--k:4"></i><i class="bx" style="--c:#398C9C;--f:1.000;--k:5"></i><i class="bx" style="--c:#398C9C;--f:1.000;--k:6"></i><i class="bx" style="--c:#111111;--f:1.000;--k:7"></i><i class="bx" style="--c:#111111;--f:1.000;--k:8"></i><i class="bx part" style="--c:#111111;--f:0.180;--k:9"></i></div><span><i class="bx ref" style="--c:#398C9C"></i> novedad · <i class="bx ref" style="--c:#111"></i> reposición · cada caja = 1,000 piezas</span></div>
@@ -2595,10 +2613,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">06</span>Comprobación · restricciones</div>
     <h2>¿Cumple <em>todo</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Ahora comprobamos que la solución <b>cumple cada límite</b>. Sustituimos x<sub>1</sub> = 6,804 y x<sub>2</sub> = 2,376.</p><p><b>R1:</b> 1(6,804) + 1(2,376) = <b>9,180</b>, justo el límite. Se usa <b>todo el día</b>.</p></div>
-      <div class="say" data-say="1"><p><b>R2:</b> 1(6,804) + 0(2,376) = 6,804, justo el límite. Sale <b>toda la novedad</b>.</p></div>
-      <div class="say" data-say="2"><p><b>R3:</b> 0(6,804) + 1(2,376) = 2,376, menor que 3,108. Sobran <b>732 piezas</b> de reposición.</p><p>Y las dos son positivas: cumple la no negatividad.</p></div>
-      <div class="say" data-say="3"><p>Por último, calculamos Z: 2(6,804) + 1(2,376) = <b>15,984</b>.</p><p>Es <b>el mismo valor</b> que nos dio la gráfica en la esquina C. Todo cumple.</p></div>
+      <div class="say" data-say="0"><p>Ahora comprobamos. Ponemos x<sub>1</sub> = 6,804 y x<sub>2</sub> = 2,376.</p><p><b>R1</b>: 1(6,804) + 1(2,376) = <b>9,180</b>. Justo el límite ✓</p></div>
+      <div class="say" data-say="1"><p><b>R2</b>: 1(6,804) + 0(2,376) = <b>6,804</b>. Justo el límite ✓</p></div>
+      <div class="say" data-say="2"><p><b>R3</b>: 0(6,804) + 1(2,376) = <b>2,376</b>. Es menor que 3,108 ✓</p><p>Y los dos son positivos ✓</p></div>
+      <div class="say" data-say="3"><p>Por último, <b>Z</b> = 2(6,804) + 1(2,376) = <b>15,984</b>.</p><p>Igual que en la gráfica. <b>Todo cumple</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2606,10 +2624,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <table class="rtable vtab">
         <thead><tr><th>Restricción</th><th>Sustituimos</th><th>Resultado</th><th>Límite</th><th>¿Sobra?</th><th></th></tr></thead>
         <tbody>
-          <tr data-step="0"><td><b>R1</b> Tiempo</td><td>1(6,804) + 1(2,376)</td><td class="fm">9,180</td><td>≤ 9,180</td><td>nada</td><td class="ok">✓</td></tr>
-          <tr data-step="1"><td><b>R2</b> Novedad</td><td>1(6,804) + 0(2,376)</td><td class="fm">6,804</td><td>≤ 6,804</td><td>nada</td><td class="ok">✓</td></tr>
-          <tr data-step="2"><td><b>R3</b> Reposición</td><td>0(6,804) + 1(2,376)</td><td class="fm">2,376</td><td>≤ 3,108</td><td>732</td><td class="ok">✓</td></tr>
-          <tr data-step="2"><td><b>No neg.</b></td><td>6,804 ; 2,376</td><td class="fm">≥ 0</td><td>≥ 0</td><td>—</td><td class="ok">✓</td></tr>
+          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#111111"><use href="#icClk"/></svg><b>R1</b> Tiempo</td><td>1(6,804) + 1(2,376)</td><td class="fm">9,180</td><td>≤ 9,180</td><td>nada</td><td class="ok">✓</td></tr>
+          <tr data-step="1"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#398C9C"><use href="#icNov"/></svg><b>R2</b> Novedad</td><td>1(6,804) + 0(2,376)</td><td class="fm">6,804</td><td>≤ 6,804</td><td>nada</td><td class="ok">✓</td></tr>
+          <tr data-step="2"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#E3A63B"><use href="#icRep"/></svg><b>R3</b> Reposición</td><td>0(6,804) + 1(2,376)</td><td class="fm">2,376</td><td>≤ 3,108</td><td>732</td><td class="ok">✓</td></tr>
+          <tr data-step="2"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#111111"><use href="#icZero"/></svg><b>No neg.</b></td><td>6,804 ; 2,376</td><td class="fm">≥ 0</td><td>≥ 0</td><td>—</td><td class="ok">✓</td></tr>
         </tbody>
       </table>
       <div class="zcheck" data-step="3"><small>Valor de Z</small><p>Z = 2(6,804) + 1(2,376) = <b>15,984</b></p><span>= mismo resultado que la esquina C de la gráfica ✓</span></div>
@@ -2637,10 +2655,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">07</span>Interpretación · en el almacén</div>
     <h2>¿Qué significa en el <em>almacén</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>x<sub>1</sub> = 6,804</b>: el día 1 se preparan <b>todas las piezas de novedad</b>.</p><p>O sea: <b>toda la ropa nueva sale a la tienda el primer día</b>. Son 37.8 horas de trabajo.</p></div>
-      <div class="say" data-say="1"><p><b>x<sub>2</sub> = 2,376</b>: además, <b>2,376 piezas de reposición</b> (13.2 horas).</p><p>Entre las dos se usan las <b>51 horas completas</b>: el día 1 queda lleno.</p></div>
-      <div class="say" data-say="2"><p>Quedan <b>732 piezas</b> de reposición para el día 2.</p><p>Son unas <b>4 horas</b>. El embarque <b>termina temprano el día 2</b> y quedan unas <b>47 horas</b> para otras tareas.</p></div>
-      <div class="say" data-say="3"><p>En resumen: con la misma gente, sale <b>primero lo más importante</b> y el embarque termina en <b>2 días</b>.</p><p>Pero si el embarque es <b>más grande</b>, la gente no alcanza. Ahí entra nuestra <b>mejora</b>.</p></div>
+      <div class="say" data-say="0"><p>¿Qué significa?</p><p>x<sub>1</sub> = 6,804: <b>toda la novedad</b> sale el día 1. Son 37.8 horas.</p></div>
+      <div class="say" data-say="1"><p>x<sub>2</sub> = 2,376: también sale esa reposición. Son 13.2 horas.</p><p>Juntas suman <b>51 horas</b>: el día 1 queda lleno.</p></div>
+      <div class="say" data-say="2"><p>Las <b>732 piezas</b> que faltan van el día 2. Son unas 4 horas.</p><p>El embarque termina en <b>2 días</b>.</p></div>
+      <div class="say" data-say="3"><p>Resumen: con la misma gente, <b>sale primero lo más importante</b>.</p><p>Pero si el embarque es más grande, no alcanza. Ahí entra nuestra <b>mejora</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2664,9 +2682,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="goal dark"><span>Objetivo</span><b>Minimizar</b></div>
     <h2>¿Cuánta gente <em>pedir prestada</em>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Segunda pregunta: ¿y si el embarque viene <b>enorme</b>? Pedimos gente prestada a piso de venta, pero <b>la menos posible</b>: aquí vamos a <b>minimizar</b>.</p><p>Usamos <b>una sola variable</b>: <b>x</b> = personas extra de tiempo completo. Cada una aporta <b>9.5 horas</b>.</p></div>
-      <div class="say" data-say="1"><p>Ejemplo: <b>25,000 piezas</b> que queremos terminar en 2 días. 25,000 ÷ 180 = <b>138.89 horas</b>.</p><p>En 2 días el equipo tiene 51 × 2 = <b>102 horas</b>. Faltan <b>36.89 horas</b>.</p></div>
-      <div class="say" data-say="2"><p>Entonces <b>9.5x ≥ 36.89</b> → x ≥ 36.89 ÷ 9.5 = <b>3.88</b>.</p><p>No se pueden pedir 0.88 personas, así que redondeamos hacia arriba: <b>4 personas</b>. Comprobamos: 4 × 9.5 = 38 horas, sí alcanza.</p></div>
+      <div class="say" data-say="0"><p>Segunda pregunta: ¿y si el embarque es <b>muy grande</b>?</p><p>Pedimos gente a piso de venta, pero <b>la menos posible</b>: eso es <b>minimizar</b>.</p><p>x = personas extra. Cada una da <b>9.5 horas</b>.</p></div>
+      <div class="say" data-say="1"><p>Ejemplo: <b>25,000 piezas</b> en 2 días.</p><p>Se necesitan 25,000 ÷ 180 = <b>138.89 h</b>. Tenemos 51 × 2 = <b>102 h</b>. Faltan <b>36.89 h</b>.</p></div>
+      <div class="say" data-say="2"><p>9.5x ≥ 36.89 → x ≥ <b>3.88</b>.</p><p>No hay 0.88 personas, así que redondeamos: <b>4 personas</b>. 4 × 9.5 = 38 h ✓</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2709,8 +2727,8 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">07</span>Mejora · la propuesta</div>
     <h2>Una <em>calculadora</em> para cada lunes</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Con esto armamos nuestra propuesta. <b>Uno:</b> una <b>calculadora de personal</b>. Cada lunes se escribe cuántas piezas llegaron y dice cuánta gente pedir a piso el día 1.</p><p><b>Dos:</b> una regla de prioridad: siempre procesar primero la <b>novedad</b>.</p></div>
-      <div class="say" data-say="1"><p><b>Tres:</b> un aviso anticipado: si el embarque pasa de <b>18,360 piezas</b>, lo que cabe en 2 días, se pide apoyo con tiempo.</p><p>Muevan la barra para probar con otros embarques.</p></div>
+      <div class="say" data-say="0"><p>Nuestra propuesta tiene 3 partes.</p><p><b>1.</b> Una <b>calculadora</b>: el lunes escribimos las piezas y nos dice cuánta gente pedir.</p><p><b>2.</b> Una <b>regla</b>: siempre primero la novedad.</p></div>
+      <div class="say" data-say="1"><p><b>3.</b> Un <b>aviso</b>: si llegan más de <b>18,360 piezas</b>, pedimos apoyo con tiempo.</p><p>Muevan la barra para probar.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2750,9 +2768,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">07</span>Mejora · impacto</div>
     <h2>¿Qué <em>ganamos</em> con la mejora?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>Impacto operativo:</b> con la regla de prioridad, <b>la novedad llega a la tienda el día 1</b>.</p><p>Y con un embarque de <b>25,000 piezas</b>, si pedimos <b>4 personas</b> el día 1, terminamos en <b>2 días en lugar de 3</b>: un día antes.</p></div>
-      <div class="say" data-say="1"><p><b>Impacto económico:</b> si en lugar de pedir apoyo usáramos <b>tiempo extra</b>, serían <b>36.89 horas extra</b>.</p><p>La ley paga el tiempo extra <b>al doble</b>. Con el salario mínimo 2026 ($315.04 al día ≈ $39.38 la hora), cada hora extra cuesta <b>$78.76</b>: unos <b>$2,905 por embarque</b>.</p></div>
-      <div class="say" data-say="2"><p>Y además <b>no sería posible</b>: la ley permite máximo <b>3 horas extra al día</b> por persona, y entre 6 necesitaríamos más de 6 horas cada una.</p><p>Las 4 personas de piso ya tienen su sueldo. Si pasa una vez al mes, se evitan unos <b>$34,900 al año</b>.</p></div>
+      <div class="say" data-say="0"><p>¿Qué ganamos?</p><p>La novedad llega a la tienda <b>el día 1</b>. Y con 25,000 piezas y 4 personas extra, terminamos en <b>2 días en vez de 3</b>.</p></div>
+      <div class="say" data-say="1"><p>Si usáramos <b>tiempo extra</b>, serían 36.89 horas pagadas al doble.</p><p>Con el salario mínimo 2026, cuesta unos <b>$2,905 por embarque</b>.</p></div>
+      <div class="say" data-say="2"><p>Y no se podría: la ley permite <b>máximo 3 horas extra</b> al día.</p><p>Si pasa una vez al mes, ahorramos unos <b>$34,900 al año</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2784,9 +2802,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="eyebrow"><i></i><span class="sec">07</span>Conclusiones</div>
     <h2>Tres ideas para <em>llevarse</em></h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>Primera conclusión:</b> con 6 personas procesamos <b>9,180 piezas al día</b>, y un embarque como el de nuestro ejemplo, de 9,912 piezas, termina en <b>2 días</b>.</p></div>
-      <div class="say" data-say="1"><p><b>Segunda:</b> el método gráfico nos permite <b>priorizar la novedad</b>, y con una cuenta sencilla sabemos <b>cuánta gente extra pedir</b> según el tamaño del embarque.</p></div>
-      <div class="say" data-say="2"><p><b>Y tercera:</b> cada semana solo se <b>mueven las líneas</b> de R2 y R3 con lo que dice la bitácora, y el modelo <b>se vuelve a usar igual</b>.</p></div>
+      <div class="say" data-say="0"><p>Idea 1: con 6 personas hacemos <b>9,180 piezas al día</b>.</p><p>Nuestro embarque de 9,912 termina en <b>2 días</b>.</p></div>
+      <div class="say" data-say="1"><p>Idea 2: el método gráfico nos dice <b>qué va primero</b>.</p><p>Y una cuenta sencilla nos dice <b>cuánta gente pedir</b>.</p></div>
+      <div class="say" data-say="2"><p>Idea 3: cada semana solo cambian <b>R2 y R3</b> con la bitácora.</p><p>El modelo <b>se usa igual</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -2804,38 +2822,6 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <span data-only="0">Un embarque de <em>9,912</em> termina en <em>2 días</em>.</span>
       <span data-only="1">La gráfica decide <em>qué va primero</em>; una cuenta dice <em>a cuántos pedir</em>.</span>
       <span data-only="2">El mismo modelo, <em>cada semana</em>.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 11 PREGUNTAS (respaldo) ============ -->
-<section class="slide bg-paper" id="s11" data-tone="light" data-steps="1" data-sec="8">
-  <div class="talk">
-    <div class="eyebrow"><i></i>Respaldo</div>
-    <h2>Si nos <em>preguntan</em>…</h2>
-    <div class="says">
-      <div class="say" data-say="0"><p>Estas son las respuestas a lo que más probablemente nos pueden preguntar.</p></div>
-    </div>
-  </div>
-  <div class="stage">
-    <div class="qa">
-      <details><summary>¿Por qué usaron el método gráfico?</summary><p>Porque el problema tiene solo dos variables (x<sub>1</sub> y x<sub>2</sub>), y con dos variables se puede dibujar. Con más variables ya no se puede dibujar y se usaría el método Simplex.</p></details>
-      <details><summary>¿Por qué la respuesta está en una esquina?</summary><p>En programación lineal, el mejor valor siempre está en una esquina (vértice) de la región factible. Por eso solo revisamos las esquinas A, B, C, D y E.</p></details>
-      <details><summary>¿Cómo sacaron las esquinas C y D?</summary><p>C está donde se cruzan R1 y R2: x<sub>1</sub> = 6,804, entonces x<sub>2</sub> = 9,180 − 6,804 = 2,376. D está donde se cruzan R1 y R3: x<sub>2</sub> = 3,108, entonces x<sub>1</sub> = 9,180 − 3,108 = 6,072.</p></details>
-      <details><summary>¿Qué significa Z?</summary><p>Es el valor de la función objetivo: puntos de prioridad (15,984), no piezas ni dinero. En el modelo 2 es el número de personas extra.</p></details>
-      <details><summary>¿Qué pasa si cambia el embarque?</summary><p>Solo se mueven las líneas de R2 y R3 a los nuevos números de la bitácora. R1 sigue en 9,180 mientras el equipo sea el mismo. Se vuelven a revisar las esquinas.</p></details>
-      <details><summary>¿Por qué en el modelo 2 solo contamos personas de tiempo completo?</summary><p>Porque cada una aporta 9.5 horas contra 6.5 de medio turno: se necesitan menos personas. Así el modelo queda con una sola variable.</p></details>
-      <details><summary>¿Qué trae el embarque de 9,912 piezas?</summary><p>Es la bitácora de envío correcta (lo que se recibió).</p><table class="bit"><thead><tr><th>Departamento</th><th>Novedad</th><th>Reposición</th><th>Total</th></tr></thead><tbody><tr><td>Mujer</td><td>1,644</td><td>1,174</td><td>2,818</td></tr><tr><td>Hombre</td><td>2,347</td><td>827</td><td>3,174</td></tr><tr><td>Kids</td><td>761</td><td>108</td><td>869</td></tr><tr><td>Denim</td><td>1,278</td><td>632</td><td>1,910</td></tr><tr><td>Calzado</td><td>287</td><td>63</td><td>350</td></tr><tr><td>Accesorio</td><td>487</td><td>304</td><td>791</td></tr><tr class="t"><td>Total</td><td>6,804</td><td>3,108</td><td>9,912</td></tr></tbody></table><p>Usamos esta semana porque la bitácora trae las <b>piezas</b>. El formato nuevo de envío solo lista <b>modelos</b> (por ejemplo, 204 modelos), sin decir cuántas piezas son de cada uno.</p></details>
-      <details><summary>¿De dónde salen los datos de la empresa?</summary><p>Historia de C&amp;A: sitio corporativo de C&amp;A y Wikipedia. C&amp;A en México (1999 en Angelópolis, compra de Grupo Alfar en dic 2023, 78 → 84 tiendas y meta de 100): Expansión, octubre de 2024, y Forbes México, 2023. Datos del almacén (embarque, horarios, mínimo de 180 pzs/h): bitácora y operación real de la tienda donde trabaja Karla.</p></details>
-      <details class="lim"><summary>Limitaciones del modelo</summary>
-        <ul>
-          <li>Usamos 180 pzs/h, que es el <b>mínimo</b> por persona. En la práctica se hacen unas 200, así que la capacidad real puede ser mayor.</li><li>Usamos la misma velocidad para todo; calzado, accesorios o ropa colgada pueden tardar distinto.</li>
-          <li>Suponemos que todos procesan durante todo su horario; si hay recepción o descarga, hay que restar esas horas.</li>
-          <li>No consideramos ausencias ni retardos.</li>
-          <li>El peso 2 de la novedad es una decisión del área, no un dato exacto.</li>
-          <li>Dato por confirmar: horas de la gente de piso prestada (9.5 h).</li>
-        </ul>
-      </details>
     </div>
   </div>
 </section>
