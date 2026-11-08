@@ -1723,6 +1723,12 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .g3-note ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
 .g3-note li{border-left:4px solid var(--c);padding-left:10px}
 .g3-mx{fill:#7A8589}
+.g3-co text{font:700 15px "Barlow Condensed",sans-serif;fill:#111;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.gm-tab th.g3-vh{line-height:1.1}
+.gm-tab th.g3-vh svg{width:1em;height:1em;vertical-align:-.12em;margin-right:3px}
+.gm-tab th.g3-vh small{display:block;font-size:.78em;letter-spacing:.06em;opacity:.85;text-transform:none}
+.g3-leg{font-size:.88em;color:#3A3F41}
+.g3-leg svg{width:1em;height:1em;vertical-align:-.12em;margin-right:3px}
 /* ===== /G3 ===== */
 </style>
 
@@ -2483,7 +2489,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <div class="say" data-say="5"><p>Ahora <b>R2</b>: 1x<sub>1</sub> + 0x<sub>2</sub> = 6,804.</p><p>x<sub>2</sub> tiene <b>0</b>. Así que no importa cuánta reposición hagamos: <b>x<sub>1</sub> siempre es 6,804</b>.</p><p>Abajo toca <b>6,804</b> y arriba también toca <b>6,804</b>. Por eso es una línea <b>vertical</b> ↕.</p></div>
       <div class="say" data-say="6"><p>Y <b>R3</b>: 0x<sub>1</sub> + 1x<sub>2</sub> = 3,108.</p><p>x<sub>1</sub> tiene <b>0</b>. Así que no importa cuánta novedad hagamos: <b>x<sub>2</sub> siempre es 3,108</b>.</p><p>A la izquierda toca <b>3,108</b> y a la derecha también. Por eso es una línea <b>horizontal</b> ↔.</p></div>
       <div class="say" data-say="7"><p>La zona pintada cumple <b>los tres límites</b> al mismo tiempo.</p><p>Se llama <b>región factible</b>: son todas las opciones que sí se pueden hacer.</p></div>
-      <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b> de esa zona.</p><p>Tiene 5 esquinas: <b>A, B, C, D y E</b>. A, B y E se leen directo en los ejes.</p></div>
+      <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b>. Hay 5:</p><p><b>A</b> (0 ; 0) · <b>B</b> (6,804 ; 0) · <b>C</b> (6,804 ; 2,376) · <b>D</b> (6,072 ; 3,108) · <b>E</b> (0 ; 3,108)</p><p>El primer número es <b>novedad</b> (x<sub>1</sub>) y el segundo es <b>reposición</b> (x<sub>2</sub>).</p></div>
       <div class="say" data-say="9"><p><b>C y D</b> salen con una resta.</p><p>En C hacemos toda la novedad (6,804) y el tiempo que sobra es reposición: 9,180 − 6,804 = <b>2,376</b>.</p><p>En D: 9,180 − 3,108 = <b>6,072</b>.</p></div>
       <div class="say" data-say="10"><p>Probamos cada esquina en la <b>F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Cada pieza de novedad vale <b>2 puntos</b> y cada pieza de reposición vale <b>1</b>.</p></div>
       <div class="say" data-say="11"><p>Gana la esquina <b>C</b> con <b>15,984 puntos</b>, el número más alto.</p><p>El día 1 hacemos <b>6,804 piezas de novedad</b> y <b>2,376 de reposición</b>.</p></div>
@@ -2511,6 +2517,8 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <g data-range="6-6" class="pts2"><circle cx="80" cy="359.5" r="8" fill="#E3A63B" stroke="#fff" stroke-width="2.5"/><circle cx="600.0" cy="359.5" r="8" fill="#E3A63B" stroke="#fff" stroke-width="2.5"/></g>
 <g data-range="6-6" class="g3-pl"><text x="94" y="349.5" fill="#A06A12"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 3,108</text><text x="592.0" y="383.5" text-anchor="end" fill="#A06A12"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 3,108</text></g>
 <g data-range="8-99"><g class="vx" style="--i:0"><circle cx="80.0" cy="490.0" r="7" fill="#111111"/><text x="94.0" y="478.0" text-anchor="start" class="g3-v">A</text></g><g class="vx" style="--i:1"><circle cx="433.8" cy="490.0" r="7" fill="#111111"/><text x="445.8" y="478.0" text-anchor="start" class="g3-v">B</text></g><g class="vx" style="--i:2"><circle cx="433.8" cy="390.2" r="7" fill="#111111"/><text x="421.8" y="412.2" text-anchor="end" class="g3-v">C</text></g><g class="vx" style="--i:3"><circle cx="395.7" cy="359.5" r="7" fill="#111111"/><text x="395.7" y="345.5" text-anchor="middle" class="g3-v">D</text></g><g class="vx" style="--i:4"><circle cx="80.0" cy="359.5" r="7" fill="#111111"/><text x="70.0" y="349.5" text-anchor="end" class="g3-v">E</text></g></g>
+<g data-range="8-99" class="g3-co"><text x="108.0" y="478.0" text-anchor="start">(0 ; 0)</text><text x="459.8" y="478.0" text-anchor="start">(6,804 ; 0)</text><text x="383.7" y="379.5" text-anchor="end">(6,072 ; 3,108)</text><text x="92.0" y="379.5" text-anchor="start">(0 ; 3,108)</text></g>
+<g data-range="8-10" class="g3-co"><text x="421.8" y="430.2" text-anchor="end">(6,804 ; 2,376)</text></g>
 <g data-range="11-99" class="iso"><path class="star" d="M433.8 375.2l4.4 9.3 10.2 1.2-7.6 7 2 10-9-5-9 5 2-10-7.6-7 10.2-1.2z" fill="#C62828"/><line x1="445.8" y1="378.2" x2="473.8" y2="328.2" stroke="#C62828" stroke-width="1.6"/><text x="477.8" y="308.2" class="g3-opt">C = (6,804 ; 2,376)</text><text x="477.8" y="330.2" class="g3-opt z">Z = 15,984</text></g>
 <line x1="80" y1="490" x2="614.0" y2="490" stroke="#111111" stroke-width="2.5"/><line x1="80" y1="490" x2="80" y2="56.0" stroke="#111111" stroke-width="2.5"/>
 <path d="M614.0 484 l10 6 -10 6z M74 56.0 l6 -10 6 10z" fill="#111111"/>
@@ -2525,6 +2533,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
           <div class="g3-model">
             <p><span class="k">Maximizar</span></p>
             <p class="in">F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></p>
+            <p class="in g3-leg"><svg viewBox="0 0 24 24" style="color:#398C9C"><use href="#icNov"/></svg>x<sub>1</sub> = novedad &nbsp; <svg viewBox="0 0 24 24" style="color:#E3A63B"><use href="#icRep"/></svg>x<sub>2</sub> = reposición</p>
             <p><span class="k">Sujeto a:</span></p>
             <div class="g3-sys">
               <div class="g3-ineq"><p><b>R1:</b> 1x<sub>1</sub> + 1x<sub>2</sub> ≤ 9,180</p><p><b>R2:</b> 1x<sub>1</sub> + 0x<sub>2</sub> ≤ 6,804</p><p><b>R3:</b> 0x<sub>1</sub> + 1x<sub>2</sub> ≤ 3,108</p></div>
@@ -2552,12 +2561,12 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       </div>
         <div class="g3-res" data-range="8-99">
         <table class="rtable ztab gm-tab">
-          <thead><tr><th>Esquina</th><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>F.O. = 2x<sub>1</sub> + 1x<sub>2</sub></th></tr></thead>
+          <thead><tr><th>Esquina</th><th class="g3-vh"><svg viewBox="0 0 24 24" style="color:#7CC1CE"><use href="#icNov"/></svg>x<sub>1</sub><small>novedad</small></th><th class="g3-vh"><svg viewBox="0 0 24 24" style="color:#E3A63B"><use href="#icRep"/></svg>x<sub>2</sub><small>reposición</small></th><th>F.O. = 2x<sub>1</sub> + 1x<sub>2</sub></th></tr></thead>
           <tbody>
             <tr><td><b>A</b></td><td>0</td><td>0</td><td><span data-range="10-99" class="zc"><b>0</b><small>2(0) + 1(0)</small></span></td></tr>
             <tr><td><b>B</b></td><td>6,804</td><td>0</td><td><span data-range="10-99" class="zc"><b>13,608</b><small>2(6,804) + 1(0)</small></span></td></tr>
-            <tr class="cbest"><td><b>C</b></td><td><span data-range="9-99" class="g3-cd">6,804</span></td><td><span data-range="9-99" class="g3-cd">2,376</span></td><td><span data-range="10-99" class="zc"><b>15,984</b><small>2(6,804) + 1(2,376)</small></span></td></tr>
-            <tr><td><b>D</b></td><td><span data-range="9-99" class="g3-cd">6,072</span></td><td><span data-range="9-99" class="g3-cd">3,108</span></td><td><span data-range="10-99" class="zc"><b>15,252</b><small>2(6,072) + 1(3,108)</small></span></td></tr>
+            <tr class="cbest"><td><b>C</b></td><td>6,804</td><td>2,376</td><td><span data-range="10-99" class="zc"><b>15,984</b><small>2(6,804) + 1(2,376)</small></span></td></tr>
+            <tr><td><b>D</b></td><td>6,072</td><td>3,108</td><td><span data-range="10-99" class="zc"><b>15,252</b><small>2(6,072) + 1(3,108)</small></span></td></tr>
             <tr><td><b>E</b></td><td>0</td><td>3,108</td><td><span data-range="10-99" class="zc"><b>3,108</b><small>2(0) + 1(3,108)</small></span></td></tr>
           </tbody>
         </table>
@@ -2600,8 +2609,8 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <table class="rtable stab">
         <thead><tr><th>Resultado</th><th>Valor</th><th>Qué significa</th></tr></thead>
         <tbody>
-          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#398C9C"><use href="#icNov"/></svg><b>x<sub>1</sub></b></td><td class="fm o">6,804</td><td>piezas de novedad el día 1</td></tr>
-          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#E3A63B"><use href="#icRep"/></svg><b>x<sub>2</sub></b></td><td class="fm">2,376</td><td>piezas de reposición el día 1</td></tr>
+          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#398C9C"><use href="#icNov"/></svg><b>x<sub>1</sub></b> · novedad</td><td class="fm o">6,804</td><td>piezas de novedad el día 1</td></tr>
+          <tr data-step="0"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#E3A63B"><use href="#icRep"/></svg><b>x<sub>2</sub></b> · reposición</td><td class="fm">2,376</td><td>piezas de reposición el día 1</td></tr>
           <tr data-step="1"><td><svg class="ri" viewBox="0 0 24 24" aria-hidden="true" style="color:#111111"><use href="#icDay2"/></svg><b>Reposición que queda</b></td><td class="fm">732</td><td>piezas de reposición que no caben el día 1</td></tr>
         </tbody>
       </table>
