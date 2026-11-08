@@ -1193,6 +1193,22 @@ table.tbl{font-size:clamp(16px,min(1.6vw,3vh),30px)}
 .divider.is-active .dv-t .num{animation:rise .7s var(--ease) 1.45s both}
 .divider.is-active .dv-t .word{animation:rise .8s var(--ease) 1.6s both}
 @media (max-width:860px){.divider{height:100%!important}}
+/* portadas: dibujo sencillo por sección */
+.dv .ill{opacity:0}
+.divider.is-active .dv .ill{animation:rise .9s var(--ease) .1s both}
+.dv .dv-ln{stroke-dasharray:700;stroke-dashoffset:700}
+.divider.is-active .dv .dv-ln{animation:dvdraw .9s var(--ease) var(--d) forwards}
+@keyframes dvdraw{to{stroke-dashoffset:0}}
+.dv .dv-reg{opacity:0}
+.divider.is-active .dv .dv-reg{animation:fadein .6s ease 1.5s forwards}
+@keyframes fadein{to{opacity:1}}
+.dv .dv-star{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+.divider.is-active .dv .dv-star{animation:pinpop .5s cubic-bezier(.3,1.6,.5,1) 1.9s both}
+.divider.is-active .dv-t .sub{animation-delay:.3s}
+.divider.is-active .dv-t .num{animation-delay:.4s}
+.divider.is-active .dv-t .word{animation-delay:.5s}
+@media (prefers-reduced-motion:reduce){.dv .ill,.dv .dv-reg,.dv .dv-star{opacity:1!important;animation:none!important}.dv .dv-ln{stroke-dashoffset:0!important;animation:none!important}}
+
 /* escena del camión */
 .scn{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .scn svg{width:100%;height:auto;max-height:100%;display:block}
@@ -1795,8 +1811,13 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d1" data-tone="light" data-steps="1" data-sec="1">
   <div class="dv" aria-label="Sección 01: La empresa">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#A9D3DB"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#111111"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#398C9C"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#E3A63B"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><rect x="-240" y="640" width="480" height="230" fill="#FFFFFF" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+<rect x="-262" y="588" width="524" height="58" fill="#111111"/>
+<text x="0" y="630" text-anchor="middle" fill="#fff" font-size="40" font-family="Barlow Condensed, sans-serif" font-weight="700" letter-spacing="3">C&amp;A</text>
+<rect x="-260" y="645" width="65" height="46" fill="#398C9C"/><rect x="-195" y="645" width="65" height="46" fill="#FFFFFF"/><rect x="-130" y="645" width="65" height="46" fill="#398C9C"/><rect x="-65" y="645" width="65" height="46" fill="#FFFFFF"/><rect x="0" y="645" width="65" height="46" fill="#398C9C"/><rect x="65" y="645" width="65" height="46" fill="#FFFFFF"/><rect x="130" y="645" width="65" height="46" fill="#398C9C"/><rect x="195" y="645" width="65" height="46" fill="#FFFFFF"/><rect x="-260" y="645" width="520" height="46" fill="none" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+<rect x="-215" y="722" width="140" height="100" fill="#EAF3F5" stroke="#111111" stroke-width="5" stroke-linejoin="round"/><use href="#teeS" x="-185" y="740" width="36" height="36" style="color:#E3A63B"/><use href="#teeS" x="-135" y="740" width="36" height="36" style="color:#398C9C"/>
+<rect x="75" y="722" width="140" height="100" fill="#EAF3F5" stroke="#111111" stroke-width="5" stroke-linejoin="round"/><use href="#teeS" x="105" y="740" width="36" height="36" style="color:#111111"/><use href="#teeS" x="155" y="740" width="36" height="36" style="color:#7CC1CE"/>
+<rect x="-45" y="730" width="90" height="140" fill="#A9D3DB" stroke="#111111" stroke-width="5" stroke-linejoin="round"/><circle cx="28" cy="805" r="5" fill="#111111"/></g></g>
     </svg>
     <div class="dv-t"><span class="sub">¿Quién es C&amp;A?</span><span class="num">01</span><b class="word">La empresa</b></div>
   </div>
@@ -1954,8 +1975,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d2" data-tone="light" data-steps="1" data-sec="2">
   <div class="dv" aria-label="Sección 02: El área de trabajo">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#E3A63B"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#111111"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#398C9C"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#A9D3DB"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><path d="M-280 590 V870 M-60 590 V870" stroke="#111111" stroke-width="8"/>
+<path d="M-280 700 H-60 M-280 780 H-60 M-280 860 H-60" stroke="#111111" stroke-width="6"/>
+<rect x="-262" y="644" width="56" height="56" fill="#E3A63B" stroke="#111111" stroke-width="4"/><rect x="-242" y="644" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-200" y="644" width="56" height="56" fill="#C98B2B" stroke="#111111" stroke-width="4"/><rect x="-180" y="644" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-262" y="724" width="56" height="56" fill="#C98B2B" stroke="#111111" stroke-width="4"/><rect x="-242" y="724" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-200" y="724" width="56" height="56" fill="#E3A63B" stroke="#111111" stroke-width="4"/><rect x="-180" y="724" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-138" y="724" width="56" height="56" fill="#C98B2B" stroke="#111111" stroke-width="4"/><rect x="-118" y="724" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-262" y="804" width="56" height="56" fill="#E3A63B" stroke="#111111" stroke-width="4"/><rect x="-242" y="804" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-200" y="804" width="56" height="56" fill="#C98B2B" stroke="#111111" stroke-width="4"/><rect x="-180" y="804" width="16" height="16" fill="#fff" opacity=".6"/><rect x="-138" y="804" width="56" height="56" fill="#E3A63B" stroke="#111111" stroke-width="4"/><rect x="-118" y="804" width="16" height="16" fill="#fff" opacity=".6"/>
+<path d="M40 640 H260 M50 640 V870 M250 640 V870 M20 870 H80 M220 870 H280" stroke="#111111" stroke-width="7" stroke-linecap="round"/>
+<path d="M80 642 v12" stroke="#111111" stroke-width="4"/><use href="#teeS" x="44" y="650" width="72" height="72" style="color:#398C9C"/><path d="M150 642 v12" stroke="#111111" stroke-width="4"/><use href="#teeS" x="114" y="650" width="72" height="72" style="color:#111111"/><path d="M220 642 v12" stroke="#111111" stroke-width="4"/><use href="#teeS" x="184" y="650" width="72" height="72" style="color:#7CC1CE"/></g></g>
     </svg>
     <div class="dv-t"><span class="sub">Así funciona el almacén</span><span class="num">02</span><b class="word">El área de trabajo</b></div>
   </div>
@@ -2174,8 +2198,11 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d3" data-tone="light" data-steps="1" data-sec="3">
   <div class="dv" aria-label="Sección 03: La problemática">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#F4B9B5"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#111111"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#C62828"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#E3A63B"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><rect x="-300" y="812" width="58" height="58" fill="#E3A63B" stroke="#111111" stroke-width="4" transform="rotate(0 -271 841)"/><rect x="-236" y="812" width="58" height="58" fill="#E3A63B" stroke="#111111" stroke-width="4" transform="rotate(0 -207 841)"/><rect x="-172" y="812" width="58" height="58" fill="#E3A63B" stroke="#111111" stroke-width="4" transform="rotate(0 -143 841)"/><rect x="-268" y="754" width="58" height="58" fill="#E3A63B" stroke="#111111" stroke-width="4" transform="rotate(-6 -239 783)"/><rect x="-204" y="754" width="58" height="58" fill="#E3A63B" stroke="#111111" stroke-width="4" transform="rotate(4 -175 783)"/><rect x="-236" y="696" width="58" height="58" fill="#E3A63B" stroke="#111111" stroke-width="4" transform="rotate(-10 -207 725)"/>
+<circle cx="120" cy="745" r="118" fill="#FFFFFF" stroke="#111111" stroke-width="8"/>
+<path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(0 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(30 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(60 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(90 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(120 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(150 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(180 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(210 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(240 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(270 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(300 120 745)"/><path d="M120 637 v18" stroke="#111111" stroke-width="6" transform="rotate(330 120 745)"/>
+<path d="M120 745 V672 M120 745 L172 770" stroke="#C62828" stroke-width="9" stroke-linecap="round"/><circle cx="120" cy="745" r="10" fill="#111111"/>
+<circle cx="236" cy="640" r="34" fill="#C62828"/><text x="236" y="658" text-anchor="middle" fill="#fff" font-size="50" font-family="Barlow Condensed, sans-serif" font-weight="700">!</text></g></g>
     </svg>
     <div class="dv-t"><span class="sub">¿Qué está fallando?</span><span class="num">03</span><b class="word">La problemática</b></div>
   </div>
@@ -2281,8 +2308,13 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d4" data-tone="light" data-steps="1" data-sec="4">
   <div class="dv" aria-label="Sección 04: Modelo matemático">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#A9D3DB"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#1F5966"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#398C9C"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#FFFFFF"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><g transform="rotate(-3 0 730)"><rect x="-210" y="580" width="400" height="290" fill="#FFFFFF" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+<text x="-178" y="640" font-size="36" font-family="Barlow Condensed, sans-serif" font-weight="700" fill="#398C9C">Max Z = 2x<tspan font-size="20" dy="6">1</tspan><tspan dy="-6"> </tspan>+ 1x<tspan font-size="20" dy="6">2</tspan><tspan dy="-6"> </tspan></text>
+<path d="M-178 662 H150" stroke="#E3E8EA" stroke-width="3"/>
+<text x="-178" y="712" font-size="32" font-family="Barlow Condensed, sans-serif" font-weight="700" fill="#111111">1x<tspan font-size="20" dy="6">1</tspan><tspan dy="-6"> </tspan>+ 1x<tspan font-size="20" dy="6">2</tspan><tspan dy="-6"> </tspan>≤ 9,180</text>
+<text x="-178" y="762" font-size="32" font-family="Barlow Condensed, sans-serif" font-weight="700" fill="#111111">1x<tspan font-size="20" dy="6">1</tspan><tspan dy="-6"> </tspan>+ 0x<tspan font-size="20" dy="6">2</tspan><tspan dy="-6"> </tspan>≤ 6,804</text>
+<text x="-178" y="812" font-size="32" font-family="Barlow Condensed, sans-serif" font-weight="700" fill="#111111">0x<tspan font-size="20" dy="6">1</tspan><tspan dy="-6"> </tspan>+ 1x<tspan font-size="20" dy="6">2</tspan><tspan dy="-6"> </tspan>≤ 3,108</text></g>
+<g transform="rotate(35 250 720)"><rect x="232" y="590" width="36" height="210" fill="#E3A63B" stroke="#111111" stroke-width="4"/><rect x="232" y="590" width="36" height="26" fill="#C62828" stroke="#111111" stroke-width="4"/><path d="M232 800 L250 845 L268 800Z" fill="#F3DDB3" stroke="#111111" stroke-width="4" stroke-linejoin="round"/><path d="M244 830 L250 845 L256 830Z" fill="#111111"/></g></g></g>
     </svg>
     <div class="dv-t"><span class="sub">Variables, función objetivo y restricciones</span><span class="num">04</span><b class="word">Modelo matemático</b></div>
   </div>
@@ -2405,8 +2437,12 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d5" data-tone="light" data-steps="1" data-sec="5">
   <div class="dv" aria-label="Sección 05: Método gráfico">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#7CC1CE"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#111111"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#398C9C"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#E3A63B"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><polygon points="-240,860 80,860 80,794.5 16.8,760 -240,760" fill="#A9D3DB" class="dv-reg"/>
+<path class="dv-ln" d="M-240 620 L200 860" stroke="#111111" stroke-width="7" fill="none" style="--d:.4s"/>
+<path class="dv-ln" d="M80 580 V860" stroke="#398C9C" stroke-width="7" fill="none" style="--d:.7s"/>
+<path class="dv-ln" d="M-240 760 H260" stroke="#E3A63B" stroke-width="7" fill="none" style="--d:1s"/>
+<path d="M-240 860 H275 M-240 860 V570" stroke="#111111" stroke-width="6" fill="none"/><path d="M275 851 l18 9 -18 9z M-249 570 l9 -18 9 18z" fill="#111111"/>
+<path class="dv-star" d="M80 768l7.6 15.9 17.4 2-12.9 12 3.5 17.2L80 806.4l-15.6 8.7 3.5-17.2-12.9-12 17.4-2z" fill="#C62828"/></g></g>
     </svg>
     <div class="dv-t"><span class="sub">Lo resolvemos dibujando</span><span class="num">05</span><b class="word">Método gráfico</b></div>
   </div>
@@ -2515,8 +2551,10 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d6" data-tone="light" data-steps="1" data-sec="6">
   <div class="dv" aria-label="Sección 06: Solución y comprobación">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#A9D3DB"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#2B6F7C"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#E3A63B"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#FFFFFF"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><rect x="-170" y="600" width="340" height="270" rx="16" fill="#398C9C" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+<rect x="-140" y="632" width="280" height="216" fill="#FFFFFF" stroke="#111111" stroke-width="4"/>
+<rect x="-60" y="584" width="120" height="40" rx="10" fill="#111111"/>
+<rect x="-110" y="660" width="40" height="40" rx="6" fill="#fff" stroke="#111111" stroke-width="4"/><path d="M-102 681 l10 10 20 -22" stroke="#2E7D32" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-50 680 H110" stroke="#111111" stroke-width="7" stroke-linecap="round"/><rect x="-110" y="730" width="40" height="40" rx="6" fill="#fff" stroke="#111111" stroke-width="4"/><path d="M-102 751 l10 10 20 -22" stroke="#2E7D32" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-50 750 H80" stroke="#111111" stroke-width="7" stroke-linecap="round"/><rect x="-110" y="800" width="40" height="40" rx="6" fill="#fff" stroke="#111111" stroke-width="4"/><path d="M-102 821 l10 10 20 -22" stroke="#2E7D32" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-50 820 H50" stroke="#111111" stroke-width="7" stroke-linecap="round"/></g></g>
     </svg>
     <div class="dv-t"><span class="sub">¿Está bien? Lo comprobamos</span><span class="num">06</span><b class="word">Solución y comprobación</b></div>
   </div>
@@ -2584,8 +2622,9 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <section class="slide divider" id="d7" data-tone="light" data-steps="1" data-sec="7">
   <div class="dv" aria-label="Sección 07: Interpretación y mejora">
     <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path class="ly" style="animation-delay:0.10s, 2.2s" d="M-120 900 C240 872 610 730 800 468 C1050 556 1330 716 1470 900 Z" fill="#E3A63B"/><path class="ly" style="animation-delay:0.28s, 2.5s" d="M300 900 C540 768 700 640 818 524 C1000 640 1150 770 1250 900 Z" fill="#111111"/><path class="ly" style="animation-delay:0.46s, 2.8s" d="M462 900 C622 786 762 700 834 604 C934 704 1032 800 1082 900 Z" fill="#398C9C"/><path class="ly" style="animation-delay:0.64s, 3.1s" d="M604 900 C704 822 800 760 848 684 C892 762 932 840 952 900 Z" fill="#A9D3DB"/>
-      <circle class="dot" cx="796" cy="432" r="28" fill="#111111"/>
+      <g class="ill"><g transform="translate(800 875) scale(1.25) translate(0 -875)"><path d="M-260 870 H220" stroke="#111111" stroke-width="6"/><rect x="-230" y="780" width="80" height="90" fill="#A9D3DB" stroke="#111111" stroke-width="4"/><rect x="-120" y="720" width="80" height="150" fill="#7CC1CE" stroke="#111111" stroke-width="4"/><rect x="-10" y="660" width="80" height="210" fill="#398C9C" stroke="#111111" stroke-width="4"/><rect x="100" y="600" width="80" height="270" fill="#111111" stroke="#111111" stroke-width="4"/>
+<path d="M-200 740 L-80 680 L30 630 L170 560" stroke="#E3A63B" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M150 548 L196 546 L178 588Z" fill="#E3A63B"/></g></g>
     </svg>
     <div class="dv-t"><span class="sub">¿Qué significa y qué proponemos?</span><span class="num">07</span><b class="word">Interpretación y mejora</b></div>
   </div>
