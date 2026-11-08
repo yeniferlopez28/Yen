@@ -1757,6 +1757,12 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .dbar i.r{background:#E3A63B;color:#111;animation-delay:.5s}
 @keyframes dgrow{from{transform:scaleX(0)}to{transform:none}}
 .dbar small{grid-column:2;font-size:clamp(11px,.85vw,14px);color:#3A3F41}
+#f1 .fformula p{font-size:clamp(28px,min(3vw,5.6vh),60px)}
+#f1 .fformula{padding-top:clamp(8px,1.4vh,16px);padding-bottom:clamp(8px,1.4vh,16px)}
+#f1 .scale svg{max-height:18vh;width:auto;margin:0 auto;display:block}
+#f1 .fbox{gap:clamp(8px,1.4vh,16px)}
+.f-note{display:flex;flex-direction:column;gap:4px;background:#FFF4DC;border-left:6px solid #E3A63B;padding:10px 14px;font-size:clamp(14px,min(1.15vw,2.1vh),20px);line-height:1.35}
+.f-note b{font-weight:700}
 /* ===== /G3 ===== */
 </style>
 
@@ -2406,7 +2412,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <h2>¿Qué queremos <em>lograr</em>?</h2>
     <div class="says">
       <div class="say" data-say="0"><p>Queremos que el día 1 salga <b>lo más importante</b>.</p><p>Queremos lo más grande posible: eso es <b>maximizar</b>.</p></div>
-      <div class="say" data-say="1"><p>Cada pieza tiene un valor.</p><p><b>Novedad = 2 puntos</b>, porque es más urgente.<br><b>Reposición = 1 punto</b>.</p></div>
+      <div class="say" data-say="1"><p>Le damos <b>puntos</b> a cada tipo de ropa: <b>novedad = 2</b> y <b>reposición = 1</b>.</p><p><b>Ojo:</b> el 2 y el 1 <b>no son una regla de la empresa</b>. Los ponemos <b>nosotros</b> para decir qué es más importante.</p><p>La novedad es lo que el cliente viene a buscar. Por eso <b>vale más</b>.</p></div>
       <div class="say" data-say="2"><p>La <b>función objetivo</b> queda: <b>Max Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Ejemplo: 100 de cada una → Z = 2(100) + 1(100) = <b>300 puntos</b>.</p></div>
     </div>
   </div>
@@ -2426,7 +2432,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
           </g>
         </svg>
       </div>
-      <div class="fw" data-step="1"><div class="o"><strong>2</strong><small>puntos por cada pieza de novedad</small></div><div><strong>1</strong><small>punto por cada pieza de reposición</small></div></div>
+      <div class="fw" data-step="1"><div class="o"><strong>2</strong><small>puntos por cada pieza de novedad</small></div><div><strong>1</strong><small>punto por cada pieza de reposición</small></div></div><div class="f-note" data-step="1"><b>Ojo: el 2 y el 1 los elegimos nosotros.</b><span>No es una regla de la empresa. Sirven para decir qué es más importante: la <b>novedad</b> vale más que la <b>reposición</b>.</span></div>
       <div class="fformula" data-step="2"><small>Función objetivo</small><p>Max Z = <em>2</em>x<sub>1</sub> + <em>1</em>x<sub>2</sub></p><span>Unidad de Z: puntos de prioridad</span></div>
       <div class="fex" data-step="2">Ejemplo: x<sub>1</sub> = 100, x<sub>2</sub> = 100 → Z = 2(100) + 1(100) = <b>300 puntos</b></div>
     </div>
@@ -2558,8 +2564,8 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
       <div class="say" data-say="7"><p>La zona pintada cumple <b>los tres límites</b> al mismo tiempo.</p><p>Se llama <b>región factible</b>: son todas las opciones que sí se pueden hacer.</p></div>
       <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b>. Primero las <b>fáciles</b>, las del piso y la pared:</p><p><b>A</b> (0 ; 0): la esquina del cuarto.<br><b>B</b> (6,804 ; 0): en el piso. 0 de reposición; llega a 6,804 de novedad.<br><b>E</b> (0 ; 3,108): en la pared. 0 de novedad; sube a 3,108 de reposición.</p></div>
       <div class="say" data-say="9"><p>Ahora <b>C y D</b>. Mira las barras: cada una es <b>un día completo</b> (9,180 piezas).</p><p><b>C</b>: primero llenamos con toda la novedad (6,804). Lo que sobra es reposición: 9,180 − 6,804 = <b>2,376</b>.</p><p><b>D</b>: primero toda la reposición (3,108). Lo que sobra es novedad: 9,180 − 3,108 = <b>6,072</b>.</p></div>
-      <div class="say" data-say="10"><p>Probamos cada esquina en la <b>F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Cada pieza de novedad vale <b>2 puntos</b> y cada pieza de reposición vale <b>1</b>.</p></div>
-      <div class="say" data-say="11"><p>Gana la esquina <b>C</b> con <b>15,984 puntos</b>, el número más alto.</p><p>El día 1 hacemos <b>6,804 piezas de novedad</b> y <b>2,376 de reposición</b>.</p></div>
+      <div class="say" data-say="10"><p>Probamos cada esquina en la <b>F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Recuerden: el 2 y el 1 <b>los pusimos nosotros</b>, no son regla de la empresa. Solo dicen que la <b>novedad es más importante</b>: vale 2, la reposición vale 1.</p></div>
+      <div class="say" data-say="11"><p>Gana la esquina <b>C</b> con <b>15,984 puntos</b>, el número más alto.</p><p>¿Por qué C? Porque es la que tiene <b>más novedad</b>, y la novedad vale más. Si las dos valieran igual, C y D empatarían.</p><p>El día 1 hacemos <b>6,804 piezas de novedad</b> y <b>2,376 de reposición</b>.</p></div>
     </div>
   </div>
   <div class="stage">
