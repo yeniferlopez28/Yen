@@ -1675,6 +1675,13 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .gplot .pts2 circle{transform-box:fill-box;transform-origin:50% 50%}
 .gplot .pts2.on circle{animation:pinpop .5s cubic-bezier(.3,1.6,.5,1) both}
 @media (max-width:860px){.gm-side{width:100%}}
+.lg-box{width:100%;display:flex;align-items:center;justify-content:center}
+.lg-svg{width:100%;height:auto;max-height:calc(100vh - 150px)}
+.lg-t text{font:700 17px "Barlow Condensed",sans-serif;fill:#111;letter-spacing:.3px}
+.lg-n{font:700 17px "Barlow Condensed",sans-serif;fill:#111}
+.lg-p{font:700 22px "Barlow Condensed",sans-serif;fill:#111}
+.lg-s{transition:opacity .6s ease}
+
 .ri{width:1.15em;height:1.15em;vertical-align:-.2em;margin-right:.4em;flex:none}
 .ml .mw .ri{width:1.3em;height:1.3em}
 .ag7 li{grid-template-columns:clamp(56px,6vw,110px) clamp(30px,2.8vw,48px) minmax(0,1fr)}
@@ -1738,6 +1745,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 .g3-rkey span{border-left:4px solid var(--c);padding-left:7px}
 .g3-res tr[data-range]{transition:opacity .5s ease}
 .g3-res tr[data-range]:not(.on){opacity:0}
+.g3-ex{font:700 15px "Barlow Condensed",sans-serif;fill:#5A6468;paint-order:stroke;stroke:#fff;stroke-width:4px}
 /* ===== /G3 ===== */
 </style>
 
@@ -2484,6 +2492,45 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 </section>
 
 
+<!-- ============ 05 · CÓMO SE LEE LA GRÁFICA ============ -->
+<section class="slide bg-paper" id="lg" data-tone="light" data-steps="3" data-sec="5">
+  <div class="talk">
+    <div class="eyebrow"><i></i><span class="sec">05</span>Método gráfico · cómo se lee</div>
+    <h2>¿Cómo se lee <em>la gráfica</em>?</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Antes de dibujar: la gráfica es como un <b>cuarto</b>.</p><p>El <b>piso</b> es la <b>novedad</b> (x<sub>1</sub>): mientras más a la derecha, más novedad.</p><p>La <b>pared</b> es la <b>reposición</b> (x<sub>2</sub>): mientras más arriba, más reposición.</p></div>
+      <div class="say" data-say="1"><p>Cada punto tiene <b>2 números</b>, como una dirección: <b>(derecha ; arriba)</b>.</p><p>Por ejemplo, (4,000 ; 2,000): caminas <b>4,000</b> a la derecha y subes <b>2,000</b>.</p></div>
+      <div class="say" data-say="2"><p>Si un punto está en el <b>piso</b>, no subió: su reposición es <b>0</b>.</p><p>Si está pegado a la <b>pared</b>, no caminó a la derecha: su novedad es <b>0</b>.</p><p>El otro número dice <b>hasta dónde sí llegó</b>.</p></div>
+    </div>
+  </div>
+  <div class="stage"><div class="lg-box"><svg class="lg-svg" viewBox="0 0 640 500" role="img" aria-label="Cómo se lee la gráfica: el piso es novedad, la pared es reposición; el punto (4,000 ; 2,000) está 4,000 a la derecha y 2,000 arriba">
+  <rect x="100" y="70.0" width="480.0" height="360.0" fill="#fff"/><line x1="196.0" y1="430" x2="196.0" y2="70.0" stroke="#EEF2F3"/><line x1="100" y1="358.0" x2="580.0" y2="358.0" stroke="#EEF2F3"/><line x1="292.0" y1="430" x2="292.0" y2="70.0" stroke="#EEF2F3"/><line x1="100" y1="286.0" x2="580.0" y2="286.0" stroke="#EEF2F3"/><line x1="388.0" y1="430" x2="388.0" y2="70.0" stroke="#EEF2F3"/><line x1="100" y1="214.0" x2="580.0" y2="214.0" stroke="#EEF2F3"/><line x1="484.0" y1="430" x2="484.0" y2="70.0" stroke="#EEF2F3"/><line x1="100" y1="142.0" x2="580.0" y2="142.0" stroke="#EEF2F3"/><line x1="580.0" y1="430" x2="580.0" y2="70.0" stroke="#EEF2F3"/><line x1="100" y1="70.0" x2="580.0" y2="70.0" stroke="#EEF2F3"/>
+  <rect x="98" y="430" width="496.0" height="10" fill="#398C9C" opacity=".25"/>
+  <rect x="90" y="56.0" width="10" height="374.0" fill="#E3A63B" opacity=".3"/>
+  <path d="M100 430 H596.0 M100 430 V56.0" stroke="#111111" stroke-width="3" fill="none"/>
+  <path d="M596.0 424 l10 6 -10 6z M94 56.0 l6 -10 6 10z" fill="#111111"/>
+  <text x="100.0" y="452" text-anchor="middle" class="sv-ax">0</text><text x="196.0" y="452" text-anchor="middle" class="sv-ax">2,000</text><text x="292.0" y="452" text-anchor="middle" class="sv-ax">4,000</text><text x="388.0" y="452" text-anchor="middle" class="sv-ax">6,000</text><text x="484.0" y="452" text-anchor="middle" class="sv-ax">8,000</text><text x="580.0" y="452" text-anchor="middle" class="sv-ax">10,000</text><text x="90" y="363.0" text-anchor="end" class="sv-ax">2,000</text><text x="90" y="291.0" text-anchor="end" class="sv-ax">4,000</text><text x="90" y="219.0" text-anchor="end" class="sv-ax">6,000</text><text x="90" y="147.0" text-anchor="end" class="sv-ax">8,000</text><text x="90" y="75.0" text-anchor="end" class="sv-ax">10,000</text>
+  <g class="lg-t"><use href="#icNov" x="190.0" y="463" width="18" height="18" style="color:#398C9C"/><text x="213.0" y="478">PISO · novedad (<tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">1</tspan><tspan dy="-0.28em">​</tspan>) · más a la derecha = más novedad →</text></g>
+  <g class="lg-t" transform="translate(38 250.0) rotate(-90)"><use href="#icRep" x="-170" y="-14" width="18" height="18" style="color:#E3A63B"/><text x="-147" y="1">PARED · reposición (<tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan>) · más arriba = más reposición ↑</text></g>
+  <g data-step="1" class="lg-s">
+    <path d="M100 426 H292.0" stroke="#398C9C" stroke-width="5" stroke-dasharray="10 6" fill="none"/>
+    <path d="M292.0 430 V358.0" stroke="#E3A63B" stroke-width="5" stroke-dasharray="10 6" fill="none"/>
+    <text x="196.0" y="416" text-anchor="middle" class="lg-n" style="fill:#2B6F7C">4,000 a la derecha →</text>
+    <text x="304.0" y="400.0" class="lg-n" style="fill:#A06A12">↑ 2,000 arriba</text>
+    <circle cx="292.0" cy="358.0" r="10" fill="#111111" stroke="#fff" stroke-width="3"/>
+    <text x="292.0" y="338.0" text-anchor="middle" class="lg-p">(4,000 ; 2,000)</text>
+  </g>
+  <g data-step="2" class="lg-s">
+    <circle cx="484.0" cy="430" r="10" fill="#398C9C" stroke="#fff" stroke-width="3"/>
+    <text x="484.0" y="356" text-anchor="middle" class="lg-p">(8,000 ; 0)</text>
+    <text x="484.0" y="378" text-anchor="middle" class="lg-n">en el piso → 0 de reposición</text>
+    <circle cx="100" cy="214.0" r="10" fill="#E3A63B" stroke="#fff" stroke-width="3"/>
+    <text x="118" y="206.0" class="lg-p">(0 ; 6,000)</text>
+    <text x="118" y="230.0" class="lg-n">en la pared → 0 de novedad</text>
+  </g>
+</svg></div></div>
+</section>
+
 <!-- ============ 05 · MÉTODO GRÁFICO (paso a paso) ============ -->
 <section class="slide bg-cream" id="gm" data-tone="light" data-steps="12" data-sec="5">
   <div class="talk">
@@ -2492,14 +2539,14 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
     <div class="says">
       <div class="say" data-say="0"><p>Este es nuestro problema.</p><p>Arriba está lo que queremos <b>lograr</b> (la F.O.). Abajo están los <b>límites</b>: R1, R2 y R3.</p></div>
       <div class="say" data-say="1"><p><b>Paso 1:</b> cambiamos el signo <b>≤</b> por <b>=</b>.</p><p>¿Para qué? Con el <b>=</b>, cada límite se vuelve una <b>línea</b> que podemos dibujar.</p></div>
-      <div class="say" data-say="2"><p><b>Pasos 2 y 3</b>, con R1.</p><p>Imaginamos que <b>no hacemos reposición</b> (x<sub>2</sub> = 0). Queda 1x<sub>1</sub> = 9,180, y despejamos: x<sub>1</sub> = <b>9,180</b>.</p><p>Es nuestro <b>primer punto</b>, en el eje de novedad.</p></div>
-      <div class="say" data-say="3"><p>Ahora al revés: <b>no hacemos novedad</b> (x<sub>1</sub> = 0).</p><p>Queda 1x<sub>2</sub> = 9,180, entonces x<sub>2</sub> = <b>9,180</b>. Es el <b>segundo punto</b>, en el eje de reposición.</p></div>
-      <div class="say" data-say="4"><p><b>Paso 4:</b> unimos los dos puntos con una línea.</p><p>Esa línea es <b>R1</b>. Todo lo que queda <b>abajo</b> de ella cabe en un día de trabajo.</p></div>
-      <div class="say" data-say="5"><p>Ahora <b>R2</b>: 1x<sub>1</sub> + 0x<sub>2</sub> = 6,804.</p><p>x<sub>2</sub> tiene <b>0</b>. Así que no importa cuánta reposición hagamos: <b>x<sub>1</sub> siempre es 6,804</b>.</p><p>Abajo toca <b>6,804</b> y arriba también toca <b>6,804</b>. Por eso es una línea <b>vertical</b> ↕.</p></div>
-      <div class="say" data-say="6"><p>Y <b>R3</b>: 0x<sub>1</sub> + 1x<sub>2</sub> = 3,108.</p><p>x<sub>1</sub> tiene <b>0</b>. Así que no importa cuánta novedad hagamos: <b>x<sub>2</sub> siempre es 3,108</b>.</p><p>A la izquierda toca <b>3,108</b> y a la derecha también. Por eso es una línea <b>horizontal</b> ↔.</p></div>
+      <div class="say" data-say="2"><p><b>Pasos 2 y 3</b>, con R1. Para dibujar una línea solo necesitamos <b>2 puntos</b>.</p><p>Usamos los más fáciles: donde la línea toca el <b>piso</b> y la <b>pared</b>.</p><p>En el piso la reposición es <b>0</b>, así que todo el día es novedad: x<sub>1</sub> = <b>9,180</b>.</p></div>
+      <div class="say" data-say="3"><p>En la pared la novedad es <b>0</b>, así que todo el día es reposición: x<sub>2</sub> = <b>9,180</b>.</p><p>Ojo: el 0 <b>no es la respuesta</b>. Solo nos ayuda a encontrar los puntos para dibujar.</p></div>
+      <div class="say" data-say="4"><p><b>Paso 4:</b> unimos los dos puntos. Esa es la línea <b>R1</b>.</p><p>La línea son <b>todas las formas de llenar el día</b>: 9,180 + 0, 5,000 + 4,180, 3,000 + 6,180… Todas suman 9,180.</p></div>
+      <div class="say" data-say="5"><p>Ahora <b>R2</b>: llegaron <b>6,804</b> de novedad.</p><p>A R2 <b>no le importa la reposición</b>. Por eso tiene 0x<sub>2</sub>: 0 por cualquier número da 0.</p><p>Abajo, en medio y arriba siempre es <b>6,804</b>. Por eso es una línea <b>parada</b> ↕.</p></div>
+      <div class="say" data-say="6"><p>Y <b>R3</b>: llegaron <b>3,108</b> de reposición.</p><p>A R3 <b>no le importa la novedad</b>. Por eso tiene 0x<sub>1</sub>.</p><p>A la izquierda y a la derecha siempre es <b>3,108</b>. Por eso es una línea <b>acostada</b> ↔.</p></div>
       <div class="say" data-say="7"><p>La zona pintada cumple <b>los tres límites</b> al mismo tiempo.</p><p>Se llama <b>región factible</b>: son todas las opciones que sí se pueden hacer.</p></div>
-      <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b> de la zona pintada.</p><p>Primero las <b>fáciles</b>, las que están sobre los ejes:</p><p><b>A</b> (0 ; 0) · <b>B</b> (6,804 ; 0) · <b>E</b> (0 ; 3,108)</p><p>El primer número es <b>novedad</b> (x<sub>1</sub>) y el segundo es <b>reposición</b> (x<sub>2</sub>).</p></div>
-      <div class="say" data-say="9"><p>Ahora <b>C y D</b>. Están donde se <b>cruzan dos líneas</b>, y salen con una resta.</p><p><b>C</b>: se cruzan R2 y R1. x<sub>1</sub> = 6,804 → x<sub>2</sub> = 9,180 − 6,804 = <b>2,376</b>.</p><p><b>D</b>: se cruzan R3 y R1. x<sub>2</sub> = 3,108 → x<sub>1</sub> = 9,180 − 3,108 = <b>6,072</b>.</p></div>
+      <div class="say" data-say="8"><p>La mejor opción siempre está en una <b>esquina</b>. Primero las <b>fáciles</b>, las del piso y la pared:</p><p><b>A</b> (0 ; 0): la esquina del cuarto.<br><b>B</b> (6,804 ; 0): en el piso. 0 de reposición; llega a 6,804 de novedad.<br><b>E</b> (0 ; 3,108): en la pared. 0 de novedad; sube a 3,108 de reposición.</p></div>
+      <div class="say" data-say="9"><p>Ahora <b>C y D</b>. El día tiene <b>9,180</b>; lo que sobra sale con una resta.</p><p><b>C</b>: hacemos toda la novedad (6,804). Sobra 9,180 − 6,804 = <b>2,376</b> para reposición.</p><p><b>D</b>: hacemos toda la reposición (3,108). Sobra 9,180 − 3,108 = <b>6,072</b> para novedad.</p><p>Es como tener <b>$9,180</b>: si gastas $6,804, te quedan $2,376.</p></div>
       <div class="say" data-say="10"><p>Probamos cada esquina en la <b>F.O.: Z = 2x<sub>1</sub> + 1x<sub>2</sub></b>.</p><p>Cada pieza de novedad vale <b>2 puntos</b> y cada pieza de reposición vale <b>1</b>.</p></div>
       <div class="say" data-say="11"><p>Gana la esquina <b>C</b> con <b>15,984 puntos</b>, el número más alto.</p><p>El día 1 hacemos <b>6,804 piezas de novedad</b> y <b>2,376 de reposición</b>.</p></div>
     </div>
@@ -2516,6 +2563,7 @@ span.k1{background:#7CC1CE}span.k2{background:#E3A63B}span.k3{background:#F4B9B5
 <g data-range="3-6" class="pts2"><circle cx="80.0" cy="104.4" r="8" fill="#111111" stroke="#fff" stroke-width="2.5"/></g>
 <g data-range="3-6" class="g3-pl"><text x="94.0" y="96.4"><tspan class="ssub-x">x</tspan><tspan class="ssub" dy="0.28em">2</tspan><tspan dy="-0.28em">​</tspan> = 9,180</text></g>
 <g data-range="4-99" class="ln"><line x1="80.0" y1="104.4" x2="557.4" y2="490.0" stroke="#111111" stroke-width="4"/></g>
+<g data-range="4-4" class="g3-exg"><circle cx="236.0" cy="230.4" r="6" fill="#7A8589" stroke="#fff" stroke-width="2"/><text x="248.0" y="250.4" class="g3-ex">3,000 + 6,180</text><circle cx="340.0" cy="314.4" r="6" fill="#7A8589" stroke="#fff" stroke-width="2"/><text x="352.0" y="334.4" class="g3-ex">5,000 + 4,180</text></g>
 <g data-range="4-99"><text x="215.2" y="199.6" class="g3-rn">R1 · tiempo</text></g>
 <g data-range="5-99" class="ln"><line x1="433.8" y1="70.0" x2="433.8" y2="490" stroke="#398C9C" stroke-width="4"/></g>
 <g data-range="5-99"><text x="443.8" y="118.0" class="g3-rn" style="fill:#2B6F7C">R2 · novedad</text><use href="#icNov" x="537.8" y="103.0" width="16" height="16" style="color:#398C9C"/></g>
