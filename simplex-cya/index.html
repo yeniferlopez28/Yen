@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <style>
 /* Layout: full-screen vertical deck. Each slide = spoken script (left) + flat animated scene (right).
    Single deliberate look taken from the references: per-slide flat color fields, black blocks, orange accent. */
@@ -24,9 +24,9 @@
   --wood:#674A40;
   --wood-d:#45372F;
   --white:#FFFDF8;
-  --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
-  --body:"Archivo", "Helvetica Neue", Arial, sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --display:"Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif;
+  --body:"Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif;
+  --mono:"Helvetica Neue", Helvetica, "Inter Tight", Arial, sans-serif;
   --hud-h:56px;
   --guide-h:78px;
   --ease:cubic-bezier(.72,0,.18,1);
@@ -65,7 +65,7 @@ body.guide-off .slide{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px)
 .talk{display:flex;flex-direction:column;justify-content:center;gap:14px;min-width:0;min-height:0}
 .eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
 .eyebrow i{display:inline-block;width:22px;height:2px;background:currentColor}
-h1,h2{font-family:var(--display);font-stretch:112%;font-weight:800;letter-spacing:-.02em;line-height:.98;margin:0;text-wrap:balance}
+h1,h2{font-family:var(--display);font-weight:500;letter-spacing:-.025em;line-height:1.02;margin:0;text-wrap:balance}
 h2{font-size:clamp(28px,3.4vw,56px)}
 h2 em{font-style:normal;color:var(--orange-d)}
 .bg-ink h2 em,.bg-coral h2 em{color:var(--orange)}
@@ -117,7 +117,7 @@ h2 em{font-style:normal;color:var(--orange-d)}
 }
 body[data-tone="dark"]{--hud-fg:var(--paper)}
 .brand{display:flex;align-items:center;gap:10px;white-space:nowrap;overflow:hidden}
-.brand b{font:800 15px/1 var(--display);font-stretch:118%;letter-spacing:-.01em;text-transform:none}
+.brand b{font:600 15px/1 var(--display);letter-spacing:-.01em;text-transform:none}
 .squares{display:flex;gap:6px}
 .squares button{width:11px;height:11px;border:1.5px solid currentColor;background:transparent;padding:0;opacity:.55;transition:all .3s ease}
 .squares button.on{background:var(--orange);border-color:var(--orange);opacity:1}
@@ -203,8 +203,8 @@ body.guide-off .belt{bottom:calc(104px + env(safe-area-inset-bottom,0px))}
   box-shadow:0 2px 0 rgba(0,0,0,.06)}
 body.guide-off .tagbubble{bottom:calc(104px + 130px + env(safe-area-inset-bottom,0px))}
 .tagbubble::after{content:"";position:absolute;left:50%;bottom:-11px;margin-left:-11px;border:11px solid transparent;border-bottom:0;border-top-color:var(--white)}
-.tagbubble small{display:block;font:800 13px/1 var(--display);font-stretch:115%;letter-spacing:.06em;color:#5C9E5A}
-.tagbubble strong{display:block;font:900 clamp(30px,3vw,44px)/1.05 var(--display);font-stretch:115%;color:#5C9E5A;font-variant-numeric:tabular-nums}
+.tagbubble small{display:block;font:600 13px/1 var(--display);letter-spacing:.06em;color:#5C9E5A}
+.tagbubble strong{display:block;font:600 clamp(30px,3vw,44px)/1.05 var(--display);color:#5C9E5A;font-variant-numeric:tabular-nums}
 .tagbubble.bump{animation:pop .5s var(--ease)}
 #s1 .says{max-width:min(880px,68%)}
 #s1 .say{font-size:clamp(15px,0.55vw + 9px,20px)}
@@ -214,7 +214,7 @@ body.guide-off .tagbubble{bottom:calc(104px + 130px + env(safe-area-inset-bottom
 .flow{width:100%;max-width:720px}
 .flow svg{width:100%;height:auto;overflow:visible}
 .flow .lbl{font:600 12px var(--mono);fill:var(--ink);letter-spacing:.06em}
-.flow .big{font:800 15px var(--display);fill:var(--ink)}
+.flow .big{font:600 15px var(--display);fill:var(--ink)}
 .is-active .truck{animation:drive 1.6s var(--ease) .3s both}
 @keyframes drive{from{transform:translateX(-260px)}to{transform:none}}
 .grow{transform-box:fill-box;transform-origin:left center;transform:scaleX(0)}
@@ -225,7 +225,7 @@ body.guide-off .tagbubble{bottom:calc(104px + 130px + env(safe-area-inset-bottom
 .d1{animation-delay:1.9s!important}.d2{animation-delay:2.6s!important}.d3{animation-delay:3.3s!important}.d4{animation-delay:3.9s!important}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .chip{background:var(--white);border-radius:6px;padding:10px 14px;display:flex;flex-direction:column;gap:4px;min-width:0;max-width:300px}
-.chip b{font:800 14px/1 var(--display);font-stretch:112%;display:flex;gap:8px;align-items:center}
+.chip b{font:600 14px/1 var(--display);display:flex;gap:8px;align-items:center}
 .chip b i{width:10px;height:10px;display:inline-block}
 .chip span{font-size:13px;line-height:1.35;color:var(--ink-2)}
 
@@ -248,7 +248,7 @@ body.guide-off .tagbubble{bottom:calc(104px + 130px + env(safe-area-inset-bottom
 .sums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;margin-top:18px;margin-left:var(--gl)}
 .sum{background:var(--ink);color:var(--paper);padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .sum small{font:500 11px/1.2 var(--mono);opacity:.75}
-.sum strong{font:800 clamp(22px,2.3vw,36px)/1 var(--display);font-stretch:120%;font-variant-numeric:tabular-nums}
+.sum strong{font:600 clamp(22px,2.3vw,36px)/1 var(--display);font-variant-numeric:tabular-nums}
 .sum.acc{background:var(--orange);color:var(--ink)}
 .area-wrap{margin-left:var(--gl);margin-top:6px}
 .area-wrap svg{width:100%;height:auto;display:block;overflow:visible}
@@ -275,7 +275,7 @@ body.guide-off #s4 .talk{margin-bottom:calc(-1 * (30px + env(safe-area-inset-bot
 .chart{position:relative;width:100%;height:100%;min-height:320px}
 .plot{position:absolute;left:0;right:clamp(10px,4vw,60px);top:6%;bottom:96px}
 .ylab{position:absolute;left:clamp(10px,1.5vw,24px);transform:translateY(50%);display:flex;align-items:center;gap:0;z-index:2}
-.ylab b{font:900 clamp(22px,2.6vw,40px)/1 var(--display);font-stretch:118%;color:var(--navy);padding-right:10px;white-space:nowrap}
+.ylab b{font:600 clamp(22px,2.6vw,40px)/1 var(--display);color:var(--navy);padding-right:10px;white-space:nowrap}
 .ylab i{width:clamp(20px,2.4vw,40px);height:5px;background:var(--salmon)}
 .capline{position:absolute;left:clamp(110px,10vw,170px);right:0;border-top:2px dashed var(--navy);opacity:.75}
 .capline span{position:absolute;right:0;top:-24px;font:600 11px/1 var(--mono);color:var(--navy);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
@@ -288,14 +288,14 @@ body.guide-off #s4 .talk{margin-bottom:calc(-1 * (30px + env(safe-area-inset-bot
 .pbar .seg.edge-l{box-shadow:inset 22px 0 0 var(--red)}
 .pbar .seg.edge-r{box-shadow:inset -14px 0 0 var(--red)}
 .pbar .seg.nov{background:var(--red)}
-.pbar .v{position:absolute;left:50%;top:-30px;transform:translateX(-50%);font:900 18px/1 var(--display);font-stretch:115%;color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pbar .v{position:absolute;left:50%;top:-30px;transform:translateX(-50%);font:600 18px/1 var(--display);color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
 .pbar .segl{position:absolute;inset:0;display:grid;place-items:center;font:600 11px/1.2 var(--mono);color:var(--white);text-align:center;padding:4px}
 .base{position:absolute;left:-2%;right:clamp(4px,2vw,30px);bottom:62px;height:34px;background:var(--navy)}
 .xl{position:absolute;bottom:22px;left:clamp(110px,10vw,170px);right:clamp(10px,4vw,60px);display:flex;justify-content:space-around;padding:0 4%}
-.xl span{width:min(22%,150px);text-align:center;font:700 12px/1.2 var(--display);font-stretch:110%;color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
+.xl span{width:min(22%,150px);text-align:center;font:700 12px/1.2 var(--display);color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
 .bracket{position:absolute;border:3px solid var(--white);border-right:0;width:22px}
 .bracket::after{content:"";position:absolute;left:-10px;top:50%;width:10px;height:3px;background:var(--white)}
-.bracket span{position:absolute;right:calc(100% + 16px);top:50%;transform:translateY(-50%);font:800 14px/1.1 var(--display);color:var(--white);white-space:nowrap;text-align:right}
+.bracket span{position:absolute;right:calc(100% + 16px);top:50%;transform:translateY(-50%);font:600 14px/1.1 var(--display);color:var(--white);white-space:nowrap;text-align:right}
 
 /* ================= SLIDE 5 — Modelo ================= */
 .model{width:100%;max-width:700px;display:flex;flex-direction:column;gap:16px}
@@ -309,7 +309,7 @@ body.guide-off #s4 .talk{margin-bottom:calc(-1 * (30px + env(safe-area-inset-bot
 .var{display:flex;gap:12px;align-items:center;background:var(--ink);color:var(--paper);padding:12px 14px;flex:1 1 220px;min-width:0}
 .var.o{background:var(--orange);color:var(--ink)}
 .var svg{width:38px;height:34px;flex:none}
-.var b{font:800 22px/1 var(--display);font-stretch:118%}
+.var b{font:600 22px/1 var(--display)}
 .var span{font-size:13px;line-height:1.3}
 .scale{display:flex;flex-direction:column;gap:12px;margin-top:4px}
 .sc-row{display:grid;grid-template-columns:42px 1fr;align-items:center;gap:10px}
@@ -362,13 +362,13 @@ table.tbl{width:100%;border-collapse:collapse;font:500 clamp(15px,1.3vw,22px)/1 
 .tube .shine{position:absolute;left:16%;top:18%;width:10%;height:40%;border-radius:10px;background:rgba(255,255,255,.35)}
 .thermo .cap{margin-top:10px;font:600 11px/1.2 var(--mono);text-align:center;letter-spacing:.06em;text-transform:uppercase}
 .tbub{position:absolute;right:calc(100% + 14px);transform:translateY(50%);width:74px;height:74px;border-radius:50%;background:#3A3134;color:var(--white);display:grid;place-items:center;
-  font:800 18px/1 var(--display);font-stretch:115%;transition:bottom 1.6s var(--ease), opacity .4s ease;opacity:0}
+  font:600 18px/1 var(--display);transition:bottom 1.6s var(--ease), opacity .4s ease;opacity:0}
 .tbub::after{content:"";position:absolute;right:-12px;top:50%;margin-top:-9px;border:9px solid transparent;border-right:0;border-left:14px solid #3A3134}
 .tbub.show{opacity:1}
 .outs{display:flex;flex-direction:column;gap:10px;min-width:0}
 .out{display:flex;flex-direction:column;gap:4px;padding:12px 14px;background:var(--white)}
 .out small{font:600 11px/1.2 var(--mono);color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase}
-.out strong{font:900 clamp(26px,2.8vw,44px)/1 var(--display);font-stretch:118%;font-variant-numeric:tabular-nums}
+.out strong{font:600 clamp(26px,2.8vw,44px)/1 var(--display);font-variant-numeric:tabular-nums}
 .out.o{background:var(--orange)}
 .checks{display:flex;flex-direction:column;gap:6px;font:500 13px/1.35 var(--mono)}
 .checks div{display:flex;gap:10px;align-items:baseline}
@@ -399,15 +399,15 @@ table.tbl{width:100%;border-collapse:collapse;font:500 clamp(15px,1.3vw,22px)/1 
 @keyframes drop{to{opacity:1;transform:none}}
 .plus{position:absolute;right:10px;bottom:132px;background:var(--white);border-radius:8px;padding:10px 14px;text-align:center}
 .plus::after{content:"";position:absolute;left:50%;bottom:-10px;margin-left:-10px;border:10px solid transparent;border-bottom:0;border-top-color:var(--white)}
-.plus small{display:block;font:800 11px/1 var(--display);letter-spacing:.08em;color:var(--orange-d)}
-.plus strong{display:block;font:900 30px/1.05 var(--display);font-stretch:118%;color:var(--orange-d)}
+.plus small{display:block;font:600 11px/1 var(--display);letter-spacing:.08em;color:var(--orange-d)}
+.plus strong{display:block;font:600 30px/1.05 var(--display);color:var(--orange-d)}
 
 /* ================= SLIDE 9 — Propuesta (calculator) ================= */
 #s9{grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr)}
 .calc{width:100%;max-width:660px;display:flex;flex-direction:column;gap:16px}
 .calc-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end}
 .field label{display:block;font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
-.big-num{font:900 clamp(34px,4vw,64px)/1 var(--display);font-stretch:120%;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.big-num{font:600 clamp(34px,4vw,64px)/1 var(--display);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .big-num small{font:600 14px/1 var(--mono);letter-spacing:0;margin-left:6px}
 input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0 0}
 .seg2{display:flex;border:1.5px solid var(--ink)}
@@ -430,7 +430,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
 .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
 .kpi{background:var(--white);padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .kpi small{font:600 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
-.kpi strong{font:900 clamp(22px,2.2vw,34px)/1 var(--display);font-stretch:118%;font-variant-numeric:tabular-nums}
+.kpi strong{font:600 clamp(22px,2.2vw,34px)/1 var(--display);font-variant-numeric:tabular-nums}
 .kpi.o{background:var(--orange)}
 .calc-model{font:500 12px/1.5 var(--mono);color:var(--ink-2)}
 .calc-model b{color:var(--ink);font-weight:600}
@@ -451,7 +451,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
 @keyframes spin{to{transform:rotate(360deg)}}
 .orbit .core{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--ink)}
 .orbit .core>div{grid-area:1/1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12%}
-.orbit .core strong{font:900 clamp(36px,4.6vw,72px)/1 var(--display);font-stretch:118%;letter-spacing:-.02em}
+.orbit .core strong{font:600 clamp(36px,4.6vw,72px)/1 var(--display);letter-spacing:-.02em}
 .orbit .core small{font:600 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
 .orbit .dot{width:22px;height:22px;border-radius:50%;background:var(--orange)}
 .c-line{font-size:clamp(16px,1.3vw,22px);text-align:center;max-width:36ch;color:var(--paper);display:grid}
@@ -462,7 +462,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
 #s11{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
 .qa{width:100%;max-width:720px;display:flex;flex-direction:column;gap:2px;max-height:100%;overflow:auto}
 .qa details{background:var(--white)}
-.qa summary{list-style:none;cursor:pointer;padding:14px 16px;font:700 clamp(15px,1.1vw,18px)/1.3 var(--display);font-stretch:108%;display:flex;justify-content:space-between;gap:14px}
+.qa summary{list-style:none;cursor:pointer;padding:14px 16px;font:700 clamp(15px,1.1vw,18px)/1.3 var(--display);display:flex;justify-content:space-between;gap:14px}
 .qa summary::-webkit-details-marker{display:none}
 .qa summary::after{content:"+";font:500 20px/1 var(--mono);color:var(--orange-d)}
 .qa details[open] summary::after{content:"−"}
@@ -619,7 +619,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
           <rect x="94" y="174" width="18" height="14" fill="#E8E6DC"/>
           <circle cx="24" cy="210" r="10" fill="#1D1D1B" stroke="#E8E6DC" stroke-width="4"/>
           <circle cx="98" cy="210" r="10" fill="#1D1D1B" stroke="#E8E6DC" stroke-width="4"/>
-          <text x="43" y="183" text-anchor="middle" fill="#E8E6DC" style="font:700 12px Archivo,sans-serif">C&amp;A</text>
+          <text x="43" y="183" text-anchor="middle" fill="#E8E6DC" style="font:700 12px 'Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif">C&amp;A</text>
         </g>
         <!-- orange area -->
         <g class="grow">
@@ -644,13 +644,13 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
         </g>
         <g class="later d1">
           <rect x="150" y="104" width="128" height="40" rx="6" fill="#FFFDF8"/><path d="M196 144 l10 10 l10 -10z" fill="#FFFDF8"/>
-          <text x="214" y="122" text-anchor="middle" style="font:800 11px Archivo,sans-serif;letter-spacing:.06em" fill="#C9701A">NOVEDAD</text>
-          <text x="214" y="136" text-anchor="middle" style="font:500 10px 'IBM Plex Mono',monospace" fill="#1D1D1B">sale primero</text>
+          <text x="214" y="122" text-anchor="middle" style="font:600 11px 'Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif;letter-spacing:.06em" fill="#C9701A">NOVEDAD</text>
+          <text x="214" y="136" text-anchor="middle" style="font:500 10px 'Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif" fill="#1D1D1B">sale primero</text>
         </g>
         <g class="later d2">
           <rect x="296" y="88" width="128" height="40" rx="6" fill="#FFFDF8"/><path d="M342 128 l10 10 l10 -10z" fill="#FFFDF8"/>
-          <text x="360" y="106" text-anchor="middle" style="font:800 11px Archivo,sans-serif;letter-spacing:.06em" fill="#1D1D1B">REPOSICIÓN</text>
-          <text x="360" y="120" text-anchor="middle" style="font:500 10px 'IBM Plex Mono',monospace" fill="#1D1D1B">rellena lo vendido</text>
+          <text x="360" y="106" text-anchor="middle" style="font:600 11px 'Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif;letter-spacing:.06em" fill="#1D1D1B">REPOSICIÓN</text>
+          <text x="360" y="120" text-anchor="middle" style="font:500 10px 'Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif" fill="#1D1D1B">rellena lo vendido</text>
         </g>
       </svg>
     </div>
@@ -683,7 +683,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
           <path d="M0 70 L0 66 C 150 60, 330 40, 600 6 L600 70 Z" fill="#F7A23B"/>
           <path d="M0 66 C 150 60, 330 40, 600 6" fill="none" stroke="#1D1D1B" stroke-width="1.5" stroke-dasharray="2 4"/>
           <circle cx="600" cy="6" r="5" fill="#1D1D1B"/>
-          <text x="590" y="30" text-anchor="end" style="font:600 11px 'IBM Plex Mono',monospace" fill="#1D1D1B">piezas acumuladas en el día</text>
+          <text x="590" y="30" text-anchor="end" style="font:600 11px 'Helvetica Neue',Helvetica,'Inter Tight',Arial,sans-serif" fill="#1D1D1B">piezas acumuladas en el día</text>
         </svg>
       </div>
       <div class="sums" data-step="1">
@@ -1072,7 +1072,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     // tag / label strip
     '<svg width="120" height="40" viewBox="0 0 120 40"><path d="M0 4h120v32H0z" fill="#F2E3D2"/><path d="M0 4l5 4-5 4 5 4-5 4 5 4-5 4 5 4-5 4M120 4l-5 4 5 4-5 4 5 4-5 4 5 4-5 4 5 4" stroke="#F4777F" fill="none"/><rect x="20" y="8" width="80" height="24" fill="#5C9E5A"/><rect x="40" y="12" width="40" height="16" rx="3" fill="#E9443A"/><rect x="46" y="16" width="28" height="8" fill="#FFD84D"/></svg>',
     // shopping bag
-    '<svg width="84" height="104" viewBox="0 0 84 104"><path d="M26 26V16a16 16 0 0 1 32 0v10" stroke="#1D1D1B" stroke-width="4" fill="none"/><rect x="4" y="24" width="76" height="80" fill="#FFFDF8"/><rect x="4" y="60" width="76" height="14" fill="#F4777F"/><text x="42" y="52" text-anchor="middle" style="font:800 16px Archivo,sans-serif" fill="#1D1D1B">C&amp;A</text></svg>'
+    '<svg width="84" height="104" viewBox="0 0 84 104"><path d="M26 26V16a16 16 0 0 1 32 0v10" stroke="#1D1D1B" stroke-width="4" fill="none"/><rect x="4" y="24" width="76" height="80" fill="#FFFDF8"/><rect x="4" y="60" width="76" height="14" fill="#F4777F"/><text x="42" y="52" text-anchor="middle" style="font:600 16px Helvetica,Arial,sans-serif" fill="#1D1D1B">C&amp;A</text></svg>'
   ];
   const belt = $('#belt');
   belt.innerHTML = items.join('') + items.join('');
