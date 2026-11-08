@@ -38,27 +38,20 @@ button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 
 /* ---------- deck & slides ---------- */
-.deck{position:fixed;inset:0;overflow:hidden}
+.deck{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;-webkit-user-select:none;user-select:none;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
 .slide{
-  position:absolute;inset:0;
+  position:relative;height:100%;
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.18fr);gap:clamp(20px,3vw,56px);
   padding-top:calc(var(--hud-h) + 22px + env(safe-area-inset-top,0px));
   padding-bottom:calc(var(--guide-h) + 26px + env(safe-area-inset-bottom,0px));
   padding-left:max(clamp(16px,5vw,84px), env(safe-area-inset-left,0px));
   padding-right:max(clamp(16px,5vw,84px), env(safe-area-inset-right,0px));
-  transform:translateY(100%);
-  transition:transform .95s var(--ease), border-radius .6s ease, filter .6s ease;
-  will-change:transform;touch-action:none;
+  scroll-snap-align:start;scroll-snap-stop:always;
+  transform-origin:50% 100%;
   overflow:hidden;
 }
-.slide.is-before{transform:translateY(-100%)}
-.slide.is-active{transform:none}
-.slide.no-tr{transition:none}
-.deck{cursor:grab;-webkit-user-select:none;user-select:none}
 .deck input,.deck summary,.deck button{cursor:pointer}
-.deck.dragging{cursor:grabbing}
-.deck.dragging .slide{transition:none!important}
-.deck.release .slide{transition:transform .6s cubic-bezier(.2,.8,.2,1), border-radius .5s ease, filter .5s ease!important}
 .qa{touch-action:pan-y}
 input[type=range]{touch-action:pan-x}
 /* swipe hint */
@@ -68,7 +61,7 @@ input[type=range]{touch-action:pan-x}
   font:500 13px/1 var(--body);white-space:nowrap;pointer-events:none;transition:opacity .5s ease, transform .5s ease}
 .swipehint .arw{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--orange);color:var(--ink);animation:nudgeY 1.4s var(--ease) infinite}
 .swipehint .mob{display:none}
-@keyframes nudgeY{0%,100%{transform:translateY(4px)}50%{transform:translateY(-6px)}}
+@keyframes nudgeY{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
 @keyframes nudgeX{0%,100%{transform:translateX(5px)}50%{transform:translateX(-7px)}}
 body.touched .swipehint{opacity:0;transform:translateX(-50%) translateY(12px)}
 body.guide-off .swipehint{bottom:calc(60px + env(safe-area-inset-bottom,0px))}
@@ -107,7 +100,7 @@ h2 em{font-style:normal;color:var(--orange-d)}
 .sup{font:600 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px dashed currentColor;border-radius:3px;padding:3px 5px;opacity:.75;white-space:nowrap;vertical-align:2px}
 
 /* enter animation for talk column */
-.is-active .talk>*{animation:rise .7s var(--ease) both}
+.is-active .talk .eyebrow{animation:rise .7s var(--ease) both}
 .is-active .talk>*:nth-child(2){animation-delay:.42s}
 .is-active .talk>*:nth-child(3){animation-delay:.52s}
 .is-active .talk>*:nth-child(4){animation-delay:.62s}
@@ -493,7 +486,8 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
 /* ---------- responsive ---------- */
 @media (max-width:860px){
   :root{--hud-h:48px;--guide-h:96px}
-  .slide,#s1,#s4,#s6,#s9,#s11{display:flex;flex-direction:column;justify-content:flex-start;gap:26px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .deck{scroll-snap-type:y proximity}
+  .slide,#s1,#s4,#s6,#s9,#s11{display:flex;flex-direction:column;justify-content:flex-start;gap:26px;height:auto;min-height:100%;overflow:hidden;scroll-snap-stop:normal}
   .slide>*{flex:none}
   .talk{justify-content:flex-start}
   .stage{order:-1;min-height:0;width:100%}
@@ -565,12 +559,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
   .squares{justify-self:center;gap:4px}
   .squares button{width:8px;height:8px}
   .frame{display:none}
-  .slide{transform:translateX(100%);touch-action:pan-y}
-  .slide.is-before{transform:translateX(-100%)}
-  .slide.is-active{transform:none}
-  .swipehint .arw{animation-name:nudgeX}
-  .swipehint .dsk{display:none}
-  .swipehint .mob{display:inline}
+
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -1072,7 +1061,7 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
   </div>
 </footer>
 <button class="showguide" id="showGuide" type="button">Mostrar guía (G)</button>
-<div class="swipehint" aria-hidden="true"><span class="arw"><span class="dsk">↑</span><span class="mob">←</span></span><span class="dsk">Arrastra hacia arriba para avanzar</span><span class="mob">Desliza con el dedo para avanzar</span></div>
+<div class="swipehint" aria-hidden="true"><span class="arw">↓</span><span>Desliza hacia abajo</span></div>
 
 <script>
 (function(){
@@ -1220,23 +1209,25 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
   const steps = i => +slides[i].dataset.steps || 1;
   const mmss = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
 
-  function render(){
-    const frame=$('#frame');
-    slides.forEach((s,k)=>{
-      s.classList.toggle('no-tr', !(k===cur||k===prev));
-      s.classList.toggle('is-active',k===cur);
-      s.classList.toggle('is-before',k<cur);
-      s.setAttribute('aria-hidden', k===cur?'false':'true');
-      if(k!==cur) s.inert = true; else s.inert = false;
-    });
-    const sl=slides[cur];
+  const deck=$('#deck');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Show one slide's state (step): used for the active slide and to pre-render the others
+  function paint(sl, st, activeNow){
     $$('[data-step]',sl).forEach(e=>{
-      const was=e.classList.contains('on'), on=+e.dataset.step<=step;
+      const was=e.classList.contains('on'), on=+e.dataset.step<=st;
       e.classList.toggle('on',on);
-      if(on && !was) $$('[data-count]',e).forEach(countUp);
+      if(activeNow && on && !was) $$('[data-count]',e).forEach(countUp);
     });
-    $$('[data-only]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.only===step));
-    $$('.say',sl).forEach(e=>e.classList.toggle('on',+e.dataset.say===step));
+    $$('[data-only]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.only===st));
+    $$('.say',sl).forEach(e=>e.classList.toggle('on',+e.dataset.say===st));
+    if(sl.id==='s6') renderSX(st);
+    if(sl.id==='s8') $('#crowd').classList.toggle('on',st>=2);
+    if(sl.id==='s7' && activeNow){ thermo(1,100,true); thermo(2,8,st>=2); }
+  }
+  function render(){
+    slides.forEach((s,k)=>s.classList.toggle('is-active',k===cur));
+    const sl=slides[cur];
+    paint(sl, step, true);
     const say=$(`.say[data-say="${step}"]`,sl);
     $('#gCue').innerHTML = say ? say.dataset.cue : '';
     const ns=steps(cur);
@@ -1248,33 +1239,56 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     [...sq.children].forEach((b,i)=>b.classList.toggle('on',i===cur));
     document.body.dataset.tone = sl.dataset.tone || 'light';
     document.body.style.setProperty('--slide-bg', getComputedStyle(sl).backgroundColor);
-    // per-slide hooks
-    if(sl.id==='s6') renderSX(step);
-    if(sl.id==='s7'){ thermo(1,100,true); thermo(2,8,step>=2); }
-    if(sl.id==='s8') $('#crowd').classList.toggle('on',step>=2);
     try{ history.replaceState(null,'','#diapo-'+(cur+1)); }catch(e){}
   }
-
   function enterSlide(){
     const sl=slides[cur];
-    // count-ups visible from step 0 without data-step parent
     $$('[data-count]',sl).forEach(el=>{ if(!el.closest('[data-step]')) countUp(el); });
     if(sl.id==='s7'){ thermo(1,0,false); thermo(2,0,false); requestAnimationFrame(()=>requestAnimationFrame(()=>render())); }
+    const f=$('#frame'); f.classList.add('squeeze'); setTimeout(()=>f.classList.remove('squeeze'),520);
   }
-
-  function go(i,s,fromDir){
-    i=Math.max(0,Math.min(N-1,i));
-    if(i!==cur){
-      prev=cur; cur=i; step = s==='last' ? steps(i)-1 : (s||0);
-      slides[cur].scrollTop=0;
-      const leaving=slides[prev]; $$('[data-step]',leaving).forEach(e=>e.classList.remove('on'));
-      const f=$('#frame'); f.classList.add('squeeze'); setTimeout(()=>f.classList.remove('squeeze'),520);
-      render(); enterSlide();
-    } else { step = s==='last' ? steps(i)-1 : (s||0); render(); }
+  // Called when scrolling brings another slide to the middle of the screen
+  function activate(k){
+    if(k===cur) return;
+    const down = k>cur;
+    if(!down) paint(slides[cur],0,false);          // leaving upward: reset it
+    prev=cur; cur=k;
+    step = down ? 0 : steps(k)-1;
+    render(); enterSlide();
   }
+  function scrollToSlide(k, smooth=true){
+    k=Math.max(0,Math.min(N-1,k));
+    deck.scrollTo({top:slides[k].offsetTop, behavior: smooth && !reduce ? 'smooth':'auto'});
+  }
+  function go(i,s){ i=Math.max(0,Math.min(N-1,i)); if(i===cur){ step = s==='last'?steps(i)-1:(s||0); render(); } else scrollToSlide(i); }
   function touched(){ document.body.classList.add('touched'); }
-  function next(){ touched(); if(step<steps(cur)-1){ step++; render(); } else if(cur<N-1){ go(cur+1,0); } }
-  function back(){ touched(); if(step>0){ step--; render(); } else if(cur>0){ go(cur-1,'last'); } }
+  function next(){ touched(); if(step<steps(cur)-1){ step++; render(); } else if(cur<N-1){ scrollToSlide(cur+1); } }
+  function back(){ touched(); if(step>0){ step--; render(); } else if(cur>0){ scrollToSlide(cur-1); } }
+
+  /* ---------- scroll: detect active slide + card-stack motion ---------- */
+  let ticking=false;
+  function onScroll(){
+    ticking=false;
+    const vh=deck.clientHeight, mid=vh*0.5;
+    let found=cur;
+    slides.forEach((sl,k)=>{
+      const r=sl.getBoundingClientRect();
+      if(r.top<=mid && r.bottom>mid) found=k;
+      // as the next slide comes up over this one, this one sinks back like a card
+      const over = vh - r.bottom;
+      if(over>0 && over<vh && !reduce){
+        const p=Math.min(1,over/vh);
+        sl.style.transform=`translateY(${(over*0.55).toFixed(1)}px) scale(${(1-p*0.1).toFixed(4)})`;
+        sl.style.filter=`brightness(${(1-p*0.45).toFixed(3)})`;
+        sl.style.borderRadius=`${(p*40).toFixed(1)}px`;
+      } else if(sl.style.transform){ sl.style.transform=''; sl.style.filter=''; sl.style.borderRadius=''; }
+    });
+    if(found!==cur){ touched(); activate(found); }
+  }
+  deck.addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
+  window.addEventListener('resize',()=>requestAnimationFrame(onScroll));
+  // later slides glide over earlier ones
+  slides.forEach((sl,k)=>{ sl.style.zIndex=k+1; });
 
   /* ---------- timer ---------- */
   let tRun=false, tAcc=0, tStart=0;
@@ -1291,6 +1305,8 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
   $('#hideGuide').addEventListener('click',toggleGuide);
   $('#showGuide').addEventListener('click',toggleGuide);
   $('#fsBtn').addEventListener('click',()=>{ try{ if(document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} });
+  // tap on the slide (not on a control) = next step
+  deck.addEventListener('click',e=>{ if(e.target.closest('input,button,summary,a,select,textarea,details,.qa')) return; next(); });
 
   document.addEventListener('keydown',e=>{
     if(e.target.matches('input,textarea')) { if(e.key!=='Escape') return; }
@@ -1300,83 +1316,16 @@ input[type=range]{width:100%;accent-color:var(--orange);height:26px;margin:6px 0
     else if(k==='g'||k==='G') toggleGuide();
     else if(k==='t'||k==='T') tToggle();
     else if(k==='f'||k==='F') $('#fsBtn').click();
-    else if(k==='Home') go(0,0);
-    else if(k==='End') go(N-1,0);
+    else if(k==='Home') scrollToSlide(0);
+    else if(k==='End') scrollToSlide(N-1);
   });
-  let wheelLock=0;
-  window.addEventListener('wheel',e=>{
-    if(window.innerWidth<=860) return;
-    if(e.target.closest('.qa')) return;
-    const now=Date.now(); if(now<wheelLock || Math.abs(e.deltaY)<18) return;
-    wheelLock=now+750; e.deltaY>0?next():back();
-  },{passive:true});
-  /* ---------- drag / swipe that follows the hand ---------- */
-  const deck=$('#deck');
-  const isMob=()=>window.matchMedia('(max-width:860px)').matches;
-  let drag=null, suppressClick=false;
-  const setT=(el,v,H,extra='')=>{ if(el) el.style.transform=(H?`translateX(${v}px)`:`translateY(${v}px)`)+extra; };
-  deck.addEventListener('pointerdown',e=>{
-    if(e.pointerType==='mouse' && e.button!==0) return;
-    if(e.target.closest('input,button,summary,a,select,textarea,.qa')) return;
-    drag={id:e.pointerId,x:e.clientX,y:e.clientY,axis:false,d:0,mode:'',hist:[{t:e.timeStamp,d:0}]};
-  });
-  window.addEventListener('pointermove',e=>{
-    if(!drag || e.pointerId!==drag.id) return;
-    const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
-    if(!drag.axis){
-      if(Math.hypot(dx,dy)<8) return;
-      const H=isMob();
-      const along = H ? Math.abs(dx)>Math.abs(dy)*1.1 : Math.abs(dy)>=Math.abs(dx)*0.8;
-      if(!along){ drag=null; return; }
-      drag.axis=true; drag.H=H; deck.classList.add('dragging'); touched();
-      try{ deck.setPointerCapture(e.pointerId); }catch(_){}
-    }
-    const H=drag.H, d=H?dx:dy, size=H?window.innerWidth:window.innerHeight;
-    drag.d=d; drag.hist.push({t:e.timeStamp,d}); if(drag.hist.length>6) drag.hist.shift();
-    const fwd=d<0, nb=fwd?slides[cur+1]:slides[cur-1], other=fwd?slides[cur-1]:slides[cur+1];
-    if(other) other.style.transform='';
-    const stepLeft = fwd ? step<steps(cur)-1 : step>0;
-    const c=slides[cur], p=Math.min(1,Math.abs(d)/size);
-    if(stepLeft || !nb){
-      drag.mode='step';
-      setT(c, d*0.28, H); c.style.borderRadius=''; c.style.filter='';
-      if(nb) nb.style.transform='';
-    } else {
-      drag.mode='slide';
-      setT(c, d, H, ` scale(${(1-p*0.08).toFixed(4)})`);
-      c.style.borderRadius=(p*36).toFixed(1)+'px';
-      c.style.filter=`brightness(${(1-p*0.35).toFixed(3)})`;
-      nb.classList.remove('no-tr');
-      setT(nb, (fwd?size:-size)+d, H);
-    }
-  });
-  function endDrag(e){
-    if(!drag || (e && e.pointerId!==drag.id)) return;
-    const dd=drag; drag=null;
-    if(!dd.axis) return;
-    suppressClick=true; setTimeout(()=>{suppressClick=false;},60);
-    const a=dd.hist[0], z=dd.hist[dd.hist.length-1];
-    const v=(z.d-a.d)/Math.max(1,z.t-a.t);
-    const size=dd.H?window.innerWidth:window.innerHeight;
-    const thr = dd.mode==='step' ? 0.07 : 0.16;
-    let dir=0;
-    if(dd.d<0 && (dd.d<-size*thr || v<-0.4)) dir=1;
-    if(dd.d>0 && (dd.d> size*thr || v> 0.4)) dir=-1;
-    deck.classList.remove('dragging'); deck.classList.add('release'); void deck.offsetHeight;
-    slides.forEach(s=>{ if(s.style.transform) s.classList.remove('no-tr'); s.style.transform=''; s.style.borderRadius=''; s.style.filter=''; });
-    if(dir===1) next(); else if(dir===-1) back();
-    clearTimeout(endDrag.t); endDrag.t=setTimeout(()=>deck.classList.remove('release'),700);
-  }
-  window.addEventListener('pointerup',endDrag);
-  window.addEventListener('pointercancel',endDrag);
-  document.addEventListener('click',e=>{ if(suppressClick){ e.stopPropagation(); e.preventDefault(); } },true);
-  deck.addEventListener('dragstart',e=>e.preventDefault());
 
   /* ---------- start ---------- */
+  slides.forEach(sl=>paint(sl,0,false));
   const m=/^#diapo-(\d+)$/.exec(location.hash);
   if(m){ cur=Math.max(0,Math.min(N-1,(+m[1])-1)); }
   render(); enterSlide();
-  const deckEl=$('#deck'); deckEl.addEventListener('scroll',()=>{deckEl.scrollTop=0;deckEl.scrollLeft=0;});
-  window.addEventListener('hashchange',()=>{ const m=/^#diapo-(\d+)$/.exec(location.hash); if(m && (+m[1]-1)!==cur) go(+m[1]-1,0); });
+  if(cur>0) requestAnimationFrame(()=>scrollToSlide(cur,false));
+  window.addEventListener('hashchange',()=>{ const m=/^#diapo-(\d+)$/.exec(location.hash); if(m && (+m[1]-1)!==cur) scrollToSlide(+m[1]-1); });
 })();
 </script>
