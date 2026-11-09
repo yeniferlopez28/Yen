@@ -7,7 +7,7 @@ Los datos son **aproximados**: no tenemos las cifras reales de El Molino, así q
 con valores típicos de la industria de barras de proteína. Debajo de cada ejercicio está de dónde sale cada número.
 
 Datos base de FIBO: barra de 65 g con 22 g de proteína, precio al público aprox. $43 (fibo.mx).
-Unidad de producción: **caja de 12 barras**. Turno: 8 h, de las que 7 h (420 min) son efectivas
+Unidad de producción: **display de 6 barras** (así se vende FIBO; la caja master trae 24 displays). Turno: 8 h, de las que 7 h (420 min) son efectivas
 (se descuentan arranque, limpieza y comida).
 
 Nota: los valores "x1" se representan en el eje X (horizontal) y los valores "x2" en el eje Y (vertical).
@@ -21,55 +21,56 @@ Condición de no negatividad: x1 ≥ 0, x2 ≥ 0 (solo primer cuadrante).
 
 | Concepto | Chocolate | Cookies | Disponible por turno |
 |---|---|---|---|
-| Aislado de suero (kg por caja) | 0.30 | 0.25 | 90 kg |
-| Tiempo de formado (min por caja) | 1 | 1.5 | 420 min |
-| Utilidad (por caja) | $120 | $114 | |
+| Aislado de suero (kg por display) | 0.15 | 0.125 | 90 kg |
+| Tiempo de formado (min por display) | 0.5 | 0.75 | 420 min |
+| Utilidad (por display) | $60 | $57 | |
 
 De dónde salen:
-- **Aislado de suero:** tiene alrededor de 90% de proteína. Para que la barra de Chocolate llegue a 22 g de proteína se necesitan unos 25 g de aislado por barra: 25 g × 12 = 300 g = **0.30 kg por caja**. La de Cookies lleva trozos de galleta y crispies proteicos que aportan parte de la proteína, así que usa menos aislado: unos 21 g por barra, que da **0.25 kg por caja**.
+- **Display:** FIBO se vende en displays de 6 barras (la caja master trae 24 displays de 6 piezas).
+- **Aislado de suero:** tiene alrededor de 90% de proteína. Para que la barra de Chocolate llegue a 22 g de proteína se necesitan unos 25 g de aislado por barra: 25 g × 6 = 150 g = **0.15 kg por display**. La de Cookies lleva trozos de galleta y crispies proteicos que aportan parte de la proteína, así que usa menos aislado: unos 21 g por barra, que da **0.125 kg por display**.
 - **90 kg por turno:** el aislado llega en sacos de 20 kg; el almacén libera 4 sacos y medio por turno.
-- **Tiempo de formado:** una línea semiautomática (mezclado, laminado y corte) saca unas 12 barras por minuto, o sea **1 caja por minuto**. Cookies lleva una capa de galleta extra y la línea va más lento: **1.5 min por caja**.
-- **Utilidad:** la barra se vende a tiendas en unos $30 (el público paga ~$43) y cuesta producirla unos $20, así que deja ~$10 por barra: **$120 por caja**. Cookies tiene ingredientes más caros y deja ~$9.50 por barra: **$114 por caja**.
+- **Tiempo de formado:** una línea semiautomática (mezclado, laminado y corte) saca unas 12 barras por minuto, o sea 2 displays por minuto: **0.5 min por display**. Cookies lleva una capa de galleta extra y la línea va más lento: **0.75 min por display**.
+- **Utilidad:** la barra se vende a tiendas en unos $30 (el público paga ~$43) y cuesta producirla unos $20, así que deja ~$10 por barra: **$60 por display**. Cookies tiene ingredientes más caros y deja ~$9.50 por barra: **$57 por display**.
 
 ### Variables de decisión
-- x1 = cajas de FIBO Chocolate a producir por turno
-- x2 = cajas de FIBO Cookies a producir por turno
+- x1 = displays de FIBO Chocolate a producir por turno
+- x2 = displays de FIBO Cookies a producir por turno
 
 ```
 Maximizar:
-    F.O.:   120x1 + 114x2
+    F.O.:   60x1 + 57x2
 Sujeto a:
-    R1:   0.30x1 + 0.25x2 ≤ 90     (kg de aislado de suero)
-    R2:   1x1 + 1.5x2 ≤ 420        (minutos de formado)
+    R1:   0.15x1 + 0.125x2 ≤ 90    (kg de aislado de suero)
+    R2:   0.5x1 + 0.75x2 ≤ 420     (minutos de formado)
 ```
 
 **Paso 1: Crear un sistema de ecuaciones con igualdades**
 ```
-R1:  0.30x1 + 0.25x2 ≤ 90    →   0.30x1 + 0.25x2 = 90
-R2:  1x1 + 1.5x2 ≤ 420       →   1x1 + 1.5x2 = 420
+R1:  0.15x1 + 0.125x2 ≤ 90   →   0.15x1 + 0.125x2 = 90
+R2:  0.5x1 + 0.75x2 ≤ 420    →   0.5x1 + 0.75x2 = 420
 ```
 
 **Paso 2: Encontrar valores X1 y X2 en ambas ecuaciones (eliminar X2 para encontrar X1 y viceversa)**
 ```
-1)  0.30x1 = 90
-    0.25x2 = 90
+1)  0.15x1 = 90
+    0.125x2 = 90
 
-2)  1x1 = 420
-    1.5x2 = 420
+2)  0.5x1 = 420
+    0.75x2 = 420
 ```
 
 **Paso 3: Despejar ecuación y encontrar valor X1 y X2**
 ```
-1)  0.30x1 = 90 → x1 = 90/0.30 = 300
-    0.25x2 = 90 → x2 = 90/0.25 = 360
+1)  0.15x1 = 90   → x1 = 90/0.15 = 600
+    0.125x2 = 90  → x2 = 90/0.125 = 720
 
-2)  1x1 = 420   → x1 = 420/1 = 420
-    1.5x2 = 420 → x2 = 420/1.5 = 280
+2)  0.5x1 = 420   → x1 = 420/0.5 = 840
+    0.75x2 = 420  → x2 = 420/0.75 = 560
 ```
 
 **Paso 4: Representar valores en gráfica (plano cartesiano)**
-- R1 (azul): de x1 = 300 a x2 = 360
-- R2 (rojo): de x1 = 420 a x2 = 280
+- R1 (azul): de x1 = 600 a x2 = 720
+- R2 (rojo): de x1 = 840 a x2 = 560
 
 ![Ejercicio 1](ejercicio-1.png)
 
@@ -81,65 +82,65 @@ R2:  1x1 + 1.5x2 ≤ 420       →   1x1 + 1.5x2 = 420
 
 | Concepto | Brownie | Frutos rojos | Disponible por turno |
 |---|---|---|---|
-| Cobertura de chocolate (kg por caja) | 0.24 | 0.12 | 60 kg |
-| Tiempo de mezclado y formado (min por caja) | 1 | 2 | 420 min |
-| Tiempo de empacado (min por caja) | 1 | 1 | 330 min |
-| Utilidad (por caja) | $120 | $102 | |
+| Cobertura de chocolate (kg por display) | 0.12 | 0.06 | 60 kg |
+| Tiempo de mezclado y formado (min por display) | 0.5 | 1 | 420 min |
+| Tiempo de empacado (min por display) | 0.5 | 0.5 | 330 min |
+| Utilidad (por display) | $60 | $51 | |
 
 De dónde salen:
-- **Cobertura de chocolate:** la de Brownie va bañada completa, unos 20 g por barra: 20 × 12 = **0.24 kg por caja**. La de Frutos rojos solo lleva base de chocolate, unos 10 g por barra: **0.12 kg por caja**. La temperadora de chocolate prepara **60 kg por turno**.
-- **Mezclado y formado:** Brownie va a 1 caja por minuto. A Frutos rojos se le agrega fruta liofilizada con cuidado para no romperla, así que va a la mitad de velocidad: **2 min por caja**.
-- **Empacado:** la empacadora flow-pack (envoltura individual) más el armado de la caja toma **1 min por caja** para cualquier sabor. Solo está libre **330 min** para FIBO porque el resto del turno empaca otros productos de El Molino y se hace cambio de formato.
-- **Utilidad:** Brownie deja ~$10 por barra (**$120 por caja**). La fruta liofilizada es cara, así que Frutos rojos deja ~$8.50 por barra (**$102 por caja**).
+- **Cobertura de chocolate:** la de Brownie va bañada completa, unos 20 g por barra: 20 × 6 = **0.12 kg por display**. La de Frutos rojos solo lleva base de chocolate, unos 10 g por barra: **0.06 kg por display**. La temperadora de chocolate prepara **60 kg por turno**.
+- **Mezclado y formado:** Brownie va a 2 displays por minuto (**0.5 min por display**). A Frutos rojos se le agrega fruta liofilizada con cuidado para no romperla, así que va a la mitad de velocidad: **1 min por display**.
+- **Empacado:** la empacadora flow-pack (envoltura individual) más el armado del display toma **0.5 min por display** para cualquier sabor. Solo está libre **330 min** para FIBO porque el resto del turno empaca otros productos de El Molino y se hace cambio de formato.
+- **Utilidad:** Brownie deja ~$10 por barra (**$60 por display**). La fruta liofilizada es cara, así que Frutos rojos deja ~$8.50 por barra (**$51 por display**).
 
 ### Variables de decisión
-- x1 = cajas de FIBO Brownie a producir por turno
-- x2 = cajas de FIBO Frutos rojos a producir por turno
+- x1 = displays de FIBO Brownie a producir por turno
+- x2 = displays de FIBO Frutos rojos a producir por turno
 
 ```
 Maximizar:
-    F.O.:   120x1 + 102x2
+    F.O.:   60x1 + 51x2
 Sujeto a:
-    R1:   0.24x1 + 0.12x2 ≤ 60     (kg de cobertura de chocolate)
-    R2:   1x1 + 2x2 ≤ 420          (minutos de mezclado y formado)
-    R3:   1x1 + 1x2 ≤ 330          (minutos de empacado)
+    R1:   0.12x1 + 0.06x2 ≤ 60     (kg de cobertura de chocolate)
+    R2:   0.5x1 + 1x2 ≤ 420        (minutos de mezclado y formado)
+    R3:   0.5x1 + 0.5x2 ≤ 330      (minutos de empacado)
 ```
 
 **Paso 1: Crear un sistema de ecuaciones con igualdades**
 ```
-R1:  0.24x1 + 0.12x2 = 60
-R2:  1x1 + 2x2 = 420
-R3:  1x1 + 1x2 = 330
+R1:  0.12x1 + 0.06x2 = 60
+R2:  0.5x1 + 1x2 = 420
+R3:  0.5x1 + 0.5x2 = 330
 ```
 
 **Paso 2: Encontrar valores X1 y X2 en las ecuaciones (eliminar X2 para encontrar X1 y viceversa)**
 ```
-R1:  0.24x1 = 60
-     0.12x2 = 60
+R1:  0.12x1 = 60
+     0.06x2 = 60
 
-R2:  1x1 = 420
-     2x2 = 420
+R2:  0.5x1 = 420
+     1x2 = 420
 
-R3:  1x1 = 330
-     1x2 = 330
+R3:  0.5x1 = 330
+     0.5x2 = 330
 ```
 
 **Paso 3: Despejar ecuación y encontrar valor X1 y X2**
 ```
-R1:  0.24x1 = 60 → x1 = 60/0.24 = 250
-     0.12x2 = 60 → x2 = 60/0.12 = 500
+R1:  0.12x1 = 60 → x1 = 60/0.12 = 500
+     0.06x2 = 60 → x2 = 60/0.06 = 1,000
 
-R2:  1x1 = 420   → x1 = 420/1 = 420
-     2x2 = 420   → x2 = 420/2 = 210
+R2:  0.5x1 = 420 → x1 = 420/0.5 = 840
+     1x2 = 420   → x2 = 420/1 = 420
 
-R3:  1x1 = 330   → x1 = 330/1 = 330
-     1x2 = 330   → x2 = 330/1 = 330
+R3:  0.5x1 = 330 → x1 = 330/0.5 = 660
+     0.5x2 = 330 → x2 = 330/0.5 = 660
 ```
 
 **Paso 4: Representar valores en gráfica (plano cartesiano)**
-- R1 (azul): de x1 = 250 a x2 = 500
-- R2 (rojo): de x1 = 420 a x2 = 210
-- R3 (amarillo): de x1 = 330 a x2 = 330
+- R1 (azul): de x1 = 500 a x2 = 1,000
+- R2 (rojo): de x1 = 840 a x2 = 420
+- R3 (amarillo): de x1 = 660 a x2 = 660
 
 ![Ejercicio 2](ejercicio-2.png)
 

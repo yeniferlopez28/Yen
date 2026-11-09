@@ -5,13 +5,13 @@ const fs = require('fs');
 const AZUL = '#29abe2', ROJO = '#e8272b', AMARILLO = '#f2e600';
 
 const problemas = [
-  { archivo: 'ejercicio-1', max: 450, lineas: [
-    { n: 'R1', x1: 300, x2: 360, c: AZUL },
-    { n: 'R2', x1: 420, x2: 280, c: ROJO } ] },
-  { archivo: 'ejercicio-2', max: 540, lineas: [
-    { n: 'R1', x1: 250, x2: 500, c: AZUL },
-    { n: 'R2', x1: 420, x2: 210, c: ROJO },
-    { n: 'R3', x1: 330, x2: 330, c: AMARILLO } ] },
+  { archivo: 'ejercicio-1', max: 900, lineas: [
+    { n: 'R1', x1: 600, x2: 720, c: AZUL },
+    { n: 'R2', x1: 840, x2: 560, c: ROJO } ] },
+  { archivo: 'ejercicio-2', max: 1060, lineas: [
+    { n: 'R1', x1: 500, x2: 1000, c: AZUL },
+    { n: 'R2', x1: 840, x2: 420, c: ROJO },
+    { n: 'R3', x1: 660, x2: 660, c: AMARILLO } ] },
   { archivo: 'ejercicio-3', max: 90, lineas: [
     { n: 'R1', x1: 60, x2: 60, c: AZUL },
     { n: 'R2', x1: 80, x2: 40, c: ROJO } ] },
