@@ -352,6 +352,17 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
 .zcheck b{color:var(--lime);font:400 clamp(30px,3vw,48px)/1 var(--display)}
 @media (max-width:900px){.sxtop,.solwrap{grid-template-columns:1fr}}
 
+
+.plan{display:grid;gap:8px;width:100%}
+.pl{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--white);border:2px solid var(--black);border-left:12px solid var(--c);padding:10px 14px;box-shadow:6px 6px 0 var(--black)}
+.pl img{width:100%;height:auto}
+.pl b{display:block;font:400 clamp(22px,2vw,32px)/1 var(--display);text-transform:uppercase}
+.pl span{font:700 12px/1.3 var(--mono)}
+.pl strong{font:400 clamp(28px,2.8vw,46px)/1 var(--display);white-space:nowrap}
+.pl.tot{grid-template-columns:minmax(0,1fr) auto;background:var(--black);color:var(--cream);border-left-color:var(--lime)}
+.pl.tot strong{color:var(--lime)}
+@media (max-width:900px){.pl{grid-template-columns:90px minmax(0,1fr)}.pl strong{grid-column:1/-1}}
+
 @media (max-width:900px){
   .deck{scroll-snap-type:y proximity}
   .s{height:auto;min-height:100%;grid-template-columns:1fr;align-items:start;align-content:start;gap:16px}
@@ -409,8 +420,8 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
   <div style="position:relative;z-index:2;align-self:end;display:grid;gap:10px">
     <h1>Producción <span class="o">óptima</span> de FIBO.</h1>
     <div class="says say0">
-      <div class="say" data-say="0"><p>Tres sabores salen de la misma línea. ¿Cuántas cajas de cada uno conviene hacer en una corrida?</p></div>
-      <div class="say" data-say="1"><p>Lo resolvemos con <b>programación lineal</b> y el <b>método simplex</b>, con datos de una planta real de barras.</p></div>
+      <div class="say" data-say="0"><p><b>El problema:</b> en cada corrida de producción, FIBO hace barras de 3 sabores con la misma proteína, la misma línea y la misma cobertura.</p><p>¿Cuántas barras de cada sabor conviene producir para ganar lo más posible?</p></div>
+      <div class="say" data-say="1"><p>Lo resolvemos con <b>programación lineal</b> y el <b>método simplex</b>. La respuesta final dice cuántas barras producir de Chocolate, de Cookies &amp; Cream y de Frutos rojos.</p></div>
     </div>
   </div>
   <div class="foot">
@@ -680,7 +691,7 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="says">
       <div class="say" data-say="0"><p>FIBO no se produce todos los días: se hace por <b>corridas</b> de un turno.</p><p>En cada corrida hay tres recursos que no alcanzan para todo.</p></div>
       <div class="say" data-say="1"><p>¿Es realista? FIBO reporta $34 millones vendidos desde 2019. A unos $32 por barra, son cerca de <b>140 mil barras al año</b>: unas 2,700 por semana.</p><p>Una corrida semanal de un turno cubre esa demanda.</p></div>
-      <div class="say" data-say="2"><p>La proteína, la cobertura y el tiempo son los <b>límites</b> del problema. Lo que decidimos es cuántas cajas de cada sabor.</p></div>
+      <div class="say" data-say="2"><p>En resumen: la proteína, la línea y la cobertura son los <b>límites</b>.</p><p>Lo que vamos a decidir es <b>cuántas cajas de 6 barras de cada sabor</b> se producen en una corrida.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -707,18 +718,18 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="meta"><span>03 · Problema identificado</span><span>Hoy</span></div>
     <h2 class="h2">Hoy se reparte <span class="o">al tanteo</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Hoy en cada corrida se hace lo mismo de cada sabor: <b>200 cajas</b> de cada uno.</p></div>
-      <div class="say" data-say="1"><p>Con ese reparto <b>sobran recursos</b>: 5 kg de proteína, 20 min de línea y 6 kg de cobertura derretida que se tiene que recalentar o desechar.</p><p>Lo que sobra es ganancia que no se produce.</p></div>
-      <div class="say" data-say="2"><p>¿Cuántas cajas de cada sabor dejan <b>la mayor ganancia</b> sin pasarnos de ningún recurso?</p></div>
+      <div class="say" data-say="0"><p>Hoy en cada corrida se producen <b>200 cajas de cada sabor</b>.</p><p>Como cada caja trae 6 barras, son 1,200 barras de Chocolate, 1,200 de Cookies y 1,200 de Frutos rojos: <b>3,600 barras</b> en total.</p></div>
+      <div class="say" data-say="1"><p>Con ese reparto <b>sobran recursos</b>: 5 kg de proteína, 20 min de línea y 6 kg de cobertura derretida que se tiene que recalentar o tirar.</p><p>La ganancia de la corrida es <b>$34,200</b>. Lo que sobra es dinero que no se produce.</p></div>
+      <div class="say" data-say="2"><p>La pregunta del proyecto: ¿cuántas barras de cada sabor hay que producir en una corrida para que la ganancia sea <b>la más alta posible</b>, sin pasarnos de la proteína, del tiempo de línea ni de la cobertura?</p></div>
     </div>
   </div>
   <div class="stage">
     <div class="layers">
       <div style="display:grid;gap:10px" data-range="0-1">
         <div class="mix">
-          <div class="c1"><img src="img/fibo-chocolate.webp" alt="Chocolate"><span class="n">200</span><span class="k">cajas</span></div>
-          <div class="c2"><img src="img/fibo-cookies.webp" alt="Cookies"><span class="n">200</span><span class="k">cajas</span></div>
-          <div class="c3"><img src="img/fibo-frutos.webp" alt="Frutos rojos"><span class="n">200</span><span class="k">cajas</span></div>
+          <div class="c1"><img src="img/fibo-chocolate.webp" alt="Chocolate"><span class="n">200</span><span class="k">cajas · 1,200 barras</span></div>
+          <div class="c2"><img src="img/fibo-cookies.webp" alt="Cookies"><span class="n">200</span><span class="k">cajas · 1,200 barras</span></div>
+          <div class="c3"><img src="img/fibo-frutos.webp" alt="Frutos rojos"><span class="n">200</span><span class="k">cajas · 1,200 barras</span></div>
         </div>
         <div class="gauges" data-step="1">
           <div class="gg"><div class="gl"><span>R1 · Proteína</span><span>85 de 90 kg · sobran 5</span></div><div class="gtr"><i style="width:94.4%;--c:var(--black)"></i><u style="width:5.6%"></u></div></div>
@@ -742,9 +753,9 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="meta"><span>04 · Propuesta de optimización</span><span>1 / 3</span></div>
     <h2 class="h2">El <span class="o">modelo</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Juntamos los datos <b>por caja</b> (6 barras): cuánto usa y cuánto deja cada sabor.</p><p class="src">Ganancia: precio a tienda ~$32 menos costo ~$22 ≈ $10 por barra (Cookies $9.50 y Frutos rojos $9).</p></div>
-      <div class="say" data-say="1"><p><b>Variables:</b> x<sub>1</sub>, x<sub>2</sub> y x<sub>3</sub> son las cajas de cada sabor por corrida.</p><p>Queremos <b>maximizar</b> la ganancia Z.</p></div>
-      <div class="say" data-say="2"><p>Cada recurso es una restricción <b>≤</b>, y no hay cajas negativas.</p><p>Con <b>3 variables</b> ya no se puede dibujar en el plano: usamos el <b>método simplex</b>.</p></div>
+      <div class="say" data-say="0"><p>Juntamos los datos <b>por caja de 6 barras</b>: cuánta proteína, cuánto tiempo y cuánta cobertura usa cada sabor, y cuánto dinero deja.</p><p class="src">Ganancia: precio a tienda ~$32 menos costo ~$22 ≈ $10 por barra. Cookies deja $9.50 y Frutos rojos $9.</p></div>
+      <div class="say" data-say="1"><p><b>x<sub>1</sub></b> = cajas de Chocolate que se producen en una corrida. <b>x<sub>2</sub></b> = cajas de Cookies &amp; Cream. <b>x<sub>3</sub></b> = cajas de Frutos rojos.</p><p><b>Z</b> es la ganancia en pesos: cada caja de Chocolate deja $60, de Cookies $57 y de Frutos rojos $54. Queremos <b>maximizar</b> Z.</p></div>
+      <div class="say" data-say="2"><p><b>R1:</b> la proteína que usan las 3 recetas no puede pasar de 90 kg. <b>R2:</b> el tiempo de línea no puede pasar de 420 min. <b>R3:</b> la cobertura no puede pasar de 60 kg.</p><p>Con <b>3 variables</b> ya no se puede dibujar en el plano: usamos el <b>método simplex</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -761,12 +772,12 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
         </table>
       </div>
       <div class="model" data-range="1-2">
-        <div class="vars"><div class="c1"><b>x<sub>1</sub></b><span>cajas de Chocolate</span></div><div class="c2"><b>x<sub>2</sub></b><span>cajas de Cookies</span></div><div class="c3"><b>x<sub>3</sub></b><span>cajas de Frutos rojos</span></div></div>
-        <div class="row fo"><b>Max Z = 60x1 + 57x2 + 54x3</b><span>Ganancia por corrida ($)</span></div>
-        <div class="row r1c" data-step="2"><b>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</b><span>R1 · proteína (kg)</span></div>
-        <div class="row r2c" data-step="2"><b>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</b><span>R2 · línea (min)</span></div>
-        <div class="row r3c" data-step="2"><b>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</b><span>R3 · cobertura (kg)</span></div>
-        <div class="row" data-step="2"><b>x1, x2, x3 ≥ 0</b><span>No negatividad</span></div>
+        <div class="vars"><div class="c1"><b>x<sub>1</sub></b><span>cajas de Chocolate a producir (6 barras c/u)</span></div><div class="c2"><b>x<sub>2</sub></b><span>cajas de Cookies a producir (6 barras c/u)</span></div><div class="c3"><b>x<sub>3</sub></b><span>cajas de Frutos rojos a producir (6 barras c/u)</span></div></div>
+        <div class="row fo"><b>Max Z = 60x1 + 57x2 + 54x3</b><span>Ganancia de la corrida, en pesos</span></div>
+        <div class="row r1c" data-step="2"><b>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</b><span>R1 · no usar más de 90 kg de proteína</span></div>
+        <div class="row r2c" data-step="2"><b>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</b><span>R2 · no pasar de 420 min de línea</span></div>
+        <div class="row r3c" data-step="2"><b>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</b><span>R3 · no usar más de 60 kg de cobertura</span></div>
+        <div class="row" data-step="2"><b>x1, x2, x3 ≥ 0</b><span>No se pueden producir cajas negativas</span></div>
       </div>
     </div>
   </div>
@@ -792,13 +803,14 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
 </section>
 
 <!-- ================= OPT 3/3 · SOLUCIÓN ================= -->
-<section class="s b-white" id="p10" data-steps="2" data-sec="4">
+<section class="s b-white" id="p10" data-steps="3" data-sec="4">
   <div class="talk">
     <div class="meta"><span>04 · Propuesta de optimización</span><span>3 / 3</span></div>
     <h2 class="h2">Solución <span class="o">óptima</span>.</h2>
     <div class="says">
+      <div class="say" data-say="1"><p><b>¿Qué significa?</b> En cada corrida hay que producir:</p><p><b>240 cajas de Chocolate</b> = 1,440 barras. <b>240 cajas de Cookies &amp; Cream</b> = 1,440 barras. <b>160 cajas de Frutos rojos</b> = 960 barras.</p><p>En total <b>3,840 barras</b> (640 cajas), con una ganancia de <b>$36,720</b> por corrida.</p></div>
       <div class="say" data-say="0"><p><b>9. Determinar solución óptima.</b> En cada columna x queda un solo 1. El RHS de ese renglón es el valor de la variable.</p><p>x<sub>1</sub> = 240, x<sub>2</sub> = 240 y x<sub>3</sub> = 160. Z<sub>max</sub> = 36,720.</p></div>
-      <div class="say" data-say="1"><p><b>10. Comprobar resultados</b> con la función objetivo.</p><p>60(240) + 57(240) + 54(160) da <b>36,720</b>, igual que la tabla.</p></div>
+      <div class="say" data-say="2"><p><b>10. Comprobar resultados</b> con la función objetivo.</p><p>60(240) + 57(240) + 54(160) da <b>36,720</b>, igual que la tabla.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -814,9 +826,16 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
           </tbody></table></div>
         <div class="solv"><div style="--c:var(--yel)"><i></i>x1 = 240</div><div style="--c:#9DB0FF"><i></i>x2 = 240</div><div style="--c:#FF8A8E"><i></i>x3 = 160</div><div style="--c:var(--lime)"><i></i>Zmax = 36,720</div></div>
       </div>
-      <div class="zcheck" data-only="1">
+      <div class="plan" data-only="1">
+        <span class="k">Plan de producción por corrida</span>
+        <div class="pl c1"><img src="img/fibo-chocolate.webp" alt="FIBO Chocolate"><div><b>Chocolate</b><span>x1 = 240 cajas × 6</span></div><strong>1,440 barras</strong></div>
+        <div class="pl c2"><img src="img/fibo-cookies.webp" alt="FIBO Cookies &amp; Cream"><div><b>Cookies &amp; Cream</b><span>x2 = 240 cajas × 6</span></div><strong>1,440 barras</strong></div>
+        <div class="pl c3"><img src="img/fibo-frutos.webp" alt="FIBO Frutos rojos"><div><b>Frutos rojos</b><span>x3 = 160 cajas × 6</span></div><strong>960 barras</strong></div>
+        <div class="pl tot"><div><b>Total</b><span>640 cajas · usa 90 kg de proteína, 420 min y 60 kg de cobertura</span></div><strong>3,840 barras · $36,720</strong></div>
+      </div>
+      <div class="zcheck" data-only="2">
         <span class="k" style="color:var(--lime)">10. Comprobar con la función objetivo</span>
-        <p>x1 = 240 · x2 = 240 · x3 = 160</p>
+        <p>x1 = 240 cajas de Chocolate · x2 = 240 de Cookies · x3 = 160 de Frutos rojos</p>
         <p>Z = 60x1 + 57x2 + 54x3</p>
         <p>Z = 60(240) + 57(240) + 54(160)</p>
         <p>Z = 14,400 + 13,680 + 8,640</p>
@@ -832,10 +851,10 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="meta"><span>05 · Resultados</span><span>Comprobación</span></div>
     <h2 class="h2">¿Cumple <span class="o">todo</span>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Sustituimos x<sub>1</sub> = 240, x<sub>2</sub> = 240 y x<sub>3</sub> = 160.</p><p><b>R1:</b> se usan exactamente los 90 kg de proteína ✓</p></div>
-      <div class="say" data-say="1"><p><b>R2:</b> la línea trabaja exactamente 420 minutos ✓</p></div>
-      <div class="say" data-say="2"><p><b>R3:</b> se usan exactamente los 60 kg de cobertura ✓</p><p>No sobra nada.</p></div>
-      <div class="say" data-say="3"><p>La ganancia da <b>$36,720</b>, igual que la tabla final.</p></div>
+      <div class="say" data-say="0"><p>Comprobamos el plan: <b>240 cajas de Chocolate, 240 de Cookies y 160 de Frutos rojos</b>.</p><p><b>R1 · proteína:</b> esas cajas usan 36 + 30 + 24 = <b>90 kg</b>. Justo lo que hay ✓</p></div>
+      <div class="say" data-say="1"><p><b>R2 · línea:</b> producirlas toma 120 + 180 + 120 = <b>420 minutos</b>. Justo el turno ✓</p></div>
+      <div class="say" data-say="2"><p><b>R3 · cobertura:</b> se gastan 28.8 + 21.6 + 9.6 = <b>60 kg</b>. Justo lo que se funde ✓</p><p>No sobra nada de ningún recurso.</p></div>
+      <div class="say" data-say="3"><p><b>Ganancia:</b> $14,400 por el Chocolate + $13,680 por Cookies + $8,640 por Frutos rojos = <b>$36,720</b> por corrida.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -854,15 +873,15 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="meta"><span>05 · Resultados</span><span>Impacto</span></div>
     <h2 class="h2">Antes y <span class="o">después</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Antes: 200 cajas de cada sabor. Ahora: <b>240, 240 y 160</b>.</p><p>Son 640 cajas por corrida: 3,840 barras.</p></div>
-      <div class="say" data-say="1"><p>La ganancia sube de $34,200 a <b>$36,720</b>: +$2,520 por corrida, 7.4% más.</p><p>Con una corrida por semana son <b>+$131,040 al año</b>.</p></div>
+      <div class="say" data-say="0"><p><b>Antes:</b> 1,200 barras de cada sabor (3,600 en total).</p><p><b>Ahora:</b> 1,440 de Chocolate, 1,440 de Cookies y 960 de Frutos rojos (3,840 en total). Se hacen 240 barras más con los mismos insumos.</p></div>
+      <div class="say" data-say="1"><p>La ganancia sube de $34,200 a <b>$36,720</b> por corrida: <b>+$2,520</b>, un 7.4% más.</p><p>Si se hace una corrida por semana, son <b>+$131,040 al año</b>.</p></div>
       <div class="say" data-say="2"><p>Y ya no sobra nada: la proteína, la línea y la cobertura se usan al 100%.</p></div>
     </div>
   </div>
   <div class="stage">
     <div class="cmp">
-      <div class="cmpr"><span>Hoy · 600 cajas</span><div class="stack"><i class="c1" style="flex:200">200</i><i class="c2" style="flex:200">200</i><i class="c3" style="flex:200">200</i><i style="flex:40;background:transparent;border:0"></i></div></div>
-      <div class="cmpr"><span>Óptimo · 640</span><div class="stack"><i class="c1" style="flex:240">240</i><i class="c2" style="flex:240">240</i><i class="c3" style="flex:160">160</i></div></div>
+      <div class="cmpr"><span>Hoy · 3,600 barras</span><div class="stack"><i class="c1" style="flex:200">1,200</i><i class="c2" style="flex:200">1,200</i><i class="c3" style="flex:200">1,200</i><i style="flex:40;background:transparent;border:0"></i></div></div>
+      <div class="cmpr"><span>Óptimo · 3,840 barras</span><div class="stack"><i class="c1" style="flex:240">1,440</i><i class="c2" style="flex:240">1,440</i><i class="c3" style="flex:160">960</i></div></div>
       <div class="kpis" data-step="1">
         <div><span class="k">Hoy</span><span class="n">$34,200</span><span>por corrida</span></div>
         <div class="g"><span class="k">Óptimo</span><span class="n">$36,720</span><span>+7.4%</span></div>
@@ -885,7 +904,7 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="says">
       <div class="say" data-say="0"><p>Los tres recursos se acaban. ¿Cuál conviene tener un poco más?</p><p>Probamos uno por uno y <b>volvimos a resolver el simplex</b> con el nuevo límite.</p></div>
       <div class="say" data-say="1"><p>Con 6 kg más de proteína o 30 min más de línea, Z sube unos $823.</p><p>Con 6 kg más de <b>cobertura</b> sube $1,286: es la que más rinde.</p></div>
-      <div class="say" data-say="2"><p>Propuesta: fundir <b>6 kg más</b> de cobertura por corrida (una tanda extra en el tanque de fusión).</p><p>La ganancia sube a <b>$38,006</b> por corrida.</p></div>
+      <div class="say" data-say="2"><p>Propuesta: fundir <b>6 kg más</b> de cobertura por corrida (una tanda extra en el tanque de fusión).</p><p>Volviendo a resolver, el plan cambia a unas <b>1,692 barras de Chocolate, 1,950 de Cookies y 270 de Frutos rojos</b>, y la ganancia sube a <b>$38,006</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -900,7 +919,7 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
           <div><b>+$1,286</b><span>por corrida</span></div>
           <div><b>+$66,857</b><span>al año (52 corridas)</span></div>
         </div>
-        <p>Nueva mezcla: 282.9, 325.7 y 45.7 cajas. En cajas enteras (282, 325 y 45) da $37,875 y cumple las tres restricciones. Conviene si la tanda extra cuesta menos de ~$1,150 por corrida en mano de obra y energía.</p>
+        <p>Nuevo plan: 282.9, 325.7 y 45.7 cajas. En cajas enteras: 282 de Chocolate (1,692 barras), 325 de Cookies (1,950) y 45 de Frutos rojos (270); da $37,875 y cumple las tres restricciones. Conviene si la tanda extra cuesta menos de ~$1,150 por corrida en mano de obra y energía.</p>
       </div>
     </div>
   </div>
@@ -912,14 +931,14 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
     <div class="meta"><span>07 · Conclusiones</span><span>Cierre</span></div>
     <h2 class="h2">Tres ideas para <span class="o">llevarse</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Repartir parejo no es lo que más deja. El simplex encontró la mezcla que usa todo.</p></div>
+      <div class="say" data-say="0"><p><b>Respuesta al problema:</b> en cada corrida hay que producir <b>1,440 barras de Chocolate, 1,440 de Cookies &amp; Cream y 960 de Frutos rojos</b>.</p><p>Repartir parejo no es lo que más deja.</p></div>
       <div class="say" data-say="1"><p>Con la misma planta y los mismos insumos, FIBO gana <b>$2,520 más por corrida</b>.</p></div>
       <div class="say" data-say="2"><p>La cobertura es el recurso que más conviene ampliar. El modelo se reutiliza en cada corrida: solo cambian los kg y los minutos disponibles.</p></div>
     </div>
   </div>
   <div class="stage">
     <div class="ideas">
-      <div class="c1" style="--r:-1.5deg" data-step="0"><i>01</i><p><b>240 · 240 · 160</b><span>Cajas de Chocolate, Cookies y Frutos rojos por corrida.</span></p></div>
+      <div class="c1" style="--r:-1.5deg" data-step="0"><i>01</i><p><b>1,440 · 1,440 · 960 barras</b><span>De Chocolate, Cookies y Frutos rojos por corrida (240, 240 y 160 cajas).</span></p></div>
       <div style="--c:var(--black);--t:var(--cream);--r:1deg" data-step="1"><i>02</i><p><b>+$131,040 al año</b><span>Sin máquinas nuevas: solo decidiendo mejor el reparto.</span></p></div>
       <div class="r3c" style="--r:-1deg" data-step="2"><i>03</i><p><b>La cobertura manda</b><span>6 kg más por corrida suben la ganancia $1,286.</span></p></div>
     </div>
@@ -1028,8 +1047,11 @@ table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px
       say:`<p><b>6. También en Z.</b> El ${fmt(cz)} se vuelve 0 sumando ${fmt(mz)} veces la fila pivote.</p><p>Z ya vale <b>${fmt(N[3][3])}</b>.</p>`});
     M=N;
     const negs=[0,1,2].filter(c=>val(M[3][c])<0);
+    const plan=[0,1,2].map(c=>{ let row=-1; for(let r=0;r<3;r++){ if(val(M[r][c])===1 && [0,1,2].every(q=>q===r||val(M[q][c])===0)) row=r; } return row>=0?M[row][3]:F(0); });
+    const bx=f=>`${fmt(f)} cajas (${fmt(mul(f,F(6)))} barras)`;
+    const planTxt=`<p>Con esta tabla, el plan sería: Chocolate ${bx(plan[0])}, Cookies ${bx(plan[1])} y Frutos rojos ${bx(plan[2])}. Ganancia: <b>$${fmt(M[3][3])}</b>.</p>`;
     SX.push({t:disp(M),it,negs,fin:!negs.length,title:'8. ¿Tengo Z negativas?',note:negs.length?`Sí: queda ${negs.map(c=>fmt(M[3][c])).join(', ')} en Z → se repiten los pasos 2 al 6.`:'No: ya cuento con mi solución óptima.',
-      say:negs.length?`<p><b>8. ¿Tengo Z negativas?</b> Sí: queda <b>${negs.map(c=>fmt(M[3][c])).join(' y ')}</b>.</p><p>Se repiten los pasos 2 al 6.</p>`:'<p><b>8. ¿Tengo Z negativas?</b> No.</p><p>Ya tenemos la <b>solución óptima</b>: Z = 36,720.</p>'});
+      say:negs.length?`<p><b>8. ¿Tengo Z negativas?</b> Sí: queda <b>${negs.map(c=>fmt(M[3][c])).join(' y ')}</b>. Se repiten los pasos 2 al 6.</p>${planTxt}<p>Todavía se puede ganar más.</p>`:`<p><b>8. ¿Tengo Z negativas?</b> No: es la <b>solución óptima</b>.</p>${planTxt}`});
   }
   $('#sxSays').innerHTML=SX.map((st,i)=>`<div class="say" data-say="${i}">${st.say}</div>`).join('');
   $('#p9').dataset.steps=SX.length;
