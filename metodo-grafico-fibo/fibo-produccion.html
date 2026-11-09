@@ -1,0 +1,1040 @@
+<title>Producción óptima de FIBO</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: scroll vertical, una escena por pantalla. Guion a la izquierda (cambia con cada paso), máquina o tabla animada a la derecha.
+   Estética del sitio FIBO: bloques planos lima, crema, rosa, azul y rojo; esquinas rectas; sombras duras desplazadas;
+   Anton condensada en mayúsculas con punto final; etiquetas [entre corchetes]; cuadros de píxel negros. */
+:root{
+  color-scheme: light;
+  --black:#0C0B0A; --cream:#F5EBD7; --lime:#C9F23A; --red:#D6161D; --blue:#3A5CFF; --pink:#FF89B8; --yel:#F2D31B; --pur:#4E2275; --white:#FFFDF6; --mute:#6A655E;
+  --choc:#5B3418; --cob:#3B2212; --masa:#B98A5A;
+  --x1:var(--yel); --x2:var(--blue); --x3:var(--red);
+  --display:"Anton","Arial Narrow",Impact,sans-serif;
+  --sans:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --hud-h:58px; --nav-h:66px;
+  --ease:cubic-bezier(.7,0,.2,1);
+}
+html,body{height:100%}
+body{margin:0;background:var(--black);color:var(--black);font-family:var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:-.005em;text-wrap:balance}
+p{margin:0}
+.br{font:700 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.04em;display:inline-flex;gap:.8em;align-items:center;white-space:nowrap}
+.br::before{content:"[";font-weight:400}.br::after{content:"]";font-weight:400}
+.mono{font-family:var(--mono)}
+
+/* ---------- deck ---------- */
+.deck{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;-webkit-user-select:none;user-select:none}
+.deck::-webkit-scrollbar{display:none}
+.s{position:relative;height:100%;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.3fr);gap:clamp(20px,3.4vw,60px);align-items:center;
+  padding-top:calc(var(--hud-h) + 12px + env(safe-area-inset-top,0px));
+  padding-bottom:calc(var(--nav-h) + 8px + env(safe-area-inset-bottom,0px));
+  padding-left:max(clamp(16px,4vw,64px), env(safe-area-inset-left,0px));
+  padding-right:max(clamp(16px,4vw,64px), env(safe-area-inset-right,0px));
+  background:var(--bg,var(--cream));color:var(--fg,var(--black));scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+.b-lime{--bg:var(--lime)} .b-cream{--bg:var(--cream)} .b-pink{--bg:var(--pink)} .b-black{--bg:var(--black);--fg:var(--cream)} .b-blue{--bg:var(--blue);--fg:var(--cream)} .b-white{--bg:#FAF9F5}
+
+.talk{display:flex;flex-direction:column;justify-content:center;gap:14px;min-width:0}
+.meta{display:flex;justify-content:space-between;gap:10px;font:700 11px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.h2{font-size:clamp(44px,5.6vw,100px)}
+.h2 .o{color:transparent;-webkit-text-stroke:2px var(--fg,var(--black))}
+.says{display:grid}
+.say{grid-area:1/1;align-self:start;font-size:clamp(16px,.55vw + 11px,21px);line-height:1.42;letter-spacing:-.01em;max-width:44ch;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .4s ease,transform .5s var(--ease)}
+.say.on{opacity:1;transform:none;pointer-events:auto;transition-delay:.08s}
+.say p+p{margin-top:.55em}
+.say b{font-weight:700;background:var(--hl,var(--lime));padding:0 .12em}
+.b-lime .say b{--hl:var(--white)} .b-black .say b,.b-blue .say b{--hl:var(--lime);color:var(--black)}
+.src{font:700 10.5px/1.45 var(--mono);text-transform:uppercase;letter-spacing:.04em;opacity:.62}
+
+.stage{position:relative;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;max-height:100%}
+.layers{display:grid;width:100%}
+.layers>*{grid-area:1/1;min-width:0}
+[data-step]{transition:opacity .5s ease,transform .6s var(--ease)}
+[data-step]:not(.on){opacity:0;transform:translateY(16px);pointer-events:none}
+svg [data-step]:not(.on){transform:none}
+[data-only],[data-range]{transition:opacity .45s ease}
+[data-only]:not(.on),[data-range]:not(.on){opacity:0;pointer-events:none}
+.is-active .talk>*{animation:rise .7s var(--ease) both}
+.is-active .talk>*:nth-child(2){animation-delay:.07s}.is-active .talk>*:nth-child(3){animation-delay:.14s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+.box{background:var(--white);border:2px solid var(--black);box-shadow:8px 8px 0 var(--sh,var(--black));padding:clamp(14px,1.6vw,22px)}
+.box.dk{background:var(--black);color:var(--cream)}
+.n{font:400 clamp(36px,4vw,66px)/1 var(--display)}
+.k{font:700 11px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;left:0;right:0;top:0;z-index:20;height:calc(var(--hud-h) + env(safe-area-inset-top,0px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
+  padding:env(safe-area-inset-top,0px) max(clamp(16px,4vw,64px), env(safe-area-inset-right,0px)) 0 max(clamp(16px,4vw,64px), env(safe-area-inset-left,0px));
+  mix-blend-mode:difference;color:#fff;pointer-events:none}
+.hud>*{pointer-events:auto}
+.logo{font:400 26px/1 var(--display);letter-spacing:.02em;display:flex;gap:10px;align-items:center}
+.logo small{font:700 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.sq{display:flex;gap:4px}
+.sq button{width:10px;height:10px;border:1.5px solid #fff;background:transparent;padding:0}
+.sq button.gap{margin-left:7px}
+.sq button.on{background:#fff}
+.hud-r{justify-self:end;font:700 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.nav{position:fixed;z-index:25;left:0;right:0;bottom:0;display:flex;align-items:center;gap:10px;
+  padding:12px max(clamp(16px,4vw,64px), env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(clamp(16px,4vw,64px), env(safe-area-inset-left,0px));pointer-events:none}
+.nav>*{pointer-events:auto}
+.nav button{height:40px;min-width:40px;border:2px solid var(--black);background:var(--white);font:700 12px/1 var(--mono);padding:0 12px;box-shadow:4px 4px 0 var(--black)}
+.nav button:hover{background:var(--lime)}
+.nav button:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--black)}
+.ct{font:700 12px/1 var(--mono);background:var(--black);color:var(--lime);padding:13px 12px;border:2px solid var(--black)}
+.pg{flex:1;height:8px;background:rgba(12,11,10,.18);border:2px solid var(--black);min-width:30px}
+.pg i{display:block;height:100%;width:0;background:var(--black);transition:width .5s var(--ease)}
+body[data-tone="dark"] .pg{border-color:var(--cream);background:rgba(245,235,215,.15)}
+body[data-tone="dark"] .pg i{background:var(--lime)}
+.menu{position:fixed;inset:0;z-index:40;background:var(--lime);overflow:auto;
+  padding:calc(70px + env(safe-area-inset-top,0px)) max(24px, env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(24px, env(safe-area-inset-left,0px))}
+.menu h2{font-size:clamp(48px,7vw,110px);margin-bottom:22px}
+.menu ol{list-style:none;margin:0;padding:0;display:grid;gap:4px;max-width:1100px}
+.menu li button{width:100%;text-align:left;border:0;background:var(--c,var(--black));color:var(--t,var(--cream));padding:14px 18px;display:grid;grid-template-columns:60px 1fr auto;gap:14px;align-items:center;transition:padding .3s var(--ease)}
+.menu li button:hover{padding-block:22px}
+.menu li button b{font:400 clamp(20px,2vw,30px)/1 var(--display);text-transform:uppercase}
+.menu li button span{font:700 12px/1 var(--mono)}
+.menu li button small{font:700 11px/1 var(--mono);text-transform:uppercase;opacity:.75}
+.menu .x{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:max(24px, env(safe-area-inset-right,0px));border:2px solid var(--black);background:var(--white);padding:10px 14px;font:700 12px/1 var(--mono);box-shadow:4px 4px 0 var(--black)}
+
+/* ---------- pixel grid (portada) ---------- */
+.pix{position:absolute;inset:0;display:grid;grid-template-columns:repeat(var(--cols,14),1fr);grid-auto-rows:var(--cell,90px);pointer-events:none;z-index:0}
+.pix i{background:var(--black);transform:scale(0);transition:transform .45s var(--ease)}
+.pix i.on{transform:scale(1)}
+.pix i.r{background:var(--red)}.pix i.bl{background:var(--blue)}
+
+/* ---------- intro ---------- */
+#intro{grid-template-columns:1fr;place-items:center;--bg:var(--black)}
+#intro .word{position:relative;z-index:1;font:400 clamp(130px,24vw,330px)/.85 var(--display);color:var(--lime);display:flex}
+#intro .word span{display:inline-block;transform:translateY(40%);opacity:0;animation:up .7s var(--ease) forwards}
+#intro .word span:nth-child(2){animation-delay:.1s}#intro .word span:nth-child(3){animation-delay:.2s}#intro .word span:nth-child(4){animation-delay:.3s}
+@keyframes up{to{transform:none;opacity:1}}
+#intro .sub{position:absolute;left:0;right:0;bottom:calc(var(--nav-h) + 30px);text-align:center;color:var(--cream)}
+
+/* ---------- portada ---------- */
+#p1{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;align-items:stretch}
+#p1 .top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#p1 h1{position:relative;z-index:2;align-self:end;font-size:clamp(56px,8.4vw,150px);max-width:66%}
+#p1 h1 .o{color:transparent;-webkit-text-stroke:2.5px var(--black)}
+#p1 .foot{position:relative;z-index:2;border-top:2px solid var(--black);padding-top:12px;display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center}
+#p1 .foot p{display:grid;gap:4px;font:700 11px/1.3 var(--mono);text-transform:uppercase}
+#p1 .foot p b{font:500 15px/1.2 var(--sans);text-transform:none}
+.packs{position:absolute;z-index:3;right:max(clamp(16px,4vw,64px), env(safe-area-inset-right,0px));top:50%;translate:0 -50%;width:min(34vw,470px);display:grid;gap:10px}
+.packs figure{margin:0;display:grid;gap:6px;width:88%;transform:rotate(var(--r,-2deg));animation:bob 5s ease-in-out infinite;animation-delay:calc(var(--i) * -1.3s)}
+.packs figure:nth-child(even){justify-self:end;--r:2deg}
+.packs img{width:100%;height:auto;filter:drop-shadow(10px 10px 0 var(--black))}
+.packs figcaption{font:700 11px/1 var(--mono);text-transform:uppercase;display:flex;gap:8px;align-items:center}
+.packs figcaption span{background:var(--black);color:var(--c);padding:3px 6px}
+@keyframes bob{50%{translate:0 -8px}}
+.say0{position:relative;z-index:2;max-width:min(560px,60%);font-size:clamp(16px,1.3vw,20px);line-height:1.4;margin-top:10px}
+
+/* ---------- empresa ---------- */
+.rail{display:flex;height:min(58vh,520px);width:100%;background:var(--black);color:var(--cream);border:2px solid var(--black);box-shadow:10px 10px 0 var(--blue)}
+.col{position:relative;flex:1 1 0;min-width:0;overflow:hidden;display:flex;border-right:1px solid rgba(245,235,215,.22);transition:flex-grow .8s var(--ease),background .4s}
+.col:last-child{border-right:0}
+.col .yr{flex:none;writing-mode:vertical-rl;transform:rotate(180deg);align-self:flex-start;font:400 clamp(40px,5vw,84px)/.9 var(--display);padding:12px 6px;white-space:nowrap}
+.col .dt{flex:1;min-width:0;display:grid;align-content:space-between;gap:14px;padding:clamp(14px,1.8vw,24px);opacity:0;transition:opacity .3s}
+.col .dt h3{font-size:clamp(28px,3vw,50px)}
+.col .dt p{font-size:clamp(14px,1.1vw,17px);line-height:1.4}
+.col .dt img{width:100%;height:auto;max-height:24vh;object-fit:contain}
+.col .chips{display:flex;flex-wrap:wrap;gap:6px}
+.col .chips span{border:1.5px solid currentColor;padding:6px 8px;font:700 11px/1 var(--mono);text-transform:uppercase}
+.col.on{flex-grow:7;background:var(--c,var(--red));color:var(--t,var(--cream))}
+.col.on .dt{opacity:1;transition-delay:.45s}
+.rail .col:not(.on) .yr{font-size:clamp(28px,2.6vw,42px)}
+
+/* ---------- línea de proceso ---------- */
+.proc{width:100%;display:grid;gap:12px}
+.proc svg{width:100%;height:auto;display:block;background:#FAF9F5;border:2px solid var(--black);box-shadow:10px 10px 0 var(--black)}
+.proc .stn{transition:opacity .4s}
+.proc.dim .stn{opacity:.28}
+.proc .stn.hl{opacity:1}
+.proc .tagc{display:grid}
+.card{background:var(--black);color:var(--cream);padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start}
+.card b{font:400 clamp(26px,2.6vw,40px)/1 var(--display);text-transform:uppercase;color:var(--lime);grid-row:span 2}
+.card span{font-size:14px;line-height:1.4}
+.card em{font:700 11px/1.35 var(--mono);font-style:normal;text-transform:uppercase;color:var(--pink)}
+@keyframes belt{to{transform:translateX(-60px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes chop{0%,40%{transform:translateY(0)}55%{transform:translateY(26px)}70%,100%{transform:translateY(0)}}
+@keyframes fall{to{stroke-dashoffset:-24}}
+@keyframes snow{0%{transform:translateY(-6px);opacity:0}30%{opacity:1}100%{transform:translateY(30px);opacity:0}}
+@keyframes ride{from{transform:translateX(0)}to{transform:translateX(var(--d,600px))}}
+@keyframes rope{to{stroke-dashoffset:-40}}
+@keyframes blow{0%,100%{opacity:.25}50%{opacity:1}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 3s linear infinite}
+.spinr{transform-box:fill-box;transform-origin:center;animation:spin 3s linear infinite reverse}
+.chop{animation:chop 1.2s var(--ease) infinite}
+.curtain line{stroke-dasharray:8 4;animation:fall .5s linear infinite}
+.flake{animation:snow 2.2s linear infinite}
+.ropem{stroke-dasharray:24 16;animation:rope 1s linear infinite}
+.blow{animation:blow 1s ease-in-out infinite}
+.mv{animation:ride var(--t,6s) linear infinite}
+
+/* ---------- formadora ---------- */
+.fm{width:100%;display:grid;gap:12px}
+.fm svg{width:100%;height:auto;display:block;background:var(--white);border:2px solid var(--black);box-shadow:10px 10px 0 var(--blue)}
+.fm .part{transition:opacity .4s}
+.fm.dim .part{opacity:.25}
+.fm .part.hl{opacity:1}
+.fm .lbl{font:700 13px var(--mono);fill:var(--black);text-transform:uppercase}
+.fm .lblb{fill:var(--black)}
+.speeds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.speeds div{border:2px solid var(--black);background:var(--white);padding:10px 12px;display:grid;gap:2px;border-top:8px solid var(--c)}
+.speeds b{font:400 clamp(26px,2.4vw,38px)/1 var(--display)}
+.speeds span{font-size:12px;line-height:1.3}
+
+/* ---------- recursos ---------- */
+.res3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.rc{background:var(--c);color:var(--t,var(--black));border:2px solid var(--black);padding:16px;display:grid;gap:8px;align-content:start;min-height:min(46vh,380px);transform:rotate(var(--r,0deg));box-shadow:8px 8px 0 var(--black)}
+.rc .n{font-size:clamp(46px,5vw,84px)}
+.rc span{font-size:13.5px;line-height:1.4}
+.rc em{font:700 11px/1.35 var(--mono);font-style:normal;text-transform:uppercase;margin-top:auto;border-top:1.5px solid currentColor;padding-top:8px}
+.real{display:grid;gap:10px;width:100%}
+.real .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--white);border:2px solid var(--black);padding:12px 16px}
+.real .row b{font:400 clamp(26px,2.6vw,40px)/1 var(--display)}
+.real .row span{font-size:13.5px;line-height:1.35}
+.real .row.k2{background:var(--black);color:var(--cream)}
+.real .row.k2 b{color:var(--lime)}
+
+/* ---------- problema ---------- */
+.mix{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mix div{border:2px solid var(--black);background:var(--white);text-align:center;padding:10px;display:grid;gap:4px;border-top:8px solid var(--c)}
+.mix img{width:100%;height:auto}
+.mix .n{font-size:clamp(30px,2.8vw,44px)}
+.gauges{display:grid;gap:8px}
+.gg{border:2px solid var(--black);background:var(--white);padding:10px 14px;display:grid;gap:7px}
+.gg .gl{display:flex;justify-content:space-between;gap:10px;font:700 11px/1.2 var(--mono);text-transform:uppercase}
+.gtr{height:22px;display:flex;border:2px solid var(--black);background:#EEE9DF}
+.gtr i{display:block;height:100%;background:var(--c)}
+.gtr u{display:block;height:100%;background:repeating-linear-gradient(-45deg,#EEE9DF 0 5px,var(--red) 5px 8px);text-decoration:none}
+.zz{background:var(--black);color:var(--cream);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.zz b{font:400 clamp(28px,2.8vw,44px)/1 var(--display);color:var(--lime)}
+.q{background:var(--black);color:var(--cream);padding:clamp(18px,2.4vw,34px);display:grid;gap:14px;box-shadow:12px 12px 0 var(--white)}
+.q p{font:400 clamp(30px,3.2vw,56px)/1 var(--display);text-transform:uppercase}
+.q p em{font-style:normal;color:var(--lime)}
+
+/* ---------- modelo ---------- */
+.dt2{width:100%;border-collapse:collapse;background:var(--white);border:2px solid var(--black);font-size:14px}
+.dt2 th{font:700 10.5px/1.2 var(--mono);text-transform:uppercase;text-align:right;background:var(--black);color:var(--cream);padding:11px 10px}
+.dt2 th:first-child{text-align:left}
+.dt2 td{padding:11px 10px;border-top:1.5px solid var(--black);text-align:right;font:700 15px/1 var(--mono)}
+.dt2 td:first-child{text-align:left;font:500 14px/1.3 var(--sans)}
+.dt2 td small{display:block;font:500 11px/1.3 var(--mono);color:var(--mute)}
+.dt2 tr.u td{background:var(--lime)}
+.dt2 .sw{display:inline-block;width:12px;height:12px;background:var(--c);border:1.5px solid var(--black);margin-right:6px;vertical-align:-1px}
+.tw{width:100%;overflow-x:auto}
+.model{display:grid;gap:6px;width:100%}
+.model .row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:10px;align-items:center;background:var(--white);border:2px solid var(--black);border-left:10px solid var(--c,var(--black));padding:10px 14px}
+.model .row.fo{background:var(--black);color:var(--lime)}
+.model .row b{font:700 clamp(12.5px,1.1vw,16.5px)/1.3 var(--mono);white-space:nowrap}
+.model .row span{font-size:12.5px;line-height:1.3}
+.model .row.fo span{color:var(--cream)}
+.vars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.vars div{background:var(--c);color:var(--t,var(--black));border:2px solid var(--black);padding:10px 12px;display:grid;gap:2px}
+.vars b{font:400 30px/1 var(--display)}
+.vars b sub{font-size:.55em}
+.vars span{font-size:12px}
+.c1{--c:var(--x1)}.c2{--c:var(--x2);--t:var(--cream)}.c3{--c:var(--x3);--t:var(--cream)}
+.r1c{--c:var(--lime)}.r2c{--c:var(--pink)}.r3c{--c:var(--pur);--t:var(--cream)}
+
+/* ---------- simplex ---------- */
+.sx{width:100%;display:grid;gap:10px}
+.sxh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.sxh b{font:400 clamp(24px,2.2vw,34px)/1 var(--display);text-transform:uppercase}
+.sxtabs{display:flex;gap:4px}
+.sxtabs i{font:700 10px/1 var(--mono);font-style:normal;border:2px solid var(--black);padding:5px 8px;opacity:.4}
+.sxtabs i.on{background:var(--black);color:var(--lime);opacity:1}
+table.tab{width:100%;border-collapse:collapse;background:var(--white);border:2px solid var(--black);font:600 clamp(11px,.95vw,14px)/1 var(--mono);font-variant-numeric:tabular-nums;box-shadow:8px 8px 0 var(--black)}
+.tab th,.tab td{padding:10px 6px;text-align:center;border-top:1.5px solid #D9D2C4;white-space:nowrap;transition:background .3s}
+.tab thead th{background:var(--black);color:var(--cream);border-top:0}
+.tab thead tr.cj th{background:#2A2825;color:var(--lime)}
+.tab td.bv{font-weight:800}
+.tab td.cb{color:var(--mute)}
+.tab tr.z td{background:var(--cream);font-weight:800;border-top:2px solid var(--black)}
+.tab .pc{background:rgba(201,242,58,.6)}
+.tab thead th.pc{background:var(--lime);color:var(--black)}
+.tab tr.pr td{background:rgba(255,137,184,.45)}
+.tab td.piv{background:var(--black)!important;color:var(--lime)}
+.tab td.neg{color:var(--red);font-weight:800}
+.tab td.rz{color:var(--mute);text-align:left}
+.tab td.rz.best{color:var(--black);font-weight:800}
+.tab tr.z td.fin{background:var(--lime)}
+.sxnote{background:var(--black);color:var(--cream);padding:12px 16px;font-size:14px;line-height:1.45;min-height:64px}
+.sxnote b{color:var(--lime)}
+
+/* ---------- lectura / resultados ---------- */
+.read{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.read .v{background:var(--c);color:var(--t,var(--black));border:2px solid var(--black);padding:14px;display:grid;gap:4px;box-shadow:6px 6px 0 var(--black)}
+.read .v .n{font-size:clamp(46px,4.8vw,80px)}
+.read .z{grid-column:1/-1;background:var(--black);color:var(--cream);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.read .z .n{color:var(--lime)}
+.shadow{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.shadow div{border:2px dashed var(--black);border-left:10px solid var(--c);padding:10px 12px;display:grid;gap:3px;background:var(--white)}
+.shadow b{font:700 14px/1.3 var(--mono)}
+.checks{display:grid;gap:8px;width:100%}
+.ck{background:var(--white);border:2px solid var(--black);border-left:12px solid var(--c);padding:11px 14px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center}
+.ck .rn{font:400 26px/1 var(--display)}
+.ck .f{font:700 clamp(11px,.95vw,14px)/1.4 var(--mono);overflow-wrap:anywhere;min-width:0}
+.ck .ok{font:400 20px/1 var(--display);background:var(--lime);border:2px solid var(--black);padding:6px 10px;white-space:nowrap;color:var(--black)}
+.ck.zc{background:var(--black);color:var(--cream);--c:var(--lime)}
+.ck.zc .rn{color:var(--lime)}
+.cmp{display:grid;gap:10px;width:100%}
+.cmpr{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;align-items:center}
+.cmpr>span{font:700 11px/1.25 var(--mono);text-transform:uppercase}
+.stack{display:flex;height:52px;border:2px solid var(--black);background:rgba(12,11,10,.08)}
+.stack i{display:flex;align-items:center;justify-content:center;font:400 20px/1 var(--display);font-style:normal;background:var(--c);color:var(--t,var(--black));border-right:2px solid var(--black);min-width:0;transition:flex-grow 1s var(--ease)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.kpis div{background:var(--white);border:2px solid var(--black);padding:12px;display:grid;gap:3px}
+.kpis div.g{background:var(--black);color:var(--cream)}
+.kpis div.g .n{color:var(--lime)}
+.kpis .n{font-size:clamp(30px,3vw,50px)}
+.kpis span{font-size:12px;line-height:1.3}
+
+/* ---------- mejora ---------- */
+.bars{display:grid;gap:12px;width:100%}
+.bar{display:grid;grid-template-columns:140px minmax(0,1fr) 80px;gap:10px;align-items:center}
+.bar>span{font:700 11px/1.25 var(--mono);text-transform:uppercase}
+.bar .tr{height:34px;border:2px solid var(--black);background:var(--white)}
+.bar .tr i{display:block;height:100%;background:var(--c);transform-origin:left;transform:scaleX(0);transition:transform 1.2s var(--ease)}
+.is-active .bar .tr i{transform:scaleX(1)}
+.bar em{font:400 28px/1 var(--display);font-style:normal;text-align:right}
+.prop{background:var(--black);color:var(--cream);padding:clamp(16px,2vw,26px);display:grid;gap:12px;box-shadow:10px 10px 0 var(--pur)}
+.prop h3{font-size:clamp(26px,2.6vw,42px);color:var(--lime)}
+.prop .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.prop .g3 div{border:1.5px solid rgba(245,235,215,.35);padding:10px 12px;display:grid;gap:2px}
+.prop .g3 b{font:400 clamp(24px,2.4vw,36px)/1 var(--display);color:var(--lime)}
+.prop .g3 span{font-size:12px;line-height:1.3}
+.prop p{font-size:13px;line-height:1.45;opacity:.85}
+
+/* ---------- conclusiones ---------- */
+.ideas{display:grid;gap:8px;width:100%}
+.ideas div{background:var(--c);color:var(--t,var(--black));border:2px solid var(--black);padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;transform:rotate(var(--r));box-shadow:6px 6px 0 var(--black)}
+.ideas i{font:700 22px/1 var(--mono);font-style:normal}
+.ideas b{display:block;font:400 clamp(24px,2.4vw,38px)/1 var(--display);text-transform:uppercase}
+.ideas span{font-size:13.5px;line-height:1.4}
+.src-list{list-style:none;margin:0;padding:0;display:grid;gap:6px;width:100%;max-height:62vh;overflow-y:auto}
+.src-list li{background:var(--white);border:2px solid var(--black);padding:10px 14px;display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:13px;line-height:1.4}
+.src-list li b{font:700 11px/1.4 var(--mono);text-transform:uppercase}
+.src-list a{color:var(--blue);text-decoration:underline;overflow-wrap:anywhere}
+
+@media (max-width:900px){
+  .deck{scroll-snap-type:y proximity}
+  .s{height:auto;min-height:100%;grid-template-columns:1fr;align-items:start;align-content:start;gap:16px}
+  .says{min-height:7em}
+  .sq{display:none}
+  .hud{grid-template-columns:1fr auto}
+  .packs{position:relative;right:auto;top:auto;translate:none;width:100%}
+  #p1 h1{max-width:none}
+  #p1 .foot{grid-template-columns:1fr}
+  .say0{max-width:none}
+  .rail{flex-direction:column;height:auto}
+  .col{flex:none!important;flex-direction:column}
+  .col .yr{writing-mode:initial;transform:none;font-size:34px!important;padding:10px 12px}
+  .col:not(.on) .dt{display:none}
+  .res3,.kpis,.shadow,.prop .g3{grid-template-columns:1fr}
+  .rc{min-height:0}
+  .bar{grid-template-columns:96px minmax(0,1fr) 60px}
+  .cmpr{grid-template-columns:86px minmax(0,1fr)}
+  .model .row{grid-template-columns:1fr}
+  .model .row b{white-space:normal}
+  .nav #fs{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+
+<header class="hud" aria-label="Navegación">
+  <div class="logo">FIBO <small>Producción · IO I</small></div>
+  <div class="sq" id="sq" aria-label="Escenas"></div>
+  <div class="hud-r" id="sec"></div>
+</header>
+
+<div class="menu" id="menu" hidden role="dialog" aria-modal="true" aria-label="Índice">
+  <button class="x" id="menuX" type="button">Cerrar ✕</button>
+  <h2>Índice.</h2>
+  <ol id="menuL"></ol>
+</div>
+
+<main class="deck" id="deck">
+
+<!-- ================= INTRO ================= -->
+<section class="s" id="intro" data-steps="1" data-sec="0" data-tone="dark">
+  <div class="pix" id="pixI" aria-hidden="true"></div>
+  <div class="word" aria-label="FIBO"><span>F</span><span>I</span><span>B</span><span>O</span></div>
+  <div class="sub br">Producción óptima · método simplex</div>
+</section>
+
+<!-- ================= PORTADA ================= -->
+<section class="s b-lime" id="p1" data-steps="2" data-sec="0" data-c="var(--lime)">
+  <div class="pix" id="pixP" aria-hidden="true"></div>
+  <div class="top">
+    <div><span class="br">Proyecto final · 2026B</span><p class="k" style="margin-top:8px">Investigación de Operaciones I · CUCEA</p></div>
+  </div>
+  <div style="position:relative;z-index:2;align-self:end;display:grid;gap:10px">
+    <h1>Producción <span class="o">óptima</span> de FIBO.</h1>
+    <div class="says say0">
+      <div class="say" data-say="0"><p>Tres sabores salen de la misma línea. ¿Cuántas cajas de cada uno conviene hacer en una corrida?</p></div>
+      <div class="say" data-say="1"><p>Lo resolvemos con <b>programación lineal</b> y el <b>método simplex</b>, con datos de una planta real de barras.</p></div>
+    </div>
+  </div>
+  <div class="foot">
+    <p>Empresa<b>El Molino · Zapopan, Jalisco</b></p>
+    <span class="br">Desliza o usa →</span>
+    <p style="justify-self:end;text-align:right">Método<b>Simplex · 3 variables</b></p>
+  </div>
+  <div class="packs" aria-hidden="true">
+    <figure style="--i:0;--c:var(--yel)"><img src="img/fibo-chocolate.webp" alt=""><figcaption><span>x1</span>Chocolate</figcaption></figure>
+    <figure style="--i:1;--c:var(--blue)"><img src="img/fibo-cookies.webp" alt=""><figcaption><span>x2</span>Cookies &amp; Cream</figcaption></figure>
+    <figure style="--i:2;--c:var(--red)"><img src="img/fibo-frutos.webp" alt=""><figcaption><span>x3</span>Frutos rojos</figcaption></figure>
+  </div>
+</section>
+
+<!-- ================= EMPRESA ================= -->
+<section class="s b-cream" id="p2" data-steps="4" data-sec="1">
+  <div class="talk">
+    <div class="meta"><span>01 · Empresa</span><span>FIBO / El Molino</span></div>
+    <h2 class="h2">Una marca con <span class="o">planta</span> propia.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p><b>El Molino</b> lleva más de 30 años en la industria de alimentos. Empezó en 1995 desarrollando soluciones para fabricantes.</p></div>
+      <div class="say" data-say="1"><p>De ahí nace <b>FIBO</b>: una barra de 65 g con 22 g de proteína (soya + suero) y 10 g de fibra.</p></div>
+      <div class="say" data-say="2"><p>Tiene 4 sabores. El proyecto trabaja con tres: <b>Chocolate, Cookies &amp; Cream y Frutos rojos</b>.</p></div>
+      <div class="say" data-say="3"><p>Se vende en 22 estados y cada barra se fabrica en su <b>planta de Zapopan</b>, con certificación FSSC 22000.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="rail" id="rail">
+      <div class="col" data-hl="0" style="--c:var(--red)"><span class="yr">1995</span><div class="dt"><h3>El Molino.</h3><p>+30 años en alimentos. Relaciones comerciales y soluciones para fabricantes.</p><div class="chips"><span>Desde 1995</span><span>Jalisco</span></div></div></div>
+      <div class="col" data-hl="1" style="--c:var(--lime);--t:var(--black)"><span class="yr">22 g</span><div class="dt"><h3>Nace FIBO.</h3><img src="img/fibo-chocolate.webp" alt="Barra FIBO"><div class="chips"><span>65 g</span><span>22 g proteína</span><span>10 g fibra</span></div></div></div>
+      <div class="col" data-hl="2" style="--c:var(--pink);--t:var(--black)"><span class="yr">x1 x2 x3</span><div class="dt"><h3>3 sabores.</h3><img src="img/fibo-cookies.webp" alt="Barra FIBO Cookies"><div class="chips"><span>Chocolate</span><span>Cookies &amp; Cream</span><span>Frutos rojos</span></div></div></div>
+      <div class="col" data-hl="3" style="--c:var(--blue)"><span class="yr">22 edos.</span><div class="dt"><h3>En el anaquel.</h3><p>133 Nutrisa · 35 7-Eleven en Guadalajara · 90 naturistas · +150 gimnasios · Amazon, Mercado Libre y fibo.mx.</p><div class="chips"><span>Planta en Zapopan</span><span>FSSC 22000</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÁREA · LÍNEA COMPLETA ================= -->
+<section class="s b-white" id="p3" data-steps="7" data-sec="2">
+  <div class="talk">
+    <div class="meta"><span>02 · Área de trabajo</span><span>La línea</span></div>
+    <h2 class="h2">Así se hace una <span class="o">FIBO</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p><b>1. Mezcladora.</b> Una tina con aspas en forma de Z amasa la proteína, la fibra, los crispies y el jarabe que pega todo.</p><p>Sale una masa espesa, como plastilina.</p></div>
+      <div class="say" data-say="1"><p><b>2. Formadora.</b> Empuja la masa por una boquilla y sale una tira continua. Una guillotina la corta en barras.</p><p>Es la máquina que <b>marca el ritmo</b> de toda la línea.</p></div>
+      <div class="say" data-say="2"><p><b>3. Túnel de frío.</b> La barra pasa por un túnel a unos 10 °C para que se ponga firme antes de cubrirla.</p></div>
+      <div class="say" data-say="3"><p><b>4. Enrobadora.</b> La barra pasa bajo una <b>cortina de cobertura</b> sabor chocolate. Abajo, unos rodillos cubren la base y un soplador quita el exceso.</p></div>
+      <div class="say" data-say="4"><p><b>5. Segundo túnel de frío.</b> En 7 a 10 minutos la cobertura se endurece.</p></div>
+      <div class="say" data-say="5"><p><b>6. Empacadora flow-pack.</b> Envuelve cada barra en su película y la sella por los extremos.</p></div>
+      <div class="say" data-say="6"><p><b>7. Display.</b> Se acomodan <b>6 barras por caja</b> (display) y 24 cajas por caja master.</p><p>En el proyecto, <b>1 caja = 1 display de 6 barras</b>.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="proc dim" id="proc">
+      <svg viewBox="0 0 900 380" role="img" aria-label="Línea de producción de FIBO: mezcladora, formadora, túnel de frío, enrobadora, túnel de frío, empacadora y display">
+        <!-- banda -->
+        <rect x="20" y="300" width="860" height="14" fill="#0C0B0A"/>
+        <g><line x1="20" y1="307" x2="880" y2="307" stroke="#C9F23A" stroke-width="2" stroke-dasharray="14 16" class="ropem"/></g>
+        <!-- 1 mezcladora -->
+        <g class="stn" data-hl="0">
+          <rect x="30" y="170" width="100" height="90" fill="#F5EBD7" stroke="#0C0B0A" stroke-width="3"/>
+          <path d="M30 200 h100" stroke="#0C0B0A" stroke-width="2"/>
+          <rect x="34" y="204" width="92" height="52" fill="#B98A5A"/>
+          <g class="spin"><path d="M80 214 l14 16 -14 16 -14 -16z" fill="none" stroke="#0C0B0A" stroke-width="4"/></g>
+          <rect x="74" y="260" width="12" height="40" fill="#0C0B0A"/>
+          <text x="80" y="160" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">1 MEZCLADORA</text>
+        </g>
+        <!-- 2 formadora -->
+        <g class="stn" data-hl="1">
+          <path d="M160 140 h80 l-20 50 h-40z" fill="#C9F23A" stroke="#0C0B0A" stroke-width="3"/>
+          <rect x="172" y="190" width="56" height="60" fill="#FFFDF6" stroke="#0C0B0A" stroke-width="3"/>
+          <circle cx="188" cy="214" r="10" fill="#FFFDF6" stroke="#0C0B0A" stroke-width="3" class="spin"/>
+          <circle cx="212" cy="214" r="10" fill="#FFFDF6" stroke="#0C0B0A" stroke-width="3" class="spinr"/>
+          <rect x="228" y="276" width="30" height="16" fill="#B98A5A" stroke="#0C0B0A" stroke-width="2"/>
+          <rect x="172" y="250" width="56" height="50" fill="#0C0B0A"/>
+          <g class="chop"><rect x="262" y="236" width="6" height="34" fill="#D6161D"/></g>
+          <text x="210" y="130" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">2 FORMADORA</text>
+        </g>
+        <!-- 3 túnel 1 -->
+        <g class="stn" data-hl="2">
+          <path d="M300 230 h130 v70 h-130z" fill="#3A5CFF" stroke="#0C0B0A" stroke-width="3"/>
+          <path d="M300 230 q65 -40 130 0" fill="#3A5CFF" stroke="#0C0B0A" stroke-width="3"/>
+          <g fill="#FFFDF6"><circle class="flake" cx="330" cy="240" r="3"/><circle class="flake" cx="365" cy="236" r="3" style="animation-delay:.7s"/><circle class="flake" cx="400" cy="242" r="3" style="animation-delay:1.4s"/></g>
+          <text x="365" y="275" text-anchor="middle" font-family="Anton" font-size="22" fill="#FFFDF6">10 °C</text>
+          <text x="365" y="180" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">3 TÚNEL DE FRÍO</text>
+        </g>
+        <!-- 4 enrobadora -->
+        <g class="stn" data-hl="3">
+          <rect x="460" y="170" width="90" height="40" fill="#5B3418" stroke="#0C0B0A" stroke-width="3"/>
+          <g class="curtain" stroke="#3B2212" stroke-width="4"><line x1="478" y1="210" x2="478" y2="290"/><line x1="490" y1="210" x2="490" y2="290"/><line x1="502" y1="210" x2="502" y2="290"/><line x1="514" y1="210" x2="514" y2="290"/><line x1="526" y1="210" x2="526" y2="290"/></g>
+          <path d="M560 250 l20 -8 M560 262 l20 0 M560 274 l20 8" stroke="#0C0B0A" stroke-width="3" class="blow"/>
+          <text x="505" y="160" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">4 ENROBADORA</text>
+        </g>
+        <!-- 5 túnel 2 -->
+        <g class="stn" data-hl="4">
+          <path d="M600 230 h120 v70 h-120z" fill="#3A5CFF" stroke="#0C0B0A" stroke-width="3"/>
+          <path d="M600 230 q60 -40 120 0" fill="#3A5CFF" stroke="#0C0B0A" stroke-width="3"/>
+          <g fill="#FFFDF6"><circle class="flake" cx="625" cy="240" r="3"/><circle class="flake" cx="660" cy="236" r="3" style="animation-delay:.7s"/><circle class="flake" cx="695" cy="242" r="3" style="animation-delay:1.4s"/></g>
+          <text x="660" y="275" text-anchor="middle" font-family="Anton" font-size="20" fill="#FFFDF6">7–10 MIN</text>
+          <text x="660" y="180" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">5 TÚNEL 2</text>
+        </g>
+        <!-- 6 flow-pack -->
+        <g class="stn" data-hl="5">
+          <rect x="745" y="200" width="60" height="70" fill="#F2D31B" stroke="#0C0B0A" stroke-width="3"/>
+          <circle cx="775" cy="186" r="16" fill="#FFFDF6" stroke="#0C0B0A" stroke-width="3" class="spin"/>
+          <rect x="752" y="278" width="46" height="16" fill="#F2D31B" stroke="#0C0B0A" stroke-width="2"/>
+          <text x="775" y="160" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">6 FLOW-PACK</text>
+        </g>
+        <!-- 7 display -->
+        <g class="stn" data-hl="6">
+          <path d="M820 250 h56 v46 h-56z" fill="#F2D31B" stroke="#0C0B0A" stroke-width="3"/>
+          <path d="M820 250 l8 -14 h40 l8 14" fill="#0C0B0A"/>
+          <g stroke="#0C0B0A" stroke-width="2"><line x1="828" y1="262" x2="868" y2="262"/><line x1="828" y1="272" x2="868" y2="272"/><line x1="828" y1="282" x2="868" y2="282"/></g>
+          <text x="848" y="224" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13">7 × 6</text>
+        </g>
+        <!-- barras viajando -->
+        <g class="mv" style="--t:9s;--d:620px"><rect x="230" y="286" width="26" height="12" fill="#B98A5A" stroke="#0C0B0A" stroke-width="1.5"/></g>
+        <g class="mv" style="--t:9s;--d:620px;animation-delay:-3s"><rect x="230" y="286" width="26" height="12" fill="#B98A5A" stroke="#0C0B0A" stroke-width="1.5"/></g>
+        <g class="mv" style="--t:9s;--d:620px;animation-delay:-6s"><rect x="230" y="286" width="26" height="12" fill="#B98A5A" stroke="#0C0B0A" stroke-width="1.5"/></g>
+        <text x="450" y="350" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="12" fill="#6A655E">LOS TRES SABORES PASAN POR LAS MISMAS 7 MÁQUINAS</text>
+      </svg>
+      <div class="layers tagc">
+        <div class="card" data-only="0"><b>Mezcladora</b><span>Amasado por lotes con aspas en Z. Aquí se gasta la <strong>proteína</strong>.</span><em>Recurso limitado: proteína (soya + suero)</em></div>
+        <div class="card" data-only="1"><b>Formadora</b><span>Extrusora en frío + guillotina. La guillotina va sincronizada con la formadora.</span><em>Recurso limitado: minutos de línea</em></div>
+        <div class="card" data-only="2"><b>Túnel 1</b><span>Aire frío de 8 a 12 °C. La barra queda firme para cubrirla.</span><em>Sigue el ritmo de la formadora</em></div>
+        <div class="card" data-only="3"><b>Enrobadora</b><span>Cortina de cobertura fundida + rodillos abajo + soplador. Aquí se gasta la <strong>cobertura</strong>.</span><em>Recurso limitado: kg de cobertura fundida</em></div>
+        <div class="card" data-only="4"><b>Túnel 2</b><span>Endurece la cobertura en 7 a 10 minutos. Sin él, la barra se pega al empaque.</span><em>Sigue el ritmo de la formadora</em></div>
+        <div class="card" data-only="5"><b>Flow-pack</b><span>Empacadora horizontal: película, sello largo y sellos en los extremos.</span><em>Las de entrada empacan de 30 a 60 barras por minuto</em></div>
+        <div class="card" data-only="6"><b>Display</b><span>6 barras por display; 24 displays por caja master (144 barras).</span><em>Unidad del modelo: 1 caja = 6 barras</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÁREA · FORMADORA ================= -->
+<section class="s b-cream" id="p4" data-steps="6" data-sec="2">
+  <div class="talk">
+    <div class="meta"><span>02 · Área de trabajo</span><span>Máquina clave</span></div>
+    <h2 class="h2">¿Qué es una <span class="o">formadora</span>?</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Es la máquina que convierte la masa en barras del mismo tamaño. También se le llama <b>extrusora de barras</b>.</p><p>Tiene 4 partes.</p></div>
+      <div class="say" data-say="1"><p><b>1. Tolva.</b> Es el embudo de arriba. Ahí se vacía la masa que sale de la mezcladora.</p></div>
+      <div class="say" data-say="2"><p><b>2. Rodillos.</b> Dos rodillos giran en sentido contrario y empujan la masa hacia abajo, con presión pareja.</p></div>
+      <div class="say" data-say="3"><p><b>3. Boquilla (dado).</b> Es una placa con una ranura del ancho y alto de la barra. La masa sale por ahí como una <b>tira continua</b>.</p></div>
+      <div class="say" data-say="4"><p><b>4. Guillotina.</b> Una cuchilla baja y corta la tira cada tantos centímetros. Así cada barra pesa lo mismo.</p></div>
+      <div class="say" data-say="5"><p>La velocidad cambia con el sabor. La masa de Chocolate es lisa y sale rápido: <b>12 barras por minuto</b>.</p><p>Cookies lleva trozos de galleta que atascan la boquilla, y Frutos rojos lleva fruta que se rompe: se bajan a <b>8 por minuto</b>.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="fm dim" id="fm">
+      <svg viewBox="0 0 860 420" role="img" aria-label="Corte de una formadora: tolva, rodillos, boquilla, tira de masa, guillotina y barras cortadas en la banda">
+        <!-- estructura -->
+        <rect x="40" y="350" width="780" height="16" fill="#0C0B0A"/>
+        <line x1="40" y1="358" x2="820" y2="358" stroke="#C9F23A" stroke-width="2" stroke-dasharray="14 16" class="ropem"/>
+        <!-- tolva -->
+        <g class="part" data-hl="1">
+          <path d="M70 40 h220 l-60 110 h-100z" fill="#C9F23A" stroke="#0C0B0A" stroke-width="4"/>
+          <path d="M90 70 h180 l-44 76 h-92z" fill="#B98A5A"/>
+          <circle cx="140" cy="96" r="5" fill="#F5EBD7"/><circle cx="190" cy="110" r="4" fill="#F5EBD7"/><circle cx="215" cy="86" r="5" fill="#F5EBD7"/><circle cx="165" cy="126" r="4" fill="#F5EBD7"/>
+          <text x="300" y="60" class="lbl">1 · Tolva</text>
+        </g>
+        <!-- rodillos -->
+        <g class="part" data-hl="2">
+          <rect x="120" y="150" width="120" height="90" fill="#FFFDF6" stroke="#0C0B0A" stroke-width="4"/>
+          <g class="spin"><circle cx="152" cy="190" r="26" fill="#F5EBD7" stroke="#0C0B0A" stroke-width="4"/><path d="M152 164 v52 M126 190 h52" stroke="#0C0B0A" stroke-width="3"/></g>
+          <g class="spinr"><circle cx="208" cy="190" r="26" fill="#F5EBD7" stroke="#0C0B0A" stroke-width="4"/><path d="M208 164 v52 M182 190 h52" stroke="#0C0B0A" stroke-width="3"/></g>
+          <path d="M172 190 h16 v50 h-16z" fill="#B98A5A"/>
+          <text x="20" y="200" class="lbl">2 · Rodillos</text>
+        </g>
+        <!-- boquilla -->
+        <g class="part" data-hl="3">
+          <rect x="120" y="240" width="120" height="70" fill="#0C0B0A"/>
+          <rect x="240" y="296" width="30" height="40" fill="#3A5CFF" stroke="#0C0B0A" stroke-width="4"/>
+          <rect x="246" y="312" width="18" height="12" fill="#B98A5A"/>
+          <path d="M180 240 v66 h70" fill="none" stroke="#B98A5A" stroke-width="12"/>
+          <!-- vista frontal del dado -->
+          <rect x="300" y="160" width="120" height="80" fill="#3A5CFF" stroke="#0C0B0A" stroke-width="4"/>
+          <rect x="330" y="190" width="60" height="20" fill="#FFFDF6" stroke="#0C0B0A" stroke-width="3"/>
+          <text x="360" y="232" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="10" fill="#FFFDF6">VISTA DE FRENTE</text>
+          <path d="M300 240 l-40 60" stroke="#0C0B0A" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="300" y="150" class="lbl">3 · Boquilla (dado)</text>
+        </g>
+        <!-- tira continua -->
+        <g class="part" data-hl="3">
+          <rect x="270" y="320" width="230" height="30" fill="#B98A5A" stroke="#0C0B0A" stroke-width="3"/>
+          <line x1="270" y1="335" x2="500" y2="335" stroke="#8A6440" stroke-width="3" class="ropem"/>
+          <text x="385" y="306" text-anchor="middle" class="lbl">tira continua</text>
+        </g>
+        <!-- guillotina -->
+        <g class="part" data-hl="4">
+          <rect x="490" y="230" width="60" height="20" fill="#0C0B0A"/>
+          <g class="chop"><rect x="512" y="250" width="16" height="44" fill="#D6161D" stroke="#0C0B0A" stroke-width="3"/><path d="M512 294 h16 l-8 12z" fill="#D6161D" stroke="#0C0B0A" stroke-width="2"/></g>
+          <text x="560" y="244" class="lbl">4 · Guillotina</text>
+        </g>
+        <!-- barras cortadas -->
+        <g class="part" data-hl="4">
+          <g class="mv" style="--t:3.6s;--d:240px"><rect x="540" y="320" width="56" height="30" fill="#B98A5A" stroke="#0C0B0A" stroke-width="3"/></g>
+          <g class="mv" style="--t:3.6s;--d:240px;animation-delay:-1.2s"><rect x="540" y="320" width="56" height="30" fill="#B98A5A" stroke="#0C0B0A" stroke-width="3"/></g>
+          <g class="mv" style="--t:3.6s;--d:240px;animation-delay:-2.4s"><rect x="540" y="320" width="56" height="30" fill="#B98A5A" stroke="#0C0B0A" stroke-width="3"/></g>
+          <text x="760" y="306" text-anchor="middle" class="lbl">al túnel →</text>
+        </g>
+        <text x="430" y="400" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="12" fill="#6A655E">MASA → TOLVA → RODILLOS → BOQUILLA → TIRA → GUILLOTINA → BARRAS</text>
+      </svg>
+      <div class="speeds" data-step="5">
+        <div class="c1"><span class="k">Chocolate</span><b>12 / min</b><span>2 cajas por minuto → 0.5 min por caja</span></div>
+        <div class="c2"><span class="k">Cookies</span><b>8 / min</b><span>Trozos de galleta → 0.75 min por caja</span></div>
+        <div class="c3"><span class="k">Frutos rojos</span><b>8 / min</b><span>Fruta frágil → 0.75 min por caja</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÁREA · COBERTURA ================= -->
+<section class="s b-pink" id="p5" data-steps="3" data-sec="2">
+  <div class="talk">
+    <div class="meta"><span>02 · Área de trabajo</span><span>Máquina clave</span></div>
+    <h2 class="h2">La <span class="o">cobertura</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>La cobertura <b>sabor chocolate</b> es un compuesto de cacao con grasa vegetal. A diferencia del chocolate fino, no se templa: se <b>derrite</b> en un tanque y se mantiene a unos 40–45 °C.</p></div>
+      <div class="say" data-say="1"><p>Luego cae como <b>cortina</b> sobre cada barra en la enrobadora. Abajo, unos rodillos cubren la base.</p></div>
+      <div class="say" data-say="2"><p>Cada sabor lleva distinta cantidad: Chocolate va bañado completo (~20 g), Cookies ~15 g y Frutos rojos solo una base (~10 g).</p><p>El tanque funde <b>60 kg</b> por corrida. Recalentar la cobertura varias veces la echa a perder.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="fm" style="max-width:720px">
+      <svg viewBox="0 0 760 360" role="img" aria-label="Enrobadora: tanque de cobertura, cortina que cae sobre la barra, rodillos inferiores y soplador">
+        <rect x="0" y="0" width="760" height="360" fill="#FFFDF6"/>
+        <!-- templadora -->
+        <g data-step="0">
+          <rect x="30" y="60" width="140" height="160" fill="#F5EBD7" stroke="#0C0B0A" stroke-width="4"/>
+          <rect x="44" y="110" width="112" height="96" fill="#5B3418"/>
+          <g class="spin"><path d="M100 130 l20 22 -20 22 -20 -22z" fill="none" stroke="#F5EBD7" stroke-width="4"/></g>
+          <text x="100" y="92" text-anchor="middle" font-family="Anton" font-size="22">40–45 °C</text>
+          <text x="100" y="246" text-anchor="middle" class="lbl">Tanque de fusión</text>
+          <path d="M170 140 h90" stroke="#5B3418" stroke-width="12"/>
+        </g>
+        <!-- enrobadora -->
+        <g data-step="1">
+          <rect x="260" y="60" width="240" height="56" fill="#5B3418" stroke="#0C0B0A" stroke-width="4"/>
+          <text x="380" y="96" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="13" fill="#F5EBD7">TANQUE · CORTINA</text>
+          <g class="curtain" stroke="#3B2212" stroke-width="6"><line x1="300" y1="116" x2="300" y2="262"/><line x1="330" y1="116" x2="330" y2="262"/><line x1="360" y1="116" x2="360" y2="262"/><line x1="390" y1="116" x2="390" y2="262"/><line x1="420" y1="116" x2="420" y2="262"/><line x1="450" y1="116" x2="450" y2="262"/></g>
+          <g class="spin"><circle cx="330" cy="292" r="14" fill="#5B3418" stroke="#0C0B0A" stroke-width="3"/></g>
+          <g class="spin"><circle cx="420" cy="292" r="14" fill="#5B3418" stroke="#0C0B0A" stroke-width="3"/></g>
+          <text x="380" y="330" text-anchor="middle" class="lbl">Rodillos inferiores (base)</text>
+          <path d="M530 210 l30 -10 M530 228 l30 0 M530 246 l30 10" stroke="#0C0B0A" stroke-width="4" class="blow"/>
+          <text x="600" y="190" class="lbl">Soplador</text>
+          <rect x="230" y="268" width="480" height="8" fill="#0C0B0A"/>
+          <g class="mv" style="--t:5s;--d:420px"><rect x="240" y="244" width="60" height="24" fill="#B98A5A" stroke="#0C0B0A" stroke-width="3"/><rect x="240" y="244" width="60" height="24" fill="#3B2212" opacity=".0"/></g>
+          <g class="mv" style="--t:5s;--d:420px;animation-delay:-2.5s"><rect x="240" y="244" width="60" height="24" fill="#B98A5A" stroke="#0C0B0A" stroke-width="3"/></g>
+          <rect x="560" y="244" width="60" height="24" fill="#3B2212" stroke="#0C0B0A" stroke-width="3"/>
+          <rect x="640" y="244" width="60" height="24" fill="#3B2212" stroke="#0C0B0A" stroke-width="3"/>
+        </g>
+      </svg>
+      <div class="speeds" data-step="2">
+        <div class="c1"><span class="k">Chocolate · bañada</span><b>20 g</b><span>× 6 = 0.12 kg por caja</span></div>
+        <div class="c2"><span class="k">Cookies</span><b>15 g</b><span>× 6 = 0.09 kg por caja</span></div>
+        <div class="c3"><span class="k">Frutos rojos · base</span><b>10 g</b><span>× 6 = 0.06 kg por caja</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÁREA · RECURSOS ================= -->
+<section class="s b-cream" id="p6" data-steps="3" data-sec="2">
+  <div class="talk">
+    <div class="meta"><span>02 · Área de trabajo</span><span>Una corrida</span></div>
+    <h2 class="h2">Tres cosas <span class="o">se acaban</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>FIBO no se produce todos los días: se hace por <b>corridas</b> de un turno.</p><p>En cada corrida hay tres recursos que no alcanzan para todo.</p></div>
+      <div class="say" data-say="1"><p>¿Es realista? FIBO reporta $34 millones vendidos desde 2019. A unos $32 por barra, son cerca de <b>140 mil barras al año</b>: unas 2,700 por semana.</p><p>Una corrida semanal de un turno cubre esa demanda.</p></div>
+      <div class="say" data-say="2"><p>La proteína, la cobertura y el tiempo son los <b>límites</b> del problema. Lo que decidimos es cuántas cajas de cada sabor.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="layers">
+      <div class="res3" data-range="0-0">
+        <div class="rc r1c" style="--r:-1.5deg"><span class="k">R1 · Proteína</span><span class="n">90 kg</span><span>Mezcla de soya + suero. Llega en sacos de 20 kg y se liberan 4 y medio por corrida.</span><em>Se usa en la mezcladora</em></div>
+        <div class="rc r2c" style="--r:1deg"><span class="k">R2 · Línea</span><span class="n">420 min</span><span>Un turno de 8 h (480 min) menos 60 min de arranque, limpieza al cambiar de sabor y comida.</span><em>Lo marca la formadora</em></div>
+        <div class="rc r3c" style="--r:-1deg"><span class="k">R3 · Cobertura</span><span class="n">60 kg</span><span>Lo que el tanque de fusión derrite y mantiene líquido durante el turno.</span><em>Se usa en la enrobadora</em></div>
+      </div>
+      <div class="real" data-range="1-2">
+        <div class="row"><span>Ventas reportadas por FIBO desde 2019</span><b>$34 M</b></div>
+        <div class="row"><span>÷ ~7 años ÷ ~$32 por barra (precio a tienda)</span><b>≈ 140,000 barras al año</b></div>
+        <div class="row"><span>÷ 52 semanas</span><b>≈ 2,700 por semana</b></div>
+        <div class="row k2"><span>Una corrida de un turno produce</span><b>3,600 – 3,900 barras</b></div>
+        <p class="src">Estimación nuestra con datos públicos de FIBO. Las cantidades por barra son aproximadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEMA ================= -->
+<section class="s b-lime" id="p7" data-steps="3" data-sec="3">
+  <div class="talk">
+    <div class="meta"><span>03 · Problema identificado</span><span>Hoy</span></div>
+    <h2 class="h2">Hoy se reparte <span class="o">al tanteo</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Hoy en cada corrida se hace lo mismo de cada sabor: <b>200 cajas</b> de cada uno.</p></div>
+      <div class="say" data-say="1"><p>Con ese reparto <b>sobran recursos</b>: 5 kg de proteína, 20 min de línea y 6 kg de cobertura derretida que se tiene que recalentar o desechar.</p><p>Lo que sobra es ganancia que no se produce.</p></div>
+      <div class="say" data-say="2"><p>¿Cuántas cajas de cada sabor dejan <b>la mayor ganancia</b> sin pasarnos de ningún recurso?</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="layers">
+      <div style="display:grid;gap:10px" data-range="0-1">
+        <div class="mix">
+          <div class="c1"><img src="img/fibo-chocolate.webp" alt="Chocolate"><span class="n">200</span><span class="k">cajas</span></div>
+          <div class="c2"><img src="img/fibo-cookies.webp" alt="Cookies"><span class="n">200</span><span class="k">cajas</span></div>
+          <div class="c3"><img src="img/fibo-frutos.webp" alt="Frutos rojos"><span class="n">200</span><span class="k">cajas</span></div>
+        </div>
+        <div class="gauges" data-step="1">
+          <div class="gg"><div class="gl"><span>R1 · Proteína</span><span>85 de 90 kg · sobran 5</span></div><div class="gtr"><i style="width:94.4%;--c:var(--black)"></i><u style="width:5.6%"></u></div></div>
+          <div class="gg r2c"><div class="gl"><span>R2 · Línea</span><span>400 de 420 min · sobran 20</span></div><div class="gtr"><i style="width:95.2%"></i><u style="width:4.8%"></u></div></div>
+          <div class="gg r3c"><div class="gl"><span>R3 · Cobertura</span><span>54 de 60 kg · sobran 6</span></div><div class="gtr"><i style="width:90%"></i><u style="width:10%"></u></div></div>
+        </div>
+        <div class="zz" data-step="1"><span class="k">Ganancia hoy</span><b>$34,200 por corrida</b></div>
+      </div>
+      <div class="q" data-only="2">
+        <span class="br" style="color:var(--lime)">Pregunta del proyecto</span>
+        <p>¿Cuántas cajas de <em>Chocolate</em>, <em>Cookies</em> y <em>Frutos rojos</em> en cada corrida para ganar lo más posible?</p>
+        <span class="k">3 variables · 3 restricciones · método simplex</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPT 1/3 · MODELO ================= -->
+<section class="s b-white" id="p8" data-steps="3" data-sec="4">
+  <div class="talk">
+    <div class="meta"><span>04 · Propuesta de optimización</span><span>1 / 3</span></div>
+    <h2 class="h2">El <span class="o">modelo</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Juntamos los datos <b>por caja</b> (6 barras): cuánto usa y cuánto deja cada sabor.</p><p class="src">Ganancia: precio a tienda ~$32 menos costo ~$22 ≈ $10 por barra (Cookies $9.50 y Frutos rojos $9).</p></div>
+      <div class="say" data-say="1"><p><b>Variables:</b> x<sub>1</sub>, x<sub>2</sub> y x<sub>3</sub> son las cajas de cada sabor por corrida.</p><p>Queremos <b>maximizar</b> la ganancia Z.</p></div>
+      <div class="say" data-say="2"><p>Cada recurso es una restricción <b>≤</b>, y no hay cajas negativas.</p><p>Con <b>3 variables</b> ya no se puede dibujar en el plano: usamos el <b>método simplex</b>.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="layers">
+      <div class="tw" data-only="0">
+        <table class="dt2">
+          <thead><tr><th>Por caja (6 barras)</th><th>Chocolate</th><th>Cookies</th><th>Frutos rojos</th><th>Disponible</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sw r1c"></span>Proteína (kg)<small>25 g · 21 g · 25 g por barra</small></td><td>0.15</td><td>0.125</td><td>0.15</td><td>90</td></tr>
+            <tr><td><span class="sw r2c"></span>Línea (min)<small>12 · 8 · 8 barras por minuto</small></td><td>0.5</td><td>0.75</td><td>0.75</td><td>420</td></tr>
+            <tr><td><span class="sw r3c"></span>Cobertura (kg)<small>20 g · 15 g · 10 g por barra</small></td><td>0.12</td><td>0.09</td><td>0.06</td><td>60</td></tr>
+            <tr class="u"><td><b>Ganancia ($)</b></td><td>60</td><td>57</td><td>54</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="model" data-range="1-2">
+        <div class="vars"><div class="c1"><b>x<sub>1</sub></b><span>cajas de Chocolate</span></div><div class="c2"><b>x<sub>2</sub></b><span>cajas de Cookies</span></div><div class="c3"><b>x<sub>3</sub></b><span>cajas de Frutos rojos</span></div></div>
+        <div class="row fo"><b>Max Z = 60x1 + 57x2 + 54x3</b><span>Ganancia por corrida ($)</span></div>
+        <div class="row r1c" data-step="2"><b>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</b><span>R1 · proteína (kg)</span></div>
+        <div class="row r2c" data-step="2"><b>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</b><span>R2 · línea (min)</span></div>
+        <div class="row r3c" data-step="2"><b>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</b><span>R3 · cobertura (kg)</span></div>
+        <div class="row" data-step="2"><b>x1, x2, x3 ≥ 0</b><span>No negatividad</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPT 2/3 · SIMPLEX ================= -->
+<section class="s b-cream" id="p9" data-steps="7" data-sec="4">
+  <div class="talk">
+    <div class="meta"><span>04 · Propuesta de optimización</span><span>2 / 3</span></div>
+    <h2 class="h2">Método <span class="o">simplex</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>A cada restricción le sumamos una <b>holgura</b> (s<sub>1</sub>, s<sub>2</sub>, s<sub>3</sub>): lo que sobra de cada recurso.</p><p>Al inicio no se produce nada y sobra todo.</p></div>
+      <div class="say" data-say="1"><p><b>Iteración 1.</b> Entra el número más negativo del renglón Z: <b>x<sub>1</sub></b>.</p><p>Sale la razón más chica: <b>s<sub>3</sub></b>, la cobertura.</p></div>
+      <div class="say" data-say="2"><p>El pivote se vuelve 1 y el resto de la columna 0.</p><p>Z ya vale <b>$30,000</b>.</p></div>
+      <div class="say" data-say="3"><p><b>Iteración 2.</b> Entra <b>x<sub>3</sub></b> (−24). Sale <b>s<sub>1</sub></b>, la proteína.</p></div>
+      <div class="say" data-say="4"><p>Z sube a <b>$34,800</b>. Todavía queda un negativo.</p></div>
+      <div class="say" data-say="5"><p><b>Iteración 3.</b> Entra <b>x<sub>2</sub></b> (−8). Sale <b>s<sub>2</sub></b>, el tiempo de línea.</p></div>
+      <div class="say" data-say="6"><p>Ya no hay negativos en Z: es la <b>tabla óptima</b>.</p><p>Z = <b>$36,720</b> por corrida.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="sx">
+      <div class="sxh"><b id="sxLabel">Tabla inicial</b><div class="sxtabs" id="sxTabs"><i>T0</i><i>T1</i><i>T2</i><i>T3</i></div></div>
+      <div class="tw"><table class="tab" id="sxTable"></table></div>
+      <div class="sxnote" id="sxNote"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPT 3/3 · LECTURA ================= -->
+<section class="s b-white" id="p10" data-steps="3" data-sec="4">
+  <div class="talk">
+    <div class="meta"><span>04 · Propuesta de optimización</span><span>3 / 3</span></div>
+    <h2 class="h2">Leer la <span class="o">tabla final</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>La columna <b>b</b> da el valor de cada variable en la base. Entraron las tres: se hacen <b>los tres sabores</b>.</p></div>
+      <div class="say" data-say="1"><p>El renglón Z da la <b>ganancia máxima</b>: $36,720 por corrida.</p></div>
+      <div class="say" data-say="2"><p>Bajo las holguras quedan los <b>precios sombra</b>: cuánto ganaríamos con una unidad más de cada recurso.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="read">
+      <div class="v c1" data-step="0"><span class="k">x1 · Chocolate</span><span class="n">240</span><span>cajas</span></div>
+      <div class="v c2" data-step="0"><span class="k">x2 · Cookies</span><span class="n">240</span><span>cajas</span></div>
+      <div class="v c3" data-step="0"><span class="k">x3 · Frutos rojos</span><span class="n">160</span><span>cajas</span></div>
+      <div class="z" data-step="1"><span class="k">Z máxima por corrida</span><span class="n">$36,720</span></div>
+      <div class="shadow" data-step="2">
+        <div class="r1c"><span class="k">s1 · proteína</span><b>960/7 ≈ $137 por kg</b></div>
+        <div class="r2c"><span class="k">s2 · línea</span><b>192/7 ≈ $27 por min</b></div>
+        <div class="r3c"><span class="k">s3 · cobertura</span><b>1500/7 ≈ $214 por kg</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTADOS · COMPROBACIÓN ================= -->
+<section class="s b-cream" id="p11" data-steps="4" data-sec="5">
+  <div class="talk">
+    <div class="meta"><span>05 · Resultados</span><span>Comprobación</span></div>
+    <h2 class="h2">¿Cumple <span class="o">todo</span>?</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Sustituimos x<sub>1</sub> = 240, x<sub>2</sub> = 240 y x<sub>3</sub> = 160.</p><p><b>R1:</b> se usan exactamente los 90 kg de proteína ✓</p></div>
+      <div class="say" data-say="1"><p><b>R2:</b> la línea trabaja exactamente 420 minutos ✓</p></div>
+      <div class="say" data-say="2"><p><b>R3:</b> se usan exactamente los 60 kg de cobertura ✓</p><p>No sobra nada.</p></div>
+      <div class="say" data-say="3"><p>La ganancia da <b>$36,720</b>, igual que la tabla final.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="checks">
+      <div class="ck r1c" data-step="0"><span class="rn">R1</span><span class="f">0.15(240) + 0.125(240) + 0.15(160) = 36 + 30 + 24 = 90 ≤ 90</span><span class="ok">✓</span></div>
+      <div class="ck r2c" data-step="1"><span class="rn">R2</span><span class="f">0.5(240) + 0.75(240) + 0.75(160) = 120 + 180 + 120 = 420 ≤ 420</span><span class="ok">✓</span></div>
+      <div class="ck r3c" data-step="2"><span class="rn">R3</span><span class="f">0.12(240) + 0.09(240) + 0.06(160) = 28.8 + 21.6 + 9.6 = 60 ≤ 60</span><span class="ok">✓</span></div>
+      <div class="ck zc" data-step="3"><span class="rn">Z</span><span class="f">60(240) + 57(240) + 54(160) = 14,400 + 13,680 + 8,640</span><span class="ok">$36,720</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTADOS · ANTES Y DESPUÉS ================= -->
+<section class="s b-pink" id="p12" data-steps="3" data-sec="5">
+  <div class="talk">
+    <div class="meta"><span>05 · Resultados</span><span>Impacto</span></div>
+    <h2 class="h2">Antes y <span class="o">después</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Antes: 200 cajas de cada sabor. Ahora: <b>240, 240 y 160</b>.</p><p>Son 640 cajas por corrida: 3,840 barras.</p></div>
+      <div class="say" data-say="1"><p>La ganancia sube de $34,200 a <b>$36,720</b>: +$2,520 por corrida, 7.4% más.</p><p>Con una corrida por semana son <b>+$131,040 al año</b>.</p></div>
+      <div class="say" data-say="2"><p>Y ya no sobra nada: la proteína, la línea y la cobertura se usan al 100%.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="cmp">
+      <div class="cmpr"><span>Hoy · 600 cajas</span><div class="stack"><i class="c1" style="flex:200">200</i><i class="c2" style="flex:200">200</i><i class="c3" style="flex:200">200</i><i style="flex:40;background:transparent;border:0"></i></div></div>
+      <div class="cmpr"><span>Óptimo · 640</span><div class="stack"><i class="c1" style="flex:240">240</i><i class="c2" style="flex:240">240</i><i class="c3" style="flex:160">160</i></div></div>
+      <div class="kpis" data-step="1">
+        <div><span class="k">Hoy</span><span class="n">$34,200</span><span>por corrida</span></div>
+        <div class="g"><span class="k">Óptimo</span><span class="n">$36,720</span><span>+7.4%</span></div>
+        <div><span class="k">Al año</span><span class="n">+$131,040</span><span>52 corridas × $2,520</span></div>
+      </div>
+      <div class="kpis" data-step="2">
+        <div class="r1c" style="background:var(--lime)"><span class="k">Proteína</span><span>sobraban 5 kg → 0</span></div>
+        <div class="r2c" style="background:var(--pink)"><span class="k">Línea</span><span>sobraban 20 min → 0</span></div>
+        <div style="background:var(--pur);color:var(--cream)"><span class="k">Cobertura</span><span>sobraban 6 kg → 0</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEJORA ================= -->
+<section class="s b-white" id="p13" data-steps="3" data-sec="6">
+  <div class="talk">
+    <div class="meta"><span>06 · Propuesta de mejora</span><span>Precios sombra</span></div>
+    <h2 class="h2">¿Qué conviene <span class="o">ampliar</span>?</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Los precios sombra dicen cuánto ganaría la planta con <b>una unidad más</b> de cada recurso.</p></div>
+      <div class="say" data-say="1"><p>El que más vale es la <b>cobertura</b>: cada kg extra deja unos $214. Es el cuello de botella real de la línea.</p></div>
+      <div class="say" data-say="2"><p>Propuesta: fundir <b>6 kg más</b> por corrida (una tanda extra en el tanque de fusión).</p><p>Resolviendo otra vez con 66 kg, la ganancia sube a <b>$38,006</b>.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="bars">
+      <div class="bar r3c"><span>Cobertura · 1 kg</span><div class="tr"><i style="width:100%"></i></div><em>$214</em></div>
+      <div class="bar"><span>Proteína · 1 kg</span><div class="tr"><i style="width:64%;--c:var(--black)"></i></div><em>$137</em></div>
+      <div class="bar r2c"><span>Línea · 1 min</span><div class="tr"><i style="width:12.8%"></i></div><em>$27</em></div>
+      <div class="prop" data-step="2">
+        <h3>+6 kg de cobertura por corrida.</h3>
+        <div class="g3">
+          <div><b>$38,006</b><span>nueva Z (66 kg)</span></div>
+          <div><b>+$1,286</b><span>por corrida</span></div>
+          <div><b>+$66,857</b><span>al año (52 corridas)</span></div>
+        </div>
+        <p>Nueva mezcla: 282.9, 325.7 y 45.7 cajas. En cajas enteras (282, 325 y 45) da $37,875 y cumple las tres restricciones. Conviene si la tanda extra cuesta menos de ~$1,150 por corrida en mano de obra y energía.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONCLUSIONES ================= -->
+<section class="s b-lime" id="p14" data-steps="3" data-sec="7">
+  <div class="talk">
+    <div class="meta"><span>07 · Conclusiones</span><span>Cierre</span></div>
+    <h2 class="h2">Tres ideas para <span class="o">llevarse</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Repartir parejo no es lo que más deja. El simplex encontró la mezcla que usa todo.</p></div>
+      <div class="say" data-say="1"><p>Con la misma planta y los mismos insumos, FIBO gana <b>$2,520 más por corrida</b>.</p></div>
+      <div class="say" data-say="2"><p>La cobertura es el cuello de botella. El modelo se reutiliza en cada corrida: solo cambian los kg y los minutos disponibles.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="ideas">
+      <div class="c1" style="--r:-1.5deg" data-step="0"><i>01</i><p><b>240 · 240 · 160</b><span>Cajas de Chocolate, Cookies y Frutos rojos por corrida.</span></p></div>
+      <div style="--c:var(--black);--t:var(--cream);--r:1deg" data-step="1"><i>02</i><p><b>+$131,040 al año</b><span>Sin máquinas nuevas: solo decidiendo mejor el reparto.</span></p></div>
+      <div class="r3c" style="--r:-1deg" data-step="2"><i>03</i><p><b>La cobertura manda</b><span>Ampliarla es la mejora con más impacto: ~$214 por kg.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FUENTES ================= -->
+<section class="s b-cream" id="p15" data-steps="1" data-sec="8">
+  <div class="talk">
+    <div class="meta"><span>Respaldo</span><span>Fuentes</span></div>
+    <h2 class="h2">De dónde salen los <span class="o">datos</span>.</h2>
+    <div class="says"><div class="say" data-say="0"><p>Los datos de la marca vienen de FIBO. Los del proceso vienen de fabricantes de equipo y de fichas de barras comerciales.</p><p>Los consumos por barra y la ganancia son <b>estimaciones nuestras</b> dentro de esos rangos.</p></div></div>
+  </div>
+  <div class="stage">
+    <ul class="src-list">
+      <li><b>FIBO</b><span>Presentación comercial FIBO / El Molino: desde 1995, planta en Zapopan, FSSC 22000, $34 M vendidos desde 2019, puntos de venta, display de 6 y caja de 24.</span></li>
+      <li><b>Proceso</b><span>Bühler, cadena de proceso de barras de proteína: <a href="https://www.buhlergroup.com/global/es/process-chains/from_grain-to-protein-bars-.html" target="_blank" rel="noopener">buhlergroup.com</a></span></li>
+      <li><b>Línea</b><span>Componentes de una línea (mezclado, formado, enfriado, corte, cobertura, empaque): <a href="https://www.papabakeryequipment.com/news/protein-bar-production-line-key-components-85352341.html" target="_blank" rel="noopener">papabakeryequipment.com</a></span></li>
+      <li><b>Formadora</b><span>Extrusora de barras con tira continua y guillotina: <a href="https://taurasfenix.com/en/equipment/confectionery-equipment/extrusion-machine/" target="_blank" rel="noopener">taurasfenix.com</a> · Selmi, 100–120 kg/h: <a href="https://tomric.com/equipment/selmi-xlam/" target="_blank" rel="noopener">tomric.com</a></span></li>
+      <li><b>Frío</b><span>El enfriado como cuello de botella; túnel de 7 a 10 min: <a href="https://bakingbusiness.com/articles/58291-netties-kitchen-sees-room-to-grow-with-automation" target="_blank" rel="noopener">bakingbusiness.com</a> · Patente con túnel a 8–12 °C y enrobadora: <a href="https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6248375" target="_blank" rel="noopener">uspto.gov</a></span></li>
+      <li><b>Empaque</b><span>Flow-pack para barras de proteína, hasta 150 por minuto: <a href="https://www.foodengineeringmag.com/articles/96400-packaging-case-study-bosch-creates-wrapper-for-protein-bars" target="_blank" rel="noopener">foodengineeringmag.com</a> · Equipos de entrada, 30–60 por minuto: <a href="https://smartbuy.alibaba.com/buyingguides/protein-bar-packaging-machine" target="_blank" rel="noopener">alibaba.com</a></span></li>
+      <li><b>Cobertura</b><span>Barras comerciales con 16–30% de cobertura: <a href="https://www.bike-components.de/en/PowerBar/Protein-Plus-33-Bar-5-Bar-p48840/" target="_blank" rel="noopener">PowerBar</a> · <a href="https://www.decathlon.ch/en/p/mp/protein-joy-bar-qnt-38percent-crispy-protein-chocolate-diet-bar/cbdb38ef-7919-4ea3-b8a2-6fd9f6c9f2e5/g116g522" target="_blank" rel="noopener">QNT</a></span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<nav class="nav" aria-label="Controles">
+  <button id="prev" type="button" aria-label="Anterior">←</button>
+  <button id="next" type="button" aria-label="Siguiente">→</button>
+  <span class="ct" id="ct">01 / 16</span>
+  <div class="pg"><i id="pgb"></i></div>
+  <button id="idx" type="button">Índice</button>
+  <button id="fs" type="button">Pantalla</button>
+</nav>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- cuadros de píxel ---------- */
+  function pix(el,colors){
+    if(!el) return;
+    const w=el.clientWidth||innerWidth, cell=Math.max(60,Math.round(w/14));
+    const cols=Math.round(w/cell), rows=Math.ceil((el.clientHeight||innerHeight)/cell)+1;
+    el.style.setProperty('--cols',cols); el.style.setProperty('--cell',cell+'px');
+    el.innerHTML=Array.from({length:cols*rows},()=>'<i></i>').join('');
+    const cells=[...el.children];
+    function tick(){ const n=4; for(let k=0;k<n;k++){ const c=cells[Math.floor(Math.random()*cells.length)]; c.className=''; if(Math.random()<.18){ c.classList.add('on', colors[Math.floor(Math.random()*colors.length)]); setTimeout(()=>c.className='',1600+Math.random()*1800);} } }
+    if(!reduce) setInterval(tick,260);
+  }
+  pix($('#pixI'),['r','bl','']); pix($('#pixP'),['','','r','bl']);
+
+  /* ---------- simplex ---------- */
+  const H=['C<sub>B</sub>','BV','b','x<sub>1</sub>','x<sub>2</sub>','x<sub>3</sub>','s<sub>1</sub>','s<sub>2</sub>','s<sub>3</sub>'];
+  const CJ=['','C<sub>j</sub>','','60','57','54','0','0','0'];
+  const T0=[['0','s1','90','0.15','0.125','0.15','1','0','0'],['0','s2','420','0.5','0.75','0.75','0','1','0'],['0','s3','60','0.12','0.09','0.06','0','0','1'],['','Z','0','−60','−57','−54','0','0','0']];
+  const T1=[['0','s1','15','0','0.0125','0.075','1','0','−1.25'],['0','s2','170','0','0.375','0.5','0','1','−25/6'],['60','x1','500','1','0.75','0.5','0','0','25/3'],['','Z','30,000','0','−12','−24','0','0','500']];
+  const T2=[['54','x3','200','0','1/6','1','40/3','0','−50/3'],['0','s2','70','0','7/24','0','−20/3','1','25/6'],['60','x1','400','1','2/3','0','−20/3','0','50/3'],['','Z','34,800','0','−8','0','320','0','100']];
+  const T3=[['54','x3','160','0','0','1','120/7','−4/7','−400/21'],['57','x2','240','0','1','0','−160/7','24/7','100/7'],['60','x1','240','1','0','0','60/7','−16/7','50/7'],['','Z','36,720','0','0','0','960/7','192/7','1500/7']];
+  const SX=[
+    {t:T0,tab:0,label:'Tabla inicial',neg:[3,4,5],note:'Base inicial: <b>s1 = 90</b>, <b>s2 = 420</b>, <b>s3 = 60</b>. No se produce nada: Z = 0. Los negativos en Z dicen que todavía se puede ganar más.'},
+    {t:T0,tab:0,label:'Iteración 1 · pivote',pc:3,pr:2,ratio:['90 ÷ 0.15 = 600','420 ÷ 0.5 = 840','60 ÷ 0.12 = 500',''],best:2,note:'Columna pivote <b>x1</b> (−60, el más negativo). Razón menor: <b>500</b> → sale <b>s3</b>. Pivote = <b>0.12</b>.'},
+    {t:T1,tab:1,label:'Tabla 1',neg:[4,5],note:'Fila pivote ÷ 0.12 y se hace 0 el resto de la columna x1. Ahora <b>x1 = 500</b> y <b>Z = 30,000</b>.'},
+    {t:T1,tab:1,label:'Iteración 2 · pivote',pc:5,pr:0,ratio:['15 ÷ 0.075 = 200','170 ÷ 0.5 = 340','500 ÷ 0.5 = 1,000',''],best:0,note:'Entra <b>x3</b> (−24). Razón menor: <b>200</b> → sale <b>s1</b>. Pivote = <b>0.075</b>.'},
+    {t:T2,tab:2,label:'Tabla 2',neg:[4],note:'<b>x3 = 200</b>, <b>x1 = 400</b>, <b>Z = 34,800</b>. Queda un negativo en x2.'},
+    {t:T2,tab:2,label:'Iteración 3 · pivote',pc:4,pr:1,ratio:['200 ÷ 1/6 = 1,200','70 ÷ 7/24 = 240','400 ÷ 2/3 = 600',''],best:1,note:'Entra <b>x2</b> (−8). Razón menor: <b>240</b> → sale <b>s2</b>. Pivote = <b>7/24</b>.'},
+    {t:T3,tab:3,label:'Tabla 3 · óptima',fin:true,note:'Sin negativos en Z → <b>óptimo</b>. <b>x1 = 240</b>, <b>x2 = 240</b>, <b>x3 = 160</b>, <b>Z = $36,720</b>.'}
+  ];
+  function renderSX(i){
+    const st=SX[i];
+    let h='<thead><tr class="cj">'+CJ.map(c=>`<th>${c}</th>`).join('')+'<th></th></tr><tr>'+H.map((c,k)=>`<th class="${st.pc===k?'pc':''}">${c}</th>`).join('')+`<th>${st.ratio?'Razón b ÷ col':''}</th></tr></thead><tbody>`;
+    st.t.forEach((row,r)=>{
+      const z=r===3;
+      h+=`<tr class="${z?'z':''} ${st.pr===r?'pr':''}">`;
+      row.forEach((v,c)=>{
+        const cls=[]; if(c===0) cls.push('cb'); if(c===1) cls.push('bv');
+        if(st.pc===c) cls.push('pc'); if(st.pc===c&&st.pr===r) cls.push('piv');
+        if(z&&v.startsWith('−')&&(st.neg||[st.pc]).includes(c)) cls.push('neg');
+        if(z&&st.fin&&c===2) cls.push('fin');
+        h+=`<td class="${cls.join(' ')}">${c===1?v.replace(/^([sx])(\d)$/,'$1<sub>$2</sub>'):v}</td>`;
+      });
+      h+=`<td class="rz ${st.best===r?'best':''}">${st.ratio?st.ratio[r]:''}</td></tr>`;
+    });
+    $('#sxTable').innerHTML=h+'</tbody>'; $('#sxNote').innerHTML=st.note; $('#sxLabel').textContent=st.label;
+    $$('#sxTabs i').forEach((e,k)=>e.classList.toggle('on',k===st.tab));
+  }
+
+  /* ---------- motor ---------- */
+  const deck=$('#deck'), S=$$('.s'), N=S.length; let cur=0, step=0;
+  const steps=i=>+S[i].dataset.steps||1;
+  const SEC={"0":"Portada","1":"01 · Empresa","2":"02 · Área de trabajo","3":"03 · Problema identificado","4":"04 · Propuesta de optimización","5":"05 · Resultados","6":"06 · Propuesta de mejora","7":"07 · Conclusiones","8":"Respaldo"};
+  function paint(sl,st){
+    $$('[data-step]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.step<=st));
+    $$('[data-only]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.only===st));
+    $$('[data-range]',sl).forEach(e=>{const [a,b]=e.dataset.range.split('-').map(Number); e.classList.toggle('on',st>=a&&st<=b);});
+    $$('.say',sl).forEach(e=>e.classList.toggle('on',+e.dataset.say===st));
+    $$('[data-hl]',sl).forEach(e=>e.classList.toggle(e.classList.contains('col')?'on':'hl',+e.dataset.hl===st));
+    if(sl.id==='p4'){ const f=$('#fm'); f.classList.toggle('dim',st>=1&&st<=4); $$('.part',f).forEach(p=>p.classList.toggle('hl',+p.dataset.hl===st)); }
+    if(sl.id==='p9') renderSX(st);
+  }
+  const sq=$('#sq');
+  sq.innerHTML=S.map((s,i)=>`<button type="button" class="${i>0&&s.dataset.sec!==S[i-1].dataset.sec?'gap':''}" aria-label="Escena ${i+1}"></button>`).join('');
+  sq.addEventListener('click',e=>{const b=e.target.closest('button'); if(b) go([...sq.children].indexOf(b));});
+  function render(){
+    S.forEach((s,k)=>s.classList.toggle('is-active',k===cur));
+    const sl=S[cur]; paint(sl,step);
+    $('#ct').textContent=`${String(cur+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}`;
+    $('#sec').textContent=SEC[sl.dataset.sec]||'';
+    [...sq.children].forEach((b,i)=>b.classList.toggle('on',i===cur));
+    const tot=S.reduce((a,_,i)=>a+steps(i),0), done=S.slice(0,cur).reduce((a,_,i)=>a+steps(i),0)+step+1;
+    $('#pgb').style.width=(done/tot*100)+'%';
+    document.body.dataset.tone=sl.dataset.tone||'light';
+    try{history.replaceState(null,'','#escena-'+(cur+1));}catch(e){}
+  }
+  function activate(k){ if(k===cur) return; const down=k>cur; if(!down) paint(S[cur],0); cur=k; step=down?0:steps(k)-1; render(); }
+  function toSlide(k,smooth=true){ k=Math.max(0,Math.min(N-1,k)); deck.scrollTo({top:S[k].offsetTop,behavior:smooth&&!reduce?'smooth':'auto'}); }
+  function go(i){ if(i===cur){step=0;render();} else toSlide(i); }
+  function next(){ if(step<steps(cur)-1){step++;render();} else if(cur<N-1) toSlide(cur+1); }
+  function back(){ if(step>0){step--;render();} else if(cur>0) toSlide(cur-1); }
+  let tk=false;
+  deck.addEventListener('scroll',()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{ tk=false; const mid=deck.clientHeight/2; let f=cur; S.forEach((s,k)=>{const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid) f=k;}); if(f!==cur) activate(f); }); },{passive:true});
+  let wl=false, wa=0, wt=0;
+  deck.addEventListener('wheel',e=>{ if(innerWidth<=900) return; if(e.target.closest('.src-list')) return; e.preventDefault(); clearTimeout(wt); wt=setTimeout(()=>{wa=0;},220); if(wl) return; wa+=e.deltaY; if(Math.abs(wa)>24){ const d=wa>0; wa=0; wl=true; setTimeout(()=>{wl=false;},650); d?next():back(); } },{passive:false});
+  deck.addEventListener('click',e=>{ if(e.target.closest('button,a,input,.src-list')) return; next(); });
+  $('#next').addEventListener('click',next); $('#prev').addEventListener('click',back);
+  $('#fs').addEventListener('click',()=>{ try{ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){} });
+  const menu=$('#menu');
+  const MC=['var(--black)','var(--lime)','var(--red)','var(--pink)','var(--blue)','var(--cream)','var(--yel)','var(--pur)','var(--black)'];
+  const MT=['var(--cream)','var(--black)','var(--cream)','var(--black)','var(--cream)','var(--black)','var(--black)','var(--cream)','var(--cream)'];
+  function openMenu(){ $('#menuL').innerHTML=S.map((s,i)=>{ const t=s.querySelector('h1,h2'); const sc=+s.dataset.sec; return `<li><button type="button" data-i="${i}" style="--c:${MC[sc]};--t:${MT[sc]}"><span>${String(i+1).padStart(2,'0')}</span><b>${t?t.textContent:'FIBO'}</b><small>${SEC[s.dataset.sec]}</small></button></li>`;}).join(''); menu.hidden=false; $('#menuX').focus(); }
+  function closeMenu(){ menu.hidden=true; $('#idx').focus(); }
+  $('#idx').addEventListener('click',openMenu); $('#menuX').addEventListener('click',closeMenu);
+  menu.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(b){ closeMenu(); go(+b.dataset.i); } });
+  document.addEventListener('keydown',e=>{
+    if(!menu.hidden){ if(e.key==='Escape') closeMenu(); return; }
+    const k=e.key;
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(k)){ e.preventDefault(); next(); }
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){ e.preventDefault(); back(); }
+    else if(k==='m'||k==='M') openMenu();
+    else if(k==='f'||k==='F') $('#fs').click();
+    else if(k==='Home') toSlide(0); else if(k==='End') toSlide(N-1);
+  });
+  S.forEach(s=>paint(s,0));
+  const m=/^#escena-(\d+)$/.exec(location.hash); if(m) cur=Math.max(0,Math.min(N-1,+m[1]-1));
+  render(); if(cur>0) requestAnimationFrame(()=>toSlide(cur,false));
+})();
+</script>
