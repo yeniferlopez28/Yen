@@ -761,6 +761,33 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
 .vars .mini{display:block;width:100%;max-width:120px}
 .vars .mini svg{width:100%;height:auto;display:block}
 @media (max-width:900px){.vbig{grid-template-columns:1fr}.vc{grid-template-columns:110px 1fr;align-items:center}.vc .vh,.vc p{grid-column:1/-1}.vbox{display:none}}
+
+/* ---------- nombres de restricciones en tablas ---------- */
+.tab td.rl{text-align:left;padding-left:12px;white-space:nowrap}
+.tab td.rl small,.ck .rn small{display:block;font:600 9px/1.1 var(--wide);text-transform:uppercase;letter-spacing:.06em;opacity:.65;margin-top:3px}
+.ck .rn{display:grid;min-width:92px}
+/* ---------- restricciones con dibujos ---------- */
+.rbig{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-content:center}
+.rcard{background:var(--c);color:var(--t,#121212);border-radius:24px;padding:16px;display:grid;gap:10px;align-content:start;opacity:0;transform:translateY(30px)}
+.rbig.on .rcard{animation:upin .7s var(--ease) var(--d) forwards}
+.rcard .vh b{font:700 clamp(30px,3.2vw,52px)/1 var(--wide)}
+.rart svg{width:100%;height:auto;display:block}
+.rcard code{font:700 11px/1.3 var(--mono);background:rgba(18,18,18,.12);border-radius:12px;padding:8px 10px}
+.r3c .rcard code,.rcard.r3c code{background:rgba(255,255,255,.14)}
+.rcard p{font-size:13px;line-height:1.4}
+.rcard p strong{font-weight:700}
+.fall{animation:fall2 1.4s linear infinite;transform-box:fill-box}
+@keyframes fall2{0%{transform:translateY(-18px);opacity:0}20%{opacity:1}100%{transform:translateY(34px);opacity:0}}
+.fillup{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.15)}
+.rbig.on .fillup{animation:fillup 2.4s var(--ease) .6s forwards}
+@keyframes fillup{to{transform:scaleY(1)}}
+.hand{transform-box:view-box;transform-origin:110px 66px;animation:spin 4s linear infinite}
+.belt3{stroke-dasharray:10 8;animation:dashm 1s linear infinite}
+.wave{animation:wave 2.2s ease-in-out infinite}
+@keyframes wave{50%{transform:translateX(-14px)}}
+.drip{animation:drip 1.6s ease-in infinite;transform-box:fill-box}
+@keyframes drip{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(26px);opacity:0}}
+@media (max-width:900px){.rbig{grid-template-columns:1fr}}
 </style>
 
 <header class="hud" aria-label="Navegación">
@@ -1245,14 +1272,15 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
 </section>
 
 <!-- ================= OPT 1/3 · MODELO ================= -->
-<section class="s b-white" id="p8" data-steps="3" data-sec="4">
+<section class="s b-white" id="p8" data-steps="4" data-sec="4">
   <div class="talk">
     <div class="meta"><span>04 · Propuesta de optimización</span><span>1 / 3</span></div>
     <h2 class="h2">El <span class="o">modelo</span>.</h2>
     <div class="says">
       <div class="say" data-say="0"><p>Juntamos los datos <b>por caja de 6 barras</b>: cuánta proteína, cuánto tiempo y cuánta cobertura usa cada sabor, y cuánto dinero deja.</p><p class="src">Ganancia: precio a tienda ~$32 menos costo ~$22 ≈ $10 por barra. Cookies deja $9.50 y Frutos rojos $9.</p></div>
       <div class="say" data-say="1"><p><b>x<sub>1</sub></b> = cajas de Chocolate que se producen en una corrida. <b>x<sub>2</sub></b> = cajas de Cookies &amp; Cream. <b>x<sub>3</sub></b> = cajas de Frutos rojos.</p><p><b>Z</b> es la ganancia en pesos: cada caja de Chocolate deja $60, de Cookies $57 y de Frutos rojos $54. Queremos <b>maximizar</b> Z.</p></div>
-      <div class="say" data-say="2"><p><b>R1:</b> la proteína que usan las 3 recetas no puede pasar de 90 kg. <b>R2:</b> el tiempo de línea no puede pasar de 420 min. <b>R3:</b> la cobertura no puede pasar de 60 kg.</p><p>Con <b>3 variables</b> ya no se puede dibujar en el plano: usamos el <b>método simplex</b>.</p></div>
+      <div class="say" data-say="2"><p>Las <b>restricciones</b> son los límites de cada corrida.</p><p><b>R1 · Proteína:</b> no usar más de 90 kg. <b>R2 · Línea:</b> no pasar de 420 min. <b>R3 · Cobertura:</b> no usar más de 60 kg.</p></div>
+      <div class="say" data-say="3"><p>Este es el <b>modelo completo</b>: arriba la ganancia que queremos maximizar y abajo las tres restricciones, con su nombre.</p><p>Con <b>3 variables</b> ya no se puede dibujar en el plano: usamos el <b>método simplex</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -1274,12 +1302,17 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
         <div class="vc c3" style="--d:.4s"><div class="vh"><b>x<sub>3</sub></b><span>Frutos rojos</span></div><div class="vart" data-bar="fruit"></div><div class="vbox" data-box="fruit"></div><p>Número de <strong>cajas de Frutos rojos</strong> que se producen en una corrida.</p></div>
         <div class="vnote">1 caja = 6 barras · ejemplo: x<sub>1</sub> = 100 → 100 cajas = 600 barras de Chocolate</div>
       </div>
-      <div class="model" data-only="2">
+      <div class="rbig" data-only="2">
+        <div class="rcard r1c" style="--d:0s"><div class="vh"><b>R1</b><span>Proteína</span></div><div class="rart" data-res="prot"></div><code>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</code><p>Los kg de proteína (soya + suero) que usan las 3 recetas no pueden pasar de <strong>90 kg</strong>.</p></div>
+        <div class="rcard r2c" style="--d:.2s"><div class="vh"><b>R2</b><span>Línea</span></div><div class="rart" data-res="line"></div><code>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</code><p>Los minutos que la formadora trabaja no pueden pasar de <strong>420 min</strong>.</p></div>
+        <div class="rcard r3c" style="--d:.4s"><div class="vh"><b>R3</b><span>Cobertura</span></div><div class="rart" data-res="cob"></div><code>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</code><p>Los kg de cobertura sabor chocolate no pueden pasar de <strong>60 kg</strong>.</p></div>
+      </div>
+      <div class="model" data-only="3">
         <div class="vars"><div class="c1"><i class="mini" data-bar="choc"></i><b>x<sub>1</sub></b><span>cajas de Chocolate</span></div><div class="c2"><i class="mini" data-bar="cook"></i><b>x<sub>2</sub></b><span>cajas de Cookies</span></div><div class="c3"><i class="mini" data-bar="fruit"></i><b>x<sub>3</sub></b><span>cajas de Frutos rojos</span></div></div>
         <div class="row fo"><b>Max Z = 60x1 + 57x2 + 54x3</b><span>Ganancia de la corrida, en pesos</span></div>
-        <div class="row r1c" data-step="2"><b>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</b><span>R1 · no usar más de 90 kg de proteína</span></div>
-        <div class="row r2c" data-step="2"><b>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</b><span>R2 · no pasar de 420 min de línea</span></div>
-        <div class="row r3c" data-step="2"><b>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</b><span>R3 · no usar más de 60 kg de cobertura</span></div>
+        <div class="row r1c" data-step="2"><b>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</b><span><strong>R1 · Proteína:</strong> no usar más de 90 kg</span></div>
+        <div class="row r2c" data-step="2"><b>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</b><span><strong>R2 · Línea:</strong> no pasar de 420 min</span></div>
+        <div class="row r3c" data-step="2"><b>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</b><span><strong>R3 · Cobertura:</strong> no usar más de 60 kg</span></div>
         <div class="row" data-step="2"><b>x1, x2, x3 ≥ 0</b><span>No se pueden producir cajas negativas</span></div>
       </div>
     </div>
@@ -1322,9 +1355,9 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
         <div class="tw"><table class="tab">
           <thead><tr><th></th><th class="id1">x<sub>1</sub></th><th class="id2">x<sub>2</sub></th><th class="id3">x<sub>3</sub></th><th>RHS</th></tr></thead>
           <tbody>
-            <tr><td class="rl">R1</td><td>0</td><td>0</td><td class="id3">1</td><td>160</td></tr>
-            <tr><td class="rl">R2</td><td>0</td><td class="id2">1</td><td>0</td><td>240</td></tr>
-            <tr><td class="rl">R3</td><td class="id1">1</td><td>0</td><td>0</td><td>240</td></tr>
+            <tr><td class="rl">R1<small>Proteína</small></td><td>0</td><td>0</td><td class="id3">1</td><td>160</td></tr>
+            <tr><td class="rl">R2<small>Línea</small></td><td>0</td><td class="id2">1</td><td>0</td><td>240</td></tr>
+            <tr><td class="rl">R3<small>Cobertura</small></td><td class="id1">1</td><td>0</td><td>0</td><td>240</td></tr>
             <tr class="z"><td class="rl">Z</td><td>0</td><td>0</td><td>0</td><td class="fin">36,720</td></tr>
           </tbody></table></div>
         <div class="solv"><div style="--c:var(--yel)"><i></i>x1 = 240</div><div style="--c:#9DB0FF"><i></i>x2 = 240</div><div style="--c:#FF8A8E"><i></i>x3 = 160</div><div style="--c:var(--lime)"><i></i>Zmax = 36,720</div></div>
@@ -1362,9 +1395,9 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
   </div>
   <div class="stage">
     <div class="checks">
-      <div class="ck r1c" data-step="0"><span class="rn">R1</span><span class="f">0.15(240) + 0.125(240) + 0.15(160) = 36 + 30 + 24 = 90 ≤ 90</span><span class="ok">✓</span></div>
-      <div class="ck r2c" data-step="1"><span class="rn">R2</span><span class="f">0.5(240) + 0.75(240) + 0.75(160) = 120 + 180 + 120 = 420 ≤ 420</span><span class="ok">✓</span></div>
-      <div class="ck r3c" data-step="2"><span class="rn">R3</span><span class="f">0.12(240) + 0.09(240) + 0.06(160) = 28.8 + 21.6 + 9.6 = 60 ≤ 60</span><span class="ok">✓</span></div>
+      <div class="ck r1c" data-step="0"><span class="rn">R1<small>Proteína</small></span><span class="f">0.15(240) + 0.125(240) + 0.15(160) = 36 + 30 + 24 = 90 ≤ 90</span><span class="ok">✓</span></div>
+      <div class="ck r2c" data-step="1"><span class="rn">R2<small>Línea</small></span><span class="f">0.5(240) + 0.75(240) + 0.75(160) = 120 + 180 + 120 = 420 ≤ 420</span><span class="ok">✓</span></div>
+      <div class="ck r3c" data-step="2"><span class="rn">R3<small>Cobertura</small></span><span class="f">0.12(240) + 0.09(240) + 0.06(160) = 28.8 + 21.6 + 9.6 = 60 ≤ 60</span><span class="ok">✓</span></div>
       <div class="ck zc" data-step="3"><span class="rn">Z</span><span class="f">60(240) + 57(240) + 54(160) = 14,400 + 13,680 + 8,640</span><span class="ok">$36,720</span></div>
     </div>
   </div>
@@ -1518,7 +1551,7 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
     return neg+n+'/'+f.d;
   }
   const par=f=>`(${fmt(f)})`;
-  const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'];
+  const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'], RNAME=['Proteína','Línea','Cobertura',''];
   let M=[['0.15','0.125','0.15','90'],['0.5','0.75','0.75','420'],['0.12','0.09','0.06','60'],['-60','-57','-54','0']].map(r=>r.map(D));
   const disp=A=>A.map(r=>r.map(fmt));
   const SX=[];
@@ -1536,8 +1569,8 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
     SX.push({t:disp(M),it,pc,rat,title:'3. Dividir RHS / columna pivote',note:'Se divide el RHS de cada renglón entre su número en la columna pivote.',
       say:`<p><b>3. Dividir RHS / columna pivote.</b></p><p>Dividimos el RHS de cada renglón entre su número en la columna de ${X[pc]}.</p>`});
     let pr=-1; for(let r=0;r<3;r++) if(rv[r] && (pr<0||val(rv[r])<val(rv[pr]))) pr=r;
-    SX.push({t:disp(M),it,pc,pr,rat,best:pr,title:'4. Seleccionar fila menor',note:`El resultado más pequeño es ${fmt(rv[pr])} → fila pivote ${RN[pr]}. Pivote = ${fmt(M[pr][pc])} (cruce de fila y columna).`,
-      say:`<p><b>4. Seleccionar fila menor.</b> El resultado más pequeño es <b>${fmt(rv[pr])}</b>, en ${RN[pr]}.</p><p>El número del cruce, <b>${fmt(M[pr][pc])}</b>, es el pivote.</p>`});
+    SX.push({t:disp(M),it,pc,pr,rat,best:pr,title:'4. Seleccionar fila menor',note:`El resultado más pequeño es ${fmt(rv[pr])} → fila pivote ${RN[pr]} (${RNAME[pr]}). Pivote = ${fmt(M[pr][pc])} (cruce de fila y columna).`,
+      say:`<p><b>4. Seleccionar fila menor.</b> El resultado más pequeño es <b>${fmt(rv[pr])}</b>, en ${RN[pr]} (${RNAME[pr]}).</p><p>El número del cruce, <b>${fmt(M[pr][pc])}</b>, es el pivote.</p>`});
     const piv=M[pr][pc], P=M[pr].map(v=>div(v,piv));
     const t5=disp(M); t5[pr]=M[pr].map((v,j)=>`${fmt(v)} / ${fmt(piv)} = <b>${fmt(P[j])}</b>`);
     SX.push({t:t5,it,pc,pr,calc:[pr],title:'5. Dividir toda la fila entre el pivote',note:`${RN[pr]} nueva = ${RN[pr]} / ${fmt(piv)}. El pivote se vuelve 1.`,
@@ -1570,7 +1603,7 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
     let h='<thead><tr><th></th>'+['x<sub>1</sub>','x<sub>2</sub>','x<sub>3</sub>','RHS'].map((c,k)=>`<th class="${st.pc===k?'pc':''}">${c}</th>`).join('')+(st.rat?'<th style="background:transparent"></th>':'')+'</tr></thead><tbody>';
     st.t.forEach((row,r)=>{
       const z=r===3, inCalc=!!(st.calc&&st.calc.includes(r));
-      h+=`<tr class="${z?'z':''} ${st.pr===r?'prh':''}"><td class="rl">${RN[r]}</td>`;
+      h+=`<tr class="${z?'z':''} ${st.pr===r?'prh':''}"><td class="rl">${RN[r]}${RNAME[r]?`<small>${RNAME[r]}</small>`:''}</td>`;
       row.forEach((v,c)=>{
         const cls=[]; if(inCalc) cls.push('cx');
         if(st.pc===c && st.pr!==r && !inCalc) cls.push('pcc');
@@ -1617,6 +1650,38 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
   }
   $$('[data-bar]').forEach(e=>{ e.innerHTML=barSVG(e.dataset.bar, e.classList.contains('mini')); });
   $$('[data-box]').forEach(e=>{ e.innerHTML=boxSVG(e.dataset.box); });
+
+  /* ---------- dibujos de las restricciones ---------- */
+  function resSVG(k){
+    if(k==='prot') return `<svg viewBox="0 0 220 132" aria-hidden="true">
+      <g fill="#121212"><circle class="fall" cx="96" cy="14" r="3"/><circle class="fall" cx="108" cy="10" r="2.5" style="animation-delay:.4s"/><circle class="fall" cx="120" cy="16" r="3" style="animation-delay:.8s"/></g>
+      <path d="M70 38 q40 -14 80 0 l8 82 a8 8 0 0 1 -8 8 h-80 a8 8 0 0 1 -8 -8z" fill="#FFFBEA" stroke="#121212" stroke-width="3"/>
+      <clipPath id="sk"><path d="M70 38 q40 -14 80 0 l8 82 a8 8 0 0 1 -8 8 h-80 a8 8 0 0 1 -8 -8z"/></clipPath>
+      <rect class="fillup" clip-path="url(#sk)" x="60" y="56" width="110" height="74" fill="#121212" opacity=".12"/>
+      <text x="110" y="86" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="13" fill="#121212">PROTEÍNA</text>
+      <text x="110" y="104" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="500" font-size="9" fill="#121212">SOYA + SUERO</text>
+      <rect x="168" y="40" width="40" height="84" rx="20" fill="rgba(18,18,18,.12)"/><rect class="fillup" x="168" y="40" width="40" height="84" rx="20" fill="#121212"/>
+      <text x="188" y="34" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="12" fill="#121212">90 kg</text></svg>`;
+    if(k==='line') return `<svg viewBox="0 0 220 132" aria-hidden="true">
+      <circle cx="110" cy="66" r="44" fill="#FFFBEA" stroke="#121212" stroke-width="4"/>
+      <rect x="102" y="12" width="16" height="10" rx="3" fill="#121212"/>
+      <g stroke="#121212" stroke-width="3">${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6;return `<line x1="${110+36*Math.sin(a)}" y1="${66-36*Math.cos(a)}" x2="${110+41*Math.sin(a)}" y2="${66-41*Math.cos(a)}"/>`}).join('')}</g>
+      <line class="hand" x1="110" y1="66" x2="110" y2="34" stroke="#D6161D" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="110" cy="66" r="5" fill="#121212"/>
+      <text x="110" y="92" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="11" fill="#121212">420 MIN</text>
+      <line class="belt3" x1="10" y1="124" x2="210" y2="124" stroke="#121212" stroke-width="5"/>
+      <g class="mv" style="--t:3s;--d:150px"><rect x="20" y="108" width="26" height="12" rx="4" fill="#B98A5A" stroke="#121212" stroke-width="2"/></g>
+      <g class="mv" style="--t:3s;--d:150px;animation-delay:-1.5s"><rect x="20" y="108" width="26" height="12" rx="4" fill="#B98A5A" stroke="#121212" stroke-width="2"/></g></svg>`;
+    return `<svg viewBox="0 0 220 132" aria-hidden="true">
+      <rect x="48" y="20" width="124" height="80" rx="14" fill="#FFFBEA" stroke="#121212" stroke-width="3"/>
+      <clipPath id="tk"><rect x="50" y="22" width="120" height="76" rx="12"/></clipPath>
+      <g clip-path="url(#tk)"><path class="wave" d="M30 60 q15 -8 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 v60 h-180z" fill="#5B3418"/></g>
+      <text x="110" y="44" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="11" fill="#121212">60 KG · 40–45 °C</text>
+      <rect x="100" y="100" width="20" height="10" fill="#121212"/>
+      <ellipse class="drip" cx="110" cy="114" rx="4" ry="6" fill="#5B3418"/>
+      <ellipse class="drip" cx="110" cy="114" rx="4" ry="6" fill="#5B3418" style="animation-delay:.8s"/></svg>`;
+  }
+  $$('[data-res]').forEach(e=>{ e.innerHTML=resSVG(e.dataset.res); });
 
   /* ---------- motor ---------- */
   const deck=$('#deck'), S=$$('.s'), N=S.length; let cur=0, step=0;
