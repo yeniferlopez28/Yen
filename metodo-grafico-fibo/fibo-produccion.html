@@ -788,6 +788,24 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
 .drip{animation:drip 1.6s ease-in infinite;transform-box:fill-box}
 @keyframes drip{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(26px);opacity:0}}
 @media (max-width:900px){.rbig{grid-template-columns:1fr}}
+
+/* ---------- cuentas arriba de la tabla de datos ---------- */
+.mwrap{display:grid;gap:12px;width:100%}
+.math{background:#121212;color:#F3EEDF;border-radius:22px;padding:14px 16px;display:grid;gap:6px}
+.math .mh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.math .mh .k{color:var(--limed)}
+.mrow{display:grid;grid-template-columns:104px repeat(3,minmax(0,1fr)) minmax(0,1.1fr);gap:6px;align-items:center;font:500 11px/1.3 var(--mono)}
+.mrow b{font:700 11px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+.mrow b::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c,var(--limed));flex:none}
+.mrow.gz b::before{background:var(--limed)}
+.mrow span{background:#1F1F1F;border-radius:10px;padding:6px 8px;white-space:nowrap}
+.mrow.hd span{background:transparent;padding:0 8px;font:600 9.5px/1 var(--wide);text-transform:uppercase;letter-spacing:.06em;opacity:.7;border:0}
+.mrow.hd b::before{display:none}
+.math .foot{font:500 10.5px/1.4 var(--sans);opacity:.75;margin-top:4px}
+.mrow span.av{background:transparent;border:1px dashed rgba(243,238,223,.3)}
+.mrow em{font-style:normal;font-weight:700;color:var(--limed)}
+.mwrap .dt2 td{padding-top:8px;padding-bottom:8px}
+@media (max-width:900px){.mrow{grid-template-columns:1fr 1fr}.mrow b{grid-column:1/-1}.mrow span{white-space:normal}}
 </style>
 
 <header class="hud" aria-label="Navegación">
@@ -1285,7 +1303,17 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
   </div>
   <div class="stage">
     <div class="layers">
-      <div class="tw" data-only="0">
+      <div class="mwrap" data-only="0">
+        <div class="math">
+          <div class="mh"><span class="k">¿De dónde salen los números?</span><span class="k">por caja = por barra × 6</span></div>
+          <div class="mrow hd"><b></b><span>Chocolate</span><span>Cookies</span><span>Frutos rojos</span><span class="av">Disponible</span></div>
+          <div class="mrow r1c"><b>Proteína</b><span>25 g × 6 = <em>0.15 kg</em></span><span>21 g × 6 ≈ <em>0.125 kg</em></span><span>25 g × 6 = <em>0.15 kg</em></span><span class="av">4.5 sacos × 20 = <em>90 kg</em></span></div>
+          <div class="mrow r2c"><b>Línea</b><span>6 ÷ 12 = <em>0.5 min</em></span><span>6 ÷ 8 = <em>0.75 min</em></span><span>6 ÷ 8 = <em>0.75 min</em></span><span class="av">480 − 60 = <em>420 min</em></span></div>
+          <div class="mrow r3c"><b>Cobertura</b><span>20 g × 6 = <em>0.12 kg</em></span><span>15 g × 6 = <em>0.09 kg</em></span><span>10 g × 6 = <em>0.06 kg</em></span><span class="av">tanque = <em>60 kg</em></span></div>
+          <div class="mrow gz"><b>Ganancia</b><span>$10 × 6 = <em>$60</em></span><span>$9.50 × 6 = <em>$57</em></span><span>$9 × 6 = <em>$54</em></span><span class="av">se maximiza</span></div>
+          <p class="foot">Línea: 12 y 8 son barras por minuto de la formadora · Ganancia: precio a tienda ~$32 − costo ~$22 = $10 por barra (Cookies $9.50, Frutos rojos $9) · 90 kg, 420 min y 60 kg son lo disponible por corrida.</p>
+        </div>
+        <div class="tw">
         <table class="dt2">
           <thead><tr><th>Por caja (6 barras)</th><th>Chocolate</th><th>Cookies</th><th>Frutos rojos</th><th>Disponible</th></tr></thead>
           <tbody>
@@ -1295,6 +1323,7 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
             <tr class="u"><td><b>Ganancia ($)</b></td><td>60</td><td>57</td><td>54</td><td>—</td></tr>
           </tbody>
         </table>
+      </div>
       </div>
       <div class="vbig" data-only="1">
         <div class="vc c1" style="--d:0s"><div class="vh"><b>x<sub>1</sub></b><span>Chocolate</span></div><div class="vart" data-bar="choc"></div><div class="vbox" data-box="choc"></div><p>Número de <strong>cajas de Chocolate</strong> que se producen en una corrida.</p></div>
