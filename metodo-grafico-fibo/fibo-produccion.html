@@ -601,6 +601,85 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
   .logo{grid-column:1;justify-self:start}
   .hud-r{grid-column:2}
 }
+
+/* ---------- historia de la empresa ---------- */
+.story{width:100%}
+.lay{display:grid;gap:18px;align-content:center}
+.fab{width:100%;height:auto;max-height:34vh}
+.smoke circle{fill:#C9BC86;transform-box:fill-box;transform-origin:center;animation:puff 2.6s ease-out infinite}
+.smoke circle:nth-child(2){animation-delay:.9s}.smoke circle:nth-child(3){animation-delay:1.8s}
+@keyframes puff{0%{transform:translateY(0) scale(.5);opacity:.9}100%{transform:translateY(-70px) scale(1.6);opacity:0}}
+.lay .fab{transform:translateY(24px);opacity:0}
+.lay.on .fab{animation:upin .9s var(--ease) forwards}
+@keyframes upin{to{transform:none;opacity:1}}
+.tlg{position:relative;height:84px;margin:0 40px}
+.tlg .ln{position:absolute;left:0;right:0;top:12px;height:8px;border-radius:999px;background:#121212;transform-origin:left;transform:scaleX(0)}
+.lay.on .tlg .ln{animation:growx 1.4s var(--ease) .2s forwards}
+@keyframes growx{to{transform:scaleX(1)}}
+.tlg .pt{position:absolute;left:var(--x);top:0;transform:translateX(-50%);display:grid;justify-items:center;gap:6px;text-align:center;opacity:0}
+.tlg .pt::before{content:"";width:32px;height:32px;border-radius:50%;background:var(--pinkd);border:6px solid #121212}
+.lay.on .tlg .pt{animation:pop .5s var(--ease) var(--d) forwards}
+@keyframes pop{0%{opacity:0;transform:translateX(-50%) scale(.4)}100%{opacity:1;transform:translateX(-50%) scale(1)}}
+.tlg .pt b{font:700 16px/1 var(--wide)}
+.tlg .pt span{font:500 10px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.born{position:relative;display:grid;place-items:center;padding:10px 0}
+.born img{width:min(82%,460px);transform:translateY(40px) rotate(-14deg) scale(.8);opacity:0}
+.lay.on .born img{animation:barin 1s var(--ease) forwards}
+@keyframes barin{to{transform:rotate(-6deg);opacity:1}}
+.badge{position:absolute;right:6%;top:-4px;width:118px;height:118px;border-radius:50%;background:var(--limed);display:grid;place-items:center;align-content:center;text-align:center;transform:scale(0)}
+.lay.on .badge{animation:badge .6s var(--ease) .7s forwards, pulse 2.4s ease-in-out 1.4s infinite}
+@keyframes badge{to{transform:scale(1)}}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.badge b{font:700 30px/1 var(--wide)}
+.badge span{font:500 9.5px/1.2 var(--wide);text-transform:uppercase}
+.macro{display:grid;gap:10px}
+.mr{display:grid;grid-template-columns:120px minmax(0,1fr) 70px;gap:12px;align-items:center}
+.mr span{font:500 10.5px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.06em}
+.mr div{height:26px;border-radius:999px;background:rgba(18,18,18,.06);overflow:hidden}
+.mr i{display:block;height:100%;width:var(--w);border-radius:999px;background:var(--c);transform-origin:left;transform:scaleX(0)}
+.lay.on .mr i{animation:growx 1s var(--ease) var(--d) forwards}
+.mr b{font:700 16px/1 var(--wide);text-align:right}
+.mr.ghost{opacity:.7}
+.fan{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fan figure{margin:0;background:var(--c);border-radius:22px;padding:16px 16px 12px;display:grid;gap:10px;opacity:0;transform:translateY(40px) rotate(calc((var(--i) - 1.5) * 3deg))}
+.lay.on .fan figure{animation:fanin .7s var(--ease) calc(var(--i) * .15s) forwards}
+@keyframes fanin{to{opacity:1;transform:rotate(calc((var(--i) - 1.5) * 1.5deg))}}
+.fan figure.off{filter:grayscale(.6)}
+.lay.on .fan figure.off{animation:fanoff .7s var(--ease) .45s forwards}
+@keyframes fanoff{to{opacity:.45;transform:rotate(2deg)}}
+.fan img{width:100%;height:auto}
+.fan figcaption{font:700 12px/1 var(--wide);text-transform:uppercase;display:flex;gap:8px;align-items:center}
+.fan figcaption i{font-style:normal;background:#121212;color:#F3EEDF;border-radius:999px;padding:4px 8px;font-size:10px}
+.shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{background:var(--c);color:var(--t,#121212);border-radius:22px;padding:18px 14px;display:grid;gap:6px;min-height:120px;align-content:end;opacity:0;transform:scale(.7)}
+.lay.on .tile{animation:tile .55s var(--ease) var(--d) forwards}
+@keyframes tile{to{opacity:1;transform:none}}
+.tile b{font:700 clamp(24px,2.6vw,40px)/1 var(--wide)}
+.tile span{font:500 10.5px/1.25 var(--wide);text-transform:uppercase;letter-spacing:.04em}
+.tile.wide{grid-column:span 2}
+.tile.pin{grid-column:span 2;grid-template-columns:auto 1fr;align-items:center;gap:14px}
+.tile.pin i{width:22px;height:22px;border-radius:50%;background:var(--pinkd);box-shadow:0 0 0 0 rgba(244,119,217,.6);animation:ping 1.6s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 18px rgba(244,119,217,0)}100%{box-shadow:0 0 0 0 rgba(244,119,217,0)}}
+.tile.pin b{font-size:clamp(16px,1.6vw,22px)}
+.tile.pin>div{display:grid;gap:6px}
+
+/* ---------- nuestros sabores ---------- */
+.flv-stage{background:#1C1C1C}
+.flv{position:relative;display:grid;grid-template-rows:auto auto;gap:18px;min-height:52vh;align-content:center}
+.flv .blob{position:absolute;right:-6%;top:6%;width:62%;aspect-ratio:1;border-radius:50%;background:var(--c);opacity:.95;transform:scale(.3);transition:transform .9s var(--ease)}
+.flv.on .blob{transform:scale(1)}
+.flv img{position:relative;z-index:1;width:min(92%,560px);justify-self:center;transform:translateX(60px) rotate(8deg);opacity:0;filter:drop-shadow(0 22px 26px rgba(0,0,0,.5))}
+.flv.on img{animation:flvin .9s var(--ease) .1s forwards, flt 4.5s ease-in-out 1s infinite}
+@keyframes flvin{to{transform:rotate(-5deg);opacity:1}}
+@keyframes flt{50%{transform:rotate(-3deg) translateY(-10px)}}
+.fi{position:relative;z-index:1;background:var(--c);color:var(--t,#121212);border-radius:22px;padding:18px 20px;display:grid;gap:8px;opacity:0;transform:translateY(20px)}
+.flv.on .fi{animation:upin .7s var(--ease) .35s forwards}
+.fi b{font:700 clamp(24px,2.6vw,40px)/1 var(--wide);text-transform:uppercase}
+.fi p{font-size:15px;line-height:1.4}
+.chips2{display:flex;flex-wrap:wrap;gap:6px}
+.chips2 span{background:rgba(18,18,18,.12);border-radius:999px;padding:7px 11px;font:500 10.5px/1 var(--wide);text-transform:uppercase;letter-spacing:.04em}
+.chips2 span.star{background:#121212;color:#F3EEDF}
+@media (max-width:900px){.shelf{grid-template-columns:1fr 1fr}.mr{grid-template-columns:86px minmax(0,1fr) 54px}.flv{min-height:0}}
 </style>
 
 <header class="hud" aria-label="Navegación">
@@ -662,11 +741,83 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
     </div>
   </div>
   <div class="stage">
-    <div class="rail" id="rail">
-      <div class="col" data-hl="0" style="--c:var(--red)"><span class="yr">1995</span><div class="dt"><h3>El Molino.</h3><p>+30 años en alimentos. Relaciones comerciales y soluciones para fabricantes.</p><div class="chips"><span>Desde 1995</span><span>Jalisco</span></div></div></div>
-      <div class="col" data-hl="1" style="--c:var(--lime);--t:var(--black)"><span class="yr">22 g</span><div class="dt"><h3>Nace FIBO.</h3><img src="img/fibo-chocolate.webp" alt="Barra FIBO"><div class="chips"><span>65 g</span><span>22 g proteína</span><span>10 g fibra</span></div></div></div>
-      <div class="col" data-hl="2" style="--c:var(--pink);--t:var(--black)"><span class="yr">x1 x2 x3</span><div class="dt"><h3>3 sabores.</h3><img src="img/fibo-cookies.webp" alt="Barra FIBO Cookies"><div class="chips"><span>Chocolate</span><span>Cookies &amp; Cream</span><span>Frutos rojos</span></div></div></div>
-      <div class="col" data-hl="3" style="--c:var(--blue)"><span class="yr">22 edos.</span><div class="dt"><h3>En el anaquel.</h3><p>133 Nutrisa · 35 7-Eleven en Guadalajara · 90 naturistas · +150 gimnasios · Amazon, Mercado Libre y fibo.mx.</p><div class="chips"><span>Planta en Zapopan</span><span>FSSC 22000</span></div></div></div>
+    <div class="story layers">
+      <!-- 0 · El Molino 1995 -->
+      <div class="lay" data-only="0">
+        <svg class="fab" viewBox="0 0 520 300" role="img" aria-label="Planta de El Molino desde 1995">
+          <g class="smoke"><circle cx="402" cy="70" r="14"/><circle cx="402" cy="70" r="14"/><circle cx="402" cy="70" r="14"/></g>
+          <rect x="390" y="78" width="26" height="90" fill="#121212"/>
+          <path d="M60 168 L60 120 L120 90 L120 120 L180 90 L180 120 L240 90 L240 120 L300 90 L300 168 Z" fill="#FFB04A"/>
+          <rect x="300" y="110" width="160" height="58" fill="#4D4DE8"/>
+          <rect x="60" y="168" width="400" height="70" fill="#121212"/>
+          <rect x="92" y="186" width="150" height="34" rx="17" fill="#E1EF4C"/>
+          <text x="167" y="209" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="16" fill="#121212">EL MOLINO</text>
+          <rect x="330" y="182" width="40" height="56" rx="20" fill="#F477D9"/><rect x="384" y="182" width="40" height="56" rx="20" fill="#F477D9"/>
+          <rect x="20" y="238" width="480" height="8" rx="4" fill="#121212"/>
+        </svg>
+        <div class="tlg">
+          <div class="ln"></div>
+          <div class="pt" style="--x:0%;--d:.3s"><b>1995</b><span>Nace El Molino</span></div>
+          <div class="pt" style="--x:76%;--d:.9s"><b>2019</b><span>FIBO ya vende</span></div>
+          <div class="pt" style="--x:100%;--d:1.3s"><b>2026</b><span>+30 años</span></div>
+        </div>
+      </div>
+      <!-- 1 · Nace FIBO -->
+      <div class="lay" data-only="1">
+        <div class="born">
+          <img src="img/fibo-chocolate.webp" alt="Barra FIBO">
+          <div class="badge"><b>22 g</b><span>de proteína</span></div>
+        </div>
+        <div class="macro">
+          <div class="mr" style="--w:100%;--c:#ECE1AE;--d:.2s"><span>Porción</span><div><i></i></div><b>65 g</b></div>
+          <div class="mr" style="--w:33.8%;--c:var(--limed);--d:.45s"><span>Proteína</span><div><i></i></div><b>22 g</b></div>
+          <div class="mr" style="--w:15.4%;--c:var(--orange);--d:.7s"><span>Fibra</span><div><i></i></div><b>10 g</b></div>
+          <div class="mr ghost" style="--w:18.5%;--c:#C9BC86;--d:.95s"><span>Barras masivas</span><div><i></i></div><b>8–12 g</b></div>
+        </div>
+      </div>
+      <!-- 2 · 3 sabores del proyecto -->
+      <div class="lay" data-only="2">
+        <div class="fan">
+          <figure style="--i:0;--c:var(--x1)"><img src="img/fibo-chocolate.webp" alt=""><figcaption><i>x1</i>Chocolate</figcaption></figure>
+          <figure style="--i:1;--c:var(--x2)"><img src="img/fibo-cookies.webp" alt=""><figcaption><i>x2</i>Cookies &amp; Cream</figcaption></figure>
+          <figure style="--i:2;--c:var(--x3)"><img src="img/fibo-frutos.webp" alt=""><figcaption><i>x3</i>Frutos rojos</figcaption></figure>
+          <figure class="off" style="--i:3;--c:#B49BD6"><img src="img/fibo-brownie.webp" alt=""><figcaption><i>—</i>Brownie · fuera del modelo</figcaption></figure>
+        </div>
+      </div>
+      <!-- 3 · En el anaquel -->
+      <div class="lay" data-only="3">
+        <div class="shelf">
+          <div class="tile" style="--c:var(--violet);--t:#fff;--d:.1s"><b>133</b><span>Nutrisa</span></div>
+          <div class="tile" style="--c:var(--orange);--d:.2s"><b>35</b><span>7-Eleven en Guadalajara</span></div>
+          <div class="tile" style="--c:var(--pinkd);--d:.3s"><b>90</b><span>Tiendas naturistas</span></div>
+          <div class="tile" style="--c:var(--limed);--d:.4s"><b>+150</b><span>Gimnasios</span></div>
+          <div class="tile wide" style="--c:#121212;--t:#F3EEDF;--d:.55s"><b>22 estados</b><span>Amazon · Mercado Libre · fibo.mx</span></div>
+          <div class="tile pin" style="--c:#ECE1AE;--d:.7s"><i></i><div><b>Planta en Zapopan</b><span>Certificación FSSC 22000</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ================= EMPRESA · SABORES ================= -->
+<section class="s b-black" id="p2b" data-steps="4" data-sec="1">
+  <div class="talk">
+    <div class="meta"><span>01 · Empresa</span><span>Nuestros sabores</span></div>
+    <h2 class="h2">Nuestros <span class="o">sabores</span>.</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p><b>Chocolate.</b> El clásico: chocolate de principio a fin.</p><p>Como todas, trae 22 g de proteína de dos fuentes (soya + suero), 10 g de fibra y pesa 65 g. Es crujiente, no chiclosa.</p></div>
+      <div class="say" data-say="1"><p><b>Cookies &amp; Cream.</b> Galleta de vainilla con crema.</p><p>Es el sabor <b>mejor calificado</b>: 4.4 ★.</p></div>
+      <div class="say" data-say="2"><p><b>Frutos rojos.</b> Sabor frutos rojos con cubierta sabor chocolate.</p><p>Con Chocolate y Cookies, son los <b>3 sabores del modelo</b>.</p></div>
+      <div class="say" data-say="3"><p><b>Brownie.</b> Chocolate intenso con textura de brownie.</p><p>Es el cuarto sabor de la marca, pero <b>no entra en este modelo</b>.</p><p class="src">Todas: 230–250 kcal según el sabor · 18 meses de vida de anaquel · etiquetado NOM-051.</p></div>
+    </div>
+  </div>
+  <div class="stage flv-stage">
+    <div class="layers">
+      <div class="flv" data-only="0" style="--c:var(--x1)"><div class="blob"></div><img src="img/fibo-chocolate.webp" alt="FIBO Chocolate"><div class="fi"><span class="k">x1 · Sabor 01</span><b>Chocolate</b><p>El clásico. Chocolate de principio a fin.</p><div class="chips2"><span>22 g proteína</span><span>10 g fibra</span><span>65 g</span><span>Soya + suero</span><span>Crujiente</span></div></div></div>
+      <div class="flv" data-only="1" style="--c:var(--x2);--t:#fff"><div class="blob"></div><img src="img/fibo-cookies.webp" alt="FIBO Cookies &amp; Cream"><div class="fi"><span class="k">x2 · Sabor 02</span><b>Cookies &amp; Cream</b><p>Galleta de vainilla con crema.</p><div class="chips2"><span>22 g proteína</span><span>10 g fibra</span><span>65 g</span><span class="star">4.4 ★ mejor calificado</span></div></div></div>
+      <div class="flv" data-only="2" style="--c:var(--x3)"><div class="blob"></div><img src="img/fibo-frutos.webp" alt="FIBO Frutos rojos"><div class="fi"><span class="k">x3 · Sabor 03</span><b>Frutos rojos</b><p>Sabor frutos rojos con cubierta sabor chocolate.</p><div class="chips2"><span>22 g proteína</span><span>10 g fibra</span><span>65 g</span><span>Cubierta sabor chocolate</span></div></div></div>
+      <div class="flv" data-only="3" style="--c:#B49BD6"><div class="blob"></div><img src="img/fibo-brownie.webp" alt="FIBO Brownie"><div class="fi"><span class="k">Sabor 04 · fuera del modelo</span><b>Brownie</b><p>Chocolate intenso con textura de brownie.</p><div class="chips2"><span>22 g proteína</span><span>10 g fibra</span><span>65 g</span><span class="star">No entra al modelo</span></div></div></div>
     </div>
   </div>
 </section>
