@@ -806,6 +806,25 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
 .mrow em{font-style:normal;font-weight:700;color:var(--limed)}
 .mwrap .dt2 td{padding-top:8px;padding-bottom:8px}
 @media (max-width:900px){.mrow{grid-template-columns:1fr 1fr}.mrow b{grid-column:1/-1}.mrow span{white-space:normal}}
+
+/* cuentas: resultado abajo, sin desbordes */
+.math{min-width:0;overflow:hidden}
+.mrow{grid-template-columns:minmax(84px,.8fr) repeat(4,minmax(0,1fr))!important;gap:6px}
+.mrow span{white-space:normal!important;min-width:0;overflow-wrap:anywhere;padding:7px 9px;font-size:10.5px;line-height:1.3;opacity:.95}
+.mrow em{display:block;font:700 clamp(12px,1.05vw,15px)/1.15 var(--wide);margin-top:3px;white-space:nowrap}
+.mrow.hd span,.mrow.hd span.av{border:0!important;background:transparent!important;padding:0 9px}
+.mrow b{font-size:10px;min-width:0}
+
+@media (max-width:900px){
+  .mrow{grid-template-columns:1fr 1fr!important}
+  .mrow b{grid-column:1/-1}
+  .mrow.hd{display:none}
+  .mrow span::before{display:block;font:600 8.5px/1 var(--wide);text-transform:uppercase;letter-spacing:.06em;opacity:.6;margin-bottom:4px}
+  .mrow span:nth-of-type(1)::before{content:"Chocolate"}
+  .mrow span:nth-of-type(2)::before{content:"Cookies"}
+  .mrow span:nth-of-type(3)::before{content:"Frutos rojos"}
+  .mrow span:nth-of-type(4)::before{content:"Disponible"}
+}
 </style>
 
 <header class="hud" aria-label="Navegación">
