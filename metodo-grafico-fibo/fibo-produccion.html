@@ -825,6 +825,34 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
   .mrow span:nth-of-type(3)::before{content:"Frutos rojos"}
   .mrow span:nth-of-type(4)::before{content:"Disponible"}
 }
+
+/* ---------- barrita arriba de cada x en las tablas ---------- */
+.xh{display:inline-grid;justify-items:center;gap:3px;line-height:1}
+.xh .xb{display:block;width:clamp(54px,5.4vw,84px)}
+.xh .xb svg{width:100%;height:auto;display:block}
+.xh>span{font:700 15px/1 var(--mono)}
+.xh small{font:600 8.5px/1 var(--wide);text-transform:uppercase;letter-spacing:.06em;opacity:.75}
+.tab thead th,.dt2 thead th{vertical-align:bottom;padding-top:10px;padding-bottom:9px}
+.dt2 thead th .xh{justify-items:end}
+@media (max-width:900px){.xh .xb{width:46px}.xh small{font-size:7.5px}}
+
+/* ---------- personajitos ---------- */
+.masc{overflow:visible}
+.masc .bd{transform-box:fill-box;transform-origin:50% 100%;animation:hop 1.9s cubic-bezier(.5,0,.5,1) infinite}
+.m-cook .bd{animation-delay:.25s}.m-fruit .bd{animation-delay:.5s}
+@keyframes hop{0%,100%{transform:translateY(0) scale(1.04,.96)}35%{transform:translateY(-9px) scale(.97,1.03)}55%{transform:translateY(-11px) scale(1,1)}80%{transform:translateY(0) scale(1.06,.94)}}
+.masc .shadow{transform-box:fill-box;transform-origin:center;animation:shad 1.9s cubic-bezier(.5,0,.5,1) infinite}
+.m-cook .shadow{animation-delay:.25s}.m-fruit .shadow{animation-delay:.5s}
+@keyframes shad{0%,100%{transform:scaleX(1);opacity:.2}55%{transform:scaleX(.7);opacity:.1}}
+.masc .eye{transform-box:fill-box;transform-origin:center;animation:blink 3.2s infinite}
+.m-cook .eye{animation-delay:.9s}.m-fruit .eye{animation-delay:1.7s}
+.masc .blush{animation:blushp 2.4s ease-in-out infinite}
+@keyframes blushp{50%{opacity:.35}}
+.masc .leaf{transform-box:fill-box;transform-origin:50% 100%;animation:leaf 1.9s ease-in-out infinite}
+@keyframes leaf{50%{transform:rotate(8deg)}}
+.masc .spark{transform-box:fill-box;transform-origin:center;animation:spk 2s ease-in-out infinite}
+.xh .xb{width:clamp(48px,4.2vw,66px);background:#FFF6E6;border-radius:50%;padding:5px;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
+.vars .mini{max-width:64px}
 </style>
 
 <header class="hud" aria-label="Navegación">
@@ -1334,7 +1362,7 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
         </div>
         <div class="tw">
         <table class="dt2">
-          <thead><tr><th>Por caja (6 barras)</th><th>Chocolate</th><th>Cookies</th><th>Frutos rojos</th><th>Disponible</th></tr></thead>
+          <thead><tr><th>Por caja (6 barras)</th><th><span class="xh"><i class="xb" data-masc="choc"></i><span>x<sub>1</sub></span><small>Chocolate</small></span></th><th><span class="xh"><i class="xb" data-masc="cook"></i><span>x<sub>2</sub></span><small>Cookies</small></span></th><th><span class="xh"><i class="xb" data-masc="fruit"></i><span>x<sub>3</sub></span><small>Frutos rojos</small></span></th><th>Disponible</th></tr></thead>
           <tbody>
             <tr><td><span class="sw r1c"></span>Proteína (kg)<small>25 g · 21 g · 25 g por barra</small></td><td>0.15</td><td>0.125</td><td>0.15</td><td>90</td></tr>
             <tr><td><span class="sw r2c"></span>Línea (min)<small>12 · 8 · 8 barras por minuto</small></td><td>0.5</td><td>0.75</td><td>0.75</td><td>420</td></tr>
@@ -1356,7 +1384,7 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
         <div class="rcard r3c" style="--d:.4s"><div class="vh"><b>R3</b><span>Cobertura</span></div><div class="rart" data-res="cob"></div><code>0.12x1 + 0.09x2 + 0.06x3 ≤ 60</code><p>Los kg de cobertura sabor chocolate no pueden pasar de <strong>60 kg</strong>.</p></div>
       </div>
       <div class="model" data-only="3">
-        <div class="vars"><div class="c1"><i class="mini" data-bar="choc"></i><b>x<sub>1</sub></b><span>cajas de Chocolate</span></div><div class="c2"><i class="mini" data-bar="cook"></i><b>x<sub>2</sub></b><span>cajas de Cookies</span></div><div class="c3"><i class="mini" data-bar="fruit"></i><b>x<sub>3</sub></b><span>cajas de Frutos rojos</span></div></div>
+        <div class="vars"><div class="c1"><i class="mini" data-masc="choc"></i><b>x<sub>1</sub></b><span>cajas de Chocolate</span></div><div class="c2"><i class="mini" data-masc="cook"></i><b>x<sub>2</sub></b><span>cajas de Cookies</span></div><div class="c3"><i class="mini" data-masc="fruit"></i><b>x<sub>3</sub></b><span>cajas de Frutos rojos</span></div></div>
         <div class="row fo"><b>Max Z = 60x1 + 57x2 + 54x3</b><span>Ganancia de la corrida, en pesos</span></div>
         <div class="row r1c" data-step="2"><b>0.15x1 + 0.125x2 + 0.15x3 ≤ 90</b><span><strong>R1 · Proteína:</strong> no usar más de 90 kg</span></div>
         <div class="row r2c" data-step="2"><b>0.5x1 + 0.75x2 + 0.75x3 ≤ 420</b><span><strong>R2 · Línea:</strong> no pasar de 420 min</span></div>
@@ -1401,7 +1429,7 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
     <div class="layers">
       <div class="solwrap" data-only="0">
         <div class="tw"><table class="tab">
-          <thead><tr><th></th><th class="id1">x<sub>1</sub></th><th class="id2">x<sub>2</sub></th><th class="id3">x<sub>3</sub></th><th>RHS</th></tr></thead>
+          <thead><tr><th></th><th class="id1"><span class="xh"><i class="xb" data-masc="choc"></i><span>x<sub>1</sub></span><small>Chocolate</small></span></th><th class="id2"><span class="xh"><i class="xb" data-masc="cook"></i><span>x<sub>2</sub></span><small>Cookies</small></span></th><th class="id3"><span class="xh"><i class="xb" data-masc="fruit"></i><span>x<sub>3</sub></span><small>Frutos rojos</small></span></th><th>RHS</th></tr></thead>
           <tbody>
             <tr><td class="rl">R1<small>Proteína</small></td><td>0</td><td>0</td><td class="id3">1</td><td>160</td></tr>
             <tr><td class="rl">R2<small>Línea</small></td><td>0</td><td class="id2">1</td><td>0</td><td>240</td></tr>
@@ -1646,9 +1674,10 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
   }
   $('#sxSays').innerHTML=SX.map((st,i)=>`<div class="say" data-say="${i}">${st.say}</div>`).join('');
   $('#p9').dataset.steps=SX.length;
+  function xHead(k,c){ const key=['choc','cook','fruit'][k], nm=['Chocolate','Cookies','Frutos rojos'][k]; return `<span class="xh"><i class="xb">${mascotSVG(key)}</i><span>${c}</span><small>${nm}</small></span>`; }
   function renderSX(i){
     const st=SX[i]; if(!st) return;
-    let h='<thead><tr><th></th>'+['x<sub>1</sub>','x<sub>2</sub>','x<sub>3</sub>','RHS'].map((c,k)=>`<th class="${st.pc===k?'pc':''}">${c}</th>`).join('')+(st.rat?'<th style="background:transparent"></th>':'')+'</tr></thead><tbody>';
+    let h='<thead><tr><th></th>'+['x<sub>1</sub>','x<sub>2</sub>','x<sub>3</sub>','RHS'].map((c,k)=>`<th class="${st.pc===k?'pc':''}">${k<3?xHead(k,c):c}</th>`).join('')+(st.rat?'<th style="background:transparent"></th>':'')+'</tr></thead><tbody>';
     st.t.forEach((row,r)=>{
       const z=r===3, inCalc=!!(st.calc&&st.calc.includes(r));
       h+=`<tr class="${z?'z':''} ${st.pr===r?'prh':''}"><td class="rl">${RN[r]}${RNAME[r]?`<small>${RNAME[r]}</small>`:''}</td>`;
@@ -1730,6 +1759,33 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
       <ellipse class="drip" cx="110" cy="114" rx="4" ry="6" fill="#5B3418" style="animation-delay:.8s"/></svg>`;
   }
   $$('[data-res]').forEach(e=>{ e.innerHTML=resSVG(e.dataset.res); });
+
+  /* ---------- personajitos de cada sabor ---------- */
+  function face(cx,cy,eyeW){
+    return `<g class="eyes"><ellipse class="eye" cx="${cx-11}" cy="${cy}" rx="${eyeW}" ry="${eyeW*1.25}" fill="#121212"/><ellipse class="eye" cx="${cx+11}" cy="${cy}" rx="${eyeW}" ry="${eyeW*1.25}" fill="#121212"/>
+      <circle cx="${cx-12.4}" cy="${cy-2}" r="${eyeW*.4}" fill="#fff"/><circle cx="${cx+9.6}" cy="${cy-2}" r="${eyeW*.4}" fill="#fff"/></g>
+      <circle class="blush" cx="${cx-19}" cy="${cy+7}" r="4.5" fill="#FF7FB8" opacity=".75"/><circle class="blush" cx="${cx+19}" cy="${cy+7}" r="4.5" fill="#FF7FB8" opacity=".75"/>
+      <path d="M${cx-6} ${cy+7} q6 6 12 0" fill="none" stroke="#121212" stroke-width="2.6" stroke-linecap="round"/>`;
+  }
+  function mascotSVG(k){
+    let body='';
+    if(k==='choc') body=`<rect x="20" y="24" width="60" height="58" rx="14" fill="#6A3F1E" stroke="#121212" stroke-width="3"/>
+      <rect x="27" y="31" width="20" height="18" rx="5" fill="#8A5530"/><rect x="53" y="31" width="20" height="18" rx="5" fill="#8A5530"/>
+      <rect x="27" y="56" width="20" height="18" rx="5" fill="#7A4826"/><rect x="53" y="56" width="20" height="18" rx="5" fill="#7A4826"/>
+      <rect x="26" y="40" width="48" height="26" rx="12" fill="#F5D7B0"/>${face(50,51,3.4)}`;
+    else if(k==='cook') body=`<circle cx="50" cy="54" r="32" fill="#3A2614" stroke="#121212" stroke-width="3"/>
+      <rect x="17" y="47" width="66" height="15" rx="7" fill="#FFF6E6" stroke="#121212" stroke-width="2.5"/>
+      <circle cx="36" cy="33" r="2.6" fill="#6B4A2E"/><circle cx="56" cy="30" r="2.6" fill="#6B4A2E"/><circle cx="66" cy="38" r="2.6" fill="#6B4A2E"/><circle cx="40" cy="76" r="2.6" fill="#6B4A2E"/><circle cx="62" cy="75" r="2.6" fill="#6B4A2E"/>
+      <ellipse cx="50" cy="55" rx="22" ry="11" fill="#FFF6E6"/>${face(50,52,3.2)}`;
+    else body=`<g fill="#E0263A" stroke="#121212" stroke-width="2.2">
+      <circle cx="38" cy="40" r="11"/><circle cx="62" cy="40" r="11"/><circle cx="50" cy="38" r="11"/>
+      <circle cx="31" cy="56" r="11"/><circle cx="69" cy="56" r="11"/><circle cx="50" cy="58" r="14"/>
+      <circle cx="40" cy="72" r="10"/><circle cx="60" cy="72" r="10"/><circle cx="50" cy="80" r="9"/></g>
+      <ellipse cx="50" cy="57" rx="22" ry="15" fill="#FF5A6E"/>
+      <path class="leaf" d="M50 30 q-14 -14 -24 -6 q10 6 24 6 q14 0 24 -6 q-10 -8 -24 6z" fill="#3E9E3A" stroke="#121212" stroke-width="2.2"/>${face(50,55,3.2)}`;
+    return `<svg class="masc m-${k}" viewBox="0 0 100 100" aria-hidden="true"><ellipse class="shadow" cx="50" cy="94" rx="24" ry="4" fill="#121212" opacity=".18"/><g class="bd">${body}</g><path class="spark" d="M86 14 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" fill="#FFF6E6" stroke="#121212" stroke-width="1.5"/></svg>`;
+  }
+  $$('[data-masc]').forEach(e=>{ e.innerHTML=mascotSVG(e.dataset.masc); });
 
   /* ---------- motor ---------- */
   const deck=$('#deck'), S=$$('.s'), N=S.length; let cur=0, step=0;
