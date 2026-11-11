@@ -853,6 +853,67 @@ table.tab,.dt2{border:0!important;box-shadow:none!important;background:var(--til
 .masc .spark{transform-box:fill-box;transform-origin:center;animation:spk 2s ease-in-out infinite}
 .xh .xb{width:clamp(48px,4.2vw,66px);background:#FFF6E6;border-radius:50%;padding:5px;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
 .vars .mini{max-width:64px}
+
+/* modelo completo compacto */
+.model{gap:6px}
+.model .vars{gap:8px}
+.model .vars div{display:grid!important;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;row-gap:2px;align-items:center;padding:8px 12px!important;border-radius:18px!important}
+.model .vars .mini{grid-row:1/3;width:42px;max-width:42px}
+.model .vars b{font:700 clamp(18px,1.6vw,24px)/1 var(--wide)!important}
+.model .vars span{font-size:11.5px;line-height:1.2}
+.model .row{padding:8px 14px 8px 26px!important;min-height:0}
+.model .row b{font-size:clamp(12px,1vw,15px)}
+
+/* ================= LECTURA FÁCIL: textos más grandes ================= */
+.say{font-size:clamp(17px,.6vw + 11px,23px)!important;line-height:1.5;max-width:44ch}
+.meta{font-size:12.5px!important;opacity:.8}
+.k{font-size:12px!important}
+.h2{font-size:clamp(30px,3vw,52px)}
+.src{font-size:11.5px!important;opacity:.7}
+.of span,.rc span,.vc p,.rcard p,.card span,.fi p,.speeds span,.bk span,.tile span,.mf span,.mix .k,.kpis span,.pl span,.prop p,.prop .g3 span,.real .row span,.shadow b,.model .row span,.zcheck p,.ideas span,.sxnote,.cap2{font-size:clamp(13.5px,.35vw + 9px,16px)!important;line-height:1.4}
+.rc em,.card em{font-size:12px!important}
+table.tab{font-size:clamp(13px,1vw,17px)}
+.dt2 td{font-size:clamp(14px,1vw,17px)}
+.dt2 td small,.tab td.rl small,.ck .rn small{font-size:10.5px}
+.ck .f{font-size:clamp(12.5px,1vw,16px)!important}
+.formula{font-size:12px!important}
+.board{font-size:12px!important}
+.tlg .pt span,.mr span,.cgrp label,.chips2 span,.divs span,.fan figcaption{font-size:12px!important}
+.mrow{font-size:12px!important}.mrow span{font-size:12px!important}
+.math .foot{font-size:12.5px!important}
+.hud-r,.logo small{font-size:12px!important}
+.nav button,.ct{font-size:12.5px!important}
+/* ================= arreglos de desbordes ================= */
+.res3{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.rc{min-width:0}
+.rc .n{font-size:clamp(28px,2.8vw,50px)!important;white-space:nowrap}
+.flv-stage{overflow:hidden}
+.bar{grid-template-columns:minmax(120px,170px) minmax(0,1fr) 104px!important}
+.bar em{white-space:nowrap;font-size:clamp(17px,1.5vw,22px)!important}
+.stage{overflow:hidden}
+@media (max-height:800px) and (min-width:901px){
+  .stage{padding:16px 20px}
+  .talk{padding:24px 28px}
+  .mwrap{gap:8px}.math{padding:10px 12px;gap:4px}.mrow span{padding:5px 8px}
+  .mwrap .dt2 td{padding-top:6px;padding-bottom:6px}
+  .vc,.rcard{padding:12px;gap:6px}
+  .vbox{display:none}
+  .model .row{padding:6px 12px 6px 24px!important}
+}
+
+@media (max-height:800px) and (min-width:901px){
+  .math .foot{display:none}
+  .mwrap .dt2 td small{display:none}
+  .model .vars .mini{width:34px;max-width:34px}
+}
+
+@media (max-width:900px){
+  .res3{grid-template-columns:1fr!important}
+  .real .row{grid-template-columns:1fr}
+  .real .row span{white-space:normal}
+  .model .vars{grid-template-columns:1fr!important}
+  .src-list{max-height:none}
+}
 </style>
 
 <header class="hud" aria-label="Navegación">
