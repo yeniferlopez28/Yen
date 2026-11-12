@@ -953,7 +953,7 @@ table.tab{font-size:clamp(13px,1vw,17px)}
   .tab td.cx .ex,.tab td.rzc .ex{font-size:.72em}
   .tab td.cx b,.tab td.rzc b{font-size:1em}
 }
-@media (max-width:380px){
+@media (max-width:430px){
   .s{padding-left:10px;padding-right:10px}
   .stage{padding:12px 6px}
   table.tab{font-size:9.5px}
@@ -1714,7 +1714,7 @@ table.tab{font-size:clamp(13px,1vw,17px)}
     if(f.d===1) return neg+n.toLocaleString('en-US');
     let d=f.d; while(d%2===0) d/=2; while(d%5===0) d/=5;
     if(d===1) return neg+(n/f.d).toFixed(6).replace(/0+$/,'').replace(/\.$/,'');
-    return neg+n+'/'+f.d;
+    return neg+(n/f.d).toFixed(4).replace(/0+$/,'').replace(/\.$/,''); /* sin fracciones: decimal a 4 cifras; las cuentas siguen siendo exactas */
   }
   const par=f=>`(${fmt(f)})`;
   const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'], RNAME=['Proteína','Línea','Cobertura',''];
