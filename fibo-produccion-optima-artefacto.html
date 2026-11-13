@@ -1066,6 +1066,7 @@ html.h1020 .mwrap .tw{display:none}
 .pl.tot strong{white-space:normal}
 @media (max-width:900px){.gloss{grid-template-columns:1fr}}
 @media (max-width:430px){.ck{grid-template-columns:auto minmax(0,1fr)}.ck .ok{grid-column:1/-1;justify-self:start}}
+.tab th small.rhs{display:block;font:500 8.5px/1 var(--wide);letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-top:3px}
 </style>
 
 <div id="fit">
@@ -1687,12 +1688,12 @@ html.h1020 .mwrap .tw{display:none}
     <div class="layers">
       <div class="solwrap" data-only="0">
         <div class="tw"><table class="tab">
-          <thead><tr><th></th><th class="id1"><span class="xh"><i class="xb" data-masc="choc"></i><span>x<sub>1</sub></span><small>Chocolate</small></span></th><th class="id2"><span class="xh"><i class="xb" data-masc="cook"></i><span>x<sub>2</sub></span><small>Cookies</small></span></th><th class="id3"><span class="xh"><i class="xb" data-masc="fruit"></i><span>x<sub>3</sub></span><small>Frutos rojos</small></span></th><th>RHS</th></tr></thead>
+          <thead><tr><th></th><th class="id1"><span class="xh"><i class="xb" data-masc="choc"></i><span>x<sub>1</sub></span><small>Chocolate</small></span></th><th class="id2"><span class="xh"><i class="xb" data-masc="cook"></i><span>x<sub>2</sub></span><small>Cookies</small></span></th><th class="id3"><span class="xh"><i class="xb" data-masc="fruit"></i><span>x<sub>3</sub></span><small>Frutos rojos</small></span></th><th>RHS<small class="rhs">disponible</small></th></tr></thead>
           <tbody>
-            <tr><td class="rl">R1<small>Proteína</small></td><td>0</td><td>0</td><td class="id3">1</td><td>160</td></tr>
-            <tr><td class="rl">R2<small>Línea</small></td><td>0</td><td class="id2">1</td><td>0</td><td>240</td></tr>
-            <tr><td class="rl">R3<small>Cobertura</small></td><td class="id1">1</td><td>0</td><td>0</td><td>240</td></tr>
-            <tr class="z"><td class="rl">Z</td><td>0</td><td>0</td><td>0</td><td class="fin">36,720</td></tr>
+            <tr><td class="rl">R1<small>Proteína (kg)</small></td><td>0</td><td>0</td><td class="id3">1</td><td>160</td></tr>
+            <tr><td class="rl">R2<small>Línea (min)</small></td><td>0</td><td class="id2">1</td><td>0</td><td>240</td></tr>
+            <tr><td class="rl">R3<small>Cobertura (kg)</small></td><td class="id1">1</td><td>0</td><td>0</td><td>240</td></tr>
+            <tr class="z"><td class="rl">Z<small>Ganancia ($)</small></td><td>0</td><td>0</td><td>0</td><td class="fin">36,720</td></tr>
           </tbody></table></div>
         <div class="solv"><div style="--c:var(--yel)"><i></i><span>x1 = 240<small>cajas de Chocolate</small></span></div><div style="--c:#9DB0FF"><i></i><span>x2 = 240<small>cajas de Cookies</small></span></div><div style="--c:#FF8A8E"><i></i><span>x3 = 160<small>cajas de Frutos rojos</small></span></div><div style="--c:var(--lime)"><i></i><span>Zmax = $36,720<small>de ganancia por corrida</small></span></div></div>
       </div>
@@ -1729,9 +1730,9 @@ html.h1020 .mwrap .tw{display:none}
   </div>
   <div class="stage">
     <div class="checks">
-      <div class="ck r1c" data-step="0"><span class="rn">R1<small>Proteína</small></span><span class="f">0.15(240) + 0.125(240) + 0.15(160) = 36 + 30 + 24 = 90 kg ≤ 90 kg</span><span class="ok">✓</span></div>
-      <div class="ck r2c" data-step="1"><span class="rn">R2<small>Línea</small></span><span class="f">0.5(240) + 0.75(240) + 0.75(160) = 120 + 180 + 120 = 420 min ≤ 420 min</span><span class="ok">✓</span></div>
-      <div class="ck r3c" data-step="2"><span class="rn">R3<small>Cobertura</small></span><span class="f">0.12(240) + 0.09(240) + 0.06(160) = 28.8 + 21.6 + 9.6 = 60 kg ≤ 60 kg</span><span class="ok">✓</span></div>
+      <div class="ck r1c" data-step="0"><span class="rn">R1<small>Proteína (kg)</small></span><span class="f">0.15(240) + 0.125(240) + 0.15(160) = 36 + 30 + 24 = 90 kg ≤ 90 kg</span><span class="ok">✓</span></div>
+      <div class="ck r2c" data-step="1"><span class="rn">R2<small>Línea (min)</small></span><span class="f">0.5(240) + 0.75(240) + 0.75(160) = 120 + 180 + 120 = 420 min ≤ 420 min</span><span class="ok">✓</span></div>
+      <div class="ck r3c" data-step="2"><span class="rn">R3<small>Cobertura (kg)</small></span><span class="f">0.12(240) + 0.09(240) + 0.06(160) = 28.8 + 21.6 + 9.6 = 60 kg ≤ 60 kg</span><span class="ok">✓</span></div>
       <div class="ck zc" data-step="3"><span class="rn">Z</span><span class="f">60(240) + 57(240) + 54(160) = $14,400 + $13,680 + $8,640</span><span class="ok">$36,720 de ganancia</span></div>
     </div>
   </div>
@@ -1868,7 +1869,7 @@ html.h1020 .mwrap .tw{display:none}
     return neg+(n/f.d).toFixed(4).replace(/0+$/,'').replace(/\.$/,''); /* sin fracciones: decimal a 4 cifras; las cuentas siguen siendo exactas */
   }
   const par=f=>`(${fmt(f)})`;
-  const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'], RNAME=['Proteína','Línea','Cobertura',''];
+  const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'], RNAME=['Proteína','Línea','Cobertura',''], RLAB=['Proteína (kg)','Línea (min)','Cobertura (kg)','Ganancia ($)'];
   let M=[['0.15','0.125','0.15','90'],['0.5','0.75','0.75','420'],['0.12','0.09','0.06','60'],['-60','-57','-54','0']].map(r=>r.map(D));
   const disp=A=>A.map(r=>r.map(fmt));
   const SX=[];
@@ -1918,10 +1919,10 @@ html.h1020 .mwrap .tw{display:none}
   function xHead(k,c){ const key=['choc','cook','fruit'][k], nm=['Chocolate','Cookies','Frutos rojos'][k]; return `<span class="xh"><i class="xb">${mascotSVG(key)}</i><span>${c}</span><small>${nm}</small></span>`; }
   function renderSX(i){
     const st=SX[i]; if(!st) return;
-    let h='<thead><tr><th></th>'+['x<sub>1</sub>','x<sub>2</sub>','x<sub>3</sub>','RHS'].map((c,k)=>`<th class="${st.pc===k?'pc':''}">${k<3?xHead(k,c):c}</th>`).join('')+(st.rat?'<th style="background:transparent"></th>':'')+'</tr></thead><tbody>';
+    let h='<thead><tr><th></th>'+['x<sub>1</sub>','x<sub>2</sub>','x<sub>3</sub>','RHS<small class="rhs">disponible</small>'].map((c,k)=>`<th class="${st.pc===k?'pc':''}">${k<3?xHead(k,c):c}</th>`).join('')+(st.rat?'<th style="background:transparent"></th>':'')+'</tr></thead><tbody>';
     st.t.forEach((row,r)=>{
       const z=r===3, inCalc=!!(st.calc&&st.calc.includes(r));
-      h+=`<tr class="${z?'z':''} ${st.pr===r?'prh':''}"><td class="rl">${RN[r]}${RNAME[r]?`<small>${RNAME[r]}</small>`:''}</td>`;
+      h+=`<tr class="${z?'z':''} ${st.pr===r?'prh':''}"><td class="rl">${RN[r]}<small>${RLAB[r]}</small></td>`;
       row.forEach((v,c)=>{
         const cls=[]; if(inCalc) cls.push('cx');
         if(st.pc===c && st.pr!==r && !inCalc) cls.push('pcc');
