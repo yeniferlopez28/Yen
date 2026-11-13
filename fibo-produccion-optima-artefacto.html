@@ -1067,6 +1067,18 @@ html.h1020 .mwrap .tw{display:none}
 @media (max-width:900px){.gloss{grid-template-columns:1fr}}
 @media (max-width:430px){.ck{grid-template-columns:auto minmax(0,1fr)}.ck .ok{grid-column:1/-1;justify-self:start}}
 .tab th small.rhs{display:block;font:500 8.5px/1 var(--wide);letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-top:3px}
+/* escena final: gracias */
+#fin{grid-template-columns:1fr;place-items:center;align-content:center}
+#fin .finc{display:grid;justify-items:center;gap:clamp(14px,calc(2.6 * var(--vh)),30px);text-align:center}
+#fin .word{font:700 clamp(70px,calc(13 * var(--vw)),200px)/.9 var(--wide);color:var(--pinkd);letter-spacing:-.04em;text-transform:lowercase;margin:0}
+#fin .q2{font:600 clamp(16px,calc(1.8 * var(--vw)),26px)/1 var(--wide);color:var(--limed);text-transform:uppercase;letter-spacing:.12em}
+#fin .team{display:grid;justify-items:center;gap:12px;color:#F3EEDF}
+#fin .team .tl{font:600 12px/1 var(--wide);letter-spacing:.2em;text-transform:uppercase;color:var(--pinkd)}
+#fin .team ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,auto);gap:10px 40px}
+#fin .team li{font:500 clamp(13px,calc(1.15 * var(--vw)),19px)/1.3 var(--wide);text-transform:uppercase;letter-spacing:.05em}
+#fin .sub{position:absolute;left:0;right:0;bottom:calc(var(--nav-h) + 24px);display:flex;justify-content:center;color:#F3EEDF;font-family:var(--wide);font-weight:500;letter-spacing:.1em;font-size:11px}
+#fin .talk{display:none}
+@media (max-width:900px){#fin{height:100%}#fin .team ul{grid-template-columns:1fr;gap:8px}#fin .team li{font-size:13px}#fin .sub{white-space:normal;padding:0 16px;text-align:center}}
 </style>
 
 <div id="fit">
@@ -1825,6 +1837,24 @@ html.h1020 .mwrap .tw{display:none}
 </section>
 
 
+<!-- ================= GRACIAS ================= -->
+<section class="s" id="fin" data-steps="1" data-sec="9" data-tone="dark">
+  <div class="finc">
+    <h2 class="word">¡gracias!</h2>
+    <p class="q2">¿Preguntas?</p>
+    <div class="team" aria-label="Integrantes del equipo">
+      <span class="tl">Equipo</span>
+      <ul>
+        <li>Arellano Lara Karla Valeria</li>
+        <li>Barragán Brito Fátima Morishka</li>
+        <li>Escobedo Marín Brenda Nayeli</li>
+        <li>López Guzmán Yenifer</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sub br">Producción óptima de FIBO · Investigación de Operaciones I · CUCEA</div>
+</section>
+
 </main>
 
 <nav class="nav" aria-label="Controles">
@@ -2033,7 +2063,7 @@ html.h1020 .mwrap .tw{display:none}
   /* ---------- motor ---------- */
   const deck=$('#deck'), S=$$('.s'), N=S.length; let cur=0, step=0;
   const steps=i=>+S[i].dataset.steps||1;
-  const SEC={"0":"Portada","1":"01 · Empresa","2":"02 · Área de trabajo","3":"03 · Problema identificado","4":"04 · Propuesta de optimización","5":"05 · Resultados","6":"06 · Propuesta de mejora","7":"07 · Conclusiones","8":"Respaldo"};
+  const SEC={"0":"Portada","1":"01 · Empresa","2":"02 · Área de trabajo","3":"03 · Problema identificado","4":"04 · Propuesta de optimización","5":"05 · Resultados","6":"06 · Propuesta de mejora","7":"07 · Conclusiones","9":"Cierre","8":"Respaldo"};
   function paint(sl,st){
     $$('[data-step]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.step<=st));
     $$('[data-only]',sl).forEach(e=>e.classList.toggle('on',+e.dataset.only===st));
