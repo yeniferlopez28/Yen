@@ -1079,6 +1079,14 @@ html.h1020 .mwrap .tw{display:none}
 #fin .sub{position:absolute;left:0;right:0;bottom:calc(var(--nav-h) + 24px);display:flex;justify-content:center;color:#F3EEDF;font-family:var(--wide);font-weight:500;letter-spacing:.1em;font-size:11px}
 #fin .talk{display:none}
 @media (max-width:900px){#fin{height:100%}#fin .team ul{grid-template-columns:1fr;gap:8px}#fin .team li{font-size:13px}#fin .sub{white-space:normal;padding:0 16px;text-align:center}}
+/* cronómetro */
+.nav .tmr{font:700 13px/1 var(--wide)!important;letter-spacing:.04em;min-width:76px;font-variant-numeric:tabular-nums;background:#1F1F1F!important;color:#F3EEDF!important}
+.nav .tmr::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--limed);margin-right:8px;vertical-align:1px}
+.nav .tmr.paused::before{background:#888}
+.nav .tmr.warn{background:#F2D31B!important;color:#121212!important}
+.nav .tmr.warn::before{background:#121212}
+.nav .tmr.over{background:#D6161D!important;color:#fff!important}
+.nav .tmr.over::before{background:#fff}
 </style>
 
 <div id="fit">
@@ -1859,6 +1867,7 @@ html.h1020 .mwrap .tw{display:none}
 <nav class="nav" aria-label="Controles">
   <button id="prev" type="button" aria-label="Anterior">←</button>
   <button id="next" type="button" aria-label="Siguiente">→</button>
+  <button id="tmr" type="button" class="tmr" title="Cronómetro de 10 minutos: arranca al avanzar; clic para pausar">10:00</button>
   <span class="ct" id="ct">01 / 16</span>
   <div class="pg"><i id="pgb"></i></div>
   <button id="idx" type="button">Índice</button>
@@ -2089,7 +2098,19 @@ html.h1020 .mwrap .tw{display:none}
   function activate(k){ if(k===cur) return; const down=k>cur; if(!down) paint(S[cur],0); cur=k; step=down?0:steps(k)-1; render(); }
   function toSlide(k,smooth=true){ k=Math.max(0,Math.min(N-1,k)); deck.scrollTo({top:S[k].offsetTop,behavior:smooth&&!reduce?'smooth':'auto'}); }
   function go(i){ if(i===cur){step=0;render();} else toSlide(i); }
-  function next(){ if(step<steps(cur)-1){step++;render();} else if(cur<N-1) toSlide(cur+1); }
+  /* ---------- cronómetro de 10 minutos ---------- */
+  const TOTAL=600, tmr=$('#tmr'); let tRun=false, tStart=0, tAcc=0, tTick=null;
+  function tLeft(){ return TOTAL-(tAcc+(tRun?(Date.now()-tStart)/1000:0)); }
+  function tPaint(){ const s=tLeft(), a=Math.abs(s), m=Math.floor(Math.ceil(a)/60), sc=Math.ceil(a)%60;
+    const txt=(s<0?'+':'')+m+':'+String(sc).padStart(2,'0');
+    tmr.textContent=(tAcc===0&&!tRun)?'10:00':txt;
+    tmr.classList.toggle('warn',s<=120&&s>0); tmr.classList.toggle('over',s<=0); tmr.classList.toggle('paused',!tRun&&tAcc>0); }
+  function startT(){ if(tRun||tAcc>0) return; tRun=true; tStart=Date.now(); tTick=setInterval(tPaint,250); tPaint(); }
+  tmr.addEventListener('click',e=>{ e.stopPropagation();
+    if(tRun){ tAcc+=(Date.now()-tStart)/1000; tRun=false; clearInterval(tTick); }
+    else { tRun=true; tStart=Date.now(); tTick=setInterval(tPaint,250); }
+    tPaint(); });
+  function next(){ startT(); if(step<steps(cur)-1){step++;render();} else if(cur<N-1) toSlide(cur+1); }
   function back(){ if(step>0){step--;render();} else if(cur>0) toSlide(cur-1); }
   let tk=false;
   deck.addEventListener('scroll',()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{ tk=false; const mid=deck.getBoundingClientRect().height/2; let f=cur; S.forEach((s,k)=>{const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid) f=k;}); if(f!==cur) activate(f); }); },{passive:true});
