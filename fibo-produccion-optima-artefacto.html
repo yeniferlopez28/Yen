@@ -1869,30 +1869,31 @@ html.h1020 .mwrap .tw{display:none}
     return neg+(n/f.d).toFixed(4).replace(/0+$/,'').replace(/\.$/,''); /* sin fracciones: decimal a 4 cifras; las cuentas siguen siendo exactas */
   }
   const par=f=>`(${fmt(f)})`;
-  const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'], RNAME=['Proteína','Línea','Cobertura',''], RLAB=['Proteína (kg)','Línea (min)','Cobertura (kg)','Ganancia ($)'];
+  const X=['x1','x2','x3'], RN=['R1','R2','R3','Z'], RNAME=['Proteína','Línea','Cobertura',''], XN=['Chocolate','Cookies','Frutos rojos'], RLAB=['Proteína (kg)','Línea (min)','Cobertura (kg)','Ganancia ($)'];
   let M=[['0.15','0.125','0.15','90'],['0.5','0.75','0.75','420'],['0.12','0.09','0.06','60'],['-60','-57','-54','0']].map(r=>r.map(D));
   const disp=A=>A.map(r=>r.map(fmt));
   const SX=[];
-  SX.push({t:disp(M),it:0,title:'1. Tabla simplex',note:'Cada restricción es un renglón (R1, R2, R3). En Z van los coeficientes de la F.O. con signo contrario: −60, −57, −54.',
-    say:'<p><b>1. Tabla simplex.</b> Cada restricción es un renglón: R1 proteína, R2 línea, R3 cobertura.</p><p>En Z van los coeficientes de la función objetivo con el signo cambiado: −60, −57 y −54.</p>'});
+  SX.push({t:disp(M),it:0,title:'1. Tabla simplex',note:'Renglón Z = la ganancia con el signo cambiado (−60, −57, −54). Columna RHS = lo disponible: 90 kg, 420 min y 60 kg.',
+    say:'<p><b>1. Armar la tabla simplex.</b> Cada restricción es un renglón: R1 proteína (kg), R2 línea (min) y R3 cobertura (kg). La columna RHS es lo disponible: 90 kg, 420 min y 60 kg.</p><p>El renglón <b>Z es la ganancia</b>: ahí van 60, 57 y 54 con el signo cambiado, o sea −60, −57 y −54.</p>'});
   let it=0;
   while(it<10){
     let pc=0; for(let c=1;c<3;c++) if(val(M[3][c])<val(M[3][pc])) pc=c;
     if(val(M[3][pc])>=0) break;
     it++;
-    SX.push({t:disp(M),it,pc,title:'2. Seleccionar Z más negativa',note:`Vuelta ${it}: en Z el más negativo es ${fmt(M[3][pc])} → columna pivote ${X[pc]}.`,
-      say:`<p><b>Vuelta ${it}. 2. Seleccionar Z más negativa.</b></p><p>En el renglón Z el número más negativo es <b>${fmt(M[3][pc])}</b>. La columna de <b>${X[pc]}</b> es la columna pivote.</p>`});
+    SX.push({t:disp(M),it,pc,title:'2. Seleccionar Z más negativa',note:`Vuelta ${it}: el número más negativo de Z es ${fmt(M[3][pc])} → columna pivote ${X[pc]} (${XN[pc]}).`,
+      say:`<p><b>Vuelta ${it}. Paso 2: elegir la columna pivote.</b></p><p>Buscamos el número más negativo del renglón Z: es <b>${fmt(M[3][pc])}</b>, en la columna de <b>${X[pc]} (${XN[pc]})</b>.</p><p>Es el sabor que más puede subir la ganancia en esta vuelta.</p>`});
     const rat=[], rv=[];
     for(let r=0;r<3;r++){ if(val(M[r][pc])>0){ const q=div(M[r][3],M[r][pc]); rv[r]=q; rat[r]=`<span class="ex">${fmt(M[r][3])} / ${fmt(M[r][pc])}</span><b>= ${fmt(q)}</b>`; } else rat[r]='no se divide'; }
-    SX.push({t:disp(M),it,pc,rat,title:'3. Dividir RHS / columna pivote',note:'Se divide el RHS de cada renglón entre su número en la columna pivote.',
-      say:`<p><b>3. Dividir RHS / columna pivote.</b></p><p>Dividimos el RHS de cada renglón entre su número en la columna de ${X[pc]}.</p>`});
+    const ex3=[0,1,2].find(r=>rv[r]);
+    SX.push({t:disp(M),it,pc,rat,title:'3. Dividir RHS / columna pivote',note:`Renglón por renglón: RHS ÷ su número en la columna de ${X[pc]}. Solo se divide cuando ese número es positivo.`,
+      say:`<p><b>Paso 3: dividir RHS entre la columna pivote.</b></p><p>En cada renglón dividimos lo disponible (RHS) entre su número en la columna de ${X[pc]}. Ejemplo en ${RN[ex3]}: ${fmt(M[ex3][3])} ÷ ${fmt(M[ex3][pc])} = ${fmt(rv[ex3])}.</p><p>El resultado dice hasta dónde alcanza cada recurso.</p>`});
     let pr=-1; for(let r=0;r<3;r++) if(rv[r] && (pr<0||val(rv[r])<val(rv[pr]))) pr=r;
-    SX.push({t:disp(M),it,pc,pr,rat,best:pr,title:'4. Seleccionar fila menor',note:`El resultado más pequeño es ${fmt(rv[pr])} → fila pivote ${RN[pr]} (${RNAME[pr]}). Pivote = ${fmt(M[pr][pc])} (cruce de fila y columna).`,
-      say:`<p><b>4. Seleccionar fila menor.</b> El resultado más pequeño es <b>${fmt(rv[pr])}</b>, en ${RN[pr]} (${RNAME[pr]}).</p><p>El número del cruce, <b>${fmt(M[pr][pc])}</b>, es el pivote.</p>`});
+    SX.push({t:disp(M),it,pc,pr,rat,best:pr,title:'4. Seleccionar fila menor',note:`El resultado más chico es ${fmt(rv[pr])} → fila pivote ${RN[pr]} (${RNAME[pr]}). Pivote = ${fmt(M[pr][pc])}, donde se cruzan la fila y la columna.`,
+      say:`<p><b>Paso 4: elegir la fila pivote.</b> El resultado más chico es <b>${fmt(rv[pr])}</b>, en ${RN[pr]} (${RNAME[pr]}): es el recurso que se acaba primero.</p><p>El número donde se cruzan esa fila y la columna pivote, <b>${fmt(M[pr][pc])}</b>, es el <b>pivote</b>.</p>`});
     const piv=M[pr][pc], P=M[pr].map(v=>div(v,piv));
     const t5=disp(M); t5[pr]=M[pr].map((v,j)=>`<span class="ex">${fmt(v)} / ${fmt(piv)}</span><b>= ${fmt(P[j])}</b>`);
-    SX.push({t:t5,it,pc,pr,calc:[pr],title:'5. Dividir toda la fila entre el pivote',note:`${RN[pr]} nueva = ${RN[pr]} / ${fmt(piv)}. El pivote se vuelve 1.`,
-      say:`<p><b>5. Dividir toda la fila entre el pivote.</b></p><p>Todo ${RN[pr]} se divide entre ${fmt(piv)}. El pivote se vuelve <b>1</b>.</p>`});
+    SX.push({t:t5,it,pc,pr,calc:[pr],title:'5. Dividir toda la fila entre el pivote',note:`${RN[pr]} nueva = ${RN[pr]} ÷ ${fmt(piv)}. Así el pivote queda en 1.`,
+      say:`<p><b>Paso 5: convertir el pivote en 1.</b> Dividimos todo el renglón ${RN[pr]} entre el pivote (${fmt(piv)}).</p><p>Ejemplo: ${fmt(piv)} ÷ ${fmt(piv)} = 1, y en RHS ${fmt(M[pr][3])} ÷ ${fmt(piv)} = ${fmt(P[3])}.</p>`});
     const N=M.map(r=>r.slice()); N[pr]=P;
     const t6=disp(M); t6[pr]=disp([P])[0]; const calcR=[];
     for(let r=0;r<3;r++){ if(r===pr) continue; const c=M[r][pc];
@@ -1900,19 +1901,19 @@ html.h1020 .mwrap .tw{display:none}
       N[r]=M[r].map((v,j)=>sub(v,mul(c,P[j]))); calcR.push(r);
       t6[r]=M[r].map((v,j)=>`<span class="ex">${fmt(v)} − ${fmt(c)}${par(P[j])}</span><b>= ${fmt(N[r][j])}</b>`); }
     const others=[0,1,2].filter(r=>r!==pr);
-    SX.push({t:t6,it,pc,pr,calc:calcR,title:'6. Volver 0 la columna pivote',note:'Fila nueva = Fila actual − (coeficiente en columna pivote) × (fila pivote)',
-      say:`<p><b>6. Volver 0 la columna pivote.</b></p><p>A ${others.map(r=>RN[r]).join(' y ')} le restamos su número de la columna ${X[pc]} por la fila pivote. Así ese número se vuelve 0.</p>`});
+    SX.push({t:t6,it,pc,pr,calc:calcR,title:'6. Volver 0 la columna pivote',note:'Fila nueva = fila actual − (su número en la columna pivote) × (fila pivote).',
+      say:`<p><b>Paso 6: hacer 0 el resto de la columna.</b> En ${calcR.map(r=>RN[r]).join(' y ')}, la columna de ${X[pc]} tiene que quedar en 0.</p><p>A cada número del renglón le restamos su número de esa columna × el número de la fila pivote. Ejemplo en ${RN[calcR[0]]}: ${fmt(M[calcR[0]][pc])} − ${fmt(M[calcR[0]][pc])} × 1 = 0.</p>`});
     const cz=M[3][pc], mz=F(-cz.n,cz.d); N[3]=M[3].map((v,j)=>sub(v,mul(cz,P[j])));
     const t6z=disp(N.slice(0,3)).concat([M[3].map((v,j)=>`<span class="ex">${fmt(v)} + ${fmt(mz)}${par(P[j])}</span><b>= ${fmt(N[3][j])}</b>`)]);
-    SX.push({t:t6z,it,pc,pr,calc:[3],title:'6. Volver 0 la columna pivote (Z)',note:`Fila nueva = Fila actual − (${fmt(cz)}) × (fila pivote): como es negativo, se suma ${fmt(mz)} veces.`,
-      say:`<p><b>6. También en Z.</b> El ${fmt(cz)} se vuelve 0 sumando ${fmt(mz)} veces la fila pivote.</p><p>Z ya vale <b>${fmt(N[3][3])}</b>.</p>`});
+    SX.push({t:t6z,it,pc,pr,calc:[3],title:'6. Volver 0 la columna pivote (Z)',note:`Z nueva = Z + ${fmt(mz)} × (fila pivote). Restar un número negativo (${fmt(cz)}) es lo mismo que sumarlo.`,
+      say:`<p><b>Paso 6, también en Z.</b> En Z, la columna de ${X[pc]} tiene ${fmt(cz)} y también debe quedar en 0.</p><p>Como es negativo, en vez de restar se <b>suma</b>: a cada número de Z le sumamos ${fmt(mz)} × su número de la fila pivote. Ejemplo: ${fmt(cz)} + ${fmt(mz)} × 1 = 0, y en RHS ${fmt(M[3][3])} + ${fmt(mz)} × ${fmt(P[3])} = ${fmt(N[3][3])}.</p><p>La ganancia (Z) ya vale <b>$${fmt(N[3][3])}</b>.</p>`});
     M=N;
     const negs=[0,1,2].filter(c=>val(M[3][c])<0);
     const plan=[0,1,2].map(c=>{ let row=-1; for(let r=0;r<3;r++){ if(val(M[r][c])===1 && [0,1,2].every(q=>q===r||val(M[q][c])===0)) row=r; } return row>=0?M[row][3]:F(0); });
     const bx=f=>`${fmt(f)} cajas (${fmt(mul(f,F(6)))} barras)`;
     const planTxt=`<p>Con esta tabla, el plan sería: Chocolate ${bx(plan[0])}, Cookies ${bx(plan[1])} y Frutos rojos ${bx(plan[2])}. Ganancia: <b>$${fmt(M[3][3])}</b>.</p>`;
     SX.push({t:disp(M),it,negs,fin:!negs.length,title:'8. ¿Tengo Z negativas?',note:negs.length?`Sí: queda ${negs.map(c=>fmt(M[3][c])).join(', ')} en Z → se repiten los pasos 2 al 6.`:'No: ya cuento con mi solución óptima.',
-      say:negs.length?`<p><b>8. ¿Tengo Z negativas?</b> Sí: queda <b>${negs.map(c=>fmt(M[3][c])).join(' y ')}</b>. Se repiten los pasos 2 al 6.</p>${planTxt}<p>Todavía se puede ganar más.</p>`:`<p><b>8. ¿Tengo Z negativas?</b> No: es la <b>solución óptima</b>.</p>${planTxt}`});
+      say:negs.length?`<p><b>Paso 8: ¿quedan negativos en Z?</b> Sí: <b>${negs.map(c=>fmt(M[3][c])).join(' y ')}</b>. Se repite todo desde el paso 2.</p>${planTxt}<p>Todavía se puede ganar más.</p>`:`<p><b>Paso 8: ¿quedan negativos en Z?</b> No: ya no hay ninguno, así que es la <b>solución óptima</b>.</p>${planTxt}`});
   }
   $('#sxSays').innerHTML=SX.map((st,i)=>`<div class="say" data-say="${i}">${st.say}</div>`).join('');
   $('#p9').dataset.steps=SX.length;
