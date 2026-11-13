@@ -986,7 +986,16 @@ table.tab{font-size:clamp(13px,1vw,17px)}
 .pnote{background:#FFFBEA;border:1.5px dashed rgba(18,18,18,.35);border-radius:16px;padding:9px 13px;font:400 clamp(11.5px,.85vw,13.5px)/1.4 var(--sans);color:#121212}
 .pnote b{font-weight:700}.pnote u{text-decoration-thickness:1.5px}.pnote i{opacity:.65}
 @media (max-height:800px) and (min-width:901px){.pnote{padding:6px 10px;font-size:11.5px;line-height:1.3}}
-@media (max-height:780px) and (min-width:901px){.mwrap .tw{display:none}}
+@media (max-height:1020px) and (min-width:901px){.mwrap .tw{display:none}}
+/* antes y después: la gráfica se ajusta a la altura de la pantalla para que nada se corte */
+.stage{align-items:safe center}
+#p12 .cg{height:clamp(130px,calc(100vh - 425px),340px)}
+#p12 .caps{gap:10px}
+#p12 .kpis{margin-top:0}
+#p12 .kpis div{padding:10px 14px}
+#p12 .cmp{gap:8px}
+#p12 .caps .head>div:first-child{display:grid;gap:5px}
+@media (max-width:900px){#p12 .cg{height:240px}}
 </style>
 
 <header class="hud" aria-label="Navegación">
