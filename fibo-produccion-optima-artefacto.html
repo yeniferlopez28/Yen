@@ -982,6 +982,11 @@ table.tab{font-size:clamp(13px,1vw,17px)}
 @media (prefers-reduced-motion: reduce){#intro .team{opacity:1}}
 #intro .sub{display:flex;justify-content:center}
 @media (max-width:900px){#intro{align-content:center;height:100%}}
+/* nota: por qué la proteína por barra cambia */
+.pnote{background:#FFFBEA;border:1.5px dashed rgba(18,18,18,.35);border-radius:16px;padding:9px 13px;font:400 clamp(11.5px,.85vw,13.5px)/1.4 var(--sans);color:#121212}
+.pnote b{font-weight:700}.pnote u{text-decoration-thickness:1.5px}.pnote i{opacity:.65}
+@media (max-height:800px) and (min-width:901px){.pnote{padding:6px 10px;font-size:11.5px;line-height:1.3}}
+@media (max-height:780px) and (min-width:901px){.mwrap .tw{display:none}}
 </style>
 
 <header class="hud" aria-label="Navegación">
@@ -1468,7 +1473,7 @@ table.tab{font-size:clamp(13px,1vw,17px)}
     <div class="meta"><span>04 · Propuesta de optimización</span><span>1 / 3</span></div>
     <h2 class="h2">El <span class="o">modelo</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Juntamos los datos <b>por caja de 6 barras</b>: cuánta proteína, cuánto tiempo y cuánta cobertura usa cada sabor, y cuánto dinero deja.</p><p class="src">Ganancia: precio a tienda ~$32 menos costo ~$22 ≈ $10 por barra. Cookies deja $9.50 y Frutos rojos $9.</p></div>
+      <div class="say" data-say="0"><p>Juntamos los datos <b>por caja de 6 barras</b>: cuánta proteína, cuánto tiempo y cuánta cobertura usa cada sabor, y cuánto dinero deja.</p><p class="src">Ganancia: precio a tienda ~$32 menos costo ~$22 ≈ $10 por barra. Cookies deja $9.50 y Frutos rojos $9.</p><p class="src">Proteína: las tres barras dicen 22 g en la etiqueta; el modelo pesa la mezcla en polvo, que no es 100% proteína. Cookies usa menos polvo porque su galleta también aporta proteína.</p></div>
       <div class="say" data-say="1"><p><b>x<sub>1</sub></b> = cajas de Chocolate que se producen en una corrida. <b>x<sub>2</sub></b> = cajas de Cookies &amp; Cream. <b>x<sub>3</sub></b> = cajas de Frutos rojos.</p><p><b>Z</b> es la ganancia en pesos: cada caja de Chocolate deja $60, de Cookies $57 y de Frutos rojos $54. Queremos <b>maximizar</b> Z.</p></div>
       <div class="say" data-say="2"><p>Las <b>restricciones</b> son los límites de cada corrida.</p><p><b>R1 · Proteína:</b> no usar más de 90 kg. <b>R2 · Línea:</b> no pasar de 420 min. <b>R3 · Cobertura:</b> no usar más de 60 kg.</p></div>
       <div class="say" data-say="3"><p>Este es el <b>modelo completo</b>: arriba la ganancia que queremos maximizar y abajo las tres restricciones, con su nombre.</p><p>Con <b>3 variables</b> ya no se puede dibujar en el plano: usamos el <b>método simplex</b>.</p></div>
@@ -1486,6 +1491,7 @@ table.tab{font-size:clamp(13px,1vw,17px)}
           <div class="mrow gz"><b>Ganancia</b><span>$10 × 6 = <em>$60</em></span><span>$9.50 × 6 = <em>$57</em></span><span>$9 × 6 = <em>$54</em></span><span class="av">se maximiza</span></div>
           <p class="foot">Línea: 12 y 8 son barras por minuto de la formadora · Ganancia: precio a tienda ~$32 − costo ~$22 = $10 por barra (Cookies $9.50, Frutos rojos $9) · 90 kg, 420 min y 60 kg son lo disponible por corrida.</p>
         </div>
+        <div class="pnote"><b>¿Por qué 25, 21 y 25 g si las tres dicen 22 g de proteína?</b> La etiqueta marca la proteína que te comes; en la mezcladora se pesa la <u>mezcla en polvo</u> (soya + suero), que trae ~88% de proteína: 25 g de polvo ≈ 22 g de proteína. Cookies lleva menos polvo (21 g ≈ 18.5 g) porque sus <u>trozos de galleta proteica</u> aportan los ~3.5 g que faltan. Así las tres llegan a 22 g. <i>Supuesto del modelo.</i></div>
         <div class="tw">
         <table class="dt2">
           <thead><tr><th>Por caja (6 barras)</th><th><span class="xh"><i class="xb" data-masc="choc"></i><span>x<sub>1</sub></span><small>Chocolate</small></span></th><th><span class="xh"><i class="xb" data-masc="cook"></i><span>x<sub>2</sub></span><small>Cookies</small></span></th><th><span class="xh"><i class="xb" data-masc="fruit"></i><span>x<sub>3</sub></span><small>Frutos rojos</small></span></th><th>Disponible</th></tr></thead>
