@@ -103,7 +103,7 @@
         <div><small>RÉCORD</small><b id="ov-best">0</b></div>
         <div><small>PROTEÍNA</small><b id="ov-prot">0 g</b></div>
       </div>
-      <p id="ov-text">Cómete todos los puntos del laberinto sin que te atrapen los antojos. Cada barra Fibo te da 22 g de proteína: mientras dura el efecto, tú te los comes a ellos.</p>
+      <p id="ov-text">Cómete todas las barritas Fibo del laberinto sin que te atrapen los antojos. Cada una suma 22 g de proteína. Con una barra grande, por unos segundos tú te comes a los antojos.</p>
       <div class="bars" id="ov-bars">
         <img src="assets/fibo-brownie.webp" alt="Fibo Brownie">
         <img src="assets/fibo-chocolate.webp" alt="Fibo Chocolate">
@@ -193,6 +193,15 @@
     x.fillStyle = C.ink; x.fillRect(4, FOES[i].eyeY + 1, 1, 1); x.fillRect(8, FOES[i].eyeY + 1, 1, 1);
   });
   const barImgs = FLAVORS.map(f => { const im = new Image(); im.src = 'assets/fibo-' + f.name + '.webp'; return im; });
+
+  const minis = [];
+  function miniBar(i) {
+    if (minis[i]) return minis[i];
+    const im = barImgs[i]; if (!im.naturalWidth) return null;
+    const c = document.createElement('canvas'); c.width = 80; c.height = 28;
+    const x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(im, 0, 0, 80, 28);
+    return minis[i] = c;
+  }
 
   /* ---------- laberinto: se genera uno distinto por nivel ---------- */
   function rng(seed) {
@@ -322,9 +331,10 @@
       const d = dots[p.y][p.x];
       if (d) {
         dots[p.y][p.x] = 0; dotsLeft--;
+        grams += 22;
         if (d === 1) { addScore(10); sfx.dot(); }
         else {
-          powerFlavor = d - 2; grams += 22; addScore(50, p.x, p.y); sfx.bar();
+          powerFlavor = d - 2; addScore(50, p.x, p.y); sfx.bar();
           power = Math.max(3, 7.5 - level * 0.5); combo = 0;
           foes.forEach(f => { if (f.state === 'move') { f.scared = true; reverse(f); } });
           drawWalls(FLAVORS[powerFlavor].color);
@@ -458,13 +468,16 @@
     ctx.drawImage(wallCv, 0, 0); ctx.globalAlpha = 1;
     ctx.setTransform(K, 0, 0, K, 0, 0);
     ctx.imageSmoothingEnabled = false;
-    ctx.fillStyle = C.cream;
-    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) if (dots[j][i] === 1) ctx.fillRect(i * T + 10, j * T + 10, 4, 4);
+    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) if (dots[j][i] === 1) {
+      const fl = (i + 2 * j) % 4, m = miniBar(fl);
+      if (m) ctx.drawImage(m, i * T + 2, j * T + 8.5, 20, 7);
+      else { ctx.fillStyle = FLAVORS[fl].color; ctx.fillRect(i * T + 3, j * T + 9, 18, 6); }
+    }
     ctx.imageSmoothingEnabled = true;
     for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) {
       const d = dots[j][i]; if (d < 2) continue;
       const im = barImgs[d - 2], cx = i * T + T / 2, cy = j * T + T / 2 + Math.sin(clock * 4 + i) * 1.5;
-      const bw = T * 2.1, bh = im.naturalWidth ? bw * im.naturalHeight / im.naturalWidth : bw / 3;
+      const bw = T * 2.5, bh = im.naturalWidth ? bw * im.naturalHeight / im.naturalWidth : bw / 3;
       ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.2);
       if (im.naturalWidth) ctx.drawImage(im, -bw / 2, -bh / 2, bw, bh);
       else { ctx.fillStyle = FLAVORS[d - 2].color; ctx.fillRect(-bw / 2, -bh / 2, bw, bh); }
