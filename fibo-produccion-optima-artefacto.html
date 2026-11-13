@@ -1,20 +1,25 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <script>
-/* Escala todo el artefacto al tamaño de la pantalla (como una presentación):
-   en computadora el diseño se ve igual en una laptop, un monitor o un proyector. */
+/* Escala todo el artefacto al tamaño de la pantalla, como una diapositiva:
+   el diseño se arma en un lienzo fijo y se agranda o achica completo (funciona igual en Chrome, Safari y Edge). */
 (function(){
   var BW=1360,BH=840,r=document.documentElement;
   function fit(){
-    var W=window.innerWidth,H=window.innerHeight,z=1;
-    if(W>900){z=Math.min(W/BW,H/BH);z=Math.max(.7,Math.min(z,2.4));}
-    r.style.zoom=z;
-    r.style.setProperty('--vw',(W/z/100)+'px');
-    r.style.setProperty('--vh',(H/z/100)+'px');
-    var eh=H/z;
-    [800,780,1020].forEach(function(n){r.classList.toggle('h'+n,W>900&&eh<=n);});
+    var el=document.getElementById('fit'); if(!el) return;
+    var W=r.clientWidth||window.innerWidth,H=window.innerHeight,z=1;
+    if(W>900){z=Math.min(W/BW,H/BH);z=Math.max(.6,Math.min(z,2.6));}
+    var dw=W/z,dh=H/z;
+    el.style.width=dw+'px';el.style.height=dh+'px';
+    el.style.transform=z===1?'none':'scale('+z+')';
+    r.style.setProperty('--vw',(dw/100)+'px');r.style.setProperty('--vh',(dh/100)+'px');
+    [800,780,1020].forEach(function(n){r.classList.toggle('h'+n,W>900&&dh<=n);});
   }
-  fit();window.addEventListener('resize',fit);
-  document.addEventListener('fullscreenchange',function(){setTimeout(fit,50);});
+  window.__fit=fit;
+  document.addEventListener('DOMContentLoaded',fit);
+  window.addEventListener('resize',fit);
+  window.addEventListener('orientationchange',function(){setTimeout(fit,100);});
+  document.addEventListener('fullscreenchange',function(){setTimeout(fit,60);});
+  document.addEventListener('webkitfullscreenchange',function(){setTimeout(fit,60);});
 })();
 </script>
 <title>Producción óptima de FIBO</title>
@@ -1017,8 +1022,16 @@ html.h1020 .mwrap .tw{display:none}
 #p12 .cmp{gap:8px}
 #p12 .caps .head>div:first-child{display:grid;gap:5px}
 @media (max-width:900px){#p12 .cg{height:240px}}
+/* lienzo escalado */
+#fit{position:fixed;left:0;top:0;width:100vw;height:100vh;transform-origin:0 0;overflow:hidden}
+/* leyenda del paso del simplex: siempre visible bajo la tabla */
+#sxNote{display:grid;gap:4px;background:#121212;color:#F3EEDF;border:0;border-radius:16px;padding:10px 14px;opacity:1!important;
+  font:500 12.5px/1.45 var(--sans)!important;text-transform:none;letter-spacing:0}
+#sxNote b{font:700 10.5px/1.2 var(--wide);letter-spacing:.08em;text-transform:uppercase;color:var(--limed)}
+#sxNote span{font-family:var(--mono);font-weight:500}
 </style>
 
+<div id="fit">
 <header class="hud" aria-label="Navegación">
   <div class="logo">FIBO <small>Producción · IO I</small></div>
   <div class="sq" id="sq" aria-label="Escenas"></div>
@@ -1182,7 +1195,6 @@ html.h1020 .mwrap .tw{display:none}
         </div>
       </div>
     </div>
-  </div>
   </div>
 </section>
 
@@ -1737,6 +1749,7 @@ html.h1020 .mwrap .tw{display:none}
   <button id="fs" type="button">Pantalla</button>
 </nav>
 
+</div>
 <script>
 (function(){
   const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
@@ -1834,7 +1847,7 @@ html.h1020 .mwrap .tw{display:none}
       if(st.rat) h+=`<td class="rzc ${st.best===r?'best':''}">${r<3?st.rat[r]:''}</td>`;
       h+='</tr>';
     });
-    $('#sxTable').innerHTML=h+'</tbody>'; $('#sxNote').textContent=st.note; $('#sxLabel').textContent=st.title;
+    $('#sxTable').innerHTML=h+'</tbody>'; $('#sxNote').innerHTML='<b>'+st.title.replace(/</g,'&lt;')+'</b><span></span>';$('#sxNote span').textContent=st.note; $('#sxLabel').textContent=st.title;
     $$('#sxIt i').forEach((e,k)=>e.classList.toggle('on',k===st.it));
   }
 
@@ -1962,7 +1975,7 @@ html.h1020 .mwrap .tw{display:none}
   function next(){ if(step<steps(cur)-1){step++;render();} else if(cur<N-1) toSlide(cur+1); }
   function back(){ if(step>0){step--;render();} else if(cur>0) toSlide(cur-1); }
   let tk=false;
-  deck.addEventListener('scroll',()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{ tk=false; const mid=deck.clientHeight/2; let f=cur; S.forEach((s,k)=>{const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid) f=k;}); if(f!==cur) activate(f); }); },{passive:true});
+  deck.addEventListener('scroll',()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{ tk=false; const mid=deck.getBoundingClientRect().height/2; let f=cur; S.forEach((s,k)=>{const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid) f=k;}); if(f!==cur) activate(f); }); },{passive:true});
   let wl=false, wa=0, wt=0;
   deck.addEventListener('wheel',e=>{ if(innerWidth<=900) return; if(e.target.closest('.src-list')) return; e.preventDefault(); clearTimeout(wt); wt=setTimeout(()=>{wa=0;},220); if(wl) return; wa+=e.deltaY; if(Math.abs(wa)>24){ const d=wa>0; wa=0; wl=true; setTimeout(()=>{wl=false;},650); d?next():back(); } },{passive:false});
   deck.addEventListener('click',e=>{ if(e.target.closest('button,a,input,.src-list')) return; next(); });
