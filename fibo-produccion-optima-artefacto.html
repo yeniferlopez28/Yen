@@ -1029,6 +1029,29 @@ html.h1020 .mwrap .tw{display:none}
   font:500 12.5px/1.45 var(--sans)!important;text-transform:none;letter-spacing:0}
 #sxNote b{font:700 10.5px/1.2 var(--wide);letter-spacing:.08em;text-transform:uppercase;color:var(--limed)}
 #sxNote span{font-family:var(--mono);font-weight:500}
+/* escena ¿qué es una corrida? */
+.crd{display:grid;gap:14px;align-content:center}
+.tbar{display:flex;gap:4px;height:92px}
+.tbar i{display:grid;align-content:center;gap:4px;padding:0 14px;border-radius:18px;font-style:normal;min-width:0;overflow:hidden;background:var(--c,var(--tile));color:var(--t,var(--ink))}
+.tbar i b{font:700 clamp(16px,1.6vw,24px)/1 var(--wide);white-space:nowrap}
+.tbar i span{font:500 11px/1.25 var(--wide);text-transform:uppercase;letter-spacing:.04em}
+.tbar .t60{flex:0 0 120px;background:repeating-linear-gradient(-45deg,#DCCF95 0 6px,#ECE1AE 6px 12px)}
+.tbar .t60 span{display:none}
+.tbar .t420{flex:420;background:var(--limed)}
+.tbar.mins{height:84px}
+.tbar.mins i{padding:0 10px}
+.tbar .left{background:repeating-linear-gradient(-45deg,#ECE1AE 0 5px,#D6161D 5px 8px);padding:0;justify-items:center}
+.tbar .left b{font-size:13px;background:#ECE1AE;border-radius:6px;padding:2px 3px}
+.tsum{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tsum div{background:var(--tile);border-radius:18px;padding:14px;display:grid;gap:4px}
+.tsum div.g{background:var(--ink);color:#F3EEDF}
+.tsum div.g b{color:var(--limed)}
+.tsum b{font:700 clamp(18px,1.7vw,26px)/1 var(--wide);white-space:nowrap}
+.tsum span{font:500 11px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.04em}
+.crd .real{gap:8px}
+.crd .real .row{padding:10px 16px}
+.crd .real .row b{font-family:var(--wide);font-weight:700;font-size:clamp(16px,1.6vw,22px);white-space:nowrap}
+@media (max-width:900px){.tsum{grid-template-columns:1fr 1fr}.tbar{height:auto;min-height:80px}.tbar .t60{min-width:46px}}
 </style>
 
 <div id="fit">
@@ -1446,29 +1469,64 @@ html.h1020 .mwrap .tw{display:none}
 </section>
 
 <!-- ================= ÁREA · RECURSOS ================= -->
-<section class="s b-cream" id="p6" data-steps="3" data-sec="2">
+<section class="s b-cream" id="p6" data-steps="2" data-sec="2">
   <div class="talk">
     <div class="meta"><span>02 · Área de trabajo</span><span>Una corrida</span></div>
     <h2 class="h2">Tres cosas <span class="o">se acaban</span>.</h2>
     <div class="says">
       <div class="say" data-say="0"><p>FIBO no se produce todos los días: se hace por <b>corridas</b> de un turno.</p><p>En cada corrida hay tres recursos que no alcanzan para todo.</p></div>
-      <div class="say" data-say="1"><p>¿Es realista? FIBO reporta $34 millones vendidos desde 2019. A unos $32 por barra, son cerca de <b>152 mil barras al año</b>: unas 2,900 por semana.</p><p>Una corrida semanal de un turno cubre esa demanda.</p></div>
-      <div class="say" data-say="2"><p>En resumen: la proteína, la línea y la cobertura son los <b>límites</b>.</p><p>Lo que vamos a decidir es <b>cuántas cajas de 6 barras de cada sabor</b> se producen en una corrida.</p></div>
+      <div class="say" data-say="1"><p>En resumen: la proteína, la línea y la cobertura son los <b>límites</b>.</p><p>Lo que vamos a decidir es <b>cuántas cajas de 6 barras de cada sabor</b> se producen en una corrida.</p></div>
     </div>
   </div>
   <div class="stage">
     <div class="layers">
-      <div class="res3" data-range="0-0">
+      <div class="res3" data-range="0-1">
         <div class="rc r1c" style="--r:-1.5deg"><span class="k">R1 · Proteína</span><span class="n">90 kg</span><span>Mezcla de soya + suero. Llega en sacos de 20 kg y se liberan 4 y medio por corrida.</span><em>Se usa en la mezcladora</em></div>
         <div class="rc r2c" style="--r:1deg"><span class="k">R2 · Línea</span><span class="n">420 min</span><span>Un turno de 8 h (480 min) menos 60 min de arranque, limpieza al cambiar de sabor y comida.</span><em>Lo marca la formadora</em></div>
         <div class="rc r3c" style="--r:-1deg"><span class="k">R3 · Cobertura</span><span class="n">60 kg</span><span>Lo que el tanque de fusión derrite y mantiene líquido durante el turno.</span><em>Se usa en la enrobadora</em></div>
       </div>
-      <div class="real" data-range="1-2">
-        <div class="row"><span>Ventas reportadas por FIBO desde 2019</span><b>$34 M</b></div>
-        <div class="row"><span>÷ ~7 años ÷ ~$32 por barra (precio a tienda)</span><b>≈ 152,000 barras al año</b></div>
-        <div class="row"><span>÷ 52 semanas</span><b>≈ 2,900 por semana</b></div>
-        <div class="row k2"><span>Una corrida de un turno produce</span><b>3,600 – 3,900 barras</b></div>
-        <p class="src">Estimación nuestra con datos públicos de FIBO. Las cantidades por barra son aproximadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ÁREA · ¿QUÉ ES UNA CORRIDA? ================= -->
+<section class="s b-white" id="p6b" data-steps="3" data-sec="2">
+  <div class="talk">
+    <div class="meta"><span>02 · Área de trabajo</span><span>Una corrida</span></div>
+    <h2 class="h2">¿Qué es una <span class="o">corrida</span>?</h2>
+    <div class="says">
+      <div class="say" data-say="0"><p>Una <b>corrida</b> es <b>un turno de 8 horas</b> (480 min) en el que la línea hace los 3 sabores, uno después del otro.</p><p>De esos 480 min, 60 se van en arrancar, limpiar al cambiar de sabor y comer. Quedan <b>420 min</b> de formadora trabajando: ese es el límite R2.</p></div>
+      <div class="say" data-say="1"><p><b>Ejemplo: la corrida de hoy.</b> Se hacen 200 cajas de cada sabor.</p><p>Chocolate tarda 0.5 min por caja; Cookies y Frutos rojos, 0.75. Total: 100 + 150 + 150 = <b>400 min</b> de los 420. Sobran 20.</p><p>Salen 600 cajas × 6 = <b>3,600 barras</b> en un solo turno.</p></div>
+      <div class="say" data-say="2"><p><b>¿Cada cuánto se hace?</b> Una vez por semana.</p><p>FIBO vende unas <b>2,900 barras por semana</b> y una corrida produce de 3,600 a 3,840: con un turno a la semana alcanza.</p><p>Por eso <b>1 corrida = 1 semana</b>, y para pasar a un año se multiplica por 52.</p></div>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="layers">
+      <div class="crd" data-only="0">
+        <span class="k">Un turno = una corrida</span>
+        <div class="tbar"><i class="t60"><b>60 min</b><span>arranque · limpieza entre sabores · comida</span></i><i class="t420"><b>420 min</b><span>la formadora trabajando = R2</span></i></div>
+        <div class="tsum"><div><b>8 h</b><span>un turno</span></div><div><b>480 min</b><span>en total</span></div><div><b>− 60 min</b><span>tiempos muertos</span></div><div class="g"><b>420 min</b><span>para producir</span></div></div>
+        <p class="src">En un turno se producen los 3 sabores. Lo que decide el modelo es cuántas cajas de cada uno.</p>
+      </div>
+      <div class="crd" data-only="1">
+        <span class="k">Ejemplo · la corrida de hoy (200 cajas de cada sabor)</span>
+        <div class="tbar mins"><i style="flex:100;--c:var(--x1)"><b>100</b><span>Chocolate</span></i><i style="flex:150;--c:var(--x2);--t:#fff"><b>150</b><span>Cookies</span></i><i style="flex:150;--c:var(--x3)"><b>150</b><span>Frutos rojos</span></i><i class="left" style="flex:20"><b>20</b></i></div>
+        <div class="real">
+          <div class="row"><span>Chocolate · 200 cajas × 0.5 min</span><b>100 min</b></div>
+          <div class="row"><span>Cookies · 200 cajas × 0.75 min</span><b>150 min</b></div>
+          <div class="row"><span>Frutos rojos · 200 cajas × 0.75 min</span><b>150 min</b></div>
+          <div class="row k2"><span>Usa 400 de 420 min · 600 cajas × 6</span><b>3,600 barras</b></div>
+        </div>
+      </div>
+      <div class="crd" data-only="2">
+        <span class="k">¿Por qué una corrida por semana?</span>
+        <div class="real">
+          <div class="row"><span>$34,000,000 vendidos desde 2019 ÷ 7 años</span><b>$4,857,143 al año</b></div>
+          <div class="row"><span>÷ $32 por barra (precio a tienda)</span><b>151,786 barras al año</b></div>
+          <div class="row"><span>÷ 52 semanas = 2,919</span><b>≈ 2,900 por semana</b></div>
+          <div class="row k2"><span>Una corrida produce</span><b>3,600 – 3,840 barras</b></div>
+        </div>
+        <p class="src">Redondeamos porque es una estimación: los $34 M, los 7 años y los $32 son aproximados. Con $31 o $33 por barra saldrían entre 2,830 y 3,010 por semana: en todos los casos una corrida alcanza.</p>
       </div>
     </div>
   </div>
@@ -1654,7 +1712,7 @@ html.h1020 .mwrap .tw{display:none}
 </section>
 
 <!-- ================= RESULTADOS · ANTES Y DESPUÉS ================= -->
-<section class="s b-pink" id="p12" data-steps="3" data-sec="5">
+<section class="s b-pink" id="p12" data-steps="4" data-sec="5">
   <div class="talk">
     <div class="meta"><span>05 · Resultados</span><span>Impacto</span></div>
     <h2 class="h2">Antes y <span class="o">después</span>.</h2>
@@ -1662,6 +1720,7 @@ html.h1020 .mwrap .tw{display:none}
       <div class="say" data-say="0"><p><b>Antes:</b> 1,200 barras de cada sabor (3,600 en total).</p><p><b>Ahora:</b> 1,440 de Chocolate, 1,440 de Cookies y 960 de Frutos rojos (3,840 en total). Se hacen 240 barras más con los mismos insumos.</p></div>
       <div class="say" data-say="1"><p>La ganancia sube de $34,200 a <b>$36,720</b> por corrida: <b>+$2,520</b>, un 7.4% más.</p><p>Si se hace una corrida por semana, son <b>+$131,040 al año</b>.</p></div>
       <div class="say" data-say="2"><p>Y ya no sobra nada: la proteína, la línea y la cobertura se usan al 100%.</p></div>
+      <div class="say" data-say="3"><p><b>¿Y el año?</b> Como 1 corrida = 1 semana, se multiplica por 52:</p><p>Hoy: $34,200 × 52 = $1,778,400. Óptimo: $36,720 × 52 = <b>$1,909,440</b>.</p><p>Los <b>$131,040</b> son la diferencia: lo que se gana <b>de más</b> en un año, no la ganancia total.</p></div>
     </div>
   </div>
   <div class="stage">
