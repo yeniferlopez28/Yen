@@ -436,15 +436,26 @@
     let cut = 0;
     if (state === 'dying') cut = Math.min(11, Math.floor(stateT / 1.1 * 11));
     for (const off of [0, -COLS, COLS]) {
-      const X = px((fx(p) + off) * T), Y = px(fy(p) * T);
-      if (X < -T || X > W) continue;
-      const u = 2, R = (i, j, w, h, col) => { ctx.fillStyle = col; ctx.fillRect(X + i * u, Y + j * u, w * u, h * u); };
+      const X0 = px((fx(p) + off) * T), Y0 = px(fy(p) * T);
+      if (X0 < -T || X0 > W) continue;
+      const X = 0, Y = 0, u = 2, R = (i, j, w, h, col) => { ctx.fillStyle = col; ctx.fillRect(X + i * u, Y + j * u, w * u, h * u); };
       if (cut < 11) {
-        const top = cut;
-        ctx.save(); ctx.beginPath(); ctx.rect(X, Y + top * u, T, T); ctx.clip();
-        const body = power > 0 && state === 'play' ? FLAVORS[powerFlavor].color : C.lime;
-        R(2, 0, 8, 1, body); R(1, 1, 10, 1, body); R(0, 2, 12, 7, body); R(1, 9, 10, 1, body); R(2, 10, 8, 1, body);
-        if (step2) { R(3, 11, 2, 1, body); R(7, 11, 2, 1, body); } else { R(2, 11, 2, 1, body); R(8, 11, 2, 1, body); }
+        const top = cut, powered = power > 0 && state === 'play';
+        const glowCol = powered ? FLAVORS[powerFlavor].color : C.lime;
+        const gr = T * (powered ? 1.5 : 1.15) + Math.sin(clock * 6) * 2;
+        const gg = ctx.createRadialGradient(X0 + T / 2, Y0 + T / 2, 2, X0 + T / 2, Y0 + T / 2, gr);
+        gg.addColorStop(0, glowCol); gg.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.globalAlpha = state === 'dying' ? 0.2 : 0.55; ctx.fillStyle = gg;
+        ctx.fillRect(X0 + T / 2 - gr, Y0 + T / 2 - gr, gr * 2, gr * 2); ctx.globalAlpha = 1;
+        ctx.save(); ctx.translate(X0 + T / 2, Y0 + T / 2); ctx.scale(1.45, 1.45); ctx.translate(-T / 2, -T / 2);
+        ctx.beginPath(); ctx.rect(X - 4, Y + top * u, T + 8, T + 8); ctx.clip();
+        const shape = (col, g) => {
+          ctx.fillStyle = col;
+          const B = (i, j, w, h) => ctx.fillRect(i * u - g, j * u - g, w * u + 2 * g, h * u + 2 * g);
+          B(2, 0, 8, 1); B(1, 1, 10, 1); B(0, 2, 12, 7); B(1, 9, 10, 1); B(2, 10, 8, 1);
+          if (step2) { B(3, 11, 2, 1); B(7, 11, 2, 1); } else { B(2, 11, 2, 1); B(8, 11, 2, 1); }
+        };
+        shape(C.ink, 2); shape(C.lime, 0);
         const ex = d[0], eyy = 3 + d[1];
         R(3 + ex, eyy, 2, 3, C.ink); R(7 + ex, eyy, 2, 3, C.ink);
         R(3 + ex + (d[0] > 0 ? 1 : 0), eyy, 1, 1, '#fff'); R(7 + ex + (d[0] > 0 ? 1 : 0), eyy, 1, 1, '#fff');
@@ -496,7 +507,14 @@
       const col = FLAVORS[powerFlavor].color;
       ctx.fillStyle = col; ctx.fillRect(0, H - 4, W * power / Math.max(3, 7.5 - level * 0.5), 4);
     }
-    if (state === 'ready') label(level > 1 && stateT < 0.9 ? 'NIVEL ' + level : '¡LISTO!', H / 2 - T / 2, C.lime, 22);
+    if (state === 'ready' && Math.floor(stateT * 4) % 2 === 0) {
+      const ax = player.x * T + T / 2, ay = player.y * T - 16;
+      ctx.font = '700 12px Silkscreen, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = C.ink; ctx.fillRect(ax - 16, ay - 16, 32, 15);
+      ctx.fillStyle = C.lime; ctx.fillText('TÚ', ax, ay - 8);
+      ctx.fillRect(ax - 4, ay, 8, 3); ctx.fillRect(ax - 2, ay + 3, 4, 3);
+    }
+    if (state === 'ready') label(level > 1 && stateT < 0.9 ? 'NIVEL ' + level : '¡LISTO!', H / 2 - T * 2.5, C.lime, 22);
     if (state === 'clear') label('¡NIVEL SUPERADO!', H / 2 - T / 2, C.cream, 18);
     if (paused) label('PAUSA', H / 2 - T / 2, C.cream, 22);
   }
