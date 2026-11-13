@@ -1,0 +1,572 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Fibo Modo Proteína</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+  /* Layout: gabinete de una sola pantalla — marcador arriba, laberinto al centro, vidas y controles abajo. */
+  :root {
+    color-scheme: dark;
+    --ink: #0C0B0A;
+    --panel: #171612;
+    --line: #2c2a22;
+    --lime: #C9F23A;
+    --cream: #F4EAD4;
+    --dim: #9a957f;
+    --blue: #3A5CFF;
+    --red: #D6161D;
+    --pixel: "Silkscreen", "Courier New", monospace;
+    --body: "Space Grotesk", system-ui, sans-serif;
+  }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--ink); color: var(--cream); font-family: var(--body);
+    display: flex; flex-direction: column; gap: 8px;
+    padding-block: 10px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    box-sizing: border-box; overflow: hidden;
+    -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  header, footer { width: 100%; max-width: 560px; margin-inline: auto; display: flex; align-items: center; gap: 12px; }
+  header img { height: 30px; width: auto; display: block; }
+  .hud { margin-left: auto; display: flex; gap: 16px; font-family: var(--pixel); font-variant-numeric: tabular-nums; }
+  .hud div { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1; }
+  .hud small, footer small { font-size: 10px; letter-spacing: .08em; color: var(--dim); }
+  .hud b { font-size: 17px; font-weight: 400; color: var(--cream); }
+  .hud #score { color: var(--lime); }
+  #stage { flex: 1; min-height: 0; position: relative; display: flex; align-items: center; justify-content: center; touch-action: none; }
+  canvas#game { display: block; image-rendering: pixelated; background: var(--ink); }
+  footer { font-family: var(--pixel); }
+  #lives { display: flex; gap: 5px; align-items: center; min-width: 62px; }
+  #lives i { width: 14px; height: 14px; background: var(--lime); display: block; box-shadow: inset 3px -3px 0 var(--ink), inset -3px -3px 0 var(--ink); border-top: 3px solid var(--lime); box-sizing: border-box; }
+  #prot { display: flex; flex-direction: column; line-height: 1.1; }
+  #prot b { font-weight: 400; font-size: 15px; color: var(--cream); }
+  .btns { margin-left: auto; display: flex; gap: 8px; }
+  button { font-family: var(--pixel); cursor: pointer; border-radius: 0; }
+  .btns button { background: var(--panel); color: var(--cream); border: 2px solid var(--line); font-size: 11px; padding: 8px 10px; min-height: 36px; }
+  button:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+  #pad { display: none; width: 100%; max-width: 560px; margin-inline: auto; justify-content: center; }
+  #pad .grid { display: grid; grid-template-columns: repeat(3, 58px); grid-template-rows: repeat(2, 50px); gap: 6px; }
+  #pad button { background: var(--panel); color: var(--lime); border: 2px solid var(--line); font-size: 20px; touch-action: none; }
+  #pad button:active { background: var(--lime); color: var(--ink); }
+  #pad [data-d="u"] { grid-column: 2; grid-row: 1; }
+  #pad [data-d="l"] { grid-column: 1; grid-row: 2; }
+  #pad [data-d="d"] { grid-column: 2; grid-row: 2; }
+  #pad [data-d="r"] { grid-column: 3; grid-row: 2; }
+  @media (pointer: coarse) { #pad { display: flex; } }
+
+  #overlay {
+    position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center;
+    padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    box-sizing: border-box;
+    background: color-mix(in srgb, var(--ink) 86%, transparent);
+  }
+  .card {
+    width: min(calc(100% - 8px), 400px); max-height: calc(100% - 8px); margin: 0 8px 8px 0; overflow-y: auto; box-sizing: border-box;
+    background: var(--ink); border: 2px solid var(--lime); padding: 20px 20px 22px;
+    display: flex; flex-direction: column; gap: 14px; text-align: left;
+    box-shadow: 8px 8px 0 var(--lime);
+  }
+  .card h1 { margin: 0; font-family: var(--pixel); font-weight: 700; font-size: 26px; line-height: 1.05; color: var(--lime); text-wrap: balance; }
+  .card p { margin: 0; font-size: 14px; line-height: 1.4; color: var(--cream); }
+  .card p.sub { color: var(--dim); font-size: 13px; }
+  .bars { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+  .bars img { width: 100%; display: block; }
+  .foes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; font-family: var(--pixel); font-size: 10px; color: var(--dim); text-align: center; }
+  .foes canvas { width: 36px; height: 36px; image-rendering: pixelated; display: block; margin: 0 auto 4px; }
+  .result { display: flex; gap: 22px; font-family: var(--pixel); font-variant-numeric: tabular-nums; }
+  .result div { display: flex; flex-direction: column; }
+  .result small { font-size: 10px; color: var(--dim); letter-spacing: .08em; }
+  .result b { font-size: 24px; font-weight: 400; color: var(--cream); }
+  #play { background: var(--lime); color: var(--ink); border: 0; font-size: 18px; font-weight: 700; padding: 14px; }
+  #play:hover { background: var(--cream); }
+</style>
+
+<header>
+  <img src="assets/fibo-logo.png" alt="Fibo">
+  <div class="hud">
+    <div><small>PUNTOS</small><b id="score">0</b></div>
+    <div><small>RÉCORD</small><b id="best">0</b></div>
+    <div><small>NIVEL</small><b id="level">1</b></div>
+  </div>
+</header>
+
+<div id="stage">
+  <canvas id="game" aria-label="Laberinto del juego"></canvas>
+  <div id="overlay">
+    <div class="card">
+      <h1 id="ov-title">Modo Proteína</h1>
+      <div class="result" id="ov-result" hidden>
+        <div><small>PUNTOS</small><b id="ov-score">0</b></div>
+        <div><small>RÉCORD</small><b id="ov-best">0</b></div>
+        <div><small>PROTEÍNA</small><b id="ov-prot">0 g</b></div>
+      </div>
+      <p id="ov-text">Cómete todos los puntos del laberinto sin que te atrapen los antojos. Cada barra Fibo te da 22 g de proteína: mientras dura el efecto, tú te los comes a ellos.</p>
+      <div class="bars" id="ov-bars">
+        <img src="assets/fibo-brownie.webp" alt="Fibo Brownie">
+        <img src="assets/fibo-chocolate.webp" alt="Fibo Chocolate">
+        <img src="assets/fibo-cookies.webp" alt="Fibo Cookies &amp; Cream">
+        <img src="assets/fibo-frutos.webp" alt="Fibo Frutos Rojos">
+      </div>
+      <div class="foes" id="ov-foes">
+        <div><canvas width="12" height="12"></canvas>DONA</div>
+        <div><canvas width="12" height="12"></canvas>REFRESCO</div>
+        <div><canvas width="12" height="12"></canvas>PAPAS</div>
+        <div><canvas width="12" height="12"></canvas>DULCE</div>
+      </div>
+      <button id="play" type="button">Jugar</button>
+      <p class="sub">Flechas o WASD para moverte. En el celular, desliza el dedo o usa los botones. P para pausar.</p>
+    </div>
+  </div>
+</div>
+
+<div id="pad" aria-label="Controles">
+  <div class="grid">
+    <button type="button" data-d="u" aria-label="Arriba">▲</button>
+    <button type="button" data-d="l" aria-label="Izquierda">◀</button>
+    <button type="button" data-d="d" aria-label="Abajo">▼</button>
+    <button type="button" data-d="r" aria-label="Derecha">▶</button>
+  </div>
+</div>
+
+<footer>
+  <div id="lives" aria-label="Vidas"></div>
+  <div id="prot"><small>PROTEÍNA</small><b id="grams">0 g</b></div>
+  <div class="btns">
+    <button type="button" id="btn-pause">Pausa</button>
+    <button type="button" id="btn-sound">Sonido: sí</button>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const COLS = 19, ROWS = 21, T = 24, K = 2;
+  const W = COLS * T, H = ROWS * T;
+  const C = { ink: '#0C0B0A', lime: '#C9F23A', cream: '#F4EAD4', blue: '#3A5CFF', red: '#D6161D' };
+  const DIRS = { l: [-1, 0], r: [1, 0], u: [0, -1], d: [0, 1] };
+  const DLIST = [DIRS.u, DIRS.l, DIRS.d, DIRS.r];
+  const FLAVORS = [
+    { name: 'brownie', color: '#A56BEA' },
+    { name: 'chocolate', color: '#F2D31B' },
+    { name: 'cookies', color: '#F4EAD4' },
+    { name: 'frutos', color: '#FF4B55' },
+  ];
+  const BAR_TILES = [[5, 5], [13, 5], [5, 15], [13, 15]];
+  const HOMES = [[1, 1], [17, 1], [1, 19], [17, 19]];
+  const START = [9, 15];
+
+  const $ = id => document.getElementById(id);
+  const canvas = $('game'), ctx = canvas.getContext('2d');
+  canvas.width = W * K; canvas.height = H * K;
+
+  /* ---------- sprites (pixel art propio, 12×12) ---------- */
+  const PAL = { p: '#FF86B8', t: '#D6B787', y: '#F2D31B', b: '#3A5CFF', w: '#FFFFFF', r: '#D6161D', s: '#F4EAD4', v: '#A56BEA', k: '#0C0B0A' };
+  const FOES = [
+    { name: 'dona', eyeY: 7, map: [
+      '...pppppp...', '..pppypppp..', '.ppppppbppp.', '.pwpppppppp.', 'pppppkkppppp', 'ppyppkkppwpp',
+      'tttttkkttttt', 'tttttttttttt', '.tttttttttt.', '.tttttttttt.', '..tttttttt..', '...tttttt...'] },
+    { name: 'refresco', eyeY: 5, map: [
+      '.......ss...', '......ss....', '..wwwwwwww..', '.wwwwwwwwww.', '..rrrrrrrr..', '..rrrrrrrr..',
+      '..rrrrrrrr..', '..rwwwwwwr..', '..rrrrrrrr..', '...rrrrrr...', '...rrrrrr...', '...rrrrrr...'] },
+    { name: 'papas', eyeY: 6, map: [
+      '.y.y.yy.y.y.', '.y.yyyy.yyy.', '.yyyyyyyyyy.', '.yyyyyyyyyy.', '.rrrrrrrrrr.', '.rrrrrrrrrr.',
+      '.rrrrrrrrrr.', '.rrrrrrrrrr.', '..rrrrrrrr..', '..rrrrrrrr..', '..rrrrrrrr..', '...rrrrrr...'] },
+    { name: 'dulce', eyeY: 4, map: [
+      '............', '............', 'v...vvvv...v', 'vv.vvwwvv.vv', 'vvvvwvvvvvvv', 'vvvvvvvvvvvv',
+      'vvvvvvvvwvvv', 'vv.vvvvvv.vv', 'v...vvvv...v', '............', '............', '............'] },
+  ];
+  function bake(map, mono) {
+    const c = document.createElement('canvas'); c.width = c.height = 12;
+    const x = c.getContext('2d');
+    map.forEach((row, j) => [...row].forEach((ch, i) => {
+      if (ch === '.') return;
+      x.fillStyle = mono || PAL[ch]; x.fillRect(i, j, 1, 1);
+    }));
+    return c;
+  }
+  FOES.forEach(f => { f.img = bake(f.map); f.scared = bake(f.map, C.blue); f.flash = bake(f.map, C.cream); });
+  document.querySelectorAll('#ov-foes canvas').forEach((cv, i) => {
+    const x = cv.getContext('2d'); x.drawImage(FOES[i].img, 0, 0);
+    x.fillStyle = '#fff'; x.fillRect(3, FOES[i].eyeY, 2, 2); x.fillRect(7, FOES[i].eyeY, 2, 2);
+    x.fillStyle = C.ink; x.fillRect(4, FOES[i].eyeY + 1, 1, 1); x.fillRect(8, FOES[i].eyeY + 1, 1, 1);
+  });
+  const barImgs = FLAVORS.map(f => { const im = new Image(); im.src = 'assets/fibo-' + f.name + '.webp'; return im; });
+
+  /* ---------- laberinto: se genera uno distinto por nivel ---------- */
+  function rng(seed) {
+    return () => { seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  }
+  function makeMaze(level) {
+    const r = rng(level * 7919 + 22);
+    const g = Array.from({ length: ROWS }, () => Array(COLS).fill(1));
+    const CX = 5, CY = 10, seen = new Set(['0,0']), stack = [[0, 0]];
+    g[1][1] = 0;
+    while (stack.length) {
+      const [cx, cy] = stack[stack.length - 1];
+      const nb = DLIST.map(([dx, dy]) => [cx + dx, cy + dy, dx, dy])
+        .filter(([x, y]) => x >= 0 && x < CX && y >= 0 && y < CY && !seen.has(x + ',' + y));
+      if (!nb.length) { stack.pop(); continue; }
+      const [nx, ny, dx, dy] = nb[Math.floor(r() * nb.length)];
+      g[2 * cy + 1 + dy][2 * cx + 1 + dx] = 0; g[2 * ny + 1][2 * nx + 1] = 0;
+      seen.add(nx + ',' + ny); stack.push([nx, ny]);
+    }
+    const inb = (x, y) => x >= 0 && x < CX && y >= 0 && y < CY;
+    for (let cy = 0; cy < CY; cy++) for (let cx = 0; cx < CX; cx++) {
+      const gx = 2 * cx + 1, gy = 2 * cy + 1;
+      let opens = 0; const closed = [];
+      for (const [dx, dy] of DLIST) {
+        if (cx === CX - 1 && dx === 1) { if (!g[gy][gx - 1]) opens++; continue; }
+        if (!inb(cx + dx, cy + dy)) continue;
+        if (g[gy + dy][gx + dx]) closed.push([dx, dy]); else opens++;
+      }
+      if (opens <= 1 && closed.length) { const [dx, dy] = closed[Math.floor(r() * closed.length)]; g[gy + dy][gx + dx] = 0; }
+      for (const [dx, dy] of [DIRS.r, DIRS.d]) {
+        if (inb(cx + dx, cy + dy) && g[gy + dy][gx + dx] && r() < 0.1) g[gy + dy][gx + dx] = 0;
+      }
+    }
+    for (let y = 0; y < ROWS; y++) for (let x = 0; x < 9; x++) g[y][COLS - 1 - x] = g[y][x];
+    g[11][0] = 0; g[11][COLS - 1] = 0;
+    return g;
+  }
+
+  /* ---------- estado ---------- */
+  let grid, dots, dotsLeft, wallCv = document.createElement('canvas');
+  wallCv.width = W * K; wallCv.height = H * K;
+  let state = 'title', stateT = 0, paused = false;
+  let score = 0, best = 0, level = 1, lives = 3, grams = 0, extraGiven = false;
+  let player, foes, power = 0, powerFlavor = 0, combo = 0, phaseT = 0, popups = [], want = null, clock = 0;
+  try { best = +localStorage.getItem('fibo-modo-proteina-best') || 0; } catch (e) {}
+
+  const wrapX = x => (x + COLS) % COLS;
+  const open = (x, y) => y >= 0 && y < ROWS && !grid[y][wrapX(x)];
+
+  function drawWalls(color) {
+    const x = wallCv.getContext('2d');
+    x.setTransform(K, 0, 0, K, 0, 0); x.clearRect(0, 0, W, H);
+    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) {
+      if (!grid[j][i]) continue;
+      x.globalAlpha = 0.13; x.fillStyle = color; x.fillRect(i * T, j * T, T, T); x.globalAlpha = 1;
+      x.fillStyle = color;
+      if (j > 0 && !grid[j - 1][i]) x.fillRect(i * T, j * T, T, 2);
+      if (j < ROWS - 1 && !grid[j + 1][i]) x.fillRect(i * T, j * T + T - 2, T, 2);
+      if (i > 0 && !grid[j][i - 1]) x.fillRect(i * T, j * T, 2, T);
+      if (i < COLS - 1 && !grid[j][i + 1]) x.fillRect(i * T + T - 2, j * T, 2, T);
+    }
+  }
+  function loadLevel() {
+    grid = makeMaze(level);
+    dots = Array.from({ length: ROWS }, (_, j) => grid[j].map(v => v ? 0 : 1));
+    dots[START[1]][START[0]] = 0; dots[11][0] = 0; dots[11][COLS - 1] = 0;
+    BAR_TILES.forEach(([x, y], i) => { dots[y][x] = 2 + i; });
+    dotsLeft = dots.flat().filter(Boolean).length;
+    drawWalls(C.lime);
+    resetActors();
+  }
+  function resetActors() {
+    player = { x: START[0], y: START[1], dir: null, t: 0, face: DIRS.l };
+    foes = HOMES.map((h, i) => ({ i, x: h[0], y: h[1], hx: h[0], hy: h[1], dir: null, t: 0, state: 'wait', timer: 0.6 + i * 2.2, scared: false }));
+    power = 0; combo = 0; phaseT = 0; want = null; popups = [];
+    drawWalls(C.lime);
+  }
+  function newGame() {
+    score = 0; level = 1; lives = 3; grams = 0; extraGiven = false;
+    loadLevel(); setState('ready'); hud();
+  }
+  function setState(s) { state = s; stateT = 0; }
+
+  /* ---------- sonido ---------- */
+  let ac = null, muted = false, blip = 0;
+  function tone(f, d, v = 0.05, when = 0, f2 = 0, type = 'square') {
+    if (muted || !ac) return;
+    const o = ac.createOscillator(), g = ac.createGain(), t0 = ac.currentTime + when;
+    o.type = type; o.frequency.setValueAtTime(f, t0);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t0 + d);
+    g.gain.setValueAtTime(v, t0); g.gain.exponentialRampToValueAtTime(0.0001, t0 + d);
+    o.connect(g).connect(ac.destination); o.start(t0); o.stop(t0 + d + 0.02);
+  }
+  const sfx = {
+    dot() { blip ^= 1; tone(blip ? 520 : 660, 0.06, 0.035); },
+    bar() { [392, 523, 659, 880].forEach((f, i) => tone(f, 0.12, 0.05, i * 0.07)); },
+    eat() { tone(300, 0.25, 0.06, 0, 1200); },
+    die() { tone(500, 0.9, 0.07, 0, 60, 'sawtooth'); },
+    clear() { [523, 659, 784, 1047, 784, 1047].forEach((f, i) => tone(f, 0.14, 0.05, i * 0.1)); },
+    start() { [330, 392, 494, 659].forEach((f, i) => tone(f, 0.12, 0.05, i * 0.12)); },
+  };
+
+  /* ---------- lógica ---------- */
+  function addScore(n, x, y) {
+    score += n;
+    if (x !== undefined) popups.push({ x, y, text: '+' + n, t: 0 });
+    if (!extraGiven && score >= 10000) { extraGiven = true; lives++; sfx.bar(); }
+    if (score > best) { best = score; try { localStorage.setItem('fibo-modo-proteina-best', best); } catch (e) {} }
+    hud();
+  }
+  function reverse(e) {
+    if (!e.dir) return;
+    e.x = wrapX(e.x + e.dir[0]); e.y += e.dir[1];
+    e.dir = [-e.dir[0], -e.dir[1]]; e.t = 1 - e.t;
+  }
+  function step(e, dt, speed, arrive) {
+    if (!e.dir) { arrive(e, true); if (!e.dir) return; }
+    e.t += speed * dt;
+    while (e.t >= 1) {
+      e.x = wrapX(e.x + e.dir[0]); e.y += e.dir[1]; e.t -= 1;
+      arrive(e, false);
+      if (!e.dir) { e.t = 0; break; }
+    }
+  }
+  function playerArrive(p, idle) {
+    if (!idle) {
+      const d = dots[p.y][p.x];
+      if (d) {
+        dots[p.y][p.x] = 0; dotsLeft--;
+        if (d === 1) { addScore(10); sfx.dot(); }
+        else {
+          powerFlavor = d - 2; grams += 22; addScore(50, p.x, p.y); sfx.bar();
+          power = Math.max(3, 7.5 - level * 0.5); combo = 0;
+          foes.forEach(f => { if (f.state === 'move') { f.scared = true; reverse(f); } });
+          drawWalls(FLAVORS[powerFlavor].color);
+        }
+        if (!dotsLeft) { setState('clear'); sfx.clear(); addScore(500); return; }
+      }
+    }
+    if (want && open(p.x + want[0], p.y + want[1])) p.dir = want;
+    else if (p.dir && !open(p.x + p.dir[0], p.y + p.dir[1])) p.dir = null;
+    if (p.dir) p.face = p.dir;
+  }
+  function foeArrive(f) {
+    let opts = DLIST.filter(d => open(f.x + d[0], f.y + d[1]) && !(f.dir && d[0] === -f.dir[0] && d[1] === -f.dir[1]));
+    if (!opts.length) { f.dir = f.dir ? [-f.dir[0], -f.dir[1]] : null; return; }
+    const pick = () => opts[Math.floor(Math.random() * opts.length)];
+    if (f.scared) { f.dir = pick(); return; }
+    let tx = player.x, ty = player.y, wander = 0.1;
+    const retreat = phaseT % 21 > 16;
+    if (retreat) { tx = f.hx; ty = f.hy; }
+    else if (f.i === 1) { tx += player.face[0] * 4; ty += player.face[1] * 4; wander = 0.15; }
+    else if (f.i === 2) { wander = 0.5; }
+    else if (f.i === 3 && Math.hypot(f.x - player.x, f.y - player.y) < 6) { tx = f.hx; ty = f.hy; }
+    if (Math.random() < wander) { f.dir = pick(); return; }
+    let bestD = Infinity;
+    for (const d of opts) {
+      const dist = (f.x + d[0] - tx) ** 2 + (f.y + d[1] - ty) ** 2;
+      if (dist < bestD) { bestD = dist; f.dir = d; }
+    }
+  }
+  const fx = e => e.x + (e.dir ? e.dir[0] * e.t : 0);
+  const fy = e => e.y + (e.dir ? e.dir[1] * e.t : 0);
+
+  function update(dt) {
+    clock += dt; stateT += dt;
+    popups.forEach(p => p.t += dt); popups = popups.filter(p => p.t < 0.9);
+    if (state === 'ready') { if (stateT > 1.8) setState('play'); return; }
+    if (state === 'dying') {
+      if (stateT > 1.4) {
+        lives--; hud();
+        if (lives <= 0) { setState('over'); showOver(); } else { resetActors(); setState('ready'); }
+      }
+      return;
+    }
+    if (state === 'clear') {
+      if (stateT > 2) { level++; loadLevel(); setState('ready'); hud(); }
+      return;
+    }
+    if (state !== 'play') return;
+
+    phaseT += dt;
+    if (power > 0) {
+      power -= dt;
+      if (power <= 0) { power = 0; foes.forEach(f => f.scared = false); drawWalls(C.lime); }
+    }
+    if (want && player.dir && want[0] === -player.dir[0] && want[1] === -player.dir[1]) { reverse(player); player.face = player.dir; }
+    step(player, dt, 6.3, playerArrive);
+    if (state !== 'play') return;
+
+    const foeSpeed = Math.min(6.2, 4.7 + level * 0.3);
+    for (const f of foes) {
+      if (f.state === 'dead') { f.timer -= dt; if (f.timer <= 0) { f.state = 'wait'; f.timer = 1.2; f.x = f.hx; f.y = f.hy; f.dir = null; f.t = 0; f.scared = false; } continue; }
+      if (f.state === 'wait') { f.timer -= dt; if (f.timer <= 0) f.state = 'move'; continue; }
+      step(f, dt, f.scared ? 3.3 : foeSpeed, foeArrive);
+      if (Math.hypot(fx(f) - fx(player), fy(f) - fy(player)) < 0.62) {
+        if (f.scared) {
+          combo++; addScore(220 * 2 ** (combo - 1), f.x, f.y); sfx.eat();
+          f.state = 'dead'; f.timer = 3.5;
+        } else { setState('dying'); sfx.die(); return; }
+      }
+    }
+  }
+
+  /* ---------- dibujo ---------- */
+  function px(n) { return Math.round(n * K) / K; }
+  function drawFoe(f) {
+    if (f.state === 'dead') return;
+    const spec = FOES[f.i];
+    let img = spec.img;
+    if (f.scared) img = (power < 2 && Math.floor(power * 5) % 2 === 0) ? spec.flash : spec.scared;
+    if (f.state === 'wait' && Math.floor(clock * 6) % 2) ctx.globalAlpha = 0.35;
+    const bob = f.state === 'move' ? Math.round(Math.sin(clock * 10 + f.i) * 1) : 0;
+    for (const off of [0, -COLS, COLS]) {
+      const X = px((fx(f) + off) * T), Y = px(fy(f) * T + bob);
+      if (X < -T || X > W) continue;
+      ctx.drawImage(img, X, Y, T, T);
+      const ey = Y + spec.eyeY * 2, d = f.dir || [0, 0];
+      ctx.fillStyle = f.scared ? C.ink : '#fff';
+      ctx.fillRect(X + 6, ey, 4, 4); ctx.fillRect(X + 14, ey, 4, 4);
+      if (!f.scared) {
+        ctx.fillStyle = C.ink;
+        ctx.fillRect(X + 7 + d[0], ey + 1 + d[1], 2, 2); ctx.fillRect(X + 15 + d[0], ey + 1 + d[1], 2, 2);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+  function drawPlayer() {
+    const p = player, d = p.face, moving = !!p.dir && state === 'play';
+    const step2 = moving && Math.floor(clock * 12) % 2;
+    let cut = 0;
+    if (state === 'dying') cut = Math.min(11, Math.floor(stateT / 1.1 * 11));
+    for (const off of [0, -COLS, COLS]) {
+      const X = px((fx(p) + off) * T), Y = px(fy(p) * T);
+      if (X < -T || X > W) continue;
+      const u = 2, R = (i, j, w, h, col) => { ctx.fillStyle = col; ctx.fillRect(X + i * u, Y + j * u, w * u, h * u); };
+      if (cut < 11) {
+        const top = cut;
+        ctx.save(); ctx.beginPath(); ctx.rect(X, Y + top * u, T, T); ctx.clip();
+        const body = power > 0 && state === 'play' ? FLAVORS[powerFlavor].color : C.lime;
+        R(2, 0, 8, 1, body); R(1, 1, 10, 1, body); R(0, 2, 12, 7, body); R(1, 9, 10, 1, body); R(2, 10, 8, 1, body);
+        if (step2) { R(3, 11, 2, 1, body); R(7, 11, 2, 1, body); } else { R(2, 11, 2, 1, body); R(8, 11, 2, 1, body); }
+        const ex = d[0], eyy = 3 + d[1];
+        R(3 + ex, eyy, 2, 3, C.ink); R(7 + ex, eyy, 2, 3, C.ink);
+        R(3 + ex + (d[0] > 0 ? 1 : 0), eyy, 1, 1, '#fff'); R(7 + ex + (d[0] > 0 ? 1 : 0), eyy, 1, 1, '#fff');
+        if (moving && Math.floor(clock * 9) % 2) R(4 + ex, 7, 4, 2, C.ink); else R(4 + ex, 8, 4, 1, C.ink);
+        ctx.restore();
+      }
+    }
+  }
+  function label(text, y, color, size) {
+    ctx.font = '700 ' + size + 'px Silkscreen, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const w = ctx.measureText(text).width + 20;
+    ctx.fillStyle = C.ink; ctx.fillRect(W / 2 - w / 2, y - size * 0.8, w, size * 1.6);
+    ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.strokeRect(W / 2 - w / 2, y - size * 0.8, w, size * 1.6);
+    ctx.fillStyle = color; ctx.fillText(text, W / 2, y + 1);
+  }
+  function render() {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = C.ink; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (!grid) return;
+    if (state === 'clear' && Math.floor(stateT * 5) % 2) ctx.globalAlpha = 0.35;
+    ctx.drawImage(wallCv, 0, 0); ctx.globalAlpha = 1;
+    ctx.setTransform(K, 0, 0, K, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    ctx.fillStyle = C.cream;
+    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) if (dots[j][i] === 1) ctx.fillRect(i * T + 10, j * T + 10, 4, 4);
+    ctx.imageSmoothingEnabled = true;
+    for (let j = 0; j < ROWS; j++) for (let i = 0; i < COLS; i++) {
+      const d = dots[j][i]; if (d < 2) continue;
+      const im = barImgs[d - 2], cx = i * T + T / 2, cy = j * T + T / 2 + Math.sin(clock * 4 + i) * 1.5;
+      const bw = T * 2.1, bh = im.naturalWidth ? bw * im.naturalHeight / im.naturalWidth : bw / 3;
+      ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.2);
+      if (im.naturalWidth) ctx.drawImage(im, -bw / 2, -bh / 2, bw, bh);
+      else { ctx.fillStyle = FLAVORS[d - 2].color; ctx.fillRect(-bw / 2, -bh / 2, bw, bh); }
+      ctx.restore();
+    }
+    ctx.imageSmoothingEnabled = false;
+    if (state !== 'dying') foes.forEach(drawFoe);
+    drawPlayer();
+    ctx.font = '700 12px Silkscreen, monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    for (const p of popups) {
+      ctx.globalAlpha = 1 - p.t / 0.9; ctx.fillStyle = C.cream;
+      ctx.fillText(p.text, Math.min(W - 24, Math.max(24, p.x * T + T / 2)), p.y * T - p.t * 22);
+    }
+    ctx.globalAlpha = 1;
+    if (power > 0 && state === 'play') {
+      const col = FLAVORS[powerFlavor].color;
+      ctx.fillStyle = col; ctx.fillRect(0, H - 4, W * power / Math.max(3, 7.5 - level * 0.5), 4);
+    }
+    if (state === 'ready') label(level > 1 && stateT < 0.9 ? 'NIVEL ' + level : '¡LISTO!', H / 2 - T / 2, C.lime, 22);
+    if (state === 'clear') label('¡NIVEL SUPERADO!', H / 2 - T / 2, C.cream, 18);
+    if (paused) label('PAUSA', H / 2 - T / 2, C.cream, 22);
+  }
+
+  /* ---------- interfaz ---------- */
+  let hudKey = '';
+  function hud() {
+    const key = [score, best, level, lives, grams].join();
+    if (key === hudKey) return; hudKey = key;
+    $('score').textContent = score; $('best').textContent = best; $('level').textContent = level;
+    $('grams').textContent = grams + ' g';
+    $('lives').innerHTML = '<i></i>'.repeat(Math.max(0, Math.min(lives, 5)));
+  }
+  function showOver() {
+    $('ov-title').textContent = 'Fin del juego';
+    $('ov-text').textContent = score >= best && score > 0 ? '¡Nuevo récord! Los antojos piden revancha.' : 'Te ganó el antojo. Una barra más y lo logras.';
+    $('ov-score').textContent = score; $('ov-best').textContent = best; $('ov-prot').textContent = grams + ' g';
+    $('ov-result').hidden = false; $('ov-bars').hidden = true; $('ov-foes').hidden = true;
+    $('play').textContent = 'Jugar otra vez';
+    $('overlay').hidden = false; $('play').focus();
+  }
+  function start() {
+    if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+    if (ac && ac.state === 'suspended') ac.resume();
+    $('overlay').hidden = true; paused = false; $('btn-pause').textContent = 'Pausa';
+    newGame(); sfx.start();
+  }
+  function togglePause(force) {
+    if (!['play', 'ready'].includes(state)) return;
+    paused = force === undefined ? !paused : force;
+    $('btn-pause').textContent = paused ? 'Seguir' : 'Pausa';
+  }
+  $('play').addEventListener('click', start);
+  $('btn-pause').addEventListener('click', e => { togglePause(); e.currentTarget.blur(); });
+  $('btn-sound').addEventListener('click', e => { muted = !muted; e.currentTarget.textContent = 'Sonido: ' + (muted ? 'no' : 'sí'); e.currentTarget.blur(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) togglePause(true); });
+
+  const KEYS = { ArrowLeft: 'l', ArrowRight: 'r', ArrowUp: 'u', ArrowDown: 'd', a: 'l', d: 'r', w: 'u', s: 'd' };
+  addEventListener('keydown', e => {
+    const k = KEYS[e.key] || KEYS[e.key.toLowerCase()];
+    if (k) { want = DIRS[k]; if (paused) togglePause(false); e.preventDefault(); return; }
+    if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') togglePause();
+    if ((e.key === 'Enter' || e.key === ' ') && !$('overlay').hidden && document.activeElement !== $('play')) { start(); e.preventDefault(); }
+  });
+  document.querySelectorAll('#pad button').forEach(b => b.addEventListener('pointerdown', e => {
+    want = DIRS[b.dataset.d]; if (paused) togglePause(false); e.preventDefault();
+  }));
+  let sx = 0, sy = 0, swiping = false;
+  const stage = $('stage');
+  stage.addEventListener('pointerdown', e => { if (!$('overlay').hidden) return; swiping = true; sx = e.clientX; sy = e.clientY; });
+  stage.addEventListener('pointermove', e => {
+    if (!swiping) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 16) return;
+    want = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? DIRS.r : DIRS.l) : (dy > 0 ? DIRS.d : DIRS.u);
+    sx = e.clientX; sy = e.clientY;
+    if (paused) togglePause(false);
+  });
+  addEventListener('pointerup', () => swiping = false);
+  addEventListener('pointercancel', () => swiping = false);
+
+  function fit() {
+    const r = stage.getBoundingClientRect();
+    const s = Math.min(r.width / W, r.height / H);
+    canvas.style.width = Math.floor(W * s) + 'px'; canvas.style.height = Math.floor(H * s) + 'px';
+  }
+  addEventListener('resize', fit); fit();
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(stage);
+
+  /* fondo del menú: un laberinto de muestra detrás de la tarjeta */
+  grid = makeMaze(1); dots = grid.map(row => row.map(v => v ? 0 : 1)); drawWalls(C.lime);
+  player = { x: START[0], y: START[1], dir: null, t: 0, face: DIRS.l }; foes = [];
+  BAR_TILES.forEach(([x, y], i) => { dots[y][x] = 2 + i; });
+  hud();
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!paused) update(dt);
+    render();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  window.__fibo = { makeMaze, get s() { return { state, score, lives, level, dotsLeft, grams, px: player.x, py: player.y }; } };
+})();
+</script>
