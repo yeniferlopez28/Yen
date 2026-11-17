@@ -1087,6 +1087,66 @@ html.h1020 .mwrap .tw{display:none}
 .nav .tmr.warn::before{background:#121212}
 .nav .tmr.over{background:#D6161D!important;color:#fff!important}
 .nav .tmr.over::before{background:#fff}
+
+/* ================= EMPRESA EN UNA ESCENA ================= */
+.duo{display:grid;grid-template-columns:minmax(0,1fr) 84px minmax(0,1fr);gap:10px;align-items:stretch}
+.dcard{border-radius:24px;padding:20px 20px 18px;display:grid;gap:10px;align-content:start;opacity:0;transform:translateY(26px)}
+.lay.on .dm{animation:upin .7s var(--ease) .1s forwards}
+.lay.on .df{animation:upin .7s var(--ease) .75s forwards}
+.dm{background:#121212;color:#F3EEDF}
+.df{background:var(--pinkd);color:#121212;position:relative}
+.dn{font:700 clamp(28px,calc(2.6 * var(--vw)),42px)/1 var(--wide);text-transform:uppercase;letter-spacing:-.02em}
+.dm .dn{color:var(--limed)}
+.ds{font:500 11px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.08em;opacity:.7;margin-top:-4px}
+.dcard p{font-size:clamp(14px,calc(.35 * var(--vw)) + 9.5px,16.5px);line-height:1.42}
+.dcard p strong{font-weight:700}
+.dstats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.dstats div{border-radius:16px;padding:10px 8px;display:grid;gap:3px;text-align:center;background:rgba(243,238,223,.08);opacity:0;transform:scale(.7)}
+.df .dstats div{background:rgba(18,18,18,.1)}
+.lay.on .dstats div{animation:tile .5s var(--ease) var(--d) forwards}
+.dstats b{font:700 clamp(18px,calc(1.7 * var(--vw)),26px)/1 var(--wide)}
+.dstats span{font:500 10.5px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.05em;opacity:.8}
+.dm .divs span{background:#2A2A2A;color:#F3EEDF;padding:8px 11px}
+.dm .divs span.dv1{background:var(--orange);color:#121212}
+.dm .divs span.wl{background:var(--pinkd);color:#121212}
+.cert{font:600 11px/1.2 var(--wide);text-transform:uppercase;letter-spacing:.05em;color:var(--limed)}
+.df img{width:86%;justify-self:center;margin:-6px 0 -4px;transform:rotate(-6deg);filter:drop-shadow(0 14px 16px rgba(0,0,0,.3))}
+.lay.on .df img{animation:flt 4.5s ease-in-out 1.5s infinite}
+.df .chips2 span{background:#121212;color:#F3EEDF}
+.dflow{display:grid;align-content:center;justify-items:center;gap:8px;opacity:0}
+.lay.on .dflow{animation:upin .6s var(--ease) .5s forwards}
+.dflow svg{width:44px;height:auto}
+.dflow span{font:700 9.5px/1.2 var(--wide);text-transform:uppercase;text-align:center;letter-spacing:.04em;background:var(--limed);border-radius:12px;padding:6px 4px}
+/* sabores en una escena */
+.sab{display:grid;gap:14px;align-content:center}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sf{position:relative;background:var(--c);color:var(--t,#121212);border-radius:22px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-rows:auto auto 1fr auto;column-gap:12px;row-gap:6px;align-items:start;opacity:0;transform:translateY(40px) rotate(calc((var(--i) - 1.5) * 3deg))}
+.lay.on .sf{animation:fanin .7s var(--ease) calc(.1s + var(--i) * .15s) forwards}
+.lay.on .sf.off{animation:sfoff .7s var(--ease) .55s forwards}
+@keyframes sfoff{to{opacity:.55;transform:none}}
+.sf.off{filter:grayscale(.55)}
+.sxv{justify-self:start;font:700 14px/1 var(--wide);background:#121212;color:#F3EEDF;border-radius:999px;padding:6px 10px}
+.sf img{grid-column:1;grid-row:1/5;align-self:center;width:118%;margin:0 -8%;transform:rotate(-8deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.35))}
+.lay.on .sf img{animation:sfl 3.6s ease-in-out infinite;animation-delay:calc(1s + var(--i) * .4s)}
+@keyframes sfl{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-8px)}}
+.sf b{grid-column:2;font:700 clamp(17px,calc(1.5 * var(--vw)),23px)/1.05 var(--wide);text-transform:uppercase}
+.sf .sxv,.sf p,.sf .tag{grid-column:2}
+.sf p{font-size:clamp(13.5px,calc(.35 * var(--vw)) + 9px,16px);line-height:1.35}
+.sf .tag{justify-self:start;font:600 10.5px/1.15 var(--wide);text-transform:uppercase;letter-spacing:.04em;background:rgba(18,18,18,.14);border-radius:999px;padding:6px 9px}
+.sf[style*="--t:#fff"] .tag{background:rgba(255,255,255,.2)}
+.sall{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;opacity:0}
+.lay.on .sall{animation:upin .6s var(--ease) 1.1s forwards}
+.sall span{font:500 11.5px/1 var(--wide);text-transform:uppercase;letter-spacing:.04em;background:#2A2A2A;color:#F3EEDF;border-radius:999px;padding:8px 12px}
+.sall .k{background:var(--limed);color:#121212}
+html.h800 .dcard{padding:14px 16px;gap:7px}
+html.h800 .df img{width:70%}
+@media (max-width:900px){
+  .duo{grid-template-columns:1fr}
+  .dflow{grid-auto-flow:column;gap:12px}.dflow svg{height:60px;width:auto}
+  .sgrid{grid-template-columns:1fr}
+  .sf img{width:100%;margin:0}
+}
+@media (prefers-reduced-motion: reduce){.dcard,.dflow,.dstats div,.sf,.sall{opacity:1;transform:none}}
 </style>
 
 <div id="fit">
@@ -1143,111 +1203,40 @@ html.h1020 .mwrap .tw{display:none}
   </div>
 </section>
 
-<!-- ================= EMPRESA ================= -->
-<section class="s b-cream" id="p2" data-steps="3" data-sec="1">
+<!-- ================= EMPRESA · EL MOLINO Y FIBO ================= -->
+<section class="s b-cream" id="p2" data-steps="1" data-sec="1">
   <div class="talk">
-    <div class="meta"><span>01 · Empresa</span><span>¿Qué es El Molino?</span></div>
-    <h2 class="h2">¿Qué es <span class="o">El Molino</span>?</h2>
+    <div class="meta"><span>01 · Empresa</span><span>¿Quiénes somos?</span></div>
+    <h2 class="h2">El Molino <span class="o">y FIBO</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>El Molino Aditivos Alimenticios</b> es una empresa de Zapopan, Jalisco, con más de 25 años en la industria de alimentos.</p><p>No vende al consumidor: le vende a <b>otras fábricas de alimentos</b>. Su lema es "Food Solutions".</p></div>
-      <div class="say" data-say="1"><p>Les surte <b>ingredientes, aditivos y empaques</b>, y les da asesoría técnica para formular sus productos.</p><p>Trabaja en 6 divisiones. La principal es cárnicos: jamones, salchichas, chorizos.</p></div>
-      <div class="say" data-say="2"><p>Llega a los <b>32 estados</b>, tiene certificación de inocuidad <b>FSSC 22000</b> desde 2020 y representa a proveedores globales como IFF, PIASA, Viscofan y GPI.</p><p>En su división <b>Wellness</b> fabrica barras de proteína. Ahí nace FIBO.</p></div>
+      <div class="say" data-say="0"><p><b>El Molino</b> es una empresa de Zapopan con más de 25 años. No vende al consumidor: le surte <b>ingredientes, aditivos y empaques</b> a otras fábricas de alimentos.</p><p>En su división <b>Wellness</b> creó su propia marca: <b>FIBO</b>, una barra alta en proteína que se fabrica en su planta de Zapopan y se vende en 22 estados.</p></div>
     </div>
   </div>
   <div class="stage">
-    <div class="story layers">
-      <!-- 0 · El Molino surte a otras fábricas -->
-      <div class="lay" data-only="0">
-        <svg class="hub" viewBox="0 0 560 330" role="img" aria-label="El Molino en el centro surtiendo ingredientes a fábricas de cárnicos, lácteos, snacks y food service">
-          <g class="links" stroke="#121212" stroke-width="3" stroke-dasharray="6 8" fill="none">
-            <path d="M280 165 L90 70"/><path d="M280 165 L470 70"/><path d="M280 165 L90 265"/><path d="M280 165 L470 265"/>
-          </g>
-          <g class="dots">
-            <circle r="7" fill="#FFB04A"><animateMotion dur="2.4s" repeatCount="indefinite" path="M280 165 L90 70"/></circle>
-            <circle r="7" fill="#4D4DE8"><animateMotion dur="2.4s" begin=".6s" repeatCount="indefinite" path="M280 165 L470 70"/></circle>
-            <circle r="7" fill="#F477D9"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M280 165 L90 265"/></circle>
-            <circle r="7" fill="#E1EF4C"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite" path="M280 165 L470 265"/></circle>
-          </g>
-          <g class="cl" style="--d:.2s"><rect x="20" y="36" width="140" height="68" rx="34" fill="#FFB04A"/><text x="90" y="76" text-anchor="middle">CÁRNICOS</text></g>
-          <g class="cl" style="--d:.35s"><rect x="400" y="36" width="140" height="68" rx="34" fill="#4D4DE8"/><text x="470" y="76" text-anchor="middle" fill="#fff">LÁCTEOS</text></g>
-          <g class="cl" style="--d:.5s"><rect x="20" y="231" width="140" height="68" rx="34" fill="#F477D9"/><text x="90" y="271" text-anchor="middle">SNACKS</text></g>
-          <g class="cl" style="--d:.65s"><rect x="400" y="231" width="140" height="68" rx="34" fill="#E1EF4C"/><text x="470" y="271" text-anchor="middle">FOOD SERVICE</text></g>
-          <g class="core"><circle cx="280" cy="165" r="78" fill="#121212"/><text x="280" y="160" text-anchor="middle" fill="#F3EEDF" font-size="18">EL MOLINO</text><text x="280" y="184" text-anchor="middle" fill="#E1EF4C" font-size="11">FOOD SOLUTIONS</text></g>
-        </svg>
-        <p class="cap2">El Molino surte a <b>fábricas de alimentos</b>: no vende al consumidor final.</p>
-      </div>
-      <!-- 1 · qué ofrece y sus divisiones -->
-      <div class="lay" data-only="1">
-        <div class="offer">
-          <div class="of" style="--c:var(--orange);--d:.1s"><b>Ingredientes</b><span>Proteínas de soya, carrageninas, condimentos</span></div>
-          <div class="of" style="--c:var(--violet);--t:#fff;--d:.25s"><b>Aditivos</b><span>Conservadores, antioxidantes, colores</span></div>
-          <div class="of" style="--c:var(--pinkd);--d:.4s"><b>Empaques</b><span>Bolsas al vacío, fundas, tripas</span></div>
-          <div class="of" style="--c:var(--limed);--d:.55s"><b>Asesoría</b><span>Formulación y desarrollo de aplicaciones</span></div>
+    <div class="layers">
+      <div class="lay duo" data-only="0">
+        <div class="dcard dm">
+          <span class="k">La empresa</span>
+          <b class="dn">El Molino</b>
+          <span class="ds">Aditivos Alimenticios · Food Solutions</span>
+          <p>Surte <strong>ingredientes, aditivos y empaques</strong> a fábricas de alimentos y las asesora para formular.</p>
+          <div class="dstats"><div style="--d:.5s"><b>+25</b><span>años</span></div><div style="--d:.62s"><b>32</b><span>estados</span></div><div style="--d:.74s"><b>6</b><span>divisiones</span></div></div>
+          <div class="divs"><span class="dv1" style="--d:.9s">Cárnicos</span><span style="--d:1s">Lácteos</span><span style="--d:1.1s">Empaques</span><span style="--d:1.2s">Snacks</span><span style="--d:1.3s">Food Service</span><span class="wl" style="--d:1.4s">Wellness</span></div>
+          <span class="cert">✓ FSSC 22000 · inocuidad desde 2020</span>
         </div>
-        <div class="divs">
-          <span class="dv1" style="--d:.7s">Cárnicos · principal</span><span style="--d:.8s">Empaques</span><span style="--d:.9s">Lácteos</span><span style="--d:1s">Food Service</span><span style="--d:1.1s">Snacks</span><span class="wl" style="--d:1.2s">Wellness</span>
+        <div class="dflow" aria-hidden="true">
+          <svg viewBox="0 0 60 200"><path d="M30 6 V180" stroke="#121212" stroke-width="4" stroke-dasharray="6 8" class="links" fill="none"/><path d="M18 168 L30 186 L42 168" fill="none" stroke="#121212" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle r="7" cx="30" fill="#F477D9"><animate attributeName="cy" from="6" to="176" dur="1.6s" repeatCount="indefinite"/></circle>
+            <circle r="7" cx="30" fill="#E1EF4C"><animate attributeName="cy" from="6" to="176" dur="1.6s" begin=".8s" repeatCount="indefinite"/></circle></svg>
+          <span>División<br>Wellness</span>
         </div>
-      </div>
-      <!-- 2 · respaldo y Wellness → FIBO -->
-      <div class="lay" data-only="2">
-        <div class="back">
-          <div class="bk" style="--c:#121212;--t:#F3EEDF;--d:.1s"><b>32</b><span>estados con entrega</span></div>
-          <div class="bk" style="--c:var(--limed);--d:.25s"><b>FSSC 22000</b><span>inocuidad · desde 2020</span></div>
-          <div class="bk" style="--c:var(--orange);--d:.4s"><b>+25 años</b><span>en la industria</span></div>
-          <div class="bk wide" style="--c:#ECE1AE;--d:.55s"><span class="k">Proveedores que representa</span><div class="sup"><i>IFF</i><i>PIASA</i><i>VISCOFAN</i><i>GPI</i></div></div>
-        </div>
-        <div class="toFibo">
-          <span class="wl2">División Wellness</span>
-          <svg viewBox="0 0 120 24" aria-hidden="true"><path class="arw" d="M2 12 H108 M98 3 L110 12 L98 21" fill="none" stroke="#121212" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <img src="img/fibo-chocolate.webp" alt="FIBO">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="s b-lime" id="p2a" data-steps="3" data-sec="1">
-  <div class="talk">
-    <div class="meta"><span>01 · Empresa</span><span>¿Qué es FIBO?</span></div>
-    <h2 class="h2">¿Qué es <span class="o">FIBO</span>?</h2>
-    <div class="says">
-      <div class="say" data-say="0"><p><b>FIBO</b> es la barra alta en proteína que fabrica El Molino en su división Wellness.</p><p>El Molino ya vendía <b>proteína de soya</b> a otras fábricas; con FIBO la usa en su propio producto, para el mercado deportivo y de vida saludable.</p></div>
-      <div class="say" data-say="1"><p>Cada barra pesa <b>65 g</b>, es <b>alta en proteína</b> (soya + suero) y trae 10 g de fibra.</p><p>Su lema: "más proteína por tu dinero".</p></div>
-      <div class="say" data-say="2"><p>FIBO se vende en <b>22 estados</b>: Nutrisa, 7-Eleven, tiendas naturistas, gimnasios y en línea.</p><p>Se fabrica en la planta de El Molino en Zapopan.</p></div>
-    </div>
-  </div>
-  <div class="stage">
-    <div class="story layers">
-      <!-- 0 · De El Molino a FIBO -->
-      <div class="lay" data-only="0">
-        <div class="m2f">
-          <div class="mf a"><b>El Molino</b><span>vende proteína de soya a otras fábricas</span></div>
-          <div class="pipe"><i></i><i></i><i></i></div>
-          <div class="mf b"><b>Wellness</b><span>fabrica barras de proteína</span></div>
-          <div class="pipe"><i></i><i></i><i></i></div>
-          <div class="mf c"><img src="img/fibo-chocolate.webp" alt="FIBO"><span>FIBO · alta en proteína</span></div>
-        </div>
-      </div>
-      <!-- 1 · Nace FIBO -->
-      <div class="lay" data-only="1">
-        <div class="born">
+        <div class="dcard df">
           <img src="img/fibo-chocolate.webp" alt="Barra FIBO">
-          <div class="badge"><b>Alta</b><span>en proteína</span></div>
-        </div>
-        <div class="macro">
-          <div class="mr" style="--w:100%;--c:#ECE1AE;--d:.2s"><span>Porción</span><div><i></i></div><b>65 g</b></div>
-                    <div class="mr" style="--w:15.4%;--c:var(--orange);--d:.7s"><span>Fibra</span><div><i></i></div><b>10 g</b></div>
-                  </div>
-      </div>
-      <!-- 2 · En el anaquel -->
-      <div class="lay" data-only="2">
-        <div class="shelf">
-          <div class="tile" style="--c:var(--violet);--t:#fff;--d:.1s"><b>133</b><span>Nutrisa</span></div>
-          <div class="tile" style="--c:var(--orange);--d:.2s"><b>35</b><span>7-Eleven en Guadalajara</span></div>
-          <div class="tile" style="--c:var(--pinkd);--d:.3s"><b>90</b><span>Tiendas naturistas</span></div>
-          <div class="tile" style="--c:var(--limed);--d:.4s"><b>+150</b><span>Gimnasios</span></div>
-          <div class="tile wide" style="--c:#121212;--t:#F3EEDF;--d:.55s"><b>22 estados</b><span>Amazon · Mercado Libre · fibo.mx</span></div>
-          <div class="tile pin" style="--c:#ECE1AE;--d:.7s"><i></i><div><b>Planta en Zapopan</b><span>Certificación FSSC 22000</span></div></div>
+          <span class="k">Su marca propia</span>
+          <b class="dn">FIBO</b>
+          <p>Barra <strong>alta en proteína</strong> (soya + suero) para gente que entrena y come saludable. Lema: "más proteína por tu dinero".</p>
+          <div class="dstats"><div style="--d:1.1s"><b>65 g</b><span>por barra</span></div><div style="--d:1.22s"><b>10 g</b><span>de fibra</span></div><div style="--d:1.34s"><b>22</b><span>estados</span></div></div>
+          <div class="chips2"><span>Nutrisa</span><span>7-Eleven</span><span>Gimnasios</span><span>Naturistas</span><span>fibo.mx</span></div>
         </div>
       </div>
     </div>
@@ -1255,23 +1244,25 @@ html.h1020 .mwrap .tw{display:none}
 </section>
 
 <!-- ================= EMPRESA · SABORES ================= -->
-<section class="s b-black" id="p2b" data-steps="4" data-sec="1">
+<section class="s b-black" id="p2b" data-steps="1" data-sec="1">
   <div class="talk">
     <div class="meta"><span>01 · Empresa</span><span>Nuestros sabores</span></div>
     <h2 class="h2">Nuestros <span class="o">sabores</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p><b>Chocolate.</b> El clásico: chocolate de principio a fin.</p><p>Como todas, es alta en proteína de dos fuentes (soya + suero), trae 10 g de fibra y pesa 65 g. Es crujiente, no chiclosa.</p></div>
-      <div class="say" data-say="1"><p><b>Cookies &amp; Cream.</b> Galleta de vainilla con crema.</p><p>Es el sabor <b>mejor calificado</b>: 4.4 ★.</p></div>
-      <div class="say" data-say="2"><p><b>Frutos rojos.</b> Sabor frutos rojos con cubierta sabor chocolate.</p><p>Con Chocolate y Cookies, son los <b>3 sabores del modelo</b>.</p></div>
-      <div class="say" data-say="3"><p><b>Brownie.</b> Chocolate intenso con textura de brownie.</p><p>Es el cuarto sabor de la marca, pero <b>no entra en este modelo</b>.</p><p class="src">Todas: 230–250 kcal según el sabor · 18 meses de vida de anaquel · etiquetado NOM-051.</p></div>
+      <div class="say" data-say="0"><p>FIBO tiene <b>4 sabores</b>. En el modelo usamos tres, uno por variable:</p><p><b>x<sub>1</sub> Chocolate</b>, el clásico; <b>x<sub>2</sub> Cookies &amp; Cream</b>, el mejor calificado (4.4 ★); y <b>x<sub>3</sub> Frutos rojos</b>, con base de cobertura sabor chocolate.</p><p><b>Brownie</b> es el cuarto sabor y queda fuera del modelo.</p></div>
     </div>
   </div>
   <div class="stage flv-stage">
     <div class="layers">
-      <div class="flv" data-only="0" style="--c:var(--x1)"><div class="blob"></div><img src="img/fibo-chocolate.webp" alt="FIBO Chocolate"><div class="fi"><span class="k">x1 · Sabor 01</span><b>Chocolate</b><p>El clásico. Chocolate de principio a fin.</p><div class="chips2"><span>Alta en proteína</span><span>10 g fibra</span><span>65 g</span><span>Soya + suero</span><span>Crujiente</span></div></div></div>
-      <div class="flv" data-only="1" style="--c:var(--x2);--t:#fff"><div class="blob"></div><img src="img/fibo-cookies.webp" alt="FIBO Cookies &amp; Cream"><div class="fi"><span class="k">x2 · Sabor 02</span><b>Cookies &amp; Cream</b><p>Galleta de vainilla con crema.</p><div class="chips2"><span>Alta en proteína</span><span>10 g fibra</span><span>65 g</span><span class="star">4.4 ★ mejor calificado</span></div></div></div>
-      <div class="flv" data-only="2" style="--c:var(--x3)"><div class="blob"></div><img src="img/fibo-frutos.webp" alt="FIBO Frutos rojos"><div class="fi"><span class="k">x3 · Sabor 03</span><b>Frutos rojos</b><p>Sabor frutos rojos con cubierta sabor chocolate.</p><div class="chips2"><span>Alta en proteína</span><span>10 g fibra</span><span>65 g</span><span>Cubierta sabor chocolate</span></div></div></div>
-      <div class="flv" data-only="3" style="--c:#B49BD6"><div class="blob"></div><img src="img/fibo-brownie.webp" alt="FIBO Brownie"><div class="fi"><span class="k">Sabor 04 · fuera del modelo</span><b>Brownie</b><p>Chocolate intenso con textura de brownie.</p><div class="chips2"><span>Alta en proteína</span><span>10 g fibra</span><span>65 g</span><span class="star">No entra al modelo</span></div></div></div>
+      <div class="lay sab" data-only="0">
+        <div class="sgrid">
+          <div class="sf" style="--c:var(--x1);--i:0"><span class="sxv">x<sub>1</sub></span><img src="img/fibo-chocolate.webp" alt="FIBO Chocolate"><b>Chocolate</b><p>El clásico: chocolate de principio a fin. Crujiente.</p><span class="tag">Bañada completa</span></div>
+          <div class="sf" style="--c:var(--x2);--t:#fff;--i:1"><span class="sxv">x<sub>2</sub></span><img src="img/fibo-cookies.webp" alt="FIBO Cookies &amp; Cream"><b>Cookies &amp; Cream</b><p>Galleta de vainilla con crema y trozos de galleta.</p><span class="tag">4.4 ★ mejor calificado</span></div>
+          <div class="sf" style="--c:var(--x3);--i:2"><span class="sxv">x<sub>3</sub></span><img src="img/fibo-frutos.webp" alt="FIBO Frutos rojos"><b>Frutos rojos</b><p>Fruta roja con base de cobertura sabor chocolate.</p><span class="tag">Solo la base cubierta</span></div>
+          <div class="sf off" style="--c:#B49BD6;--i:3"><span class="sxv">—</span><img src="img/fibo-brownie.webp" alt="FIBO Brownie"><b>Brownie</b><p>Chocolate intenso con textura de brownie.</p><span class="tag">Fuera del modelo</span></div>
+        </div>
+        <div class="sall"><span class="k">Todas</span><span>65 g</span><span>Alta en proteína</span><span>10 g de fibra</span><span>230–250 kcal</span><span>18 meses de vida</span></div>
+      </div>
     </div>
   </div>
 </section>
