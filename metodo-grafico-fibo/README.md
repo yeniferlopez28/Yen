@@ -6,7 +6,7 @@ Tres ejercicios con la barra FIBO, resueltos con el mismo procedimiento de la Cl
 Los datos son **aproximados**: no tenemos las cifras reales de El Molino, así que se estimaron
 con valores típicos de la industria de barras de proteína. Debajo de cada ejercicio está de dónde sale cada número.
 
-Datos base de FIBO: barra de 65 g con 22 g de proteína, precio al público aprox. $43 (fibo.mx).
+Datos base de FIBO: barra de 65 g alta en proteína, precio al público aprox. $43 (fibo.mx).
 Unidad de producción: **display de 6 barras** (así se vende FIBO; la caja master trae 24 displays). Turno: 8 h, de las que 7 h (420 min) son efectivas
 (se descuentan arranque, limpieza y comida).
 
@@ -27,7 +27,7 @@ Condición de no negatividad: x1 ≥ 0, x2 ≥ 0 (solo primer cuadrante).
 
 De dónde salen:
 - **Display:** FIBO se vende en displays de 6 barras (la caja master trae 24 displays de 6 piezas).
-- **Aislado de suero:** tiene alrededor de 90% de proteína. Para que la barra de Chocolate llegue a 22 g de proteína se necesitan unos 25 g de aislado por barra: 25 g × 6 = 150 g = **0.15 kg por display**. La de Cookies lleva trozos de galleta y crispies proteicos que aportan parte de la proteína, así que usa menos aislado: unos 21 g por barra, que da **0.125 kg por display**.
+- **Aislado de suero:** tiene alrededor de 90% de proteína. Suponemos que la receta de Chocolate usa unos 25 g de aislado por barra: 25 g × 6 = 150 g = **0.15 kg por display**. La de Cookies lleva trozos de galleta y crispies proteicos que aportan parte de la proteína, así que usa menos aislado: unos 21 g por barra, que da **0.125 kg por display**.
 - **90 kg por turno:** el aislado llega en sacos de 20 kg; el almacén libera 4 sacos y medio por turno.
 - **Tiempo de formado:** una línea semiautomática (mezclado, laminado y corte) saca unas 12 barras por minuto, o sea 2 displays por minuto: **0.5 min por display**. Cookies lleva una capa de galleta extra y la línea va más lento: **0.75 min por display**.
 - **Utilidad:** la barra se vende a tiendas en unos $30 (el público paga ~$43) y cuesta producirla unos $20, así que deja ~$10 por barra: **$60 por display**. Cookies tiene ingredientes más caros y deja ~$9.50 por barra: **$57 por display**.
