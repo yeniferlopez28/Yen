@@ -1224,6 +1224,27 @@ html.h800 .rf{padding:9px 12px}
 html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
 @media (max-width:900px){.rsc,.kk{grid-template-columns:1fr}.days{gap:3px}.dy b{font-size:10px}.dy span{font-size:7.5px}.wkb{grid-template-columns:1fr}.wkb em{display:none}.tl2{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){.rsg,.rf,.rsa,.rse,.wk,.tn,.kk div,.sacks .sk{opacity:1;transform:none}}
+
+/* turno desglosado y sobrantes con cuenta */
+.tb4 i{min-width:0}
+.tb4 .sa{flex:0 0 46px;--c:#F2D31B}.tb4 .sl{flex:0 0 62px;--c:#8FD3C7}.tb4 .sc{flex:0 0 78px;--c:#FFB04A}
+.tb4 .sa,.tb4 .sl,.tb4 .sc{padding:0;justify-items:center;background:var(--c)}
+.tb4 .sa b,.tb4 .sl b,.tb4 .sc b{font-size:clamp(14px,calc(1.3 * var(--vw)),19px)}
+.tleg{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:clamp(12.5px,calc(.3 * var(--vw)) + 8.5px,14.5px);line-height:1.3}
+.tleg span{display:flex;gap:7px;align-items:baseline}
+.tleg i{flex:none;width:11px;height:11px;border-radius:50%;transform:translateY(1px)}
+.tleg i.sa{background:#F2D31B}.tleg i.sl{background:#8FD3C7}.tleg i.sc{background:#FFB04A}.tleg i.sp{background:var(--limed);outline:1.5px solid #121212}
+.tleg b{white-space:nowrap}
+.rsx{flex-basis:100%;font:500 12.5px/1.3 var(--sans);opacity:.75}
+.gm{font:600 clamp(11.5px,calc(.95 * var(--vw)),14px)/1.35 var(--mono)}
+.gm b{font-weight:800}
+.gl b{font-weight:800}
+.zm{display:block;font:600 clamp(11px,calc(.9 * var(--vw)),13.5px)/1.35 var(--mono);text-transform:none;letter-spacing:0;margin-top:5px;opacity:.85}
+#p7 .mix img{max-height:calc(9 * var(--vh));width:auto;justify-self:center}
+#p7 .mix .n{font-size:clamp(22px,calc(2.1 * var(--vw)),32px)}
+#p7 .gauges{gap:6px}
+#p7 .gg{padding:8px 14px;gap:5px}
+@media (max-width:900px){.tleg{grid-template-columns:1fr}}
 </style>
 
 <div id="fit">
@@ -1433,7 +1454,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="meta"><span>02 · Área de trabajo</span><span>Unidad de tiempo</span></div>
     <h2 class="h2">¿Qué es una <span class="o">corrida</span>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Una <b>corrida</b> es <b>un turno de 8 horas</b> en el que la línea hace los 3 sabores, uno tras otro.</p><p>Se hace <b>una vez por semana</b>: una corrida produce unas 3,600 barras y FIBO vende unas 2,900 por semana, así que alcanza.</p><p>Por eso, todo lo que digamos <b>“por corrida”</b> es <b>por semana</b>, y para el año se multiplica <b>× 52</b>.</p><p class="src">Ventas por semana: $34 M vendidos desde 2019 ÷ 7 años ÷ $32 por barra ÷ 52 semanas ≈ 2,900 barras.</p></div>
+      <div class="say" data-say="0"><p>Una <b>corrida</b> es <b>un turno de 8 horas</b> (480 min) en el que la línea hace los 3 sabores, uno tras otro. La <b>comida va dentro</b> de esas 8 horas: nadie trabaja 9.</p><p>Se hace <b>una vez por semana</b>: una corrida produce unas 3,600 barras y FIBO vende unas 2,900 por semana, así que alcanza.</p><p>Por eso, todo lo que digamos <b>“por corrida”</b> es <b>por semana</b>, y para el año se multiplica <b>× 52</b>.</p><p class="src">Ventas por semana: $34 M vendidos desde 2019 ÷ 7 años ÷ $32 por barra ÷ 52 semanas ≈ 2,900 barras.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -1446,8 +1467,8 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
         </div>
         <div class="tn">
           <span class="k">El turno de la corrida · 8 h = 480 min</span>
-          <div class="tbar"><i class="t60"><b>60 min</b></i><i class="t420"><b>420 min</b><span>formadora trabajando = límite R2</span></i></div>
-          <p class="tl2"><b>60 min</b> = arranque + limpieza al cambiar de sabor + comida · <b>420 min</b> = tiempo para producir</p>
+          <div class="tbar tb4"><i class="sa"><b>10</b></i><i class="sl"><b>20</b></i><i class="sc"><b>30</b></i><i class="t420"><b>420 min</b><span>produciendo = límite R2</span></i></div>
+          <div class="tleg"><span><i class="sa"></i><b>10 min</b> arranque: calentar y cargar la tolva</span><span><i class="sl"></i><b>20 min</b> limpieza: 2 cambios de sabor × 10 min</span><span><i class="sc"></i><b>30 min</b> comida: descanso de ley (art. 63 LFT)</span><span><i class="sp"></i><b>480 − 60 = 420 min</b> para producir</span></div>
         </div>
         <div class="kk">
           <div><b>1 caja</b><span>= 6 barras. El modelo cuenta cajas (x₁, x₂, x₃)</span></div>
@@ -1484,7 +1505,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="meta"><span>02 · Área de trabajo</span><span>Restricción 2</span></div>
     <h2 class="h2">R2 · <span class="o">Línea</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>La <b>formadora</b> pone el ritmo de toda la línea: las demás máquinas van a su velocidad.</p><p>Con Chocolate saca <b>12 barras por minuto</b>: una caja de 6 tarda 6 ÷ 12 = <b>0.5 min</b>. Cookies y Frutos rojos van a <b>8 por minuto</b> (la galleta se atora y la fruta se rompe): 6 ÷ 8 = <b>0.75 min</b>.</p><p>Del turno de 480 min quedan <b>420</b> para producir.</p></div>
+      <div class="say" data-say="0"><p>La <b>formadora</b> pone el ritmo de toda la línea: las demás máquinas van a su velocidad.</p><p>Con Chocolate saca <b>12 barras por minuto</b>: una caja de 6 tarda 6 ÷ 12 = <b>0.5 min</b>. Cookies y Frutos rojos van a <b>8 por minuto</b> (la galleta se atora y la fruta se rompe): 6 ÷ 8 = <b>0.75 min</b>.</p><p>Del turno de 480 min se restan 60: 10 de arranque, 20 de limpieza entre sabores y 30 de comida. Quedan <b>420 min</b>.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -1544,7 +1565,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
         <text x="430" y="400" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="12" fill="#6A655E">MASA → TOLVA → RODILLOS → BOQUILLA → TIRA → GUILLOTINA → BARRAS</text>
       </svg></div>
         <div class="rsc"><div class="rf" style="--d:0.25s"><div class="rfh"><i class="mini" data-masc="choc"></i><span>Chocolate</span></div><b>0.5 min</b><span class="rm">6 barras ÷ 12 por min</span><span class="rw">masa lisa, sale rápido</span></div><div class="rf" style="--d:0.4s"><div class="rfh"><i class="mini" data-masc="cook"></i><span>Cookies</span></div><b>0.75 min</b><span class="rm">6 barras ÷ 8 por min</span><span class="rw">trozos de galleta</span></div><div class="rf" style="--d:0.55s"><div class="rfh"><i class="mini" data-masc="fruit"></i><span>Frutos rojos</span></div><b>0.75 min</b><span class="rm">6 barras ÷ 8 por min</span><span class="rw">fruta frágil</span></div></div>
-        <div class="rsa"><span class="k">Disponible por corrida</span><b>480 min − 60 min = 420 min</b></div>
+        <div class="rsa"><span class="k">Disponible por corrida</span><b>480 min − 60 min = 420 min</b><span class="rsx">60 min = 10 arranque + 20 limpieza (2 cambios × 10) + 30 comida</span></div>
         <div class="rse"><span>R2 · por caja</span><b>0.5x₁ + 0.75x₂ + 0.75x₃ ≤ 420</b></div>
       </div>
     </div>
@@ -1604,8 +1625,8 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="meta"><span>03 · Problema identificado</span><span>Hoy</span></div>
     <h2 class="h2">Hoy se reparte <span class="o">al tanteo</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Hoy en cada corrida se producen <b>200 cajas de cada sabor</b>.</p><p>Como cada caja trae 6 barras, son 1,200 barras de Chocolate, 1,200 de Cookies y 1,200 de Frutos rojos: <b>3,600 barras</b> en total.</p></div>
-      <div class="say" data-say="1"><p>Con ese reparto <b>sobran recursos</b>: 5 kg de proteína, 20 min de línea y 6 kg de cobertura derretida que se tiene que recalentar o tirar.</p><p>La ganancia de la corrida es <b>$34,200</b>. Lo que sobra es dinero que no se produce.</p></div>
+      <div class="say" data-say="0"><p>Hoy en cada corrida se producen <b>200 cajas de cada sabor</b>, repartido parejo, sin calcular.</p><p>Como cada caja trae 6 barras, son 1,200 barras de Chocolate, 1,200 de Cookies y 1,200 de Frutos rojos: <b>3,600 barras</b> en total.</p></div>
+      <div class="say" data-say="1"><p><b>¿Por qué sobra?</b> Sumamos lo que gastan las 200 cajas de cada sabor y lo restamos de lo disponible:</p><p>Proteína: 30 + 25 + 30 = 85 kg de 90 kg → sobran <b>5 kg</b>. Línea: 100 + 150 + 150 = 400 min de 420 min → sobran <b>20 min</b>. Cobertura: 24 + 18 + 12 = 54 kg de 60 kg → sobran <b>6 kg</b>, que se recalientan o se tiran.</p><p>Ganancia: <b>$34,200</b> por corrida.</p></div>
       <div class="say" data-say="2"><p>La pregunta del proyecto: ¿cuántas barras de cada sabor hay que producir en una corrida para que la ganancia sea <b>la más alta posible</b>, sin pasarnos de la proteína, del tiempo de línea ni de la cobertura?</p></div>
     </div>
   </div>
@@ -1613,16 +1634,16 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="layers">
       <div style="display:grid;gap:10px" data-range="0-1">
         <div class="mix">
-          <div class="c1"><img src="img/fibo-chocolate.webp" alt="Chocolate"><span class="n">200</span><span class="k">cajas = 1,200 barras</span></div>
-          <div class="c2"><img src="img/fibo-cookies.webp" alt="Cookies"><span class="n">200</span><span class="k">cajas = 1,200 barras</span></div>
-          <div class="c3"><img src="img/fibo-frutos.webp" alt="Frutos rojos"><span class="n">200</span><span class="k">cajas = 1,200 barras</span></div>
+          <div class="c1"><img src="img/fibo-chocolate.webp" alt="Chocolate"><span class="n">200 cajas</span><span class="k">= 1,200 barras</span></div>
+          <div class="c2"><img src="img/fibo-cookies.webp" alt="Cookies"><span class="n">200 cajas</span><span class="k">= 1,200 barras</span></div>
+          <div class="c3"><img src="img/fibo-frutos.webp" alt="Frutos rojos"><span class="n">200 cajas</span><span class="k">= 1,200 barras</span></div>
         </div>
         <div class="gauges" data-step="1">
-          <div class="gg"><div class="gl"><span>R1 · Proteína</span><span>85 de 90 kg · sobran 5</span></div><div class="gtr"><i style="width:94.4%;--c:var(--black)"></i><u style="width:5.6%"></u></div></div>
-          <div class="gg r2c"><div class="gl"><span>R2 · Línea</span><span>400 de 420 min · sobran 20</span></div><div class="gtr"><i style="width:95.2%"></i><u style="width:4.8%"></u></div></div>
-          <div class="gg r3c"><div class="gl"><span>R3 · Cobertura</span><span>54 de 60 kg · sobran 6</span></div><div class="gtr"><i style="width:90%"></i><u style="width:10%"></u></div></div>
+          <div class="gg"><div class="gl"><span>R1 · Proteína</span><span>usa 85 kg de 90 kg · <b>sobran 5 kg</b></span></div><div class="gtr"><i style="width:94.4%;--c:var(--black)"></i><u style="width:5.6%"></u></div><div class="gm">200 × 0.15 kg + 200 × 0.125 kg + 200 × 0.15 kg = 30 + 25 + 30 = <b>85 kg</b> → 90 − 85 = <b>5 kg</b></div></div>
+          <div class="gg r2c"><div class="gl"><span>R2 · Línea</span><span>usa 400 min de 420 min · <b>sobran 20 min</b></span></div><div class="gtr"><i style="width:95.2%"></i><u style="width:4.8%"></u></div><div class="gm">200 × 0.5 min + 200 × 0.75 min + 200 × 0.75 min = 100 + 150 + 150 = <b>400 min</b> → 420 − 400 = <b>20 min</b></div></div>
+          <div class="gg r3c"><div class="gl"><span>R3 · Cobertura</span><span>usa 54 kg de 60 kg · <b>sobran 6 kg</b></span></div><div class="gtr"><i style="width:90%"></i><u style="width:10%"></u></div><div class="gm">200 × 0.12 kg + 200 × 0.09 kg + 200 × 0.06 kg = 24 + 18 + 12 = <b>54 kg</b> → 60 − 54 = <b>6 kg</b></div></div>
         </div>
-        <div class="zz" data-step="1"><span class="k">Ganancia de hoy · por corrida (1 semana)</span><b>$34,200</b></div>
+        <div class="zz" data-step="1"><span class="k">Ganancia de hoy · por corrida (1 semana)<br><span class="zm">200 × $60 + 200 × $57 + 200 × $54 = $12,000 + $11,400 + $10,800</span></span><b>$34,200</b></div>
       </div>
       <div class="q" data-only="2">
         <span class="br" style="color:var(--lime)">Pregunta del proyecto</span>
@@ -1655,7 +1676,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
           <div class="mrow r2c"><b>Línea</b><span>6 ÷ 12 = <em>0.5 min</em></span><span>6 ÷ 8 = <em>0.75 min</em></span><span>6 ÷ 8 = <em>0.75 min</em></span><span class="av">480 − 60 = <em>420 min</em></span></div>
           <div class="mrow r3c"><b>Cobertura</b><span>20 g × 6 = <em>0.12 kg</em></span><span>15 g × 6 = <em>0.09 kg</em></span><span>10 g × 6 = <em>0.06 kg</em></span><span class="av">tanque = <em>60 kg</em></span></div>
           <div class="mrow gz"><b>Ganancia</b><span>$10 × 6 = <em>$60</em></span><span>$9.50 × 6 = <em>$57</em></span><span>$9 × 6 = <em>$54</em></span><span class="av">se maximiza</span></div>
-          <p class="foot">Línea: 12 y 8 son barras por minuto de la formadora · Ganancia: precio a tienda ~$32 − costo ~$22 = $10 por barra (Cookies $9.50, Frutos rojos $9) · 90 kg, 420 min y 60 kg son lo disponible por corrida.</p>
+          <p class="foot">Línea: 12 y 8 son barras por minuto de la formadora · Ganancia: precio a tienda ~$32 − costo ~$22 = $10 por barra (Cookies $9.50, Frutos rojos $9) · 90 kg, 420 min y 60 kg son lo disponible por corrida (420 min = 480 min del turno − 10 arranque − 20 limpieza − 30 comida).</p>
         </div>
         <div class="pnote"><b>¿De dónde salen 25, 21 y 25 g?</b> No es la proteína de la etiqueta: es la <u>mezcla en polvo</u> (soya + suero) que se pesa en la mezcladora para cada barra. Cookies lleva menos polvo (21 g) porque sus <u>trozos de galleta proteica</u> ya aportan parte de la proteína. <i>Supuesto del modelo.</i></div>
         <div class="tw">
@@ -1827,9 +1848,9 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
   <div class="stage">
     <div class="bars">
       <span class="k">Ganancia extra por corrida si se amplía cada recurso</span>
-      <div class="bar"><span>+6 kg proteína · R1 = 96</span><div class="tr"><i style="width:64%;--c:var(--black)"></i></div><em>+$823</em></div>
-      <div class="bar r2c"><span>+30 min línea · R2 = 450</span><div class="tr"><i style="width:64%"></i></div><em>+$823</em></div>
-      <div class="bar r3c" data-step="1"><span>+6 kg cobertura · R3 = 66</span><div class="tr"><i style="width:100%"></i></div><em>+$1,286</em></div>
+      <div class="bar"><span>+6 kg proteína · R1 = 96 kg</span><div class="tr"><i style="width:64%;--c:var(--black)"></i></div><em>+$823</em></div>
+      <div class="bar r2c"><span>+30 min línea · R2 = 450 min</span><div class="tr"><i style="width:64%"></i></div><em>+$823</em></div>
+      <div class="bar r3c" data-step="1"><span>+6 kg cobertura · R3 = 66 kg</span><div class="tr"><i style="width:100%"></i></div><em>+$1,286</em></div>
       <div class="prop" data-step="2">
         <h3>+6 kg de cobertura por corrida.</h3>
         <div class="g3">
