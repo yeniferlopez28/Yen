@@ -1249,6 +1249,13 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
 .estn{font:500 clamp(12.5px,calc(.95 * var(--vw)),15px)/1.4 var(--sans);background:rgba(18,18,18,.08);border-radius:14px;padding:10px 14px;max-width:62ch}
 .estn b{font-weight:700}
 .est{display:inline-block;font:600 9.5px/1 var(--wide);font-style:normal;text-transform:uppercase;letter-spacing:.06em;background:var(--limed);color:#121212;border-radius:999px;padding:3px 7px;margin-left:4px;vertical-align:1px}
+
+#p7 .gg.g2{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;row-gap:6px;align-items:center;padding:12px 16px}
+#p7 .g2 .gl{grid-column:1}
+#p7 .g2 .gl span:first-child{font-size:12.5px}
+#p7 .g2 .gtr{grid-column:1;height:24px}
+#p7 .g2 .sob{grid-column:2;grid-row:1/3;min-width:clamp(150px,calc(15 * var(--vw)),220px);text-align:center;font:700 clamp(17px,calc(1.6 * var(--vw)),24px)/1 var(--wide);background:#121212;color:var(--limed);border-radius:999px;padding:10px 16px;white-space:nowrap}
+#p7 .gauges{gap:8px}
 </style>
 
 <div id="fit">
@@ -1630,7 +1637,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <h2 class="h2">Hoy se reparte <span class="o">al tanteo</span>.</h2>
     <div class="says">
       <div class="say" data-say="0"><p>Supongamos que hoy en cada corrida se producen <b>200 cajas de cada sabor</b>, repartido parejo, sin calcular <span class="src">(escenario estimado)</span>.</p><p>Como cada caja trae 6 barras, son 1,200 barras de Chocolate, 1,200 de Cookies y 1,200 de Frutos rojos: <b>3,600 barras</b> en total.</p></div>
-      <div class="say" data-say="1"><p><b>¿Por qué sobra?</b> Sumamos lo que gastan las 200 cajas de cada sabor y lo restamos de lo disponible:</p><p>Proteína: 30 + 25 + 30 = 85 kg de 90 kg → sobran <b>5 kg</b>. Línea: 100 + 150 + 150 = 400 min de 420 min → sobran <b>20 min</b>. Cobertura: 24 + 18 + 12 = 54 kg de 60 kg → sobran <b>6 kg</b>, que se recalientan o se tiran.</p><p>Ganancia: <b>$34,200</b> por corrida.</p></div>
+      <div class="say" data-say="1"><p><b>¿Por qué sobra?</b> Con 200 cajas de cada sabor no se usa todo lo que hay en la corrida.</p><p>Sobran <b>5 kg</b> de proteína, <b>20 min</b> de línea y <b>6 kg</b> de cobertura, que se recalienta o se tira.</p><p>Ganancia estimada: <b>$34,200</b> por corrida.</p></div>
       <div class="say" data-say="2"><p>La pregunta del proyecto: ¿cuántas barras de cada sabor hay que producir en una corrida para que la ganancia sea <b>la más alta posible</b>, sin pasarnos de la proteína, del tiempo de línea ni de la cobertura?</p></div>
     </div>
   </div>
@@ -1643,11 +1650,11 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
           <div class="c3"><img src="img/fibo-frutos.webp" alt="Frutos rojos"><span class="n">200 cajas</span><span class="k">= 1,200 barras</span></div>
         </div>
         <div class="gauges" data-step="1">
-          <div class="gg"><div class="gl"><span>R1 · Proteína</span><span>usa 85 kg de 90 kg · <b>sobran 5 kg</b></span></div><div class="gtr"><i style="width:94.4%;--c:var(--black)"></i><u style="width:5.6%"></u></div><div class="gm">200 × 0.15 kg + 200 × 0.125 kg + 200 × 0.15 kg = 30 + 25 + 30 = <b>85 kg</b> → 90 − 85 = <b>5 kg</b></div></div>
-          <div class="gg r2c"><div class="gl"><span>R2 · Línea</span><span>usa 400 min de 420 min · <b>sobran 20 min</b></span></div><div class="gtr"><i style="width:95.2%"></i><u style="width:4.8%"></u></div><div class="gm">200 × 0.5 min + 200 × 0.75 min + 200 × 0.75 min = 100 + 150 + 150 = <b>400 min</b> → 420 − 400 = <b>20 min</b></div></div>
-          <div class="gg r3c"><div class="gl"><span>R3 · Cobertura</span><span>usa 54 kg de 60 kg · <b>sobran 6 kg</b></span></div><div class="gtr"><i style="width:90%"></i><u style="width:10%"></u></div><div class="gm">200 × 0.12 kg + 200 × 0.09 kg + 200 × 0.06 kg = 24 + 18 + 12 = <b>54 kg</b> → 60 − 54 = <b>6 kg</b></div></div>
-        </div>
-        <div class="zz" data-step="1"><span class="k">Ganancia estimada de hoy · por corrida (1 semana)<br><span class="zm">200 × $60 + 200 × $57 + 200 × $54 = $12,000 + $11,400 + $10,800</span></span><b>$34,200</b></div>
+          <div class="gg g2 "><div class="gl"><span>R1 · Proteína</span><span>usa 85 de 90 kg</span></div><div class="gtr"><i style="width:94.4%;--c:var(--black)"></i><u style="width:5.6%"></u></div><b class="sob">sobran 5 kg</b></div>
+          <div class="gg g2 r2c"><div class="gl"><span>R2 · Línea</span><span>usa 400 de 420 min</span></div><div class="gtr"><i style="width:95.2%"></i><u style="width:4.8%"></u></div><b class="sob">sobran 20 min</b></div>
+          <div class="gg g2 r3c"><div class="gl"><span>R3 · Cobertura</span><span>usa 54 de 60 kg</span></div><div class="gtr"><i style="width:90%"></i><u style="width:10.0%"></u></div><b class="sob">sobran 6 kg</b></div>
+          </div>
+        <div class="zz" data-step="1"><span class="k">Ganancia estimada de hoy · por corrida (1 semana)</span><b>$34,200</b></div>
       </div>
       <div class="q" data-only="2">
         <span class="br" style="color:var(--lime)">Pregunta del proyecto</span>
