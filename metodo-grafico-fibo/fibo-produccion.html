@@ -1256,6 +1256,31 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
 #p7 .g2 .gtr{grid-column:1;height:24px}
 #p7 .g2 .sob{grid-column:2;grid-row:1/3;min-width:clamp(150px,calc(15 * var(--vw)),220px);text-align:center;font:700 clamp(17px,calc(1.6 * var(--vw)),24px)/1 var(--wide);background:#121212;color:var(--limed);border-radius:999px;padding:10px 16px;white-space:nowrap}
 #p7 .gauges{gap:8px}
+
+/* ================= MEJORA CON PRECIO SOMBRA ================= */
+.sp3,.spc{display:grid;gap:12px;width:100%;align-content:center}
+.spv{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--tile);border-radius:20px;padding:14px 16px}
+.spv.best{background:#121212;color:#F3EEDF}
+.sph{display:grid;gap:3px}
+.sph span{font:700 13px/1.1 var(--wide);text-transform:uppercase}
+.sph small{font:500 12px/1 var(--wide);text-transform:uppercase;opacity:.7}
+.spv .tr{height:30px;border-radius:999px;background:rgba(18,18,18,.08);overflow:hidden}
+.spv.best .tr{background:rgba(243,238,223,.12)}
+.spv .tr i{display:block;height:100%;border-radius:999px;background:var(--c);transform-origin:left;transform:scaleX(0);transition:transform 1.1s var(--ease)}
+.sp3.on .tr i{transform:scaleX(1)}
+.spv b{font:700 clamp(22px,calc(2.2 * var(--vw)),32px)/1 var(--wide);text-align:right;white-space:nowrap}
+.spv.best b{color:var(--limed)}
+.spr{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--tile);border-radius:18px;padding:12px 16px;border-left:0}
+.spr span{font:700 12.5px/1.1 var(--wide);text-transform:uppercase}
+.spr code{font:600 clamp(12px,calc(1 * var(--vw)),15px)/1.3 var(--mono);overflow-wrap:anywhere}
+.spr b{font:700 clamp(16px,calc(1.5 * var(--vw)),22px)/1 var(--wide);white-space:nowrap}
+.spr.c1{background:var(--x1)}.spr.c2{background:var(--x2);color:#fff}.spr.c3{background:var(--x3)}
+.spr.tot{background:#121212;color:#F3EEDF}.spr.tot b{color:var(--limed)}
+.spx{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:700 clamp(18px,calc(1.8 * var(--vw)),26px)/1 var(--wide)}
+.spx span{background:#1F1F1F;border-radius:999px;padding:10px 16px}
+.spx em{font-style:normal;opacity:.6}
+.spx b{color:var(--limed);font-size:1.3em}
+@media (max-width:900px){.spv{grid-template-columns:1fr auto}.spv .tr{grid-column:1/-1;grid-row:2}.spr{grid-template-columns:1fr auto}.spr code{grid-column:1/-1;grid-row:2}}
 </style>
 
 <div id="fit">
@@ -1851,25 +1876,36 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="meta"><span>06 · Propuesta de mejora</span><span>¿Qué ampliar?</span></div>
     <h2 class="h2">¿Qué conviene <span class="o">ampliar</span>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Los tres recursos se acaban. ¿Cuál conviene tener un poco más?</p><p>Probamos uno por uno y <b>volvimos a resolver el simplex</b> con el nuevo límite.</p></div>
-      <div class="say" data-say="1"><p>Con 6 kg más de proteína o 30 min más de línea, la ganancia por corrida sube unos $823.</p><p>Con 6 kg más de <b>cobertura</b> sube $1,286: es la que más rinde.</p></div>
-      <div class="say" data-say="2"><p>Propuesta: fundir <b>6 kg más</b> de cobertura por corrida (una tanda extra en el tanque de fusión).</p><p>Volviendo a resolver, el plan cambia a unas <b>1,692 barras de Chocolate, 1,950 de Cookies y 270 de Frutos rojos</b>, y la ganancia por corrida sube a <b>$38,006</b>.</p></div>
+      <div class="say" data-say="0"><p>Los tres recursos se acaban, así que para ganar más hay que tener <b>un poco más de alguno</b>. ¿Cuál conviene?</p><p>Lo vemos con el <b>precio sombra</b>: cuánto sube la ganancia por cada <b>1 kg o 1 min extra</b> de un recurso.</p><p>El que vale más es la <b>cobertura</b>: ≈ $214 por kg.</p></div>
+      <div class="say" data-say="1"><p><b>¿De dónde salen?</b> Le damos un valor a cada recurso de modo que cada caja “pague” justo su ganancia con lo que usa: 3 ecuaciones, una por sabor.</p><p>Ejemplo, Chocolate: 0.15 kg × $137 + 0.5 min × $27 + 0.12 kg × $214 = <b>$60</b>, su ganancia por caja ✓</p><p>Y con todo lo disponible da <b>$36,720</b>, la misma Z del simplex ✓</p></div>
+      <div class="say" data-say="2"><p><b>Propuesta:</b> fundir <b>6 kg más de cobertura</b> por corrida (una tanda extra en el tanque).</p><p>6 kg × $214 = <b>+$1,286</b> por corrida: la ganancia pasa de $36,720 a unos <b>$38,006</b>. Al año, × 52 = <b>+$66,857</b>.</p><p class="src">Vale para aumentos pequeños. Conviene si la tanda extra cuesta menos de $1,286 por corrida.</p></div>
     </div>
   </div>
   <div class="stage">
-    <div class="bars">
-      <span class="k">Ganancia extra por corrida si se amplía cada recurso</span>
-      <div class="bar"><span>+6 kg proteína · R1 = 96 kg</span><div class="tr"><i style="width:64%;--c:var(--black)"></i></div><em>+$823</em></div>
-      <div class="bar r2c"><span>+30 min línea · R2 = 450 min</span><div class="tr"><i style="width:64%"></i></div><em>+$823</em></div>
-      <div class="bar r3c" data-step="1"><span>+6 kg cobertura · R3 = 66 kg</span><div class="tr"><i style="width:100%"></i></div><em>+$1,286</em></div>
-      <div class="prop" data-step="2">
+    <div class="layers">
+      <div class="sp3" data-only="0">
+        <span class="k">Precio sombra · cuánto sube la ganancia con 1 unidad extra</span>
+        <div class="spv r1c"><div class="sph"><span>R1 · Proteína</span><small>1 kg más</small></div><div class="tr"><i style="width:64%"></i></div><b>+$137</b></div>
+        <div class="spv r2c"><div class="sph"><span>R2 · Línea</span><small>1 min más</small></div><div class="tr"><i style="width:13%"></i></div><b>+$27</b></div>
+        <div class="spv r3c best"><div class="sph"><span>R3 · Cobertura</span><small>1 kg más</small></div><div class="tr"><i style="width:100%"></i></div><b>+$214</b></div>
+        <p class="src">Valores estimados, redondeados: $137.14, $27.43 y $214.29.</p>
+      </div>
+      <div class="spc" data-only="1">
+        <span class="k">Comprobación: cada caja “paga” su ganancia</span>
+        <div class="spr c1"><span>Chocolate</span><code>0.15 × 137.14 + 0.5 × 27.43 + 0.12 × 214.29</code><b>= $60 ✓</b></div>
+        <div class="spr c2"><span>Cookies</span><code>0.125 × 137.14 + 0.75 × 27.43 + 0.09 × 214.29</code><b>= $57 ✓</b></div>
+        <div class="spr c3"><span>Frutos rojos</span><code>0.15 × 137.14 + 0.75 × 27.43 + 0.06 × 214.29</code><b>= $54 ✓</b></div>
+        <div class="spr tot"><span>Todo lo disponible</span><code>90 kg × 137.14 + 420 min × 27.43 + 60 kg × 214.29</code><b>= $36,720 ✓</b></div>
+      </div>
+      <div class="prop" data-only="2">
         <h3>+6 kg de cobertura por corrida.</h3>
+        <div class="spx"><span>6 kg</span><em>×</em><span>$214 por kg</span><em>=</em><b>+$1,286</b></div>
         <div class="g3">
-          <div><b>$38,006</b><span>nueva ganancia por corrida (R3 = 66 kg)</span></div>
+          <div><b>$38,006</b><span>nueva ganancia estimada por corrida ($36,720 + $1,286)</span></div>
           <div><b>+$1,286</b><span>de ganancia extra por corrida</span></div>
-          <div><b>+$66,857</b><span>de ganancia extra al año (× 52)</span></div>
+          <div><b>+$66,857</b><span>de ganancia extra al año ($1,286 × 52)</span></div>
         </div>
-        <p>Nuevo plan: 282.9, 325.7 y 45.7 cajas. En cajas enteras: 282 de Chocolate (1,692 barras), 325 de Cookies (1,950) y 45 de Frutos rojos (270); da $37,875 de ganancia y cumple las tres restricciones. Conviene si la tanda extra cuesta menos de ~$1,150 por corrida en mano de obra y energía.</p>
+        <p>Con 6 kg más de proteína o 30 min más de línea la ganancia sube solo ≈ $823. La cobertura es la que más rinde.</p>
       </div>
     </div>
   </div>
