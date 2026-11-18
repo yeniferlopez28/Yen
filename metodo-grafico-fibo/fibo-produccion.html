@@ -1270,7 +1270,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
 .sp3.on .tr i{transform:scaleX(1)}
 .spv b{font:700 clamp(22px,calc(2.2 * var(--vw)),32px)/1 var(--wide);text-align:right;white-space:nowrap}
 .spv.best b{color:var(--limed)}
-.spr{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--tile);border-radius:18px;padding:12px 16px;border-left:0}
+.spr{display:grid;grid-template-columns:146px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--tile);border-radius:18px;padding:12px 16px;border-left:0}
 .spr span{font:700 12.5px/1.1 var(--wide);text-transform:uppercase}
 .spr code{font:600 clamp(12px,calc(1 * var(--vw)),15px)/1.3 var(--mono);overflow-wrap:anywhere}
 .spr b{font:700 clamp(16px,calc(1.5 * var(--vw)),22px)/1 var(--wide);white-space:nowrap}
@@ -1281,6 +1281,19 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
 .spx em{font-style:normal;opacity:.6}
 .spx b{color:var(--limed);font-size:1.3em}
 @media (max-width:900px){.spv{grid-template-columns:1fr auto}.spv .tr{grid-column:1/-1;grid-row:2}.spr{grid-template-columns:1fr auto}.spr code{grid-column:1/-1;grid-row:2}}
+
+.spdef{background:#121212;color:#F3EEDF;border-radius:20px;padding:14px 18px;display:grid;gap:6px}
+.spdef b{font:700 clamp(15px,calc(1.4 * var(--vw)),20px)/1.1 var(--wide);text-transform:uppercase;color:var(--limed)}
+.spdef span{font-size:clamp(14px,calc(.35 * var(--vw)) + 9.5px,16.5px);line-height:1.4}
+.spdef strong{font-weight:700}
+.spdef .ej{opacity:.8;font-size:clamp(13px,calc(.3 * var(--vw)) + 9px,15px)}
+.speq{display:grid;gap:8px}
+.spl{font:600 12px/1.3 var(--wide);text-transform:uppercase;letter-spacing:.03em;opacity:.75}
+.spres{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.spres em{font:600 12px/1 var(--wide);font-style:normal;text-transform:uppercase;letter-spacing:.04em;opacity:.75}
+.spres span{background:var(--limed);border-radius:999px;padding:9px 14px;font:600 14px/1 var(--wide)}
+.spres b{font-weight:700}
+.sp3 .spv{padding:11px 16px}
 </style>
 
 <div id="fit">
@@ -1856,25 +1869,30 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <h2 class="h2">¿Qué conviene <span class="o">ampliar</span>?</h2>
     <div class="says">
       <div class="say" data-say="0"><p>Los tres recursos se acaban, así que para ganar más hay que tener <b>un poco más de alguno</b>. ¿Cuál conviene?</p><p>Lo vemos con el <b>precio sombra</b>: cuánto sube la ganancia por cada <b>1 kg o 1 min extra</b> de un recurso.</p><p>El que vale más es la <b>cobertura</b>: ≈ $214 por kg.</p></div>
-      <div class="say" data-say="1"><p><b>¿De dónde salen?</b> Le damos un valor a cada recurso de modo que cada caja “pague” justo su ganancia con lo que usa: 3 ecuaciones, una por sabor.</p><p>Ejemplo, Chocolate: 0.15 kg × $137 + 0.5 min × $27 + 0.12 kg × $214 = <b>$60</b>, su ganancia por caja ✓</p><p>Y con todo lo disponible da <b>$36,720</b>, la misma Z del simplex ✓</p></div>
+      <div class="say" data-say="1"><p><b>¿Cómo se calcula?</b> Le ponemos un precio a cada recurso: <b>P</b> a la proteína, <b>L</b> a la línea y <b>C</b> a la cobertura.</p><p>Cada caja debe “pagar” justo su ganancia con lo que usa. Chocolate usa 0.15 kg, 0.5 min y 0.12 kg y deja $60: 0.15 P + 0.5 L + 0.12 C = 60. Igual con Cookies ($57) y Frutos rojos ($54).</p><p>Al resolver las 3 ecuaciones salen los precios, y con todo lo disponible da <b>$36,720</b>, la misma Z del simplex ✓</p></div>
       <div class="say" data-say="2"><p><b>Propuesta:</b> fundir <b>6 kg más de cobertura</b> por corrida (una tanda extra en el tanque).</p><p>6 kg × $214 = <b>+$1,286</b> por corrida: la ganancia pasa de $36,720 a unos <b>$38,006</b>. Al año, × 52 = <b>+$66,857</b>.</p><p class="src">Vale para aumentos pequeños. Conviene si la tanda extra cuesta menos de $1,286 por corrida.</p></div>
     </div>
   </div>
   <div class="stage">
     <div class="layers">
       <div class="sp3" data-only="0">
-        <span class="k">Precio sombra · cuánto sube la ganancia con 1 unidad extra</span>
+        <div class="spdef"><b>¿Qué es el precio sombra?</b><span>Es lo que <strong>sube la ganancia</strong> si nos dan <strong>1 unidad más</strong> de un recurso que ya se acabó.</span><span class="ej">Ejemplo: si el tanque fundiera <strong>61 kg</strong> en vez de 60 kg, la ganancia subiría <strong>$214</strong>.</span></div>
+        <span class="k">Precio sombra de cada recurso</span>
         <div class="spv r1c"><div class="sph"><span>R1 · Proteína</span><small>1 kg más</small></div><div class="tr"><i style="width:64%"></i></div><b>+$137</b></div>
         <div class="spv r2c"><div class="sph"><span>R2 · Línea</span><small>1 min más</small></div><div class="tr"><i style="width:13%"></i></div><b>+$27</b></div>
         <div class="spv r3c best"><div class="sph"><span>R3 · Cobertura</span><small>1 kg más</small></div><div class="tr"><i style="width:100%"></i></div><b>+$214</b></div>
         <p class="src">Valores estimados, redondeados: $137.14, $27.43 y $214.29.</p>
       </div>
       <div class="spc" data-only="1">
-        <span class="k">Comprobación: cada caja “paga” su ganancia</span>
-        <div class="spr c1"><span>Chocolate</span><code>0.15 × 137.14 + 0.5 × 27.43 + 0.12 × 214.29</code><b>= $60 ✓</b></div>
-        <div class="spr c2"><span>Cookies</span><code>0.125 × 137.14 + 0.75 × 27.43 + 0.09 × 214.29</code><b>= $57 ✓</b></div>
-        <div class="spr c3"><span>Frutos rojos</span><code>0.15 × 137.14 + 0.75 × 27.43 + 0.06 × 214.29</code><b>= $54 ✓</b></div>
-        <div class="spr tot"><span>Todo lo disponible</span><code>90 kg × 137.14 + 420 min × 27.43 + 60 kg × 214.29</code><b>= $36,720 ✓</b></div>
+        <span class="k">¿Cómo se calcula? · cada caja “paga” su ganancia con lo que usa</span>
+        <div class="speq">
+          <p class="spl">P = precio de 1 kg de proteína · L = de 1 min de línea · C = de 1 kg de cobertura</p>
+          <div class="spr c1"><span>Chocolate</span><code>0.15 P + 0.5 L + 0.12 C</code><b>= $60</b></div>
+          <div class="spr c2"><span>Cookies</span><code>0.125 P + 0.75 L + 0.09 C</code><b>= $57</b></div>
+          <div class="spr c3"><span>Frutos rojos</span><code>0.15 P + 0.75 L + 0.06 C</code><b>= $54</b></div>
+        </div>
+        <div class="spres"><em>Se resuelven las 3 ecuaciones →</em><span>P = <b>$137.14</b></span><span>L = <b>$27.43</b></span><span>C = <b>$214.29</b></span></div>
+        <div class="spr tot"><span>Comprobación</span><code>90 kg × 137.14 + 420 min × 27.43 + 60 kg × 214.29</code><b>= $36,720 ✓</b></div>
       </div>
       <div class="prop" data-only="2">
         <h3>+6 kg de cobertura por corrida.</h3>
