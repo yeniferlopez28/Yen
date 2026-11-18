@@ -1245,11 +1245,15 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
 #p7 .gauges{gap:6px}
 #p7 .gg{padding:8px 14px;gap:5px}
 @media (max-width:900px){.tleg{grid-template-columns:1fr}}
+
+.estn{font:500 clamp(12.5px,calc(.95 * var(--vw)),15px)/1.4 var(--sans);background:rgba(18,18,18,.08);border-radius:14px;padding:10px 14px;max-width:62ch}
+.estn b{font-weight:700}
+.est{display:inline-block;font:600 9.5px/1 var(--wide);font-style:normal;text-transform:uppercase;letter-spacing:.06em;background:var(--limed);color:#121212;border-radius:999px;padding:3px 7px;margin-left:4px;vertical-align:1px}
 </style>
 
 <div id="fit">
 <header class="hud" aria-label="Navegación">
-  <div class="logo">FIBO <small>Producción · IO I</small></div>
+  <div class="logo">FIBO <small>Producción · IO I · cifras estimadas</small></div>
   <div class="sq" id="sq" aria-label="Escenas"></div>
   <div class="hud-r" id="sec"></div>
 </header>
@@ -1286,7 +1290,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
   <div class="top">
     <div><span class="br">Proyecto final · 2026B</span><p class="k" style="margin-top:8px">Investigación de Operaciones I · CUCEA</p></div>
   </div>
-  <div class="hero"><span class="k">Proyecto final · Investigación de Operaciones I · CUCEA · 2026B</span>
+  <div class="hero"><span class="k">Proyecto final · Investigación de Operaciones I · CUCEA · 2026B</span><span class="estn">Todas las cifras de producción, ventas, costos y ganancias son <b>estimaciones del equipo</b> con fines académicos: no son datos internos de El Molino.</span>
     <h1>Producción <span class="o">óptima</span> de FIBO.</h1>
   </div>
   <div class="foot">
@@ -1454,7 +1458,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="meta"><span>02 · Área de trabajo</span><span>Unidad de tiempo</span></div>
     <h2 class="h2">¿Qué es una <span class="o">corrida</span>?</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Una <b>corrida</b> es <b>un turno de 8 horas</b> (480 min) en el que la línea hace los 3 sabores, uno tras otro. La <b>comida va dentro</b> de esas 8 horas: nadie trabaja 9.</p><p>Se hace <b>una vez por semana</b>: una corrida produce unas 3,600 barras y FIBO vende unas 2,900 por semana, así que alcanza.</p><p>Por eso, todo lo que digamos <b>“por corrida”</b> es <b>por semana</b>, y para el año se multiplica <b>× 52</b>.</p><p class="src">Ventas por semana: $34 M vendidos desde 2019 ÷ 7 años ÷ $32 por barra ÷ 52 semanas ≈ 2,900 barras.</p></div>
+      <div class="say" data-say="0"><p>Una <b>corrida</b> es <b>un turno de 8 horas</b> (480 min) en el que la línea hace los 3 sabores, uno tras otro. La <b>comida va dentro</b> de esas 8 horas: nadie trabaja 9.</p><p>Se hace <b>una vez por semana</b>: estimamos que una corrida produce unas 3,600 barras y que FIBO vende unas 2,900 por semana, así que alcanza.</p><p>Por eso, todo lo que digamos <b>“por corrida”</b> es <b>por semana</b>, y para el año se multiplica <b>× 52</b>.</p><p class="src">Cifras estimadas por el equipo con precios públicos y supuestos razonables; no son datos reales de producción ni de ventas de la empresa.</p></div>
     </div>
   </div>
   <div class="stage">
@@ -1463,7 +1467,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
         <div class="wk">
           <span class="k">1 semana</span>
           <div class="days"><div class="dy on"><b>Lun</b><span>Corrida</span><i></i></div><div class="dy"><b>Mar</b><span>se vende</span></div><div class="dy"><b>Mié</b><span>se vende</span></div><div class="dy"><b>Jue</b><span>se vende</span></div><div class="dy"><b>Vie</b><span>se vende</span></div><div class="dy"><b>Sáb</b><span>se vende</span></div><div class="dy"><b>Dom</b><span>se vende</span></div></div>
-          <div class="wkb"><div><b>3,600</b><span>barras que hace una corrida</span></div><em>≥</em><div><b>2,900</b><span>barras que se venden en la semana</span></div></div>
+          <div class="wkb"><div><b>≈ 3,600</b><span>barras que hace una corrida <i class="est">estimado</i></span></div><em>≥</em><div><b>≈ 2,900</b><span>barras que se venden en la semana <i class="est">estimado</i></span></div></div>
         </div>
         <div class="tn">
           <span class="k">El turno de la corrida · 8 h = 480 min</span>
@@ -1472,7 +1476,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
         </div>
         <div class="kk">
           <div><b>1 caja</b><span>= 6 barras. El modelo cuenta cajas (x₁, x₂, x₃)</span></div>
-          <div class="g"><b>$10</b><span>de ganancia por barra ($32 venta − $22 costo)</span></div>
+          <div class="g"><b>≈ $10</b><span>de ganancia estimada por barra (≈ $32 venta − ≈ $22 costo)</span></div>
           <div><b>× 52</b><span>de “por corrida” a “por año”</span></div>
         </div>
       </div>
@@ -1493,7 +1497,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
       <div class="lay rs r1c" data-only="0">
         <div class="rsg"><svg class="sacks" viewBox="0 0 560 120" role="img" aria-label="4 sacos y medio de 20 kg de proteína = 90 kg"><g class="sk" style="--d:0.13s"><path d="M20 30 q30 -10 60 0 l6 70 a6 6 0 0 1 -6 6 h-60 a6 6 0 0 1 -6 -6z" fill="#FFFBEA" stroke="#121212" stroke-width="3"/><rect x="16" y="34" width="68" height="72" fill="#121212" opacity=".14"/><text x="50" y="74" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="13" fill="#121212">20 kg</text></g><g class="sk" style="--d:0.29s"><path d="M112 30 q30 -10 60 0 l6 70 a6 6 0 0 1 -6 6 h-60 a6 6 0 0 1 -6 -6z" fill="#FFFBEA" stroke="#121212" stroke-width="3"/><rect x="108" y="34" width="68" height="72" fill="#121212" opacity=".14"/><text x="142" y="74" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="13" fill="#121212">20 kg</text></g><g class="sk" style="--d:0.44s"><path d="M204 30 q30 -10 60 0 l6 70 a6 6 0 0 1 -6 6 h-60 a6 6 0 0 1 -6 -6z" fill="#FFFBEA" stroke="#121212" stroke-width="3"/><rect x="200" y="34" width="68" height="72" fill="#121212" opacity=".14"/><text x="234" y="74" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="13" fill="#121212">20 kg</text></g><g class="sk" style="--d:0.59s"><path d="M296 30 q30 -10 60 0 l6 70 a6 6 0 0 1 -6 6 h-60 a6 6 0 0 1 -6 -6z" fill="#FFFBEA" stroke="#121212" stroke-width="3"/><rect x="292" y="34" width="68" height="72" fill="#121212" opacity=".14"/><text x="326" y="74" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="13" fill="#121212">20 kg</text></g><g class="sk" style="--d:0.75s"><path d="M388 30 q30 -10 60 0 l6 70 a6 6 0 0 1 -6 6 h-60 a6 6 0 0 1 -6 -6z" fill="#FFFBEA" stroke="#121212" stroke-width="3"/><rect x="384" y="70" width="68" height="36" fill="#121212" opacity=".14"/><text x="418" y="74" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="13" fill="#121212">10 kg</text></g><text x="520" y="70" text-anchor="end" font-family="Unbounded,sans-serif" font-weight="700" font-size="0"></text></svg></div>
         <div class="rsc"><div class="rf" style="--d:0.25s"><div class="rfh"><i class="mini" data-masc="choc"></i><span>Chocolate</span></div><b>0.15 kg</b><span class="rm">25 g × 6 barras = 150 g</span><span class="rw">receta base</span></div><div class="rf" style="--d:0.4s"><div class="rfh"><i class="mini" data-masc="cook"></i><span>Cookies</span></div><b>0.125 kg</b><span class="rm">21 g × 6 barras ≈ 125 g</span><span class="rw">la galleta aporta proteína</span></div><div class="rf" style="--d:0.55s"><div class="rfh"><i class="mini" data-masc="fruit"></i><span>Frutos rojos</span></div><b>0.15 kg</b><span class="rm">25 g × 6 barras = 150 g</span><span class="rw">receta base</span></div></div>
-        <div class="rsa"><span class="k">Disponible por corrida</span><b>4.5 sacos × 20 kg = 90 kg</b></div>
+        <div class="rsa"><span class="k">Disponible por corrida · estimado</span><b>4.5 sacos × 20 kg = 90 kg</b></div>
         <div class="rse"><span>R1 · por caja</span><b>0.15x₁ + 0.125x₂ + 0.15x₃ ≤ 90</b></div>
       </div>
     </div>
@@ -1565,7 +1569,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
         <text x="430" y="400" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="12" fill="#6A655E">MASA → TOLVA → RODILLOS → BOQUILLA → TIRA → GUILLOTINA → BARRAS</text>
       </svg></div>
         <div class="rsc"><div class="rf" style="--d:0.25s"><div class="rfh"><i class="mini" data-masc="choc"></i><span>Chocolate</span></div><b>0.5 min</b><span class="rm">6 barras ÷ 12 por min</span><span class="rw">masa lisa, sale rápido</span></div><div class="rf" style="--d:0.4s"><div class="rfh"><i class="mini" data-masc="cook"></i><span>Cookies</span></div><b>0.75 min</b><span class="rm">6 barras ÷ 8 por min</span><span class="rw">trozos de galleta</span></div><div class="rf" style="--d:0.55s"><div class="rfh"><i class="mini" data-masc="fruit"></i><span>Frutos rojos</span></div><b>0.75 min</b><span class="rm">6 barras ÷ 8 por min</span><span class="rw">fruta frágil</span></div></div>
-        <div class="rsa"><span class="k">Disponible por corrida</span><b>480 min − 60 min = 420 min</b><span class="rsx">60 min = 10 arranque + 20 limpieza (2 cambios × 10) + 30 comida</span></div>
+        <div class="rsa"><span class="k">Disponible por corrida · estimado</span><b>480 min − 60 min = 420 min</b><span class="rsx">60 min = 10 arranque + 20 limpieza (2 cambios × 10) + 30 comida</span></div>
         <div class="rse"><span>R2 · por caja</span><b>0.5x₁ + 0.75x₂ + 0.75x₃ ≤ 420</b></div>
       </div>
     </div>
@@ -1612,7 +1616,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
         </g>
       </svg></div>
         <div class="rsc"><div class="rf" style="--d:0.25s"><div class="rfh"><i class="mini" data-masc="choc"></i><span>Chocolate</span></div><b>0.12 kg</b><span class="rm">20 g × 6 barras = 120 g</span><span class="rw">bañada completa</span></div><div class="rf" style="--d:0.4s"><div class="rfh"><i class="mini" data-masc="cook"></i><span>Cookies</span></div><b>0.09 kg</b><span class="rm">15 g × 6 barras = 90 g</span><span class="rw">cubierta parcial</span></div><div class="rf" style="--d:0.55s"><div class="rfh"><i class="mini" data-masc="fruit"></i><span>Frutos rojos</span></div><b>0.06 kg</b><span class="rm">10 g × 6 barras = 60 g</span><span class="rw">solo la base</span></div></div>
-        <div class="rsa"><span class="k">Disponible por corrida</span><b>Tanque de fusión = 60 kg</b></div>
+        <div class="rsa"><span class="k">Disponible por corrida · estimado</span><b>Tanque de fusión = 60 kg</b></div>
         <div class="rse"><span>R3 · por caja</span><b>0.12x₁ + 0.09x₂ + 0.06x₃ ≤ 60</b></div>
       </div>
     </div>
@@ -1625,7 +1629,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="meta"><span>03 · Problema identificado</span><span>Hoy</span></div>
     <h2 class="h2">Hoy se reparte <span class="o">al tanteo</span>.</h2>
     <div class="says">
-      <div class="say" data-say="0"><p>Hoy en cada corrida se producen <b>200 cajas de cada sabor</b>, repartido parejo, sin calcular.</p><p>Como cada caja trae 6 barras, son 1,200 barras de Chocolate, 1,200 de Cookies y 1,200 de Frutos rojos: <b>3,600 barras</b> en total.</p></div>
+      <div class="say" data-say="0"><p>Supongamos que hoy en cada corrida se producen <b>200 cajas de cada sabor</b>, repartido parejo, sin calcular <span class="src">(escenario estimado)</span>.</p><p>Como cada caja trae 6 barras, son 1,200 barras de Chocolate, 1,200 de Cookies y 1,200 de Frutos rojos: <b>3,600 barras</b> en total.</p></div>
       <div class="say" data-say="1"><p><b>¿Por qué sobra?</b> Sumamos lo que gastan las 200 cajas de cada sabor y lo restamos de lo disponible:</p><p>Proteína: 30 + 25 + 30 = 85 kg de 90 kg → sobran <b>5 kg</b>. Línea: 100 + 150 + 150 = 400 min de 420 min → sobran <b>20 min</b>. Cobertura: 24 + 18 + 12 = 54 kg de 60 kg → sobran <b>6 kg</b>, que se recalientan o se tiran.</p><p>Ganancia: <b>$34,200</b> por corrida.</p></div>
       <div class="say" data-say="2"><p>La pregunta del proyecto: ¿cuántas barras de cada sabor hay que producir en una corrida para que la ganancia sea <b>la más alta posible</b>, sin pasarnos de la proteína, del tiempo de línea ni de la cobertura?</p></div>
     </div>
@@ -1643,7 +1647,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
           <div class="gg r2c"><div class="gl"><span>R2 · Línea</span><span>usa 400 min de 420 min · <b>sobran 20 min</b></span></div><div class="gtr"><i style="width:95.2%"></i><u style="width:4.8%"></u></div><div class="gm">200 × 0.5 min + 200 × 0.75 min + 200 × 0.75 min = 100 + 150 + 150 = <b>400 min</b> → 420 − 400 = <b>20 min</b></div></div>
           <div class="gg r3c"><div class="gl"><span>R3 · Cobertura</span><span>usa 54 kg de 60 kg · <b>sobran 6 kg</b></span></div><div class="gtr"><i style="width:90%"></i><u style="width:10%"></u></div><div class="gm">200 × 0.12 kg + 200 × 0.09 kg + 200 × 0.06 kg = 24 + 18 + 12 = <b>54 kg</b> → 60 − 54 = <b>6 kg</b></div></div>
         </div>
-        <div class="zz" data-step="1"><span class="k">Ganancia de hoy · por corrida (1 semana)<br><span class="zm">200 × $60 + 200 × $57 + 200 × $54 = $12,000 + $11,400 + $10,800</span></span><b>$34,200</b></div>
+        <div class="zz" data-step="1"><span class="k">Ganancia estimada de hoy · por corrida (1 semana)<br><span class="zm">200 × $60 + 200 × $57 + 200 × $54 = $12,000 + $11,400 + $10,800</span></span><b>$34,200</b></div>
       </div>
       <div class="q" data-only="2">
         <span class="br" style="color:var(--lime)">Pregunta del proyecto</span>
@@ -1670,7 +1674,7 @@ html.h800 .rsg svg{max-height:calc(28 * var(--vh))}
     <div class="layers">
       <div class="mwrap" data-only="0">
         <div class="math">
-          <div class="mh"><span class="k">¿De dónde salen los números?</span><span class="k">por caja = por barra × 6</span></div>
+          <div class="mh"><span class="k">¿De dónde salen los números? · valores estimados</span><span class="k">por caja = por barra × 6</span></div>
           <div class="mrow hd"><b></b><span>Chocolate</span><span>Cookies</span><span>Frutos rojos</span><span class="av">Disponible</span></div>
           <div class="mrow r1c"><b>Proteína</b><span>25 g × 6 = <em>0.15 kg</em></span><span>21 g × 6 ≈ <em>0.125 kg</em></span><span>25 g × 6 = <em>0.15 kg</em></span><span class="av">4.5 sacos × 20 = <em>90 kg</em></span></div>
           <div class="mrow r2c"><b>Línea</b><span>6 ÷ 12 = <em>0.5 min</em></span><span>6 ÷ 8 = <em>0.75 min</em></span><span>6 ÷ 8 = <em>0.75 min</em></span><span class="av">480 − 60 = <em>420 min</em></span></div>
