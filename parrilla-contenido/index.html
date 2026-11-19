@@ -1,0 +1,814 @@
+<title>Parrilla de contenido El Molino</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: banda petróleo → apertura negra → bloques alternados negro / degradado gris, tarjetas verdes para lo clave; parrilla como lista por mes con fichas desplegables */
+:root{
+  --negro:#0D0D0D; --negro2:#111111; --g900:#1A1A1A; --g800:#262626; --g700:#3A3A3A; --g600:#555555;
+  --g400:#A8A8A8; --g300:#C9C9C9; --blanco:#FFFFFF;
+  --p900:#0E2E34; --p800:#123B42; --p700:#1D525A;
+  --v700:#1F5A50; --v600:#2A6558; --v500:#3B7C6B; --v300:#7FB8A8; --v100:#EAF3F0;
+  --font: Arial, Helvetica, sans-serif;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--negro);color:var(--g300);font-family:var(--font);font-size:14px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+strong{color:var(--blanco)}
+a{color:var(--v300)}
+/* banda */
+.band{background:linear-gradient(90deg,var(--p900),var(--p700))}
+.band .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.eyebrow{color:var(--blanco);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.logo{width:37px;height:36px;display:block;flex:none}
+/* niveles */
+.kicker{color:var(--v300);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px}
+h1{color:var(--blanco);font-size:clamp(26px,5vw,34px);line-height:1.15;font-weight:700;text-transform:uppercase;margin:0;text-wrap:balance}
+.bar{width:48px;height:3px;background:var(--v500);margin:18px 0 20px}
+.lead{font-size:15px;line-height:1.6;max-width:68ch;margin:0}
+h2{color:var(--blanco);font-size:18px;line-height:1.35;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:0 0 12px;text-wrap:balance}
+h3{color:var(--blanco);font-size:13px;line-height:1.4;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:0 0 6px}
+.label{color:var(--g400);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 4px}
+.sec{padding-block:44px}
+.sec.dark{background:linear-gradient(90deg,var(--negro) 0%,var(--g900) 40%,var(--g700) 100%)}
+.sec p{max-width:72ch}
+.intro{margin:0 0 24px}
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--negro);border-bottom:1px solid var(--g800)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--negro)}
+.nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.nav a{flex:none;color:var(--g300);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 11px;border:1px solid var(--g800)}
+.nav a:hover,.nav a:focus-visible{color:var(--blanco);border-color:var(--v500);outline:none}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}
+.stat{background:var(--negro2);border-top:3px solid var(--v500);padding:18px 14px 16px;text-align:center}
+.stat .n{color:var(--blanco);font-size:26px;line-height:30px;font-weight:700;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.stat .d{color:var(--g400);font-size:12px;line-height:18px}
+/* tarjeta verde */
+.card{background:linear-gradient(135deg,var(--v700),var(--v500));border-radius:12px;padding:26px;color:var(--v100)}
+.card h2,.card h3{color:var(--blanco)}
+.card p{color:var(--v100)}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.box{background:var(--negro2);border-top:3px solid var(--v500);padding:18px 18px 16px;min-width:0}
+.box p{margin:0 0 8px;font-size:13px;line-height:1.55}
+.box ul{margin:0;padding:0;list-style:none}
+ul.m{list-style:none;margin:0;padding:0}
+ul.m li{position:relative;padding-left:16px;margin-bottom:6px;font-size:13px;line-height:1.55}
+ul.m li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--v500)}
+.card ul.m li::before{background:var(--v100)}
+.pairs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.pair{border-left:3px solid var(--v500);padding:2px 0 2px 14px}
+.pair .v{color:var(--blanco);font-weight:700;font-size:15px;line-height:1.4}
+/* semana */
+.week{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.day .dname{color:var(--blanco);font-size:22px;font-weight:700;line-height:1.2;margin-bottom:4px}
+/* hilo */
+.arc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:8px;border-top:1px solid var(--g700)}
+.arc .step{padding:18px 16px 18px 0;border-right:1px solid var(--g800);min-width:0}
+.arc .step+.step{padding-left:16px}
+.arc .step:last-child{border-right:0}
+.arc .mes{color:var(--v300);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.arc .tema{color:var(--blanco);font-size:16px;font-weight:700;line-height:1.3;margin:4px 0 8px}
+.arc p{font-size:13px;line-height:1.55;margin:0}
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.road div{background:var(--negro2);padding:12px 14px;border-left:3px solid var(--g600);min-width:0}
+.road b{display:block;color:var(--blanco);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.road span{font-size:12px;line-height:1.5;color:var(--g400)}
+.road .hit{border-left-color:var(--v500)}
+/* series */
+.series{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.serie{background:var(--negro2);padding:16px;border-top:3px solid var(--v500);min-width:0;display:flex;flex-direction:column;gap:6px}
+.serie .u{display:flex;align-items:center;gap:8px}
+.letter{flex:none;width:22px;height:22px;display:inline-grid;place-items:center;background:var(--p800);color:var(--blanco);font-size:11px;font-weight:700}
+.serie .meta{font-size:12px;color:var(--g400);line-height:1.5}
+.serie p{margin:0;font-size:13px;line-height:1.5}
+/* tablas */
+.tscroll{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th{background:var(--p800);color:var(--blanco);text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 12px;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--g800);vertical-align:top;line-height:1.5}
+tbody tr:nth-child(even) td{background:var(--negro2)}
+td.f{color:var(--blanco);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--v500);color:var(--v300);white-space:nowrap}
+.tag.ed{border-color:var(--g600);color:var(--g400)}
+/* parrilla */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tabs button{font:inherit;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:9px 14px;background:var(--negro2);color:var(--g300);border:1px solid var(--g700);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:linear-gradient(90deg,var(--p900),var(--p700));color:var(--blanco);border-color:var(--p700)}
+.tabs button:focus-visible{outline:2px solid var(--v300);outline-offset:2px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.filters label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g400)}
+select{font:inherit;font-size:13px;background:var(--negro2);color:var(--blanco);border:1px solid var(--g700);padding:7px 10px;max-width:100%}
+.monthhead{background:var(--negro2);border-left:3px solid var(--v500);padding:16px 18px;margin-bottom:16px}
+.monthhead p{margin:4px 0 0;font-size:13px}
+.monthhead .shoot{margin-top:10px;font-size:12px;color:var(--g400)}
+.posts{display:flex;flex-direction:column;gap:10px}
+.post{background:var(--negro2);border:1px solid var(--g800)}
+.post summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px;padding:14px 16px;align-items:start}
+.post summary::-webkit-details-marker{display:none}
+.post summary:focus-visible{outline:2px solid var(--v300);outline-offset:-2px}
+.post[open]{border-color:var(--v500)}
+.date{border-right:1px solid var(--g800);padding-right:12px}
+.date .dd{color:var(--blanco);font-size:22px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.date .dw{color:var(--g400);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.ptitle{color:var(--blanco);font-size:15px;font-weight:700;line-height:1.35;margin:4px 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;background:var(--g800);color:var(--g300);white-space:nowrap}
+.chip.s{background:var(--p800);color:var(--blanco)}
+.chip.fmt{background:transparent;border:1px solid var(--g600)}
+.folio{color:var(--g400);font-size:11px;font-weight:700;letter-spacing:1px;text-align:right;white-space:nowrap}
+.folio .st{display:block;margin-top:6px;color:var(--v300)}
+.more{color:var(--v300);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+.post[open] .more{display:none}
+.body{padding:4px 16px 18px 128px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px}
+.body .blk{margin-bottom:14px}
+.body .blk p{margin:0;font-size:13px;line-height:1.6}
+.copy{background:var(--g900);border-left:3px solid var(--v500);padding:12px 14px;white-space:pre-line;font-size:13px;line-height:1.6;color:var(--g300)}
+.guion{margin:0;padding:0;list-style:none;counter-reset:t}
+.guion li{font-size:13px;line-height:1.5;padding:5px 0;border-bottom:1px solid var(--g800);display:grid;grid-template-columns:62px minmax(0,1fr);gap:8px}
+.guion li b{color:var(--v300);font-variant-numeric:tabular-nums;font-size:12px}
+.ask{background:var(--g900);padding:10px 12px;border-left:3px solid var(--g600)}
+.ask p{color:var(--g300)}
+.copybtn{font:inherit;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:transparent;color:var(--v300);border:1px solid var(--v500);padding:4px 8px;cursor:pointer;margin-top:8px}
+.empty{padding:24px;text-align:center;color:var(--g400);background:var(--negro2)}
+/* banco */
+.bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.bank .box ol{margin:0;padding-left:20px;font-size:13px;line-height:1.55}
+.bank .box li{margin-bottom:5px}
+/* embudo */
+.funnel{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:8px}
+.funnel div{background:var(--p800);padding:12px 10px;min-width:0}
+.funnel div:nth-child(n+4){background:var(--v600)}
+.funnel b{display:block;color:var(--blanco);font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+.funnel span{font-size:12px;line-height:1.45;color:var(--v100)}
+.foot{background:linear-gradient(90deg,var(--p900),var(--p700));text-align:center}
+.foot .wrap{padding-block:18px;color:var(--blanco);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+@media (max-width:860px){
+  .stats,.series,.road{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .arc{grid-template-columns:repeat(2,1fr)}
+  .arc .step:nth-child(2){border-right:0}
+  .arc .step:nth-child(3){padding-left:0}
+  .funnel{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .body{padding-left:16px;grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .cols2,.cols3,.grid2,.week,.pairs,.bank,.series,.arc{grid-template-columns:1fr}
+  .arc .step,.arc .step+.step{padding-left:0;border-right:0;border-bottom:1px solid var(--g800)}
+  .post summary{grid-template-columns:64px minmax(0,1fr)}
+  .folio{grid-column:2;text-align:left}
+  .folio .st{display:inline;margin-left:8px}
+  .date .dd{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<header class="band">
+  <div class="wrap">
+    <div class="eyebrow">Marketing · Parrilla de contenido para aprobación</div>
+    <svg class="logo" viewBox="0 0 1080 1051" aria-label="El Molino" role="img"><g transform="translate(-0.5,1050.92) scale(0.1,-0.1)" fill="#FFFFFF"><path d="M9053 10499 c-157 -20 -413 -105 -560 -185 -159 -86 -360 -257 -487 -413 -100 -123 -2001 -2826 -2017 -2868 -5 -15 -7 -38 -4 -51 8 -33 647 -901 1105 -1502 233 -305 278 -371 374 -542 159 -283 233 -473 287 -727 59 -284 59 -277 59 -1566 0 -1255 2 -1315 49 -1510 124 -510 517 -931 1001 -1071 240 -70 595 -75 835 -12 538 142 978 616 1082 1168 28 149 28 7888 0 8020 -69 324 -203 568 -441 806 -150 151 -236 214 -404 298 -257 129 -607 191 -879 155z M1275 10484 c-44 -8 -132 -32 -196 -53 -542 -182 -927 -612 -1051 -1174 -23 -102 -23 -102 -23 -4012 0 -3910 0 -3910 23 -4015 71 -320 192 -547 417 -779 138 -142 234 -218 361 -283 482 -248 1136 -213 1533 81 97 72 319 303 380 396 107 163 188 365 232 581 28 134 39 549 19 718 -54 469 -233 1023 -441 1363 -91 149 -799 1155 -973 1383 -508 666 -920 1651 -1040 2485 -23 157 -47 462 -44 545 l3 75 76 -105 c995 -1371 1679 -2305 2634 -3595 409 -554 942 -1258 1032 -1366 294 -351 887 -575 1408 -530 550 47 983 324 1205 770 93 187 125 346 124 611 -2 473 -131 760 -652 1450 -195 257 -360 485 -1650 2280 -437 608 -811 1125 -831 1150 -20 25 -158 216 -306 425 -741 1048 -753 1065 -903 1202 -247 227 -476 339 -813 398 -109 19 -414 19 -524 -1z"/></g></svg>
+  </div>
+</header>
+
+<section class="sec" style="padding-top:40px">
+  <div class="wrap">
+    <p class="kicker">Ecosistema de contenido · Diciembre 2026 – Marzo 2027</p>
+    <h1>Parrilla de contenido El Molino</h1>
+    <div class="bar"></div>
+    <p class="lead">Una sola pieza, publicada el mismo día en <strong>Instagram, Facebook y LinkedIn</strong>. Dos o tres publicaciones por semana, con una historia que avanza mes a mes: la mesa de fin de año, el año de la reformulación, <strong>Expo Carnes y Lácteos 2027</strong> y la Cuaresma. Cada ficha trae fecha, serie, público, formato, guion, copy listo, llamado a la acción, materiales y la información que hay que pedir antes de producir.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">42</div><h3>Publicaciones</h3><div class="d">Del 2 de diciembre al 31 de marzo</div></div>
+      <div class="stat"><div class="n">2–3</div><h3>Por semana</h3><div class="d">Lunes, miércoles y viernes</div></div>
+      <div class="stat"><div class="n">3</div><h3>Redes, misma pieza</h3><div class="d">IG · Facebook · LinkedIn</div></div>
+      <div class="stat"><div class="n">40</div><h3>Ideas en banco</h3><div class="d">Para abril en adelante</div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Secciones">
+  <div class="wrap">
+    <a href="#como">Cómo publicamos</a>
+    <a href="#hilo">Hilo narrativo</a>
+    <a href="#series">Series</a>
+    <a href="#publicos">Públicos</a>
+    <a href="#parrilla">Parrilla</a>
+    <a href="#fechas">Fechas oficiales</a>
+    <a href="#expo">Ferias</a>
+    <a href="#banco">Banco de ideas</a>
+    <a href="#medicion">Medición</a>
+    <a href="#pendientes">Por solicitar</a>
+  </div>
+</nav>
+
+<section class="sec dark" id="como">
+  <div class="wrap">
+    <h2>Cómo publicamos</h2>
+    <p class="intro">La regla es simple: <strong>una pieza, tres redes, el mismo día</strong>. Para que funcione igual en las tres, todo se produce en formatos que las tres aceptan sin recortes y con un copy maestro que sirve en todas.</p>
+    <div class="card">
+      <div class="cols2">
+        <div>
+          <h3>Formatos universales</h3>
+          <ul class="m">
+            <li><strong>Carrusel 1080 × 1350 (4:5).</strong> En IG y Facebook se sube como varias imágenes; en LinkedIn, como documento PDF con las mismas láminas.</li>
+            <li><strong>Video vertical 1080 × 1920 (9:16), 15 a 60 s.</strong> Reel en IG y Facebook, video nativo en LinkedIn. Siempre con subtítulos integrados: la mayoría lo ve sin audio.</li>
+            <li><strong>Imagen única 1080 × 1350.</strong> Para fotografía editorial, fechas y anuncios.</li>
+            <li>Texto importante dentro del área segura central (deja libres 250 px arriba y abajo en video).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Copy maestro</h3>
+          <ul class="m">
+            <li>El gancho va en las primeras <strong>125 caracteres</strong>: es lo que se ve antes del “ver más” en las tres redes.</li>
+            <li>Trato de <strong>usted</strong>, sobrio y directo. Sin “increíble”, sin exclamaciones apiladas, máximo un emoji.</li>
+            <li>Lo único que cambia por red es el enlace: en LinkedIn y Facebook va directo (con UTM); en Instagram, “enlace en el perfil”.</li>
+            <li>3 a 5 hashtags al final: #IndustriaAlimentaria #IngredientesAlimentarios + 1–3 del tema.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:40px">Ritmo semanal</h2>
+    <p class="intro">Cada día tiene una intención. Así el feed no se llena de carruseles educativos ni de promociones seguidas. En semanas de dos publicaciones (puentes, vacaciones), se quita el lunes.</p>
+    <div class="week">
+      <div class="box day"><p class="label">9:30 h · sugerido</p><div class="dname">Lunes</div><h3>Saber</h3><p>Ciencia, tendencias, negocio y calidad. Lo que un director, comprador o I&amp;D guarda para leer.</p><p style="color:var(--g400)">Series: Trend Report, Buyer’s Room, El Molino responde, Fechas que importan.</p></div>
+      <div class="box day"><p class="label">9:30 h · sugerido</p><div class="dname">Miércoles</div><h3>Producto y aplicación</h3><p>Un ingrediente o empaque del portafolio y dónde se usa. Del ingrediente al producto terminado.</p><p style="color:var(--g400)">Series: Ingredient Files, Behind the Formula, Aplicaciones.</p></div>
+      <div class="box day"><p class="label">9:30 h · sugerido</p><div class="dname">Viernes</div><h3>Ver y sentir</h3><p>Video sensorial, temporada, ferias y personas. El contenido que se disfruta aunque ese día nadie esté comprando.</p><p style="color:var(--g400)">Series: Molino Sensory Lab, Molino People, Temporada, El Molino en la industria.</p></div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:var(--g400)">El horario es un punto de partida. Después de 8 semanas se ajusta con los datos de alcance por hora de cada red.</p>
+  </div>
+</section>
+
+<section class="sec" id="hilo">
+  <div class="wrap">
+    <h2>Hilo narrativo</h2>
+    <p class="intro">Cada mes es un capítulo, y las piezas se conectan entre sí. La rosca de enero anuncia los tamales de febrero; el “save the date” de enero lleva a la cuenta regresiva, a la feria y a lo que aprendimos en ella; la Cuaresma retoma lo que se mostró en el stand.</p>
+    <div class="arc">
+      <div class="step"><div class="mes">Diciembre 2026</div><div class="tema">La mesa de fin de año</div><p>Presentamos la cuenta y mostramos lo que hay detrás del jamón, la pierna y el tocino de temporada. Cerramos con el equipo que produce mientras otros celebran.</p></div>
+      <div class="step"><div class="mes">Enero 2027</div><div class="tema">El año de la reformulación</div><p>NOM-051 y su Fase 3 en 2028, la cuesta de enero vista como costo por kilo y la proteína. Anunciamos Expo Carnes y Lácteos y presentamos al equipo que irá.</p></div>
+      <div class="step"><div class="mes">Febrero 2027</div><div class="tema">Stand 612 y Cuaresma</div><p>Cuenta regresiva, tres días en vivo desde Cintermex, recapitulación y lo que nos preguntaron. Después, pescados, mariscos y alitas.</p></div>
+      <div class="step"><div class="mes">Marzo 2027</div><div class="tema">Ingeniería, agua y vida de anaquel</div><p>Clean label, antioxidantes, color natural y el agua como ingrediente. Semana Santa y cierre del trimestre con la mirada puesta en mayo.</p></div>
+    </div>
+    <p class="label" style="margin-top:34px">Hoja de ruta del resto de 2027</p>
+    <div class="road">
+      <div><b>Abril</b><span>Día Mundial de la Salud (7). Vacaciones de Semana de Pascua. Preparación de ANTAD si se confirma.</span></div>
+      <div class="hit"><b>Mayo</b><span>ANTAD &amp; Alimentaria México, Expo Guadalajara (participación y fechas por confirmar; la edición 2026 fue del 19 al 21 de mayo). Metrología (20).</span></div>
+      <div class="hit"><b>Junio · Mes de la inocuidad</b><span>Leche (1), Inocuidad (7), Acreditación (9), Gastronomía sostenible (18). Mes ideal para hablar de FSSC 22000.</span></div>
+      <div><b>Julio</b><span>Verano: parrilla, marinados, arrachera, bebidas frías. Vacaciones de verano y consumo fuera de casa.</span></div>
+      <div><b>Agosto</b><span>Regreso a clases: lunch, botanas, embutidos para sándwich, barras de proteína.</span></div>
+      <div><b>Septiembre</b><span>Mes patrio: chiles, chorizo, pozole y antojitos. Pérdida y desperdicio de alimentos (29).</span></div>
+      <div><b>Octubre</b><span>Café (1), Normalización (14), Alimentación (16). Inicio de planeación de fin de año.</span></div>
+      <div><b>Noviembre</b><span>Día de Muertos, Ciencia para la paz (10), Día Mundial de la Calidad (11), Buen Fin y arranque de temporada navideña.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="series">
+  <div class="wrap">
+    <h2>Series recurrentes</h2>
+    <p class="intro">Las letras corresponden a los diez universos de contenido del prompt maestro. La coherencia viene de la identidad de El Molino, no de usar la misma plantilla: cada serie tiene su propio tratamiento visual dentro de la paleta.</p>
+    <div class="series" id="seriesGrid"></div>
+  </div>
+</section>
+
+<section class="sec" id="publicos">
+  <div class="wrap">
+    <h2>A quién le hablamos</h2>
+    <p class="intro">Una compra de ingredientes la deciden varias personas. Cada pieza de la parrilla dice para quién es; esta tabla dice qué busca cada una y qué le damos.</p>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Público</th><th>Lo que le preocupa</th><th>Preguntas que se hace</th><th>Contenido que le sirve</th><th>Series</th></tr></thead>
+        <tbody>
+          <tr><td class="f">Compras</td><td>Continuidad de suministro, costo total, documentación completa, tiempos de entrega.</td><td>¿Me van a surtir en enero? ¿Tienen fichas y certificados al día? ¿Cuánto me cuesta de verdad este ingrediente?</td><td>Checklists de abasto, criterios para evaluar proveedores, costo por kilo terminado.</td><td>Buyer’s Room · Decisiones que cuestan</td></tr>
+          <tr><td class="f">Dirección</td><td>Rentabilidad, crecimiento, regulación que viene, nuevas categorías.</td><td>¿Qué cambia con NOM-051 en 2028? ¿Dónde está creciendo el consumo?</td><td>Lectura de mercado con cifras y fuente, tendencias con su efecto en el negocio.</td><td>Trend Report · Food Business Brief</td></tr>
+          <tr><td class="f">I&amp;D</td><td>Textura, estabilidad, sabor, reformulación, nuevos ingredientes.</td><td>¿Qué sistema me ayuda a reducir sodio? ¿Refinada o semirefinada?</td><td>Fichas de ingrediente, “behind the formula”, aplicaciones paso a paso.</td><td>Ingredient Files · Behind the Formula</td></tr>
+          <tr><td class="f">Calidad e inocuidad</td><td>Trazabilidad, especificaciones, cumplimiento normativo, auditorías.</td><td>¿El proveedor está certificado? ¿Qué documentos puedo pedir? ¿Este aditivo está permitido?</td><td>FSSC 22000 explicado, fechas de inocuidad, regulación COFEPRIS en lenguaje claro.</td><td>El Molino responde · Fechas que importan</td></tr>
+          <tr><td class="f">Producción</td><td>Rendimiento, merma, consistencia entre lotes, facilidad de uso.</td><td>¿Cómo dosifico? ¿Por qué mi producto sale distinto cada lote?</td><td>Procesos explicados, video de planta, paquetes predosificados, errores comunes.</td><td>Behind the Formula · Sensory Lab</td></tr>
+          <tr><td class="f">Marketing de alimentos</td><td>Tendencias de consumo, diferenciación, etiqueta limpia, temporadas.</td><td>¿Qué está pidiendo el consumidor? ¿Qué lanzo para Cuaresma?</td><td>Tendencias, temporadas con oportunidad comercial, plant-based y wellness.</td><td>Trend Report · Temporada</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="parrilla">
+  <div class="wrap">
+    <h2>Parrilla para aprobación</h2>
+    <p class="intro">Toque cualquier publicación para ver la ficha completa. Cada una tiene folio (PC-01, PC-02…) para comentar o aprobar por número.</p>
+    <div class="tabs" role="group" aria-label="Mes">
+      <button type="button" data-m="dic" aria-pressed="true">Diciembre 2026</button>
+      <button type="button" data-m="ene" aria-pressed="false">Enero 2027</button>
+      <button type="button" data-m="feb" aria-pressed="false">Febrero 2027</button>
+      <button type="button" data-m="mar" aria-pressed="false">Marzo 2027</button>
+      <button type="button" data-m="all" aria-pressed="false">Todo</button>
+    </div>
+    <div class="filters">
+      <label for="fSerie">Serie</label>
+      <select id="fSerie"><option value="">Todas</option></select>
+      <label for="fPub">Público</label>
+      <select id="fPub"><option value="">Todos</option><option>Compras</option><option>Dirección</option><option>I&amp;D</option><option>Calidad</option><option>Producción</option><option>Marketing</option><option>Todos</option></select>
+    </div>
+    <div id="monthHead"></div>
+    <div class="posts" id="posts"></div>
+  </div>
+</section>
+
+<section class="sec" id="fechas">
+  <div class="wrap">
+    <h2>Calendario de fechas oficiales</h2>
+    <p class="intro">Solo fechas con fuente oficial. Ninguna se usa para felicitar: cada una se conecta con un tema de la industria. Las marcadas como <span class="tag ed">editorial</span> son oportunidades de temporada, no conmemoraciones.</p>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Fecha</th><th>Conmemoración</th><th>Fuente</th><th>Concepto para El Molino</th><th>Público</th><th>Formato</th></tr></thead>
+        <tbody id="datesBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="expo">
+  <div class="wrap">
+    <p class="kicker">El Molino en la industria</p>
+    <h2>Expo Carnes y Lácteos 2027 · Stand 612</h2>
+    <p class="intro">Cintermex, Monterrey. Feria del <strong>martes 9 al jueves 11 de febrero de 2027</strong>, de 11:00 a 19:00 h. El sistema de antes, durante y después que se usa aquí es la plantilla para ANTAD y cualquier otra feria.</p>
+    <div class="cols3">
+      <div class="box"><p class="label">Antes · 13 ene – 5 feb</p><h3>Generar citas</h3><ul class="m"><li>Save the date (PC-14)</li><li>Presentación del equipo que viaja (PC-20)</li><li>Lo que llevamos al stand (PC-23)</li><li>Invitación a agendar reunión (PC-24)</li><li>Invitaciones personales por WhatsApp y correo a clientes de Monterrey y norte del país (fuera de redes)</li></ul></div>
+      <div class="box"><p class="label">Durante · 9 – 11 feb</p><h3>Estar presentes</h3><ul class="m"><li>Una publicación de feed por día (PC-25 a PC-27)</li><li>Historias cada 2–3 horas: montaje, visitantes, producto, equipo</li><li>Una persona del equipo asignada a contenido por turno</li><li>Grabar respuestas a “¿qué le preguntan más?” para PC-29</li></ul></div>
+      <div class="box"><p class="label">Después · 15 – 17 feb</p><h3>Convertir</h3><ul class="m"><li>Recapitulación en 60 segundos (PC-28)</li><li>Lo que nos preguntaron en Stand 612 (PC-29)</li><li>Seguimiento uno a uno de los contactos del stand en menos de 48 horas</li><li>Fotografías profesionales al banco de imágenes</li></ul></div>
+    </div>
+    <div class="pairs">
+      <div class="pair"><p class="label">Kit de contenido en el stand</p><div class="v">Celular con estabilizador, micrófono de solapa, luz LED pequeña</div></div>
+      <div class="pair"><p class="label">Lista de tomas obligatorias</p><div class="v">Montaje en timelapse, logo del stand, producto en mano, equipo completo</div></div>
+      <div class="pair"><p class="label">Permisos</p><div class="v">Pedir autorización antes de publicar a cualquier visitante</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="banco">
+  <div class="wrap">
+    <h2>Banco de ideas · abril en adelante</h2>
+    <p class="intro">40 ideas adicionales a las 42 de la parrilla, ordenadas por universo. Se van usando conforme lleguen las fechas y la información técnica.</p>
+    <div class="bank" id="bank"></div>
+  </div>
+</section>
+
+<section class="sec dark" id="medicion">
+  <div class="wrap">
+    <h2>Del contenido a la oportunidad comercial</h2>
+    <p class="intro">Cada pieza tiene un objetivo dentro de este recorrido. El llamado a la acción cambia según la etapa.</p>
+    <div class="funnel">
+      <div><b>Descubrimiento</b><span>Sensory Lab, temporada. “Siga nuestra cuenta.”</span></div>
+      <div><b>Interés</b><span>Ingredient Files, Behind the Formula. “Guárdelo.”</span></div>
+      <div><b>Consideración</b><span>Buyer’s Room, FSSC, aplicaciones. “Conozca nuestro portafolio.”</span></div>
+      <div><b>Visita web</b><span>Enlace con UTM por red y por pieza.</span></div>
+      <div><b>Contacto</b><span>WhatsApp +52 33 2833 9447 · atencionclientes@elmolinoaditivos.com</span></div>
+      <div><b>Oportunidad</b><span>Registro en comercial con origen “redes”.</span></div>
+    </div>
+    <div class="cols2" style="margin-top:28px">
+      <div class="box">
+        <h3>Indicadores mensuales</h3>
+        <ul class="m">
+          <li><strong>Reconocimiento:</strong> alcance, impresiones, reproducciones, visitas al perfil, seguidores nuevos.</li>
+          <li><strong>Interés:</strong> guardados y compartidos (pesan más que los “me gusta”), comentarios, retención de video a 3 s y al 50%.</li>
+          <li><strong>Tráfico:</strong> clics, sesiones en la web por red (UTM), páginas de producto visitadas.</li>
+          <li><strong>Comercial:</strong> mensajes de WhatsApp, solicitudes de información, prospectos calificados y oportunidades con origen en redes.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Sistema de seguimiento</h3>
+        <ul class="m">
+          <li>UTM por pieza: <strong>utm_source</strong>=linkedin / facebook / instagram · <strong>utm_medium</strong>=organico · <strong>utm_campaign</strong>=folio (pc-01).</li>
+          <li>Primer lunes de cada mes: reporte de una página con las 3 piezas mejores y las 3 peores, y por qué.</li>
+          <li>Pedir al equipo comercial que pregunte “¿cómo nos conoció?” y lo registre.</li>
+          <li>A las 8 semanas: decidir qué series se quedan, cuáles cambian y a qué hora publicar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pendientes">
+  <div class="wrap">
+    <h2>Información por solicitar antes de producir</h2>
+    <p class="intro">Nada de esto se inventa en las publicaciones. Si un dato no llega a tiempo, la pieza se mueve o se ajusta.</p>
+    <div class="grid2">
+      <div class="box"><p class="label">Área técnica</p><ul class="m"><li>Fichas técnicas de carrageninas (refinada y semirefinada), proteínas de soya, antioxidantes, batters y predust.</li><li>Validación de cada carrusel técnico antes de publicar (PC-02, 03, 06, 11, 15, 18, 29, 30, 33, 34, 36).</li><li>Confirmar con IFF qué líneas de soya siguen con IFF y cuáles pasaron a Bunge (marzo 2026).</li><li>Confirmar nombres comerciales SEALEX, BTF/BTM y SMOKE KOTE con el proveedor antes de mencionarlos.</li></ul></div>
+      <div class="box"><p class="label">Calidad</p><ul class="m"><li>Alcance del certificado FSSC 22000 y qué documentos puede solicitar un cliente.</li><li>Si existen prácticas de uso de agua o reducción de merma que se puedan contar (PC-40).</li></ul></div>
+      <div class="box"><p class="label">Comercial y dirección</p><ul class="m"><li>Lista de productos que se exhibirán en Stand 612.</li><li>Calendario de cierre de fin de año y fechas de pedido para enero (PC-05).</li><li>Datos reales para el resumen de 2026 (PC-10).</li><li>Decisión sobre participación en ANTAD &amp; Alimentaria México 2027.</li><li>Disponibilidad de producto terminado plant-based y condiciones de maquila (PC-19, PC-41).</li></ul></div>
+      <div class="box"><p class="label">Personas y permisos</p><ul class="m"><li>Colaboradores que aceptan aparecer en video y foto (consentimiento por escrito).</li><li>Permiso para grabar almacén y área de pedidos.</li><li>Clientes que permitan mostrar una visita (o grabarla sin marcas visibles).</li><li>Fotógrafo o videógrafo para una sesión mensual de 4 a 6 horas.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap">Ingredientes del mundo, a la medida de México</div></footer>
+
+<script>
+const SERIES = [
+  {k:"Molino Sensory Lab",u:"A",n:"Contenido sensorial",f:"2 al mes",p:"Video sin voz, 15–25 s: polvos, especias, mezclas, crunch y color en macro y cámara lenta, con sonido real. Funciona sin audio y sin explicación."},
+  {k:"Behind the Formula",u:"B",n:"Ciencia y educación",f:"1–2 al mes",p:"Por qué un producto se comporta como se comporta: el jamón que se rebana, el batter que no se cae. Ciencia explicada con el producto en la mano."},
+  {k:"El Molino responde",u:"B",n:"Ciencia y educación",f:"1 al mes",p:"Una pregunta real de clientes, respondida en un carrusel corto. Calidad, regulación, conservación."},
+  {k:"The Ingredient Files",u:"C",n:"Productos e ingredientes",f:"1 al mes",p:"Un ingrediente del portafolio: qué es, para qué sirve, dónde se usa, qué necesidad atiende. Fotografía editorial del polvo o la funda."},
+  {k:"Aplicaciones",u:"D",n:"Aplicaciones y soluciones",f:"1–2 al mes",p:"Del ingrediente al producto terminado: un chorizo, un nugget, un queso, y qué decisiones de formulación hay detrás."},
+  {k:"The Buyer’s Room",u:"E",n:"Negocios B2B",f:"1 al mes",p:"Para compras: abasto, evaluación de proveedores, documentación. Útil, concreto y guardable."},
+  {k:"Decisiones que cuestan",u:"E",n:"Negocios B2B",f:"Cada 2 meses",p:"Precio por kilo contra costo por kilo terminado: merma, rendimiento, reproceso. Ejemplos ilustrativos, nunca datos de clientes."},
+  {k:"Food Business Brief",u:"E",n:"Negocios B2B",f:"1 al mes",p:"Una cifra del mercado mexicano con fuente (COMECARNE, CANILEC) y lo que significa para un fabricante."},
+  {k:"The Trend Report",u:"F",n:"Tendencias",f:"1 al mes",p:"Qué pasa, por qué importa, cómo afecta al fabricante, qué oportunidad abre y cómo se relaciona con el portafolio."},
+  {k:"El Molino en la industria",u:"G",n:"Ferias y eventos",f:"Por evento",p:"Antes, durante y después de cada feria. Expo Carnes y Lácteos 2027 es la primera."},
+  {k:"Temporada",u:"H",n:"Temporadas y festividades",f:"1–2 al mes",p:"Navidad, Reyes, Candelaria, Cuaresma, Semana Santa: lo que cambia en el consumo y en la producción."},
+  {k:"Fechas que importan",u:"I",n:"Fechas de la industria",f:"Según calendario",p:"Fechas oficiales de ONU, FAO, OMS, UNESCO e ISO conectadas con calidad, inocuidad, ciencia y alimentación."},
+  {k:"Molino People",u:"J",n:"El Molino por dentro",f:"1–2 al mes",p:"El equipo, el almacén, los pedidos, las visitas. Personas reales con su nombre y su trabajo, siempre con su permiso."}
+];
+
+const MONTHS = {
+  dic:{t:"Diciembre 2026 · La mesa de fin de año",p:"Presentamos la cuenta con un manifiesto y entramos a la temporada más fuerte de cárnicos. Ritmo de 3 por semana hasta el 18 y una por semana en las dos últimas.",s:"Sesión de producción sugerida: jueves 26 de noviembre. Tomas: ingredientes en macro (soya, carragenina, especias, chile), jamón, pierna y tocino en mesa editorial oscura, almacén y armado de pedidos."},
+  ene:{t:"Enero 2027 · El año de la reformulación",p:"Regulación, costos y proteína. Arranca la campaña de Expo Carnes y Lácteos con el save the date y la presentación del equipo.",s:"Sesión de producción sugerida: jueves 7 de enero. Tomas: rosca con el equipo, especias en cámara lenta, chorizo de principio a fin, retratos del equipo que viaja a Monterrey, barra de proteína."},
+  feb:{t:"Febrero 2027 · Stand 612 y Cuaresma",p:"La semana de la feria lleva tres publicaciones en vivo. Después, recapitulación, aprendizajes y la temporada de pescados y mariscos.",s:"Sesión de producción sugerida: jueves 4 de febrero (empaque de muestras y preparación del stand) y jueves 18 de febrero (batter, empanizado, alitas)."},
+  mar:{t:"Marzo 2027 · Ingeniería, agua y vida de anaquel",p:"Mes técnico con tres fechas oficiales. Semana Santa del 21 al 28 de marzo: una sola publicación esa semana.",s:"Sesión de producción sugerida: jueves 25 de febrero. Tomas: color natural en lácteo, agua y salmuera, proceso de embutido, queso análogo, visita comercial."}
+};
+
+const P = [
+/* ---------------- DICIEMBRE ---------------- */
+{id:"PC-01",m:"dic",d:"2",w:"Mié",serie:"Molino Sensory Lab",pub:"Todos",fmt:"Video 9:16 · 30 s",
+t:"Lo que no se ve en su mesa",
+con:"Manifiesto de arranque. Ingredientes en movimiento intercalados con el alimento terminado: el público entiende en 30 segundos qué hace El Molino sin que se lo expliquemos.",
+g:[["0–4 s","Negro total. Cae proteína de soya en polvo en cámara lenta. Texto: “Lo que no se ve”."],["4–10 s","Macro de especias y chile en polvo cayendo sobre superficie oscura. Sonido real."],["10–16 s","Corte a jamón rebanándose en mesa editorial. Texto: “también se formula”."],["16–24 s","Funda de cocimiento, salchicha, queso, nugget. Cortes rápidos al ritmo del sonido."],["24–30 s","Logo M blanco sobre degradado petróleo. Texto: “Ingredientes del mundo, a la medida de México”."]],
+copy:"Detrás de cada alimento hay decisiones que el consumidor no ve: qué textura tendrá, cuánto durará y cómo sabrá el último día igual que el primero.\n\nEn El Molino trabajamos en esa parte desde 1998, con fabricantes de cárnicos, lácteos y alimentos de los 32 estados.\n\nA partir de hoy la compartimos aquí: la ciencia de los ingredientes, sus aplicaciones, las temporadas y las personas detrás de la industria alimentaria.\n\n#IndustriaAlimentaria #IngredientesAlimentarios #ElMolino",
+cta:"Siga nuestra cuenta",obj:"Reconocimiento",prod:"Portafolio general",mat:"Muestras de soya, especias, chile; jamón, salchicha, queso; fondo negro mate; luz lateral; cámara a 120 fps",resp:"Marketing + videógrafo",ask:"Aprobación de dirección del mensaje de arranque."},
+
+{id:"PC-02",m:"dic",d:"4",w:"Vie",serie:"The Ingredient Files",pub:"I&D",fmt:"Carrusel 6 láminas",
+t:"Ingredient Files #1 · Carragenina",
+con:"Primer expediente de ingrediente. Se elige la carragenina porque atraviesa cárnicos, lácteos, bebidas y postres: un solo ingrediente muestra la amplitud del portafolio.",
+g:[["Lámina 1","Foto macro del polvo. “Carragenina. Un ingrediente, cuatro industrias.”"],["Lámina 2","Qué es: hidrocoloide que se obtiene de algas rojas."],["Lámina 3","Refinada y semirefinada: en qué se diferencian (texto validado por el área técnica)."],["Lámina 4","En cárnicos: jamones, salchichas, productos inyectados."],["Lámina 5","En lácteos y postres: cremas, quesos análogos, helados, yogures, flanes, natillas, bebidas chocolatadas."],["Lámina 6","Qué necesidad atiende: textura, estabilidad y rendimiento. Cierre con CTA."]],
+copy:"Un mismo ingrediente puede estar en el jamón de la mañana, en el yogur de media tarde y en el flan de la cena.\n\nLa carragenina es un hidrocoloide que se obtiene de algas rojas. En la industria ayuda a dar textura y estabilidad, y en cárnicos inyectados contribuye al rendimiento.\n\nEn El Molino la trabajamos en versiones refinada y semirefinada para cárnicos, lácteos, bebidas y postres.\n\nConozca la línea completa en nuestra página.\n\n#Carragenina #IngredientesAlimentarios #IndustriaAlimentaria",
+cta:"Conozca la línea en la página web",obj:"Interés · autoridad técnica",prod:"Carrageninas (GPI)",mat:"Muestra de carragenina, fotografía macro, íconos de aplicación",resp:"Marketing · valida área técnica",ask:"Ficha técnica y diferencias refinada / semirefinada redactadas por el área técnica."},
+
+{id:"PC-03",m:"dic",d:"7",w:"Lun",serie:"Behind the Formula",pub:"I&D",fmt:"Carrusel 7 láminas",
+t:"¿Por qué el jamón de diciembre se rebana sin desmoronarse?",
+con:"Diciembre es la temporada del jamón. Explicamos las cuatro decisiones que hacen que una rebanada salga entera: proteína, carragenina, inyección y funda.",
+g:[["Lámina 1","Rebanada de jamón a contraluz. Pregunta como título."],["Lámina 2","Decisión 1 · La proteína: retiene agua y liga."],["Lámina 3","Decisión 2 · El hidrocoloide: la carragenina ayuda a formar el gel que da cuerpo."],["Lámina 4","Decisión 3 · El proceso: inyección de salmuera y masajeo."],["Lámina 5","Decisión 4 · La funda y el molde: dan forma y calibre durante la cocción."],["Lámina 6","Resultado: rebanado limpio, rendimiento y consistencia entre lotes."],["Lámina 7","“¿Su jamón no rebana como quiere? Cuéntenos su proceso.”"]],
+copy:"Una rebanada de jamón que sale entera es el resultado de cuatro decisiones de formulación y proceso.\n\nLa proteína que retiene agua, el hidrocoloide que da cuerpo, la inyección y el masajeo, y la funda que da forma durante la cocción.\n\nSi su jamón no rebana como espera, casi siempre la respuesta está en una de esas cuatro. Le explicamos cada una en el carrusel.\n\n#Jamón #FormulaciónDeAlimentos #ProductosCárnicos",
+cta:"Cuéntenos qué necesita desarrollar (WhatsApp)",obj:"Interés · consideración",prod:"Proteínas de soya · carrageninas · fundas de cocimiento",mat:"Jamón entero y rebanado, ilustraciones simples de proceso",resp:"Marketing · valida área técnica",ask:"Revisión técnica del texto de cada lámina."},
+
+{id:"PC-04",m:"dic",d:"9",w:"Mié",serie:"Molino Sensory Lab",pub:"Producción",fmt:"Video 9:16 · 20 s",
+t:"La pierna antes del horno",
+con:"ASMR de marinado: la brocha, el sazonador sobre la piel, el sonido. Lo que pasa antes de que la pierna llegue a la mesa de Navidad.",
+g:[["0–5 s","Pierna cruda sobre charola negra. Cae sazonador tipo ajo y hierbas en cámara lenta."],["5–12 s","Brocha untando marinado. Sonido real, sin música."],["12–17 s","Macro de la textura de las especias sobre la superficie."],["17–20 s","Texto: “Marinados y sazonadores para cárnicos · El Molino”."]],
+copy:"Antes del horno, antes de la mesa, antes de la foto familiar: el marinado.\n\nEn temporada navideña, el sabor de la pierna empieza en una mezcla de especias pensada para que se mantenga igual en cada pieza que sale de la planta.\n\nTrabajamos sazonadores y marinadores con perfiles de ajo y hierbas, finas hierbas, parrilla, BBQ y más.\n\n#Marinados #Sazonadores #ProductosCárnicos",
+cta:"Explore nuestros marinados (web)",obj:"Reconocimiento",prod:"Sazonadores y marinadores (PIASA)",mat:"Pierna de cerdo, sazonador, brocha, charola negra, micrófono cercano",resp:"Marketing + videógrafo",ask:"Qué perfiles de marinado conviene mostrar en temporada (comercial)."},
+
+{id:"PC-05",m:"dic",d:"11",w:"Vie",serie:"The Buyer’s Room",pub:"Compras",fmt:"Carrusel 6 láminas",
+t:"Planee el abasto de enero antes del 15 de diciembre",
+con:"Primera entrega para compras. Un checklist útil y guardable para no empezar el año sin inventario.",
+g:[["Lámina 1","“Enero empieza en diciembre.”"],["Lámina 2","Por qué: cierres de fin de año, vacaciones en proveedores y transportistas, cuesta de enero."],["Lámina 3","Revise el consumo de enero y febrero del año pasado."],["Lámina 4","Confirme tiempos de entrega con cada proveedor."],["Lámina 5","Tenga a la mano fichas técnicas y certificados de análisis vigentes."],["Lámina 6","Defina stock de seguridad. CTA: “Envíenos su pronóstico de enero.”"]],
+copy:"Enero empieza en diciembre. Entre cierres de fin de año, vacaciones de proveedores y transportistas, y la cuesta de enero, las primeras semanas del año son las más fáciles de quedarse sin inventario.\n\nPreparamos un checklist de cuatro pasos para que compras arranque 2027 con el abasto resuelto.\n\nSi ya tiene su pronóstico de enero, envíenoslo: le confirmamos disponibilidad y tiempos.\n\n#Compras #CadenaDeSuministro #IndustriaAlimentaria",
+cta:"Envíenos su pronóstico por WhatsApp",obj:"Consideración · contacto",prod:"Portafolio general",mat:"Diseño gráfico con íconos, sin fotografía",resp:"Marketing · valida comercial",ask:"Calendario de cierre de El Molino y fecha límite de pedidos para enero."},
+
+{id:"PC-06",m:"dic",d:"14",w:"Lun",serie:"The Ingredient Files",pub:"Producción",fmt:"Carrusel 6 láminas",
+t:"Ingredient Files #2 · El empaque que también cocina",
+con:"Fundas de cocimiento: el producto se embute, se cocina y se distribuye en el mismo empaque. Ideal para la temporada de jamones.",
+g:[["Lámina 1","Jamón en funda recién salido de cocción. “El empaque que también cocina.”"],["Lámina 2","Fundas de cocimiento directo, con y sin molde."],["Lámina 3","Fundas de calibre estricto: misma forma, mismo número de rebanadas."],["Lámina 4","Fundas y láminas de transferencia: humo, color y especias que pasan al producto al contacto."],["Lámina 5","Fundas de fibrosa para gran calibre."],["Lámina 6","CTA: “¿Qué producto quiere envolver?”"]],
+copy:"En un jamón, el empaque no llega al final: está desde la cocción.\n\nLas fundas de cocimiento permiten embutir, cocinar y distribuir en el mismo envase. Algunas dan calibre estricto para que cada pieza rinda lo mismo en rebanadora; otras transfieren humo, color o especias al producto durante la cocción.\n\nTrabajamos fundas y envolturas con Viscofan para cárnicos y lácteos.\n\n#Empaques #Viscofan #ProductosCárnicos",
+cta:"Conozca la línea de empaques (web)",obj:"Interés",prod:"Fundas de cocimiento · transferencia · fibrosa (Viscofan)",mat:"Fundas físicas, jamón en funda, corte transversal",resp:"Marketing · valida área técnica",ask:"Confirmar con Viscofan qué nombres comerciales se pueden mencionar (VISPICE, ENHANCE sí; SEALEX, BTF y SMOKE KOTE por confirmar)."},
+
+{id:"PC-07",m:"dic",d:"16",w:"Mié",serie:"Molino People",pub:"Compras",fmt:"Video 9:16 · 40 s",
+t:"Así sale un pedido de diciembre",
+con:"Detrás de cámaras del almacén: recepción, verificación de lote, armado y carga. Muestra orden y trazabilidad sin decir “somos confiables”.",
+g:[["0–6 s","Puerta del almacén abriéndose. Texto: “Diciembre en El Molino”."],["6–14 s","Verificación de lote y etiqueta (sin mostrar datos de clientes)."],["14–24 s","Armado del pedido, emplayado."],["24–34 s","Carga a la unidad."],["34–40 s","Persona del equipo frente a cámara: su nombre y “Este va para…” (estado, sin cliente)."]],
+copy:"En diciembre el almacén no descansa.\n\nCada pedido pasa por recepción, verificación de lote, armado y carga antes de salir a cualquiera de los 32 estados. Es la parte del trabajo que casi nadie ve y de la que depende que su producción no se detenga.\n\nGracias al equipo de almacén por este mes.\n\n#MolinoPeople #Logística #IndustriaAlimentaria",
+cta:"Conozca cómo trabajamos (web)",obj:"Confianza · humanizar",prod:"Logística",mat:"Grabación en almacén, 2 horas",resp:"Marketing + jefe de almacén",ask:"Permiso para grabar el almacén y consentimiento de las personas que aparecen."},
+
+{id:"PC-08",m:"dic",d:"18",w:"Vie",serie:"Temporada",pub:"Marketing",fmt:"Carrusel 4 láminas · foto editorial",
+t:"Jamón, pierna y tocino: el menú navideño visto desde la planta",
+con:"Fotografía editorial de los tres productos de temporada y, en cada lámina, qué hay detrás de cada uno.",
+g:[["Lámina 1","Mesa navideña sobria, fondo oscuro, los tres productos. “Lo que llega a la mesa.”"],["Lámina 2","Jamón: proteína, carragenina y funda de cocimiento."],["Lámina 3","Pierna: marinados y sazonadores."],["Lámina 4","Tocino: condimento y láminas de transferencia. Cierre."]],
+copy:"Jamón, pierna y tocino: tres productos que llegan juntos a la mesa de diciembre y que en la planta se resuelven de forma muy distinta.\n\nEn el carrusel le mostramos qué ingredientes y qué empaques hay detrás de cada uno.\n\n#Navidad #ProductosCárnicos #IndustriaAlimentaria",
+cta:"Explore el portafolio de cárnicos (web)",obj:"Reconocimiento · interés",prod:"Cárnicos y empaques",mat:"Sesión de foto editorial: jamón, pierna, tocino, vajilla neutra",resp:"Marketing + fotógrafo",ask:"—"},
+
+{id:"PC-09",m:"dic",d:"23",w:"Mié",serie:"Molino People",pub:"Todos",fmt:"Imagen 4:5",
+t:"Para quienes producen mientras otros celebran",
+con:"Mensaje de fin de año sin felicitación genérica: reconocimiento a los turnos de planta de toda la industria en diciembre.",
+g:[["Imagen","Foto en blanco y negro de manos con guantes trabajando, o del equipo en el almacén. Texto breve sobre degradado petróleo."]],
+copy:"En diciembre, muchas plantas trabajan doble turno para que en cada casa haya jamón, queso y pierna sobre la mesa.\n\nPara todas las personas de la industria alimentaria que producen mientras otros celebran: gracias.\n\nLe deseamos una feliz Navidad.\n\nEl Molino\n\n#IndustriaAlimentaria #Navidad",
+cta:"—",obj:"Conexión",prod:"—",mat:"Foto existente del equipo o de planta",resp:"Marketing",ask:"—"},
+
+{id:"PC-10",m:"dic",d:"30",w:"Mié",serie:"Molino People",pub:"Dirección",fmt:"Carrusel 5 láminas",
+t:"2026 en El Molino",
+con:"Cierre de año con hechos, no con adjetivos. Lo que pasó, lo que sostuvimos y lo que viene: Expo Carnes y Lácteos en febrero.",
+g:[["Lámina 1","“2026 en El Molino.”"],["Lámina 2","FSSC 22000: certificación sostenida desde 2020."],["Lámina 3","Datos reales del año (por confirmar con dirección)."],["Lámina 4","Foto del equipo."],["Lámina 5","“En 2027 nos vemos en Monterrey.” Adelanto de Expo Carnes."]],
+copy:"Cerramos 2026 con la certificación FSSC 22000 vigente, como cada año desde 2020, y con un equipo que sostuvo la operación en los 32 estados.\n\n[Datos del año por confirmar con dirección]\n\nEn febrero de 2027 nos vemos en Monterrey. Pronto le contamos más.\n\nFeliz año nuevo.\n\n#ElMolino #FSSC22000 #IndustriaAlimentaria",
+cta:"Siga nuestra cuenta para los detalles",obj:"Confianza",prod:"Institucional",mat:"Foto de equipo, cifras del año",resp:"Marketing · aprueba dirección",ask:"Cifras y logros de 2026 que se pueden publicar."},
+
+/* ---------------- ENERO ---------------- */
+{id:"PC-11",m:"ene",d:"4",w:"Lun",serie:"The Trend Report",pub:"Dirección",fmt:"Carrusel 8 láminas · PDF en LinkedIn",
+t:"Trend Report #1 · 2027, el año de la reformulación",
+con:"NOM-051: la Fase 2 se amplió al 31 de diciembre de 2027 y la Fase 3, desde 2028, evalúa todos los nutrimentos críticos, no solo los añadidos. Embutidos y varios lácteos son naturalmente altos en sodio y grasa.",
+g:[["Lámina 1","“2027: el año para reformular.”"],["Lámina 2","Qué está pasando: calendario de fases de la NOM-051."],["Lámina 3","Por qué importa: la Fase 3 cuenta también el sodio y la grasa propios del alimento."],["Lámina 4","A quién afecta: embutidos, quesos y otros lácteos."],["Lámina 5","Qué implica: reformular toma meses de pruebas, validación y vida de anaquel."],["Lámina 6","Oportunidad: reducción de sodio y grasa sin perder textura ni sabor."],["Lámina 7","Cómo se relaciona con El Molino: proteínas, hidrocoloides, conservadores y asesoría en formulación."],["Lámina 8","Fuente: DOF. CTA."]],
+copy:"La Fase 3 de la NOM-051 empieza en 2028, y cambia la forma de evaluar los sellos: considera todos los nutrimentos críticos, no solo los añadidos.\n\nPara embutidos y varios lácteos, que son naturalmente altos en sodio y grasa, eso significa que 2027 es el año para reformular. Una reformulación seria toma meses de pruebas y validación.\n\nEn este reporte resumimos qué cambia, a quién afecta y por dónde empezar.\n\nFuente: Diario Oficial de la Federación.\n\n#NOM051 #Reformulación #IndustriaAlimentaria",
+cta:"Platiquemos su plan de reformulación (WhatsApp)",obj:"Autoridad · consideración",prod:"Proteínas de soya · carrageninas · conservadores",mat:"Diseño gráfico con línea de tiempo",resp:"Marketing · valida área técnica y calidad",ask:"Verificar en el DOF la redacción vigente de las fases antes de publicar."},
+
+{id:"PC-12",m:"ene",d:"6",w:"Mié",serie:"Molino People",pub:"Todos",fmt:"Video 9:16 · 25 s",
+t:"A quién le salió el muñeco",
+con:"El equipo parte la rosca. Quien saca el muñeco queda “comprometido” con los tamales del 2 de febrero: abre una historia que se cierra en PC-22.",
+g:[["0–8 s","Rosca sobre la mesa de la sala de juntas. Manos cortando."],["8–18 s","Reacciones del equipo. Alguien encuentra el muñeco."],["18–25 s","Texto: “El 2 de febrero sabremos si cumple.”"]],
+copy:"Hoy partimos la rosca en El Molino.\n\nYa sabemos quién pone los tamales el 2 de febrero. Le contaremos si cumple.\n\nFeliz Día de Reyes.\n\n#MolinoPeople #DíaDeReyes",
+cta:"—",obj:"Conexión · comunidad",prod:"—",mat:"Rosca, grabación espontánea",resp:"Marketing",ask:"Consentimiento de quienes aparecen."},
+
+{id:"PC-13",m:"ene",d:"8",w:"Vie",serie:"Decisiones que cuestan",pub:"Compras",fmt:"Infografía 4:5 · 3 láminas",
+t:"La cuesta de enero también llega a la planta",
+con:"Precio por kilo contra costo por kilo de producto terminado. Una fórmula sencilla que muestra por qué el ingrediente más barato no siempre es el más económico.",
+g:[["Lámina 1","“El ingrediente más barato no siempre es el más económico.”"],["Lámina 2","Fórmula: costo real = precio del ingrediente + merma + reproceso + rechazo, dividido entre kilos vendibles."],["Lámina 3","Ejemplo ilustrativo con números redondos (marcado como ilustrativo). CTA."]],
+copy:"En enero todos revisan precios. La pregunta útil no es cuánto cuesta el kilo de ingrediente, sino cuánto cuesta el kilo de producto que sí se vende.\n\nRendimiento, merma, reproceso y rechazos cambian la cuenta. Le dejamos la fórmula y un ejemplo ilustrativo.\n\n#Compras #Costos #ProducciónDeAlimentos",
+cta:"Solicite una evaluación de su formulación",obj:"Consideración",prod:"Proteínas y sistemas funcionales",mat:"Diseño gráfico, tabla de ejemplo",resp:"Marketing · valida comercial",ask:"Que comercial revise que el ejemplo ilustrativo sea realista sin usar datos de clientes."},
+
+{id:"PC-14",m:"ene",d:"13",w:"Mié",serie:"El Molino en la industria",pub:"Todos",fmt:"Imagen 4:5 + historia",
+t:"Save the date · Expo Carnes y Lácteos 2027",
+con:"Anuncio oficial de participación. Datos claros: fechas, sede, número de stand.",
+g:[["Imagen","Degradado petróleo, logo M, “Nos vemos en Monterrey”. Pares de datos: 9–11 feb 2027 · Cintermex · Stand 612."]],
+copy:"Nos vemos en Monterrey.\n\nEl Molino estará en Expo Carnes y Lácteos 2027.\n\nDel 9 al 11 de febrero\nCintermex, Monterrey\nStand 612\n\nSi usted estará en la feria, escríbanos y agendamos una reunión con nuestro equipo técnico y comercial.\n\n#ExpoCarnes2027 #ExpoCarnesYLácteos #IndustriaAlimentaria",
+cta:"Agende una reunión (WhatsApp)",obj:"Contacto · citas",prod:"Institucional",mat:"Diseño gráfico",resp:"Marketing",ask:"Confirmar que el número de stand 612 es definitivo."},
+
+{id:"PC-15",m:"ene",d:"15",w:"Vie",serie:"The Ingredient Files",pub:"I&D",fmt:"Carrusel 6 láminas + video 10 s",
+t:"Ingredient Files #3 · Proteína de soya",
+con:"Aislados, concentrados, sistemas y extruidos: cuatro presentaciones y para qué sirve cada una.",
+g:[["Lámina 1","Cuatro montones de proteína en distintas texturas, foto cenital."],["Lámina 2","Aislado: mayor concentración de proteína."],["Lámina 3","Concentrado."],["Lámina 4","Sistemas: mezclas diseñadas para una aplicación."],["Lámina 5","Extruido: textura fibrosa."],["Lámina 6","Aplicaciones: jamones, salchichas, hamburguesas, nuggets, barras, bebidas, plant-based."]],
+copy:"La proteína de soya no es un solo ingrediente.\n\nAislados, concentrados, sistemas funcionales y extruidos tienen usos distintos: unos ayudan a retener agua y ligar en un jamón, otros dan textura fibrosa a una hamburguesa o proteína a una barra.\n\nEn el carrusel le explicamos las cuatro presentaciones y dónde se usa cada una.\n\n#ProteínaDeSoya #IngredientesAlimentarios #FormulaciónDeAlimentos",
+cta:"Conozca nuestras proteínas (web)",obj:"Interés · autoridad",prod:"Proteínas de soya",mat:"Muestras de las 4 presentaciones, foto cenital y macro",resp:"Marketing · valida área técnica",ask:"Confirmar con IFF qué productos siguen bajo IFF y cuáles pasaron a Bunge, para no atribuir mal el proveedor."},
+
+{id:"PC-16",m:"ene",d:"18",w:"Lun",serie:"El Molino responde",pub:"Calidad",fmt:"Carrusel 5 láminas",
+t:"¿Qué significa que su proveedor tenga FSSC 22000?",
+con:"Respuesta clara a una pregunta frecuente de calidad: qué es el esquema, por qué importa en la cadena y qué documentos puede pedir.",
+g:[["Lámina 1","Pregunta como título."],["Lámina 2","Qué es: esquema de certificación de inocuidad reconocido por GFSI."],["Lámina 3","Qué cambia para usted: un eslabón auditado en su cadena de suministro."],["Lámina 4","El Molino: certificación sostenida desde 2020."],["Lámina 5","Qué documentos puede solicitar (lista validada por calidad). CTA."]],
+copy:"Cuando su cliente lo audita, también revisa a sus proveedores.\n\nFSSC 22000 es un esquema de certificación de inocuidad reconocido por GFSI. Tenerlo significa que el proveedor opera con un sistema auditado de forma independiente.\n\nEn El Molino lo hemos sostenido desde 2020. En el carrusel le explicamos qué implica para su cadena y qué documentación puede solicitarnos.\n\n#FSSC22000 #InocuidadAlimentaria #Calidad",
+cta:"Solicite documentación (correo)",obj:"Confianza · consideración",prod:"Institucional · calidad",mat:"Diseño gráfico, foto del certificado si se autoriza",resp:"Marketing · valida calidad",ask:"Alcance del certificado y lista de documentos que se entregan a clientes."},
+
+{id:"PC-17",m:"ene",d:"20",w:"Mié",serie:"Molino Sensory Lab",pub:"Todos",fmt:"Video 9:16 · 15 s · loop",
+t:"Especias en cámara lenta",
+con:"Video hipnótico en loop: chile, ajo, cebolla y pimienta cayendo sobre superficie negra. Abre la conversación del chorizo (PC-18).",
+g:[["0–4 s","Chile en polvo, rojo intenso, cayendo."],["4–8 s","Ajo en polvo."],["8–12 s","Cebolla en polvo y pimienta."],["12–15 s","Las cuatro se juntan en una nube. Corte limpio al inicio para loop."]],
+copy:"Chile, ajo, cebolla y pimienta. Cuatro de los ingredientes que definen el sabor de un chorizo mexicano.\n\nEl viernes le contamos qué más hay detrás.\n\n#MolinoSensoryLab #Especias #Chorizo",
+cta:"Siga nuestra cuenta",obj:"Reconocimiento",prod:"Chiles y especias",mat:"Especias, fondo negro, cámara a 240 fps",resp:"Marketing + videógrafo",ask:"—"},
+
+{id:"PC-18",m:"ene",d:"22",w:"Vie",serie:"Aplicaciones",pub:"I&D",fmt:"Carrusel 7 láminas",
+t:"Un chorizo, cinco decisiones",
+con:"Del ingrediente al producto terminado. Retoma las especias del miércoles y suma condimento, conservación, color y tripa.",
+g:[["Lámina 1","Chorizo cortado sobre tabla. Título."],["Lámina 2","Chiles y especias: el perfil."],["Lámina 3","Condimento: la consistencia del sabor entre lotes."],["Lámina 4","Conservador y antioxidante: vida de anaquel."],["Lámina 5","Color."],["Lámina 6","Tripa: colágeno o celulosa, según el producto."],["Lámina 7","CTA."]],
+copy:"Un chorizo parece sencillo. En la planta son al menos cinco decisiones: el perfil de chiles y especias, el condimento que mantiene el sabor igual en cada lote, la conservación, el color y la tripa.\n\nLe mostramos cada una en el carrusel. Si está desarrollando un chorizo nuevo o quiere ajustar el que tiene, platiquemos.\n\n#Chorizo #ProductosCárnicos #FormulaciónDeAlimentos",
+cta:"Cuéntenos qué necesita desarrollar",obj:"Consideración",prod:"Condimentos · chiles y especias · conservadores · tripas",mat:"Chorizo, tripas, especias; fotos de cada etapa",resp:"Marketing · valida área técnica",ask:"Revisión técnica del texto."},
+
+{id:"PC-19",m:"ene",d:"25",w:"Lun",serie:"Aplicaciones",pub:"Marketing",fmt:"Carrusel 5 láminas",
+t:"Propósito de enero: más proteína. ¿Y si es su marca?",
+con:"Wellness y maquila. En enero sube el interés por la proteína; mostramos que El Molino puede fabricar barras altas en proteína con marca del cliente. FIBO como ejemplo publicado.",
+g:[["Lámina 1","Barra partida en macro. “22 g de proteína.”"],["Lámina 2","Enero: el mes en que más personas buscan proteína."],["Lámina 3","Maquila: desarrollamos y fabricamos la barra con su marca."],["Lámina 4","Ejemplo: FIBO, 22 g de proteína."],["Lámina 5","CTA."]],
+copy:"Enero es el mes de los propósitos, y la proteína está en casi todas las listas.\n\nSi su marca quiere entrar a esa conversación sin invertir en una planta, en El Molino maquilamos barras altas en proteína con su marca y bajo sus estándares. FIBO, con 22 g de proteína, es un ejemplo de lo que hacemos.\n\n#Maquila #BarrasDeProteína #Wellness",
+cta:"Solicite información de maquila",obj:"Consideración · oportunidad",prod:"Maquila de barras · proteína en polvo",mat:"Barras FIBO, fotos del repositorio",resp:"Marketing · valida dirección",ask:"Condiciones generales de maquila que se pueden comunicar."},
+
+{id:"PC-20",m:"ene",d:"27",w:"Mié",serie:"Molino People",pub:"Todos",fmt:"Carrusel de retratos · 6 láminas",
+t:"Quién lo recibirá en Stand 612",
+con:"Presentación del equipo que viaja a Monterrey: retrato, nombre, área y una frase sobre su trabajo. Pone rostro a la invitación.",
+g:[["Lámina 1","“Ellos lo recibirán en Stand 612.”"],["Láminas 2–5","Retrato editorial, nombre, área, una frase propia."],["Lámina 6","Datos de la feria y CTA."]],
+copy:"Del 9 al 11 de febrero, este es el equipo que lo recibirá en Stand 612 de Expo Carnes y Lácteos.\n\nÁrea técnica, comercial y marketing de El Molino, en un mismo lugar para escuchar lo que su planta necesita.\n\nAgende su reunión por WhatsApp.\n\n#ExpoCarnes2027 #MolinoPeople",
+cta:"Agende una reunión (WhatsApp)",obj:"Contacto · humanizar",prod:"Institucional",mat:"Sesión de retratos con fondo petróleo",resp:"Marketing",ask:"Lista final del equipo que viaja y consentimiento de cada persona."},
+
+{id:"PC-21b",m:"ene",d:"29",w:"Vie",serie:"Food Business Brief",pub:"Dirección",fmt:"Imagen + carrusel 4 láminas",
+t:"En México se consume más derivado lácteo que leche líquida",
+con:"Cifra con fuente (CANILEC, cifras 2025 preliminares) y su lectura para fabricantes de quesos y yogures. Prepara el terreno lácteo de la feria.",
+g:[["Lámina 1","Dato grande: producción ≈ 13,825 millones de litros (+2%)."],["Lámina 2","El consumo de derivados ya supera al de leche líquida."],["Lámina 3","Jalisco: principal productor, ~21% nacional."],["Lámina 4","Qué significa: más queso y yogur, más necesidad de textura y estabilidad. Fuente."]],
+copy:"La producción de leche en México rondó los 13,825 millones de litros en 2025, con un crecimiento cercano al 2% (CANILEC, cifras preliminares).\n\nEl dato que más importa a los fabricantes: el consumo de derivados como queso y yogur ya supera al de la leche líquida. Y Jalisco produce alrededor del 21% de la leche del país.\n\nMás derivados significa más trabajo de textura, estabilidad y vida de anaquel. De eso hablaremos en Expo Carnes y Lácteos.\n\n#Lácteos #IndustriaLáctea #CANILEC",
+cta:"Conozca la línea de lácteos (web)",obj:"Autoridad",prod:"Carrageninas · colores · conservadores para lácteos",mat:"Diseño gráfico con cifras",resp:"Marketing",ask:"Verificar cifras con la publicación de CANILEC antes de diseñar."},
+
+/* ---------------- FEBRERO ---------------- */
+{id:"PC-21",m:"feb",d:"2",w:"Mar",serie:"Molino People",pub:"Todos",fmt:"Video 9:16 · 20 s",
+t:"Cumplió: los tamales del 2 de febrero",
+con:"Cierra la historia de la rosca (PC-12). Martes por ser el día de la Candelaria; el lunes 1 es feriado.",
+g:[["0–6 s","Olla de tamales llegando a la oficina."],["6–14 s","Hoja abriéndose, vapor en macro."],["14–20 s","La persona del muñeco: “Cumplí.” Texto: “Próxima semana: Monterrey”."]],
+copy:"Le contamos el 6 de enero que alguien tenía un compromiso. Cumplió.\n\nFeliz Día de la Candelaria.\n\nLa próxima semana estaremos en Monterrey, en Expo Carnes y Lácteos.\n\n#MolinoPeople #DíaDeLaCandelaria",
+cta:"—",obj:"Conexión",prod:"—",mat:"Tamales, grabación en oficina",resp:"Marketing",ask:"Consentimiento."},
+
+{id:"PC-23",m:"feb",d:"3",w:"Mié",serie:"El Molino en la industria",pub:"I&D",fmt:"Video 9:16 · 30 s",
+t:"Lo que llevamos a Stand 612",
+con:"Cuenta regresiva: 6 días. Video de preparación con las muestras que se exhibirán.",
+g:[["0–5 s","Caja abriéndose. Texto: “6 días”."],["5–22 s","Una toma por línea de producto que irá al stand (según lista de comercial)."],["22–30 s","Caja cerrada con etiqueta “Stand 612 · Cintermex”."]],
+copy:"Faltan 6 días para Expo Carnes y Lácteos.\n\nEstas son algunas de las soluciones que llevamos a Monterrey: [líneas por confirmar].\n\nSi quiere verlas en persona y hablar de su aplicación, agende una reunión con nuestro equipo.\n\n9 al 11 de febrero · Cintermex · Stand 612\n\n#ExpoCarnes2027",
+cta:"Agende una reunión (WhatsApp)",obj:"Contacto · citas",prod:"Según exhibición",mat:"Muestras empacadas, grabación en almacén",resp:"Marketing + comercial",ask:"Lista de productos que se exhibirán."},
+
+{id:"PC-24",m:"feb",d:"5",w:"Vie",serie:"El Molino en la industria",pub:"Compras",fmt:"Imagen 4:5",
+t:"Invitación: agende su reunión en Stand 612",
+con:"Invitación directa con horario. Se replica en WhatsApp y correo personalizado a clientes del norte.",
+g:[["Imagen","Fondo negro, tarjeta verde con datos: martes 9 a jueves 11, 11:00–19:00 h, Cintermex, Stand 612. Logo."]],
+copy:"La próxima semana lo esperamos en Monterrey.\n\nExpo Carnes y Lácteos 2027\nMartes 9 a jueves 11 de febrero · 11:00 a 19:00 h\nCintermex · Stand 612\n\nSi quiere asegurar tiempo con nuestro equipo técnico, escríbanos y apartamos su reunión.\n\n#ExpoCarnes2027 #ExpoCarnesYLácteos",
+cta:"Agende por WhatsApp +52 33 2833 9447",obj:"Contacto",prod:"Institucional",mat:"Diseño gráfico",resp:"Marketing",ask:"—"},
+
+{id:"PC-25",m:"feb",d:"9",w:"Mar",serie:"El Molino en la industria",pub:"Todos",fmt:"Video 9:16 · 20 s · timelapse",
+t:"Día 1 · Stand 612 abierto",
+con:"Montaje en timelapse y apertura. Martes, primer día de feria.",
+g:[["0–12 s","Timelapse del montaje desde las 10:00."],["12–17 s","Equipo completo frente al stand."],["17–20 s","Texto: “Abierto hasta las 19:00 h · Stand 612”."]],
+copy:"Expo Carnes y Lácteos 2027, día 1. Stand 612 abierto.\n\nEstaremos aquí hasta el jueves, de 11:00 a 19:00 h. Si está en Cintermex, pase a saludar.\n\n#ExpoCarnes2027 #ElMolinoEnLaIndustria",
+cta:"Visítenos en Stand 612",obj:"Presencia · contacto",prod:"Institucional",mat:"Celular con estabilizador, grabación desde el montaje",resp:"Responsable de contenido en el stand",ask:"—"},
+
+{id:"PC-26",m:"feb",d:"10",w:"Mié",serie:"Fechas que importan",pub:"I&D",fmt:"Video 9:16 · 30 s",
+t:"Día 2 · Día Mundial de las Legumbres, desde Stand 612",
+con:"10 de febrero, fecha oficial de la ONU. Grabado en el stand: una persona del área técnica explica en 25 segundos que la soya es una legumbre y cómo se convierte en ingrediente. También es Miércoles de Ceniza: inicia la Cuaresma.",
+g:[["0–5 s","Persona del área técnica en el stand. Texto: “10 de febrero · Día Mundial de las Legumbres”."],["5–20 s","“La soya es una legumbre. De ella obtenemos concentrados, aislados y texturizados que…” (guion corto aprobado)."],["20–30 s","Muestras en mano. Texto: “Stand 612 · Expo Carnes y Lácteos”."]],
+copy:"Hoy es el Día Mundial de las Legumbres, y la soya es una de ellas.\n\nDesde Stand 612, nuestro equipo técnico explica cómo una legumbre se convierte en proteína para jamones, salchichas, barras y alimentos de origen vegetal.\n\nSegundo día de Expo Carnes y Lácteos. Lo esperamos hasta mañana.\n\n#DíaMundialDeLasLegumbres #ProteínaDeSoya #ExpoCarnes2027",
+cta:"Visítenos en Stand 612",obj:"Autoridad · presencia",prod:"Proteínas de soya",mat:"Micrófono de solapa, guion de 60 palabras aprobado antes del viaje",resp:"Área técnica + marketing",ask:"Persona del área técnica dispuesta a hablar a cámara."},
+
+{id:"PC-27",m:"feb",d:"11",w:"Jue",serie:"Fechas que importan",pub:"Todos",fmt:"Carrusel de retratos · 4 láminas",
+t:"Día 3 · Mujeres en la ciencia de los alimentos",
+con:"11 de febrero, Día Internacional de la Mujer y la Niña en la Ciencia (ONU). Retratos de mujeres de El Molino en áreas técnicas, calidad o comercial técnico, tomados en el stand.",
+g:[["Lámina 1","“11 de febrero · Día Internacional de la Mujer y la Niña en la Ciencia.”"],["Láminas 2–3","Retrato en el stand, nombre, área, una frase sobre su trabajo."],["Lámina 4","Último día de feria. Agradecimiento a visitantes."]],
+copy:"Hoy es el Día Internacional de la Mujer y la Niña en la Ciencia.\n\nEn la industria alimentaria, la ciencia está en cada formulación, cada análisis y cada visita técnica. Estas son algunas de las mujeres que la hacen en El Molino.\n\nÚltimo día de Expo Carnes y Lácteos. Gracias a quienes nos han visitado en Stand 612.\n\n#MujeresEnLaCiencia #MolinoPeople #ExpoCarnes2027",
+cta:"—",obj:"Humanizar · conexión",prod:"—",mat:"Retratos en el stand",resp:"Marketing",ask:"Confirmar quiénes participan y su consentimiento."},
+
+{id:"PC-28",m:"feb",d:"15",w:"Lun",serie:"El Molino en la industria",pub:"Todos",fmt:"Video 9:16 · 60 s",
+t:"Expo Carnes y Lácteos 2027 en 60 segundos",
+con:"Recapitulación con las mejores tomas y agradecimiento.",
+g:[["0–10 s","Llegada a Cintermex, montaje."],["10–40 s","Visitantes, reuniones, producto, equipo (solo personas con permiso)."],["40–55 s","Cierre del stand, foto final del equipo."],["55–60 s","“Gracias, Monterrey.” Logo."]],
+copy:"Tres días, cientos de conversaciones y un equipo que volvió con mucho trabajo por delante.\n\nGracias a cada cliente, proveedor y visitante que pasó por Stand 612 en Expo Carnes y Lácteos 2027. En los próximos días daremos seguimiento a cada conversación.\n\n#ExpoCarnes2027 #ElMolinoEnLaIndustria",
+cta:"Si no alcanzó a visitarnos, escríbanos",obj:"Confianza · seguimiento",prod:"Institucional",mat:"Material grabado en feria",resp:"Marketing",ask:"—"},
+
+{id:"PC-29",m:"feb",d:"17",w:"Mié",serie:"The Trend Report",pub:"Dirección",fmt:"Carrusel 6 láminas · PDF en LinkedIn",
+t:"Lo que nos preguntaron en Stand 612",
+con:"Aprendizajes de la feria convertidos en contenido: las 4 o 5 preguntas que más se repitieron, con una respuesta breve cada una. Es la lectura del mercado desde el piso de la feria.",
+g:[["Lámina 1","“Lo que nos preguntaron en Stand 612.”"],["Láminas 2–5","Una pregunta por lámina, con respuesta corta."],["Lámina 6","“¿Tiene la misma pregunta? Escríbanos.”"]],
+copy:"Durante tres días en Expo Carnes y Lácteos anotamos las preguntas que más se repitieron en Stand 612.\n\nSon una buena lectura de lo que hoy preocupa a las plantas de cárnicos y lácteos en México. Aquí están, con nuestra respuesta corta.\n\n#ExpoCarnes2027 #IndustriaAlimentaria #TrendReport",
+cta:"Escríbanos su pregunta",obj:"Autoridad · contacto",prod:"Según preguntas",mat:"Notas del equipo durante la feria",resp:"Marketing · valida área técnica",ask:"Que el equipo anote las preguntas frecuentes cada día de feria."},
+
+{id:"PC-30",m:"feb",d:"19",w:"Vie",serie:"Aplicaciones",pub:"I&D",fmt:"Carrusel 6 láminas",
+t:"Cuaresma: de predust a empanizado",
+con:"Seis semanas de mayor consumo de pescados y mariscos. La secuencia de cobertura explicada para filete y camarón.",
+g:[["Lámina 1","Filete empanizado partido. “Cuaresma empieza en la línea de cobertura.”"],["Lámina 2","Predust: la primera capa."],["Lámina 3","Batter: adherencia."],["Lámina 4","Empanizado."],["Lámina 5","Batter para pescado y para nuggets de camarón."],["Lámina 6","CTA."]],
+copy:"Del Miércoles de Ceniza a Semana Santa, el pescado y los mariscos empanizados tienen su temporada más fuerte.\n\nUna cobertura que se mantiene en su lugar depende de la secuencia: predust, batter y empanizado. En el carrusel la explicamos paso a paso, con las opciones para pescado y camarón.\n\n#Cuaresma #Pescados #SistemasDeCobertura",
+cta:"Solicite muestras (WhatsApp)",obj:"Consideración",prod:"Sistemas de cobertura · batter pescado · batter nuggets",mat:"Filete y camarón, ingredientes de cobertura",resp:"Marketing · valida área técnica",ask:"Fichas de batter para pescado y camarón."},
+
+{id:"PC-31",m:"feb",d:"22",w:"Lun",serie:"Molino Sensory Lab",pub:"Todos",fmt:"Video 9:16 · 20 s",
+t:"El crunch",
+con:"ASMR puro: camarón entrando al batter, fritura, corte. El sonido es el protagonista.",
+g:[["0–5 s","Camarón sumergiéndose en batter, macro."],["5–12 s","Fritura, burbujas, sonido."],["12–18 s","Corte con cuchillo, crujido."],["18–20 s","Texto: “Batter para camarón · El Molino”."]],
+copy:"Suba el volumen.\n\n#MolinoSensoryLab #Cuaresma #Camarón",
+cta:"Siga nuestra cuenta",obj:"Reconocimiento",prod:"Batter para nuggets de camarón",mat:"Freidora, camarón, micrófono cercano",resp:"Marketing + videógrafo",ask:"—"},
+
+{id:"PC-32",m:"feb",d:"24",w:"Mié",serie:"Temporada",pub:"Compras",fmt:"Video 9:16 · 25 s",
+t:"Temporada de alitas: Búfalo y BBQ a escala",
+con:"Febrero es mes de partidos y alitas. Food service: salsas que mantienen el mismo sabor en cada sucursal.",
+g:[["0–8 s","Alitas glaseándose en cámara lenta con salsa búfalo."],["8–16 s","Mismo plano con BBQ."],["16–25 s","Texto: “El mismo sabor en cada sucursal · Salsas para food service”."]],
+copy:"Febrero es temporada de partidos, y de alitas.\n\nPara cadenas y cocinas industriales, el reto no es que salgan buenas una vez, sino que sepan igual en cada sucursal. Trabajamos salsas Búfalo y BBQ pensadas para food service.\n\n#FoodService #Alitas #Salsas",
+cta:"Conozca la línea food service (web)",obj:"Interés",prod:"Salsa alitas/búfalo · BBQ",mat:"Alitas, salsas, fondo oscuro",resp:"Marketing",ask:"Presentaciones disponibles para food service."},
+
+{id:"PC-33",m:"feb",d:"26",w:"Vie",serie:"El Molino responde",pub:"Calidad",fmt:"Carrusel 6 láminas",
+t:"¿Conservador natural o artificial? Cómo decidir",
+con:"Cinco criterios para elegir, conectados con clean label y NOM-051. Sin decir que uno es mejor que otro.",
+g:[["Lámina 1","Pregunta como título."],["Lámina 2","Tipo de producto y proceso."],["Lámina 3","Vida de anaquel objetivo."],["Lámina 4","Lo que quiere declarar en la etiqueta."],["Lámina 5","Costo y dosificación."],["Lámina 6","“Lo resolvemos con usted.” CTA."]],
+copy:"No hay una respuesta única. La elección entre un conservador natural y uno artificial depende del producto, del proceso, de la vida de anaquel que necesita y de lo que quiere declarar en su etiqueta.\n\nEstos son los cinco criterios que revisamos con cada cliente antes de recomendar.\n\n#Conservadores #CleanLabel #VidaDeAnaquel",
+cta:"Platiquemos su caso (WhatsApp)",obj:"Consideración",prod:"Conservadores naturales y artificiales",mat:"Diseño gráfico",resp:"Marketing · valida área técnica y calidad",ask:"Revisión técnica de los criterios."},
+
+/* ---------------- MARZO ---------------- */
+{id:"PC-34",m:"mar",d:"1",w:"Lun",serie:"The Trend Report",pub:"Marketing",fmt:"Carrusel 7 láminas · PDF en LinkedIn",
+t:"Trend Report #2 · Clean label en cárnicos",
+con:"Qué está pidiendo el consumidor, por qué los fabricantes reformulan y qué opciones hay: curado natural, conservadores de origen natural, antioxidantes.",
+g:[["Lámina 1","Etiqueta de embutido con lista de ingredientes corta."],["Lámina 2","Qué está pasando."],["Lámina 3","Por qué importa."],["Lámina 4","Cómo afecta al fabricante: costo, vida de anaquel, proceso."],["Lámina 5","Oportunidades."],["Lámina 6","Retos."],["Lámina 7","Relación con el portafolio de El Molino."]],
+copy:"Etiqueta limpia es una de las palabras que más se repiten en la industria cárnica, y una de las más difíciles de llevar a la planta.\n\nReformular hacia ingredientes reconocibles cambia costos, procesos y vida de anaquel. En este reporte resumimos qué está pasando, qué oportunidades abre y dónde están los retos reales.\n\n#CleanLabel #ProductosCárnicos #TrendReport",
+cta:"Descubra nuestras soluciones (web)",obj:"Autoridad",prod:"Conservadores naturales · antioxidantes",mat:"Diseño gráfico, foto de etiqueta genérica",resp:"Marketing · valida área técnica",ask:"Fuentes de mercado a citar (validar antes de publicar)."},
+
+{id:"PC-35",m:"mar",d:"4",w:"Jue",serie:"Fechas que importan",pub:"Producción",fmt:"Carrusel 7 láminas",
+t:"La ingeniería detrás de un embutido",
+con:"4 de marzo, Día Mundial de la Ingeniería para el Desarrollo Sostenible (UNESCO). El proceso de un embutido y dónde intervienen ingredientes y empaque. Jueves por la fecha oficial; el viernes no se publica.",
+g:[["Lámina 1","“4 de marzo · Día Mundial de la Ingeniería.”"],["Lámina 2","Molienda y mezclado."],["Lámina 3","Inyección o emulsión."],["Lámina 4","Embutido en tripa o funda."],["Lámina 5","Cocción y ahumado."],["Lámina 6","Enfriamiento, rebanado y empaque."],["Lámina 7","Homenaje a ingenieras e ingenieros de planta."]],
+copy:"Hoy es el Día Mundial de la Ingeniería para el Desarrollo Sostenible.\n\nEn una planta de embutidos, la ingeniería está en cada etapa: mezclado, inyección, embutido, cocción, enfriamiento y empaque. Y en cada una hay ingredientes y materiales que tienen que comportarse como se espera.\n\nPara las ingenieras e ingenieros que hacen funcionar la industria alimentaria.\n\n#Ingeniería #ProducciónDeAlimentos #ProductosCárnicos",
+cta:"Siga nuestra cuenta",obj:"Interés · conexión",prod:"Cárnicos y empaques",mat:"Ilustraciones de proceso o fotos de planta (de cliente con permiso o de banco)",resp:"Marketing · valida área técnica",ask:"—"},
+
+{id:"PC-36",m:"mar",d:"10",w:"Mié",serie:"The Ingredient Files",pub:"Calidad",fmt:"Carrusel 6 láminas",
+t:"Ingredient Files #4 · Antioxidantes",
+con:"Qué es la oxidación, cómo se nota en un producto y dónde se usan los antioxidantes del portafolio: cárnicos, lácteos y botanas.",
+g:[["Lámina 1","Dos rebanadas: una fresca y una oxidada (foto controlada)."],["Lámina 2","Qué es la oxidación: cambios de color, olor y sabor."],["Lámina 3","Dónde ocurre: grasas, pigmentos."],["Lámina 4","Qué hace un antioxidante."],["Lámina 5","Aplicaciones: cárnicos, lácteos, botanas."],["Lámina 6","CTA."]],
+copy:"Cuando un producto cambia de color o desarrolla un olor extraño antes de su fecha, muchas veces la causa es la oxidación.\n\nLos antioxidantes ayudan a retrasarla y a proteger color, olor y sabor durante la vida de anaquel. Los trabajamos para cárnicos, lácteos y botanas.\n\n#Antioxidantes #VidaDeAnaquel #IngredientesAlimentarios",
+cta:"Conozca nuestras soluciones de vida de anaquel",obj:"Interés · autoridad",prod:"Antioxidantes",mat:"Prueba controlada de oxidación o ilustración",resp:"Marketing · valida área técnica",ask:"Ficha técnica y aprobación del texto."},
+
+{id:"PC-37",m:"mar",d:"12",w:"Vie",serie:"Molino Sensory Lab",pub:"Marketing",fmt:"Video 9:16 · 15 s",
+t:"Color natural",
+con:"Anato y carmín dispersándose en leche, en macro. Hipnótico y directo.",
+g:[["0–6 s","Gota de anato cayendo en leche, se abre en espiral."],["6–12 s","Carmín, mismo encuadre."],["12–15 s","Texto: “Anato y carmín · Colores para lácteos”."]],
+copy:"Anato y carmín: dos colores de origen natural que se usan en quesos y otros lácteos.\n\n#MolinoSensoryLab #ColoresNaturales #Lácteos",
+cta:"Siga nuestra cuenta",obj:"Reconocimiento",prod:"Colores (anato, carmín)",mat:"Leche, colores, vaso de vidrio, fondo blanco o negro",resp:"Marketing + videógrafo",ask:"—"},
+
+{id:"PC-38",m:"mar",d:"17",w:"Mié",serie:"Molino People",pub:"Compras",fmt:"Video 9:16 · 45 s",
+t:"Un día con un asesor de El Molino",
+con:"Acompañamos a una persona del equipo comercial o técnico en una visita: carretera, planta del cliente (sin marcas), regreso con tarea. Muestra cómo se trabaja la venta técnica.",
+g:[["0–8 s","Salida temprano, carretera."],["8–25 s","Llegada a planta, bata y cofia, conversación (sin rostro del cliente ni marcas)."],["25–38 s","Regreso, revisa notas con el área técnica."],["38–45 s","Frase a cámara: qué es lo que más le gusta de su trabajo."]],
+copy:"Así es un día de visita técnica.\n\nAntes de recomendar un ingrediente, nuestro equipo conoce la planta, el proceso y el problema que hay que resolver. Después, el trabajo sigue en la oficina con el área técnica.\n\n#MolinoPeople #AsesoríaTécnica #IndustriaAlimentaria",
+cta:"Solicite una visita técnica",obj:"Confianza · consideración",prod:"Asesoría técnica",mat:"Grabación de un día, 4 a 6 horas",resp:"Marketing + comercial",ask:"Cliente que autorice grabar en su planta (sin marcas visibles) y persona del equipo dispuesta."},
+
+{id:"PC-39",m:"mar",d:"19",w:"Vie",serie:"Food Business Brief",pub:"Compras",fmt:"Carrusel 5 láminas",
+t:"Semana Santa: lo que cambia en la producción",
+con:"Una semana antes de Semana Santa: cambios de consumo (pescados, mariscos, comida de vigilia, viajes) y efectos en planeación y abasto.",
+g:[["Lámina 1","“Semana Santa: 21 al 28 de marzo.”"],["Lámina 2","Más pescado y mariscos, menos carnes rojas en ciertos días."],["Lámina 3","Vacaciones: menos días hábiles, más consumo fuera de casa."],["Lámina 4","Qué revisar en compras y producción."],["Lámina 5","CTA: pedidos antes del cierre."]],
+copy:"Semana Santa cae del 21 al 28 de marzo. Para la industria significa dos cosas: un cambio en lo que se consume y menos días hábiles para producir y entregar.\n\nLe dejamos lo que conviene revisar en compras y producción esta semana.\n\n#SemanaSanta #Compras #IndustriaAlimentaria",
+cta:"Confirme sus pedidos (WhatsApp)",obj:"Consideración",prod:"Portafolio general",mat:"Diseño gráfico",resp:"Marketing · valida comercial",ask:"Días de operación de El Molino en Semana Santa."},
+
+{id:"PC-41",m:"mar",d:"22",w:"Lun",serie:"Fechas que importan",pub:"Producción",fmt:"Carrusel 6 láminas",
+t:"Día Mundial del Agua · El ingrediente más usado y menos visto",
+con:"22 de marzo (ONU). El agua en la industria alimentaria: salmueras, hidratación de proteínas, limpieza. Por qué el rendimiento tiene que ver con cómo se retiene el agua.",
+g:[["Lámina 1","Gota en macro. “22 de marzo · Día Mundial del Agua.”"],["Lámina 2","El ingrediente que más se usa en la planta."],["Lámina 3","En la salmuera de un jamón."],["Lámina 4","En la hidratación de una proteína."],["Lámina 5","En limpieza e inocuidad."],["Lámina 6","Uso responsable. CTA."]],
+copy:"Hoy es el Día Mundial del Agua.\n\nEn la industria alimentaria es el ingrediente más usado y el menos visto: está en la salmuera del jamón, en la hidratación de las proteínas y en cada limpieza que protege la inocuidad.\n\nCuidarla y aprovecharla bien es parte de producir mejor.\n\n#DíaMundialDelAgua #ProducciónDeAlimentos #Sostenibilidad",
+cta:"Siga nuestra cuenta",obj:"Interés · conexión",prod:"Proteínas · carrageninas",mat:"Fotografía de agua y salmuera",resp:"Marketing · valida calidad",ask:"Si El Molino tiene prácticas de uso de agua que se puedan contar."},
+
+{id:"PC-40",m:"mar",d:"24",w:"Mié",serie:"Aplicaciones",pub:"Marketing",fmt:"Carrusel 5 láminas + foto editorial",
+t:"Queso tipo manchego a base de soya",
+con:"Semana Santa y consumo sin carne. Producto terminado plant-based: El Molino no solo vende el ingrediente, desarrolla el producto.",
+g:[["Lámina 1","Queso análogo rebanado, foto editorial."],["Lámina 2","Hecho a base de soya."],["Lámina 3","Del ingrediente al producto terminado."],["Lámina 4","Yogur y helado plant-based en el mismo portafolio."],["Lámina 5","CTA para marcas."]],
+copy:"En Semana Santa crece la búsqueda de opciones sin carne, y la categoría de origen vegetal sigue ganando espacio en el anaquel.\n\nEn El Molino desarrollamos producto terminado plant-based, como un queso tipo manchego a base de soya, para marcas que quieren entrar a la categoría sin desarrollar desde cero.\n\n#PlantBased #QuesoVegetal #Innovación",
+cta:"Solicite información",obj:"Consideración · oportunidad",prod:"Productos terminados plant-based",mat:"Queso análogo, sesión de foto",resp:"Marketing · valida dirección",ask:"Disponibilidad del producto y qué se puede comunicar."},
+
+{id:"PC-42",m:"mar",d:"31",w:"Mié",serie:"El Molino en la industria",pub:"Todos",fmt:"Carrusel 5 láminas",
+t:"Cierre del primer trimestre · Rumbo a mayo",
+con:"Pieza condicional. Si se confirma ANTAD &amp; Alimentaria México 2027: save the date. Si no: las 4 piezas más vistas del trimestre y lo que viene en abril.",
+g:[["Opción A","Save the date ANTAD &amp; Alimentaria México 2027 · Expo Guadalajara (fechas oficiales)."],["Opción B","“Lo más visto del trimestre”: portadas de las 4 piezas con mejor resultado + adelanto de abril."]],
+copy:"Opción A:\nNos vemos en Guadalajara. El Molino estará en ANTAD & Alimentaria México 2027. [Fechas y stand por confirmar.]\n\nOpción B:\nCerramos el primer trimestre de 2027. Estas fueron las cuatro publicaciones que más guardó y compartió nuestra comunidad. En abril seguimos.\n\n#IndustriaAlimentaria #ElMolinoEnLaIndustria",
+cta:"Siga nuestra cuenta",obj:"Continuidad",prod:"Institucional",mat:"Portadas existentes o diseño de anuncio",resp:"Marketing · decide dirección",ask:"Decisión sobre ANTAD y fechas oficiales del organizador."}
+];
+
+const DATES = [
+ ["10 feb","Día Mundial de las Legumbres","ONU / FAO","La soya es legumbre: de la planta a la proteína. 2027: en vivo desde Expo Carnes.","I&D, Marketing","Video","of"],
+ ["11 feb","Día Internacional de la Mujer y la Niña en la Ciencia","ONU","Mujeres de El Molino en áreas técnicas y calidad.","Todos","Retratos","of"],
+ ["4 mar","Día Mundial de la Ingeniería para el Desarrollo Sostenible","UNESCO","La ingeniería detrás de un embutido.","Producción","Carrusel","of"],
+ ["22 mar","Día Mundial del Agua","ONU","El ingrediente más usado y menos visto.","Producción, Calidad","Carrusel","of"],
+ ["7 abr","Día Mundial de la Salud","OMS","Reformulación: sodio y grasa, rumbo a la Fase 3 de NOM-051.","Dirección, I&D","Carrusel","of"],
+ ["20 may","Día Mundial de la Metrología","BIPM / OIML","Dosificar bien: por qué un gramo cambia un lote. Paquetes predosificados.","Producción, Calidad","Video","of"],
+ ["1 jun","Día Mundial de la Leche","FAO","Jalisco, primer productor de leche del país, y lo que pasa con sus derivados.","Dirección, I&D","Carrusel","of"],
+ ["7 jun","Día Mundial de la Inocuidad de los Alimentos","ONU / OMS / FAO","Mes de la inocuidad: FSSC 22000, trazabilidad, qué pedirle a un proveedor.","Calidad","Serie de 3 piezas","of"],
+ ["9 jun","Día Mundial de la Acreditación","ILAC / IAF","Certificar y acreditar no es lo mismo: explicado simple.","Calidad, Compras","Carrusel","of"],
+ ["18 jun","Día Internacional de la Gastronomía Sostenible","ONU","Ingredientes que permiten aprovechar mejor la materia prima.","Marketing, Dirección","Imagen","of"],
+ ["29 sep","Día Internacional de Concienciación sobre la Pérdida y el Desperdicio de Alimentos","ONU / FAO","Vida de anaquel y empaque de barrera contra el desperdicio.","Producción, Dirección","Carrusel","of"],
+ ["1 oct","Día Internacional del Café","Organización Internacional del Café","Molino People: el café del equipo. Pieza ligera.","Todos","Foto","of"],
+ ["14 oct","Día Mundial de la Normalización","IEC / ISO / UIT","Las normas que rigen lo que comemos: NOM-051 y acuerdo de aditivos.","Calidad","Carrusel","of"],
+ ["16 oct","Día Mundial de la Alimentación","FAO","La cadena completa: del ingrediente al plato.","Todos","Video","of"],
+ ["10 nov","Día Mundial de la Ciencia para la Paz y el Desarrollo","UNESCO","La ciencia de los ingredientes explicada por el equipo técnico.","I&D","Video","of"],
+ ["11 nov 2027","Día Mundial de la Calidad (segundo jueves de noviembre)","CQI","Qué es calidad para un proveedor de ingredientes: consistencia lote a lote.","Calidad, Compras","Carrusel","of"],
+ ["2 feb","Día de la Candelaria","Tradición mexicana","Cierre de la historia de la rosca. Tamales.","Todos","Video","ed"],
+ ["10 feb – 28 mar 2027","Cuaresma y Semana Santa","Calendario litúrgico","Pescados, mariscos, coberturas, plant-based.","I&D, Compras","Serie","ed"],
+ ["Sep","Mes patrio","Calendario cívico","Chiles, chorizo y antojitos: el sabor mexicano en la planta.","Marketing","Serie","ed"],
+ ["12 dic – 6 ene","Temporada Guadalupe-Reyes","Tradición mexicana","Jamón, pierna, tocino, ponche. Mayor consumo de cárnicos.","Todos","Serie","ed"]
+];
+
+const BANK = [
+ ["A · Sensorial y visual",["Proteína texturizada hidratándose en timelapse","Salmuera inyectándose en una pieza (macro)","Tres tripas distintas en luz de contraluz","Polvo de carragenina formando gel en 15 segundos","Láminas de transferencia de especias marcando el producto","Sonido de rebanadora de jamón con calibre perfecto","Comparativo visual: cuatro presentaciones de soya"]],
+ ["B · Ciencia y educación",["¿Qué es una emulsión cárnica?","Viscosidad: por qué una salsa se separa","Tres errores comunes al dosificar carragenina","Qué significa “vida de anaquel” y cómo se mide","Ingredientes que trabajan juntos: proteína + hidrocoloide"]],
+ ["C · Productos",["Ingredient Files: tripas de colágeno","Ingredient Files: bolsas de vacío termoencogibles","Ingredient Files: paquetes unitarios predosificados","Un ingrediente, cinco aplicaciones: proteína de soya"]],
+ ["D · Aplicaciones",["Un nugget, de la pechuga a la caja","Cómo se hace una salchicha","Queso fresco: estabilidad y rendimiento","Batter alta adhesión vs. batter especiado","Bebidas vegetales: lo que pide la textura"]],
+ ["E · Negocios B2B",["Buyer’s Room: cómo leer una ficha técnica en 2 minutos","Buyer’s Room: qué documentos pedir antes de homologar","Decisiones que cuestan: el costo de un lote rechazado","Food Business Brief: COMECARNE, consumo de carne +4.4%","Un solo proveedor para ingrediente y empaque: qué se gana"]],
+ ["F · Tendencias",["Trend Report: reducción de sodio en embutidos","Trend Report: proteínas alternativas en México","Trend Report: curado natural","Trend Report: empaques más sostenibles"]],
+ ["G · Ferias",["ANTAD 2027: sistema completo antes, durante, después","Detrás de cámaras del diseño del stand","Entrevista a un proveedor aliado en feria"]],
+ ["H–I · Temporadas y fechas",["Verano: parrilla y arrachera marinada","Regreso a clases: lunch y botanas","Mes patrio: el chile en la industria","Día Mundial de la Inocuidad: serie de 3 piezas"]],
+ ["J · Molino People",["Aniversarios del equipo (con el estilo de comunicados internos)","El primer día de alguien nuevo en El Molino","Visita de un proveedor a nuestras instalaciones"]]
+];
+
+P.forEach((p,i)=>{p.id="PC-"+String(i+1).padStart(2,"0")});
+// series grid
+document.getElementById("seriesGrid").innerHTML = SERIES.map(s=>`<div class="serie"><div class="u"><span class="letter">${s.u}</span><span class="label" style="margin:0">${s.n}</span></div><h3>${s.k}</h3><p>${s.p}</p><div class="meta">Frecuencia: ${s.f}</div></div>`).join("");
+// fechas
+document.getElementById("datesBody").innerHTML = DATES.map(r=>`<tr><td class="f">${r[0]}</td><td>${r[1]} ${r[6]==="ed"?'<span class="tag ed">editorial</span>':'<span class="tag">oficial</span>'}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join("");
+// banco
+document.getElementById("bank").innerHTML = BANK.map(b=>`<div class="box"><p class="label">${b[0]}</p><ol>${b[1].map(i=>`<li>${i}</li>`).join("")}</ol></div>`).join("");
+// filtro de series
+const fSerie=document.getElementById("fSerie"), fPub=document.getElementById("fPub");
+SERIES.forEach(s=>{const o=document.createElement("option");o.textContent=s.k;fSerie.appendChild(o)});
+
+const esc=s=>String(s).replace(/&(?!amp;)/g,"&amp;").replace(/</g,"&lt;");
+let month="dic";
+try{const h=location.hash.replace("#m-","");if(["dic","ene","feb","mar","all"].includes(h))month=h}catch(e){}
+
+function card(p){
+  const g=p.g.map(x=>`<li><b>${x[0]}</b><span>${x[1]}</span></li>`).join("");
+  return `<details class="post" id="${p.id}"><summary>
+    <div class="date"><div class="dw">${p.w}</div><div class="dd">${p.d}</div><div class="dw">${({dic:"dic",ene:"ene",feb:"feb",mar:"mar"})[p.m]}</div></div>
+    <div><div class="chips"><span class="chip s">${p.serie}</span><span class="chip">${p.pub}</span><span class="chip fmt">${p.fmt}</span></div><div class="ptitle">${p.t}</div><div class="more">Ver ficha completa</div></div>
+    <div class="folio">${p.id}<span class="st">Por aprobar</span></div></summary>
+    <div class="body"><div>
+      <div class="blk"><p class="label">Concepto creativo</p><p>${p.con}</p></div>
+      <div class="blk"><p class="label">${/Video/.test(p.fmt)?"Guion":"Descripción de la pieza"}</p><ul class="guion">${g}</ul></div>
+      <div class="blk"><p class="label">Copy para las tres redes</p><div class="copy">${esc(p.copy)}</div><button type="button" class="copybtn">Copiar copy</button></div>
+    </div><div>
+      <div class="blk"><p class="label">Llamado a la acción</p><p><strong>${p.cta}</strong></p></div>
+      <div class="blk"><p class="label">Objetivo</p><p>${p.obj}</p></div>
+      <div class="blk"><p class="label">Producto o categoría</p><p>${p.prod}</p></div>
+      <div class="blk"><p class="label">Materiales necesarios</p><p>${p.mat}</p></div>
+      <div class="blk"><p class="label">Responsable</p><p>${p.resp}</p></div>
+      <div class="blk ask"><p class="label">Información por solicitar</p><p>${p.ask}</p></div>
+    </div></div></details>`;
+}
+function render(){
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===month));
+  const mh=document.getElementById("monthHead");
+  mh.innerHTML = month==="all" ? "" : `<div class="monthhead"><h3>${MONTHS[month].t}</h3><p>${MONTHS[month].p}</p><div class="shoot">${MONTHS[month].s}</div></div>`;
+  const list=P.filter(p=>(month==="all"||p.m===month)&&(!fSerie.value||p.serie===fSerie.value)&&(!fPub.value||p.pub===fPub.value));
+  document.getElementById("posts").innerHTML = list.length ? list.map(card).join("") : `<div class="empty">No hay publicaciones con ese filtro en este mes.</div>`;
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{month=b.dataset.m;try{history.replaceState(null,"","#m-"+month)}catch(e){}render()}));
+fSerie.addEventListener("change",render);fPub.addEventListener("change",render);
+document.getElementById("posts").addEventListener("click",e=>{
+  const b=e.target.closest(".copybtn"); if(!b) return;
+  const txt=b.previousElementSibling.textContent;
+  const ok=()=>{b.textContent="Copiado";setTimeout(()=>b.textContent="Copiar copy",1600)};
+  try{navigator.clipboard.writeText(txt).then(ok,()=>{selectText(b.previousElementSibling)})}catch(err){selectText(b.previousElementSibling)}
+});
+function selectText(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+render();
+</script>
