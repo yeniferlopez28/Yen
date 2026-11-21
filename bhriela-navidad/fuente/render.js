@@ -21,6 +21,8 @@ const path = require('path'), fs = require('fs');
   } else if (mode === 'anim') {
     const N = Math.round(DURA * 30);
     for (let i = 0; i < N; i++) await shot('render', i / 30, `${out}/a_${String(i).padStart(4, '0')}.jpg`);
+  } else if (mode === 'logo') {
+    for (let i = 0; i < Math.round(DURA*30); i++) await shot('renderLogo', i / 30, `${out}/l_${String(i).padStart(4, '0')}.png`, true);
   } else if (mode === 'snow') {
     const N = 8 * 30;
     for (let i = 0; i < N; i++) await shot('renderSnow', i / 30, `${out}/s_${String(i).padStart(4, '0')}.png`, true);
