@@ -476,12 +476,6 @@ function renderCTA(t){ctx.clearRect(0,0,W,H); // transparent overlay over logo v
  const g=ctx.createLinearGradient(0,1050,0,H);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(.35,`rgba(10,8,6,${.55*prog(t,1.0,1.6)})`);g.addColorStop(1,`rgba(10,8,6,${.75*prog(t,1.0,1.6)})`);ctx.fillStyle=g;ctx.fillRect(0,1050,W,H-1050);
  writeText('Encuentra el regalo perfecto',540,1175,'92px Paris','#f6e7c8',prog(t,1.2,2.2));
  const p2=prog(t,2.1,2.5);if(p2>0){ctx.save();ctx.globalAlpha=p2;ctx.font='600 62px Corm';ctx.textAlign='center';ctx.letterSpacing='3px';ctx.fillStyle=C.goldL;ctx.fillText('@bhriela_shoes',540,1275);ctx.font='600 36px Corm';ctx.letterSpacing='8px';ctx.fillStyle='#f6e7c8';ctx.fillText('ENVÍOS A TODO MÉXICO',545,1330);ctx.restore()}
- const p3=prog(t,2.6,3.0);if(p3>0){const k=eOutBack(p3);ctx.save();ctx.translate(540,1425);ctx.scale(k,k);const pill=new Path2D();pill.roundRect(-290,-46,580,92,46);ctx.fillStyle=C.vino;ctx.fill(pill);ctx.strokeStyle=C.gold;ctx.lineWidth=3;ctx.stroke(pill);
-   ctx.font='600 42px Corm';ctx.textAlign='center';ctx.textBaseline='middle';ctx.letterSpacing='3px';ctx.fillStyle='#fff';ctx.fillText('Hasta el 24 de diciembre',2,2);ctx.restore()}
- sparkleBurst(540,1425,2.95,t,12,9,330);
- // the girl peeks in bottom-right with her gift bag
- const gp=prog(t,3.2,3.7);if(gp>0&&GIRL){const h=560,x=900,feet=H+40-(1-eOutBack(gp))*-0;const y=lerp(H+600,feet,eOutBack(gp));const bob=Math.sin(t*3)*4;
-   drawGirl(x,y,h,1,bob,Math.sin(t*2)*.03);const [lx,ly]=girlHandL(x,y-bob,h);giftBag(lx-6,ly+6,.5);heart(x+70,y-h-30-prog(t,3.8,4.6)*40,1.6,prog(t,3.8,4.0)*(1-prog(t,5.6,6)))}
 }
 window.renderStory=renderStory;window.renderExit=renderExit;window.renderCTA=renderCTA;window.render=renderStory;
 </script></body></html>
