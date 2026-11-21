@@ -309,7 +309,7 @@ function renderLogo(t){ctx.clearRect(0,0,W,H);
 }
 
 // =================== v8: story ===================
-const HEDGE_Y=1565;
+const HEDGE_Y=1550;
 function drawGirl(x,feetY,h,alpha=1,bob=0,rot=0){if(!GIRL||alpha<=0)return;const s=h/GIRL.height;ctx.save();ctx.globalAlpha*=alpha;ctx.translate(x,feetY-bob);ctx.rotate(rot);
  // soft shadow
  ctx.save();ctx.globalAlpha*=.25;ctx.fillStyle='#000';ctx.beginPath();ctx.ellipse(0,bob,GIRL.width*s*.42,16,0,0,7);ctx.fill();ctx.restore();
@@ -361,9 +361,9 @@ function bubble(x,y,p,t){if(p<=0)return;const s=eOutBack(p);
  const q=prog(p,.3,1);if(q<=0)return;ctx.save();ctx.translate(x,y);ctx.scale(eOutBack(q),eOutBack(q));
  const cl=new Path2D();[[-80,0,70],[0,-30,85],[85,0,70],[0,40,70],[-40,35,55],[45,35,55]].forEach(([cx,cy,r])=>{cl.moveTo(cx+r,cy);cl.arc(cx,cy,r,0,7)});
  ctx.fillStyle='#fff';ctx.fill(cl);ctx.lineWidth=4;ctx.strokeStyle=C.ink;ctx.stroke(cl);ctx.fillStyle='#fff';ctx.fill(cl);
- const img=STK[3];const sc=Math.min(150/img.width,150/img.height);drawSticker(img,-10,80,sc);
+ const img=STK[0];const sc=Math.min(170/img.width,160/img.height);drawSticker(img,-10,85,sc);
  heart(90,-60,1.5+.15*Math.sin(t*10),1);ctx.restore()}
-const GX0=370,DOORX=830,FEET=1800,GH=820;
+const GX0=370,DOORX=830,FEET=1812,GH=820;
 function sceneArrive(L){ // 0..6
  storeFront(L,L);
  let x=GX0,alpha=1,h=GH,bob=0,rot=0;
@@ -393,7 +393,7 @@ function sceneExit(e){ // 0..4
  if(w<.35){drawGirl(x,feet,h,a,bob,rot);hedge(e);}
  else{hedge(e);if(dim>0){ctx.fillStyle=`rgba(10,15,20,${dim})`;ctx.fillRect(0,0,W,H)}glow(540,1500,620,prog(e,1.9,2.4),'255,236,190');drawGirl(x,feet,h,1,bob,rot)}
  // sparkles on the boots
- if(e>1.9){const by=1890-1060*.16;sparkleBurst(470,by,1.95,e,10,61,200);sparkleBurst(610,by,2.05,e,10,62,200);glint(458,1890-1060*.2,2.3,e,1.3)}
+ if(e>1.9){const by=1890-1060*.16;sparkleBurst(470,by,1.95,e,10,61,200);sparkleBurst(610,by,2.05,e,10,62,200);glint(560,1890-1060*.22,2.3,e,1.3)}
  writeText('Este año,',540,165,'130px Paris','#f6e7c8',prog(e,2.2,2.8));
  writeText('regala estilo',540,315,'165px Paris',C.goldL,prog(e,2.6,3.4));
  snowFront(e+3,.8);
