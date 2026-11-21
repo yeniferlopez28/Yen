@@ -228,7 +228,7 @@ function sceneRoom(tb){
    // backdrop halo
    if(p2<=0)glow(540,1000,520,.9*p1,'255,248,230');
    drawSticker(img,x,y,s,rot);
-   const bl=prog(tb,a+.12,a+.35)*(1-prog(tb,a+.6,a+.75));if(bl>0){ctx.save();ctx.globalAlpha=bl;writeText(NAMES[i],540,330,'150px Paris',C.vino,1);ctx.restore()}
+   
    sparkleBurst(540,950,a+.28,tb,12,30+i,360);
  }
 }
