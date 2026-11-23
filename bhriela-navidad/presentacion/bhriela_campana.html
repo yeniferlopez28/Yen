@@ -448,6 +448,19 @@ body.clean .hidebtn:hover,body.clean .hidebtn:focus-visible{opacity:1}
   .camp,.tools{bottom:calc(env(safe-area-inset-bottom,0px) + 7px)}
   body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 10px)}
 }
+
+/* ===== v8: softer rose palette (replaces steel blue, gold and near-black accents) ===== */
+:root{--blue-d:#B4475E; --gold:#E39AA8; --gold-l:#F7CDD5; --night:#4E1824; --ink:#3A1A1F; --muted:#6E5359; --hi:#F9DDE2}
+.card.dark{background:var(--wine-d)} .card.dark .sico{background:var(--gold-l)} .card.dark .sico .ic{stroke:var(--wine-d)}
+.tl span:nth-child(1){background:#7A1F2D} .tl span:nth-child(2){background:#A8344A} .tl span:nth-child(3){background:#D0687C} .tl span:nth-child(4){background:#EBA5B1}
+.st{border-color:#7A1F2D} .st:nth-child(2){border-color:#A8344A} .st:nth-child(3){border-color:#D0687C} .st:nth-child(4){border-color:#EBA5B1}
+.st-l{color:#7A1F2D} .st:nth-child(2) .st-l{color:#A8344A} .st:nth-child(3) .st-l{color:#C24E66} .st:nth-child(4) .st-l{color:#D06A80}
+.bfill{background:#D0687C} .bico{background:#FBE3E7}
+.cta-flow .step{background:#FBE3E7}
+.card.note{background:#FBE3E7}
+.b-night{background:radial-gradient(ellipse at 30% 30%,#6A2232 0%,var(--night) 70%)}
+.phone{border-color:#2A0E14;background:#2A0E14}
+.hero .snow span{box-shadow:0 0 0 1px rgba(180,71,94,.15)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
