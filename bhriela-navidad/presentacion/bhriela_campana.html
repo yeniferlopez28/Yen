@@ -425,6 +425,29 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   .res-collage{max-width:340px}
 }
 @media (max-width:560px){.story{grid-template-columns:minmax(0,1fr)} .hook-frames figure:nth-child(2){margin-top:18px}}
+
+/* ===== v7: compact, hideable controls ===== */
+:root{--bar:50px}
+.nav button{width:36px;height:36px;font-size:17px}
+.nav{bottom:calc(env(safe-area-inset-bottom,0px) + 7px);gap:6px}
+.nav .count{font-size:12px;min-width:120px}
+.camp,.tools{bottom:calc(env(safe-area-inset-bottom,0px) + 7px)}
+.camp{gap:6px}
+.camp .btn,body:not(.editing) .tools .btn,.hidebtn{width:36px;height:36px;padding:0;border-radius:50%;font-size:16px;display:grid;place-items:center;letter-spacing:0}
+.camp .btn::before,body:not(.editing) .tools .btn::before{content:none!important}
+.camp .btn.fs{background:var(--paper);color:var(--wine);border:1.5px solid rgba(122,31,45,.2)}
+.tools{right:max(60px,calc(env(safe-area-inset-right,0px) + 60px))}
+.hidebtn{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 7px);z-index:47;border:1.5px solid rgba(122,31,45,.2);background:var(--paper);color:var(--wine);cursor:pointer}
+.hidebtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+body.clean #root{bottom:0}
+body.clean .ctrlbar,body.clean .nav,body.clean .camp,body.clean .tools,body.clean .dots,body.clean .prog{display:none}
+body.clean .hidebtn{opacity:.25;transition:opacity .2s}
+body.clean .hidebtn:hover,body.clean .hidebtn:focus-visible{opacity:1}
+@media (max-width:900px){
+  .camp .btn,body:not(.editing) .tools .btn{width:36px;height:36px;font-size:16px}
+  .camp,.tools{bottom:calc(env(safe-area-inset-bottom,0px) + 7px)}
+  body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 10px)}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
@@ -470,7 +493,7 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
     <div class="rv" style="display:flex;flex-direction:column;gap:18px;min-width:0">
       <p class="eyebrow" style="color:var(--gold-l)" data-k="video.eyebrow">Video</p>
       <p class="quote" data-k="video.frase">“La Navidad llegó a Bhriela”</p>
-      <p style="color:#E5D4C8;font-size:19px" data-k="video.desc">Animado y videos reales.</p>
+      <p style="color:#E5D4C8;font-size:19px" data-k="video.desc">Historia ilustrada y tomas en tienda.</p>
     </div>
     <div class="ph-wrap rv-pop"><div class="phone ph-main"><video src="/_blob/22e0c5c11d7357088c1a55a20f7d4103" poster="/_blob/a7ba3a1268940a5b401c93bdce1c9027" muted loop playsinline controls preload="none" aria-label="Video final del anuncio navideño de Bhriela"></video></div><p class="ph-cap" data-k="video.cap1">Video final</p></div>
     <div class="vid-side">
@@ -484,7 +507,7 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   <svg class="deco flake" style="right:4%;top:56px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="aida.titulo">Modelo AIDA</h2></div>
-    <p class="lede rv" data-k="aida3.intro">El video está construido sobre las cuatro etapas del modelo AIDA: captar la Atención, despertar el Interés, generar el Deseo y llevar a la Acción. Cada etapa ocupa un tramo preciso de los 42 segundos.</p>
+    <p class="lede rv" data-k="aida3.intro">Cada etapa del modelo ocupa un tramo de los 42 segundos del video.</p>
     <div class="tl rv" role="img" aria-label="Línea de tiempo del video: Atención 0 a 6 segundos, Interés 6 a 14, Deseo 14 a 36, Acción 36 a 42">
       <span style="width:14.1%"></span><span style="width:18.8%"></span><span style="width:51.8%"></span><span style="width:15.3%"></span>
     </div>
@@ -493,25 +516,25 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
         <div class="st-h"><span class="st-l">A</span><span class="st-t" data-k="aida3.a.time">00:00 – 00:06</span></div>
         <img loading="lazy" decoding="async" src="/_blob/1f29825b5a024d9dcec817385fbee201" alt="El listón se suelta y aparece Ya llegó la Navidad a Bhriela">
         <h3 data-k="aida3.a.t">Atención</h3>
-        <p data-k="aida3.a.d">Una mano desata el listón del iPad y revela “Ya llegó la Navidad a Bhriela”. El movimiento y la sorpresa detienen el scroll, y el mensaje se entiende aun sin sonido.</p>
+        <p data-k="aida3.a.d">El listón se suelta y revela el mensaje. Detiene el scroll.</p>
       </article>
       <article class="st rv-pop">
         <div class="st-h"><span class="st-l">I</span><span class="st-t" data-k="aida3.i.time">00:06 – 00:14</span></div>
         <img loading="lazy" decoding="async" src="/_blob/069082baeb92e917337e84edd09a484c" alt="Lucy con su lista de regalos">
         <h3 data-k="aida3.i.t">Interés</h3>
-        <p data-k="aida3.i.d">Lucy repasa su lista: ya tiene el regalo de todos, menos el suyo. Es una situación real de diciembre que la clienta reconoce y que la invita a seguir viendo.</p>
+        <p data-k="aida3.i.d">A Lucy le falta un regalo en su lista: el suyo.</p>
       </article>
       <article class="st wide rv-pop">
         <div class="st-h"><span class="st-l">D</span><span class="st-t" data-k="aida3.d.time">00:14 – 00:36</span></div>
         <div class="st-imgs"><img loading="lazy" decoding="async" src="/_blob/c4edb3d31cb2e4f9aa459fcd801e3810" alt="Las botas salen de la caja de regalo"><img loading="lazy" decoding="async" src="/_blob/6b70da7304beb1d1b4f07e7fb5f2f977" alt="Toma real del candado dorado"></div>
         <h3 data-k="aida3.d.t">Deseo</h3>
-        <p data-k="aida3.d.d">Las botas salen de una caja de regalo y las tomas reales muestran piel, texturas y herrajes. Lucy sale con sus botas puestas: el autorregalo resuelve la historia. Es la etapa más larga porque es la que vende.</p>
+        <p data-k="aida3.d.d">Las botas salen de la caja y se lucen en tienda. Lucy se las lleva puestas.</p>
       </article>
       <article class="st rv-pop">
         <div class="st-h"><span class="st-l">A</span><span class="st-t" data-k="aida3.x.time">00:36 – 00:42</span></div>
         <img loading="lazy" decoding="async" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Cierre con el logo de Bhriela">
         <h3 data-k="aida3.x.t">Acción</h3>
-        <p data-k="aida3.x.d">El cierre indica qué hacer y dónde: “Encuentra el regalo perfecto”, @bhriela_shoes y envíos a todo México, apoyado por el botón “Enviar mensaje” del anuncio.</p>
+        <p data-k="aida3.x.d">“Encuentra el regalo perfecto” y el botón Enviar mensaje.</p>
       </article>
     </div>
   </div>
@@ -523,9 +546,9 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="just.titulo">Justificación</h2></div>
     <div class="grid g3" data-sort="just">
-      <article class="card rv" data-item="cancion"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3 class="lbl" data-k="just.c1.t">Canción “All I Want for Christmas”</h3><p class="txt" data-k="just.c1.d2">Es una de las canciones navideñas más reconocidas: desde el primer segundo sitúa a la audiencia en la temporada y despierta una emoción familiar. Su ritmo marca los cortes del video, sostiene la atención y asocia las botas con el regalo de Navidad.</p></article>
-      <article class="card rv" data-item="red"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></div><h3 class="lbl" data-k="just.c2.t">Red social: Instagram</h3><p class="txt" data-k="just.c2.d2">Es el canal principal de Bhriela: ahí están su comunidad, su catálogo y la atención por mensaje. Su formato vertical, en Reels e historias, es donde las clientas descubren tendencias de moda, y el anuncio las lleva directo a una conversación con la tienda.</p></article>
-      <article class="card rv" data-item="propuesta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div><h3 class="lbl" data-k="just.c3.t">Propuesta visual: animado y videos reales</h3><p class="txt" data-k="just.c3.d2">La ilustración animada cuenta una historia con la que la clienta se identifica y distingue el anuncio de la publicidad de calzado habitual. Las tomas reales en tienda muestran textura, color y acabados de cada modelo, lo que genera confianza en la compra.</p></article>
+      <article class="card rv" data-item="cancion"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3 class="lbl" data-k="just.c1.t">Canción “All I Want for Christmas”</h3><p class="txt" data-k="just.c1.d2">Evoca la Navidad desde el primer segundo y marca el ritmo de los cortes.</p></article>
+      <article class="card rv" data-item="red"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></div><h3 class="lbl" data-k="just.c2.t">Red social: Instagram</h3><p class="txt" data-k="just.c2.d2">El canal principal de Bhriela: su comunidad, su catálogo y sus pedidos por mensaje.</p></article>
+      <article class="card rv" data-item="propuesta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div><h3 class="lbl" data-k="just.c3.t">Propuesta visual: ilustración y tomas en tienda</h3><p class="txt" data-k="just.c3.d2">La historia ilustrada genera conexión; las tomas en tienda muestran el producto real.</p></article>
     </div>
   </div>
 </section>
@@ -556,11 +579,11 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
     <div class="hook-copy">
       <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="hook.titulo">El gancho</h2></div>
       <p class="hook-q rv" data-k="hook.frase">“La Navidad llegó a Bhriela”</p>
-      <p class="lede rv" data-k="hook.d">Los primeros seis segundos deciden si la persona sigue viendo. Por eso el video abre con una revelación: una mano desata el listón y aparece el anuncio de la temporada.</p>
+      <p class="lede rv" data-k="hook.d">Los primeros segundos deciden si la persona se queda.</p>
       <ul class="hook-pts rv">
-        <li><b data-k="hook.p1.t">Sorpresa</b><span data-k="hook.p1.d">El listón genera curiosidad por ver qué hay debajo.</span></li>
-        <li><b data-k="hook.p2.t">Sin sonido</b><span data-k="hook.p2.d">El mensaje se lee en pantalla aunque el video esté en silencio.</span></li>
-        <li><b data-k="hook.p3.t">Marca desde el inicio</b><span data-k="hook.p3.d">Bhriela aparece antes de los seis segundos.</span></li>
+        <li><b data-k="hook.p1.t">Sorpresa</b><span data-k="hook.p1.d">Despierta curiosidad por ver qué hay debajo.</span></li>
+        <li><b data-k="hook.p2.t">Sin sonido</b><span data-k="hook.p2.d">Se entiende aunque el video esté en silencio.</span></li>
+        <li><b data-k="hook.p3.t">Marca desde el inicio</b><span data-k="hook.p3.d">Bhriela aparece antes de los 6 segundos.</span></li>
       </ul>
     </div>
     <div class="hook-frames rv-pop">
@@ -575,7 +598,7 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   <svg class="deco flake" style="left:4%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="cta.titulo">Call to action</h2></div>
-    <p class="lede rv" data-k="cta4.intro">El llamado a la acción le dice a la clienta cuál es el siguiente paso: escribirle a Bhriela. Aparece en tres puntos del anuncio y todos llevan a la misma acción.</p>
+    <p class="lede rv" data-k="cta4.intro">Un solo siguiente paso: escribirle a Bhriela.</p>
     <div class="cta3">
       <article class="card ctac rv-pop"><img loading="lazy" decoding="async" class="ctac-img" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Pantalla final del video con el logo de Bhriela"><div><p class="tag" data-k="cta4.v.tag">Cierre del video</p><h3 class="lbl" data-k="cta4.v.t">“Encuentra el regalo perfecto”</h3><p class="txt" data-k="cta4.v.d">@bhriela_shoes
 Envíos a todo México</p></div></article>
@@ -604,7 +627,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></div></article>
     </div>
     <div class="kpi-bottom">
       <div class="card chart rv">
-        <p class="tag" data-k="kpi2.chart.t">Lo que hicieron las personas después de ver el anuncio</p>
+        <p class="tag" data-k="kpi2.chart.t">Acciones después de ver el anuncio</p>
         <div class="bars">
           <div class="brow" data-item="perfil"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M7.5 18a4.5 4.5 0 0 1 9 0"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.per.t">Visitas al perfil</span><span class="bv num" data-count data-k="kpi.per.v">98</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.per.d">Personas que visitaron el perfil de Instagram</span></div></div>
           <div class="brow" data-item="clics"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v4M3 9h4M4.8 4.8l2.6 2.6"/><path d="M10 10l10 4-4.2 1.6L14 20z"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.cli.t">Clics en el enlace</span><span class="bv num" data-count data-k="kpi.cli.v">52</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.cli.d">Clics generados por el anuncio</span></div></div>
@@ -630,8 +653,8 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></div></article>
   <div class="wrap res2">
     <div class="res-left">
       <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="res.titulo">Resultados</h2></div>
-      <div class="res-hero rv-pop"><span class="n num" data-count data-k="res.num">11</span><div><p class="t" data-k="res.num.t">Conversaciones iniciadas</p><p class="s" data-k="res2.num.s">Principal KPI de la campaña · $35.87 MXN por conversación</p></div></div>
-      <p class="lead rv" data-k="res.texto">La campaña navideña de Bhriela logró resultados positivos en cuanto a alcance, visibilidad y generación de conversaciones. Su principal KPI fueron las 11 conversaciones iniciadas, con un costo de $35.87 MXN por conversación; esto demuestra que la publicidad permitió atraer posibles clientas y generar oportunidades de venta.</p>
+      <div class="res-hero rv-pop"><span class="n num" data-count data-k="res.num">11</span><div><p class="t" data-k="res.num.t">Conversaciones iniciadas</p><p class="s" data-k="res2.num.s">Principal KPI · $35.87 por conversación</p></div></div>
+      <p class="lead rv" data-k="res.texto">La campaña logró alcance, visibilidad y conversaciones: atrajo posibles clientas y abrió oportunidades de venta.</p>
       <div class="res-strip rv">
         <div><span class="ri"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8"/></svg></span><b class="num" data-count data-k="res2.a">4,341</b><small data-k="res2.a.t">personas alcanzadas</small></div>
         <div><span class="ri"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M7.5 18a4.5 4.5 0 0 1 9 0"/></svg></span><b class="num" data-count data-k="res2.b">98</b><small data-k="res2.b.t">visitas al perfil</small></div>
@@ -821,15 +844,21 @@ litos</h2>
     if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.4) go(dx<0?1:-1)},{passive:true});
   /* full campaign video */
   var camp=document.createElement("div"); camp.className="camp";
-  var cb=document.createElement("button"); cb.type="button"; cb.className="btn"; cb.textContent="▶ Campaña completa"; cb.setAttribute("aria-label","Ver la campaña completa"); cb.addEventListener("click",openModal); camp.appendChild(cb); document.body.appendChild(camp);
+  var cb=document.createElement("button"); cb.type="button"; cb.className="btn"; cb.textContent="▶"; cb.title="Ver la campaña completa"; cb.setAttribute("aria-label","Ver la campaña completa"); cb.addEventListener("click",openModal); camp.appendChild(cb); document.body.appendChild(camp);
   var fsOk=!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
   if(fsOk){var fb=document.createElement("button"); fb.type="button"; fb.className="btn ghost fs"; fb.setAttribute("aria-label","Pantalla completa");
-    var fsLabel=function(){var on=!!(document.fullscreenElement||document.webkitFullscreenElement); fb.textContent=on?"✕ Salir de pantalla completa":"⛶ Pantalla completa"; fb.setAttribute("aria-label",on?"Salir de pantalla completa":"Pantalla completa")};
+    var fsLabel=function(){var on=!!(document.fullscreenElement||document.webkitFullscreenElement); fb.textContent=on?"✕":"⛶"; fb.title=on?"Salir de pantalla completa":"Pantalla completa"; fb.setAttribute("aria-label",on?"Salir de pantalla completa":"Pantalla completa")};
     fb.addEventListener("click",function(){var el=document.documentElement;
       try{ if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
         else{var r=(el.requestFullscreen||el.webkitRequestFullscreen).call(el); if(r&&r.catch) r.catch(function(){toast("Tu navegador no permitió la pantalla completa aquí.")})} }catch(e){toast("Tu navegador no permitió la pantalla completa aquí.")} });
     document.addEventListener("fullscreenchange",function(){fsLabel();declutterSoon()}); document.addEventListener("webkitfullscreenchange",fsLabel);
     fsLabel(); camp.appendChild(fb);}
+  var hb=document.createElement("button"); hb.type="button"; hb.className="hidebtn";
+  function setClean(on){document.body.classList.toggle("clean",on); hb.textContent=on?"⌃":"⌄"; hb.title=on?"Mostrar controles":"Ocultar controles"; hb.setAttribute("aria-label",hb.title); try{localStorage.setItem("bh-clean",on?"1":"0")}catch(e){} setTimeout(function(){declutter(slides[cur])},60)}
+  hb.addEventListener("click",function(){setClean(!document.body.classList.contains("clean"))});
+  document.body.appendChild(hb);
+  var startClean=false; try{startClean=localStorage.getItem("bh-clean")==="1"}catch(e){} setClean(startClean);
+  document.addEventListener("keydown",function(e){if((e.key==="h"||e.key==="H")&&!(document.activeElement&&document.activeElement.isContentEditable)&&!editing) setClean(!document.body.classList.contains("clean"))});
   function openModal(){
     if(document.querySelector(".modal")) return;
     root.querySelectorAll("video").forEach(function(v){v.pause()});
@@ -856,7 +885,7 @@ litos</h2>
   function drawTools(){
     tools.textContent="";
     if(!artifact||readOnly) return;
-    if(!editing){var eb=button("✎ Editar","",startEdit);eb.setAttribute("aria-label","Editar");tools.appendChild(eb);return}
+    if(!editing){var eb=button("✎","",startEdit);eb.setAttribute("aria-label","Editar");eb.title="Editar";tools.appendChild(eb);return}
     var h=document.createElement("div");h.className="hint";h.textContent="Toca cualquier texto para cambiarlo. Arrastra el ⠿ de una tarjeta para moverla.";tools.appendChild(h);
     tools.appendChild(button("Cancelar","ghost",cancelEdit));
     var s=button(saving?"Guardando…":"Guardar","",save); s.disabled=saving; tools.appendChild(s);
@@ -867,7 +896,7 @@ litos</h2>
       else el.removeAttribute("contenteditable");
     });
   }
-  function startEdit(){editing=true;document.body.classList.add("editing");render();setEditable(true);drawTools();}
+  function startEdit(){document.body.classList.remove("clean");editing=true;document.body.classList.add("editing");render();setEditable(true);drawTools();}
   function cancelEdit(){editing=false;document.body.classList.remove("editing");render();drawTools();toast("Cambios descartados")}
   root.addEventListener("paste",function(e){if(!editing) return; var t=e.target.closest&&e.target.closest("[data-k]"); if(!t||t.contentEditable==="plaintext-only") return;
     e.preventDefault(); var txt=(e.clipboardData||window.clipboardData).getData("text"); document.execCommand("insertText",false,txt);});
