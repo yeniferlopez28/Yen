@@ -142,6 +142,28 @@ body.editing [data-item]>.grip{display:grid;place-items:center;position:absolute
 body.editing [data-item].dragging{opacity:.55;transform:scale(.97)}
 body.editing .rv,body.editing .rv-pop,body.editing .line-draw{animation:none}
 body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-state:paused}
+
+/* AIDA */
+.aida-bar{display:flex;height:46px;border-radius:999px;overflow:hidden;box-shadow:0 8px 24px rgba(85,122,140,.18);margin-bottom:10px}
+.aida-bar span{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;letter-spacing:.14em;font-size:14px;text-transform:uppercase;color:var(--paper);white-space:nowrap;overflow:hidden}
+.aida-bar .sa{background:var(--wine)} .aida-bar .si{background:var(--blue-d)} .aida-bar .sd{background:var(--gold);color:var(--ink)} .aida-bar .sx{background:var(--night)}
+.aida-bar b{font-weight:700} .aida-bar .short{display:none}
+.aida-ticks{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:44px}
+.stages{display:flex;flex-direction:column;gap:24px}
+.stage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:start;padding:26px}
+.stage .letter{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:44px;color:var(--paper);background:var(--wine);flex:none}
+.stage.si .letter{background:var(--blue-d)} .stage.sd .letter{background:var(--gold);color:var(--ink)} .stage.sx .letter{background:var(--night)}
+.stage .body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start}
+.stage .lbl{font-size:24px}
+.stage .time{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.2em;color:var(--blue-d);text-transform:uppercase}
+.stage h4{margin:6px 0 4px;font-family:var(--display);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--wine)}
+.stage .txt{font-size:16.5px}
+.thumbs{display:flex;gap:10px}
+.thumbs img{width:92px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;box-shadow:0 8px 20px rgba(43,29,25,.18);display:block}
+.aida-intro{max-width:70ch;font-size:18px;color:var(--muted);margin-top:-18px;margin-bottom:34px}
+.sources{margin-top:30px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+.sources a{color:var(--blue-d)}
+@media (max-width:900px){.stage{grid-template-columns:minmax(0,1fr)} .stage .body{grid-template-columns:minmax(0,1fr)} .aida-bar span{font-size:11px;letter-spacing:.06em} .aida-bar .full{display:none} .aida-bar .short{display:inline}}
 @media (max-width:900px){
   .g3{grid-template-columns:minmax(0,1fr)} .g2{grid-template-columns:minmax(0,1fr)}
   .timeline{grid-template-columns:repeat(2,minmax(0,1fr))} .timeline .line,.timeline .pol::after{display:none}
@@ -204,6 +226,51 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
       <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/fcf8950cb6690d732521bf227a4dcf14" poster="/_blob/26c8a1af20d3cb0f4d7f3abc94d7f01d" muted autoplay loop playsinline preload="metadata" aria-label="Escena 1 real: se retira el listón del iPad"></video></div><p class="ph-cap" data-k="video.cap2">Escena 1</p></div>
       <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/78f8d7c4d0e79c257edd4887509b3ceb" poster="/_blob/63f972608664e99b0b3c59ffe0a87962" muted autoplay loop playsinline preload="metadata" aria-label="Tomas en tienda: botas con moño y bastón de caramelo"></video></div><p class="ph-cap" data-k="video.cap3">En tienda</p></div>
     </div>
+  </div>
+</section>
+
+<section class="band b-cream" id="aida">
+  <svg class="deco flake" style="right:5%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
+  <img class="deco boot fb" src="/_blob/d86250f83a152e819a46976f5ee69437" alt="" style="left:2%;bottom:40px;width:clamp(60px,7vw,110px)">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">El video, paso a paso</p><h2 class="title" data-k="aida.titulo">Modelo AIDA</h2></div>
+    <p class="aida-intro rv" data-k="aida.intro">El modelo AIDA, atribuido al publicista Elias St. Elmo Lewis (1898), explica el camino que recorre una persona frente a un anuncio: primero algo capta su Atención, luego despierta su Interés, después crea el Deseo y al final la lleva a la Acción. Así se reparte en los 42 segundos del video final:</p>
+    <div class="aida-bar rv" role="img" aria-label="Duración de cada etapa: Atención 0 a 6 segundos, Interés 6 a 14, Deseo 14 a 36, Acción 36 a 42">
+      <span class="sa" style="width:14.1%"><b class="full">Atención</b><b class="short">A</b></span><span class="si" style="width:18.8%">Interés</span><span class="sd" style="width:51.8%">Deseo</span><span class="sx" style="width:15.3%">Acción</span>
+    </div>
+    <div class="aida-ticks"><span>0 s</span><span>6 s</span><span>14 s</span><span>36 s</span><span>42 s</span></div>
+    <div class="stages">
+      <article class="card stage sa rv"><div class="letter">A</div><div class="body"><div>
+        <p class="time" data-k="aida.a.time">0 – 6 s · Atención</p>
+        <h3 class="lbl" data-k="aida.a.t">El listón se suelta</h3>
+        <h4>Qué pasa</h4><p class="txt" data-k="aida.a.q">Una mano real desata el moño del iPad y aparece “Ya llegó la Navidad a Bhriela”.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida.a.p">Desde el primer segundo hay movimiento y una sorpresa por descubrir, así que la persona se queda a ver qué hay debajo del listón. El mensaje se lee sin sonido y la marca aparece antes de los 6 segundos, dentro de la ventana en la que la mayoría decide si sigue viendo o hace scroll.</p>
+      </div><div class="thumbs"><img src="/_blob/b75e42a9fd8748964e37cf33de47fc3f" alt="El iPad con el mensaje Ya llegó la Navidad a Bhriela"></div></div></article>
+      <article class="card stage si rv"><div class="letter">I</div><div class="body"><div>
+        <p class="time" data-k="aida.i.time">6 – 14 s · Interés</p>
+        <h3 class="lbl" data-k="aida.i.t">La lista de regalos de Lucy</h3>
+        <h4>Qué pasa</h4><p class="txt" data-k="aida.i.q">Lucy llega a la tienda con su lista: Papá, Mamá y Hermano ya tienen palomita, pero en “Para mí” se queda un signo de interrogación. Se enciende el aparador, se le ocurre la idea, se imagina las botas y entra.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida.i.p">Plantea un problema real de diciembre con el que la clienta se identifica: regalar a todos y olvidarse de ella misma. La historia animada genera curiosidad por saber cómo se resuelve y conecta con Lucy, la clienta ideal de la segmentación.</p>
+      </div><div class="thumbs"><img src="/_blob/32534523615f2cb51e5419e2fa20b58e" alt="Lucy con su lista: Para mí con signo de interrogación"><img src="/_blob/30de3f102d2ba140d2ed975b8465cd0f" alt="Lucy se imagina las botas"></div></div></article>
+      <article class="card stage sd rv"><div class="letter">D</div><div class="body"><div>
+        <p class="time" data-k="aida.d.time">14 – 36 s · Deseo</p>
+        <h3 class="lbl" data-k="aida.d.t">Las botas como el regalo perfecto</h3>
+        <h4>Qué pasa</h4><p class="txt" data-k="aida.d.q">Adentro se abre una caja de regalo y salen las botas. Después vienen las tomas reales en tienda: el candado dorado, la textura croco, la hebilla y la variedad de modelos. Al final Lucy sale con sus botas puestas y su bolsa, palomea “Para mí” y aparece “Este año, regálate estilo”.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida.d.p">Es la etapa más larga porque es la que vende. La caja presenta las botas como un regalo, las tomas reales muestran la calidad y los detalles para generar confianza, y el final resuelve el problema del inicio: el autorregalo se siente merecido.</p>
+      </div><div class="thumbs"><img src="/_blob/38de79a58e41848ab4138d9fd78b28cc" alt="Las botas salen de la caja de regalo"><img src="/_blob/1bc64f9a64d61ab7fc826e7f4e613abb" alt="Toma real del candado dorado"><img src="/_blob/8562551398427dee1ff5360bb5c5e207" alt="Lucy sale con sus botas: Este año, regálate estilo"></div></div></article>
+      <article class="card stage sx rv"><div class="letter">A</div><div class="body"><div>
+        <p class="time" data-k="aida.x.time">36 – 42 s · Acción</p>
+        <h3 class="lbl" data-k="aida.x.t">Encuentra el regalo perfecto</h3>
+        <h4>Qué pasa</h4><p class="txt" data-k="aida.x.q">Cierra el logo de Bhriela con “Encuentra el regalo perfecto”, @bhriela_shoes y “Envíos a todo México”.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida.x.p">Dice qué hacer y dónde: buscar a Bhriela en Instagram, y quita la duda de si les llega a cualquier parte del país. Va de la mano con el objetivo de Meta Ads, que es que la persona mande un mensaje directo a Instagram desde el botón del anuncio.</p>
+      </div><div class="thumbs"><img src="/_blob/985c4f382bca0b9b1c51ac2c908c4ce6" alt="Cierre con el logo de Bhriela y @bhriela_shoes"></div></div></article>
+    </div>
+    <p class="sources">Fuentes:
+      <a href="https://es.wikipedia.org/wiki/Modelo_AIDA" target="_blank" rel="noopener">Wikipedia: Modelo AIDA</a>
+      <a href="https://economipedia.com/definiciones/modelo-aida.html" target="_blank" rel="noopener">Economipedia: Modelo AIDA</a>
+      <a href="https://www.ebsco.com/research-starters/marketing/aida-model" target="_blank" rel="noopener">EBSCO: AIDA Model</a>
+      <a href="https://www.brandwatch.com/blog/facebook-video-ads-best-practices/" target="_blank" rel="noopener">Brandwatch: buenas prácticas de video en Facebook</a>
+    </p>
   </div>
 </section>
 
@@ -325,7 +392,7 @@ litos</h2>
 </section>
 </template><script type="application/json" id="state">{"texts":{},"order":{}}</script><script id="app">
 (function(){
-  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["justificacion","Justificación"],["segmentacion","Segmentación"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["gracias","Gracias"]];
+  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["gracias","Gracias"]];
   var RESET=":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
   var state={texts:{},order:{}};
   try{state=JSON.parse(document.getElementById("state").textContent)||state}catch(e){}
