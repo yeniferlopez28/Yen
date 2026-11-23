@@ -861,14 +861,24 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></div></article>
   root.addEventListener("load",function(e){if(e.target.tagName==="IMG"&&slides[cur]&&slides[cur].contains(e.target)){clearTimeout(dcT);dcT=setTimeout(refit,120)}},true);
   window.addEventListener("resize",function(){clearTimeout(dcT);dcT=setTimeout(refit,250)});
 
+  /* Safari on iPhone/iPad needs the whole file to play: load each video as a local blob first */
+  function loadVid(v){
+    if(v._blobP) return v._blobP;
+    var src=v.getAttribute("src"); if(!src||src.indexOf("blob:")===0) return Promise.resolve();
+    v._blobP=fetch(src,{credentials:"include"}).then(function(r){if(!r.ok) throw new Error(r.status); return r.blob()})
+      .then(function(b){var t=v.currentTime||0; v.src=URL.createObjectURL(b.type?b:new Blob([b],{type:"video/mp4"})); try{v.load(); if(t) v.currentTime=t}catch(e){}})
+      .catch(function(){v._blobP=null});
+    return v._blobP;
+  }
+  function playVid(v){var go=function(){var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){})}; loadVid(v).then(go,go)}
   /* videos load and play only while on screen */
   var vidObs=null;
   function setupVideos(){
     if(vidObs) vidObs.disconnect();
     var vids=root.querySelectorAll("video");
-    if(!("IntersectionObserver" in window)){vids.forEach(function(v){v.preload="metadata"});return}
+    if(!("IntersectionObserver" in window)){vids.forEach(function(v){loadVid(v)});return}
     vidObs=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
-      if(e.isIntersecting){if(v.preload==="none")v.preload="auto";var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}
+      if(e.isIntersecting){playVid(v)}
       else if(!v.paused){v.pause()}})},{threshold:.35});
     vids.forEach(function(v){vidObs.observe(v)});
   }
@@ -969,7 +979,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></div></article>
     box.appendChild(t); box.appendChild(v); box.appendChild(x); m.appendChild(box);
     m.addEventListener("click",function(e){if(e.target===m) closeModal()});
     document.body.appendChild(m); x.focus();
-    var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+    playVid(v);
   }
   function closeModal(){var m=document.querySelector(".modal"); if(!m) return; var v=m.querySelector("video"); if(v) v.pause(); m.remove(); cb.focus()}
 
