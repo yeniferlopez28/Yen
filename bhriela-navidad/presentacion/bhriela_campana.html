@@ -199,7 +199,7 @@ body{font-family:var(--body)}
 .band{counter-increment:sec}
 .title{font-family:var(--display);font-weight:800;text-transform:none;letter-spacing:-.025em;line-height:.95;font-size:clamp(50px,8.4vw,116px);font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144}
 .eyebrow{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-.head .eyebrow::before{content:counter(sec,decimal-leading-zero) "  ✦  ";color:var(--wine)}
+.head .eyebrow::before{content:attr(data-n) "  ✦  ";color:var(--wine)}
 .b-wine .head .eyebrow::before,.b-night .head .eyebrow::before{color:var(--gold-l)}
 .script{font-family:var(--display);font-style:italic;font-weight:500;font-variation-settings:"SOFT" 100,"WONK" 1}
 .card{box-shadow:none;border:1.5px solid rgba(122,31,45,.16);border-radius:20px}
@@ -222,9 +222,9 @@ body{font-family:var(--body)}
 .btn{font-family:var(--mono);letter-spacing:.06em}
 /* hero: light blue with an awning-striped panel, like a shop front */
 .hero{background:var(--sand);color:var(--wine);place-items:center start;text-align:left}
-.hero .wrap{width:100%}
+.hero .wrap{width:100%;max-width:58%;margin:0;padding-left:clamp(0px,5vw,96px)}
 .hero-copy{display:flex;flex-direction:column;align-items:flex-start}
-.hero h1{color:var(--wine);font-weight:700;letter-spacing:.12em;margin-right:0;font-size:clamp(54px,8.2vw,136px)}
+.hero h1{color:var(--wine);font-weight:700;letter-spacing:.12em;margin-right:0;font-size:clamp(54px,6.8vw,120px)}
 .micro{font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d);margin-bottom:18px}
 .hero .pill{background:var(--wine);color:var(--cream2)} .hero .pill svg{stroke:var(--cream2)}
 .hero-stripes{position:absolute;top:0;right:0;bottom:0;width:38%;z-index:0;background:repeating-linear-gradient(90deg,var(--wine) 0 34px,var(--cream2) 34px 68px)}
@@ -243,10 +243,55 @@ body{font-family:var(--body)}
 @media (max-width:900px){
   .hero{place-items:end start;padding-top:calc(40vh + 40px);padding-bottom:110px;min-height:0}
   .hero-stripes{width:100%;bottom:auto;height:40vh}
+  .hero .wrap{max-width:100%;padding-left:0}
   .hero img.deco.boot:nth-of-type(n+3){display:none}
   .hero img.deco.boot{opacity:1;max-width:120px}
   .hero-stripes::before{display:none}
   .stage .lbl{font-size:24px}
+}
+
+/* ===== v3: slide deck mode ===== */
+html{scroll-behavior:auto}
+body{overflow:hidden;height:100%}
+#root{position:fixed;inset:0;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px)}
+#root>section.band{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:none;flex-direction:column;justify-content:center;justify-content:safe center;padding-bottom:calc(clamp(72px,10vw,130px) + 40px);content-visibility:visible;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+#root>section.band.is-on{display:flex;animation:slideIn .55s cubic-bezier(.2,.8,.2,1) both}
+#root>section.band.is-on.back{animation-name:slideInBack}
+#root>section.hero.is-on{display:grid}
+@keyframes slideIn{from{opacity:0;transform:translateX(40px)}}
+@keyframes slideInBack{from{opacity:0;transform:translateX(-40px)}}
+.band .wrap{width:100%}
+.rv,.rv-pop,.line-draw{animation:none}
+.is-on .rv{animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--d,0) * 90ms + 120ms)}
+.is-on .rv-pop{animation:pop .65s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(var(--d,0) * 90ms + 120ms)}
+.is-on .line-draw{animation:drawx 1s cubic-bezier(.6,0,.2,1) both;animation-delay:.3s}
+.lucy.rv-pop,.gifts .pol.rv-pop{animation:sway 5s ease-in-out infinite alternate}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}}
+.prog{transition:transform .4s ease}
+.dots{gap:9px}
+.nav{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);transform:translateX(-50%);z-index:45;display:flex;align-items:center;gap:8px;background:rgba(255,247,236,.92);border:1.5px solid rgba(122,31,45,.18);border-radius:999px;padding:6px;box-shadow:0 10px 30px rgba(43,29,25,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.nav button{width:46px;height:46px;border-radius:50%;border:0;background:var(--wine);color:var(--cream2);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.nav button[disabled]{opacity:.3;cursor:default}
+.nav button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.nav .count{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--wine);min-width:150px;text-align:center;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav .count b{font-weight:500;color:var(--blue-d)}
+.tools{bottom:calc(env(safe-area-inset-bottom,0px) + 16px)}
+.camp{position:fixed;left:max(16px,calc(env(safe-area-inset-left,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:46}
+.modal{position:fixed;inset:0;z-index:80;background:rgba(20,14,16,.86);display:grid;place-items:center;padding:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.modal .box{display:flex;flex-direction:column;align-items:center;gap:14px;max-height:100%}
+.modal video{height:min(78vh,760px);max-width:calc(100vw - 40px);aspect-ratio:9/16;object-fit:contain;border-radius:22px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.modal .mt{font-family:var(--display);font-style:italic;font-weight:600;color:var(--cream2);font-size:26px}
+.refs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;max-width:900px}
+.refs li{padding-left:2.2em;text-indent:-2.2em;font-size:17px;line-height:1.55;color:var(--ink)}
+.refs a{color:var(--blue-d);word-break:break-all}
+@media (max-width:900px){
+  .nav .count{min-width:0;max-width:120px}
+  .camp .btn,body:not(.editing) .tools .btn{width:50px;height:50px;padding:0;border-radius:50%;font-size:0;display:grid;place-items:center}
+  .camp .btn::before{content:"▶";font-size:18px}
+  body:not(.editing) .tools .btn::before{content:"✎";font-size:20px}
+  .tools .btn{padding:11px 14px;font-size:12px}
+  body.editing .tools{bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
+  #root>section.band{padding-bottom:150px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
@@ -265,7 +310,7 @@ body{font-family:var(--body)}
     <h1 data-k="hero.marca">BHRIELA</h1>
     <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-k="hero.campana">CAMPAÑA META ADS</span></div>
   </div>
-  <div class="scrollcue"><span>Desliza</span><i></i></div>
+  <div class="scrollcue"><span>Avanza con →</span></div>
 </section>
 
 <section class="band striped b-sand" id="guion">
@@ -307,8 +352,8 @@ body{font-family:var(--body)}
   <svg class="deco flake" style="right:5%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/94741ba98cca36b5ef9016121a60b084" alt="" style="left:2%;bottom:40px;width:clamp(60px,7vw,110px)">
   <div class="wrap">
-    <div class="head rv"><p class="eyebrow">El video, paso a paso</p><h2 class="title" data-k="aida.titulo">Modelo AIDA</h2></div>
-    <p class="aida-intro rv" data-k="aida.intro">El modelo AIDA, atribuido al publicista Elias St. Elmo Lewis (1898), explica el camino que recorre una persona frente a un anuncio: primero algo capta su Atención, luego despierta su Interés, después crea el Deseo y al final la lleva a la Acción. Así se reparte en los 42 segundos del video final:</p>
+    <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="aida.titulo">Modelo AIDA</h2></div>
+    <p class="aida-intro rv" data-k="aida2.intro">El modelo AIDA describe las etapas que recorre una persona frente a un anuncio: Atención, Interés, Deseo y Acción. Strong (1925) lo atribuye a E. St. Elmo Lewis y forma parte de los modelos de jerarquía de efectos de la publicidad (Lavidge & Steiner, 1961; Barry & Howard, 1990). Así se distribuye en los 42 segundos del video final:</p>
     <div class="aida-bar rv" role="img" aria-label="Duración de cada etapa: Atención 0 a 6 segundos, Interés 6 a 14, Deseo 14 a 36, Acción 36 a 42">
       <span class="sa" style="width:14.1%"><b class="full">Atención</b><b class="short">A</b></span><span class="si" style="width:18.8%">Interés</span><span class="sd" style="width:51.8%">Deseo</span><span class="sx" style="width:15.3%">Acción</span>
     </div>
@@ -318,33 +363,28 @@ body{font-family:var(--body)}
         <p class="time" data-k="aida.a.time">0 – 6 s · Atención</p>
         <h3 class="lbl" data-k="aida.a.t">El listón se suelta</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.a.q">Una mano real desata el moño del iPad y aparece “Ya llegó la Navidad a Bhriela”.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida.a.p">Desde el primer segundo hay movimiento y una sorpresa por descubrir, así que la persona se queda a ver qué hay debajo del listón. El mensaje se lee sin sonido y la marca aparece antes de los 6 segundos, dentro de la ventana en la que la mayoría decide si sigue viendo o hace scroll.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.a.p">Desde el primer segundo hay movimiento y una sorpresa por descubrir, lo que detiene el scroll y lleva a ver qué hay debajo del listón. El video es vertical, a pantalla completa y se entiende con o sin sonido, como recomienda Meta para anuncios en Reels (Meta, 2024).</p>
       </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/1f29825b5a024d9dcec817385fbee201" alt="El iPad con el mensaje Ya llegó la Navidad a Bhriela"></div></div></article>
       <article class="card stage si rv"><div class="letter">I</div><div class="body"><div>
         <p class="time" data-k="aida.i.time">6 – 14 s · Interés</p>
         <h3 class="lbl" data-k="aida.i.t">La lista de regalos de Lucy</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.i.q">Lucy llega a la tienda con su lista: Papá, Mamá y Hermano ya tienen palomita, pero en “Para mí” se queda un signo de interrogación. Se enciende el aparador, se le ocurre la idea, se imagina las botas y entra.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida.i.p">Plantea un problema real de diciembre con el que la clienta se identifica: regalar a todos y olvidarse de ella misma. La historia animada genera curiosidad por saber cómo se resuelve y conecta con Lucy, la clienta ideal de la segmentación.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.i.p">Plantea un problema real de diciembre con el que la clienta se identifica: regalarle a todos y olvidarse de ella misma. La historia genera curiosidad por saber cómo se resuelve y conecta con Lucy, la clienta ideal definida en la segmentación (Kotler et al., 2022).</p>
       </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/069082baeb92e917337e84edd09a484c" alt="Lucy con su lista: Para mí con signo de interrogación"><img loading="lazy" decoding="async" src="/_blob/46507e165aea34f516f49d3b08054b5c" alt="Lucy se imagina las botas"></div></div></article>
       <article class="card stage sd rv"><div class="letter">D</div><div class="body"><div>
         <p class="time" data-k="aida.d.time">14 – 36 s · Deseo</p>
         <h3 class="lbl" data-k="aida.d.t">Las botas como el regalo perfecto</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.d.q">Adentro se abre una caja de regalo y salen las botas. Después vienen las tomas reales en tienda: el candado dorado, la textura croco, la hebilla y la variedad de modelos. Al final Lucy sale con sus botas puestas y su bolsa, palomea “Para mí” y aparece “Este año, regálate estilo”.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida.d.p">Es la etapa más larga porque es la que vende. La caja presenta las botas como un regalo, las tomas reales muestran la calidad y los detalles para generar confianza, y el final resuelve el problema del inicio: el autorregalo se siente merecido.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.d.p">Es la etapa más larga porque es la que vende. La caja presenta las botas como un regalo, las tomas reales muestran calidad y detalles para generar confianza, y el final resuelve el problema del inicio: el autorregalo se siente merecido. En la jerarquía de efectos, esta parte lleva del conocimiento del producto a la preferencia por él (Lavidge & Steiner, 1961).</p>
       </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/c4edb3d31cb2e4f9aa459fcd801e3810" alt="Las botas salen de la caja de regalo"><img loading="lazy" decoding="async" src="/_blob/6b70da7304beb1d1b4f07e7fb5f2f977" alt="Toma real del candado dorado"><img loading="lazy" decoding="async" src="/_blob/59ed08c5188942c0552e36596bb1751a" alt="Lucy sale con sus botas: Este año, regálate estilo"></div></div></article>
       <article class="card stage sx rv"><div class="letter">A</div><div class="body"><div>
         <p class="time" data-k="aida.x.time">36 – 42 s · Acción</p>
         <h3 class="lbl" data-k="aida.x.t">Encuentra el regalo perfecto</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.x.q">Cierra el logo de Bhriela con “Encuentra el regalo perfecto”, @bhriela_shoes y “Envíos a todo México”.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida.x.p">Dice qué hacer y dónde: buscar a Bhriela en Instagram, y quita la duda de si les llega a cualquier parte del país. Va de la mano con el objetivo de Meta Ads, que es que la persona mande un mensaje directo a Instagram desde el botón del anuncio.</p>
+        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.x.p">Indica qué hacer y dónde: escribirle a Bhriela en Instagram, y elimina la duda del envío. Se complementa con el botón “Enviar mensaje” del anuncio, que abre una conversación directa con la tienda (Meta, s. f.).</p>
       </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Cierre con el logo de Bhriela y @bhriela_shoes"></div></div></article>
     </div>
-    <p class="sources">Fuentes:
-      <a href="https://es.wikipedia.org/wiki/Modelo_AIDA" target="_blank" rel="noopener">Wikipedia: Modelo AIDA</a>
-      <a href="https://economipedia.com/definiciones/modelo-aida.html" target="_blank" rel="noopener">Economipedia: Modelo AIDA</a>
-      <a href="https://www.ebsco.com/research-starters/marketing/aida-model" target="_blank" rel="noopener">EBSCO: AIDA Model</a>
-      <a href="https://www.brandwatch.com/blog/facebook-video-ads-best-practices/" target="_blank" rel="noopener">Brandwatch: buenas prácticas de video en Facebook</a>
-    </p>
+    
   </div>
 </section>
 
@@ -386,23 +426,19 @@ body{font-family:var(--body)}
   <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/9d5f785e65050e1b206dd5f08e8d39cb" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="cta.titulo">Call to action</h2></div>
-    <p class="aida-intro rv" data-k="cta2.intro">Un call to action (llamado a la acción) es la frase o el botón que le dice a la persona qué hacer después de ver el anuncio. Casi siempre empieza con un verbo: escribe, compra, visita. En esta campaña la acción que buscamos es una sola: que la clienta nos mande un mensaje.</p>
+    <p class="aida-intro rv" data-k="cta3.intro">El llamado a la acción indica a la audiencia cuál es el siguiente paso concreto. En la jerarquía de efectos corresponde a la etapa final, la de conducta, en la que la persona pasa de querer el producto a actuar (Lavidge & Steiner, 1961). En esta campaña ese paso es iniciar una conversación con Bhriela.</p>
     <div class="cta-flow rv" aria-label="Recorrido de la clienta">
-      <span class="step"><b>Ve el video</b>“La Navidad llegó a Bhriela”</span><i aria-hidden="true">→</i>
-      <span class="step"><b>Toca el botón</b>Enviar mensaje</span><i aria-hidden="true">→</i>
-      <span class="step"><b>Nos escribe</b>Mensaje directo a Instagram</span><i aria-hidden="true">→</i>
-      <span class="step hot"><b>Conversación</b>11 conversaciones iniciadas</span>
+      <span class="step"><b>Gancho</b>“La Navidad llegó a Bhriela”</span><i aria-hidden="true">→</i>
+      <span class="step"><b>Cierre</b>“Encuentra el regalo perfecto”</span><i aria-hidden="true">→</i>
+      <span class="step"><b>Botón</b>Enviar mensaje</span><i aria-hidden="true">→</i>
+      <span class="step hot"><b>Resultado</b>11 conversaciones iniciadas</span>
     </div>
-    <div class="grid g3" data-sort="cta">
-      <article class="card rv" data-item="video" style="transform:rotate(-1.2deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></div><p class="tag" data-k="cta2.v.tag">En el video · cierre</p><h3 class="lbl" data-k="cta2.v.t">“Encuentra el regalo perfecto”</h3><p class="txt" data-k="cta2.v.d">@bhriela_shoes
-Envíos a todo México</p></article>
-      <article class="card inv rv" data-item="copy" style="transform:rotate(1deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><p class="tag" data-k="cta2.c.tag">Copy del anuncio</p><p class="txt" style="font-size:21px" data-k="cta.c.d">Envíos a todo México.
+    <div class="grid g2" data-sort="cta">
+      <article class="card rv" data-item="gancho"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div><p class="tag" data-k="cta3.g.tag">Gancho del video · Atención</p><h3 class="lbl" data-k="cta3.g.t">“La Navidad llegó a Bhriela”</h3><p class="txt" data-k="cta3.g.d">Abre el anuncio con una revelación que capta la atención en los primeros segundos y anuncia la llegada de la temporada. Prepara a la audiencia para la acción final.</p></article>
+      <article class="card rv" data-item="video"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></div><p class="tag" data-k="cta3.v.tag">Cierre del video</p><h3 class="lbl" data-k="cta3.v.t">“Encuentra el regalo perfecto”</h3><p class="txt" data-k="cta3.v.d">@bhriela_shoes · Envíos a todo México. Indica dónde encontrar la marca y elimina la duda sobre la entrega.</p></article>
+      <article class="card inv rv" data-item="copy"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><p class="tag" data-k="cta3.c.tag">Copy del anuncio</p><p class="txt" style="font-size:21px" data-k="cta.c.d">Envíos a todo México.
 Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
-      <article class="card rv" data-item="meta" style="transform:rotate(-.8deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><p class="tag" data-k="cta2.m.tag">Botón de Meta Ads</p><h3 class="lbl" data-k="cta2.m.t">Enviar mensaje</h3><p class="txt" data-k="cta.m.d">Mensaje directo a Instagram</p></article>
-    </div>
-    <div class="grid g2 cta-notes">
-      <article class="card note rv"><p class="tag" data-k="cta2.n1.tag">¿Y “La Navidad llegó a Bhriela”?</p><p class="txt" data-k="cta2.n1.d">Es el gancho del video, la parte de Atención del modelo AIDA: anuncia la temporada y despierta curiosidad, pero no le pide a la persona que haga nada. Por eso no funciona sola como call to action; el llamado a la acción va al final del video, en el copy y en el botón.</p></article>
-      <article class="card note warn rv"><p class="tag" data-k="cta2.n2.tag">Ajuste recomendado</p><p class="txt" data-k="cta2.n2.d">El copy dice “Escríbenos por WhatsApp”, pero el botón del anuncio abre un mensaje directo a Instagram. Conviene que digan lo mismo: cambiar el copy a “Envíos a todo México. Escríbenos por mensaje directo y conoce nuestros modelos”, o configurar el anuncio para que el botón abra WhatsApp. Así la clienta no duda a dónde escribir.</p></article>
+      <article class="card rv" data-item="meta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><p class="tag" data-k="cta3.m.tag">Botón de Meta Ads</p><h3 class="lbl" data-k="cta3.m.t">Enviar mensaje</h3><p class="txt" data-k="cta3.m.d">Mensaje directo a Instagram. El botón abre una conversación con la tienda en un solo toque, por lo que el resultado se mide en conversaciones iniciadas (Meta, s. f.).</p></article>
     </div>
   </div>
 </section>
@@ -464,6 +500,21 @@ litos</h2>
   </div>
 </section>
 
+<section class="band b-cream" id="referencias">
+  <svg class="deco flake" style="right:5%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="ref.titulo">Referencias</h2></div>
+    <ul class="refs rv">
+      <li>Barry, T. E., &amp; Howard, D. J. (1990). A review and critique of the hierarchy of effects in advertising. <i>International Journal of Advertising, 9</i>(2), 121–135.</li>
+      <li>Kotler, P., Keller, K. L., &amp; Chernev, A. (2022). <i>Marketing management</i> (16th ed.). Pearson.</li>
+      <li>Lavidge, R. J., &amp; Steiner, G. A. (1961). A model for predictive measurements of advertising effectiveness. <i>Journal of Marketing, 25</i>(6), 59–62. <a href="https://doi.org/10.2307/1248516" target="_blank" rel="noopener">https://doi.org/10.2307/1248516</a></li>
+      <li>Meta. (2024, 7 de noviembre). <i>Unlock the power of Reel ads</i>. Meta for Developers. <a href="https://developers.facebook.com/blog/post/2024/11/07/unlock-the-power-of-reel-ads/" target="_blank" rel="noopener">https://developers.facebook.com/blog/post/2024/11/07/unlock-the-power-of-reel-ads/</a></li>
+      <li>Meta. (s. f.). <i>Ads that click to Instagram</i>. Meta for Developers. <a href="https://developers.facebook.com/docs/marketing-api/ad-creative/messaging-ads/click-to-instagram" target="_blank" rel="noopener">https://developers.facebook.com/docs/marketing-api/ad-creative/messaging-ads/click-to-instagram</a></li>
+      <li>Strong, E. K. (1925). Theories of selling. <i>Journal of Applied Psychology, 9</i>(1), 75–86. <a href="https://doi.org/10.1037/h0070123" target="_blank" rel="noopener">https://doi.org/10.1037/h0070123</a></li>
+    </ul>
+  </div>
+</section>
+
 <section class="band b-wine thanks" id="gracias">
   <div class="snow"></div>
   <div class="ring" aria-hidden="true"></div>
@@ -478,7 +529,7 @@ litos</h2>
 </section>
 </template><script type="application/json" id="state">{"texts":{},"order":{}}</script><script id="app">
 (function(){
-  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["gracias","Gracias"]];
+  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["referencias","Referencias"],["gracias","Gracias"]];
   var RESET=":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
   var state={texts:{},order:{}};
   try{state=JSON.parse(document.getElementById("state").textContent)||state}catch(e){}
@@ -541,16 +592,67 @@ litos</h2>
   var prog=document.createElement("div"); prog.className="prog"; document.body.appendChild(prog);
   var dots=document.createElement("nav"); dots.className="dots"; dots.setAttribute("aria-label","Secciones"); document.body.appendChild(dots);
   SECTIONS.forEach(function(s){var a=document.createElement("a");a.href="#"+s[0];a.title=s[1];a.setAttribute("aria-label",s[1]);dots.appendChild(a)});
-  var navObs=null;
+  var cur=0, slides=[];
   function setupNav(){
-    if(navObs) navObs.disconnect(); if(!("IntersectionObserver" in window)) return;
-    navObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
-      var i=SECTIONS.findIndex(function(s){return s[0]===e.target.id});
-      dots.querySelectorAll("a").forEach(function(a,j){a.classList.toggle("on",j===i)});
-    }})},{rootMargin:"-45% 0px -50% 0px"});
-    root.querySelectorAll("section[id]").forEach(function(s){navObs.observe(s)});
+    slides=[].slice.call(root.querySelectorAll("section.band[id]"));
+    var h=(location.hash||"").slice(1), k=SECTIONS.findIndex(function(x){return x[0]===h});
+    show(k>=0?k:Math.min(cur,slides.length-1),0,true);
   }
-  var ticking=false;window.addEventListener("scroll",function(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;var h=document.documentElement;var p=h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight);prog.style.transform="scaleX("+p+")"})},{passive:true});
+  function show(i,dir,instant){
+    if(!slides.length) return; i=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(sl,j){sl.classList.toggle("is-on",j===i);sl.classList.toggle("back",j===i&&dir<0);sl.setAttribute("aria-hidden",j===i?"false":"true")});
+    var sl=slides[i]; sl.scrollTop=0;
+    slides.forEach(function(x,j){var e=x.querySelector(".head .eyebrow"); if(e) e.setAttribute("data-n",String(j+1).padStart(2,"0"))});
+    var n=0; sl.querySelectorAll(".rv,.rv-pop").forEach(function(el){el.style.setProperty("--d",Math.min(n++,8))});
+    if(!instant&&!editing){sl.classList.remove("is-on");void sl.offsetWidth;sl.classList.add("is-on")}
+    [i+1,i-1].forEach(function(k){if(slides[k]) slides[k].querySelectorAll('img[loading="lazy"]').forEach(function(im){im.loading="eager"})});
+    sl.querySelectorAll('img[loading="lazy"]').forEach(function(im){im.loading="eager"});
+    cur=i; prog.style.transform="scaleX("+((i+1)/slides.length)+")";
+    dots.querySelectorAll("a").forEach(function(a,j){a.classList.toggle("on",j===i)});
+    var name=SECTIONS[i]?SECTIONS[i][1]:"";
+    countEl.innerHTML=""; var b=document.createElement("b"); b.textContent=(i+1)+" / "+slides.length; countEl.appendChild(b); countEl.appendChild(document.createTextNode("  "+name));
+    prevB.disabled=i===0; nextB.disabled=i===slides.length-1;
+    try{history.replaceState(null,"","#"+sl.id)}catch(e){}
+    sl.querySelectorAll("[data-count]").forEach(function(el){if(countObs) {countObs.unobserve(el);countObs.observe(el)}});
+  }
+  function go(d){ if(document.querySelector(".modal")) return; show(cur+d,d) }
+  var nav=document.createElement("nav"); nav.className="nav"; nav.setAttribute("aria-label","Cambiar de diapositiva");
+  var prevB=document.createElement("button"); prevB.type="button"; prevB.textContent="←"; prevB.setAttribute("aria-label","Diapositiva anterior"); prevB.addEventListener("click",function(){go(-1)});
+  var countEl=document.createElement("span"); countEl.className="count"; countEl.setAttribute("aria-live","polite");
+  var nextB=document.createElement("button"); nextB.type="button"; nextB.textContent="→"; nextB.setAttribute("aria-label","Siguiente diapositiva"); nextB.addEventListener("click",function(){go(1)});
+  nav.appendChild(prevB); nav.appendChild(countEl); nav.appendChild(nextB); document.body.appendChild(nav);
+  dots.addEventListener("click",function(e){var a=e.target.closest("a"); if(!a) return; e.preventDefault(); var k=[].indexOf.call(dots.children,a); show(k,k>cur?1:-1)});
+  window.addEventListener("hashchange",function(){var h=location.hash.slice(1),k=SECTIONS.findIndex(function(x){return x[0]===h}); if(k>=0&&k!==cur) show(k,k>cur?1:-1)});
+  document.addEventListener("keydown",function(e){
+    if(editing&&document.activeElement&&document.activeElement.isContentEditable) return;
+    if(e.target&&/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    if(e.key==="Escape"){closeModal();return}
+    if(e.key==="ArrowRight"||e.key==="PageDown"){e.preventDefault();go(1)}
+    else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();go(-1)}
+  });
+  var tx=null,ty=null;
+  root.addEventListener("touchstart",function(e){if(editing) return; tx=e.touches[0].clientX; ty=e.touches[0].clientY},{passive:true});
+  root.addEventListener("touchend",function(e){if(tx===null) return; var dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; tx=null;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.4) go(dx<0?1:-1)},{passive:true});
+  /* full campaign video */
+  var camp=document.createElement("div"); camp.className="camp";
+  var cb=document.createElement("button"); cb.type="button"; cb.className="btn"; cb.textContent="▶ Campaña completa"; cb.setAttribute("aria-label","Ver la campaña completa"); cb.addEventListener("click",openModal); camp.appendChild(cb); document.body.appendChild(camp);
+  function openModal(){
+    if(document.querySelector(".modal")) return;
+    root.querySelectorAll("video").forEach(function(v){v.pause()});
+    var m=document.createElement("div"); m.className="modal"; m.setAttribute("role","dialog"); m.setAttribute("aria-modal","true"); m.setAttribute("aria-label","Campaña completa");
+    var box=document.createElement("div"); box.className="box";
+    var t=document.createElement("p"); t.className="mt"; t.textContent="Campaña completa · La Navidad llegó a Bhriela";
+    var v=document.createElement("video"); v.src="/_blob/22e0c5c11d7357088c1a55a20f7d4103"; v.poster="/_blob/a7ba3a1268940a5b401c93bdce1c9027"; v.controls=true; v.playsInline=true; v.preload="auto";
+    var x=document.createElement("button"); x.type="button"; x.className="btn ghost"; x.textContent="Cerrar"; x.addEventListener("click",closeModal);
+    box.appendChild(t); box.appendChild(v); box.appendChild(x); m.appendChild(box);
+    m.addEventListener("click",function(e){if(e.target===m) closeModal()});
+    document.body.appendChild(m); x.focus();
+    var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+  }
+  function closeModal(){var m=document.querySelector(".modal"); if(!m) return; var v=m.querySelector("video"); if(v) v.pause(); m.remove(); cb.focus()}
+
+  
 
   /* editing toolbar */
   var tools=document.createElement("div"); tools.className="tools"; document.body.appendChild(tools);
@@ -561,7 +663,7 @@ litos</h2>
   function drawTools(){
     tools.textContent="";
     if(!artifact||readOnly) return;
-    if(!editing){tools.appendChild(button("✎ Editar","",startEdit));return}
+    if(!editing){var eb=button("✎ Editar","",startEdit);eb.setAttribute("aria-label","Editar");tools.appendChild(eb);return}
     var h=document.createElement("div");h.className="hint";h.textContent="Toca cualquier texto para cambiarlo. Arrastra el ⠿ de una tarjeta para moverla.";tools.appendChild(h);
     tools.appendChild(button("Cancelar","ghost",cancelEdit));
     var s=button(saving?"Guardando…":"Guardar","",save); s.disabled=saving; tools.appendChild(s);
