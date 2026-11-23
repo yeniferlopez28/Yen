@@ -1,8 +1,8 @@
 <title>Bhriela Campaña Meta Ads</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300..700&family=Nunito+Sans:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"><style id="st">
 /* Layout: one long scrolling story, each campaign topic a full-width band; boots float in the margins of every band. Brand look: wine, cream, sand and gold, single light world. */
 :root{
-  --wine:#7A1F2D; --wine-d:#561520; --cream:#F5EDE3; --sand:#E7D7C5; --paper:#FCF8F2;
-  --gold:#C79A3E; --gold-l:#EBCB85; --ink:#2B1D19; --muted:#5E4C45; --night:#21171A; --on-wine:#F4E4DA;
+  --wine:#7A1F2D; --wine-d:#561520; --cream:#FAFCFD; --sand:#E2ECF1; --paper:#FFFFFF; --blue:#BCD0D8; --blue-d:#557A8C; --ring:#D5DBE0;
+  --gold:#C79A3E; --gold-l:#EBCB85; --ink:#2B1D19; --muted:#56606A; --night:#1D2C36; --on-wine:#F4E4DA;
   --display:'Josefin Sans',Futura,'Trebuchet MS',sans-serif; --body:'Nunito Sans',system-ui,Arial,sans-serif; --script:'Cormorant Garamond',Georgia,serif;
   color-scheme:light;
 }
@@ -13,7 +13,8 @@ h1,h2,h3,p{margin:0}
 .band{position:relative;overflow:hidden;padding-block:clamp(72px,10vw,130px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto}
 .b-cream{background:var(--cream)} .b-sand{background:var(--sand)} .b-wine{background:var(--wine);color:var(--paper)} .b-night{background:var(--night);color:var(--paper)}
-.eyebrow{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--blue-d)}
+.b-wine .eyebrow,.b-night .eyebrow{color:var(--blue)}
 .title{font-family:var(--display);font-weight:700;font-size:clamp(40px,6.4vw,84px);line-height:1.02;letter-spacing:.04em;text-transform:uppercase;color:var(--wine);text-wrap:balance}
 .b-wine .title,.b-night .title{color:var(--paper)}
 .head{display:flex;flex-direction:column;gap:10px;margin-bottom:clamp(32px,5vw,56px)}
@@ -23,7 +24,7 @@ h1,h2,h3,p{margin:0}
 .grid{display:grid;gap:20px}
 .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{position:relative;background:var(--paper);border-radius:24px;padding:30px;box-shadow:0 10px 36px rgba(86,21,32,.09);display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{position:relative;background:var(--paper);border:1px solid #DCE7EC;border-radius:24px;padding:30px;box-shadow:0 12px 36px rgba(85,122,140,.14);display:flex;flex-direction:column;gap:14px;min-width:0}
 .card .lbl{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);line-height:1.25}
 .card .txt{font-size:17px;color:var(--muted);line-height:1.5}
 .chip{width:54px;height:54px;border-radius:50%;background:var(--wine);display:grid;place-items:center;flex:none}
@@ -40,7 +41,7 @@ h1,h2,h3,p{margin:0}
 @keyframes bobB{from{transform:translateY(-20px) rotate(7deg)}to{transform:translateY(8px) rotate(-3deg)}}
 @keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
 .spark{width:34px;height:34px;animation:tw 1.9s ease-in-out infinite alternate}
-.spark path{fill:var(--gold)} .b-wine .spark path,.b-night .spark path{fill:var(--gold-l)}
+.spark path{fill:var(--gold)} .spark:nth-of-type(even) path{fill:var(--blue-d)} .b-wine .spark path,.b-night .spark path{fill:var(--gold-l)} .b-wine .spark:nth-of-type(even) path,.b-night .spark:nth-of-type(even) path{fill:var(--blue)}
 @keyframes tw{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
 /* scroll-driven reveals: the page is complete at rest; supporting browsers ease things in as you scroll */
 @supports (animation-timeline: view()){
@@ -53,7 +54,7 @@ h1,h2,h3,p{margin:0}
 @keyframes drawx{from{transform:scaleX(0)}}
 /* hero */
 .hero{min-height:min(820px,92svh);display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#8E2838 0%,var(--wine) 45%,var(--wine-d) 100%);color:var(--paper)}
-.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(64px,14vw,190px);letter-spacing:.16em;margin-right:-.16em;line-height:1;animation:heroIn 1.2s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{color:#E4EEF2;font-family:var(--display);font-weight:600;font-size:clamp(64px,14vw,190px);letter-spacing:.16em;margin-right:-.16em;line-height:1;animation:heroIn 1.2s cubic-bezier(.2,.8,.2,1) both}
 .pill{display:inline-flex;align-items:center;gap:14px;margin-top:34px;background:var(--paper);color:var(--wine);border-radius:999px;padding:14px 30px;font-family:var(--display);font-weight:700;letter-spacing:.2em;font-size:clamp(15px,2vw,22px);box-shadow:0 14px 40px rgba(0,0,0,.28);animation:heroIn 1.2s .35s cubic-bezier(.2,.8,.2,1) both}
 .pill svg{width:22px;height:22px;stroke:var(--wine);fill:none;stroke-width:2.2;stroke-linecap:round}
 @keyframes heroIn{from{opacity:0;transform:translateY(30px) scale(.96)}}
@@ -70,7 +71,7 @@ h1,h2,h3,p{margin:0}
 .pol img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:3px;display:block}
 .pol .cap{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.18em;color:var(--wine);text-transform:uppercase;text-align:center}
 .timeline .pol:nth-child(odd){transform:rotate(-2.5deg)} .timeline .pol:nth-child(even){transform:rotate(2deg) translateY(-22px)}
-.timeline .pol::after{content:"";position:absolute;left:50%;bottom:-48px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--gold);border:3px solid var(--wine)}
+.timeline .pol::after{content:"";position:absolute;left:50%;bottom:-48px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--blue);border:3px solid var(--wine)}
 .timeline .pol:nth-child(even)::after{bottom:-70px}
 .pol:hover{z-index:3}
 /* video */
@@ -96,13 +97,13 @@ h1,h2,h3,p{margin:0}
 .card.inv .num{color:var(--paper)}
 /* results */
 .res{display:grid;grid-template-columns:auto minmax(0,1fr);gap:64px;align-items:center}
-.big11{width:clamp(220px,28vw,340px);aspect-ratio:1;border-radius:50%;background:var(--paper);color:var(--wine);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;padding:20px}
+.big11{width:clamp(220px,28vw,340px);aspect-ratio:1;border-radius:50%;background:var(--paper);border:10px solid var(--blue);outline:2px solid var(--ring);outline-offset:6px;color:var(--wine);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;padding:20px}
 .big11 .n{font-family:var(--display);font-weight:700;font-size:clamp(96px,13vw,160px);line-height:.9}
 .big11 .t{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.22em;text-transform:uppercase}
 .res p.lead{font-size:clamp(19px,2vw,24px);line-height:1.6;color:var(--on-wine);max-width:62ch}
 /* expect */
 .lines{display:flex;flex-direction:column;gap:34px;max-width:760px;margin:30px auto 0}
-.lines p{border-bottom:2px solid rgba(122,31,45,.45);min-height:52px;padding:10px 4px;font-size:22px;font-family:var(--script);font-style:italic;font-weight:600;color:var(--wine);transform-origin:left}
+.lines p{border-bottom:2px solid var(--blue);min-height:52px;padding:10px 4px;font-size:22px;font-family:var(--script);font-style:italic;font-weight:600;color:var(--wine);transform-origin:left}
 /* gifts */
 .gifts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
 .gifts .pol{animation:sway 5s ease-in-out infinite alternate}
@@ -111,12 +112,18 @@ h1,h2,h3,p{margin:0}
 /* thanks */
 .thanks{text-align:center}
 .thanks h2{font-family:var(--display);font-weight:700;font-size:clamp(52px,13vw,200px);letter-spacing:.04em;line-height:1}
-.thanks p{margin-top:20px;font-family:var(--display);font-weight:600;letter-spacing:.5em;color:var(--gold-l);font-size:20px}
+.thanks p{margin-top:20px;font-family:var(--display);font-weight:600;letter-spacing:.5em;color:var(--blue);font-size:22px}
+.ring{position:absolute;left:50%;top:50%;z-index:1;width:clamp(300px,58vw,700px);aspect-ratio:1;border-radius:50%;border:3px solid rgba(188,208,216,.75);transform:translate(-50%,-50%);box-shadow:0 0 0 14px rgba(213,219,224,.08),inset 0 0 80px rgba(188,208,216,.12);animation:breathe 5s ease-in-out infinite alternate;pointer-events:none}
+@keyframes breathe{from{transform:translate(-50%,-50%) scale(.97)}to{transform:translate(-50%,-50%) scale(1.02)}}
+.flake{width:30px;height:30px;stroke:var(--blue-d);fill:none;stroke-width:2;stroke-linecap:round;animation:spin 14s linear infinite}
+.b-wine .flake,.b-night .flake,.hero .flake{stroke:var(--blue)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.thanks .ring{width:clamp(280px,48vw,560px)}
 /* side nav + progress */
 .prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:100%;transform-origin:left;transform:scaleX(0);background:var(--gold);z-index:40}
 .dots{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40}
-.dots a{width:11px;height:11px;border-radius:50%;background:rgba(199,154,62,.35);border:2px solid var(--gold);display:block}
-.dots a.on{background:var(--gold);transform:scale(1.25)}
+.dots a{width:11px;height:11px;border-radius:50%;background:rgba(188,208,216,.45);border:2px solid var(--blue-d);display:block}
+.dots a.on{background:var(--blue-d);transform:scale(1.25)}
 .dots a:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
 /* editing */
 .tools{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:50;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 32px)}
@@ -148,7 +155,9 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
+  <svg class="deco flake" style="left:18%;top:42%" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <div class="snow"></div>
+  <div class="ring" aria-hidden="true"></div>
   <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="left:4%;top:8%;width:clamp(110px,16vw,240px)">
   <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:6%;top:6%;width:clamp(90px,12vw,180px)">
   <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="left:8%;bottom:8%;width:clamp(90px,13vw,200px)">
@@ -164,6 +173,7 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
 </section>
 
 <section class="band b-sand" id="guion">
+  <svg class="deco flake" style="left:4%;top:60px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img class="deco boot fa" src="/_blob/d86250f83a152e819a46976f5ee69437" alt="" style="right:4%;top:40px;width:clamp(70px,8vw,120px)">
   <svg class="deco spark" style="left:46%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap">
@@ -180,6 +190,7 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
 </section>
 
 <section class="band b-night" id="video">
+  <svg class="deco flake" style="left:44%;top:50px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <svg class="deco spark" style="left:6%;top:12%" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <svg class="deco spark" style="right:8%;bottom:10%;animation-delay:-1s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap vid-row">
@@ -197,6 +208,7 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
 </section>
 
 <section class="band b-cream" id="justificacion">
+  <svg class="deco flake" style="left:3%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img class="deco boot fb" src="/_blob/8e6400aa0eb7652796dc4d52c663937c" alt="" style="right:4%;top:50px;width:clamp(70px,8vw,120px)">
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="just.titulo">Justificación</h2></div>
@@ -209,6 +221,7 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
 </section>
 
 <section class="band b-sand" id="segmentacion">
+  <svg class="deco flake" style="left:3%;bottom:60px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <svg class="deco spark" style="left:52%;top:60px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap seg">
     <div style="min-width:0">
@@ -227,6 +240,7 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
 </section>
 
 <section class="band b-cream" id="cta">
+  <svg class="deco flake" style="left:42%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img class="deco boot fa" src="/_blob/ae94d012aeb13fbaf92a55869b439bfc" alt="" style="right:3%;bottom:40px;width:clamp(80px,10vw,150px)">
   <img class="deco boot fb" src="/_blob/0a9d2b2da62203edb64ca6b157029fe2" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
   <div class="wrap">
@@ -241,6 +255,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
 </section>
 
 <section class="band b-sand" id="kpis">
+  <svg class="deco flake" style="left:3%;top:80px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <svg class="deco spark" style="right:6%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Resultado obtenido · ¿Qué mide?</p><h2 class="title" data-k="kpi.titulo">KPI’s</h2></div>
@@ -271,6 +286,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
 </section>
 
 <section class="band b-cream" id="espero">
+  <svg class="deco flake" style="left:30%;top:80px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="left:3%;bottom:40px;width:clamp(90px,12vw,190px)">
   <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:4%;top:50px;width:clamp(70px,9vw,140px)">
   <div class="wrap" style="text-align:center">
@@ -284,6 +300,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
 </section>
 
 <section class="band b-sand" id="regalitos">
+  <svg class="deco flake" style="right:30%;top:60px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <svg class="deco spark" style="left:8%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <svg class="deco spark" style="right:8%;bottom:70px;animation-delay:-1s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap gifts">
@@ -296,6 +313,7 @@ litos</h2>
 
 <section class="band b-wine thanks" id="gracias">
   <div class="snow"></div>
+  <div class="ring" aria-hidden="true"></div>
   <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="left:5%;top:30px;width:clamp(90px,13vw,200px)">
   <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="right:6%;top:30px;width:clamp(80px,11vw,170px)">
   <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="left:9%;bottom:30px;width:clamp(70px,10vw,150px)">
