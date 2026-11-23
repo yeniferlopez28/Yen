@@ -416,7 +416,7 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
 .res-collage .c2{transform:rotate(2deg)} .res-collage .c3{transform:rotate(-1deg)}
 .res-collage .c2 img,.res-collage .c3 img{aspect-ratio:1/1}
 #aida .title{font-size:clamp(44px,5.4vw,84px)} #aida .head{margin-bottom:22px}
-@media (max-width:1100px){.story{grid-template-columns:1fr 1fr} .story .st.wide{grid-column:auto}}
+@media (max-width:1100px) and (orientation:portrait),(max-width:899px){.story{grid-template-columns:1fr 1fr} .story .st.wide{grid-column:auto}}
 @media (max-width:900px){
   .hook,.res2{grid-template-columns:minmax(0,1fr)}
   .hook-pts li{grid-template-columns:minmax(0,1fr);gap:2px}
@@ -461,6 +461,53 @@ body.clean .hidebtn:hover,body.clean .hidebtn:focus-visible{opacity:1}
 .b-night{background:radial-gradient(ellipse at 30% 30%,#6A2232 0%,var(--night) 70%)}
 .phone{border-color:#2A0E14;background:#2A0E14}
 .hero .snow span{box-shadow:0 0 0 1px rgba(180,71,94,.15)}
+
+/* fitted slides: content is zoomed to fit, so nothing scrolls */
+#root>section.band.fitted{overflow:hidden}
+
+/* ===== v9: compact slides on landscape screens so everything fits ===== */
+.snow{overflow:hidden}
+#root>section.hero,#root>section.thanks{overflow:hidden}
+@media (orientation:landscape) and (min-width:700px){
+  #root>section.band{padding-block:clamp(26px,5vh,64px)}
+  #root>section.band.striped{padding-top:calc(clamp(26px,5vh,64px) + 54px)}
+  .title,#kpis .title,#aida .title{font-size:clamp(34px,8vh,92px)}
+  .head{margin-bottom:clamp(12px,2.6vh,30px);gap:6px}
+  .lede{font-size:clamp(14px,2.1vh,19px);margin:-6px 0 clamp(10px,2.2vh,26px)}
+  .card{padding:clamp(14px,2.4vh,28px)}
+  .card .lbl{font-size:clamp(17px,2.6vh,23px)}
+  .card .txt{font-size:clamp(13px,1.9vh,17px)}
+  .chip{width:clamp(38px,5.6vh,54px);height:clamp(38px,5.6vh,54px)}
+  .timeline{padding-bottom:40px;gap:16px} .timeline .pol::after{bottom:-36px} .timeline .pol:nth-child(even)::after{bottom:-52px} .timeline .line{bottom:12px}
+  .timeline .pol:nth-child(even){transform:rotate(2deg) translateY(-12px)}
+  .pol img{aspect-ratio:auto;height:44vh;width:100%;object-fit:cover}
+  .ph-main{width:min(330px,36vh)} .ph-sm{width:min(200px,22vh)} .vid-side{gap:16px}
+  .story .st img{height:clamp(110px,24vh,240px)}
+  .st p{font-size:clamp(12px,1.8vh,15px)} .st h3{font-size:clamp(18px,2.8vh,24px)}
+  .seg .card{padding:clamp(10px,1.8vh,20px) 18px}
+  .lucy img{max-height:58vh;width:auto;max-width:100%;margin:0 auto}
+  .lucy .name{font-size:clamp(40px,7vh,84px)}
+  .hook-frames img{height:42vh;width:100%;aspect-ratio:auto}
+  .hook-q{font-size:clamp(26px,5vh,52px)}
+  .hook-pts li{padding:clamp(6px,1.3vh,12px) 0}
+  .cta3{gap:14px;margin-bottom:14px} .ctac-img{aspect-ratio:auto;height:15vh}
+  .cta-flow .step{padding:10px 14px} .cta-flow{margin-bottom:0}
+  .kpi-top{gap:14px;margin-bottom:14px} .kpi-bottom{gap:14px}
+  .card.stat{padding:clamp(12px,2vh,22px) 20px} .card.stat .num{font-size:clamp(24px,4.2vh,40px)}
+  .sico{width:clamp(38px,5.6vh,52px);height:clamp(38px,5.6vh,52px)}
+  .bars{gap:clamp(4px,1vh,10px)} .btrack{height:9px;margin:3px 0 2px} .bd{font-size:12px} .bl{font-size:15px} .bv{font-size:20px!important}
+  .bico{width:32px;height:32px} .brow{grid-template-columns:32px minmax(0,1fr)}
+  .card.cost .num{font-size:clamp(30px,6vh,60px)} .bubbles{gap:6px} .bub{border-radius:9px}
+  .res-hero .n{font-size:clamp(60px,13vh,140px)} .res-strip{margin-top:clamp(10px,2vh,22px)} .res-strip>div{padding:clamp(8px,1.5vh,14px)}
+  .res-collage{max-width:min(460px,52vh)}
+  .gifts .pol img{aspect-ratio:auto;height:54vh;width:100%;object-fit:cover}
+  .lines{gap:clamp(16px,3.4vh,34px)}
+  .timeline{gap:30px} .timeline .pol:nth-child(odd){transform:rotate(-1.5deg)} .timeline .pol:nth-child(even){transform:rotate(1.5deg) translateY(-12px)}
+  .bars{display:grid;grid-template-columns:1fr 1fr;column-gap:22px;row-gap:clamp(6px,1.6vh,14px)}
+  .thanks .deco.boot{width:clamp(70px,17vh,200px)!important}
+  .hero .deco.boot{width:clamp(80px,20vh,230px)!important}
+}
+@media (max-width:900px){.hero .deco.spark,.hero .deco.flake{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
@@ -764,16 +811,30 @@ litos</h2>
   /* hide any floating decoration that would touch text, cards or the controls */
   function declutter(sl){
     if(!sl) return;
+    if(sl.classList.contains("hero")){sl.querySelectorAll(".deco").forEach(function(d){d.classList.remove("hush")});return}
     var decos=[].slice.call(sl.querySelectorAll(".deco")); decos.forEach(function(d){d.classList.remove("hush")});
     var sel=".wrap h1,.wrap h2,.wrap h3,.wrap p,.wrap .card,.wrap .res-strip>div,.wrap .st,.wrap figure,.wrap li,.wrap .tl,.wrap .pol,.wrap .phone,.wrap .pill,.wrap .aida-bar,.wrap .cta-flow,.wrap .lucy img,.wrap .refs li,.wrap .big11,.wrap .lines p,.wrap .stage";
-    var boxes=[].slice.call(sl.querySelectorAll(sel)).concat([].slice.call(document.querySelectorAll(".nav,.camp,.tools .btn,.dots"))).map(function(e){return e.getBoundingClientRect()}).filter(function(r){return r.width>0&&r.height>0});
+    var boxes=[].slice.call(sl.querySelectorAll(sel)).concat([].slice.call(document.querySelectorAll(".nav,.camp,.tools .btn,.hidebtn"))).map(function(e){return e.getBoundingClientRect()}).filter(function(r){return r.width>0&&r.height>0});
     var st=sl.scrollTop;
     decos.forEach(function(d){var r=d.getBoundingClientRect(), pad=26;
       for(var k=0;k<boxes.length;k++){var b=boxes[k];
         if(r.left-pad<b.right&&r.right+pad>b.left&&r.top-pad<b.bottom&&r.bottom+pad>b.top){d.classList.add("hush");break}}});
   }
-  var dcT=null; function declutterSoon(){clearTimeout(dcT);dcT=setTimeout(function(){declutter(slides[cur])},900)}
-  window.addEventListener("resize",function(){clearTimeout(dcT);dcT=setTimeout(function(){declutter(slides[cur])},250)});
+  /* shrink a slide's content so the whole slide fits on screen without scrolling */
+  function fit(sl){
+    if(!sl) return; var w=sl.querySelector(".wrap"); if(!w) return;
+    w.style.zoom=""; sl.classList.remove("fitted");
+    if(window.innerWidth<700||window.innerWidth<window.innerHeight||editing) return;
+    var cs=getComputedStyle(sl), avail=sl.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
+    var need=w.offsetHeight; if(need<=avail+1) return;
+    var z=Math.max(.5,Math.floor(avail/need*1000)/1000); w.style.zoom=z; sl.classList.add("fitted");
+    if(w.offsetHeight*1>avail+2){var z2=Math.max(.5,z*avail/w.offsetHeight); w.style.zoom=z2}
+  }
+  function refit(){var sl=slides[cur]; fit(sl); declutter(sl)}
+  var dcT=null; function declutterSoon(){clearTimeout(dcT);dcT=setTimeout(refit,900)}
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){refit()});
+  root.addEventListener("load",function(e){if(e.target.tagName==="IMG"&&slides[cur]&&slides[cur].contains(e.target)){clearTimeout(dcT);dcT=setTimeout(refit,120)}},true);
+  window.addEventListener("resize",function(){clearTimeout(dcT);dcT=setTimeout(refit,250)});
 
   /* videos load and play only while on screen */
   var vidObs=null;
@@ -832,7 +893,7 @@ litos</h2>
     countEl.innerHTML=""; var b=document.createElement("b"); b.textContent=(i+1)+" / "+slides.length; countEl.appendChild(b); countEl.appendChild(document.createTextNode("  "+name));
     prevB.disabled=i===0; nextB.disabled=i===slides.length-1;
     try{history.replaceState(null,"","#"+sl.id)}catch(e){}
-    declutter(sl); declutterSoon();
+    fit(sl); declutter(sl); declutterSoon();
     sl.querySelectorAll("[data-count]").forEach(function(el){if(countObs) {countObs.unobserve(el);countObs.observe(el)}});
   }
   function go(d){ if(document.querySelector(".modal")) return; show(cur+d,d) }
@@ -867,7 +928,7 @@ litos</h2>
     document.addEventListener("fullscreenchange",function(){fsLabel();declutterSoon()}); document.addEventListener("webkitfullscreenchange",fsLabel);
     fsLabel(); camp.appendChild(fb);}
   var hb=document.createElement("button"); hb.type="button"; hb.className="hidebtn";
-  function setClean(on){document.body.classList.toggle("clean",on); hb.textContent=on?"⌃":"⌄"; hb.title=on?"Mostrar controles":"Ocultar controles"; hb.setAttribute("aria-label",hb.title); try{localStorage.setItem("bh-clean",on?"1":"0")}catch(e){} setTimeout(function(){declutter(slides[cur])},60)}
+  function setClean(on){document.body.classList.toggle("clean",on); hb.textContent=on?"⌃":"⌄"; hb.title=on?"Mostrar controles":"Ocultar controles"; hb.setAttribute("aria-label",hb.title); try{localStorage.setItem("bh-clean",on?"1":"0")}catch(e){} setTimeout(refit,60)}
   hb.addEventListener("click",function(){setClean(!document.body.classList.contains("clean"))});
   document.body.appendChild(hb);
   var startClean=false; try{startClean=localStorage.getItem("bh-clean")==="1"}catch(e){} setClean(startClean);
