@@ -1,0 +1,360 @@
+<title>Brief semana 23–27 nov</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: banda petróleo → resumen de la semana → una sección por pieza (ficha, maquetas 4:5 lámina por lámina, tabla de producción, copys) → reglas y entrega */
+:root{
+  --negro:#0D0D0D; --negro2:#141414; --g900:#1A1A1A; --g800:#262626; --g700:#3A3A3A;
+  --g400:#A8A8A8; --g300:#C9C9C9; --blanco:#FFFFFF;
+  --p900:#0E2E34; --p700:#1D525A;
+  --v700:#1F5A50; --v500:#3B7C6B; --v300:#7FB8A8; --v100:#EAF3F0;
+  --ambar:#D9A441;
+  --font: Arial, Helvetica, sans-serif;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--negro);color:var(--g300);font-family:var(--font);font-size:14px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+strong{color:var(--blanco)}
+.band{background:linear-gradient(90deg,var(--p900),var(--p700))}
+.band .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.eyebrow{color:var(--blanco);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.logo{width:37px;height:36px;display:block;flex:none}
+.kicker{color:var(--v300);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px}
+h1{color:var(--blanco);font-size:clamp(26px,5vw,34px);line-height:1.15;font-weight:700;text-transform:uppercase;margin:0;text-wrap:balance}
+.bar{width:48px;height:3px;background:var(--v500);margin:18px 0 20px}
+.lead{font-size:15px;max-width:68ch;margin:0}
+h2{color:var(--blanco);font-size:20px;line-height:1.3;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:0 0 8px;text-wrap:balance}
+h3{color:var(--blanco);font-size:13px;line-height:1.4;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:0 0 8px}
+.label{color:var(--g400);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 4px}
+.sec{padding-block:44px;border-top:1px solid var(--g800)}
+.sec.alt{background:linear-gradient(90deg,var(--negro) 0%,var(--g900) 50%,#202020 100%)}
+p{max-width:72ch}
+.stack{display:grid;gap:28px}
+.stack>*{min-width:0}
+code{word-break:break-all}
+
+/* resumen semana */
+.week{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.day{background:var(--negro2);border-top:3px solid var(--v500);padding:16px;display:grid;gap:6px;align-content:start;min-width:0}
+.day .dd{color:var(--v300);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.day .tt{color:var(--blanco);font-weight:700;font-size:16px;line-height:1.3}
+.day .ff{color:var(--g400);font-size:12px}
+.tablewrap{overflow-x:auto;margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:13px}
+th{color:var(--g400);font-size:11px;letter-spacing:1px;text-transform:uppercase;text-align:left;padding:10px;border-bottom:1px solid var(--g700)}
+td{padding:10px;border-bottom:1px solid var(--g800);vertical-align:top}
+td:first-child{color:var(--blanco);font-weight:700;white-space:nowrap}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;padding:2px 8px;background:var(--v700);color:var(--v100)}
+
+/* ficha */
+.pairs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--g800);border:1px solid var(--g800)}
+.pair{background:var(--negro2);padding:12px 14px;min-width:0}
+.pair .v{color:var(--blanco);font-size:13px;line-height:1.45}
+.why{background:linear-gradient(135deg,var(--v700),var(--v500));color:var(--v100);padding:18px 20px}
+.why strong{color:var(--blanco)}
+.why p{margin:0}
+
+/* maquetas 4:5 */
+.frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.fwrap{display:grid;gap:6px;min-width:0;align-content:start}
+.fnum{color:var(--g400);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.frame{aspect-ratio:4/5;max-width:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:9%;gap:6px;color:var(--blanco);container-type:inline-size}
+.frame.story{aspect-ratio:9/16}
+.f-pet{background:linear-gradient(90deg,var(--p900),var(--p700))}
+.f-green{background:linear-gradient(135deg,var(--v700),var(--v500))}
+.f-black{background:var(--negro);outline:1px solid var(--g700);outline-offset:-1px}
+.frame .k{color:var(--v300);font-size:5.5cqw;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.f-green .k{color:var(--v100)}
+.frame .t{font-size:10.5cqw;line-height:1.05;font-weight:700;text-transform:uppercase;text-wrap:balance}
+.frame .t.sm{font-size:8cqw}
+.frame .s{font-size:5.8cqw;line-height:1.3;color:var(--g300)}
+.f-green .s,.f-pet .s{color:var(--v100)}
+.frame .n{font-size:22cqw;line-height:1;font-weight:700;color:var(--v300)}
+.frame .rule{width:16cqw;height:1.4cqw;background:var(--v500);margin:2cqw 0}
+.f-green .rule{background:var(--blanco)}
+.frame .icon{font-size:5cqw;color:var(--g400);border:1px dashed var(--g700);padding:2cqw 3cqw;align-self:flex-start;text-transform:uppercase;letter-spacing:.08em}
+.frame .m{position:absolute;right:8%;bottom:6%;width:11cqw;height:auto}
+.frame .m.top{top:6%;bottom:auto}
+.frame .grow{flex:1}
+.frame .ph{flex:0 0 56%;margin:-9.5% -9.5% 2%;background:repeating-linear-gradient(135deg,#1c1c1c 0 10px,#222 10px 20px);display:flex;align-items:center;justify-content:center;text-align:center;padding:6cqw;color:var(--g400);font-size:5.2cqw;line-height:1.3;text-transform:uppercase;letter-spacing:.06em;border-bottom:1.4cqw solid var(--v500)}
+.frame .ph.full{position:absolute;inset:0;margin:0;flex:none;border:0;align-items:flex-start;padding-top:12cqw}
+.frame .ov{position:absolute;left:0;right:0;bottom:0;padding:9%;background:linear-gradient(90deg,rgba(14,46,52,.96),rgba(29,82,90,.92));display:grid;gap:4px}
+.chips{display:flex;flex-wrap:wrap;gap:2cqw}
+.chip{font-size:4.8cqw;font-weight:700;padding:1.2cqw 2.4cqw;background:var(--v700);color:var(--v100)}
+.dpair{display:grid;gap:1cqw;border-left:1.2cqw solid var(--v500);padding-left:3cqw}
+.dpair b{font-size:6.8cqw;line-height:1.1}
+.dpair span{font-size:4.4cqw;color:var(--v300);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+.sticker{align-self:center;background:var(--blanco);color:var(--negro);padding:4cqw 5cqw;font-size:5cqw;font-weight:700;text-align:center;line-height:1.3;margin-top:auto}
+.sticker small{display:block;font-size:8cqw;color:var(--v700)}
+
+/* tabla de producción */
+.prod td:nth-child(2){color:var(--blanco)}
+
+/* copys */
+.copies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.copy{background:var(--negro2);border:1px solid var(--g800);display:grid;grid-template-rows:auto 1fr auto;min-width:0}
+.copy header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--g800)}
+.copy pre{margin:0;padding:14px;white-space:pre-wrap;word-wrap:break-word;font-family:var(--font);font-size:13.5px;line-height:1.6;color:var(--blanco)}
+.copy footer{padding:10px 14px;border-top:1px solid var(--g800);font-size:12px;color:var(--g400)}
+button.cp{font:700 11px var(--font);letter-spacing:1px;text-transform:uppercase;background:transparent;color:var(--v300);border:1px solid var(--v500);padding:6px 10px;cursor:pointer}
+button.cp:hover,button.cp:focus-visible{background:var(--v500);color:var(--blanco);outline:none}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.box{background:var(--negro2);border:1px solid var(--g800);padding:18px;min-width:0}
+ul.m{margin:0;padding-left:18px;display:grid;gap:6px}
+.warn{border-left:3px solid var(--ambar);background:var(--negro2);padding:12px 16px}
+.warn p{margin:0}
+.foot{background:linear-gradient(90deg,var(--p900),var(--p700));text-align:center}
+.foot .wrap{padding-block:18px;color:var(--blanco);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+@media (max-width:860px){.pairs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.week,.copies,.grid2{grid-template-columns:1fr}.frames{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+<header class="band"><div class="wrap"><div class="eyebrow">Marketing · Brief de producción</div><svg class="logo" viewBox="0 0 1080 1051" aria-label="El Molino" role="img"><g transform="translate(-0.5,1050.92) scale(0.1,-0.1)" fill="#FFFFFF"><path d="M9053 10499 c-157 -20 -413 -105 -560 -185 -159 -86 -360 -257 -487 -413 -100 -123 -2001 -2826 -2017 -2868 -5 -15 -7 -38 -4 -51 8 -33 647 -901 1105 -1502 233 -305 278 -371 374 -542 159 -283 233 -473 287 -727 59 -284 59 -277 59 -1566 0 -1255 2 -1315 49 -1510 124 -510 517 -931 1001 -1071 240 -70 595 -75 835 -12 538 142 978 616 1082 1168 28 149 28 7888 0 8020 -69 324 -203 568 -441 806 -150 151 -236 214 -404 298 -257 129 -607 191 -879 155z M1275 10484 c-44 -8 -132 -32 -196 -53 -542 -182 -927 -612 -1051 -1174 -23 -102 -23 -102 -23 -4012 0 -3910 0 -3910 23 -4015 71 -320 192 -547 417 -779 138 -142 234 -218 361 -283 482 -248 1136 -213 1533 81 97 72 319 303 380 396 107 163 188 365 232 581 28 134 39 549 19 718 -54 469 -233 1023 -441 1363 -91 149 -799 1155 -973 1383 -508 666 -920 1651 -1040 2485 -23 157 -47 462 -44 545 l3 75 76 -105 c995 -1371 1679 -2305 2634 -3595 409 -554 942 -1258 1032 -1366 294 -351 887 -575 1408 -530 550 47 983 324 1205 770 93 187 125 346 124 611 -2 473 -131 760 -652 1450 -195 257 -360 485 -1650 2280 -437 608 -811 1125 -831 1150 -20 25 -158 216 -306 425 -741 1048 -753 1065 -903 1202 -247 227 -476 339 -813 398 -109 19 -414 19 -524 -1z"/></g></svg></div></header>
+
+<section class="sec" style="border-top:0;padding-top:40px">
+  <div class="wrap">
+    <p class="kicker">Semana del 23 al 27 de noviembre de 2026 · Para Ciara</p>
+    <h1>Brief semana 23–27 nov</h1>
+    <div class="bar"></div>
+    <p class="lead">Tres piezas que continúan el carrusel de <strong>los 6 sectores</strong> que ya salió la semana pasada. Primero contamos <strong>cómo trabajamos</strong>, luego abrimos el primer sector de cerca, <strong>cárnicos</strong>, y cerramos la semana apareciendo rumbo a <strong>Expo Carnes</strong>. Cada pieza trae texto exacto por lámina, qué imagen va, copys listos y fecha de entrega.</p>
+    <div class="week">
+      <div class="day"><span class="dd">Martes 24 nov</span><span class="tt">Así trabajamos</span><span class="ff">Carrusel 6 láminas · 4:5 · PDF en LinkedIn</span></div>
+      <div class="day"><span class="dd">Jueves 26 nov</span><span class="tt">Un sector a la vez 01 · Cárnicos</span><span class="ff">Carrusel 8 láminas · 4:5 · PDF en LinkedIn</span></div>
+      <div class="day"><span class="dd">Viernes 27 nov</span><span class="tt">Nos encontramos en Expo</span><span class="ff">Imagen 4:5 + historia 9:16 con cuenta regresiva</span></div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Pieza</th><th>Borrador a Yeni</th><th>Aprobación Álvaro</th><th>Publicar</th><th>Redes</th></tr></thead>
+        <tbody>
+          <tr><td>Así trabajamos</td><td>Lunes 23 · 18:00 h</td><td>Martes 24 · 10:00 h</td><td>Martes 24 · 13:00 h</td><td>LinkedIn · Instagram · Facebook · Google Maps</td></tr>
+          <tr><td>Cárnicos</td><td>Miércoles 25 · 14:00 h</td><td>Miércoles 25 · 18:00 h <span class="pill">+ lectura técnica</span></td><td>Jueves 26 · 13:00 h</td><td>LinkedIn · Instagram · Facebook · Google Maps</td></tr>
+          <tr><td>Expo</td><td>Jueves 26 · 14:00 h</td><td>Jueves 26 · 18:00 h</td><td>Viernes 27 · 13:00 h</td><td>LinkedIn · Instagram · Facebook (historia solo IG y FB)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap stack">
+    <div><p class="kicker">Reglas para las tres piezas</p><h2>Cómo se ven</h2></div>
+    <div class="grid2">
+      <div class="box"><h3>Formato y estilo</h3><ul class="m">
+        <li><strong>Carrusel e imagen:</strong> 1080 × 1350 px (4:5). <strong>Historia:</strong> 1080 × 1920 px.</li>
+        <li>En LinkedIn, el carrusel se sube como <strong>PDF</strong> (documento), con título.</li>
+        <li><strong>Arial</strong> en todo. Títulos en mayúsculas y bold.</li>
+        <li>Fondos: degradado petróleo (#0E2E34 → #1D525A), tarjeta verde (#1F5A50 → #3B7C6B) o negro #0D0D0D. Acento #3B7C6B, kicker #7FB8A8.</li>
+        <li>M blanca en portada y cierre. El cierre lleva la frase «Ingredientes del mundo, a la medida de México».</li>
+        <li>Máximo <strong>25 palabras por lámina</strong>.</li>
+      </ul></div>
+      <div class="box"><h3>Texto en pantalla neutral</h3><ul class="m">
+        <li>El texto dentro de las láminas no usa ni «usted» ni «tú» para que la misma pieza sirva en las tres redes. Solo el copy cambia: de usted en LinkedIn y de tú en Instagram y Facebook.</li>
+        <li>Si Álvaro decide un solo copy para todo, se usa el de LinkedIn.</li>
+        <li>Se dice «ingredientes», no «aditivos».</li>
+        <li>Nada de «nos enorgullece», «increíble» ni signos de exclamación seguidos.</li>
+      </ul></div>
+    </div>
+    <div class="warn"><p><strong>No va en ninguna pieza:</strong> logos de proveedores (IFF, PIASA, Viscofan, GPI, Bunge), nombres o marcas de clientes, caras del video institucional hasta que estén firmadas las cartas de cesión, render del stand de Expo, ni el año de fundación (hay que aclarar si es 1995 o 1998).</p></div>
+  </div>
+</section>
+
+<section class="sec" id="p1">
+  <div class="wrap stack">
+    <div><p class="kicker">Pieza 1 · Martes 24 de noviembre</p><h2>Así trabajamos</h2></div>
+    <div class="pairs" data-ficha="p1"></div>
+    <div class="why"><p><strong>Por qué ahora:</strong> la semana pasada contamos <strong>qué hacemos</strong> (6 sectores). Esta pieza cuenta <strong>cómo lo hacemos</strong>. Es el paso natural y responde lo primero que pregunta un comprador: qué pasa cuando le escribo.</p></div>
+    <div><h3>Maqueta lámina por lámina</h3><p class="label">Referencia de composición. Ciara decide los detalles finales dentro del estilo.</p></div>
+    <div class="frames" data-frames="p1"></div>
+    <div><h3>Producción</h3><div class="tablewrap"><table class="prod"><thead><tr><th>Lámina</th><th>Texto en pantalla</th><th>Visual</th></tr></thead><tbody data-prod="p1"></tbody></table></div></div>
+    <div><h3>Copys</h3></div>
+    <div class="copies" data-copies="p1"></div>
+  </div>
+</section>
+
+<section class="sec alt" id="p2">
+  <div class="wrap stack">
+    <div><p class="kicker">Pieza 2 · Jueves 26 de noviembre</p><h2>Un sector a la vez 01 · Cárnicos</h2></div>
+    <div class="pairs" data-ficha="p2"></div>
+    <div class="why"><p><strong>Por qué ahora:</strong> abre la serie <strong>«Un sector a la vez»</strong>, una por semana en diciembre: Empaques, Lácteos, Food service, Snacks y Wellness. Empezamos por cárnicos porque es la línea principal. Cada lámina es un producto que el cliente reconoce y lo que decide su calidad. No es un catálogo.</p></div>
+    <div><h3>Maqueta lámina por lámina</h3><p class="label">Las láminas 2 a 7 comparten composición: foto arriba, franja verde, texto y etiquetas abajo.</p></div>
+    <div class="frames" data-frames="p2"></div>
+    <div><h3>Producción</h3><div class="tablewrap"><table class="prod"><thead><tr><th>Lámina</th><th>Texto en pantalla</th><th>Visual</th></tr></thead><tbody data-prod="p2"></tbody></table></div></div>
+    <div class="grid2">
+      <div class="box"><h3>De dónde salen las fotos</h3><ul class="m">
+        <li><strong>Opción A:</strong> tomas de producto del rodaje del 8 de octubre (cortes, salchichas, arrachera, empanizados, jamón), <strong>solo si Álvaro confirma</strong> que ya se pueden usar. Siguen pendientes la carta de conformidad y el segundo pago.</li>
+        <li><strong>Opción B:</strong> banco de imágenes con licencia, sin marcas ni empaques de terceros visibles.</li>
+        <li><strong>Opción C:</strong> foto propia con celular, luz natural y fondo oscuro liso.</li>
+        <li>Todas las fotos con el mismo tratamiento: fondo oscuro y luz lateral.</li>
+      </ul></div>
+      <div class="box"><h3>Antes de mandar a Álvaro</h3><ul class="m">
+        <li>Lectura rápida del área técnica (5 minutos): que cada producto lleve la familia correcta. No hay dosis ni datos técnicos.</li>
+        <li>No nombrar proveedores en las etiquetas, solo la familia de producto.</li>
+        <li>No usar SEALEX, VISPICE, BTF ni otros nombres comerciales.</li>
+      </ul></div>
+    </div>
+    <div><h3>Copys</h3></div>
+    <div class="copies" data-copies="p2"></div>
+  </div>
+</section>
+
+<section class="sec" id="p3">
+  <div class="wrap stack">
+    <div><p class="kicker">Pieza 3 · Viernes 27 de noviembre</p><h2>Nos encontramos en Expo</h2></div>
+    <div class="pairs" data-ficha="p3"></div>
+    <div class="why"><p><strong>Por qué ahora:</strong> según el plan, en noviembre toca «presencia» rumbo a Expo. Además, esta pieza deja publicadas las fechas correctas (9 al 11 de febrero), porque el save the date de agosto decía 8 al 12. No hay que mencionar el error: basta con que el dato correcto circule.</p></div>
+    <div><h3>Maquetas</h3></div>
+    <div class="frames" data-frames="p3"></div>
+    <div><h3>Producción</h3><div class="tablewrap"><table class="prod"><thead><tr><th>Pieza</th><th>Texto en pantalla</th><th>Visual</th></tr></thead><tbody data-prod="p3"></tbody></table></div></div>
+    <div class="warn"><p><strong>Logo de Expo Carnes:</strong> úsalo solo si viene en el kit oficial del expositor. Si no, basta el nombre escrito. <strong>No usar render del stand</strong>: el concepto aún no se publica.</p></div>
+    <div><h3>Copys</h3></div>
+    <div class="copies" data-copies="p3"></div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap stack">
+    <div><p class="kicker">Entrega</p><h2>Qué mandar y cómo nombrarlo</h2></div>
+    <div class="grid2">
+      <div class="box"><h3>Por pieza</h3><ul class="m">
+        <li>Un PNG por lámina, 1080 × 1350 px.</li>
+        <li>Un PDF del carrusel para LinkedIn, con las láminas en orden.</li>
+        <li>Historia en PNG 1080 × 1920 px (piezas 2 y 3).</li>
+        <li>Texto alternativo listo para pegar (está en cada copy).</li>
+        <li>Ortografía y acentos revisados en cada lámina.</li>
+      </ul></div>
+      <div class="box"><h3>Nombres de archivo</h3><ul class="m">
+        <li><code>2026-11-24_ASI-TRABAJAMOS_01.png</code> … <code>_06.png</code></li>
+        <li><code>2026-11-24_ASI-TRABAJAMOS.pdf</code></li>
+        <li><code>2026-11-26_SECTOR-01-CARNICOS_01.png</code> … <code>_08.png</code></li>
+        <li><code>2026-11-26_SECTOR-01-CARNICOS_HISTORIA.png</code></li>
+        <li><code>2026-11-27_EXPO-PRESENCIA.png</code> y <code>_HISTORIA.png</code></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap">Ingredientes del mundo, a la medida de México</div></footer>
+
+<script>
+const M = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201080%201051%22%3E%3Cg%20transform%3D%22translate%28-0.5%2C1050.92%29%20scale%280.1%2C-0.1%29%22%20fill%3D%22%23FFFFFF%22%3E%3Cpath%20d%3D%22M9053%2010499%20c-157%20-20%20-413%20-105%20-560%20-185%20-159%20-86%20-360%20-257%20-487%20-413%20-100%20-123%20-2001%20-2826%20-2017%20-2868%20-5%20-15%20-7%20-38%20-4%20-51%208%20-33%20647%20-901%201105%20-1502%20233%20-305%20278%20-371%20374%20-542%20159%20-283%20233%20-473%20287%20-727%2059%20-284%2059%20-277%2059%20-1566%200%20-1255%202%20-1315%2049%20-1510%20124%20-510%20517%20-931%201001%20-1071%20240%20-70%20595%20-75%20835%20-12%20538%20142%20978%20616%201082%201168%2028%20149%2028%207888%200%208020%20-69%20324%20-203%20568%20-441%20806%20-150%20151%20-236%20214%20-404%20298%20-257%20129%20-607%20191%20-879%20155z%20M1275%2010484%20c-44%20-8%20-132%20-32%20-196%20-53%20-542%20-182%20-927%20-612%20-1051%20-1174%20-23%20-102%20-23%20-102%20-23%20-4012%200%20-3910%200%20-3910%2023%20-4015%2071%20-320%20192%20-547%20417%20-779%20138%20-142%20234%20-218%20361%20-283%20482%20-248%201136%20-213%201533%2081%2097%2072%20319%20303%20380%20396%20107%20163%20188%20365%20232%20581%2028%20134%2039%20549%2019%20718%20-54%20469%20-233%201023%20-441%201363%20-91%20149%20-799%201155%20-973%201383%20-508%20666%20-920%201651%20-1040%202485%20-23%20157%20-47%20462%20-44%20545%20l3%2075%2076%20-105%20c995%20-1371%201679%20-2305%202634%20-3595%20409%20-554%20942%20-1258%201032%20-1366%20294%20-351%20887%20-575%201408%20-530%20550%2047%20983%20324%201205%20770%2093%20187%20125%20346%20124%20611%20-2%20473%20-131%20760%20-652%201450%20-195%20257%20-360%20485%20-1650%202280%20-437%20608%20-811%201125%20-831%201150%20-20%2025%20-158%20216%20-306%20425%20-741%201048%20-753%201065%20-903%201202%20-247%20227%20-476%20339%20-813%20398%20-109%2019%20-414%2019%20-524%20-1z%22/%3E%3C/g%3E%3C/svg%3E';
+const D = {
+p1:{
+ ficha:[["Formato","Carrusel 6 láminas · 4:5"],["Objetivo","Confianza: mostrar el proceso"],["Público","Compras, Calidad, Dirección"],["CTA","WhatsApp +52 33 2833 9447"]],
+ frames:[
+  ["Portada",'f-pet',`<span class="k">Cómo trabajamos</span><div class="grow"></div><span class="t">De la consulta a la planta</span><div class="rule"></div><span class="s">Cuatro pasos</span>`,'top'],
+  ["Paso 1",'f-black',`<span class="n">01</span><span class="t sm">Respuesta en menos de 24 horas hábiles</span><span class="s">Por WhatsApp, teléfono o correo.</span><div class="grow"></div><span class="icon">Ícono · reloj</span>`],
+  ["Paso 2",'f-black',`<span class="n">02</span><span class="t sm">Primero, entender el proceso</span><span class="s">Qué se produce, cómo y qué hay que resolver: rendimiento, textura, vida de anaquel o costo.</span><div class="grow"></div><span class="icon">Ícono · lupa</span>`],
+  ["Paso 3",'f-black',`<span class="n">03</span><span class="t sm">Formulación con equipo técnico propio</span><span class="s">Una propuesta para esa aplicación, no una lista de precios.</span><div class="grow"></div><span class="icon">Ícono · matraz</span>`],
+  ["Paso 4",'f-black',`<span class="n">04</span><span class="t sm">Entrega en los 32 estados</span><span class="s">Logística nacional desde Zapopan, Jalisco.</span><div class="grow"></div><span class="icon">Ícono · camión</span>`],
+  ["Cierre",'f-green',`<span class="k">Respaldo</span><span class="t sm">FSSC 22000 desde 2020</span><div class="rule"></div><span class="s">WhatsApp +52 33 2833 9447</span><div class="grow"></div><span class="s" style="font-size:4.4cqw;text-transform:uppercase;letter-spacing:.1em">Ingredientes del mundo, a la medida de México</span>`]
+ ],
+ prod:[
+  ["1 · Portada","Cómo trabajamos / De la consulta a la planta / Cuatro pasos","Degradado petróleo, M arriba a la derecha. Solo tipografía."],
+  ["2 · Paso 01","Respuesta en menos de 24 horas hábiles / Por WhatsApp, teléfono o correo.","Fondo negro, número grande en verde claro, ícono de línea blanco (reloj)."],
+  ["3 · Paso 02","Primero, entender el proceso / Qué se produce, cómo y qué hay que resolver: rendimiento, textura, vida de anaquel o costo.","Igual que la 2. Ícono: lupa o portapapeles."],
+  ["4 · Paso 03","Formulación con equipo técnico propio / Una propuesta para esa aplicación, no una lista de precios.","Igual que la 2. Ícono: matraz."],
+  ["5 · Paso 04","Entrega en los 32 estados / Logística nacional desde Zapopan, Jalisco.","Igual que la 2. Ícono: camión o mapa de México en línea."],
+  ["6 · Cierre","Respaldo / FSSC 22000 desde 2020 / WhatsApp +52 33 2833 9447 / Ingredientes del mundo, a la medida de México","Tarjeta verde, M blanca. Sin el sello de FSSC salvo que Calidad confirme que se puede usar."]
+ ],
+ copies:[
+  ["LinkedIn · de usted",`La semana pasada le contamos en qué sectores trabajamos. Hoy, cómo lo hacemos.
+
+Antes de recomendar un ingrediente, preguntamos qué produce, con qué proceso y qué quiere resolver.
+
+Respuesta en menos de 24 horas hábiles, diagnóstico de su aplicación, formulación con nuestro equipo técnico y entrega en los 32 estados. Todo con certificación FSSC 22000 desde 2020.
+
+Si tiene un reto en su línea, cuéntenos: WhatsApp +52 33 2833 9447
+
+#FSSC22000 #IndustriaAlimentaria #Formulación #Calidad`,"Título del PDF: «Así trabajamos · El Molino». Texto alternativo: Carrusel de seis láminas con los cuatro pasos de trabajo de El Molino: respuesta en menos de 24 horas hábiles, diagnóstico del proceso, formulación con equipo técnico y entrega en los 32 estados."],
+  ["Instagram y Facebook · de tú",`La semana pasada te contamos en qué sectores trabajamos. Hoy, cómo lo hacemos 👇
+
+Antes de recomendarte un ingrediente, te preguntamos qué produces y qué quieres resolver. Así es, paso a paso.
+
+¿Tienes un reto en tu línea? Escríbenos por WhatsApp.
+
+#IndustriaAlimentaria #Calidad #ElMolino`,"Historia: compartir el carrusel con el sticker «Nueva publicación». Google Maps: subir la portada con el copy de LinkedIn."]
+ ]
+},
+p2:{
+ ficha:[["Formato","Carrusel 8 láminas · 4:5 + historia"],["Objetivo","Portafolio por línea, sin catálogo"],["Público","I+D, Producción, Compras"],["CTA","Pregunta abierta + encuesta en historia"]],
+ frames:[
+  ["Portada",'f-black',`<div class="ph full">Foto · tabla de carnes frías, fondo oscuro</div><div class="ov"><span class="k">Un sector a la vez · 01</span><span class="t">Cárnicos</span><span class="s">Lo que decide la calidad de cada producto</span></div>`,'top'],
+  ["Jamón",'f-black',`<div class="ph">Foto · jamón rebanado</div><span class="t sm">Que rebane parejo y no suelte agua</span><div class="chips"><span class="chip">Proteínas de soya</span><span class="chip">Carrageninas</span><span class="chip">Fundas de cocimiento</span></div>`],
+  ["Salchicha",'f-black',`<div class="ph">Foto · salchichas en corte</div><span class="t sm">Textura y mordida en cada pieza</span><div class="chips"><span class="chip">Proteínas de soya</span><span class="chip">Tripas de celulosa y colágeno</span></div>`],
+  ["Chorizo",'f-black',`<div class="ph">Foto · chorizo y chiles secos</div><span class="t sm">Color y sabor mexicano</span><div class="chips"><span class="chip">Chiles y especias</span><span class="chip">Condimentos</span><span class="chip">Tripas de colágeno</span></div>`],
+  ["Empanizados",'f-black',`<div class="ph">Foto · nugget partido a la mitad</div><span class="t sm">Que la cobertura no se caiga</span><div class="chips"><span class="chip">Predust</span><span class="chip">Batter</span></div>`],
+  ["Marinados",'f-black',`<div class="ph">Foto · arrachera marinada cruda</div><span class="t sm">Sabor hasta adentro</span><div class="chips"><span class="chip">Marinados y sazonadores</span><span class="chip">Bolsas al vacío</span></div>`],
+  ["Vida de anaquel",'f-black',`<div class="ph">Foto · corte empacado al vacío</div><span class="t sm">Que llegue al anaquel como salió de la planta</span><div class="chips"><span class="chip">Conservadores</span><span class="chip">Antioxidantes</span></div>`],
+  ["Cierre",'f-green',`<span class="k">Cárnicos</span><span class="t sm">Ingrediente, empaque y asesoría técnica</span><div class="rule"></div><span class="s">Próximo sector: Empaques</span><div class="grow"></div><span class="s" style="font-size:4.4cqw">WhatsApp +52 33 2833 9447</span>`],
+  ["Historia jueves",'f-pet story',`<span class="k">Encuesta de planta</span><span class="t sm">¿Cuál es el reto más frecuente en su línea?</span><div class="sticker">Rendimiento<small>·</small>Vida de anaquel</div><div class="grow"></div>`,'top']
+ ],
+ prod:[
+  ["1 · Portada","Un sector a la vez · 01 / Cárnicos / Lo que decide la calidad de cada producto","Foto a sangre de tabla de carnes frías (jamón, salchicha, chorizo). Franja petróleo abajo con el texto. M arriba a la derecha."],
+  ["2 · Jamón","Que rebane parejo y no suelte agua · Proteínas de soya · Carrageninas · Fundas de cocimiento","Foto de jamón rebanado, rebanadas abiertas en abanico."],
+  ["3 · Salchicha","Textura y mordida en cada pieza · Proteínas de soya · Tripas de celulosa y colágeno","Salchicha cortada que muestre el interior."],
+  ["4 · Chorizo","Color y sabor mexicano · Chiles y especias · Condimentos · Tripas de colágeno","Chorizo con chiles secos y especias alrededor."],
+  ["5 · Empanizados","Que la cobertura no se caiga · Predust · Batter","Nugget o pieza empanizada partida a la mitad: cobertura pegada."],
+  ["6 · Marinados","Sabor hasta adentro · Marinados y sazonadores · Bolsas al vacío","Arrachera marinada cruda, de preferencia saliendo de su bolsa al vacío."],
+  ["7 · Vida de anaquel","Que llegue al anaquel como salió de la planta · Conservadores · Antioxidantes","Corte empacado al vacío, limpio, sin marca visible."],
+  ["8 · Cierre","Cárnicos / Ingrediente, empaque y asesoría técnica / Próximo sector: Empaques / WhatsApp","Tarjeta verde, M blanca. «Próximo sector» anuncia la pieza de la siguiente semana."],
+  ["Historia","Encuesta de planta / ¿Cuál es el reto más frecuente en su línea? / Rendimiento · Vida de anaquel","9:16 degradado petróleo con sticker de encuesta de Instagram. Las respuestas alimentan los próximos temas."]
+ ],
+ copies:[
+  ["LinkedIn · de usted",`Hace unos días le contamos los seis sectores en los que trabajamos. Hoy empezamos a verlos uno por uno, y empezamos por el que más conocemos: cárnicos.
+
+Que un jamón rebane parejo, que un empanizado no se caiga o que un corte marinado tenga sabor hasta adentro depende de decisiones de formulación y de empaque. En El Molino acompañamos ambas.
+
+¿Cuál es el reto más frecuente en su línea?
+
+#Cárnicos #IndustriaCárnica #IngredientesAlimenticios #Embutidos`,"Título del PDF: «Un sector a la vez 01 · Cárnicos». Texto alternativo: Carrusel de ocho láminas sobre cárnicos: jamón, salchicha, chorizo, empanizados, marinados y vida de anaquel, con las familias de ingredientes y empaques que intervienen en cada uno."],
+  ["Instagram y Facebook · de tú",`Primer sector, de cerca: cárnicos 🥩
+
+Que el jamón rebane parejo o que el empanizado no se caiga no es suerte: es formulación y empaque. Desliza y conoce qué hay detrás de cada uno.
+
+¿Cuál es el reto más frecuente en tu línea? Te leemos en comentarios.
+
+#Cárnicos #Embutidos #ElMolino`,"Historia: encuesta de planta. Google Maps: subir la portada con el copy de LinkedIn."]
+ ]
+},
+p3:{
+ ficha:[["Formato","Imagen 4:5 + historia 9:16"],["Objetivo","Presencia rumbo a Expo"],["Público","Clientes actuales"],["CTA","Apartar la fecha · recordatorio"]],
+ frames:[
+  ["Imagen feed",'f-pet',`<span class="k">Expo Carnes y Lácteos 2027</span><span class="t">Nos encontramos en Expo</span><div class="rule"></div><div class="grow"></div><div class="dpair"><span>Fechas</span><b>9 – 11 feb 2027</b></div><div class="dpair"><span>Sede</span><b>Cintermex, Monterrey</b></div><div class="dpair"><span>Stand</span><b>612</b></div>`,'top'],
+  ["Historia",'f-pet story',`<span class="k">Expo Carnes y Lácteos 2027</span><span class="t sm">Nos encontramos en Expo</span><div class="dpair"><span>Stand</span><b>612 · Cintermex</b></div><div class="sticker">Cuenta regresiva<small>9 feb · 11:00 h</small>Activar recordatorio</div><div class="grow"></div>`,'top']
+ ],
+ prod:[
+  ["Imagen 4:5","Expo Carnes y Lácteos 2027 / Nos encontramos en Expo / 9 – 11 feb 2027 / Cintermex, Monterrey / Stand 612","Degradado petróleo, solo tipografía. Datos en pares con línea verde a la izquierda. M arriba a la derecha."],
+  ["Historia 9:16","Expo Carnes y Lácteos 2027 / Nos encontramos en Expo / Stand 612 · Cintermex","Misma composición. Sticker de cuenta regresiva de Instagram: «Expo Carnes 2027», 9 de febrero, 11:00 h. Así la gente activa el recordatorio."]
+ ],
+ copies:[
+  ["LinkedIn · de usted",`Ya estamos preparando Stand 612.
+
+Del 9 al 11 de febrero de 2027 estaremos en Expo Carnes y Lácteos, en Cintermex, Monterrey. Este año lo pensamos para recibir con calma a quienes trabajan con nosotros: un lugar para sentarse, tomar un café y platicar con el equipo.
+
+Aparte la fecha. Pronto le compartimos la invitación.
+
+#ExpoCarnes2027 #ExpoCarnesYLácteos #IndustriaAlimentaria`,"Texto alternativo: Imagen con fondo verde petróleo que anuncia la participación de El Molino en Expo Carnes y Lácteos 2027, del 9 al 11 de febrero en Cintermex, Monterrey, Stand 612."],
+  ["Instagram y Facebook · de tú",`Aparta la fecha: del 9 al 11 de febrero estaremos en Expo Carnes y Lácteos 2027, en Cintermex, Monterrey. Stand 612.
+
+Te esperamos con café y con todo el equipo ☕
+
+#ExpoCarnes2027 #ElMolino`,"Historia: activar la cuenta regresiva. Google Maps: subir la imagen con el copy de LinkedIn."]
+ ]
+}};
+
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+for (const [k,p] of Object.entries(D)){
+  document.querySelector(`[data-ficha="${k}"]`).innerHTML = p.ficha.map(([l,v])=>`<div class="pair"><p class="label">${l}</p><div class="v">${v}</div></div>`).join("");
+  document.querySelector(`[data-frames="${k}"]`).innerHTML = p.frames.map(([n,cls,html,mpos],i)=>`<div class="fwrap"><span class="fnum">${p.frames.length>2&&!cls.includes("story")?(i+1)+" · ":""}${n}</span><div class="frame ${cls}" role="img" aria-label="Maqueta: ${n}">${html}${mpos||cls.includes("green")?`<img class="m ${mpos==="top"?"top":""}" src="${M}" alt="">`:""}</div></div>`).join("");
+  document.querySelector(`[data-prod="${k}"]`).innerHTML = p.prod.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
+  document.querySelector(`[data-copies="${k}"]`).innerHTML = p.copies.map(([h,t,f],i)=>`<article class="copy"><header><span class="label" style="margin:0">${h}</span><button class="cp" type="button" id="cp-${k}-${i}">Copiar</button></header><pre>${esc(t)}</pre><footer>${f}</footer></article>`).join("");
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button.cp"); if(!b) return;
+  const pre=b.closest(".copy").querySelector("pre");
+  const done=()=>{b.textContent="Copiado";setTimeout(()=>b.textContent="Copiar",1600)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Texto seleccionado"};
+  try{navigator.clipboard.writeText(pre.textContent).then(done,sel)}catch(_){sel()}
+});
+</script>
