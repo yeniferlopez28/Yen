@@ -1,4 +1,4 @@
-<title>Bhriela Campaña Meta Ads</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300..700&family=Nunito+Sans:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"><style id="st">
+<title>Bhriela Campaña Meta Ads</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Mono:wght@400;500&family=Josefin+Sans:wght@600;700&display=swap"><style id="st">
 /* Layout: one long scrolling story, each campaign topic a full-width band; boots float in the margins of every band. Brand look: wine, cream, sand and gold, single light world. */
 :root{
   --wine:#7A1F2D; --wine-d:#561520; --cream:#FAFCFD; --sand:#E2ECF1; --paper:#FFFFFF; --blue:#BCD0D8; --blue-d:#557A8C; --ring:#D5DBE0;
@@ -174,27 +174,85 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
   .deco.boot{opacity:.45;max-width:110px} .dots{display:none}
   .res{text-align:center}
 }
+
+/* ===== v2: retro-editorial type and awning stripes ===== */
+:root{--sand:#D6E6EC; --cream:#FFF7EC; --cream2:#FFEED7; --hi:#CEE3E9;
+  --display:'Fraunces',Georgia,'Times New Roman',serif; --body:'Bricolage Grotesque',system-ui,Arial,sans-serif; --mono:'DM Mono',ui-monospace,Menlo,monospace; --brand:'Josefin Sans',Futura,'Trebuchet MS',sans-serif; --script:'Fraunces',Georgia,serif}
+body{font-family:var(--body)}
+#root{counter-reset:sec}
+.band{counter-increment:sec}
+.title{font-family:var(--display);font-weight:800;text-transform:none;letter-spacing:-.025em;line-height:.95;font-size:clamp(50px,8.4vw,116px);font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144}
+.eyebrow{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.head .eyebrow::before{content:counter(sec,decimal-leading-zero) "  ✦  ";color:var(--wine)}
+.b-wine .head .eyebrow::before,.b-night .head .eyebrow::before{color:var(--gold-l)}
+.script{font-family:var(--display);font-style:italic;font-weight:500;font-variation-settings:"SOFT" 100,"WONK" 1}
+.card{box-shadow:none;border:1.5px solid rgba(122,31,45,.16);border-radius:20px}
+.card .lbl{font-family:var(--display);font-weight:700;text-transform:none;letter-spacing:-.01em;font-size:23px;line-height:1.1;font-variation-settings:"SOFT" 100}
+.kp .lbl{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-d)}
+.card.inv .lbl,.card.dark .lbl{color:var(--gold-l)}
+.num,.big11 .n{font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-variation-settings:"SOFT" 100,"opsz" 144}
+.big11 .t,.ph-cap,.pol .cap,.stage .time,.aida-bar span,.aida-ticks,.scrollcue,.sources{font-family:var(--mono);font-weight:500;letter-spacing:.08em}
+.pol .cap{font-size:13px}
+.quote{font-family:var(--display);font-weight:700;text-transform:none;letter-spacing:-.02em;font-size:clamp(40px,5.4vw,72px);font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1}
+.seg .card .k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.seg .card .lbl{font-size:20px}
+.stage h4{font-family:var(--mono);font-weight:500;background:var(--hi);color:var(--wine);display:inline-block;padding:2px 8px;border-radius:4px;margin-top:12px}
+.stage .lbl{font-size:30px}
+.res p.lead{font-family:var(--body)}
+.lines p{font-family:var(--display);font-style:italic}
+.thanks h2{font-family:var(--display);font-weight:900;letter-spacing:-.03em;font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144}
+.thanks p,.hero h1{font-family:var(--brand)}
+.lucy .name{font-family:var(--display);font-style:italic}
+.btn{font-family:var(--mono);letter-spacing:.06em}
+/* hero: light blue with an awning-striped panel, like a shop front */
+.hero{background:var(--sand);color:var(--wine);place-items:center start;text-align:left}
+.hero .wrap{width:100%}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start}
+.hero h1{color:var(--wine);font-weight:700;letter-spacing:.12em;margin-right:0;font-size:clamp(54px,8.2vw,136px)}
+.micro{font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d);margin-bottom:18px}
+.hero .pill{background:var(--wine);color:var(--cream2)} .hero .pill svg{stroke:var(--cream2)}
+.hero-stripes{position:absolute;top:0;right:0;bottom:0;width:38%;z-index:0;background:repeating-linear-gradient(90deg,var(--wine) 0 34px,var(--cream2) 34px 68px)}
+.hero-stripes::before{content:"";position:absolute;left:-18px;top:0;bottom:0;width:20px;background:radial-gradient(circle at 0 17px,transparent 15px,var(--wine) 16px) 0 0/20px 34px repeat-y}
+.hero .snow span{background:#fff;box-shadow:0 0 0 1px rgba(85,122,140,.15)}
+.scrollcue{color:var(--wine)} .scrollcue i{background:linear-gradient(var(--wine),transparent)}
+/* awning stripes on top of some bands */
+.band.striped{padding-top:calc(clamp(72px,10vw,130px) + 44px)}
+.band.striped::before{content:"";position:absolute;left:0;right:0;top:0;height:40px;z-index:1;background:repeating-linear-gradient(90deg,var(--wine) 0 28px,var(--cream2) 28px 56px)}
+.band.striped::after{content:"";position:absolute;left:0;right:0;top:40px;height:14px;z-index:1;background:radial-gradient(circle at 14px 0,var(--wine) 13px,transparent 14px) 0 0/56px 14px repeat-x,radial-gradient(circle at 42px 0,var(--cream2) 13px,transparent 14px) 0 0/56px 14px repeat-x}
+/* side label, like a printed brand guide */
+@media (min-width:1300px){
+  .band:not(.hero) .wrap::before{content:"BHRIELA  ✦  CAMPAÑA META ADS";position:absolute;left:-96px;top:0;transform:rotate(-90deg) translateX(-100%);transform-origin:left top;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--blue-d);opacity:.7;white-space:nowrap}
+  .b-wine .wrap::before,.b-night .wrap::before{color:var(--blue)!important}
+}
+@media (max-width:900px){
+  .hero{place-items:end start;padding-top:calc(40vh + 40px);padding-bottom:110px;min-height:0}
+  .hero-stripes{width:100%;bottom:auto;height:40vh}
+  .hero img.deco.boot:nth-of-type(n+3){display:none}
+  .hero img.deco.boot{opacity:1;max-width:120px}
+  .hero-stripes::before{display:none}
+  .stage .lbl{font-size:24px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
-  <svg class="deco flake" style="left:18%;top:42%" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
+  <div class="hero-stripes" aria-hidden="true"></div>
   <div class="snow"></div>
-  <div class="ring" aria-hidden="true"></div>
-  <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="left:4%;top:8%;width:clamp(110px,16vw,240px)">
-  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:6%;top:6%;width:clamp(90px,12vw,180px)">
-  <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="left:8%;bottom:8%;width:clamp(90px,13vw,200px)">
-  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="right:5%;bottom:9%;width:clamp(110px,16vw,240px)">
-  <svg class="deco spark" style="left:30%;top:22%" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
-  <svg class="deco spark" style="right:28%;top:30%;animation-delay:-.8s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
-  <svg class="deco spark" style="left:40%;bottom:18%;animation-delay:-1.4s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
-  <div class="wrap">
+  <svg class="deco flake" style="left:6%;top:14%" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
+  <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="right:22%;top:9%;width:clamp(110px,15vw,230px)">
+  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:4%;top:20%;width:clamp(90px,12vw,190px)">
+  <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="right:26%;bottom:9%;width:clamp(90px,12vw,190px)">
+  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="right:5%;bottom:7%;width:clamp(110px,15vw,230px)">
+  <svg class="deco spark" style="left:44%;top:20%" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <svg class="deco spark" style="left:8%;bottom:16%;animation-delay:-1.4s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap hero-copy">
+    <p class="micro" data-k="hero.micro">Campaña navideña ✦ Instagram y Facebook</p>
     <h1 data-k="hero.marca">BHRIELA</h1>
     <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-k="hero.campana">CAMPAÑA META ADS</span></div>
   </div>
   <div class="scrollcue"><span>Desliza</span><i></i></div>
 </section>
 
-<section class="band b-sand" id="guion">
+<section class="band striped b-sand" id="guion">
   <svg class="deco flake" style="left:4%;top:60px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img class="deco boot fa" src="/_blob/d86250f83a152e819a46976f5ee69437" alt="" style="right:4%;top:40px;width:clamp(70px,8vw,120px)">
   <svg class="deco spark" style="left:46%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
@@ -306,7 +364,7 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
   </div>
 </section>
 
-<section class="band b-cream" id="cta">
+<section class="band striped b-cream" id="cta">
   <svg class="deco flake" style="left:42%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <img class="deco boot fa" src="/_blob/ae94d012aeb13fbaf92a55869b439bfc" alt="" style="right:3%;bottom:40px;width:clamp(80px,10vw,150px)">
   <img class="deco boot fb" src="/_blob/0a9d2b2da62203edb64ca6b157029fe2" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
@@ -321,7 +379,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
   </div>
 </section>
 
-<section class="band b-sand" id="kpis">
+<section class="band striped b-sand" id="kpis">
   <svg class="deco flake" style="left:3%;top:80px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <svg class="deco spark" style="right:6%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap">
@@ -366,7 +424,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
   </div>
 </section>
 
-<section class="band b-sand" id="regalitos">
+<section class="band striped b-sand" id="regalitos">
   <svg class="deco flake" style="right:30%;top:60px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <svg class="deco spark" style="left:8%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <svg class="deco spark" style="right:8%;bottom:70px;animation-delay:-1s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
