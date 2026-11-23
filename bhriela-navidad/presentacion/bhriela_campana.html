@@ -33,7 +33,9 @@ h1,h2,h3,p{margin:0}
 .card.dark{background:var(--ink)} .card.dark .lbl{color:var(--gold-l)} .card.dark .num{color:var(--paper)} .card.dark .txt{color:#E5D4C8}
 /* floating boots + sparkles */
 .deco{position:absolute;z-index:1;pointer-events:none;user-select:none}
-.boot{object-fit:contain;filter:drop-shadow(0 12px 18px rgba(43,29,25,.25))}
+.boot{object-fit:contain}
+.fa,.fb,.fc,.spark,.flake,.lucy,.gifts .pol,.snow span{will-change:transform}
+.band:not(.hero){content-visibility:auto;contain-intrinsic-size:auto 1000px}
 .fa{animation:bobA 3.6s ease-in-out infinite alternate}
 .fb{animation:bobB 4.2s ease-in-out infinite alternate}
 .fc{animation:sway 4.8s ease-in-out infinite alternate}
@@ -252,10 +254,10 @@ body{font-family:var(--body)}
   <div class="hero-stripes" aria-hidden="true"></div>
   <div class="snow"></div>
   <svg class="deco flake" style="left:6%;top:14%" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="right:22%;top:9%;width:clamp(110px,15vw,230px)">
-  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:4%;top:20%;width:clamp(90px,12vw,190px)">
-  <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="right:26%;bottom:9%;width:clamp(90px,12vw,190px)">
-  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="right:5%;bottom:7%;width:clamp(110px,15vw,230px)">
+  <img decoding="async" fetchpriority="high" class="deco boot fa" src="/_blob/5dd2366ec97c9a3cbb3544411fa20ffa" alt="" style="right:22%;top:9%;width:clamp(110px,15vw,230px)">
+  <img decoding="async" fetchpriority="high" class="deco boot fb" src="/_blob/21b1b99d4d9b066f3440b89879956df0" alt="" style="right:4%;top:20%;width:clamp(90px,12vw,190px)">
+  <img decoding="async" fetchpriority="high" class="deco boot fb" src="/_blob/9ca5c5189abf11c92337c19134ec58ab" alt="" style="right:26%;bottom:9%;width:clamp(90px,12vw,190px)">
+  <img decoding="async" fetchpriority="high" class="deco boot fa" src="/_blob/01278c07e5c0f09410d000b2206eb95a" alt="" style="right:5%;bottom:7%;width:clamp(110px,15vw,230px)">
   <svg class="deco spark" style="left:44%;top:20%" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <svg class="deco spark" style="left:8%;bottom:16%;animation-delay:-1.4s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap hero-copy">
@@ -268,17 +270,17 @@ body{font-family:var(--body)}
 
 <section class="band striped b-sand" id="guion">
   <svg class="deco flake" style="left:4%;top:60px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img class="deco boot fa" src="/_blob/d86250f83a152e819a46976f5ee69437" alt="" style="right:4%;top:40px;width:clamp(70px,8vw,120px)">
+  <img loading="lazy" decoding="async" class="deco boot fa" src="/_blob/94741ba98cca36b5ef9016121a60b084" alt="" style="right:4%;top:40px;width:clamp(70px,8vw,120px)">
   <svg class="deco spark" style="left:46%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="guion.titulo">Guión visual</h2></div>
     <div class="timeline">
       <div class="line line-draw"></div>
-      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/b75e42a9fd8748964e37cf33de47fc3f" alt="Escena 1: se retira el listón y aparece Ya llegó la Navidad a Bhriela"><figcaption class="cap" data-k="guion.e1">Escena 1</figcaption></figure>
-      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/30de3f102d2ba140d2ed975b8465cd0f" alt="Escena 2: Lucy frente al aparador se imagina las botas"><figcaption class="cap" data-k="guion.e2">Escena 2</figcaption></figure>
-      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/38de79a58e41848ab4138d9fd78b28cc" alt="Escena 3: las botas salen de la caja de regalo junto al árbol"><figcaption class="cap" data-k="guion.e3">Escena 3</figcaption></figure>
-      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/7713b82bb1bc4d29d579a4e7d96c3d2e" alt="Escena 4: botas reales en la tienda con moño y bastón de caramelo"><figcaption class="cap" data-k="guion.e4">Escena 4</figcaption></figure>
-      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/8562551398427dee1ff5360bb5c5e207" alt="Escena 5: Lucy sale con sus botas, Este año regálate estilo"><figcaption class="cap" data-k="guion.e5">Escena 5</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/1f29825b5a024d9dcec817385fbee201" alt="Escena 1: se retira el listón y aparece Ya llegó la Navidad a Bhriela"><figcaption class="cap" data-k="guion.e1">Escena 1</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/46507e165aea34f516f49d3b08054b5c" alt="Escena 2: Lucy frente al aparador se imagina las botas"><figcaption class="cap" data-k="guion.e2">Escena 2</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/c4edb3d31cb2e4f9aa459fcd801e3810" alt="Escena 3: las botas salen de la caja de regalo junto al árbol"><figcaption class="cap" data-k="guion.e3">Escena 3</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/aaa4349be689ec8b3b08d5c383f5a71f" alt="Escena 4: botas reales en la tienda con moño y bastón de caramelo"><figcaption class="cap" data-k="guion.e4">Escena 4</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/59ed08c5188942c0552e36596bb1751a" alt="Escena 5: Lucy sale con sus botas, Este año regálate estilo"><figcaption class="cap" data-k="guion.e5">Escena 5</figcaption></figure>
     </div>
   </div>
 </section>
@@ -293,17 +295,17 @@ body{font-family:var(--body)}
       <p class="quote" data-k="video.frase">“La Navidad llegó a Bhriela”</p>
       <p style="color:#E5D4C8;font-size:19px" data-k="video.desc">Animado y videos reales.</p>
     </div>
-    <div class="ph-wrap rv-pop"><div class="phone ph-main"><video src="/_blob/22e0c5c11d7357088c1a55a20f7d4103" poster="/_blob/36e7ef431bdae88f1f9b691e6013af5e" muted autoplay loop playsinline controls preload="metadata" aria-label="Video final del anuncio navideño de Bhriela"></video></div><p class="ph-cap" data-k="video.cap1">Video final</p></div>
+    <div class="ph-wrap rv-pop"><div class="phone ph-main"><video src="/_blob/22e0c5c11d7357088c1a55a20f7d4103" poster="/_blob/a7ba3a1268940a5b401c93bdce1c9027" muted loop playsinline controls preload="none" aria-label="Video final del anuncio navideño de Bhriela"></video></div><p class="ph-cap" data-k="video.cap1">Video final</p></div>
     <div class="vid-side">
-      <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/fcf8950cb6690d732521bf227a4dcf14" poster="/_blob/26c8a1af20d3cb0f4d7f3abc94d7f01d" muted autoplay loop playsinline preload="metadata" aria-label="Escena 1 real: se retira el listón del iPad"></video></div><p class="ph-cap" data-k="video.cap2">Escena 1</p></div>
-      <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/78f8d7c4d0e79c257edd4887509b3ceb" poster="/_blob/63f972608664e99b0b3c59ffe0a87962" muted autoplay loop playsinline preload="metadata" aria-label="Tomas en tienda: botas con moño y bastón de caramelo"></video></div><p class="ph-cap" data-k="video.cap3">En tienda</p></div>
+      <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/fcf8950cb6690d732521bf227a4dcf14" poster="/_blob/1dde3edbfabcb01c6b315aabc8090135" muted loop playsinline preload="none" aria-label="Escena 1 real: se retira el listón del iPad"></video></div><p class="ph-cap" data-k="video.cap2">Escena 1</p></div>
+      <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/78f8d7c4d0e79c257edd4887509b3ceb" poster="/_blob/028c1e13a2d8d2ab8223e86727d3ac56" muted loop playsinline preload="none" aria-label="Tomas en tienda: botas con moño y bastón de caramelo"></video></div><p class="ph-cap" data-k="video.cap3">En tienda</p></div>
     </div>
   </div>
 </section>
 
 <section class="band b-cream" id="aida">
   <svg class="deco flake" style="right:5%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img class="deco boot fb" src="/_blob/d86250f83a152e819a46976f5ee69437" alt="" style="left:2%;bottom:40px;width:clamp(60px,7vw,110px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/94741ba98cca36b5ef9016121a60b084" alt="" style="left:2%;bottom:40px;width:clamp(60px,7vw,110px)">
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">El video, paso a paso</p><h2 class="title" data-k="aida.titulo">Modelo AIDA</h2></div>
     <p class="aida-intro rv" data-k="aida.intro">El modelo AIDA, atribuido al publicista Elias St. Elmo Lewis (1898), explica el camino que recorre una persona frente a un anuncio: primero algo capta su Atención, luego despierta su Interés, después crea el Deseo y al final la lleva a la Acción. Así se reparte en los 42 segundos del video final:</p>
@@ -317,25 +319,25 @@ body{font-family:var(--body)}
         <h3 class="lbl" data-k="aida.a.t">El listón se suelta</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.a.q">Una mano real desata el moño del iPad y aparece “Ya llegó la Navidad a Bhriela”.</p>
         <h4>Por qué funciona</h4><p class="txt" data-k="aida.a.p">Desde el primer segundo hay movimiento y una sorpresa por descubrir, así que la persona se queda a ver qué hay debajo del listón. El mensaje se lee sin sonido y la marca aparece antes de los 6 segundos, dentro de la ventana en la que la mayoría decide si sigue viendo o hace scroll.</p>
-      </div><div class="thumbs"><img src="/_blob/b75e42a9fd8748964e37cf33de47fc3f" alt="El iPad con el mensaje Ya llegó la Navidad a Bhriela"></div></div></article>
+      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/1f29825b5a024d9dcec817385fbee201" alt="El iPad con el mensaje Ya llegó la Navidad a Bhriela"></div></div></article>
       <article class="card stage si rv"><div class="letter">I</div><div class="body"><div>
         <p class="time" data-k="aida.i.time">6 – 14 s · Interés</p>
         <h3 class="lbl" data-k="aida.i.t">La lista de regalos de Lucy</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.i.q">Lucy llega a la tienda con su lista: Papá, Mamá y Hermano ya tienen palomita, pero en “Para mí” se queda un signo de interrogación. Se enciende el aparador, se le ocurre la idea, se imagina las botas y entra.</p>
         <h4>Por qué funciona</h4><p class="txt" data-k="aida.i.p">Plantea un problema real de diciembre con el que la clienta se identifica: regalar a todos y olvidarse de ella misma. La historia animada genera curiosidad por saber cómo se resuelve y conecta con Lucy, la clienta ideal de la segmentación.</p>
-      </div><div class="thumbs"><img src="/_blob/32534523615f2cb51e5419e2fa20b58e" alt="Lucy con su lista: Para mí con signo de interrogación"><img src="/_blob/30de3f102d2ba140d2ed975b8465cd0f" alt="Lucy se imagina las botas"></div></div></article>
+      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/069082baeb92e917337e84edd09a484c" alt="Lucy con su lista: Para mí con signo de interrogación"><img loading="lazy" decoding="async" src="/_blob/46507e165aea34f516f49d3b08054b5c" alt="Lucy se imagina las botas"></div></div></article>
       <article class="card stage sd rv"><div class="letter">D</div><div class="body"><div>
         <p class="time" data-k="aida.d.time">14 – 36 s · Deseo</p>
         <h3 class="lbl" data-k="aida.d.t">Las botas como el regalo perfecto</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.d.q">Adentro se abre una caja de regalo y salen las botas. Después vienen las tomas reales en tienda: el candado dorado, la textura croco, la hebilla y la variedad de modelos. Al final Lucy sale con sus botas puestas y su bolsa, palomea “Para mí” y aparece “Este año, regálate estilo”.</p>
         <h4>Por qué funciona</h4><p class="txt" data-k="aida.d.p">Es la etapa más larga porque es la que vende. La caja presenta las botas como un regalo, las tomas reales muestran la calidad y los detalles para generar confianza, y el final resuelve el problema del inicio: el autorregalo se siente merecido.</p>
-      </div><div class="thumbs"><img src="/_blob/38de79a58e41848ab4138d9fd78b28cc" alt="Las botas salen de la caja de regalo"><img src="/_blob/1bc64f9a64d61ab7fc826e7f4e613abb" alt="Toma real del candado dorado"><img src="/_blob/8562551398427dee1ff5360bb5c5e207" alt="Lucy sale con sus botas: Este año, regálate estilo"></div></div></article>
+      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/c4edb3d31cb2e4f9aa459fcd801e3810" alt="Las botas salen de la caja de regalo"><img loading="lazy" decoding="async" src="/_blob/6b70da7304beb1d1b4f07e7fb5f2f977" alt="Toma real del candado dorado"><img loading="lazy" decoding="async" src="/_blob/59ed08c5188942c0552e36596bb1751a" alt="Lucy sale con sus botas: Este año, regálate estilo"></div></div></article>
       <article class="card stage sx rv"><div class="letter">A</div><div class="body"><div>
         <p class="time" data-k="aida.x.time">36 – 42 s · Acción</p>
         <h3 class="lbl" data-k="aida.x.t">Encuentra el regalo perfecto</h3>
         <h4>Qué pasa</h4><p class="txt" data-k="aida.x.q">Cierra el logo de Bhriela con “Encuentra el regalo perfecto”, @bhriela_shoes y “Envíos a todo México”.</p>
         <h4>Por qué funciona</h4><p class="txt" data-k="aida.x.p">Dice qué hacer y dónde: buscar a Bhriela en Instagram, y quita la duda de si les llega a cualquier parte del país. Va de la mano con el objetivo de Meta Ads, que es que la persona mande un mensaje directo a Instagram desde el botón del anuncio.</p>
-      </div><div class="thumbs"><img src="/_blob/985c4f382bca0b9b1c51ac2c908c4ce6" alt="Cierre con el logo de Bhriela y @bhriela_shoes"></div></div></article>
+      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Cierre con el logo de Bhriela y @bhriela_shoes"></div></div></article>
     </div>
     <p class="sources">Fuentes:
       <a href="https://es.wikipedia.org/wiki/Modelo_AIDA" target="_blank" rel="noopener">Wikipedia: Modelo AIDA</a>
@@ -348,7 +350,7 @@ body{font-family:var(--body)}
 
 <section class="band b-cream" id="justificacion">
   <svg class="deco flake" style="left:3%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img class="deco boot fb" src="/_blob/8e6400aa0eb7652796dc4d52c663937c" alt="" style="right:4%;top:50px;width:clamp(70px,8vw,120px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/0d489dabcb73ce9935c1504db9776be5" alt="" style="right:4%;top:50px;width:clamp(70px,8vw,120px)">
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="just.titulo">Justificación</h2></div>
     <div class="grid g3" data-sort="just">
@@ -374,14 +376,14 @@ body{font-family:var(--body)}
         <div class="card rv" data-item="claves"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div><div style="min-width:0"><p class="k" data-k="seg.cl.k">Palabras clave</p><p class="lbl" data-k="seg.cl">Botas, regalo, Navidad</p></div></div>
       </div>
     </div>
-    <div class="lucy rv-pop"><img src="/_blob/55e1d6535a1b5ff9d5bb57206205436b" alt="Lucy, la clienta ideal, ilustrada con suéter navideño y botas altas tejidas"><p class="script name" data-k="seg.lucy">Lucy</p></div>
+    <div class="lucy rv-pop"><img loading="lazy" decoding="async" src="/_blob/97ca004d1d0e55b58a9474f9a1f20e82" alt="Lucy, la clienta ideal, ilustrada con suéter navideño y botas altas tejidas"><p class="script name" data-k="seg.lucy">Lucy</p></div>
   </div>
 </section>
 
 <section class="band striped b-cream" id="cta">
   <svg class="deco flake" style="left:42%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img class="deco boot fa" src="/_blob/ae94d012aeb13fbaf92a55869b439bfc" alt="" style="right:3%;bottom:40px;width:clamp(80px,10vw,150px)">
-  <img class="deco boot fb" src="/_blob/0a9d2b2da62203edb64ca6b157029fe2" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
+  <img loading="lazy" decoding="async" class="deco boot fa" src="/_blob/26a58cf5d9d05ffbcddbebb29ad43cbc" alt="" style="right:3%;bottom:40px;width:clamp(80px,10vw,150px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/9d5f785e65050e1b206dd5f08e8d39cb" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="cta.titulo">Call to action</h2></div>
     <p class="aida-intro rv" data-k="cta2.intro">Un call to action (llamado a la acción) es la frase o el botón que le dice a la persona qué hacer después de ver el anuncio. Casi siempre empieza con un verbo: escribe, compra, visita. En esta campaña la acción que buscamos es una sola: que la clienta nos mande un mensaje.</p>
@@ -425,7 +427,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
 </section>
 
 <section class="band b-wine" id="resultados">
-  <img class="deco boot fb" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="right:3%;bottom:30px;width:clamp(90px,11vw,170px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/5dd2366ec97c9a3cbb3544411fa20ffa" alt="" style="right:3%;bottom:30px;width:clamp(90px,11vw,170px)">
   <svg class="deco spark" style="left:5%;bottom:50px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap res">
     <div class="big11 rv-pop"><span class="n" data-count data-k="res.num">11</span><span class="t" data-k="res.num.t">Conversaciones iniciadas</span></div>
@@ -438,8 +440,8 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
 
 <section class="band b-cream" id="espero">
   <svg class="deco flake" style="left:30%;top:80px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="left:3%;bottom:40px;width:clamp(90px,12vw,190px)">
-  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:4%;top:50px;width:clamp(70px,9vw,140px)">
+  <img loading="lazy" decoding="async" class="deco boot fa" src="/_blob/01278c07e5c0f09410d000b2206eb95a" alt="" style="left:3%;bottom:40px;width:clamp(90px,12vw,190px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/21b1b99d4d9b066f3440b89879956df0" alt="" style="right:4%;top:50px;width:clamp(70px,9vw,140px)">
   <div class="wrap" style="text-align:center">
     <div class="head rv" style="align-items:center"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="esp.titulo">Lo que espero</h2></div>
     <div class="lines">
@@ -457,18 +459,18 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
   <div class="wrap gifts">
     <h2 class="title rv" style="font-size:clamp(52px,7vw,104px)" data-k="reg.titulo">Rega
 litos</h2>
-    <figure class="pol rv-pop" style="margin:0"><img src="/_blob/7a350698f6707d52ba00b1fe025e3797" alt="Tazas de cerámica de regalo"></figure>
-    <figure class="pol rv-pop" style="margin:0"><img src="/_blob/e2f1ffefd63a5076c0dd0096d2c93bcf" alt="Ramo de flores de regalo"></figure>
+    <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/44fd76fee395deee11f76e8b6c45e52e" alt="Tazas de cerámica de regalo"></figure>
+    <figure class="pol rv-pop" style="margin:0"><img loading="lazy" decoding="async" src="/_blob/87fddebb0204e93fe2cee038638c442d" alt="Ramo de flores de regalo"></figure>
   </div>
 </section>
 
 <section class="band b-wine thanks" id="gracias">
   <div class="snow"></div>
   <div class="ring" aria-hidden="true"></div>
-  <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="left:5%;top:30px;width:clamp(90px,13vw,200px)">
-  <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="right:6%;top:30px;width:clamp(80px,11vw,170px)">
-  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="left:9%;bottom:30px;width:clamp(70px,10vw,150px)">
-  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="right:5%;bottom:30px;width:clamp(90px,13vw,200px)">
+  <img loading="lazy" decoding="async" class="deco boot fa" src="/_blob/5dd2366ec97c9a3cbb3544411fa20ffa" alt="" style="left:5%;top:30px;width:clamp(90px,13vw,200px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/9ca5c5189abf11c92337c19134ec58ab" alt="" style="right:6%;top:30px;width:clamp(80px,11vw,170px)">
+  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/21b1b99d4d9b066f3440b89879956df0" alt="" style="left:9%;bottom:30px;width:clamp(70px,10vw,150px)">
+  <img loading="lazy" decoding="async" class="deco boot fa" src="/_blob/01278c07e5c0f09410d000b2206eb95a" alt="" style="right:5%;bottom:30px;width:clamp(90px,13vw,200px)">
   <div class="wrap">
     <h2 class="rv-pop" data-k="gra.titulo">¡GRACIAS!</h2>
     <p class="rv" data-k="gra.marca">BHRIELA</p>
@@ -496,11 +498,23 @@ litos</h2>
       ord.forEach(function(id){var it=box.querySelector(':scope > [data-item="'+id+'"]'); if(it) box.appendChild(it);});
     });
     root.querySelectorAll(".snow").forEach(function(s){
-      for(var i=0;i<28;i++){var d=document.createElement("span");var sz=3+Math.random()*6;
+      for(var i=0;i<12;i++){var d=document.createElement("span");var sz=3+Math.random()*6;
         d.style.left=(Math.random()*100)+"%";d.style.width=d.style.height=sz+"px";
         d.style.animationDuration=(7+Math.random()*9)+"s";d.style.animationDelay=(-Math.random()*14)+"s";s.appendChild(d);}
     });
-    setupCount(); setupNav();
+    setupCount(); setupNav(); setupVideos();
+  }
+
+  /* videos load and play only while on screen */
+  var vidObs=null;
+  function setupVideos(){
+    if(vidObs) vidObs.disconnect();
+    var vids=root.querySelectorAll("video");
+    if(!("IntersectionObserver" in window)){vids.forEach(function(v){v.preload="metadata"});return}
+    vidObs=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+      if(e.isIntersecting){if(v.preload==="none")v.preload="auto";var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}
+      else if(!v.paused){v.pause()}})},{threshold:.35});
+    vids.forEach(function(v){vidObs.observe(v)});
   }
 
   /* count-up for numbers when they come into view (never while editing) */
@@ -536,7 +550,7 @@ litos</h2>
     }})},{rootMargin:"-45% 0px -50% 0px"});
     root.querySelectorAll("section[id]").forEach(function(s){navObs.observe(s)});
   }
-  window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight);prog.style.transform="scaleX("+p+")"},{passive:true});
+  var ticking=false;window.addEventListener("scroll",function(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;var h=document.documentElement;var p=h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight);prog.style.transform="scaleX("+p+")"})},{passive:true});
 
   /* editing toolbar */
   var tools=document.createElement("div"); tools.className="tools"; document.body.appendChild(tools);
