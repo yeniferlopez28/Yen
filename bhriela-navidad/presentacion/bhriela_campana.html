@@ -175,6 +175,20 @@ body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-st
   .res{text-align:center}
 }
 
+
+/* CTA flow */
+.cta-flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin-bottom:34px}
+.cta-flow .step{flex:1 1 160px;background:var(--sand);border-radius:16px;padding:14px 16px;font-size:15px;color:var(--muted);display:flex;flex-direction:column;gap:4px;min-width:0}
+.cta-flow .step b{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine)}
+.cta-flow .step.hot{background:var(--wine);color:var(--cream2)} .cta-flow .step.hot b{color:var(--gold-l)}
+.cta-flow i{align-self:center;font-style:normal;color:var(--wine);font-size:22px}
+.tag{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d)}
+.card.inv .tag{color:var(--gold-l)}
+.cta-notes{margin-top:22px}
+.card.note{background:var(--sand);border-color:transparent}
+.card.note.warn{background:var(--cream2);border:1.5px dashed var(--gold)}
+.card.note .tag{color:var(--wine)}
+@media (max-width:900px){.cta-flow i{display:none}}
 /* ===== v2: retro-editorial type and awning stripes ===== */
 :root{--sand:#D6E6EC; --cream:#FFF7EC; --cream2:#FFEED7; --hi:#CEE3E9;
   --display:'Fraunces',Georgia,'Times New Roman',serif; --body:'Bricolage Grotesque',system-ui,Arial,sans-serif; --mono:'DM Mono',ui-monospace,Menlo,monospace; --brand:'Josefin Sans',Futura,'Trebuchet MS',sans-serif; --script:'Fraunces',Georgia,serif}
@@ -370,11 +384,23 @@ body{font-family:var(--body)}
   <img class="deco boot fb" src="/_blob/0a9d2b2da62203edb64ca6b157029fe2" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="cta.titulo">Call to action</h2></div>
+    <p class="aida-intro rv" data-k="cta2.intro">Un call to action (llamado a la acción) es la frase o el botón que le dice a la persona qué hacer después de ver el anuncio. Casi siempre empieza con un verbo: escribe, compra, visita. En esta campaña la acción que buscamos es una sola: que la clienta nos mande un mensaje.</p>
+    <div class="cta-flow rv" aria-label="Recorrido de la clienta">
+      <span class="step"><b>Ve el video</b>“La Navidad llegó a Bhriela”</span><i aria-hidden="true">→</i>
+      <span class="step"><b>Toca el botón</b>Enviar mensaje</span><i aria-hidden="true">→</i>
+      <span class="step"><b>Nos escribe</b>Mensaje directo a Instagram</span><i aria-hidden="true">→</i>
+      <span class="step hot"><b>Conversación</b>11 conversaciones iniciadas</span>
+    </div>
     <div class="grid g3" data-sort="cta">
-      <article class="card rv" data-item="video" style="transform:rotate(-1.2deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></div><h3 class="lbl" data-k="cta.v.t">Video</h3><p class="script" style="font-size:34px;line-height:1.1" data-k="cta.v.d">“La Navidad llegó a Bhriela”</p><p class="txt" data-k="cta.v.u">Username de Insta</p></article>
-      <article class="card inv rv" data-item="copy" style="transform:rotate(1deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><h3 class="lbl" data-k="cta.c.t">Copy</h3><p class="txt" style="font-size:21px" data-k="cta.c.d">Envíos a todo México.
+      <article class="card rv" data-item="video" style="transform:rotate(-1.2deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></div><p class="tag" data-k="cta2.v.tag">En el video · cierre</p><h3 class="lbl" data-k="cta2.v.t">“Encuentra el regalo perfecto”</h3><p class="txt" data-k="cta2.v.d">@bhriela_shoes
+Envíos a todo México</p></article>
+      <article class="card inv rv" data-item="copy" style="transform:rotate(1deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><p class="tag" data-k="cta2.c.tag">Copy del anuncio</p><p class="txt" style="font-size:21px" data-k="cta.c.d">Envíos a todo México.
 Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
-      <article class="card rv" data-item="meta" style="transform:rotate(-.8deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><h3 class="lbl" data-k="cta.m.t">Meta Ads</h3><p class="txt" style="font-size:21px" data-k="cta.m.d">Mensaje directo a Instagram</p></article>
+      <article class="card rv" data-item="meta" style="transform:rotate(-.8deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><p class="tag" data-k="cta2.m.tag">Botón de Meta Ads</p><h3 class="lbl" data-k="cta2.m.t">Enviar mensaje</h3><p class="txt" data-k="cta.m.d">Mensaje directo a Instagram</p></article>
+    </div>
+    <div class="grid g2 cta-notes">
+      <article class="card note rv"><p class="tag" data-k="cta2.n1.tag">¿Y “La Navidad llegó a Bhriela”?</p><p class="txt" data-k="cta2.n1.d">Es el gancho del video, la parte de Atención del modelo AIDA: anuncia la temporada y despierta curiosidad, pero no le pide a la persona que haga nada. Por eso no funciona sola como call to action; el llamado a la acción va al final del video, en el copy y en el botón.</p></article>
+      <article class="card note warn rv"><p class="tag" data-k="cta2.n2.tag">Ajuste recomendado</p><p class="txt" data-k="cta2.n2.d">El copy dice “Escríbenos por WhatsApp”, pero el botón del anuncio abre un mensaje directo a Instagram. Conviene que digan lo mismo: cambiar el copy a “Envíos a todo México. Escríbenos por mensaje directo y conoce nuestros modelos”, o configurar el anuncio para que el botón abra WhatsApp. Así la clienta no duda a dónde escribir.</p></article>
     </div>
   </div>
 </section>
