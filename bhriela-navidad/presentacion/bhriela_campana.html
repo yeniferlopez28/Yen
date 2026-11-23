@@ -366,6 +366,65 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   .nav .count{display:none}
   .nav{gap:14px}
 }
+
+/* ===== v6: editorial AIDA, hook, CTA, results ===== */
+.lede{max-width:68ch;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--muted);margin:-12px 0 28px}
+.b-wine .lede{color:var(--on-wine)}
+.tl{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-bottom:22px}
+.tl span:nth-child(1){background:var(--wine)} .tl span:nth-child(2){background:var(--blue-d)} .tl span:nth-child(3){background:var(--gold)} .tl span:nth-child(4){background:var(--ink)}
+.story{display:grid;grid-template-columns:14.1fr 18.8fr 32fr 15.3fr;gap:18px;align-items:start}
+.story{grid-template-columns:1fr 1fr 1.6fr 1fr}
+.st{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:2px solid var(--wine);min-width:0}
+.st:nth-child(2){border-color:var(--blue-d)} .st:nth-child(3){border-color:var(--gold)} .st:nth-child(4){border-color:var(--ink)}
+.st-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.st-l{font-family:var(--display);font-weight:800;font-size:44px;line-height:.9;color:var(--wine);font-variation-settings:"SOFT" 100,"opsz" 144}
+.st:nth-child(2) .st-l{color:var(--blue-d)} .st:nth-child(3) .st-l{color:#9C7424} .st:nth-child(4) .st-l{color:var(--ink)}
+.st-t{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.st img{width:100%;height:clamp(130px,22vh,230px);object-fit:cover;object-position:center 45%;border-radius:10px;display:block}
+.st-imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st h3{font-family:var(--display);font-weight:700;font-size:24px;color:var(--wine);margin:2px 0 0}
+.st p{font-size:15px;line-height:1.5;color:var(--muted)}
+.hook{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.hook-q{font-family:var(--display);font-style:italic;font-weight:700;font-size:clamp(30px,3.6vw,52px);line-height:1.05;color:var(--wine);margin:-10px 0 18px;font-variation-settings:"SOFT" 100,"WONK" 1}
+.hook-pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.hook-pts li{display:grid;grid-template-columns:190px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1.5px solid rgba(122,31,45,.18);font-size:16px;color:var(--muted)}
+.hook-pts b{font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--wine)}
+.hook-frames{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.hook-frames figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.hook-frames img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;display:block;border:6px solid var(--paper);box-shadow:0 10px 26px rgba(43,29,25,.14)}
+.hook-frames figure:nth-child(2){margin-top:34px}
+.hook-frames figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center}
+.cta3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:22px}
+.ctac{flex-direction:column;gap:14px}
+.ctac-img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center 45%;border-radius:12px;display:block}
+.res2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center}
+.res-hero{display:flex;align-items:center;gap:22px;margin:-6px 0 18px}
+.res-hero .n{font-family:var(--display);font-weight:800;font-size:clamp(84px,9vw,140px);line-height:.85;color:var(--cream2);font-variation-settings:"SOFT" 100,"opsz" 144}
+.res-hero .t{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.2vw,30px);color:var(--paper);line-height:1.1}
+.res-hero .s{font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--gold-l);margin-top:6px}
+.res2 .lead{font-size:clamp(16px,1.3vw,18px);line-height:1.6;color:var(--on-wine);max-width:60ch}
+.res-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.res-strip>div{background:rgba(255,238,215,.08);border:1px solid rgba(255,238,215,.18);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.ri{width:34px;height:34px;border-radius:10px;background:var(--cream2);display:grid;place-items:center;margin-bottom:4px}
+.ri .ic{width:20px;height:20px;stroke:var(--wine)}
+.res-strip b{font-family:var(--display);font-weight:800;font-size:clamp(22px,2vw,30px);color:var(--paper)}
+.res-strip small{font-size:13px;color:var(--on-wine)}
+.res-collage{display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:auto auto;gap:18px;max-width:460px;width:100%;justify-self:center;padding:10px}
+.res-collage figure{margin:0;background:var(--paper);padding:8px 8px 22px;border-radius:6px;box-shadow:0 16px 36px rgba(0,0,0,.32)}
+.res-collage img{display:block;width:100%;object-fit:cover;border-radius:3px}
+.res-collage .c1{grid-row:1 / span 2;align-self:center;transform:rotate(-2deg)} .res-collage .c1 img{aspect-ratio:3/5}
+.res-collage .c2{transform:rotate(2deg)} .res-collage .c3{transform:rotate(-1deg)}
+.res-collage .c2 img,.res-collage .c3 img{aspect-ratio:1/1}
+#aida .title{font-size:clamp(44px,5.4vw,84px)} #aida .head{margin-bottom:22px}
+@media (max-width:1100px){.story{grid-template-columns:1fr 1fr} .story .st.wide{grid-column:auto}}
+@media (max-width:900px){
+  .hook,.res2{grid-template-columns:minmax(0,1fr)}
+  .hook-pts li{grid-template-columns:minmax(0,1fr);gap:2px}
+  .cta3{grid-template-columns:minmax(0,1fr)}
+  .res-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .res-collage{max-width:340px}
+}
+@media (max-width:560px){.story{grid-template-columns:minmax(0,1fr)} .hook-frames figure:nth-child(2){margin-top:18px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
@@ -422,42 +481,39 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
 </section>
 
 <section class="band b-cream" id="aida">
-  <svg class="deco flake" style="right:5%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/94741ba98cca36b5ef9016121a60b084" alt="" style="left:2%;bottom:40px;width:clamp(60px,7vw,110px)">
+  <svg class="deco flake" style="right:4%;top:56px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="aida.titulo">Modelo AIDA</h2></div>
-    <p class="aida-intro rv" data-k="aida2.intro">El modelo AIDA describe las etapas que recorre una persona frente a un anuncio: Atención, Interés, Deseo y Acción. Strong (1925) lo atribuye a E. St. Elmo Lewis y forma parte de los modelos de jerarquía de efectos de la publicidad (Lavidge & Steiner, 1961; Barry & Howard, 1990). Así se distribuye en los 42 segundos del video final:</p>
-    <div class="aida-bar rv" role="img" aria-label="Duración de cada etapa: Atención 0 a 6 segundos, Interés 6 a 14, Deseo 14 a 36, Acción 36 a 42">
-      <span class="sa" style="width:14.1%"><b class="full">Atención</b><b class="short">A</b></span><span class="si" style="width:18.8%">Interés</span><span class="sd" style="width:51.8%">Deseo</span><span class="sx" style="width:15.3%">Acción</span>
+    <p class="lede rv" data-k="aida3.intro">El video está construido sobre las cuatro etapas del modelo AIDA: captar la Atención, despertar el Interés, generar el Deseo y llevar a la Acción. Cada etapa ocupa un tramo preciso de los 42 segundos.</p>
+    <div class="tl rv" role="img" aria-label="Línea de tiempo del video: Atención 0 a 6 segundos, Interés 6 a 14, Deseo 14 a 36, Acción 36 a 42">
+      <span style="width:14.1%"></span><span style="width:18.8%"></span><span style="width:51.8%"></span><span style="width:15.3%"></span>
     </div>
-    <div class="aida-ticks"><span>0 s</span><span>6 s</span><span>14 s</span><span>36 s</span><span>42 s</span></div>
-    <div class="stages">
-      <article class="card stage sa rv"><div class="letter">A</div><div class="body"><div>
-        <p class="time" data-k="aida.a.time">0 – 6 s · Atención</p>
-        <h3 class="lbl" data-k="aida.a.t">El listón se suelta</h3>
-        <h4>Qué pasa</h4><p class="txt" data-k="aida.a.q">Una mano real desata el moño del iPad y aparece “Ya llegó la Navidad a Bhriela”.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.a.p">Desde el primer segundo hay movimiento y una sorpresa por descubrir, lo que detiene el scroll y lleva a ver qué hay debajo del listón. El video es vertical, a pantalla completa y se entiende con o sin sonido, como recomienda Meta para anuncios en Reels (Meta, 2024).</p>
-      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/1f29825b5a024d9dcec817385fbee201" alt="El iPad con el mensaje Ya llegó la Navidad a Bhriela"></div></div></article>
-      <article class="card stage si rv"><div class="letter">I</div><div class="body"><div>
-        <p class="time" data-k="aida.i.time">6 – 14 s · Interés</p>
-        <h3 class="lbl" data-k="aida.i.t">La lista de regalos de Lucy</h3>
-        <h4>Qué pasa</h4><p class="txt" data-k="aida.i.q">Lucy llega a la tienda con su lista: Papá, Mamá y Hermano ya tienen palomita, pero en “Para mí” se queda un signo de interrogación. Se enciende el aparador, se le ocurre la idea, se imagina las botas y entra.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.i.p">Plantea un problema real de diciembre con el que la clienta se identifica: regalarle a todos y olvidarse de ella misma. La historia genera curiosidad por saber cómo se resuelve y conecta con Lucy, la clienta ideal definida en la segmentación (Kotler et al., 2022).</p>
-      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/069082baeb92e917337e84edd09a484c" alt="Lucy con su lista: Para mí con signo de interrogación"><img loading="lazy" decoding="async" src="/_blob/46507e165aea34f516f49d3b08054b5c" alt="Lucy se imagina las botas"></div></div></article>
-      <article class="card stage sd rv"><div class="letter">D</div><div class="body"><div>
-        <p class="time" data-k="aida.d.time">14 – 36 s · Deseo</p>
-        <h3 class="lbl" data-k="aida.d.t">Las botas como el regalo perfecto</h3>
-        <h4>Qué pasa</h4><p class="txt" data-k="aida.d.q">Adentro se abre una caja de regalo y salen las botas. Después vienen las tomas reales en tienda: el candado dorado, la textura croco, la hebilla y la variedad de modelos. Al final Lucy sale con sus botas puestas y su bolsa, palomea “Para mí” y aparece “Este año, regálate estilo”.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.d.p">Es la etapa más larga porque es la que vende. La caja presenta las botas como un regalo, las tomas reales muestran calidad y detalles para generar confianza, y el final resuelve el problema del inicio: el autorregalo se siente merecido. En la jerarquía de efectos, esta parte lleva del conocimiento del producto a la preferencia por él (Lavidge & Steiner, 1961).</p>
-      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/c4edb3d31cb2e4f9aa459fcd801e3810" alt="Las botas salen de la caja de regalo"><img loading="lazy" decoding="async" src="/_blob/6b70da7304beb1d1b4f07e7fb5f2f977" alt="Toma real del candado dorado"><img loading="lazy" decoding="async" src="/_blob/59ed08c5188942c0552e36596bb1751a" alt="Lucy sale con sus botas: Este año, regálate estilo"></div></div></article>
-      <article class="card stage sx rv"><div class="letter">A</div><div class="body"><div>
-        <p class="time" data-k="aida.x.time">36 – 42 s · Acción</p>
-        <h3 class="lbl" data-k="aida.x.t">Encuentra el regalo perfecto</h3>
-        <h4>Qué pasa</h4><p class="txt" data-k="aida.x.q">Cierra el logo de Bhriela con “Encuentra el regalo perfecto”, @bhriela_shoes y “Envíos a todo México”.</p>
-        <h4>Por qué funciona</h4><p class="txt" data-k="aida2.x.p">Indica qué hacer y dónde: escribirle a Bhriela en Instagram, y elimina la duda del envío. Se complementa con el botón “Enviar mensaje” del anuncio, que abre una conversación directa con la tienda (Meta, s. f.).</p>
-      </div><div class="thumbs"><img loading="lazy" decoding="async" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Cierre con el logo de Bhriela y @bhriela_shoes"></div></div></article>
+    <div class="story">
+      <article class="st rv-pop">
+        <div class="st-h"><span class="st-l">A</span><span class="st-t" data-k="aida3.a.time">00:00 – 00:06</span></div>
+        <img loading="lazy" decoding="async" src="/_blob/1f29825b5a024d9dcec817385fbee201" alt="El listón se suelta y aparece Ya llegó la Navidad a Bhriela">
+        <h3 data-k="aida3.a.t">Atención</h3>
+        <p data-k="aida3.a.d">Una mano desata el listón del iPad y revela “Ya llegó la Navidad a Bhriela”. El movimiento y la sorpresa detienen el scroll, y el mensaje se entiende aun sin sonido.</p>
+      </article>
+      <article class="st rv-pop">
+        <div class="st-h"><span class="st-l">I</span><span class="st-t" data-k="aida3.i.time">00:06 – 00:14</span></div>
+        <img loading="lazy" decoding="async" src="/_blob/069082baeb92e917337e84edd09a484c" alt="Lucy con su lista de regalos">
+        <h3 data-k="aida3.i.t">Interés</h3>
+        <p data-k="aida3.i.d">Lucy repasa su lista: ya tiene el regalo de todos, menos el suyo. Es una situación real de diciembre que la clienta reconoce y que la invita a seguir viendo.</p>
+      </article>
+      <article class="st wide rv-pop">
+        <div class="st-h"><span class="st-l">D</span><span class="st-t" data-k="aida3.d.time">00:14 – 00:36</span></div>
+        <div class="st-imgs"><img loading="lazy" decoding="async" src="/_blob/c4edb3d31cb2e4f9aa459fcd801e3810" alt="Las botas salen de la caja de regalo"><img loading="lazy" decoding="async" src="/_blob/6b70da7304beb1d1b4f07e7fb5f2f977" alt="Toma real del candado dorado"></div>
+        <h3 data-k="aida3.d.t">Deseo</h3>
+        <p data-k="aida3.d.d">Las botas salen de una caja de regalo y las tomas reales muestran piel, texturas y herrajes. Lucy sale con sus botas puestas: el autorregalo resuelve la historia. Es la etapa más larga porque es la que vende.</p>
+      </article>
+      <article class="st rv-pop">
+        <div class="st-h"><span class="st-l">A</span><span class="st-t" data-k="aida3.x.time">00:36 – 00:42</span></div>
+        <img loading="lazy" decoding="async" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Cierre con el logo de Bhriela">
+        <h3 data-k="aida3.x.t">Acción</h3>
+        <p data-k="aida3.x.d">El cierre indica qué hacer y dónde: “Encuentra el regalo perfecto”, @bhriela_shoes y envíos a todo México, apoyado por el botón “Enviar mensaje” del anuncio.</p>
+      </article>
     </div>
-    
   </div>
 </section>
 
@@ -467,9 +523,9 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="just.titulo">Justificación</h2></div>
     <div class="grid g3" data-sort="just">
-      <article class="card rv" data-item="cancion"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3 class="lbl" data-k="just.c1.t">Canción “All I Want for Christmas”</h3><p class="txt" data-k="just.c1.d">Genera conexión emocional inmediata y evoca el espíritu navideño desde los primeros segundos. Su ritmo dinámico permite cortes ágiles que retienen la atención e incentivan la compra de calzado como el regalo ideal.</p></article>
-      <article class="card rv" data-item="red"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></div><h3 class="lbl" data-k="just.c2.t">Red social: Instagram</h3><p class="txt" data-k="just.c2.d">Las animaciones con IA aportan un toque lúdico y diferenciador para captar el interés, mientras que las tomas en tienda exhiben la textura, calidad y variedad real del calzado, generando confianza en el comprador.</p></article>
-      <article class="card rv" data-item="propuesta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div><h3 class="lbl" data-k="just.c3.t">Propuesta visual: animado y videos reales</h3><p class="txt" data-k="just.c3.d">Canal principal de la marca con mayor historial de interacción y conversión. Su formato visual y vertical facilita el descubrimiento de moda y agiliza los pedidos en línea.</p></article>
+      <article class="card rv" data-item="cancion"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3 class="lbl" data-k="just.c1.t">Canción “All I Want for Christmas”</h3><p class="txt" data-k="just.c1.d2">Es una de las canciones navideñas más reconocidas: desde el primer segundo sitúa a la audiencia en la temporada y despierta una emoción familiar. Su ritmo marca los cortes del video, sostiene la atención y asocia las botas con el regalo de Navidad.</p></article>
+      <article class="card rv" data-item="red"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></div><h3 class="lbl" data-k="just.c2.t">Red social: Instagram</h3><p class="txt" data-k="just.c2.d2">Es el canal principal de Bhriela: ahí están su comunidad, su catálogo y la atención por mensaje. Su formato vertical, en Reels e historias, es donde las clientas descubren tendencias de moda, y el anuncio las lleva directo a una conversación con la tienda.</p></article>
+      <article class="card rv" data-item="propuesta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div><h3 class="lbl" data-k="just.c3.t">Propuesta visual: animado y videos reales</h3><p class="txt" data-k="just.c3.d2">La ilustración animada cuenta una historia con la que la clienta se identifica y distingue el anuncio de la publicidad de calzado habitual. Las tomas reales en tienda muestran textura, color y acabados de cada modelo, lo que genera confianza en la compra.</p></article>
     </div>
   </div>
 </section>
@@ -493,25 +549,45 @@ body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 1
   </div>
 </section>
 
+<section class="band striped b-sand" id="gancho">
+  <svg class="deco flake" style="left:4%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
+  <svg class="deco spark" style="right:5%;bottom:60px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap hook">
+    <div class="hook-copy">
+      <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="hook.titulo">El gancho</h2></div>
+      <p class="hook-q rv" data-k="hook.frase">“La Navidad llegó a Bhriela”</p>
+      <p class="lede rv" data-k="hook.d">Los primeros seis segundos deciden si la persona sigue viendo. Por eso el video abre con una revelación: una mano desata el listón y aparece el anuncio de la temporada.</p>
+      <ul class="hook-pts rv">
+        <li><b data-k="hook.p1.t">Sorpresa</b><span data-k="hook.p1.d">El listón genera curiosidad por ver qué hay debajo.</span></li>
+        <li><b data-k="hook.p2.t">Sin sonido</b><span data-k="hook.p2.d">El mensaje se lee en pantalla aunque el video esté en silencio.</span></li>
+        <li><b data-k="hook.p3.t">Marca desde el inicio</b><span data-k="hook.p3.d">Bhriela aparece antes de los seis segundos.</span></li>
+      </ul>
+    </div>
+    <div class="hook-frames rv-pop">
+      <figure><img loading="lazy" decoding="async" src="/_blob/11c2b0da377173b20b68d2173723aae1" alt="El iPad con el listón atado"><figcaption>00:00</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="/_blob/f75af53424edacd423239e369244fda2" alt="La mano jala el listón"><figcaption>00:03</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="/_blob/c87abfd866d9fea91256c954a8a3c0ec" alt="Se revela Ya llegó la Navidad a Bhriela"><figcaption>00:06</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section class="band striped b-cream" id="cta">
-  <svg class="deco flake" style="left:42%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <img loading="lazy" decoding="async" class="deco boot fa" src="/_blob/26a58cf5d9d05ffbcddbebb29ad43cbc" alt="" style="right:3%;bottom:40px;width:clamp(80px,10vw,150px)">
-  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/9d5f785e65050e1b206dd5f08e8d39cb" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
+  <svg class="deco flake" style="left:4%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="cta.titulo">Call to action</h2></div>
-    <p class="aida-intro rv" data-k="cta3.intro">El llamado a la acción indica a la audiencia cuál es el siguiente paso concreto. En la jerarquía de efectos corresponde a la etapa final, la de conducta, en la que la persona pasa de querer el producto a actuar (Lavidge & Steiner, 1961). En esta campaña ese paso es iniciar una conversación con Bhriela.</p>
-    <div class="cta-flow rv" aria-label="Recorrido de la clienta">
-      <span class="step"><b>Gancho</b>“La Navidad llegó a Bhriela”</span><i aria-hidden="true">→</i>
-      <span class="step"><b>Cierre</b>“Encuentra el regalo perfecto”</span><i aria-hidden="true">→</i>
-      <span class="step"><b>Botón</b>Enviar mensaje</span><i aria-hidden="true">→</i>
-      <span class="step hot"><b>Resultado</b>11 conversaciones iniciadas</span>
+    <p class="lede rv" data-k="cta4.intro">El llamado a la acción le dice a la clienta cuál es el siguiente paso: escribirle a Bhriela. Aparece en tres puntos del anuncio y todos llevan a la misma acción.</p>
+    <div class="cta3">
+      <article class="card ctac rv-pop"><img loading="lazy" decoding="async" class="ctac-img" src="/_blob/b4c75a8c377e7acd3ef95ff70198f1ac" alt="Pantalla final del video con el logo de Bhriela"><div><p class="tag" data-k="cta4.v.tag">Cierre del video</p><h3 class="lbl" data-k="cta4.v.t">“Encuentra el regalo perfecto”</h3><p class="txt" data-k="cta4.v.d">@bhriela_shoes
+Envíos a todo México</p></div></article>
+      <article class="card inv ctac rv-pop"><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><div><p class="tag" data-k="cta4.c.tag">Copy del anuncio</p><p class="txt" style="font-size:20px" data-k="cta.c.d">Envíos a todo México.
+Escríbenos por WhatsApp y conoce nuestros modelos.</p></div></article>
+      <article class="card ctac rv-pop"><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><div><p class="tag" data-k="cta4.m.tag">Botón de Meta Ads</p><h3 class="lbl" data-k="cta4.m.t">Enviar mensaje</h3><p class="txt" data-k="cta4.m.d">Mensaje directo a Instagram</p></div></article>
     </div>
-    <div class="grid g2" data-sort="cta">
-      <article class="card rv" data-item="gancho"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></div><p class="tag" data-k="cta3.g.tag">Gancho del video · Atención</p><h3 class="lbl" data-k="cta3.g.t">“La Navidad llegó a Bhriela”</h3><p class="txt" data-k="cta3.g.d">Abre el anuncio con una revelación que capta la atención en los primeros segundos y anuncia la llegada de la temporada. Prepara a la audiencia para la acción final.</p></article>
-      <article class="card rv" data-item="video"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></div><p class="tag" data-k="cta3.v.tag">Cierre del video</p><h3 class="lbl" data-k="cta3.v.t">“Encuentra el regalo perfecto”</h3><p class="txt" data-k="cta3.v.d">@bhriela_shoes · Envíos a todo México. Indica dónde encontrar la marca y elimina la duda sobre la entrega.</p></article>
-      <article class="card inv rv" data-item="copy"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><p class="tag" data-k="cta3.c.tag">Copy del anuncio</p><p class="txt" style="font-size:21px" data-k="cta.c.d">Envíos a todo México.
-Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
-      <article class="card rv" data-item="meta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><p class="tag" data-k="cta3.m.tag">Botón de Meta Ads</p><h3 class="lbl" data-k="cta3.m.t">Enviar mensaje</h3><p class="txt" data-k="cta3.m.d">Mensaje directo a Instagram. El botón abre una conversación con la tienda en un solo toque, por lo que el resultado se mide en conversaciones iniciadas (Meta, s. f.).</p></article>
+    <div class="cta-flow rv" aria-label="Recorrido de la clienta">
+      <span class="step"><b>Ve el cierre</b>“Encuentra el regalo perfecto”</span><i aria-hidden="true">→</i>
+      <span class="step"><b>Toca el botón</b>Enviar mensaje</span><i aria-hidden="true">→</i>
+      <span class="step"><b>Escribe</b>Mensaje directo a Instagram</span><i aria-hidden="true">→</i>
+      <span class="step hot"><b>Resultado</b>11 conversaciones iniciadas</span>
     </div>
   </div>
 </section>
@@ -550,13 +626,23 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
 </section>
 
 <section class="band b-wine" id="resultados">
-  <img loading="lazy" decoding="async" class="deco boot fb" src="/_blob/5dd2366ec97c9a3cbb3544411fa20ffa" alt="" style="right:3%;bottom:30px;width:clamp(90px,11vw,170px)">
-  <svg class="deco spark" style="left:5%;bottom:50px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
-  <div class="wrap res">
-    <div class="big11 rv-pop"><span class="n" data-count data-k="res.num">11</span><span class="t" data-k="res.num.t">Conversaciones iniciadas</span></div>
-    <div class="rv" style="display:flex;flex-direction:column;gap:22px;min-width:0">
-      <h2 class="title" data-k="res.titulo">Resultados</h2>
-      <p class="lead" data-k="res.texto">La campaña navideña de Bhriela logró resultados positivos en cuanto a alcance, visibilidad y generación de conversaciones. Su principal KPI fueron las 11 conversaciones iniciadas, con un costo de $35.87 MXN por conversación; esto demuestra que la publicidad permitió atraer posibles clientas y generar oportunidades de venta.</p>
+  <svg class="deco spark" style="left:4%;bottom:44px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap res2">
+    <div class="res-left">
+      <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="res.titulo">Resultados</h2></div>
+      <div class="res-hero rv-pop"><span class="n num" data-count data-k="res.num">11</span><div><p class="t" data-k="res.num.t">Conversaciones iniciadas</p><p class="s" data-k="res2.num.s">Principal KPI de la campaña · $35.87 MXN por conversación</p></div></div>
+      <p class="lead rv" data-k="res.texto">La campaña navideña de Bhriela logró resultados positivos en cuanto a alcance, visibilidad y generación de conversaciones. Su principal KPI fueron las 11 conversaciones iniciadas, con un costo de $35.87 MXN por conversación; esto demuestra que la publicidad permitió atraer posibles clientas y generar oportunidades de venta.</p>
+      <div class="res-strip rv">
+        <div><span class="ri"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8"/></svg></span><b class="num" data-count data-k="res2.a">4,341</b><small data-k="res2.a.t">personas alcanzadas</small></div>
+        <div><span class="ri"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M7.5 18a4.5 4.5 0 0 1 9 0"/></svg></span><b class="num" data-count data-k="res2.b">98</b><small data-k="res2.b.t">visitas al perfil</small></div>
+        <div><span class="ri"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M3 20a7 7 0 0 1 14 0M19 8v6M16 11h6"/></svg></span><b class="num" data-count data-k="res2.c">9</b><small data-k="res2.c.t">nuevos seguidores</small></div>
+        <div><span class="ri"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><b class="num" data-count data-k="res2.d">$395.56</b><small data-k="res2.d.t">inversión total</small></div>
+      </div>
+    </div>
+    <div class="res-collage rv-pop" aria-label="Imágenes de la campaña">
+      <figure class="c1"><img loading="lazy" decoding="async" src="/_blob/aaa4349be689ec8b3b08d5c383f5a71f" alt="Botas en la tienda con moño y bastón de caramelo"></figure>
+      <figure class="c2"><img loading="lazy" decoding="async" src="/_blob/59ed08c5188942c0552e36596bb1751a" alt="Lucy sale con sus botas"></figure>
+      <figure class="c3"><img loading="lazy" decoding="async" src="/_blob/028c1e13a2d8d2ab8223e86727d3ac56" alt="Botas vaqueras en la tienda"></figure>
     </div>
   </div>
 </section>
@@ -587,20 +673,7 @@ litos</h2>
   </div>
 </section>
 
-<section class="band b-cream" id="referencias">
-  <svg class="deco flake" style="right:5%;top:70px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
-  <div class="wrap">
-    <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="ref.titulo">Referencias</h2></div>
-    <ul class="refs rv">
-      <li>Barry, T. E., &amp; Howard, D. J. (1990). A review and critique of the hierarchy of effects in advertising. <i>International Journal of Advertising, 9</i>(2), 121–135.</li>
-      <li>Kotler, P., Keller, K. L., &amp; Chernev, A. (2022). <i>Marketing management</i> (16th ed.). Pearson.</li>
-      <li>Lavidge, R. J., &amp; Steiner, G. A. (1961). A model for predictive measurements of advertising effectiveness. <i>Journal of Marketing, 25</i>(6), 59–62. <a href="https://doi.org/10.2307/1248516" target="_blank" rel="noopener">https://doi.org/10.2307/1248516</a></li>
-      <li>Meta. (2024, 7 de noviembre). <i>Unlock the power of Reel ads</i>. Meta for Developers. <a href="https://developers.facebook.com/blog/post/2024/11/07/unlock-the-power-of-reel-ads/" target="_blank" rel="noopener">https://developers.facebook.com/blog/post/2024/11/07/unlock-the-power-of-reel-ads/</a></li>
-      <li>Meta. (s. f.). <i>Ads that click to Instagram</i>. Meta for Developers. <a href="https://developers.facebook.com/docs/marketing-api/ad-creative/messaging-ads/click-to-instagram" target="_blank" rel="noopener">https://developers.facebook.com/docs/marketing-api/ad-creative/messaging-ads/click-to-instagram</a></li>
-      <li>Strong, E. K. (1925). Theories of selling. <i>Journal of Applied Psychology, 9</i>(1), 75–86. <a href="https://doi.org/10.1037/h0070123" target="_blank" rel="noopener">https://doi.org/10.1037/h0070123</a></li>
-    </ul>
-  </div>
-</section>
+
 
 <section class="band b-wine thanks" id="gracias">
   <div class="snow"></div>
@@ -616,7 +689,7 @@ litos</h2>
 </section>
 </template><script type="application/json" id="state">{"texts":{},"order":{}}</script><script id="app">
 (function(){
-  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["referencias","Referencias"],["gracias","Gracias"]];
+  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["gancho","El gancho"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["gracias","Gracias"]];
   var RESET=":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
   var state={texts:{},order:{}};
   try{state=JSON.parse(document.getElementById("state").textContent)||state}catch(e){}
@@ -656,7 +729,7 @@ litos</h2>
   function declutter(sl){
     if(!sl) return;
     var decos=[].slice.call(sl.querySelectorAll(".deco")); decos.forEach(function(d){d.classList.remove("hush")});
-    var sel=".wrap h1,.wrap h2,.wrap h3,.wrap p,.wrap .card,.wrap .pol,.wrap .phone,.wrap .pill,.wrap .aida-bar,.wrap .cta-flow,.wrap .lucy img,.wrap .refs li,.wrap .big11,.wrap .lines p,.wrap .stage";
+    var sel=".wrap h1,.wrap h2,.wrap h3,.wrap p,.wrap .card,.wrap .res-strip>div,.wrap .st,.wrap figure,.wrap li,.wrap .tl,.wrap .pol,.wrap .phone,.wrap .pill,.wrap .aida-bar,.wrap .cta-flow,.wrap .lucy img,.wrap .refs li,.wrap .big11,.wrap .lines p,.wrap .stage";
     var boxes=[].slice.call(sl.querySelectorAll(sel)).concat([].slice.call(document.querySelectorAll(".nav,.camp,.tools .btn,.dots"))).map(function(e){return e.getBoundingClientRect()}).filter(function(r){return r.width>0&&r.height>0});
     var st=sl.scrollTop;
     decos.forEach(function(d){var r=d.getBoundingClientRect(), pad=26;
