@@ -257,7 +257,8 @@ body{overflow:hidden;height:100%}
 #root>section.band{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:none;flex-direction:column;justify-content:center;justify-content:safe center;padding-bottom:calc(clamp(72px,10vw,130px) + 40px);content-visibility:visible;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 #root>section.band.is-on{display:flex;animation:slideIn .55s cubic-bezier(.2,.8,.2,1) both}
 #root>section.band.is-on.back{animation-name:slideInBack}
-#root>section.hero.is-on{display:grid}
+#root>section.hero.is-on{display:grid;justify-content:stretch;align-content:center;grid-template-columns:minmax(0,1fr)}
+.hero .pill{white-space:nowrap}
 @keyframes slideIn{from{opacity:0;transform:translateX(40px)}}
 @keyframes slideInBack{from{opacity:0;transform:translateX(-40px)}}
 .band .wrap{width:100%}
