@@ -541,6 +541,29 @@ body.clean .hidebtn:hover,body.clean .hidebtn:focus-visible{opacity:1}
   .thanks .deco.boot{opacity:1}
   .orn.o3{display:none} .orn.o2{left:36%}
 }
+
+/* ===== v11: company intro ===== */
+.intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,72px);align-items:center}
+.intro-lede{font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(22px,3.6vh,36px);line-height:1.15;color:var(--wine);margin:-6px 0 clamp(14px,2.6vh,26px);font-variation-settings:"SOFT" 100,"WONK" 1;max-width:24ch}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(16px,3vh,30px)}
+.pl{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1.5px solid rgba(122,31,45,.16);border-radius:999px;padding:8px 16px 8px 10px;font-size:clamp(13px,1.9vh,16px)}
+.pl b{font-weight:600;color:var(--ink)}
+.pl .ic{width:22px;height:22px;stroke:var(--wine);background:#FBE3E7;border-radius:50%;padding:3px;box-sizing:content-box}
+.intro-camp{background:var(--wine);color:var(--cream2);border-radius:20px;padding:clamp(14px,2.6vh,24px) clamp(16px,2vw,26px)}
+.intro-camp .tag{color:var(--gold-l);margin-bottom:10px}
+.goals{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(8px,1.6vh,14px)}
+.goals li{display:flex;align-items:center;gap:12px;font-size:clamp(14px,2.1vh,18px);font-weight:600}
+.goals .ic{width:22px;height:22px;stroke:var(--gold-l);flex:none}
+.showcase{position:relative;width:100%;max-width:min(440px,62vh);aspect-ratio:4/5;justify-self:center}
+.sh-glow{position:absolute;inset:8% 6% 14%;border-radius:50%;background:radial-gradient(circle,#F9DDE2 0%,rgba(249,221,226,0) 70%)}
+.sh-ring{position:absolute;inset:6% 4% 12%;border-radius:50%;border:2px dashed rgba(194,78,102,.35);animation:spin 40s linear infinite}
+.sh-base{position:absolute;left:18%;right:18%;bottom:6%;height:7%;border-radius:50%;background:radial-gradient(ellipse,rgba(122,31,45,.22),rgba(122,31,45,0) 70%)}
+.sh-item{position:absolute;inset:6% 12% 14%;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;animation:showcase 10s cubic-bezier(.3,1.3,.5,1) infinite;animation-delay:calc(var(--k) * 2.5s)}
+.sh-item img{max-width:100%;max-height:82%;object-fit:contain}
+.sh-item figcaption{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);background:var(--paper);border:1.5px solid rgba(122,31,45,.16);border-radius:999px;padding:4px 12px}
+@keyframes showcase{0%{opacity:0;transform:translateY(24px) scale(.85) rotate(-6deg)}5%{opacity:1;transform:translateY(0) scale(1) rotate(0)}22%{opacity:1;transform:translateY(-6px) scale(1) rotate(2deg)}27%{opacity:0;transform:translateY(-20px) scale(.92) rotate(4deg)}100%{opacity:0}}
+@media (max-width:900px){.intro{grid-template-columns:minmax(0,1fr)} .showcase{max-width:300px}}
+@media (prefers-reduced-motion:reduce){.sh-item{opacity:0} .sh-item:first-of-type{opacity:1}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
 <section class="band hero" id="inicio">
@@ -559,6 +582,36 @@ body.clean .hidebtn:hover,body.clean .hidebtn:focus-visible{opacity:1}
     <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-k="hero.campana">CAMPAÑA META ADS</span></div>
   </div>
   <div class="scrollcue"><span>Avanza con →</span></div>
+</section>
+
+<section class="band b-cream" id="empresa">
+  <svg class="deco flake" style="left:4%;top:56px" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2v26M3.7 8.5l22.6 13M3.7 21.5l22.6-13M15 2l-3 3M15 2l3 3M15 28l-3-3M15 28l3-3"/></svg>
+  <svg class="deco spark" style="right:46%;bottom:60px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap intro">
+    <div class="intro-copy">
+      <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="emp.titulo">La empresa</h2></div>
+      <p class="intro-lede rv" data-k="emp.lede">Calzado para dama, con las botas como protagonistas.</p>
+      <div class="pills rv">
+        <span class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b data-k="emp.p1">Empresa mexicana</b></span>
+        <span class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h6v9l5 3.5c1.2.8 2 2 2 3.5v1H5v-4l1-4z"/><path d="M5 18h16"/></svg><b data-k="emp.p2">Botas de muchos estilos</b></span>
+        <span class="pl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><b data-k="emp.p3">Al ritmo de las tendencias</b></span>
+      </div>
+      <div class="intro-camp rv">
+        <p class="tag" data-k="emp.camp.t">La campaña navideña</p>
+        <ol class="goals">
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><span data-k="emp.g1">Promocionar sus modelos de botas</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9C9 3 5 5 7.5 8.5M12 9c3-6 7-4 4.5-.5"/></svg><span data-k="emp.g2">Aprovechar el interés de la temporada</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg><span data-k="emp.g3">Generar ventas en redes sociales</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="showcase rv-pop" role="img" aria-label="Modelos de botas de Bhriela que van apareciendo uno por uno">
+      <div class="sh-glow"></div>
+      <div class="sh-ring"></div>
+      <figure class="sh-item" style="--k:0"><img decoding="async" src="/_blob/5dd2366ec97c9a3cbb3544411fa20ffa" alt="Bota alta tejida de Bhriela"><figcaption>Alta tejida</figcaption></figure><figure class="sh-item" style="--k:1"><img decoding="async" src="/_blob/21b1b99d4d9b066f3440b89879956df0" alt="Bota plisada de Bhriela"><figcaption>Plisada</figcaption></figure><figure class="sh-item" style="--k:2"><img decoding="async" src="/_blob/9ca5c5189abf11c92337c19134ec58ab" alt="Bota gamuza de Bhriela"><figcaption>Gamuza</figcaption></figure><figure class="sh-item" style="--k:3"><img decoding="async" src="/_blob/01278c07e5c0f09410d000b2206eb95a" alt="Bota con candado de Bhriela"><figcaption>Con candado</figcaption></figure>
+      <div class="sh-base"></div>
+    </div>
+  </div>
 </section>
 
 <section class="band striped b-sand" id="guion">
@@ -797,7 +850,7 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></div></article>
 </section>
 </template><script type="application/json" id="state">{"texts":{},"order":{}}</script><script id="app">
 (function(){
-  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["gancho","El gancho"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["gracias","Gracias"]];
+  var SECTIONS=[["inicio","Inicio"],["empresa","La empresa"],["guion","Guión visual"],["video","Video"],["aida","Modelo AIDA"],["justificacion","Justificación"],["segmentacion","Segmentación"],["gancho","El gancho"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["gracias","Gracias"]];
   var RESET=":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
   var state={texts:{},order:{}};
   try{state=JSON.parse(document.getElementById("state").textContent)||state}catch(e){}
