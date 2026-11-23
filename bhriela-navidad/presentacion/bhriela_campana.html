@@ -1,0 +1,457 @@
+<title>Bhriela Campaña Meta Ads</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300..700&family=Nunito+Sans:wght@400;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap"><style id="st">
+/* Layout: one long scrolling story, each campaign topic a full-width band; boots float in the margins of every band. Brand look: wine, cream, sand and gold, single light world. */
+:root{
+  --wine:#7A1F2D; --wine-d:#561520; --cream:#F5EDE3; --sand:#E7D7C5; --paper:#FCF8F2;
+  --gold:#C79A3E; --gold-l:#EBCB85; --ink:#2B1D19; --muted:#5E4C45; --night:#21171A; --on-wine:#F4E4DA;
+  --display:'Josefin Sans',Futura,'Trebuchet MS',sans-serif; --body:'Nunito Sans',system-ui,Arial,sans-serif; --script:'Cormorant Garamond',Georgia,serif;
+  color-scheme:light;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.45;overflow-x:hidden}
+*{box-sizing:border-box}
+h1,h2,h3,p{margin:0}
+.band{position:relative;overflow:hidden;padding-block:clamp(72px,10vw,130px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto}
+.b-cream{background:var(--cream)} .b-sand{background:var(--sand)} .b-wine{background:var(--wine);color:var(--paper)} .b-night{background:var(--night);color:var(--paper)}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.title{font-family:var(--display);font-weight:700;font-size:clamp(40px,6.4vw,84px);line-height:1.02;letter-spacing:.04em;text-transform:uppercase;color:var(--wine);text-wrap:balance}
+.b-wine .title,.b-night .title{color:var(--paper)}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:clamp(32px,5vw,56px)}
+.script{font-family:var(--script);font-style:italic;font-weight:600;color:var(--wine)}
+.muted{color:var(--muted)}
+/* cards */
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{position:relative;background:var(--paper);border-radius:24px;padding:30px;box-shadow:0 10px 36px rgba(86,21,32,.09);display:flex;flex-direction:column;gap:14px;min-width:0}
+.card .lbl{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);line-height:1.25}
+.card .txt{font-size:17px;color:var(--muted);line-height:1.5}
+.chip{width:54px;height:54px;border-radius:50%;background:var(--wine);display:grid;place-items:center;flex:none}
+.chip svg{width:26px;height:26px;stroke:var(--gold-l);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card.inv{background:var(--wine);color:var(--paper)} .card.inv .lbl{color:var(--gold-l)} .card.inv .txt{color:var(--on-wine)} .card.inv .chip{background:var(--paper)} .card.inv .chip svg{stroke:var(--wine)}
+.card.dark{background:var(--ink)} .card.dark .lbl{color:var(--gold-l)} .card.dark .num{color:var(--paper)} .card.dark .txt{color:#E5D4C8}
+/* floating boots + sparkles */
+.deco{position:absolute;z-index:1;pointer-events:none;user-select:none}
+.boot{object-fit:contain;filter:drop-shadow(0 12px 18px rgba(43,29,25,.25))}
+.fa{animation:bobA 3.6s ease-in-out infinite alternate}
+.fb{animation:bobB 4.2s ease-in-out infinite alternate}
+.fc{animation:sway 4.8s ease-in-out infinite alternate}
+@keyframes bobA{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-26px) rotate(3deg)}}
+@keyframes bobB{from{transform:translateY(-20px) rotate(7deg)}to{transform:translateY(8px) rotate(-3deg)}}
+@keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.spark{width:34px;height:34px;animation:tw 1.9s ease-in-out infinite alternate}
+.spark path{fill:var(--gold)} .b-wine .spark path,.b-night .spark path{fill:var(--gold-l)}
+@keyframes tw{from{opacity:.2;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+/* scroll-driven reveals: the page is complete at rest; supporting browsers ease things in as you scroll */
+@supports (animation-timeline: view()){
+  .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
+  .rv-pop{animation:pop linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+  .line-draw{animation:drawx linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
+}
+@keyframes rise{from{opacity:0;transform:translateY(60px)}}
+@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-6deg)}}
+@keyframes drawx{from{transform:scaleX(0)}}
+/* hero */
+.hero{min-height:min(820px,92svh);display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#8E2838 0%,var(--wine) 45%,var(--wine-d) 100%);color:var(--paper)}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(64px,14vw,190px);letter-spacing:.16em;margin-right:-.16em;line-height:1;animation:heroIn 1.2s cubic-bezier(.2,.8,.2,1) both}
+.pill{display:inline-flex;align-items:center;gap:14px;margin-top:34px;background:var(--paper);color:var(--wine);border-radius:999px;padding:14px 30px;font-family:var(--display);font-weight:700;letter-spacing:.2em;font-size:clamp(15px,2vw,22px);box-shadow:0 14px 40px rgba(0,0,0,.28);animation:heroIn 1.2s .35s cubic-bezier(.2,.8,.2,1) both}
+.pill svg{width:22px;height:22px;stroke:var(--wine);fill:none;stroke-width:2.2;stroke-linecap:round}
+@keyframes heroIn{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.scrollcue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;font-family:var(--display);font-size:13px;letter-spacing:.3em;color:var(--gold-l);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollcue i{width:2px;height:34px;background:linear-gradient(var(--gold-l),transparent);animation:cue 1.6s ease-in-out infinite}
+@keyframes cue{from{transform:scaleY(.3);transform-origin:top}to{transform:scaleY(1);transform-origin:top}}
+.snow{position:absolute;inset:0;z-index:1;pointer-events:none}
+.snow span{position:absolute;top:-10px;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.7;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(105vh) translateX(30px)}}
+/* timeline */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;padding-bottom:56px}
+.timeline .line{position:absolute;left:0;right:0;bottom:18px;height:4px;background:var(--wine);border-radius:2px;transform-origin:left}
+.pol{position:relative;background:var(--paper);padding:10px 10px 14px;border-radius:6px;box-shadow:0 14px 36px rgba(43,29,25,.18);display:flex;flex-direction:column;gap:10px}
+.pol img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:3px;display:block}
+.pol .cap{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.18em;color:var(--wine);text-transform:uppercase;text-align:center}
+.timeline .pol:nth-child(odd){transform:rotate(-2.5deg)} .timeline .pol:nth-child(even){transform:rotate(2deg) translateY(-22px)}
+.timeline .pol::after{content:"";position:absolute;left:50%;bottom:-48px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--gold);border:3px solid var(--wine)}
+.timeline .pol:nth-child(even)::after{bottom:-70px}
+.pol:hover{z-index:3}
+/* video */
+.vid-row{display:grid;grid-template-columns:minmax(0,1.1fr) auto auto;gap:36px;align-items:center}
+.phone{border:10px solid #0E0708;border-radius:38px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.5);background:#0E0708}
+.phone video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.ph-main{width:min(330px,70vw)} .ph-sm{width:200px}
+.ph-cap{margin-top:12px;text-align:center;font-family:var(--display);font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-l)}
+.vid-side{display:flex;flex-direction:column;gap:28px}
+.vid-side .ph-wrap:nth-child(2){margin-left:40px}
+.quote{font-family:var(--display);font-weight:700;font-size:clamp(34px,4.6vw,60px);line-height:1.06;text-transform:uppercase;letter-spacing:.03em;text-wrap:balance}
+/* segmentation */
+.seg{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,400px);gap:56px;align-items:center}
+.seg .card{flex-direction:row;align-items:center;gap:16px;padding:20px 22px}
+.seg .card .k{font-size:14px;color:var(--muted)}
+.seg .card .lbl{font-size:17px}
+.lucy{display:flex;flex-direction:column;align-items:center;gap:0;animation:sway 5s ease-in-out infinite alternate}
+.lucy img{width:100%;height:auto;display:block}
+.lucy .name{font-size:clamp(56px,7vw,84px);line-height:1}
+/* kpis */
+.num{font-family:var(--display);font-weight:700;font-size:clamp(34px,4.2vw,52px);line-height:1.05;color:var(--wine);font-variant-numeric:tabular-nums}
+.kp .lbl{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:17px;color:var(--ink)}
+.card.inv .num{color:var(--paper)}
+/* results */
+.res{display:grid;grid-template-columns:auto minmax(0,1fr);gap:64px;align-items:center}
+.big11{width:clamp(220px,28vw,340px);aspect-ratio:1;border-radius:50%;background:var(--paper);color:var(--wine);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;padding:20px}
+.big11 .n{font-family:var(--display);font-weight:700;font-size:clamp(96px,13vw,160px);line-height:.9}
+.big11 .t{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.22em;text-transform:uppercase}
+.res p.lead{font-size:clamp(19px,2vw,24px);line-height:1.6;color:var(--on-wine);max-width:62ch}
+/* expect */
+.lines{display:flex;flex-direction:column;gap:34px;max-width:760px;margin:30px auto 0}
+.lines p{border-bottom:2px solid rgba(122,31,45,.45);min-height:52px;padding:10px 4px;font-size:22px;font-family:var(--script);font-style:italic;font-weight:600;color:var(--wine);transform-origin:left}
+/* gifts */
+.gifts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
+.gifts .pol{animation:sway 5s ease-in-out infinite alternate}
+.gifts .pol img{aspect-ratio:3/4}
+.gifts .pol:nth-child(3){animation-duration:6s;animation-direction:alternate-reverse;margin-top:80px}
+/* thanks */
+.thanks{text-align:center}
+.thanks h2{font-family:var(--display);font-weight:700;font-size:clamp(52px,13vw,200px);letter-spacing:.04em;line-height:1}
+.thanks p{margin-top:20px;font-family:var(--display);font-weight:600;letter-spacing:.5em;color:var(--gold-l);font-size:20px}
+/* side nav + progress */
+.prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:100%;transform-origin:left;transform:scaleX(0);background:var(--gold);z-index:40}
+.dots{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:40}
+.dots a{width:11px;height:11px;border-radius:50%;background:rgba(199,154,62,.35);border:2px solid var(--gold);display:block}
+.dots a.on{background:var(--gold);transform:scale(1.25)}
+.dots a:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+/* editing */
+.tools{position:fixed;right:max(16px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:50;display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 32px)}
+.btn{font-family:var(--display);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:14px;border:0;border-radius:999px;padding:13px 22px;cursor:pointer;background:var(--wine);color:var(--paper);box-shadow:0 10px 30px rgba(43,29,25,.3)}
+.btn.ghost{background:var(--paper);color:var(--wine)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn[disabled]{opacity:.6;cursor:default}
+.hint{background:var(--ink);color:var(--paper);font-size:14px;padding:10px 16px;border-radius:14px;max-width:340px}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 86px);transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;border-radius:12px;z-index:60;font-size:15px;max-width:calc(100vw - 32px)}
+[data-k]{white-space:pre-line}
+body.editing [data-k]{outline:2px dashed rgba(199,154,62,.8);outline-offset:4px;border-radius:4px;cursor:text}
+body.editing [data-k]:focus{outline:2px solid var(--gold);background:rgba(235,203,133,.16)}
+body.editing .lines p:empty::before{content:"Escribe aquí…";opacity:.45}
+.grip{display:none}
+body.editing [data-item]>.grip{display:grid;place-items:center;position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:10px;background:var(--gold);color:var(--ink);cursor:grab;touch-action:none;z-index:5;font-size:18px;line-height:1}
+body.editing [data-item].dragging{opacity:.55;transform:scale(.97)}
+body.editing .rv,body.editing .rv-pop,body.editing .line-draw{animation:none}
+body.editing .deco,body.editing .lucy,body.editing .gifts .pol{animation-play-state:paused}
+@media (max-width:900px){
+  .g3{grid-template-columns:minmax(0,1fr)} .g2{grid-template-columns:minmax(0,1fr)}
+  .timeline{grid-template-columns:repeat(2,minmax(0,1fr))} .timeline .line,.timeline .pol::after{display:none}
+  .timeline .pol:nth-child(even){transform:rotate(2deg)}
+  .vid-row,.seg,.res,.gifts{grid-template-columns:minmax(0,1fr);justify-items:center}
+  .vid-side{flex-direction:row;flex-wrap:wrap;justify-content:center} .vid-side .ph-wrap:nth-child(2){margin-left:0}
+  .ph-sm{width:150px} .gifts .pol:nth-child(3){margin-top:0}
+  .deco.boot{opacity:.45;max-width:110px} .dots{display:none}
+  .res{text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style><div id="root"></div><template id="tpl">
+<section class="band hero" id="inicio">
+  <div class="snow"></div>
+  <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="left:4%;top:8%;width:clamp(110px,16vw,240px)">
+  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:6%;top:6%;width:clamp(90px,12vw,180px)">
+  <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="left:8%;bottom:8%;width:clamp(90px,13vw,200px)">
+  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="right:5%;bottom:9%;width:clamp(110px,16vw,240px)">
+  <svg class="deco spark" style="left:30%;top:22%" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <svg class="deco spark" style="right:28%;top:30%;animation-delay:-.8s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <svg class="deco spark" style="left:40%;bottom:18%;animation-delay:-1.4s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap">
+    <h1 data-k="hero.marca">BHRIELA</h1>
+    <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-k="hero.campana">CAMPAÑA META ADS</span></div>
+  </div>
+  <div class="scrollcue"><span>Desliza</span><i></i></div>
+</section>
+
+<section class="band b-sand" id="guion">
+  <img class="deco boot fa" src="/_blob/d86250f83a152e819a46976f5ee69437" alt="" style="right:4%;top:40px;width:clamp(70px,8vw,120px)">
+  <svg class="deco spark" style="left:46%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="guion.titulo">Guión visual</h2></div>
+    <div class="timeline">
+      <div class="line line-draw"></div>
+      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/5b7a806aea0b2b8b3d09b63d3efee4a9" alt="Escena 1: se retira el listón y aparece Ya llegó la Navidad a Bhriela"><figcaption class="cap" data-k="guion.e1">Escena 1</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/30de3f102d2ba140d2ed975b8465cd0f" alt="Escena 2: Lucy frente al aparador se imagina las botas"><figcaption class="cap" data-k="guion.e2">Escena 2</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/38de79a58e41848ab4138d9fd78b28cc" alt="Escena 3: las botas salen de la caja de regalo junto al árbol"><figcaption class="cap" data-k="guion.e3">Escena 3</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/f4e2168a1301ad1341f3d4ea9c5dbda5" alt="Escena 4: botas reales en la tienda con moño y bastón de caramelo"><figcaption class="cap" data-k="guion.e4">Escena 4</figcaption></figure>
+      <figure class="pol rv-pop" style="margin:0"><img src="/_blob/8562551398427dee1ff5360bb5c5e207" alt="Escena 5: Lucy sale con sus botas, Este año regálate estilo"><figcaption class="cap" data-k="guion.e5">Escena 5</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band b-night" id="video">
+  <svg class="deco spark" style="left:6%;top:12%" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <svg class="deco spark" style="right:8%;bottom:10%;animation-delay:-1s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap vid-row">
+    <div class="rv" style="display:flex;flex-direction:column;gap:18px;min-width:0">
+      <p class="eyebrow" style="color:var(--gold-l)" data-k="video.eyebrow">Video</p>
+      <p class="quote" data-k="video.frase">“La Navidad llegó a Bhriela”</p>
+      <p style="color:#E5D4C8;font-size:19px" data-k="video.desc">Animado y videos reales.</p>
+    </div>
+    <div class="ph-wrap rv-pop"><div class="phone ph-main"><video src="/_blob/ff659872cef3e51dd19ea206316d9753" poster="/_blob/43edb610290e5ef5723f95f931bfb252" muted autoplay loop playsinline controls preload="metadata" aria-label="Video final del anuncio navideño de Bhriela"></video></div><p class="ph-cap" data-k="video.cap1">Video final</p></div>
+    <div class="vid-side">
+      <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/990c2f05c15a9ad163f2d12b8260bfd0" poster="/_blob/52051e3ab928e9dcd1c6287c5ab74275" muted autoplay loop playsinline preload="metadata" aria-label="Escena 1 real: se retira el listón del iPad"></video></div><p class="ph-cap" data-k="video.cap2">Escena 1</p></div>
+      <div class="ph-wrap rv-pop"><div class="phone ph-sm"><video src="/_blob/e0240e0bb71762e96dd261ccc5afbafb" poster="/_blob/036d91b1a727859f0e411dff2b2ac5bd" muted autoplay loop playsinline preload="metadata" aria-label="Tomas en tienda: botas con moño y bastón de caramelo"></video></div><p class="ph-cap" data-k="video.cap3">En tienda</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-cream" id="justificacion">
+  <img class="deco boot fb" src="/_blob/8e6400aa0eb7652796dc4d52c663937c" alt="" style="right:4%;top:50px;width:clamp(70px,8vw,120px)">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="just.titulo">Justificación</h2></div>
+    <div class="grid g3" data-sort="just">
+      <article class="card rv" data-item="cancion"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3 class="lbl" data-k="just.c1.t">Canción “All I Want for Christmas”</h3><p class="txt" data-k="just.c1.d">Genera conexión emocional inmediata y evoca el espíritu navideño desde los primeros segundos. Su ritmo dinámico permite cortes ágiles que retienen la atención e incentivan la compra de calzado como el regalo ideal.</p></article>
+      <article class="card rv" data-item="red"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></div><h3 class="lbl" data-k="just.c2.t">Red social: Instagram</h3><p class="txt" data-k="just.c2.d">Las animaciones con IA aportan un toque lúdico y diferenciador para captar el interés, mientras que las tomas en tienda exhiben la textura, calidad y variedad real del calzado, generando confianza en el comprador.</p></article>
+      <article class="card rv" data-item="propuesta"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></div><h3 class="lbl" data-k="just.c3.t">Propuesta visual: animado y videos reales</h3><p class="txt" data-k="just.c3.d">Canal principal de la marca con mayor historial de interacción y conversión. Su formato visual y vertical facilita el descubrimiento de moda y agiliza los pedidos en línea.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="band b-sand" id="segmentacion">
+  <svg class="deco spark" style="left:52%;top:60px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap seg">
+    <div style="min-width:0">
+      <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="seg.titulo">Segmentación</h2></div>
+      <div class="grid g2" data-sort="seg">
+        <div class="card rv" data-item="mujer"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div><p class="lbl" data-k="seg.mujer">Mujer</p></div>
+        <div class="card rv" data-item="mexico"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><p class="lbl" data-k="seg.mexico">Vive en México</p></div>
+        <div class="card rv" data-item="edad"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><p class="lbl" data-k="seg.edad">20 a 55 años</p></div>
+        <div class="card rv" data-item="redes"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><div style="min-width:0"><p class="k" data-k="seg.redes.k">Redes sociales</p><p class="lbl" data-k="seg.redes">Instagram o Facebook</p></div></div>
+        <div class="card rv" data-item="intereses"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></div><div style="min-width:0"><p class="k" data-k="seg.int.k">Intereses</p><p class="lbl" data-k="seg.int">Moda, zapatos, botas, lifestyle, compras en línea</p></div></div>
+        <div class="card rv" data-item="claves"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div><div style="min-width:0"><p class="k" data-k="seg.cl.k">Palabras clave</p><p class="lbl" data-k="seg.cl">Botas, regalo, Navidad</p></div></div>
+      </div>
+    </div>
+    <div class="lucy rv-pop"><img src="/_blob/55e1d6535a1b5ff9d5bb57206205436b" alt="Lucy, la clienta ideal, ilustrada con suéter navideño y botas altas tejidas"><p class="script name" data-k="seg.lucy">Lucy</p></div>
+  </div>
+</section>
+
+<section class="band b-cream" id="cta">
+  <img class="deco boot fa" src="/_blob/ae94d012aeb13fbaf92a55869b439bfc" alt="" style="right:3%;bottom:40px;width:clamp(80px,10vw,150px)">
+  <img class="deco boot fb" src="/_blob/0a9d2b2da62203edb64ca6b157029fe2" alt="" style="right:6%;top:50px;width:clamp(60px,7vw,110px)">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="cta.titulo">Call to action</h2></div>
+    <div class="grid g3" data-sort="cta">
+      <article class="card rv" data-item="video" style="transform:rotate(-1.2deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg></div><h3 class="lbl" data-k="cta.v.t">Video</h3><p class="script" style="font-size:34px;line-height:1.1" data-k="cta.v.d">“La Navidad llegó a Bhriela”</p><p class="txt" data-k="cta.v.u">Username de Insta</p></article>
+      <article class="card inv rv" data-item="copy" style="transform:rotate(1deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></div><h3 class="lbl" data-k="cta.c.t">Copy</h3><p class="txt" style="font-size:21px" data-k="cta.c.d">Envíos a todo México.
+Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
+      <article class="card rv" data-item="meta" style="transform:rotate(-.8deg)"><span class="grip" title="Arrastra para mover">⠿</span><div class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></div><h3 class="lbl" data-k="cta.m.t">Meta Ads</h3><p class="txt" style="font-size:21px" data-k="cta.m.d">Mensaje directo a Instagram</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="band b-sand" id="kpis">
+  <svg class="deco spark" style="right:6%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow">Resultado obtenido · ¿Qué mide?</p><h2 class="title" data-k="kpi.titulo">KPI’s</h2></div>
+    <div class="grid g3 kp" data-sort="kpi">
+      <div class="card rv-pop" data-item="alcance"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.alc.t">Alcance</p><p class="num" data-count data-k="kpi.alc.v">4,341 personas</p><p class="txt" data-k="kpi.alc.d">Personas que vieron el anuncio</p></div>
+      <div class="card rv-pop" data-item="visual"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.vis.t">Visualizaciones</p><p class="num" data-count data-k="kpi.vis.v">5494</p><p class="txt" data-k="kpi.vis.d">Veces que se mostró el anuncio</p></div>
+      <div class="card rv-pop" data-item="inter"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.int.t">Interacciones</p><p class="num" data-count data-k="kpi.int.v">27</p><p class="txt" data-k="kpi.int.d">Me gusta, reacciones y compartidos</p></div>
+      <div class="card rv-pop" data-item="perfil"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.per.t">Visitas al perfil</p><p class="num" data-count data-k="kpi.per.v">98</p><p class="txt" data-k="kpi.per.d">Personas que visitaron el perfil de Instagram</p></div>
+      <div class="card inv rv-pop" data-item="conv"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.con.t">Conversaciones iniciadas</p><p class="num" data-count data-k="kpi.con.v">11</p><p class="txt" data-k="kpi.con.d">Posibles clientas</p></div>
+      <div class="card rv-pop" data-item="seguidores"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.seg.t">Nuevos seguidores</p><p class="num" data-count data-k="kpi.seg.v">9</p><p class="txt" data-k="kpi.seg.d">Seguidores obtenidos durante la campaña</p></div>
+      <div class="card rv-pop" data-item="clics"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.cli.t">Clics en el enlace</p><p class="num" data-count data-k="kpi.cli.v">52</p><p class="txt" data-k="kpi.cli.d">Clics generados por el anuncio</p></div>
+      <div class="card rv-pop" data-item="costo"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.cos.t">Costo por conversación</p><p class="num" data-count data-k="kpi.cos.v">$35.85</p><p class="txt" data-k="kpi.cos.d">Inversión promedio para generar una conversación</p></div>
+      <div class="card dark rv-pop" data-item="inversion"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.inv.t">Inversión total</p><p class="num" data-count data-k="kpi.inv.v">$395.56</p><p class="txt" data-k="kpi.inv.d">Dinero utilizado en la campaña</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-wine" id="resultados">
+  <img class="deco boot fb" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="right:3%;bottom:30px;width:clamp(90px,11vw,170px)">
+  <svg class="deco spark" style="left:5%;bottom:50px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap res">
+    <div class="big11 rv-pop"><span class="n" data-count data-k="res.num">11</span><span class="t" data-k="res.num.t">Conversaciones iniciadas</span></div>
+    <div class="rv" style="display:flex;flex-direction:column;gap:22px;min-width:0">
+      <h2 class="title" data-k="res.titulo">Resultados</h2>
+      <p class="lead" data-k="res.texto">La campaña navideña de Bhriela logró resultados positivos en cuanto a alcance, visibilidad y generación de conversaciones. Su principal KPI fueron las 11 conversaciones iniciadas, con un costo de $35.87 MXN por conversación; esto demuestra que la publicidad permitió atraer posibles clientas y generar oportunidades de venta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band b-cream" id="espero">
+  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="left:3%;bottom:40px;width:clamp(90px,12vw,190px)">
+  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="right:4%;top:50px;width:clamp(70px,9vw,140px)">
+  <div class="wrap" style="text-align:center">
+    <div class="head rv" style="align-items:center"><p class="eyebrow">Bhriela</p><h2 class="title" data-k="esp.titulo">Lo que espero</h2></div>
+    <div class="lines">
+      <p class="line-draw" data-k="esp.1"></p>
+      <p class="line-draw" data-k="esp.2"></p>
+      <p class="line-draw" data-k="esp.3"></p>
+    </div>
+  </div>
+</section>
+
+<section class="band b-sand" id="regalitos">
+  <svg class="deco spark" style="left:8%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <svg class="deco spark" style="right:8%;bottom:70px;animation-delay:-1s" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
+  <div class="wrap gifts">
+    <h2 class="title rv" style="font-size:clamp(52px,7vw,104px)" data-k="reg.titulo">Rega
+litos</h2>
+    <figure class="pol rv-pop" style="margin:0"><img src="/_blob/7a350698f6707d52ba00b1fe025e3797" alt="Tazas de cerámica de regalo"></figure>
+    <figure class="pol rv-pop" style="margin:0"><img src="/_blob/e2f1ffefd63a5076c0dd0096d2c93bcf" alt="Ramo de flores de regalo"></figure>
+  </div>
+</section>
+
+<section class="band b-wine thanks" id="gracias">
+  <div class="snow"></div>
+  <img class="deco boot fa" src="/_blob/a08cf12eaf5eca750a218ed23bdb64c0" alt="" style="left:5%;top:30px;width:clamp(90px,13vw,200px)">
+  <img class="deco boot fb" src="/_blob/c1939b0a424557282e6e92cdc8521492" alt="" style="right:6%;top:30px;width:clamp(80px,11vw,170px)">
+  <img class="deco boot fb" src="/_blob/4ac7a58385177ca75cc0514fe6bc47ab" alt="" style="left:9%;bottom:30px;width:clamp(70px,10vw,150px)">
+  <img class="deco boot fa" src="/_blob/84ff56b81cb3f7c7625c8402fb9f5410" alt="" style="right:5%;bottom:30px;width:clamp(90px,13vw,200px)">
+  <div class="wrap">
+    <h2 class="rv-pop" data-k="gra.titulo">¡GRACIAS!</h2>
+    <p class="rv" data-k="gra.marca">BHRIELA</p>
+  </div>
+</section>
+</template><script type="application/json" id="state">{"texts":{},"order":{}}</script><script id="app">
+(function(){
+  var SECTIONS=[["inicio","Inicio"],["guion","Guión visual"],["video","Video"],["justificacion","Justificación"],["segmentacion","Segmentación"],["cta","Call to action"],["kpis","KPI's"],["resultados","Resultados"],["espero","Lo que espero"],["regalitos","Regalitos"],["gracias","Gracias"]];
+  var RESET=":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
+  var state={texts:{},order:{}};
+  try{state=JSON.parse(document.getElementById("state").textContent)||state}catch(e){}
+  state.texts=state.texts||{}; state.order=state.order||{};
+  var root=document.getElementById("root"), tpl=document.getElementById("tpl");
+  var editing=false, artifact=null, readOnly=false, saving=false;
+
+  function render(){
+    root.textContent="";
+    root.appendChild(tpl.content.cloneNode(true));
+    root.querySelectorAll("[data-k]").forEach(function(el){
+      var k=el.getAttribute("data-k");
+      if(Object.prototype.hasOwnProperty.call(state.texts,k)) el.textContent=state.texts[k];
+    });
+    root.querySelectorAll("[data-sort]").forEach(function(box){
+      var ord=state.order[box.getAttribute("data-sort")]; if(!ord) return;
+      ord.forEach(function(id){var it=box.querySelector(':scope > [data-item="'+id+'"]'); if(it) box.appendChild(it);});
+    });
+    root.querySelectorAll(".snow").forEach(function(s){
+      for(var i=0;i<28;i++){var d=document.createElement("span");var sz=3+Math.random()*6;
+        d.style.left=(Math.random()*100)+"%";d.style.width=d.style.height=sz+"px";
+        d.style.animationDuration=(7+Math.random()*9)+"s";d.style.animationDelay=(-Math.random()*14)+"s";s.appendChild(d);}
+    });
+    setupCount(); setupNav();
+  }
+
+  /* count-up for numbers when they come into view (never while editing) */
+  var countObs=null;
+  function setupCount(){
+    if(countObs) countObs.disconnect();
+    if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    countObs=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting||editing) return; countObs.unobserve(e.target); countUp(e.target);
+    })},{threshold:.6});
+    root.querySelectorAll("[data-count]").forEach(function(el){countObs.observe(el)});
+  }
+  function countUp(el){
+    var full=el.textContent, m=full.match(/^([^\d]*)([\d,]*\d(?:\.\d+)?)(.*)$/s); if(!m) return;
+    var pre=m[1], numStr=m[2], post=m[3], comma=numStr.indexOf(",")>-1, dec=(numStr.split(".")[1]||"").length, target=parseFloat(numStr.replace(/,/g,""));
+    var t0=performance.now(), dur=1300;
+    function fmt(v){var s=v.toFixed(dec); if(comma){var p=s.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");s=p.join(".")} return pre+s+post}
+    (function step(now){var p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3);
+      if(editing){el.textContent=full;return}
+      el.textContent=p<1?fmt(target*e):full; if(p<1) requestAnimationFrame(step);})(t0);
+  }
+
+  /* progress bar + side dots */
+  var prog=document.createElement("div"); prog.className="prog"; document.body.appendChild(prog);
+  var dots=document.createElement("nav"); dots.className="dots"; dots.setAttribute("aria-label","Secciones"); document.body.appendChild(dots);
+  SECTIONS.forEach(function(s){var a=document.createElement("a");a.href="#"+s[0];a.title=s[1];a.setAttribute("aria-label",s[1]);dots.appendChild(a)});
+  var navObs=null;
+  function setupNav(){
+    if(navObs) navObs.disconnect(); if(!("IntersectionObserver" in window)) return;
+    navObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+      var i=SECTIONS.findIndex(function(s){return s[0]===e.target.id});
+      dots.querySelectorAll("a").forEach(function(a,j){a.classList.toggle("on",j===i)});
+    }})},{rootMargin:"-45% 0px -50% 0px"});
+    root.querySelectorAll("section[id]").forEach(function(s){navObs.observe(s)});
+  }
+  window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight);prog.style.transform="scaleX("+p+")"},{passive:true});
+
+  /* editing toolbar */
+  var tools=document.createElement("div"); tools.className="tools"; document.body.appendChild(tools);
+  var toastEl=null,toastT=null;
+  function toast(msg){if(!toastEl){toastEl=document.createElement("div");toastEl.className="toast";toastEl.setAttribute("role","status");document.body.appendChild(toastEl)}
+    toastEl.textContent=msg;toastEl.hidden=false;clearTimeout(toastT);toastT=setTimeout(function(){toastEl.hidden=true},3500)}
+  function button(label,cls,fn){var b=document.createElement("button");b.type="button";b.className="btn"+(cls?" "+cls:"");b.textContent=label;b.addEventListener("click",fn);return b}
+  function drawTools(){
+    tools.textContent="";
+    if(!artifact||readOnly) return;
+    if(!editing){tools.appendChild(button("✎ Editar","",startEdit));return}
+    var h=document.createElement("div");h.className="hint";h.textContent="Toca cualquier texto para cambiarlo. Arrastra el ⠿ de una tarjeta para moverla.";tools.appendChild(h);
+    tools.appendChild(button("Cancelar","ghost",cancelEdit));
+    var s=button(saving?"Guardando…":"Guardar","",save); s.disabled=saving; tools.appendChild(s);
+  }
+  function setEditable(on){
+    root.querySelectorAll("[data-k]").forEach(function(el){
+      if(on){try{el.contentEditable="plaintext-only"}catch(e){el.contentEditable="true"} if(el.contentEditable!=="plaintext-only") el.contentEditable="true"; el.spellcheck=true}
+      else el.removeAttribute("contenteditable");
+    });
+  }
+  function startEdit(){editing=true;document.body.classList.add("editing");render();setEditable(true);drawTools();}
+  function cancelEdit(){editing=false;document.body.classList.remove("editing");render();drawTools();toast("Cambios descartados")}
+  root.addEventListener("paste",function(e){if(!editing) return; var t=e.target.closest&&e.target.closest("[data-k]"); if(!t||t.contentEditable==="plaintext-only") return;
+    e.preventDefault(); var txt=(e.clipboardData||window.clipboardData).getData("text"); document.execCommand("insertText",false,txt);});
+  root.addEventListener("keydown",function(e){if(editing&&e.key==="Enter"&&e.target.closest&&e.target.closest("h1,h2,h3,.lbl,.cap,.num,.eyebrow,.k")){e.preventDefault()}});
+
+  /* drag to reorder cards (pointer events: mouse and touch) */
+  var drag=null;
+  root.addEventListener("pointerdown",function(e){
+    if(!editing) return; var g=e.target.closest&&e.target.closest(".grip"); if(!g) return;
+    var item=g.parentElement, box=item.parentElement; e.preventDefault();
+    drag={item:item,box:box,id:e.pointerId}; item.classList.add("dragging"); g.setPointerCapture(e.pointerId);
+  });
+  root.addEventListener("pointermove",function(e){
+    if(!drag||e.pointerId!==drag.id) return;
+    var sibs=[].slice.call(drag.box.children).filter(function(c){return c!==drag.item&&c.hasAttribute("data-item")});
+    for(var i=0;i<sibs.length;i++){var r=sibs[i].getBoundingClientRect();
+      if(e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom){
+        var before=(e.clientY<r.top+r.height/2)||(r.height>r.width*1.4?false:e.clientX<r.left+r.width/2&&e.clientY<r.bottom);
+        drag.box.insertBefore(drag.item,before?sibs[i]:sibs[i].nextSibling); break;}}
+  });
+  function endDrag(e){if(!drag||e.pointerId!==drag.id) return; drag.item.classList.remove("dragging"); drag=null;}
+  root.addEventListener("pointerup",endDrag); root.addEventListener("pointercancel",endDrag);
+
+  /* save: rebuild the whole document from state and publish it */
+  function collect(){
+    var s={texts:{},order:{}};
+    var base=document.createElement("div"); base.appendChild(tpl.content.cloneNode(true));
+    root.querySelectorAll("[data-k]").forEach(function(el){
+      var k=el.getAttribute("data-k"), v=el.innerText.replace(/ /g," ").replace(/\n{3,}/g,"\n\n").replace(/^\s+|\s+$/g,"");
+      var orig=base.querySelector('[data-k="'+k+'"]'); var o=orig?orig.textContent.replace(/^\s+|\s+$/g,""):"";
+      if(v!==o) s.texts[k]=v;
+    });
+    root.querySelectorAll("[data-sort]").forEach(function(box){
+      s.order[box.getAttribute("data-sort")]=[].slice.call(box.children).filter(function(c){return c.hasAttribute("data-item")}).map(function(c){return c.getAttribute("data-item")});
+    });
+    return s;
+  }
+  function buildDoc(s){
+    var json=JSON.stringify(s).replace(/</g,"\\u003c");
+    var sc="<"+"/script>";
+    var fonts=document.querySelector('link[rel="stylesheet"][href*="fonts.googleapis"]');
+    return "<!doctype html><html><head><meta charset=utf8><meta name=viewport content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><style>"+RESET+"</style></head><body>"+
+      "<title>Bhriela Campaña Meta Ads</title><meta name=\"claude:viewport-fit-sides\" content=\"cover\"><link rel=\"stylesheet\" href=\""+(fonts?fonts.getAttribute("href"):"")+"\">"+
+      "<style id=\"st\">"+document.getElementById("st").textContent+"</style><div id=\"root\"></div><template id=\"tpl\">"+tpl.innerHTML+"</template>"+
+      "<script type=\"application/json\" id=\"state\">"+json+sc+"<script id=\"app\">"+document.getElementById("app").textContent+sc+"</body></html>";
+  }
+  function save(){
+    if(saving) return; var s=collect(); saving=true; drawTools();
+    artifact.publish(buildDoc(s)).then(function(){
+      state=s; saving=false; editing=false; document.body.classList.remove("editing"); render(); drawTools(); toast("Guardado. Todos verán esta versión.");
+    }).catch(function(err){
+      saving=false; var c=err&&err.code;
+      if(c==="conflict"){toast("Alguien guardó otra versión antes. La página se está recargando con esa versión.")}
+      else if(c==="not_writer"||c==="not_granted"||c==="consent_required"||c==="not_declared"){readOnly=true;editing=false;document.body.classList.remove("editing");render();toast("Esta vista es de solo lectura: no puedes guardar cambios.")}
+      else if(c==="rate_limited"){toast("Se guardó hace muy poco. Espera unos segundos y vuelve a intentar.")}
+      else if(c==="too_large"){toast("La página quedó demasiado grande para guardarse.")}
+      else {toast("No se pudo guardar. Intenta de nuevo en un momento.")}
+      drawTools();
+    });
+  }
+
+  render(); drawTools();
+  if(window.claude&&window.claude.use){window.claude.use("artifact").then(function(a){artifact=a; drawTools();}).catch(function(){});}
+})();
+</script>
