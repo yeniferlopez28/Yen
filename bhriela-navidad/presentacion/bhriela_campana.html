@@ -222,12 +222,13 @@ body{font-family:var(--body)}
 .btn{font-family:var(--mono);letter-spacing:.06em}
 /* hero: light blue with an awning-striped panel, like a shop front */
 .hero{background:var(--sand);color:var(--wine);place-items:center start;text-align:left}
-.hero .wrap{width:100%;max-width:58%;margin:0;padding-left:clamp(0px,5vw,96px)}
+.hero .wrap{width:100%;max-width:calc(60% - 24px);margin:0;padding-left:clamp(0px,4vw,96px)}
+.hero h1{font-size:clamp(44px,6vw,116px);letter-spacing:.1em}
 .hero-copy{display:flex;flex-direction:column;align-items:flex-start}
 .hero h1{color:var(--wine);font-weight:700;letter-spacing:.12em;margin-right:0;font-size:clamp(54px,6.8vw,120px)}
 .micro{font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d);margin-bottom:18px}
 .hero .pill{background:var(--wine);color:var(--cream2)} .hero .pill svg{stroke:var(--cream2)}
-.hero-stripes{position:absolute;top:0;right:0;bottom:0;width:38%;z-index:0;background:repeating-linear-gradient(90deg,var(--wine) 0 34px,var(--cream2) 34px 68px)}
+.hero-stripes{position:absolute;top:0;right:0;bottom:0;width:40%;z-index:0;background:repeating-linear-gradient(90deg,var(--wine) 0 34px,var(--cream2) 34px 68px)}
 .hero-stripes::before{content:"";position:absolute;left:-18px;top:0;bottom:0;width:20px;background:radial-gradient(circle at 0 17px,transparent 15px,var(--wine) 16px) 0 0/20px 34px repeat-y}
 .hero .snow span{background:#fff;box-shadow:0 0 0 1px rgba(85,122,140,.15)}
 .scrollcue{color:var(--wine)} .scrollcue i{background:linear-gradient(var(--wine),transparent)}
@@ -236,7 +237,7 @@ body{font-family:var(--body)}
 .band.striped::before{content:"";position:absolute;left:0;right:0;top:0;height:40px;z-index:1;background:repeating-linear-gradient(90deg,var(--wine) 0 28px,var(--cream2) 28px 56px)}
 .band.striped::after{content:"";position:absolute;left:0;right:0;top:40px;height:14px;z-index:1;background:radial-gradient(circle at 14px 0,var(--wine) 13px,transparent 14px) 0 0/56px 14px repeat-x,radial-gradient(circle at 42px 0,var(--cream2) 13px,transparent 14px) 0 0/56px 14px repeat-x}
 /* side label, like a printed brand guide */
-@media (min-width:1300px){
+@media (min-width:1500px){
   .band:not(.hero) .wrap::before{content:"BHRIELA  ✦  CAMPAÑA META ADS";position:absolute;left:-96px;top:0;transform:rotate(-90deg) translateX(-100%);transform-origin:left top;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--blue-d);opacity:.7;white-space:nowrap}
   .b-wine .wrap::before,.b-night .wrap::before{color:var(--blue)!important}
 }
@@ -293,6 +294,77 @@ body{overflow:hidden;height:100%}
   .tools .btn{padding:11px 14px;font-size:12px}
   body.editing .tools{bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
   #root>section.band{padding-bottom:150px}
+}
+
+/* ===== v4: KPI charts, fullscreen, no-overlap guards ===== */
+.kpi-top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.card.stat{flex-direction:row;align-items:flex-start;gap:18px;padding:22px 24px}
+.sico{width:52px;height:52px;border-radius:16px;background:var(--wine);display:grid;place-items:center;flex:none}
+.card.dark .sico{background:var(--gold)}
+.ic{width:26px;height:26px;fill:none;stroke:var(--cream2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card.dark .sico .ic{stroke:var(--ink)}
+.card.stat .num{font-size:clamp(28px,2.7vw,40px)}
+#kpis .title{font-size:clamp(44px,5.4vw,84px)}
+#kpis .head{margin-bottom:22px}
+.bars{gap:10px}
+.mini{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--blue-d);margin-top:6px}
+.card.dark .mini,.card.inv .mini{color:var(--gold-l)}
+.kpi-bottom{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:18px}
+.card.chart{gap:12px;padding:24px 26px}
+.bars{display:flex;flex-direction:column;gap:14px}
+.brow{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center}
+.bico{width:40px;height:40px;border-radius:12px;background:var(--sand);display:grid;place-items:center}
+.bico .ic{width:22px;height:22px;stroke:var(--wine)}
+.brow.hot .bico{background:var(--wine)} .brow.hot .bico .ic{stroke:var(--cream2)}
+.btop{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bl{font-weight:600;font-size:16px;color:var(--ink)}
+.bv{font-size:24px!important;line-height:1}
+.btrack{height:12px;border-radius:999px;background:var(--sand);overflow:hidden;margin:6px 0 4px}
+.bfill{display:block;height:100%;width:var(--w,0%);border-radius:999px;background:var(--blue-d);transform-origin:left}
+.brow.hot .bfill{background:var(--wine)}
+.is-on .bfill{animation:grow 1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 110ms + 300ms)}
+@keyframes grow{from{transform:scaleX(0)}}
+.bd{font-size:13px;color:var(--muted)}
+.axis{display:flex;justify-content:space-between;margin-left:52px;font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px dashed rgba(85,122,140,.4);padding-top:4px}
+.card.cost{gap:10px;padding:24px 26px}
+.card.cost .num{font-size:clamp(40px,4.6vw,64px)}
+.bubbles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:6px}
+.bub{aspect-ratio:1;border-radius:12px;background:rgba(255,238,215,.12);display:grid;place-items:center}
+.bub .ic{width:60%;height:60%;stroke:var(--gold-l)}
+.is-on .bub{animation:pop .45s cubic-bezier(.3,1.4,.5,1) both}
+.deco.hush{visibility:hidden!important}
+.camp{display:flex;gap:8px}
+@media (max-width:1399px){.dots{display:none}}
+@media (max-width:900px){
+  .kpi-top,.kpi-bottom{grid-template-columns:minmax(0,1fr)}
+  .camp .btn.fs::before{content:"⛶";font-size:20px}
+}
+
+/* ===== v5: controls live in their own bottom bar, slides never sit under them ===== */
+:root{--bar:76px}
+#root{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px))}
+#root>section.band{padding-bottom:clamp(40px,6vw,90px)}
+.ctrlbar{position:fixed;left:0;right:0;bottom:0;height:calc(var(--bar) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:var(--cream2);border-top:1.5px solid rgba(122,31,45,.16);z-index:44}
+.nav{bottom:calc(env(safe-area-inset-bottom,0px) + 12px);background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
+.camp{bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
+.tools{bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
+body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 12px)}
+.btn{box-shadow:none}
+.lucy{gap:10px}
+.lucy .name{line-height:1.1}
+@media (max-width:900px){
+  #root>section.band{padding-bottom:40px}
+  .camp,.tools{bottom:calc(env(safe-area-inset-bottom,0px) + 13px)}
+  body.editing .tools{bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 12px)}
+}
+@media (max-width:900px){
+  .timeline{gap:26px}
+  .timeline .pol:nth-child(odd){transform:rotate(-1deg)} .timeline .pol:nth-child(even){transform:rotate(1deg)}
+  .lucy{gap:18px}
+}
+@media (max-width:560px){
+  .nav .count{display:none}
+  .nav{gap:14px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style><div id="root"></div><template id="tpl">
@@ -449,16 +521,30 @@ Escríbenos por WhatsApp y conoce nuestros modelos.</p></article>
   <svg class="deco spark" style="right:6%;top:70px" viewBox="0 0 56 56" aria-hidden="true"><path d="M28 0C31 20 36 25 56 28C36 31 31 36 28 56C25 36 20 31 0 28C20 25 25 20 28 0Z"/></svg>
   <div class="wrap">
     <div class="head rv"><p class="eyebrow">Resultado obtenido · ¿Qué mide?</p><h2 class="title" data-k="kpi.titulo">KPI’s</h2></div>
-    <div class="grid g3 kp" data-sort="kpi">
-      <div class="card rv-pop" data-item="alcance"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.alc.t">Alcance</p><p class="num" data-count data-k="kpi.alc.v">4,341 personas</p><p class="txt" data-k="kpi.alc.d">Personas que vieron el anuncio</p></div>
-      <div class="card rv-pop" data-item="visual"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.vis.t">Visualizaciones</p><p class="num" data-count data-k="kpi.vis.v">5494</p><p class="txt" data-k="kpi.vis.d">Veces que se mostró el anuncio</p></div>
-      <div class="card rv-pop" data-item="inter"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.int.t">Interacciones</p><p class="num" data-count data-k="kpi.int.v">27</p><p class="txt" data-k="kpi.int.d">Me gusta, reacciones y compartidos</p></div>
-      <div class="card rv-pop" data-item="perfil"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.per.t">Visitas al perfil</p><p class="num" data-count data-k="kpi.per.v">98</p><p class="txt" data-k="kpi.per.d">Personas que visitaron el perfil de Instagram</p></div>
-      <div class="card inv rv-pop" data-item="conv"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.con.t">Conversaciones iniciadas</p><p class="num" data-count data-k="kpi.con.v">11</p><p class="txt" data-k="kpi.con.d">Posibles clientas</p></div>
-      <div class="card rv-pop" data-item="seguidores"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.seg.t">Nuevos seguidores</p><p class="num" data-count data-k="kpi.seg.v">9</p><p class="txt" data-k="kpi.seg.d">Seguidores obtenidos durante la campaña</p></div>
-      <div class="card rv-pop" data-item="clics"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.cli.t">Clics en el enlace</p><p class="num" data-count data-k="kpi.cli.v">52</p><p class="txt" data-k="kpi.cli.d">Clics generados por el anuncio</p></div>
-      <div class="card rv-pop" data-item="costo"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.cos.t">Costo por conversación</p><p class="num" data-count data-k="kpi.cos.v">$35.85</p><p class="txt" data-k="kpi.cos.d">Inversión promedio para generar una conversación</p></div>
-      <div class="card dark rv-pop" data-item="inversion"><span class="grip" title="Arrastra para mover">⠿</span><p class="lbl" data-k="kpi.inv.t">Inversión total</p><p class="num" data-count data-k="kpi.inv.v">$395.56</p><p class="txt" data-k="kpi.inv.d">Dinero utilizado en la campaña</p></div>
+    <div class="kpi-top">
+      <div class="card stat rv-pop"><span class="sico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8"/></svg></span><div><p class="lbl" data-k="kpi.alc.t">Alcance</p><p class="num" data-count data-k="kpi.alc.v">4,341 personas</p><p class="txt" data-k="kpi.alc.d">Personas que vieron el anuncio</p></div></div>
+      <div class="card stat rv-pop"><span class="sico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><div><p class="lbl" data-k="kpi.vis.t">Visualizaciones</p><p class="num" data-count data-k="kpi.vis.v">5494</p><p class="txt" data-k="kpi.vis.d">Veces que se mostró el anuncio</p><p class="mini" data-k="kpi2.freq">≈ 1.3 veces por persona</p></div></div>
+      <div class="card stat dark rv-pop"><span class="sico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/><path d="M6 6l9-3 1.5 3"/></svg></span><div><p class="lbl" data-k="kpi.inv.t">Inversión total</p><p class="num" data-count data-k="kpi.inv.v">$395.56</p><p class="txt" data-k="kpi.inv.d">Dinero utilizado en la campaña</p></div></div>
+    </div>
+    <div class="kpi-bottom">
+      <div class="card chart rv">
+        <p class="tag" data-k="kpi2.chart.t">Lo que hicieron las personas después de ver el anuncio</p>
+        <div class="bars">
+          <div class="brow" data-item="perfil"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M7.5 18a4.5 4.5 0 0 1 9 0"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.per.t">Visitas al perfil</span><span class="bv num" data-count data-k="kpi.per.v">98</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.per.d">Personas que visitaron el perfil de Instagram</span></div></div>
+          <div class="brow" data-item="clics"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v4M3 9h4M4.8 4.8l2.6 2.6"/><path d="M10 10l10 4-4.2 1.6L14 20z"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.cli.t">Clics en el enlace</span><span class="bv num" data-count data-k="kpi.cli.v">52</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.cli.d">Clics generados por el anuncio</span></div></div>
+          <div class="brow" data-item="inter"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 7.5 2.9C19.5 15.4 12 20 12 20z"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.int.t">Interacciones</span><span class="bv num" data-count data-k="kpi.int.v">27</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.int.d">Me gusta, reacciones y compartidos</span></div></div>
+          <div class="brow hot" data-item="conv"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.con.t">Conversaciones iniciadas</span><span class="bv num" data-count data-k="kpi.con.v">11</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.con.d">Posibles clientas</span></div></div>
+          <div class="brow" data-item="seguidores"><span class="bico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M3 20a7 7 0 0 1 14 0M19 8v6M16 11h6"/></svg></span><div class="bmain"><div class="btop"><span class="bl" data-k="kpi.seg.t">Nuevos seguidores</span><span class="bv num" data-count data-k="kpi.seg.v">9</span></div><div class="btrack"><span class="bfill"></span></div><span class="bd" data-k="kpi.seg.d">Seguidores obtenidos durante la campaña</span></div></div>
+        </div>
+        <div class="axis" aria-hidden="true"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+      </div>
+      <div class="card inv cost rv">
+        <p class="tag" data-k="kpi.cos.t">Costo por conversación</p>
+        <p class="num" data-count data-k="kpi.cos.v">$35.85</p>
+        <p class="txt" data-k="kpi.cos.d">Inversión promedio para generar una conversación</p>
+        <div class="bubbles" role="img" aria-label="11 conversaciones iniciadas, cada una representada por un globo de mensaje"><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span><span class="bub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.3A8 8 0 1 1 21 12z"/></svg></span></div>
+        <p class="mini" data-k="kpi2.cost.note">Cada globo es una conversación iniciada</p>
+      </div>
     </div>
   </div>
 </section>
@@ -554,8 +640,31 @@ litos</h2>
         d.style.left=(Math.random()*100)+"%";d.style.width=d.style.height=sz+"px";
         d.style.animationDuration=(7+Math.random()*9)+"s";d.style.animationDelay=(-Math.random()*14)+"s";s.appendChild(d);}
     });
-    setupCount(); setupNav(); setupVideos();
+    setupBars(); setupCount(); setupNav(); setupVideos();
   }
+  function num(t){var m=String(t).replace(/,/g,"").match(/\d+(\.\d+)?/);return m?parseFloat(m[0]):0}
+  function setupBars(){
+    root.querySelectorAll(".bars").forEach(function(b){
+      var rows=[].slice.call(b.querySelectorAll(".brow")), vals=rows.map(function(r){return num(r.querySelector(".bv").textContent)});
+      var max=Math.max(25,Math.ceil(Math.max.apply(null,vals)/25)*25);
+      rows.forEach(function(r,k){var f=r.querySelector(".bfill");f.style.setProperty("--w",(vals[k]/max*100)+"%");f.style.setProperty("--i",k)});
+      var ax=b.parentNode.querySelector(".axis"); if(ax){ax.textContent="";for(var t=0;t<=4;t++){var sp=document.createElement("span");sp.textContent=Math.round(max*t/4);ax.appendChild(sp)}}
+    });
+    root.querySelectorAll(".bub").forEach(function(x,k){x.style.animationDelay=(400+k*60)+"ms"});
+  }
+  /* hide any floating decoration that would touch text, cards or the controls */
+  function declutter(sl){
+    if(!sl) return;
+    var decos=[].slice.call(sl.querySelectorAll(".deco")); decos.forEach(function(d){d.classList.remove("hush")});
+    var sel=".wrap h1,.wrap h2,.wrap h3,.wrap p,.wrap .card,.wrap .pol,.wrap .phone,.wrap .pill,.wrap .aida-bar,.wrap .cta-flow,.wrap .lucy img,.wrap .refs li,.wrap .big11,.wrap .lines p,.wrap .stage";
+    var boxes=[].slice.call(sl.querySelectorAll(sel)).concat([].slice.call(document.querySelectorAll(".nav,.camp,.tools .btn,.dots"))).map(function(e){return e.getBoundingClientRect()}).filter(function(r){return r.width>0&&r.height>0});
+    var st=sl.scrollTop;
+    decos.forEach(function(d){var r=d.getBoundingClientRect(), pad=26;
+      for(var k=0;k<boxes.length;k++){var b=boxes[k];
+        if(r.left-pad<b.right&&r.right+pad>b.left&&r.top-pad<b.bottom&&r.bottom+pad>b.top){d.classList.add("hush");break}}});
+  }
+  var dcT=null; function declutterSoon(){clearTimeout(dcT);dcT=setTimeout(function(){declutter(slides[cur])},900)}
+  window.addEventListener("resize",function(){clearTimeout(dcT);dcT=setTimeout(function(){declutter(slides[cur])},250)});
 
   /* videos load and play only while on screen */
   var vidObs=null;
@@ -614,9 +723,11 @@ litos</h2>
     countEl.innerHTML=""; var b=document.createElement("b"); b.textContent=(i+1)+" / "+slides.length; countEl.appendChild(b); countEl.appendChild(document.createTextNode("  "+name));
     prevB.disabled=i===0; nextB.disabled=i===slides.length-1;
     try{history.replaceState(null,"","#"+sl.id)}catch(e){}
+    declutter(sl); declutterSoon();
     sl.querySelectorAll("[data-count]").forEach(function(el){if(countObs) {countObs.unobserve(el);countObs.observe(el)}});
   }
   function go(d){ if(document.querySelector(".modal")) return; show(cur+d,d) }
+  var bar=document.createElement("div"); bar.className="ctrlbar"; bar.setAttribute("aria-hidden","true"); document.body.appendChild(bar);
   var nav=document.createElement("nav"); nav.className="nav"; nav.setAttribute("aria-label","Cambiar de diapositiva");
   var prevB=document.createElement("button"); prevB.type="button"; prevB.textContent="←"; prevB.setAttribute("aria-label","Diapositiva anterior"); prevB.addEventListener("click",function(){go(-1)});
   var countEl=document.createElement("span"); countEl.className="count"; countEl.setAttribute("aria-live","polite");
@@ -638,6 +749,14 @@ litos</h2>
   /* full campaign video */
   var camp=document.createElement("div"); camp.className="camp";
   var cb=document.createElement("button"); cb.type="button"; cb.className="btn"; cb.textContent="▶ Campaña completa"; cb.setAttribute("aria-label","Ver la campaña completa"); cb.addEventListener("click",openModal); camp.appendChild(cb); document.body.appendChild(camp);
+  var fsOk=!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+  if(fsOk){var fb=document.createElement("button"); fb.type="button"; fb.className="btn ghost fs"; fb.setAttribute("aria-label","Pantalla completa");
+    var fsLabel=function(){var on=!!(document.fullscreenElement||document.webkitFullscreenElement); fb.textContent=on?"✕ Salir de pantalla completa":"⛶ Pantalla completa"; fb.setAttribute("aria-label",on?"Salir de pantalla completa":"Pantalla completa")};
+    fb.addEventListener("click",function(){var el=document.documentElement;
+      try{ if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
+        else{var r=(el.requestFullscreen||el.webkitRequestFullscreen).call(el); if(r&&r.catch) r.catch(function(){toast("Tu navegador no permitió la pantalla completa aquí.")})} }catch(e){toast("Tu navegador no permitió la pantalla completa aquí.")} });
+    document.addEventListener("fullscreenchange",function(){fsLabel();declutterSoon()}); document.addEventListener("webkitfullscreenchange",fsLabel);
+    fsLabel(); camp.appendChild(fb);}
   function openModal(){
     if(document.querySelector(".modal")) return;
     root.querySelectorAll("video").forEach(function(v){v.pause()});
